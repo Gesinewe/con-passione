@@ -3437,8 +3437,9 @@ function fixSpaces(target, heard){
   const out = [];
   for (let i=0; i<heard.length; i++){
     const h = heard[i], k = soundKey(h);
-    if (keys.has(k)) out.push(h);
-    else if (i + 1 < heard.length && keys.has(soundKey(h + heard[i+1]))){ out.push(h + heard[i+1]); i++; }
+    /* Zusammenziehen hat Vorrang: „a pro“ → „apro“, auch wenn im Satz noch ein einzelnes „a“ steht */
+    if (i + 1 < heard.length && !keys.has(soundKey(heard[i+1])) && keys.has(soundKey(h + heard[i+1]))){ out.push(h + heard[i+1]); i++; }
+    else if (keys.has(k)) out.push(h);
     else if (pairs.has(k)) out.push(...pairs.get(k));
     else out.push(h);
   }
@@ -3492,6 +3493,9 @@ function startRec(btn){
   btn.classList.add('on'); lbl.textContent = 'Ich höre zu …';
   try{ r.start(); }catch(e){ rec = null; idle(); out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; }
 }
+/* Englische Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht. */
+const SP_ALIAS = {apple:'apro'};
+const spAlias = (target, heard) => heard.map(h => SP_ALIAS[h] && target.includes(SP_ALIAS[h]) ? SP_ALIAS[h] : h);
 function judgeSpeech(st, alts){
   const words = st.it.replace(/^[^:]{1,24}: /,'').split(' ');
   const parts = words.map(w => ({w, toks:spTokens(w), name:NAMES.has(w.replace(/^[^\p{L}]+|[^\p{L}]+$/gu,''))}));
@@ -3499,7 +3503,7 @@ function judgeSpeech(st, alts){
   /* Ein Wort zählt als erkannt, wenn es in irgendeiner der Vorschläge der Spracherkennung vorkommt */
   const hit = new Array(target.length).fill(false);
   let heardText = alts[0], bestN = -1;
-  alts.forEach(a => { const h = wordHits(target, fixSpaces(target, spTokens(a))), n = h.filter(Boolean).length; h.forEach((v,i) => { if (v) hit[i] = true; }); if (n > bestN){ bestN = n; heardText = a; } });
+  alts.forEach(a => { const h = wordHits(target, spAlias(target, fixSpaces(target, spTokens(a)))), n = h.filter(Boolean).length; h.forEach((v,i) => { if (v) hit[i] = true; }); if (n > bestN){ bestN = n; heardText = a; } });
   /* Bewertet wird pro Wort. Namen (Anna, Luca …) zählen nicht mit, die kennt die Spracherkennung oft nicht. */
   let k = 0, need = 0, got = 0, lastOk = -1, firstMiss = -1;
   const marked = parts.map(p => {
