@@ -3401,7 +3401,16 @@ function numWord(d){
 }
 /* Die Spracherkennung schreibt Geldbeträge oft als Zeichen: „8 €“, „2,50 €“ → „otto euro“, „due euro e cinquanta“ */
 const spMoney = s => String(s).replace(/(\d+)[.,](\d{1,2})\s*(€|eur\b)/gi, '$1 euro e $2').replace(/€|\beur\b/gi, ' euro ');
-const spTokens = s => plain(spMoney(s).replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).replace(/[^a-z ]/g,' ').split(' ').filter(Boolean);
+/* Uhrzeiten schreibt die Spracherkennung wie eine Digitaluhr: „10:30“ → „dieci e mezza“, „l’1:15“ → „l’una e un quarto“, „12:00“ → „mezzogiorno“ */
+const spTime = s => s.replace(/(?:\bl['’])?\b(\d{1,2})[:.](\d{2})\b/gi, (m, h, mm) => {
+  h = +h; mm = +mm;
+  if (mm === 0 && h === 12) return ' mezzogiorno ';
+  if (mm === 0 && (h === 0 || h === 24)) return ' mezzanotte ';
+  const hour = h === 1 || h === 13 ? 'l’una' : String(h);
+  const min = mm === 0 ? '' : mm === 15 ? 'e un quarto' : mm === 30 ? 'e mezza' : mm === 45 ? 'e tre quarti' : 'e ' + mm;
+  return ' ' + hour + ' ' + min + ' ';
+});
+const spTokens = s => plain(spTime(spMoney(s)).replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).replace(/[^a-z ]/g,' ').split(' ').filter(Boolean);
 function lev(a, b){
   let prev = [...Array(b.length+1).keys()];
   for (let i=1; i<=a.length; i++){
