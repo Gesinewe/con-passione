@@ -24,6 +24,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
   --accent:#1E4FB8; --accent-ink:#FFFFFF; --accent-shadow:#143A8A;
   --t-cinema:#AE2A40; --t-cavalli:#2E7A58; --t-dolci:#B5621C; --t-brividi:#6A3F9E; --t-viaggio:#0E7490; --t-roma:#9A3324;
   --ok:#1B8452; --ok-bg:#E1F3E8; --bad:#C0392F; --bad-bg:#FBE6E3; --warn:#8A6300; --warn-bg:#FDF1C7; --warn-line:#E0B000;
+  --k-neu:#687280; --k-hoeren:#2563EB; --k-sprechen:#D9480F; --k-schreiben:#7C3AED; --k-bauen:#0E8585; --k-verstehen:#B8327A; --kmix:11%;
   --tile:#FFFFFF; --tile-edge:#C9D1CB;
   --display:"Instrument Serif", Georgia, "Times New Roman", serif;
   --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -35,6 +36,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
     --accent:#7EA3F2; --accent-ink:#0E1A33; --accent-shadow:#4A6BB5;
     --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB; --t-roma:#EE8A73;
     --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19; --warn:#F2C94C; --warn-bg:#3A300F; --warn-line:#C9A227;
+    --k-neu:#A3AAB5; --k-hoeren:#7EA8F8; --k-sprechen:#FF9F6B; --k-schreiben:#B69CFF; --k-bauen:#5FD3D3; --k-verstehen:#F28BC0; --kmix:17%;
     --tile:#212824; --tile-edge:#0A0C0B;
   }
 }
@@ -44,6 +46,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
   --accent:#7EA3F2; --accent-ink:#0E1A33; --accent-shadow:#4A6BB5;
   --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB; --t-roma:#EE8A73;
   --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19; --warn:#F2C94C; --warn-bg:#3A300F; --warn-line:#C9A227;
+    --k-neu:#A3AAB5; --k-hoeren:#7EA8F8; --k-sprechen:#FF9F6B; --k-schreiben:#B69CFF; --k-bauen:#5FD3D3; --k-verstehen:#F28BC0; --kmix:17%;
   --tile:#212824; --tile-edge:#0A0C0B;
 }
 *{box-sizing:border-box}
@@ -172,6 +175,12 @@ body.muted .spk{opacity:.35}
 .track{flex:1;height:14px;border-radius:99px;background:var(--line);overflow:hidden}
 .fill{height:100%;background:var(--t);border-radius:99px;transition:width .35s ease}
 .stage{flex:1;padding-block:20px 24px;display:flex;flex-direction:column;gap:20px}
+/* Übungsarten: farbig unterlegt, mit Schild oben */
+.player[data-kind] .stage{margin-block:8px 16px;padding:16px;border-radius:18px;background:color-mix(in srgb,var(--k) var(--kmix),var(--bg));border:1.5px solid color-mix(in srgb,var(--k) 35%,transparent);border-left-width:6px}
+.kindchip{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:12px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--k);background:color-mix(in srgb,var(--k) 14%,var(--surface));border:1.5px solid color-mix(in srgb,var(--k) 45%,transparent);border-radius:99px;padding:3px 10px;white-space:nowrap}
+.kindlegend{display:grid;gap:8px;padding:6px 0 4px}
+.kindlegend .kl{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.kindlegend .kl span:last-child{font-size:14px;color:var(--muted)}
 .ask{font-size:20px;font-weight:700}
 .big{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .big .it{font-size:48px;line-height:1.05}
@@ -2765,6 +2774,7 @@ function renderHome(){
         <div class="chips"><span class="chip">Formel 1</span><span class="chip">Fotografie</span><span class="chip">Gärtnern</span><span class="chip">K-Pop</span><span class="chip">Wandern</span></div>
       </div>
     </div>
+    <div style="margin-top:18px">${kindLegend()}</div>
     <h2 class="eyebrow section-h">Nachschlagen & Üben</h2>
     <div class="tools">
       <button class="tool" data-go="vocab"><span class="tname">Wortschatz</span><span class="tde">${VOCAB.length} Wörter in ${FOLDERS.length} Ordnern</span></button>
@@ -2846,6 +2856,7 @@ function renderTopic(id){
         </div>
         <nav class="toc" aria-label="Springe zu"><a href="#sec-lessons">Lektionen</a><a href="#sec-stories">Geschichten</a><a href="#sec-practice">Üben</a><a href="#sec-vocab">Wortschatz</a></nav>
       </div>
+      <div style="margin-top:14px">${kindLegend()}</div>
       <h2 class="eyebrow section-h" id="sec-lessons">Lektionen</h2>
       ${lessonsHtml}
       <h2 class="eyebrow section-h" id="sec-stories">Geschichten & Hörverständnis</h2>
@@ -3189,6 +3200,26 @@ function startLesson(tid, lid, mode){
   renderStep();
 }
 
+/* Übungsarten: Farbe + Schild, damit man auf einen Blick sieht, was für eine Übung es ist */
+const KINDS = {
+  neu:{icon:'✨', name:'Neu', de:'Tipps und neue Wörter kennenlernen'},
+  hoeren:{icon:'🎧', name:'Hören', de:'Zuhören und verstehen, auch Diktat'},
+  sprechen:{icon:'🎤', name:'Sprechen', de:'Laut nachsprechen'},
+  schreiben:{icon:'✏️', name:'Schreiben', de:'Selbst auf Italienisch tippen'},
+  bauen:{icon:'🧩', name:'Sätze bauen', de:'Wörter oder Sätze in die richtige Reihenfolge bringen'},
+  verstehen:{icon:'👀', name:'Verstehen', de:'Lesen, Bilder und Paare: die richtige Antwort wählen'}
+};
+function kindOf(st){
+  if (st.type === 'tip' || st.type === 'intro' || st.type === 'wordlist') return 'neu';
+  if (st.type === 'listenstory' || st.listen || st.dict) return 'hoeren';
+  if (st.type === 'speak') return 'sprechen';
+  if (st.type === 'type') return 'schreiben';
+  if (st.type === 'build') return 'bauen';
+  return 'verstehen';
+}
+const kindChip = k => `<span class="kindchip" style="--k:var(--k-${k})">${KINDS[k].icon} ${KINDS[k].name}</span>`;
+const kindLegend = () => `<details class="vfold"><summary><span class="ti">Was bedeuten die Farben?</span><span class="sub">Jede Übungsart hat ihre eigene Farbe</span></summary>
+  <div class="kindlegend">${Object.entries(KINDS).map(([k,x]) => `<div class="kl">${kindChip(k)}<span>${x.de}</span></div>`).join('')}</div></details>`;
 function renderStep(){
   pop.hidden = true; stopRec();
   L.hist = L.hist || []; L.saved = L.saved || {};
@@ -3311,12 +3342,13 @@ function renderStep(){
       <div class="opts${st.fixed?' tf':''}">${st.options.map(o => `<button class="opt" data-opt="${esc(o)}" aria-pressed="false">${o}</button>`).join('')}</div>`;
   }
 
+  const kind = kindOf(st);
   app.innerHTML = `
-    <div class="player" style="--t:${t.color}">
+    <div class="player" style="--t:${t.color};--k:var(--k-${kind})" data-kind="${kind}">
       <div class="pbar"><button class="x" data-quit aria-label="Lektion beenden">${ICON_X}</button>
         <button class="x" data-prev aria-label="Vorherige Aufgabe ansehen" title="Zurück" ${pos>0?'':'disabled'}>${ICON_BACK}</button>
         <div class="track"><div class="fill" style="width:${pct}%"></div></div>${micBtn()}${sndBtn()}</div>
-      <div class="stage">${rv ? '<div class="rv">Rückblick: frühere Aufgabe<button class="linkbtn" data-now>Zur aktuellen Aufgabe</button></div>' : ''}${body}</div>
+      <div class="stage">${kindChip(kind)}${rv ? '<div class="rv">Rückblick: frühere Aufgabe<button class="linkbtn" data-now>Zur aktuellen Aufgabe</button></div>' : ''}${body}</div>
       <div class="fb" id="fb"><div class="msg" id="msg"></div>
         ${st.type==='speak' && !rv ? `<div class="row2"><button class="ghost" id="again">Nochmal üben</button><button class="main" id="main">${btn}</button></div>
         <button class="linkbtn later" data-later>Überspringen, später nochmal üben</button>` : `<button class="main" id="main" ${ready?'':'disabled'}>${btn}</button>`}</div>
