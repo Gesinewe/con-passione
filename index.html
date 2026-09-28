@@ -3426,7 +3426,7 @@ function startRec(btn){
   if (rec){ stopRec(); return; }
   try{ player.pause(); }catch(e){} try{ speechSynthesis.cancel(); }catch(e){}
   const st = L.cur.st, out = document.getElementById('recout'), fb = document.getElementById('fb');
-  fb.classList.remove('ok','bad'); out.textContent = '';
+  fb.classList.remove('ok','bad','warn'); out.textContent = '';
   const lbl = btn.querySelector('span'), idle = () => { btn.classList.remove('on'); lbl.textContent = 'Nochmal sprechen'; };
   let r;
   try{ r = new SR(); }catch(e){ out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; return; }
@@ -3471,10 +3471,11 @@ function judgeSpeech(st, alts){
   out.textContent = '';
   const heard = `Verstanden: <span class="it">„${esc(String(heardText).trim())}“</span>`;
   if (ratio >= 0.7 || (need >= 3 && missing <= 1)){
-    fb.classList.add('ok');
-    msg.innerHTML = (missing ? 'Bene!' : ['Perfetto!','Bravissimo!','Ottimo!','Che bella pronuncia!'][Math.floor(Math.random()*4)])
-      + `<small>${heard}${missing ? `<br>Das passt! Nicht ganz sicher war ich mir hier: <span class="it">${marked}</span>` : ''}</small>`;
-    const again = document.getElementById('again'); if (again) again.hidden = true;
+    /* Geschafft, aber mit nicht erkannten Wörtern: gelb, „Nochmal üben“ bleibt zum Verbessern sichtbar */
+    fb.classList.add(missing ? 'warn' : 'ok');
+    msg.innerHTML = (missing ? 'Fast richtig!' : ['Perfetto!','Bravissimo!','Ottimo!','Che bella pronuncia!'][Math.floor(Math.random()*4)])
+      + `<small>${heard}${missing ? `<br>Das zählt als geschafft. Diese Wörter habe ich nicht erkannt: <span class="it">${marked}</span>` : ''}</small>`;
+    const again = document.getElementById('again'); if (again) again.hidden = !missing;
     const m = document.getElementById('main'); m.textContent = 'Weiter'; m.focus();
   } else {
     fb.classList.add('bad');
@@ -3490,7 +3491,7 @@ function judgeSpeech(st, alts){
 function speakAgain(){
   stopRec();
   const fb = document.getElementById('fb'), msg = document.getElementById('msg'), out = document.getElementById('recout');
-  fb.classList.remove('ok','bad'); msg.innerHTML = '';
+  fb.classList.remove('ok','bad','warn'); msg.innerHTML = '';
   if (out) out.textContent = 'Hör genau hin und versuch es nochmal.';
   const m = document.getElementById('main'); m.textContent = 'Hat geklappt';
   const again = document.getElementById('again'); if (again) again.hidden = false;
