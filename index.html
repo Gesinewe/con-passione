@@ -23,7 +23,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
   --bg:#F1F4F2; --surface:#FFFFFF; --ink:#17201B; --muted:#5B6760; --line:#D6DDD8;
   --accent:#1E4FB8; --accent-ink:#FFFFFF; --accent-shadow:#143A8A;
   --t-cinema:#AE2A40; --t-cavalli:#2E7A58; --t-dolci:#B5621C; --t-brividi:#6A3F9E; --t-viaggio:#0E7490; --t-roma:#9A3324;
-  --ok:#1B8452; --ok-bg:#E1F3E8; --bad:#C0392F; --bad-bg:#FBE6E3;
+  --ok:#1B8452; --ok-bg:#E1F3E8; --bad:#C0392F; --bad-bg:#FBE6E3; --warn:#8A6300; --warn-bg:#FDF1C7; --warn-line:#E0B000;
   --tile:#FFFFFF; --tile-edge:#C9D1CB;
   --display:"Instrument Serif", Georgia, "Times New Roman", serif;
   --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
@@ -34,7 +34,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
     --bg:#111513; --surface:#1A201C; --ink:#E8EEEA; --muted:#9AA69F; --line:#2C3530;
     --accent:#7EA3F2; --accent-ink:#0E1A33; --accent-shadow:#4A6BB5;
     --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB; --t-roma:#EE8A73;
-    --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19;
+    --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19; --warn:#F2C94C; --warn-bg:#3A300F; --warn-line:#C9A227;
     --tile:#212824; --tile-edge:#0A0C0B;
   }
 }
@@ -43,7 +43,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
   --bg:#111513; --surface:#1A201C; --ink:#E8EEEA; --muted:#9AA69F; --line:#2C3530;
   --accent:#7EA3F2; --accent-ink:#0E1A33; --accent-shadow:#4A6BB5;
   --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB; --t-roma:#EE8A73;
-  --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19;
+  --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19; --warn:#F2C94C; --warn-bg:#3A300F; --warn-line:#C9A227;
   --tile:#212824; --tile-edge:#0A0C0B;
 }
 *{box-sizing:border-box}
@@ -239,6 +239,10 @@ body.muted .aplay{opacity:.35}
 .fb{position:sticky;bottom:0;margin-inline:-16px;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
 .fb.ok{background:var(--ok-bg);border-color:transparent}
 .fb.bad{background:var(--bad-bg);border-color:transparent}
+.fb.warn{background:var(--warn-bg);border-color:transparent}
+.fb.warn .msg{display:block;color:var(--warn)}
+.fb.warn .main{background:var(--warn);color:var(--surface);box-shadow:0 4px 0 color-mix(in srgb,var(--warn) 70%,#000)}
+.field.warn{border-color:var(--warn-line);background:var(--warn-bg)}
 .fb .msg{display:none;font-weight:800;font-size:19px}
 .fb.ok .msg{display:block;color:var(--ok)}
 .fb.bad .msg{display:block;color:var(--bad)}
@@ -3333,7 +3337,7 @@ function showSaved(st, sv){
     if (b.dataset.opt === st.answer) b.classList.add('right');
     else if (b.dataset.opt === sv.answer) b.classList.add('wrong');
   });
-  if (st.type==='type'){ const inp = document.getElementById('typein'); inp.value = sv.answer || ''; inp.disabled = true; }
+  if (st.type==='type'){ const inp = document.getElementById('typein'); inp.value = sv.answer || ''; inp.disabled = true; if (sv.cls === 'warn') inp.classList.add('warn'); }
   if (st.type==='build'){
     document.getElementById('ansline').innerHTML = sv.picked.map(i => `<button class="wt" disabled>${esc(st.tiles[i])}</button>`).join('');
     document.querySelectorAll('.wt[data-tile]').forEach(b => { b.disabled = true; if (sv.picked.includes(+b.dataset.tile)) b.classList.add('used'); });
@@ -3522,7 +3526,7 @@ function typoOk(tg, pa){
 }
 function check(){
   const c = L.cur, st = c.st;
-  let ok = false, correct = '', note = '';
+  let ok = false, correct = '', note = '', warn = false;
   if (st.type==='choice' || st.type==='read'){
     ok = c.answer === st.answer; correct = st.answer;
     document.querySelectorAll('[data-opt]').forEach(b => {
@@ -3538,37 +3542,39 @@ function check(){
     const hitSlash = !hit && !hitArt && slashHit(targets, pa);
     const hitTypo = !hit && !hitArt && !hitSlash && targets.find(tg => typoOk(plain(tg), pa) || typoOk(stripArt(plain(tg)), stripArt(pa)));
     ok = !!(hit || hitArt || hitSlash || hitTypo);
-    if (hitTypo) note = 'Fast richtig! Achte auf die Schreibweise: ';
-    else if (hit && !targets.includes(a)) note = 'Achte auf die Schreibweise: ';
+    /* Tippfehler oder falsche Akzente: zählt als richtig, wird aber gelb markiert */
+    warn = !!hitTypo || !!(hit && !targets.includes(a));
+    if (warn) note = 'Achte auf die Schreibweise: ';
     else if (hitArt) note = 'Mit Artikel: ';
     correct = st.word.it;
-    document.getElementById('typein').disabled = true;
+    const inp = document.getElementById('typein'); inp.disabled = true; if (warn) inp.classList.add('warn');
   } else if (st.type==='build'){
     const a = c.picked.map(i => st.tiles[i]).join(st.sep || ' ');
     ok = norm(a) === norm(st.s.it); correct = st.s.it;
     document.querySelectorAll('.wt').forEach(b => b.disabled = true);
   }
-  finish(ok, correct, note);
+  finish(ok, correct, note, warn);
   if (st.say) speak(st.say);
   else if ((st.type==='build' && !st.order) || st.type==='type') speak(correct);
   else if (st.bigIt || st.itOpts) speak(st.itOpts ? st.answer : st.big);
 }
 
-function finish(ok, correct, note){
+function finish(ok, correct, note, warn){
   const st = L.cur.st;
   L.cur.checked = true; L.cur.mode = 'continue';
   if (!st.retry){ L.graded++; if (ok){ L.right++; L.xp += 10; } }
   else if (ok) L.xp += 5;
   if (!ok) L.queue.push(Object.assign({}, st, {retry:true, options: st.options ? shuffle(st.options) : undefined, tiles: st.tiles ? shuffle(st.tiles) : undefined}));
   const fb = document.getElementById('fb'), msg = document.getElementById('msg');
-  fb.classList.add(ok ? 'ok' : 'bad');
-  const praise = ['Esatto!','Bravissimo!','Perfetto!','Giusto!','Ottimo!'][Math.floor(Math.random()*5)];
+  const cls = ok ? (warn ? 'warn' : 'ok') : 'bad';
+  fb.classList.add(cls);
+  const praise = warn ? 'Fast richtig!' : ['Esatto!','Bravissimo!','Perfetto!','Giusto!','Ottimo!'][Math.floor(Math.random()*5)];
   const why = (st.listen && st.answer !== st.say ? `<small>Gehört: <span class="it">${esc(st.say)}</span></small>` : '') + (st.dict && ok ? `<small><span class="it">${esc(st.word.it)}</span>${st.word.de ? ' – ' + esc(st.word.de) : ''}</small>` : '') + (st.why ? `<small class="why">${st.why}</small>` : '');
   if (ok) msg.innerHTML = praise + (note && !st.order ? `<small>${note}<span class="it">${esc(correct)}</span></small>` : '') + why;
   else if (st.order) msg.innerHTML = `Nicht ganz<small>Richtig ist:<ol class="olist">${st.s.it.split(st.sep).map(x => `<li class="it">${esc(x)}</li>`).join('')}</ol>Die Aufgabe kommt später noch einmal.</small>`;
   else msg.innerHTML = `Nicht ganz<small>Richtig: <span class="it">${esc(correct)}</span><br>Die Aufgabe kommt später noch einmal.</small>` + why;
   const m = document.getElementById('main'); m.textContent = 'Weiter'; m.disabled = false; m.focus();
-  L.saved[L.i] = {answer:L.cur.answer, picked:L.cur.picked, cls:ok ? 'ok' : 'bad', msg:msg.innerHTML};
+  L.saved[L.i] = {answer:L.cur.answer, picked:L.cur.picked, cls, msg:msg.innerHTML};
   savePause();
 }
 
