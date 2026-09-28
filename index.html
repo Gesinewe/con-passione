@@ -2559,7 +2559,7 @@ function renderHome(){
       <button class="tool" data-go="tenses"><span class="tname">Zeiten üben</span><span class="tde">Gegenwart & Vergangenheit</span></button>
     </div>
     ${installBox()}
-    ${window.CP_WEB && 'caches' in window ? `<div class="offl"><button class="ghost" data-offline>${S.offlineAt ? 'Offline gespeichert ✓ · auf neue Töne prüfen' : 'Alle Töne für offline speichern (ca. 55 MB)'}</button>
+    ${window.CP_WEB && 'caches' in window ? `<div class="offl"><button class="ghost" data-offline>${S.offlineAt ? 'Offline gespeichert ✓ · auf neue Töne prüfen' : 'Alle Töne für offline speichern (ca. 65 MB)'}</button>
       <p class="hint" id="offmsg">${S.offlineAt ? 'Die App funktioniert auch ohne Internet (Sprechen mit Mikrofon braucht aber Internet).' : 'Danach funktioniert die App auch ohne Internet. Am besten im WLAN.'}</p></div>` : ''}
     <p class="foot">Prototyp · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
   window.scrollTo(0,0);
