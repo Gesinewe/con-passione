@@ -11,6 +11,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script>
 window.CP_WEB = true;
+window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); window.CP_INSTALL = e; window.dispatchEvent(new Event('cp-install')); });
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
 <title>Con Passione</title>
@@ -2342,6 +2343,7 @@ function renderHome(){
       <button class="tool" data-go="verbs"><span class="tname">Verben üben</span><span class="tde">Regelmäßige & unregelmäßige</span></button>
       <button class="tool" data-go="tenses"><span class="tname">Zeiten üben</span><span class="tde">Gegenwart & Vergangenheit</span></button>
     </div>
+    ${installBox()}
     ${window.CP_WEB && 'caches' in window ? `<div class="offl"><button class="ghost" data-offline>${S.offlineAt ? 'Offline gespeichert ✓ · auf neue Töne prüfen' : 'Alle Töne für offline speichern (ca. 55 MB)'}</button>
       <p class="hint" id="offmsg">${S.offlineAt ? 'Die App funktioniert auch ohne Internet (Sprechen mit Mikrofon braucht aber Internet).' : 'Danach funktioniert die App auch ohne Internet. Am besten im WLAN.'}</p></div>` : ''}
     <p class="foot">Prototyp · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
@@ -2979,6 +2981,7 @@ function startRec(btn){
     if (rec !== r) return;
     rec = null; idle();
     if (got) judgeSpeech(st, got);
+    else if (err === 'network' && isBrave()) out.textContent = 'Brave unterstützt die Spracherkennung leider nicht. Öffne die App zum Sprechen in Chrome (oder bewerte dich selbst).';
     else if (err !== 'aborted') out.textContent = REC_ERR[err] || (err ? 'Die Spracherkennung hat nicht geklappt (' + err + '). Tipp nochmal aufs Mikrofon.' : REC_ERR['no-speech']);
   };
   btn.classList.add('on'); lbl.textContent = 'Ich höre zu …';
@@ -3651,6 +3654,26 @@ function go(where){
   ({home:renderHome, vocab:renderVocab, grammar:renderGrammar, verbs:renderVerbs, tenses:renderTenses}[where] || renderHome)();
 }
 
+/* ---------- Installieren (nur Web-App): Knopf, wenn der Browser es anbietet, sonst Anleitung ---------- */
+const isInstalled = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+const isBrave = () => !!navigator.brave;
+function installBox(){
+  if (!window.CP_WEB || isInstalled()) return '';
+  const how = isBrave()
+    ? 'In Brave: unten rechts auf <b>⋮</b> tippen, dann <b>„Zum Startbildschirm hinzufügen“</b> und im Fenster <b>„Installieren“</b> wählen.'
+    : 'Im Browser-Menü <b>⋮</b> auf <b>„App installieren“</b> oder <b>„Zum Startbildschirm hinzufügen“</b> tippen und dann <b>„Installieren“</b> wählen.';
+  return `<div class="offl" id="inst">${window.CP_INSTALL ? '<button class="main" data-install>App installieren</button>' : ''}
+    <p class="hint">${window.CP_INSTALL ? 'Dann hast du ein eigenes Symbol auf dem Startbildschirm.' : 'Als App auf den Startbildschirm: ' + how}</p></div>`;
+}
+window.addEventListener('cp-install', () => { const box = document.getElementById('inst'); if (box) box.outerHTML = installBox(); });
+window.addEventListener('appinstalled', () => { window.CP_INSTALL = null; const box = document.getElementById('inst'); if (box) box.remove(); });
+async function doInstall(){
+  const ev = window.CP_INSTALL; if (!ev) return;
+  ev.prompt();
+  try{ const r = await ev.userChoice; if (r && r.outcome === 'accepted') window.CP_INSTALL = null; }catch(e){}
+  const box = document.getElementById('inst'); if (box) box.outerHTML = installBox();
+}
+
 /* ---------- Offline: alle Tonbündel in den Speicher der Web-App legen ---------- */
 async function saveOffline(btn){
   const msg = document.getElementById('offmsg');
@@ -3686,6 +3709,7 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-mic')) return toggleMic();
   if (b.hasAttribute('data-rec')) return startRec(b);
   if (b.hasAttribute('data-offline')) return saveOffline(b);
+  if (b.hasAttribute('data-install')) return doInstall();
   if (b.hasAttribute('data-resume')) return RESUME && RESUME.go();
   if (b.hasAttribute('data-fresh')) return RESUME && RESUME.fresh();
   if (b.dataset.slow){ speak(b.dataset.slow, 0.7); return; }
