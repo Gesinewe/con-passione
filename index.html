@@ -22,7 +22,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
 :root{
   --bg:#F1F4F2; --surface:#FFFFFF; --ink:#17201B; --muted:#5B6760; --line:#D6DDD8;
   --accent:#1E4FB8; --accent-ink:#FFFFFF; --accent-shadow:#143A8A;
-  --t-cinema:#AE2A40; --t-cavalli:#2E7A58; --t-dolci:#B5621C; --t-brividi:#6A3F9E; --t-viaggio:#0E7490;
+  --t-cinema:#AE2A40; --t-cavalli:#2E7A58; --t-dolci:#B5621C; --t-brividi:#6A3F9E; --t-viaggio:#0E7490; --t-roma:#9A3324;
   --ok:#1B8452; --ok-bg:#E1F3E8; --bad:#C0392F; --bad-bg:#FBE6E3;
   --tile:#FFFFFF; --tile-edge:#C9D1CB;
   --display:"Instrument Serif", Georgia, "Times New Roman", serif;
@@ -33,7 +33,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
     color-scheme:dark;
     --bg:#111513; --surface:#1A201C; --ink:#E8EEEA; --muted:#9AA69F; --line:#2C3530;
     --accent:#7EA3F2; --accent-ink:#0E1A33; --accent-shadow:#4A6BB5;
-    --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB;
+    --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB; --t-roma:#EE8A73;
     --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19;
     --tile:#212824; --tile-edge:#0A0C0B;
   }
@@ -42,7 +42,7 @@ if ('serviceWorker' in navigator) window.addEventListener('load', () => navigato
   color-scheme:dark;
   --bg:#111513; --surface:#1A201C; --ink:#E8EEEA; --muted:#9AA69F; --line:#2C3530;
   --accent:#7EA3F2; --accent-ink:#0E1A33; --accent-shadow:#4A6BB5;
-  --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB;
+  --t-cinema:#F27E8E; --t-cavalli:#63C49B; --t-dolci:#E8A263; --t-brividi:#B793E8; --t-viaggio:#5FC3DB; --t-roma:#EE8A73;
   --ok:#5CCB8E; --ok-bg:#16301F; --bad:#F27B70; --bad-bg:#371B19;
   --tile:#212824; --tile-edge:#0A0C0B;
 }
@@ -1922,13 +1922,227 @@ Object.assign(GLOSS, {'lupo':'Wolf (lupo mannaro = Werwolf)','mannaro':'Wer- (lu
   'volta':'Mal (c’era una volta = es war einmal)','avevano':'hatten','problema':'Problem','temporale':'Gewitter','bussato':'geklopft','acceso':'angemacht','cercavo':'ich suchte',
   'dormirò':'ich werde schlafen','tuo':'dein','salire':'hinaufgehen','piaciuto':'gefallen'});
 
+/*ROMA-START*/
+/* ---------- Thema „Roma antica“: Alltag im alten Rom (28.09.2026). Wird Stufe für Stufe ausgebaut; fehlende Grundlektionen werden übersprungen ---------- */
+['Livia','Tito','Quinto','Cornelia','Aurelia','Argo','Lucio','Gaio','Giove','Marco'].forEach(n => NAMES.add(n));
+const ROMA = {
+  topic:{
+    id:'roma', name:'Roma antica', de:'Alltag im alten Rom', color:'var(--t-roma)',
+    blurb:'Mit Livia und ihrer Familie durch den Alltag im alten Rom: Markt, Thermen, Schule, Kolosseum und Wagenrennen.',
+    stories:[],
+    lessons:[
+      { title:'Salve!', de:'Hallo!',
+        tip:'<b>Salve!</b> sagten schon die alten Römer, und die Italiener sagen es heute noch: ein freundliches „Hallo“ oder „Guten Tag“. Mit <b>Mi chiamo …</b> stellst du dich vor. Eine Frau sagt <b>Sono romana</b>, ein Mann <b>Sono romano</b> (ich bin Römerin / Römer).',
+        words:[['Salve!','Hallo! / Guten Tag!','gruss'],['Buongiorno!','Guten Morgen! / Guten Tag!','gruss'],['Mi chiamo Livia.','Ich heiße Livia.','gruss'],['Come ti chiami?','Wie heißt du?','gruss'],['Piacere!','Freut mich!','gruss'],['Sono romana / romano.','Ich bin Römerin / Römer.','gruss roma'],['per favore','bitte','gruss'],['Grazie!','Danke!','gruss'],['Prego!','Gern geschehen!','gruss'],['Ecco!','Bitte sehr! / Hier ist …!','gruss'],['Arrivederci!','Auf Wiedersehen!','gruss']],
+        reading:{ title:'Al Foro', dialog:true,
+          text:'— Salve! Come ti chiami?\n— Mi chiamo Livia. E tu?\n— Mi chiamo Gaio. Piacere!\n— Piacere, Gaio! Sono romana.\n— Anche io sono romano!\n— Arrivederci, Gaio!\n— Arrivederci, Livia!',
+          tr:'– Hallo! Wie heißt du? – Ich heiße Livia. Und du? – Ich heiße Gaio. Freut mich! – Freut mich, Gaio! Ich bin Römerin. – Ich bin auch Römer! – Auf Wiedersehen, Gaio! – Auf Wiedersehen, Livia!',
+          qs:[['Wie heißt der Junge?',['Gaio','Tito','Quinto','Lucio']],
+              ['Woher kommen die beiden?',['Aus Rom','Aus Neapel','Aus Sizilien','Das steht nicht im Text']]] } },
+      { title:'Parole di Roma', de:'Wörter aus Rom',
+        tip:'Italienisch kennt nur männlich und weiblich. <b>il tempio</b> (der Tempel) ist männlich, <b>la strada</b> (die Straße) weiblich. Vor s + Mitlaut steht <b>lo</b>: lo scudo (der Schild). Vor a, e, i, o, u wird gekürzt: <b>l’</b>anfora (die Amphore, ein großer Tonkrug für Wein oder Öl).',
+        words:[['la casa','das Haus'],['la strada','die Straße'],['il tempio','der Tempel'],['il pane','das Brot'],['la toga','die Toga'],['la tunica','die Tunika (ein langes Hemd)'],['l’anfora','die Amphore (ein Tonkrug)'],['lo scudo','der Schild'],['il soldato','der Soldat','leute roma']] }
+    ]
+  },
+  base:{
+    n3:{ title:'Quanti sesterzi?', de:'Wie viele Sesterzen?',
+      tip:'Zahlen von 1 bis 10: uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci. <b>c’è</b> heißt „es gibt / da ist“ bei einer Sache, <b>ci sono</b> bei mehreren. Übrigens: Die Römer schrieben Zahlen mit Buchstaben: I = 1, V = 5, X = 10.',
+      words:[...NUMS,['il sesterzio / i sesterzi','der Sesterz / die Sesterzen (römische Münze)','zahlen roma'],['il mercato','der Markt'],['la bottega','der Laden, die Werkstatt'],['le olive','die Oliven']],
+      sentences:[['Al mercato c’è una bottega.','Auf dem Markt gibt es einen Laden.'],['Nella bottega ci sono le olive.','Im Laden gibt es Oliven.'],['Il pane? Due sesterzi.','Das Brot? Zwei Sesterzen.'],['C’è un tempio nella strada.','In der Straße gibt es einen Tempel.'],['Le olive: quattro sesterzi.','Die Oliven: vier Sesterzen.'],['Ci sono dieci sesterzi.','Da sind zehn Sesterzen.']],
+      reading:{ title:'Al mercato', dialog:true,
+        text:'— Salve! C’è il pane?\n— Sì, ecco il pane. Due sesterzi.\n— E le olive?\n— Le olive: tre sesterzi.\n— Ecco cinque sesterzi. Grazie!\n— Prego! Arrivederci!',
+        tr:'– Hallo! Gibt es Brot? – Ja, hier ist das Brot. Zwei Sesterzen. – Und die Oliven? – Die Oliven: drei Sesterzen. – Hier sind fünf Sesterzen. Danke! – Gern geschehen! Auf Wiedersehen!',
+        qs:[['Wie viel kostet das Brot?',['Zwei Sesterzen','Drei Sesterzen','Fünf Sesterzen','Zehn Sesterzen']],['Wie viel zahlt die Person insgesamt?',['Fünf Sesterzen','Drei Sesterzen','Zwei Sesterzen','Acht Sesterzen']]] } },
+    n4:{ title:'Dov’è il Colosseo?', de:'Wo ist das Kolosseum?',
+      tip:'Fragewörter: <b>chi</b> (wer), <b>che cosa</b> (was), <b>dove</b> (wo), <b>quando</b> (wann), <b>perché</b> (warum). Vor „è“ wird gekürzt: dove + è = <b>dov’è</b>, che cosa + è = <b>che cos’è</b>. Das <b>Forum</b> war der große Platz in der Mitte Roms, im <b>Circus</b> gab es Wagenrennen.',
+      words:[['chi','wer','fragen'],['Che cos’è?','Was ist das?','fragen'],['dove / dov’è','wo / wo ist','fragen'],['quando','wann','fragen'],['perché','warum, weil','fragen'],['il Colosseo','das Kolosseum'],['le terme','die Thermen (das Badehaus)'],['il Foro','das Forum (der große Platz)'],['il circo','die Rennbahn (für Wagenrennen)']],
+      sentences:[['Dov’è il Colosseo?','Wo ist das Kolosseum?'],['Chi è? È un soldato.','Wer ist das? Das ist ein Soldat.'],['Che cos’è? È il Foro.','Was ist das? Das ist das Forum.'],['Dove sono le terme?','Wo sind die Thermen?'],['Perché c’è un soldato nel tempio?','Warum ist ein Soldat im Tempel?'],['Quando c’è il mercato?','Wann ist Markt?']],
+      reading:{ title:'Dov’è?', dialog:true,
+        text:'— Salve! Che cos’è?\n— È il circo!\n— E dov’è il Colosseo?\n— Il Colosseo è là.\n— E le terme?\n— Le terme sono dietro il tempio.\n— Grazie!\n— Prego!',
+        tr:'– Hallo! Was ist das? – Das ist die Rennbahn! – Und wo ist das Kolosseum? – Das Kolosseum ist dort. – Und die Thermen? – Die Thermen sind hinter dem Tempel. – Danke! – Gern geschehen!',
+        qs:[['Was sieht die Person zuerst?',['Die Rennbahn (Circus)','Das Kolosseum','Die Thermen','Einen Tempel']],['Wo sind die Thermen?',['Hinter dem Tempel','Neben dem Kolosseum','Am Markt','Auf dem Forum']]] } }
+  },
+  more:{
+    sent:{},
+    lessons:{ 1:[
+      { title:'La famiglia di Livia', de:'Livias Familie', focus:'Wörter: Familie',
+        tip:'Vor <b>mio</b> / <b>mia</b> (mein / meine) fällt bei Familienmitgliedern in der Einzahl der Artikel weg: <b>mio</b> padre, <b>mia</b> madre. Mit „die Familie“ bleibt er: <b>la</b> mia famiglia.',
+        words:[['la famiglia','die Familie','leute roma'],['il padre','der Vater','leute roma'],['la madre','die Mutter','leute roma'],['il fratello','der Bruder','leute roma'],['la sorella','die Schwester','leute roma'],['il nonno','der Opa','leute roma'],['la nonna','die Oma','leute roma'],['il cane','der Hund']],
+        sentences:[['Ecco la mia famiglia!','Hier ist meine Familie!'],['Mio padre è un soldato.','Mein Vater ist Soldat.'],['Mia madre è romana.','Meine Mutter ist Römerin.'],['Tito è mio fratello.','Tito ist mein Bruder.'],['Chi è? È la nonna.','Wer ist das? Das ist Oma.'],['Il nonno è nel tempio.','Opa ist im Tempel.'],['Dov’è il cane? Nella strada!','Wo ist der Hund? Auf der Straße!'],['Livia è mia sorella.','Livia ist meine Schwester.']],
+        reading:{ title:'La famiglia di Livia',
+          text:'Salve! Mi chiamo Livia e sono romana. Ecco la mia famiglia. Mio padre Quinto è un soldato. Mia madre si chiama Cornelia. Tito è mio fratello. La nonna Aurelia è nel tempio. E il cane? Il cane Argo è nella strada.',
+          tr:'Hallo! Ich heiße Livia und bin Römerin. Hier ist meine Familie. Mein Vater Quinto ist Soldat. Meine Mutter heißt Cornelia. Tito ist mein Bruder. Oma Aurelia ist im Tempel. Und der Hund? Der Hund Argo ist auf der Straße.',
+          qs:[['Was ist Livias Vater?',['Soldat','Bäcker','Lehrer','Händler']],['Wo ist Oma Aurelia?',['Im Tempel','Auf der Straße','Auf dem Markt','Zu Hause']]] } },
+      { title:'Ave, Quinto!', de:'Sei gegrüßt, Quinto!', focus:'Vertiefung: Begrüßen & Kennenlernen',
+        tip:'Die alten Römer grüßten mit <b>Ave!</b> und verabschiedeten sich mit <b>Vale!</b>. Das ist Latein. Heute sagt man in Italien <b>Ciao!</b> unter Freunden (Hallo und Tschüss) und <b>Salve!</b>, wenn es etwas höflicher sein soll. <b>Come stai?</b> heißt „Wie geht es dir?“.',
+        words:[['Ciao!','Hallo! (auch: Tschüss!)','gruss'],['Come stai?','Wie geht es dir?','gruss'],['Bene, grazie!','Gut, danke!','gruss'],['E tu?','Und du?','gruss'],['sì / no','ja / nein','gruss'],['Scusa!','Entschuldigung!','gruss'],['A domani!','Bis morgen!','gruss'],['Aiuto!','Hilfe!'],['Ave!','Sei gegrüßt! (Latein, Gruß der alten Römer)','gruss roma']],
+        sentences:[['Ciao, Tito! Come stai?','Hallo, Tito! Wie geht es dir?'],['Bene, grazie! E tu?','Gut, danke! Und du?'],['Ave! Sono un soldato romano.','Sei gegrüßt! Ich bin ein römischer Soldat.'],['Scusa, dov’è il Foro?','Entschuldigung, wo ist das Forum?'],['Aiuto! C’è un cane!','Hilfe! Da ist ein Hund!'],['Sei romana? Sì!','Bist du Römerin? Ja!'],['Ciao, nonna! A domani!','Tschüss, Oma! Bis morgen!'],['Il cane? No, è il fratello di Livia!','Der Hund? Nein, das ist Livias Bruder!']],
+        reading:{ title:'Alle terme', dialog:true,
+          text:'— Ave, Quinto!\n— Ciao, Marco! Come stai?\n— Bene, grazie! E tu?\n— Bene! Ecco mio figlio, Tito.\n— Piacere, Tito!\n— Piacere! Scusa, papà… dov’è il cane?\n— Aiuto! Il cane è nelle terme!',
+          tr:'– Sei gegrüßt, Quinto! – Hallo, Marco! Wie geht es dir? – Gut, danke! Und dir? – Gut! Hier ist mein Sohn, Tito. – Freut mich, Tito! – Freut mich! Entschuldigung, Papa … wo ist der Hund? – Hilfe! Der Hund ist in den Thermen!',
+          qs:[['Wen stellt Quinto vor?',['Seinen Sohn Tito','Seine Tochter Livia','Seinen Hund','Seinen Vater']],['Wo ist der Hund?',['In den Thermen','Auf dem Forum','Im Tempel','Zu Hause']]] } },
+      { title:'Venti sesterzi', de:'Zwanzig Sesterzen', focus:'Vertiefung: Zahlen bis 20',
+        tip:'Zahlen von 11 bis 20: undici, dodici, tredici, quattordici, quindici, sedici, diciassette, diciotto, diciannove, venti. Die Römer schrieben XI, XII … XX. <b>Quanto costa?</b> fragt nach dem Preis. <b>Quanti</b> (bei männlichen Wörtern) und <b>quante</b> (bei weiblichen) fragen nach der Anzahl.',
+        words:[['undici, dodici, tredici','elf, zwölf, dreizehn','zahlen'],['quattordici, quindici, sedici','vierzehn, fünfzehn, sechzehn','zahlen'],['diciassette, diciotto','siebzehn, achtzehn','zahlen'],['diciannove, venti','neunzehn, zwanzig','zahlen'],['Quanto costa?','Wie viel kostet das?','fragen'],['quanti / quante','wie viele','fragen zahlen'],['caro / cara','teuer','wie roma'],['il mercante','der Händler','leute roma']],
+        sentences:[['Quanto costa la toga? Venti sesterzi!','Wie viel kostet die Toga? Zwanzig Sesterzen!'],['Venti sesterzi? È cara!','Zwanzig Sesterzen? Sie ist teuer!'],['Quante olive ci sono? Diciotto.','Wie viele Oliven gibt es? Achtzehn.'],['Il mercante è nella bottega.','Der Händler ist im Laden.'],['Quanti sesterzi? Tredici.','Wie viele Sesterzen? Dreizehn.'],['La tunica costa dodici sesterzi.','Die Tunika kostet zwölf Sesterzen.'],['Il pane non è caro.','Das Brot ist nicht teuer.'],['Quindici sesterzi? No, grazie!','Fünfzehn Sesterzen? Nein, danke!']],
+        reading:{ title:'Il mercante', dialog:true,
+          text:'— Salve! Quanto costa la tunica?\n— La tunica? Diciannove sesterzi.\n— Diciannove? È cara!\n— E la toga costa venti sesterzi.\n— No, grazie. Quanto costa il pane?\n— Il pane? Due sesterzi.\n— Ecco due sesterzi. Grazie!',
+          tr:'– Hallo! Wie viel kostet die Tunika? – Die Tunika? Neunzehn Sesterzen. – Neunzehn? Die ist teuer! – Und die Toga kostet zwanzig Sesterzen. – Nein, danke. Wie viel kostet das Brot? – Das Brot? Zwei Sesterzen. – Hier sind zwei Sesterzen. Danke!',
+          qs:[['Wie viel kostet die Tunika?',['Neunzehn Sesterzen','Zwanzig Sesterzen','Zwölf Sesterzen','Neun Sesterzen']],['Was kauft die Person am Ende?',['Brot','Die Toga','Die Tunika','Nichts']]] } },
+      { title:'Dove sei, Tito?', de:'Wo bist du, Tito?', focus:'Vertiefung: Fragen & Orte',
+        tip:'Auf „wo?“ antwortest du mit <b>qui</b> (hier) oder <b>là</b> (dort). <b>Quale</b> heißt „welcher, welche, welches“. <b>Non lo so</b> heißt „Ich weiß es nicht“. Eine Ja-Nein-Frage erkennt man oft nur an der Stimme: <b>Sei qui?</b> (Bist du hier?)',
+        words:[['qui','hier','orte'],['là','dort','orte'],['quale','welcher, welche, welches','fragen'],['la città','die Stadt','orte roma'],['la piazza','der Platz','orte roma'],['il ponte','die Brücke','orte roma'],['il fiume','der Fluss','orte roma'],['la fontana','der Brunnen'],['Non lo so.','Ich weiß es nicht.']],
+        sentences:[['Tito, dove sei?','Tito, wo bist du?'],['Sono qui, alla fontana!','Ich bin hier, am Brunnen!'],['Il Foro è là.','Das Forum ist dort.'],['Quale ponte? Il ponte sul fiume.','Welche Brücke? Die Brücke über den Fluss.'],['Dov’è la piazza? Non lo so.','Wo ist der Platz? Ich weiß es nicht.'],['Roma è una città.','Rom ist eine Stadt.'],['Il cane è qui, nella fontana!','Der Hund ist hier, im Brunnen!'],['Quale strada? Questa strada.','Welche Straße? Diese Straße.']],
+        reading:{ title:'Dov’è Tito?',
+          text:'Livia è in piazza con il cane. Dov’è Tito? Non è alla fontana. Non è sul ponte. Livia: «Tito, dove sei?» Tito: «Sono qui, nel fiume!» Il cane salta nel fiume. Che famiglia!',
+          tr:'Livia ist mit dem Hund auf dem Platz. Wo ist Tito? Er ist nicht am Brunnen. Er ist nicht auf der Brücke. Livia: „Tito, wo bist du?“ Tito: „Ich bin hier, im Fluss!“ Der Hund springt in den Fluss. Was für eine Familie!',
+          qs:[['Wo ist Tito?',['Im Fluss','Am Brunnen','Auf der Brücke','Auf dem Platz']],['Was macht der Hund?',['Er springt in den Fluss','Er schläft','Er läuft nach Hause','Er bellt']]] } },
+      { title:'Toga o tunica?', de:'Toga oder Tunika?', focus:'Wörter: Kleidung',
+        tip:'Die <b>toga</b> war ein großes weißes Tuch, das nur freie römische Männer tragen durften, vor allem zu feierlichen Anlässen. Im Alltag trug man die <b>tunica</b>. Frauen trugen darüber die <b>stola</b>, ein langes Kleid. Mehrzahl: il sandalo → <b>i sandali</b>.',
+        words:[['la stola','die Stola (langes Frauenkleid)'],['i sandali','die Sandalen'],['il mantello','der Umhang'],['l’anello','der Ring'],['la collana','die Halskette'],['la cintura','der Gürtel'],['il vestito','das Kleid, die Kleidung'],['bianco / bianca','weiß','wie roma']],
+        sentences:[['La toga è bianca.','Die Toga ist weiß.'],['Ecco la stola di mia madre.','Hier ist die Stola meiner Mutter.'],['Dove sono i sandali?','Wo sind die Sandalen?'],['Quanto costa l’anello?','Wie viel kostet der Ring?'],['La collana della nonna è cara.','Omas Halskette ist teuer.'],['Il mantello del soldato è qui.','Der Umhang des Soldaten ist hier.'],['Quale cintura? La cintura bianca.','Welcher Gürtel? Der weiße Gürtel.'],['Il vestito di Livia è nella casa.','Livias Kleid ist im Haus.']],
+        reading:{ title:'Il giorno della festa',
+          text:'Oggi c’è una festa. Livia ha una stola bianca e i sandali. La nonna ha una collana. Tito ha una tunica e una cintura. E il padre? Il padre ha la toga bianca. E il cane? Il cane ha… un anello!',
+          tr:'Heute ist ein Fest. Livia hat eine weiße Stola und die Sandalen an. Oma trägt eine Halskette. Tito hat eine Tunika und einen Gürtel. Und der Vater? Der Vater trägt die weiße Toga. Und der Hund? Der Hund hat … einen Ring!',
+          qs:[['Was trägt der Vater?',['Die weiße Toga','Eine Tunika','Einen Umhang','Eine Stola']],['Was hat der Hund?',['Einen Ring','Eine Halskette','Sandalen','Einen Gürtel']]] } },
+      { title:'La casa romana', de:'Das römische Haus', focus:'Wörter: Haus & Zimmer',
+        tip:'Reiche Römer wohnten in einer <b>domus</b>, einem Haus mit Innenhof (<b>l’atrio</b>) und Garten. Die meisten wohnten aber in einer <b>insula</b>, einem Mietshaus mit vielen Stockwerken. <b>In</b> + Zimmer geht oft ohne Artikel: <b>in</b> cucina (in der Küche), <b>in</b> giardino (im Garten).',
+        words:[['l’atrio','der Innenhof (das Atrium)'],['la cucina','die Küche'],['la camera da letto','das Schlafzimmer'],['il giardino','der Garten'],['il tetto','das Dach'],['la porta','die Tür'],['la finestra','das Fenster'],['il bagno','das Bad, die Toilette']],
+        sentences:[['La cucina è qui.','Die Küche ist hier.'],['Nell’atrio c’è una fontana.','Im Innenhof ist ein Brunnen.'],['Dov’è il bagno? Là!','Wo ist die Toilette? Dort!'],['Il cane è in cucina.','Der Hund ist in der Küche.'],['Tito è sul tetto! Aiuto!','Tito ist auf dem Dach! Hilfe!'],['La porta della camera da letto è qui.','Die Tür des Schlafzimmers ist hier.'],['Quale finestra? Questa finestra.','Welches Fenster? Dieses Fenster.'],['Nel giardino ci sono le olive.','Im Garten gibt es Oliven.']],
+        reading:{ title:'La domus di Livia',
+          text:'Ecco la casa di Livia. Nell’atrio c’è una fontana. La cucina è piccola. In giardino ci sono le olive. La camera da letto di Livia ha una finestra. E il bagno? Il bagno romano è… in strada!',
+          tr:'Hier ist Livias Haus. Im Innenhof ist ein Brunnen. Die Küche ist klein. Im Garten gibt es Oliven. Livias Schlafzimmer hat ein Fenster. Und die Toilette? Die römische Toilette ist … auf der Straße! (Viele Römer gingen in öffentliche Toiletten.)',
+          qs:[['Was ist im Innenhof?',['Ein Brunnen','Ein Olivenbaum','Ein Hund','Ein Tempel']],['Wo ist die Toilette?',['Auf der Straße','In der Küche','Im Garten','Im Schlafzimmer']]] } },
+      { title:'La cena', de:'Das Abendessen', focus:'Wörter: Essen & Trinken',
+        tip:'Zum Frühstück aßen Römer oft nur Brot mit Käse, Oliven oder Honig. Das große Essen war am späten Nachmittag: <b>la cena</b>. Mit <b>vorrei</b> (ich hätte gern) kaufst du höflich ein.',
+        words:[['vorrei','ich hätte gern','verben'],['il formaggio','der Käse'],['il vino','der Wein'],['l’acqua','das Wasser'],['il miele','der Honig'],['i fichi','die Feigen'],['l’uva','die Weintrauben'],['il pesce','der Fisch'],['la cena','das Abendessen']],
+        sentences:[['Vorrei il pane e il formaggio.','Ich hätte gern das Brot und den Käse.'],['Quanto costa il miele?','Wie viel kostet der Honig?'],['Il vino è caro.','Der Wein ist teuer.'],['Vorrei l’uva, per favore.','Ich hätte gern die Weintrauben, bitte.'],['Il pesce? Sei sesterzi.','Der Fisch? Sechs Sesterzen.'],['C’è l’acqua nella fontana.','Im Brunnen ist Wasser.'],['La cena è in giardino.','Das Abendessen ist im Garten.'],['Il mercante: «Ecco i fichi!»','Der Händler: „Hier sind die Feigen!“']],
+        reading:{ title:'A cena',
+          text:'Oggi la cena è in giardino. Ci sono il pane, il formaggio e le olive. C’è anche il pesce del mercato. Per Tito ci sono i fichi con il miele. Il padre beve il vino, Livia beve l’acqua. E il cane? Il cane mangia il pesce!',
+          tr:'Heute ist das Abendessen im Garten. Es gibt Brot, Käse und Oliven. Es gibt auch den Fisch vom Markt. Für Tito gibt es Feigen mit Honig. Der Vater trinkt Wein, Livia trinkt Wasser. Und der Hund? Der Hund frisst den Fisch!',
+          qs:[['Was trinkt Livia?',['Wasser','Wein','Milch','Nichts']],['Wer frisst den Fisch?',['Der Hund','Tito','Der Vater','Die Katze']]] } },
+      { title:'Gli animali', de:'Die Tiere', focus:'Wörter: Tiere',
+        tip:'Nach der Sage wurden Romulus und Remus, die Gründer Roms, von einer Wölfin gesäugt: <b>la lupa</b>. Und Gänse (<b>le oche</b>) sollen Rom einmal gerettet haben, weil sie laut schnatterten, als nachts Feinde kamen. Mehrzahl: l’oca → <b>le oche</b>.',
+        words:[['il gatto','die Katze, der Kater'],['il cavallo','das Pferd'],['l’asino','der Esel'],['la gallina','das Huhn'],['il maiale','das Schwein'],['l’oca / le oche','die Gans / die Gänse'],['la lupa','die Wölfin'],['il topo','die Maus']],
+        sentences:[['Il gatto è sul tetto.','Die Katze ist auf dem Dach.'],['C’è un asino nella strada!','Auf der Straße ist ein Esel!'],['Quante oche ci sono? Undici.','Wie viele Gänse gibt es? Elf.'],['Il maiale è in cucina! Aiuto!','Das Schwein ist in der Küche! Hilfe!'],['La gallina è nel giardino.','Das Huhn ist im Garten.'],['Il cavallo del soldato è bianco.','Das Pferd des Soldaten ist weiß.'],['Chi è? È la lupa di Roma!','Wer ist das? Das ist die Wölfin von Rom!'],['Il topo è nella camera da letto.','Die Maus ist im Schlafzimmer.']],
+        reading:{ title:'Un’oca per Tito',
+          text:'Nella strada di Livia c’è un mercato. C’è una gallina, c’è un maiale e c’è un asino. Un mercante ha dodici oche. Tito: «Quanto costa un’oca?» Il mercante: «Tre sesterzi.» Livia: «Tito, no! C’è il cane!» E il cane? Il cane corre dietro le oche!',
+          tr:'In Livias Straße ist ein Markt. Da ist ein Huhn, da ist ein Schwein und da ist ein Esel. Ein Händler hat zwölf Gänse. Tito: „Wie viel kostet eine Gans?“ Der Händler: „Drei Sesterzen.“ Livia: „Tito, nein! Der Hund ist da!“ Und der Hund? Der Hund rennt hinter den Gänsen her!',
+          qs:[['Wie viele Gänse hat der Händler?',['Zwölf','Drei','Elf','Zwei']],['Was kostet eine Gans?',['Drei Sesterzen','Zwölf Sesterzen','Zehn Sesterzen','Nichts']]] } },
+      { title:'La meridiana', de:'Die Sonnenuhr', focus:'Die Uhrzeit',
+        tip:'Die Römer hatten keine Uhren wie wir, sondern Sonnenuhren (<b>la meridiana</b>). Nach der Uhrzeit fragst du mit <b>Che ore sono?</b> Die Antwort: <b>sono le</b> + Zahl (sono le tre). Nur bei eins, Mittag und Mitternacht heißt es <b>è</b>: è l’una, è mezzogiorno, è mezzanotte.',
+        words:[['Che ore sono?','Wie spät ist es?','fragen zeit'],['È l’una.','Es ist ein Uhr.','zeit'],['Sono le due.','Es ist zwei Uhr.','zeit'],['e mezza','… Uhr dreißig (halb)','zeit'],['mezzogiorno','Mittag (12 Uhr)','zeit'],['È mezzanotte.','Es ist Mitternacht.','zeit'],['la meridiana','die Sonnenuhr'],['la mattina','der Morgen, am Morgen','zeit'],['il sole','die Sonne']],
+        sentences:[['Che ore sono? Sono le dieci.','Wie spät ist es? Es ist zehn Uhr.'],['È mezzogiorno. Dov’è il sole?','Es ist Mittag. Wo ist die Sonne?'],['La meridiana è in piazza.','Die Sonnenuhr ist auf dem Platz.'],['Sono le otto e mezza.','Es ist halb neun.'],['Che ore sono? Non c’è il sole!','Wie spät ist es? Es gibt keine Sonne!'],['La mattina Tito è al mercato.','Am Morgen ist Tito auf dem Markt.'],['È l’una: dov’è la cena?','Es ist ein Uhr: Wo ist das Essen?'],['È mezzanotte: il cane è sul tetto!','Es ist Mitternacht: Der Hund ist auf dem Dach!']],
+        reading:{ title:'Che ore sono?',
+          text:'In piazza c’è una meridiana. La mattina Livia guarda la meridiana: sono le sette. Sono le nove e mezza: Tito è a scuola. È mezzogiorno: c’è il sole. Ma oggi piove! Tito: «Che ore sono?» Livia: «Non lo so. Non c’è il sole!»',
+          tr:'Auf dem Platz ist eine Sonnenuhr. Am Morgen schaut Livia auf die Sonnenuhr: Es ist sieben Uhr. Es ist halb zehn: Tito ist in der Schule. Es ist Mittag: Die Sonne scheint. Aber heute regnet es! Tito: „Wie spät ist es?“ Livia: „Ich weiß es nicht. Es gibt keine Sonne!“',
+          qs:[['Warum weiß Livia die Uhrzeit nicht?',['Es regnet, die Sonne scheint nicht','Die Sonnenuhr ist kaputt','Sie kann die Zahlen nicht lesen','Es ist Nacht']],['Wo ist Tito um halb zehn?',['In der Schule','Auf dem Markt','Zu Hause','In den Thermen']]] } },
+      { title:'I giorni degli dei', de:'Die Tage der Götter', focus:'Wochentage',
+        tip:'Die Namen der Wochentage kommen von römischen Göttern und Himmelskörpern: <b>lunedì</b> von der Luna (Mond), <b>martedì</b> von Mars, <b>mercoledì</b> von Merkur, <b>giovedì</b> von Jupiter (italienisch Giove), <b>venerdì</b> von Venus. Man schreibt sie klein.',
+        words:[['lunedì, martedì, mercoledì','Montag, Dienstag, Mittwoch','zeit'],['giovedì, venerdì','Donnerstag, Freitag','zeit'],['sabato, domenica','Samstag, Sonntag','zeit'],['oggi','heute','zeit'],['domani','morgen','zeit'],['il giorno / i giorni','der Tag / die Tage','zeit'],['la settimana','die Woche','zeit'],['il dio / gli dei','der Gott / die Götter']],
+        sentences:[['Oggi è lunedì.','Heute ist Montag.'],['Domani è martedì.','Morgen ist Dienstag.'],['Che giorno è oggi? È venerdì.','Welcher Tag ist heute? Es ist Freitag.'],['Il sabato c’è il mercato.','Samstags ist Markt.'],['Quanti giorni ci sono nella settimana? Sette.','Wie viele Tage hat die Woche? Sieben.'],['Giove è il dio del giovedì.','Jupiter ist der Gott des Donnerstags.'],['Domenica Tito è alle terme.','Am Sonntag ist Tito in den Thermen.'],['Il tempio degli dei è qui.','Der Tempel der Götter ist hier.']],
+        reading:{ title:'La settimana di Tito',
+          text:'Lunedì Tito è a scuola. Martedì è al mercato con la madre. Mercoledì è alle terme con il padre. Giovedì è nel tempio con la nonna. Venerdì è a scuola. Sabato e domenica? Tito dorme!',
+          tr:'Am Montag ist Tito in der Schule. Am Dienstag ist er mit der Mutter auf dem Markt. Am Mittwoch ist er mit dem Vater in den Thermen. Am Donnerstag ist er mit Oma im Tempel. Am Freitag ist er in der Schule. Samstag und Sonntag? Tito schläft!',
+          qs:[['Wann ist Tito im Tempel?',['Am Donnerstag','Am Montag','Am Mittwoch','Am Sonntag']],['Was macht Tito am Wochenende?',['Er schläft','Er geht in die Schule','Er geht in die Thermen','Er geht auf den Markt']]] } },
+      { title:'Che tempo fa?', de:'Wie ist das Wetter?', focus:'Das Wetter',
+        tip:'Beim Wetter sagt man „es macht“: <b>fa caldo</b> (es ist heiß), <b>fa freddo</b> (es ist kalt). Regnen ist ein eigenes Verb: <b>piove</b> (es regnet). Im römischen Sommer war es so heiß, dass reiche Familien aufs Land zogen.',
+        words:[['Che tempo fa?','Wie ist das Wetter?','fragen'],['fa caldo','es ist warm, heiß'],['fa freddo','es ist kalt'],['piove','es regnet','verben'],['il vento','der Wind'],['la pioggia','der Regen'],['l’estate','der Sommer','zeit'],['l’inverno','der Winter','zeit']],
+        sentences:[['Che tempo fa? Fa caldo.','Wie ist das Wetter? Es ist heiß.'],['In estate fa caldo a Roma.','Im Sommer ist es in Rom heiß.'],['In inverno fa freddo.','Im Winter ist es kalt.'],['Oggi piove.','Heute regnet es.'],['C’è il vento sul ponte.','Auf der Brücke ist es windig.'],['Fa freddo: dov’è il mantello?','Es ist kalt: Wo ist der Umhang?'],['Oggi c’è il sole? No, piove!','Scheint heute die Sonne? Nein, es regnet!'],['La pioggia è nell’atrio!','Der Regen ist im Innenhof!']],
+        reading:{ title:'Estate a Roma',
+          text:'In estate a Roma fa caldo, molto caldo. Il sole è forte. Tito è nella fontana con il cane. La nonna è nell’atrio. Il padre è alle terme: là c’è l’acqua fredda. E in inverno? In inverno fa freddo e piove.',
+          tr:'Im Sommer ist es in Rom heiß, sehr heiß. Die Sonne ist stark. Tito ist mit dem Hund im Brunnen. Oma ist im Innenhof. Der Vater ist in den Thermen: Dort gibt es kaltes Wasser. Und im Winter? Im Winter ist es kalt und es regnet.',
+          qs:[['Wo ist Tito im Sommer?',['Mit dem Hund im Brunnen','In der Schule','In den Thermen','Auf dem Dach']],['Wie ist der Winter in Rom?',['Kalt und regnerisch','Heiß','Sonnig','Windstill']]] } },
+      { title:'I mestieri', de:'Die Berufe', focus:'Wörter: Berufe',
+        tip:'Viele Berufe haben eine männliche und eine weibliche Form: il fornai<b>o</b> / la fornai<b>a</b> (der Bäcker / die Bäckerin). Im alten Rom gab es schon Bäckereien mit großen Öfen, Friseure auf der Straße und Ärzte, die oft aus Griechenland kamen.',
+        words:[['il fornaio','der Bäcker','leute roma'],['il maestro','der Lehrer','leute roma'],['il medico','der Arzt','leute roma'],['il senatore','der Senator','leute roma'],['il gladiatore','der Gladiator','leute roma'],['il pescatore','der Fischer','leute roma'],['il barbiere','der Friseur, der Barbier','leute roma'],['il lavoro','die Arbeit']],
+        sentences:[['Il fornaio è nella bottega.','Der Bäcker ist im Laden.'],['Chi è? È il medico.','Wer ist das? Das ist der Arzt.'],['La toga del senatore è bianca.','Die Toga des Senators ist weiß.'],['Il gladiatore è al Colosseo.','Der Gladiator ist im Kolosseum.'],['Il pescatore è sul fiume.','Der Fischer ist auf dem Fluss.'],['Il barbiere è in strada.','Der Friseur ist auf der Straße.'],['Il pane del fornaio è caldo.','Das Brot des Bäckers ist warm.'],['Il maestro? Il suo lavoro è qui.','Der Lehrer? Seine Arbeit ist hier.']],
+        reading:{ title:'In strada',
+          text:'La mattina la strada è piena di persone. Il fornaio vende il pane. Il pescatore vende il pesce. Il barbiere è in strada con un senatore. Un gladiatore va al Colosseo. E il medico? Il medico corre: Tito è nel fiume!',
+          tr:'Am Morgen ist die Straße voller Menschen. Der Bäcker verkauft Brot. Der Fischer verkauft Fisch. Der Friseur ist mit einem Senator auf der Straße. Ein Gladiator geht zum Kolosseum. Und der Arzt? Der Arzt rennt: Tito ist im Fluss!',
+          qs:[['Was verkauft der Fischer?',['Fisch','Brot','Wein','Oliven']],['Warum rennt der Arzt?',['Tito ist im Fluss','Ein Gladiator ist verletzt','Der Senator ist krank','Er kommt zu spät']]] } },
+      { title:'La città di Roma', de:'Die Stadt Rom', focus:'Orte in der Stadt',
+        tip:'Mit <b>a</b> + Artikel sagst du, wo jemand ist oder wohin er geht: <b>al</b> teatro, <b>alla</b> taverna, <b>alle</b> terme. Vor a, e, i, o, u: <b>all’</b>acquedotto. Das Wasser für Brunnen und Thermen kam über Aquädukte von weit her nach Rom.',
+        words:[['l’acquedotto','die Wasserleitung (das Aquädukt)'],['la taverna','die Schenke, das Wirtshaus'],['il teatro','das Theater'],['la scuola','die Schule'],['la biblioteca','die Bibliothek'],['il palazzo','der Palast'],['la basilica','die Markthalle (Basilika)'],['il Tevere','der Tiber (der Fluss durch Rom)']],
+        sentences:[['C’è l’acqua nell’acquedotto.','Im Aquädukt ist Wasser.'],['Il teatro è in piazza.','Das Theater ist auf dem Platz.'],['Tito è a scuola.','Tito ist in der Schule.'],['Dov’è la biblioteca?','Wo ist die Bibliothek?'],['Quale palazzo? Il palazzo del senatore.','Welcher Palast? Der Palast des Senators.'],['Il padre è alla taverna.','Der Vater ist im Wirtshaus.'],['Il Tevere è un fiume.','Der Tiber ist ein Fluss.'],['Nella basilica c’è il mercante.','In der Markthalle ist der Händler.']],
+        reading:{ title:'Dove andiamo?', dialog:true,
+          text:'— Livia, dove andiamo oggi?\n— Al teatro!\n— Il teatro? No, alle terme!\n— Le terme? No, alla biblioteca!\n— La biblioteca? Tito, sei un maestro?\n— No… Andiamo alla taverna!\n— Tito! Il padre è alla taverna!',
+          tr:'– Livia, wohin gehen wir heute? – Ins Theater! – Das Theater? Nein, in die Thermen! – Die Thermen? Nein, in die Bibliothek! – Die Bibliothek? Tito, bist du ein Lehrer? – Nein … Gehen wir ins Wirtshaus! – Tito! Der Vater ist im Wirtshaus!',
+          qs:[['Wohin will Tito am Ende?',['Ins Wirtshaus','Ins Theater','In die Bibliothek','In die Thermen']],['Warum ist das keine gute Idee?',['Der Vater ist dort','Es ist geschlossen','Es ist zu teuer','Es regnet']]] } },
+      { title:'Di notte in casa', de:'Nachts im Haus', focus:'Wörter: Dinge im Haus',
+        tip:'Die Römer hatten kein elektrisches Licht. Abends brannte eine kleine Öllampe: <b>la lucerna</b>. Vor s + Mitlaut steht <b>lo</b>: <b>lo</b> specchio (der Spiegel), in der Mehrzahl <b>gli</b> specchi.',
+        words:[['la lucerna','die Öllampe'],['il letto','das Bett'],['il tavolo','der Tisch'],['la sedia','der Stuhl'],['la chiave','der Schlüssel'],['lo specchio','der Spiegel'],['il piatto','der Teller'],['il bicchiere','das Glas (zum Trinken)']],
+        sentences:[['La lucerna è sul tavolo.','Die Öllampe ist auf dem Tisch.'],['Dov’è la chiave della porta?','Wo ist der Schlüssel für die Tür?'],['Il gatto è sul letto.','Die Katze ist auf dem Bett.'],['Lo specchio è nella camera da letto.','Der Spiegel ist im Schlafzimmer.'],['Il piatto e il bicchiere sono in cucina.','Der Teller und das Glas sind in der Küche.'],['Tito è sulla sedia.','Tito ist auf dem Stuhl.'],['Vorrei l’acqua nel bicchiere.','Ich hätte gern Wasser im Glas.'],['È mezzanotte: dov’è la lucerna?','Es ist Mitternacht: Wo ist die Öllampe?']],
+        reading:{ title:'Un rumore',
+          text:'È mezzanotte. Nella camera da letto di Livia c’è una lucerna. Livia è sul letto. Sul tavolo ci sono lo specchio e la collana. Ma… c’è un rumore! Livia prende la lucerna. Chi è? È Tito, in cucina, con il miele!',
+          tr:'Es ist Mitternacht. In Livias Schlafzimmer brennt eine Öllampe. Livia ist auf dem Bett. Auf dem Tisch liegen der Spiegel und die Halskette. Aber … da ist ein Geräusch! Livia nimmt die Öllampe. Wer ist das? Es ist Tito, in der Küche, mit dem Honig!',
+          qs:[['Was nimmt Livia?',['Die Öllampe','Den Spiegel','Die Halskette','Den Schlüssel']],['Wer ist in der Küche?',['Tito mit dem Honig','Ein Dieb','Der Hund','Oma']]] } },
+      { title:'Alle terme', de:'In den Thermen', focus:'Wörter: Körper',
+        tip:'Die <b>terme</b> waren viel mehr als ein Bad: Man traf Freunde, spielte Ball, las und ließ sich die Haare schneiden. Es gab ein warmes, ein heißes und ein kaltes Becken. Ausnahme bei der Mehrzahl: la mano → <b>le mani</b> (bleibt weiblich).',
+        words:[['la testa','der Kopf'],['la mano / le mani','die Hand / die Hände'],['il piede / i piedi','der Fuß / die Füße'],['gli occhi','die Augen'],['la bocca','der Mund'],['i capelli','die Haare'],['il naso','die Nase'],['i denti','die Zähne']],
+        sentences:[['Alle terme fa caldo.','In den Thermen ist es heiß.'],['I piedi di Tito sono nella fontana.','Titos Füße sind im Brunnen.'],['Dove sono le mani? Qui!','Wo sind die Hände? Hier!'],['Il barbiere è qui per i capelli del padre.','Der Barbier ist wegen Vaters Haaren hier.'],['Aiuto! L’acqua negli occhi!','Hilfe! Wasser in den Augen!'],['Il naso del cane è nel piatto.','Die Nase des Hundes ist im Teller.'],['Ecco i denti del gladiatore!','Hier sind die Zähne des Gladiators!'],['La mano della nonna è sulla testa di Tito.','Omas Hand ist auf Titos Kopf.']],
+        reading:{ title:'Una palla alle terme',
+          text:'Oggi il padre e Tito sono alle terme. Fa caldo. Il barbiere taglia i capelli del padre. Tito gioca con una palla. Ma la palla va sulla testa di un senatore! Il senatore: «Chi è?» Tito: «Non lo so!»',
+          tr:'Heute sind der Vater und Tito in den Thermen. Es ist heiß. Der Barbier schneidet Vaters Haare. Tito spielt mit einem Ball. Aber der Ball fliegt auf den Kopf eines Senators! Der Senator: „Wer war das?“ Tito: „Ich weiß es nicht!“',
+          qs:[['Was macht der Barbier?',['Er schneidet Vaters Haare','Er spielt Ball','Er badet','Er schimpft']],['Wo landet der Ball?',['Auf dem Kopf eines Senators','Im Wasser','Beim Barbier','Auf der Straße']]] } },
+      { title:'A scuola', de:'In der Schule', focus:'Wörter: Schule',
+        tip:'Römische Kinder lernten Lesen, Schreiben und Rechnen, oft draußen unter einem Vordach am Forum. Geschrieben wurde mit einem Griffel (<b>lo stilo</b>) auf einer Wachstafel (<b>la tavoletta</b>). Die Sprache der Römer war <b>il latino</b>. Aus dem Latein ist das Italienische entstanden.',
+        words:[['l’alunno / l’alunna','der Schüler / die Schülerin','leute roma'],['la tavoletta','die Wachstafel (zum Schreiben)'],['lo stilo','der Griffel (zum Schreiben)'],['il rotolo','die Schriftrolle'],['la lezione','die Unterrichtsstunde'],['le lettere','die Buchstaben'],['i numeri','die Zahlen','zahlen roma'],['il latino','Latein (die Sprache der Römer)']],
+        sentences:[['La lezione è in piazza.','Der Unterricht ist auf dem Platz.'],['Dov’è lo stilo? Non lo so.','Wo ist der Griffel? Ich weiß es nicht.'],['Il maestro è al Foro con l’alunno.','Der Lehrer ist mit dem Schüler auf dem Forum.'],['Sulla tavoletta ci sono le lettere.','Auf der Wachstafel sind die Buchstaben.'],['Il rotolo è nella biblioteca.','Die Schriftrolle ist in der Bibliothek.'],['Oggi c’è la lezione di latino.','Heute ist Lateinunterricht.'],['Tito, dov’è la tavoletta?','Tito, wo ist die Wachstafel?'],['I numeri? Uno, due, tre…','Die Zahlen? Eins, zwei, drei …']],
+        reading:{ title:'La lezione',
+          text:'La scuola di Tito è al Foro. La lezione comincia la mattina. Il maestro Lucio è molto severo. Gli alunni scrivono le lettere sulla tavoletta. Tito scrive… un cane! Il maestro: «Tito! Questo non è latino!»',
+          tr:'Titos Schule ist auf dem Forum. Der Unterricht beginnt am Morgen. Lehrer Lucio ist sehr streng. Die Schüler schreiben die Buchstaben auf die Wachstafel. Tito schreibt … einen Hund! Der Lehrer: „Tito! Das ist kein Latein!“',
+          qs:[['Wo ist Titos Schule?',['Auf dem Forum','Im Tempel','Zu Hause','In den Thermen']],['Was „schreibt“ Tito?',['Einen Hund','Die Buchstaben','Die Zahlen','Seinen Namen']]] } }
+    ]},
+    practice:{ 1:[['Salve! Mi chiamo Quinto.','Hallo! Ich heiße Quinto.'],['Il mercante è al mercato con il pesce.','Der Händler ist mit dem Fisch auf dem Markt.'],['Quanto costa l’anfora? Quattordici sesterzi.','Wie viel kostet die Amphore? Vierzehn Sesterzen.'],['Il Colosseo è là.','Das Kolosseum ist dort.'],['Oggi è sabato: c’è il mercato.','Heute ist Samstag: Es ist Markt.'],['In inverno fa freddo nell’atrio.','Im Winter ist es im Innenhof kalt.'],['Il gladiatore è nella taverna con il soldato.','Der Gladiator ist mit dem Soldaten im Wirtshaus.'],['Che ore sono? È mezzogiorno.','Wie spät ist es? Es ist Mittag.'],['Il cavallo è nel giardino! Aiuto!','Das Pferd ist im Garten! Hilfe!'],['La nonna è in cucina con il pane.','Oma ist mit dem Brot in der Küche.'],['Dove sono i sandali di Tito?','Wo sind Titos Sandalen?'],['Mio fratello è sul tetto con il gatto.','Mein Bruder ist mit der Katze auf dem Dach.'],['Venerdì c’è la lezione al Foro.','Am Freitag ist Unterricht auf dem Forum.'],['Vorrei il vino e il formaggio, per favore.','Ich hätte gern den Wein und den Käse, bitte.']] }
+  },
+  stories:[
+    { at:'roma-v1-4', kind:'Witzig · Alltag', title:'Il ladro al mercato', de:'Der Dieb auf dem Markt', dialog:true,
+      voices:{Mercante:'Giuseppe', Livia:'Elsa', Tito:'Diego'}, names:['Argo'],
+      words:[['il pesce','der Fisch'],['corre','rennt'],['il ladro','der Dieb'],['adesso','jetzt']],
+      text:'Livia e Tito sono al mercato con il cane Argo.\nMercante: Salve! Il pesce? Dieci sesterzi!\nLivia: Dieci sesterzi? È caro!\nMercante: Caro? No! Il pesce del fiume è buono!\nTito: Livia! Dov’è Argo?\nLivia: Non lo so! Argo! Argo, dove sei?\nMercante: Aiuto! Il pesce! Dov’è il pesce?\nTito: Là! Argo corre con il pesce!\nMercante: Il cane è un ladro!\nLivia: Scusa, scusa! Quanto costa il pesce?\nMercante: Adesso? Venti sesterzi!\nTito: Venti? Argo, il pesce è caro!',
+      tr:'Livia und Tito sind mit dem Hund Argo auf dem Markt.\nHändler: Hallo! Fisch? Zehn Sesterzen!\nLivia: Zehn Sesterzen? Das ist teuer!\nHändler: Teuer? Nein! Der Fisch aus dem Fluss ist gut!\nTito: Livia! Wo ist Argo?\nLivia: Ich weiß es nicht! Argo! Argo, wo bist du?\nHändler: Hilfe! Der Fisch! Wo ist der Fisch?\nTito: Da! Argo rennt mit dem Fisch weg!\nHändler: Der Hund ist ein Dieb!\nLivia: Entschuldigung, Entschuldigung! Wie viel kostet der Fisch?\nHändler: Jetzt? Zwanzig Sesterzen!\nTito: Zwanzig? Argo, der Fisch ist teuer!',
+      qs:[['Wie viel kostet der Fisch am Anfang?',['Zehn Sesterzen','Zwanzig Sesterzen','Zwei Sesterzen','Fünf Sesterzen']],
+          ['Was macht Argo?',['Er rennt mit dem Fisch weg','Er schläft','Er springt in den Fluss','Er bellt den Händler an']],
+          ['Wie viel soll der Fisch am Ende kosten?',['Zwanzig Sesterzen','Zehn Sesterzen','Nichts','Neunzehn Sesterzen']]],
+      tf:[['Livia findet den Fisch teuer.',true],['Der Händler nennt Argo einen Dieb.',true],['Am Ende wird der Fisch billiger.',false],['Tito weiß die ganze Zeit, wo Argo ist.',false]] },
+    { at:'roma-v1-14', kind:'Spannend · Witzig', title:'Chi c’è in cucina?', de:'Wer ist in der Küche?', dialog:true,
+      voices:{Livia:'Elsa', Tito:'Diego', Padre:'Giuseppe', Nonna:'Isabella'},
+      words:[['il rumore','das Geräusch'],['il ladro','der Dieb'],['dormi / dorme','du schläfst / er, sie schläft'],['prende','nimmt'],['piano','leise'],['il buio','die Dunkelheit'],['la spada','das Schwert'],['mangia','isst']],
+      text:'È mezzanotte. Nella casa di Livia è tutto buio. Ma c’è un rumore.\nLivia: Tito! Tito, dormi?\nTito: Sì… Che c’è?\nLivia: Un rumore! In cucina!\nTito: Un ladro?\nLivia: Non lo so. Piano, piano…\nLivia prende la lucerna. Tito prende lo scudo del padre. Nel buio della cucina c’è un’ombra.\nTito: Chi è? Aiuto! Un ladro!\nPadre: Chi è? Che c’è?\nIl padre è qui con la spada. Livia è qui con la lucerna. In cucina c’è… la nonna! La nonna mangia il miele.\nNonna: Ehm… Buonanotte!',
+      tr:'Es ist Mitternacht. In Livias Haus ist alles dunkel. Aber da ist ein Geräusch.\nLivia: Tito! Tito, schläfst du?\nTito: Ja … Was ist los?\nLivia: Ein Geräusch! In der Küche!\nTito: Ein Dieb?\nLivia: Ich weiß es nicht. Leise, leise …\nLivia nimmt die Öllampe. Tito nimmt den Schild des Vaters. In der dunklen Küche ist ein Schatten.\nTito: Wer ist da? Hilfe! Ein Dieb!\nVater: Wer ist da? Was ist los?\nDer Vater ist mit dem Schwert da. Livia ist mit der Öllampe da. In der Küche ist … Oma! Oma isst den Honig.\nOma: Ähm … Gute Nacht!',
+      qs:[['Wo ist das Geräusch?',['In der Küche','Im Garten','Auf dem Dach','Im Innenhof']],
+          ['Was nimmt Tito?',['Den Schild des Vaters','Die Öllampe','Das Schwert','Einen Stuhl']],
+          ['Wer ist in der Küche?',['Oma','Ein Dieb','Der Hund','Der Vater']],
+          ['Was isst Oma?',['Honig','Brot','Feigen','Käse']]],
+      tf:[['Livia hört ein Geräusch.',true],['Tito nimmt die Öllampe.',false],['Der Vater kommt mit dem Schwert.',true],['Es ist ein echter Dieb.',false]] },
+    { at:'roma-v1-16', kind:'Witzig · Alltag', title:'Il primo giorno di scuola', de:'Der erste Schultag', dialog:true,
+      voices:{Maestro:'Giuseppe', Tito:'Diego'},
+      words:[['primo','erster'],['comincia','beginnt'],['scrivi / scrive','du schreibst / er, sie schreibt'],['il compito','die Aufgabe'],['bravo / brava','gut, tüchtig'],['disegna','zeichnet'],['ride','lacht']],
+      text:'Oggi è lunedì: il primo giorno di scuola per Tito. La scuola è al Foro, vicino alla basilica. La lezione comincia alle sette. Fa freddo.\nMaestro: Salve, alunni! Oggi c’è la lezione di latino. Ecco la tavoletta e lo stilo.\nTito: Maestro, scusa… dov’è la mia tavoletta?\nMaestro: Tito! Il primo giorno e non c’è la tavoletta?\nUn alunno ride.\nMaestro: Ecco una tavoletta. Il compito: scrivi le lettere.\nTito scrive. Poi disegna. Il maestro guarda la tavoletta di Tito.\nMaestro: Che cos’è?\nTito: È il maestro Lucio!\nMaestro: Il naso è… molto grande.\nTito: Scusa, maestro!\nMaestro: Mmh… bravo, Tito. Ma domani: le lettere!',
+      tr:'Heute ist Montag: der erste Schultag für Tito. Die Schule ist auf dem Forum, neben der Markthalle. Der Unterricht beginnt um sieben. Es ist kalt.\nLehrer: Hallo, Schüler! Heute ist Lateinunterricht. Hier sind die Wachstafel und der Griffel.\nTito: Lehrer, Entschuldigung … wo ist meine Wachstafel?\nLehrer: Tito! Am ersten Tag und keine Wachstafel?\nEin Schüler lacht.\nLehrer: Hier ist eine Wachstafel. Die Aufgabe: Schreib die Buchstaben.\nTito schreibt. Dann zeichnet er. Der Lehrer schaut auf Titos Wachstafel.\nLehrer: Was ist das?\nTito: Das ist Lehrer Lucio!\nLehrer: Die Nase ist … sehr groß.\nTito: Entschuldigung, Lehrer!\nLehrer: Hm … gut gemacht, Tito. Aber morgen: die Buchstaben!',
+      qs:[['Wann beginnt der Unterricht?',['Um sieben','Um acht','Mittags','Um neun']],
+          ['Was fehlt Tito?',['Seine Wachstafel','Sein Griffel','Seine Sandalen','Sein Buch']],
+          ['Was zeichnet Tito?',['Den Lehrer','Einen Hund','Das Forum','Buchstaben']],
+          ['Was sagt der Lehrer über die Nase?',['Sie ist sehr groß','Sie ist schön','Sie ist klein','Sie fehlt']]],
+      tf:[['Der erste Schultag ist ein Montag.',true],['Die Schule ist im Tempel.',false],['Ein Schüler lacht über Tito.',true],['Am Ende ist der Lehrer sehr wütend.',false]] }
+  ]
+};
+TOPICS.push(ROMA.topic);
+NEW_LESSONS.roma = ROMA.base;
+MORE.roma = ROMA.more;
+Object.assign(GLOSS, {'romana':'Römerin, römisch','romano':'Römer, römisch','figlio':'Sohn','nelle':'in den','fredda':'kalt','persone':'Menschen, Leute','vende':'verkauft',
+  'negli':'in den','gioca':'spielt','palla':'Ball','severo':'streng','alunni':'Schüler (Mehrzahl)','scrivono':'schreiben'});
+/*ROMA-END*/
+
 const ORDER = ['l1','l2','n3','n4','l3','l4','n7','n8','l5','n10','n11','n12','l6','n14','n15','n16'];
 const OLD_POS = {2:4, 3:5, 4:8, 5:12};
 TOPICS.forEach(t => {
   const old = t.lessons;
   old.forEach((l,i) => { l.id = t.id + '-l' + (i+1); });
+  /* Fehlende Lektionen (Thema wird noch Stufe für Stufe ausgebaut) werden übersprungen */
   t.lessons = ORDER.map(k => k[0] === 'l' ? old[+k.slice(1) - 1]
-    : Object.assign({id: t.id + '-' + k, tip: NEW_TIPS[k]}, NEW_LESSONS[t.id][k]));
+    : NEW_LESSONS[t.id][k] && Object.assign({id: t.id + '-' + k, tip: NEW_TIPS[k]}, NEW_LESSONS[t.id][k])).filter(Boolean);
   (t.stories || []).forEach(s => { s.after = OLD_POS[s.after] ?? s.after; });
 });
 
@@ -2093,6 +2307,7 @@ Object.assign(GLOSS, {'molto':'sehr, viel','adesso':'jetzt','quello':'das da, je
   'pagano':'sie zahlen','leggeva':'er/sie las','guardava':'er/sie schaute','parlava':'er/sie sprach','veri':'echte','chiama':'ruft; si chiama = heißt',
   'sabato':'Samstag','momento':'Moment','squillato':'geklingelt','preso':'genommen','ordinato':'bestellt','doccia':'Dusche','cento':'hundert',
   'fa':'vor (cento anni fa = vor hundert Jahren)','tappi':'Stöpsel','orecchie':'Ohren'});
+NEW_STORIES.roma = ROMA.stories;
 TOPICS.forEach(t => (NEW_STORIES[t.id] || []).forEach(s => {
   s.after = t.lessons.findIndex(l => l.id === s.at); s.long = true;
   (s.names || []).forEach(n => NAMES.add(n));
@@ -2498,6 +2713,13 @@ const PICS = {
   'la pizza':'🍕','il pane':'🍞','il formaggio':'🧀','lo zaino':'🎒','il telefono':'📱','il treno':'🚆','l’aereo':'✈️','la valigia':'🧳',
   'il regalo':'🎁','la bacchetta':'🪄','la pozione':'🧪','il re':'<svg viewBox="0 0 100 100" width="1.15em" height="1.15em" style="vertical-align:middle" aria-hidden="true"><path d="M76 92 L76 50" stroke="#b8860b" stroke-width="3" stroke-linecap="round"/><circle cx="76" cy="47" r="5" fill="#f2c230" stroke="#b8860b" stroke-width="1.5"/><path d="M30 58 L70 58 L82 96 L18 96 Z" fill="#c0282d"/><path d="M50 64 L50 96" stroke="#9e1f23" stroke-width="2"/><path d="M28 56 Q50 70 72 56 L74 64 Q50 78 26 64 Z" fill="#fbfaf6" stroke="#d8d4ca" stroke-width="1"/><circle cx="36" cy="64" r="1.3" fill="#222"/><circle cx="46" cy="68" r="1.3" fill="#222"/><circle cx="56" cy="68" r="1.3" fill="#222"/><circle cx="65" cy="64" r="1.3" fill="#222"/><circle cx="76" cy="72" r="4" fill="#f3c9a4"/><circle cx="50" cy="40" r="13" fill="#f3c9a4"/><path d="M37 40 Q38 62 50 66 Q62 62 63 40 Q58 50 50 49 Q42 50 37 40 Z" fill="#e6e1d6" stroke="#c9c2b2" stroke-width="1"/><path d="M42 46 Q46 43 50 46 Q54 43 58 46 Q54 48.5 50 47.5 Q46 48.5 42 46 Z" fill="#d6cfbf"/><circle cx="45" cy="38" r="1.7" fill="#2a1a12"/><circle cx="55" cy="38" r="1.7" fill="#2a1a12"/><path d="M41 34 L47 34.5 M59 34 L53 34.5" stroke="#bdb5a4" stroke-width="2" stroke-linecap="round"/><path d="M33 30 L33 12 L41 21 L50 8 L59 21 L67 12 L67 30 Z" fill="#f2c230" stroke="#b8860b" stroke-width="1.5" stroke-linejoin="round"/><rect x="33" y="25" width="34" height="5" fill="#e0ac1f" stroke="#b8860b" stroke-width="1"/><circle cx="50" cy="19" r="2.6" fill="#d7263d"/><circle cx="40" cy="27.5" r="1.8" fill="#2f6fd6"/><circle cx="50" cy="27.5" r="1.8" fill="#1f9d55"/><circle cx="60" cy="27.5" r="1.8" fill="#2f6fd6"/><circle cx="33" cy="12" r="1.8" fill="#f2c230"/><circle cx="50" cy="8" r="1.8" fill="#f2c230"/><circle cx="67" cy="12" r="1.8" fill="#f2c230"/></svg>','la principessa':'👸','la lente':'🔍','la sfera di cristallo':'🔮',
   'il tesoro':'💰','la lettera':'✉️','il giornale':'📰','il dottore / la dottoressa':'🧑‍⚕️','la gamba':'🦵','il naso':'👃','la bocca':'👄','i denti':'🦷🦷🦷',
+  /* Roma antica (28.09.2026) */
+  'la casa':'🏠','il tempio':'🏛️','l’anfora':'🏺','lo scudo':'🛡️','le olive':'🫒','il mercato':'🧺','il sesterzio / i sesterzi':'🪙',
+  'il Colosseo':'🏟️','le terme':'♨️','il padre':'👨','la madre':'👩','il fratello':'👦','la sorella':'👧','il nonno':'👴','la nonna':'👵',
+  'la fontana':'⛲','il fiume':'🏞️','i sandali':'🩴','l’anello':'💍','la collana':'📿','il vestito':'👗','il miele':'🍯','l’uva':'🍇','il pesce':'🐟',
+  'il gatto':'🐈','l’asino':'🫏','la gallina':'🐔','il maiale':'🐖','l’oca / le oche':'🪿','la lupa':'🐺','il vento':'💨','l’inverno':'❄️','l’estate':'🏖️',
+  'il fornaio':'🥖','il pescatore':'🎣','il barbiere':'💈','il gladiatore':'⚔️','il teatro':'🎭','la biblioteca':'📚','la lucerna':'🪔','la sedia':'🪑',
+  'lo specchio':'🪞','il piatto':'🍽️','la mano / le mani':'✋','il piede / i piedi':'🦶','il rotolo':'📜','le lettere':'🔤','i numeri':'🔢',
   /* Kino, Pferde, Backen, Unterwegs (27.09.2026) */
   'il film':'🎞️','il biglietto':'🎟️','la serie':'📺','il posto / i posti':'💺','il cinema':'<svg viewBox="0 0 100 100" width="1.15em" height="1.15em" style="vertical-align:middle" aria-hidden="true"><rect x="10" y="30" width="80" height="64" fill="#7a1e2c"/><rect x="16" y="8" width="68" height="26" rx="3" fill="#2a2438"/><circle cx="20" cy="11" r="2" fill="#ffd23f"/><circle cx="20" cy="31" r="2" fill="#ffd23f"/><circle cx="27" cy="11" r="2" fill="#ffd23f"/><circle cx="27" cy="31" r="2" fill="#ffd23f"/><circle cx="34" cy="11" r="2" fill="#ffd23f"/><circle cx="34" cy="31" r="2" fill="#ffd23f"/><circle cx="41" cy="11" r="2" fill="#ffd23f"/><circle cx="41" cy="31" r="2" fill="#ffd23f"/><circle cx="48" cy="11" r="2" fill="#ffd23f"/><circle cx="48" cy="31" r="2" fill="#ffd23f"/><circle cx="55" cy="11" r="2" fill="#ffd23f"/><circle cx="55" cy="31" r="2" fill="#ffd23f"/><circle cx="62" cy="11" r="2" fill="#ffd23f"/><circle cx="62" cy="31" r="2" fill="#ffd23f"/><circle cx="69" cy="11" r="2" fill="#ffd23f"/><circle cx="69" cy="31" r="2" fill="#ffd23f"/><circle cx="76" cy="11" r="2" fill="#ffd23f"/><circle cx="76" cy="31" r="2" fill="#ffd23f"/><circle cx="19" cy="18" r="2" fill="#ffd23f"/><circle cx="19" cy="25" r="2" fill="#ffd23f"/><circle cx="81" cy="18" r="2" fill="#ffd23f"/><circle cx="81" cy="25" r="2" fill="#ffd23f"/><path d="M50 13 l2.8 6 l6.4 0.6 l-4.9 4.2 l1.5 6.3 l-5.8 -3.4 l-5.8 3.4 l1.5 -6.3 l-4.9 -4.2 l6.4 -0.6 Z" fill="#ffd23f"/><rect x="6" y="38" width="88" height="6" fill="#c0282d"/><rect x="16" y="50" width="16" height="22" fill="#f5efd6" stroke="#d4a72c" stroke-width="2"/><rect x="68" y="50" width="16" height="22" fill="#f5efd6" stroke="#d4a72c" stroke-width="2"/><path d="M18 68 L24 58 L30 68 Z" fill="#8fb8de"/><circle cx="76" cy="58" r="4" fill="#f28c28"/><path d="M70 70 Q76 62 82 70" fill="#6fbf4a"/><rect x="38" y="56" width="24" height="38" fill="#2a2438"/><path d="M50 56 L50 94" stroke="#7a1e2c" stroke-width="2"/><rect x="41" y="60" width="7" height="30" fill="#4a5b7a"/><rect x="52" y="60" width="7" height="30" fill="#4a5b7a"/></svg>','il bar':'☕','la scena':'🎬','le stelle':'🌟🌟🌟',
   'un sogno':'💭','il cavallo':'🐴','i cavalli':'🐴🐴🐴','il fieno':'<svg viewBox="0 0 100 100" width="1.15em" height="1.15em" style="vertical-align:middle" aria-hidden="true"><path d="M10 42 L64 42 L90 28 L36 28 Z" fill="#f0cf6a" stroke="#b88a2a" stroke-width="2" stroke-linejoin="round"/><path d="M64 42 L90 28 L90 72 L64 86 Z" fill="#d9ad45" stroke="#b88a2a" stroke-width="2" stroke-linejoin="round"/><rect x="10" y="42" width="54" height="44" fill="#e8bf55" stroke="#b88a2a" stroke-width="2"/><path d="M16 52 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M30 48 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M44 56 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M20 68 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M36 64 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M50 74 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M14 80 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M40 80 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M54 50 l6 -1" stroke="#b88a2a" stroke-width="1.3" stroke-linecap="round"/><path d="M70 52 l3 -3" stroke="#a88230" stroke-width="1.2"/><path d="M80 46 l3 -3" stroke="#a88230" stroke-width="1.2"/><path d="M74 66 l3 -3" stroke="#a88230" stroke-width="1.2"/><path d="M84 60 l3 -3" stroke="#a88230" stroke-width="1.2"/><path d="M70 78 l3 -3" stroke="#a88230" stroke-width="1.2"/><path d="M24 42 L24 86 M50 42 L50 86" stroke="#c0392b" stroke-width="3"/><path d="M24 42 L50 28 M50 42 L76 28" stroke="#c0392b" stroke-width="3"/><path d="M6 92 L16 86 M88 90 L96 94 M20 94 L30 90 M60 94 L70 90" stroke="#d9ad45" stroke-width="2" stroke-linecap="round"/></svg>','la carota / le carote':'🥕','la mela / le mele':'🍎','l’acqua':'💧','il veterinario':'🧑‍⚕️',
@@ -3188,6 +3410,7 @@ const FOLDERS = [
   {id:'dolci',   name:'Backen & Café',           de:'Zutaten, Rezepte und die Bar', color:'var(--t-dolci)'},
   {id:'brividi', name:'Halloween & Horror',      de:'Gespenster, Hexen und Gänsehaut', color:'var(--t-brividi)'},
   {id:'viaggio', name:'Unterwegs & Reisen',      de:'Bahnhof, Apotheke, Hotel, Weg fragen …', color:'var(--t-viaggio)'},
+  {id:'roma',    name:'Antikes Rom',             de:'Forum, Thermen, Toga und der Alltag der Römer', color:'var(--t-roma)'},
   {id:'leute',   name:'Menschen & Familie',      de:'Oma, Freunde, Kinder …', color:'var(--accent)'},
   {id:'zeit',    name:'Zeitangaben',             de:'heute Abend, gestern, jeden Tag …', color:'var(--accent)'},
   {id:'wie',     name:'Adjektive',              de:'Beschreiben, wie etwas ist: schön, groß, alt …', color:'var(--accent)'},
