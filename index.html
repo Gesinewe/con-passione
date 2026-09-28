@@ -3493,9 +3493,10 @@ function startRec(btn){
   btn.classList.add('on'); lbl.textContent = 'Ich höre zu …';
   try{ r.start(); }catch(e){ rec = null; idle(); out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; }
 }
-/* Englische Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht. */
-const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra'};
-const spAlias = (target, heard) => heard.map(h => SP_ALIAS[h] && target.includes(SP_ALIAS[h]) ? SP_ALIAS[h] : h);
+/* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
+   und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
+const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete'};
+const spAlias = (target, heard) => heard.map(h => SP_ALIAS[h] && target.includes(SP_ALIAS[h]) && !target.includes(h) ? SP_ALIAS[h] : h);
 function judgeSpeech(st, alts){
   const words = st.it.replace(/^[^:]{1,24}: /,'').split(' ');
   const parts = words.map(w => ({w, toks:spTokens(w), name:NAMES.has(w.replace(/^[^\p{L}]+|[^\p{L}]+$/gu,''))}));
