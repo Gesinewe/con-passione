@@ -2928,7 +2928,7 @@ function numWord(d){
   const T = ['','','venti','trenta','quaranta','cinquanta','sessanta','settanta','ottanta','novanta'][Math.floor(n/10)], u = n % 10;
   return !u ? T : (u === 1 || u === 8 ? T.slice(0,-1) : T) + NUM_IT[u];
 }
-const spTokens = s => plain(String(s).replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).split(' ').filter(Boolean);
+const spTokens = s => plain(String(s).replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).replace(/[^a-z ]/g,' ').split(' ').filter(Boolean);
 function lev(a, b){
   let prev = [...Array(b.length+1).keys()];
   for (let i=1; i<=a.length; i++){
@@ -2938,7 +2938,30 @@ function lev(a, b){
   }
   return prev[b.length];
 }
-const sameWord = (x, y) => x === y || (x.length >= 6 && lev(x, y) <= 1);
+/* Wie ein Wort ungefähr klingt: stummes h weg, Doppelbuchstaben einfach, gleich klingende Schreibweisen vereinheitlicht.
+   So gelten z. B. ho/o, è/e/eh, c'è/che, anno/ano als gleich – die Spracherkennung verwechselt genau solche Wörter oft. */
+const soundKey = w => w.replace(/h/g,'').replace(/qu/g,'cu').replace(/k/g,'c').replace(/[jy]/g,'i').replace(/gli/g,'li').replace(/gn/g,'ni').replace(/(.)\1+/g,'$1');
+function sameWord(x, y){
+  if (x === y) return true;
+  const a = soundKey(x), b = soundKey(y);
+  if (a === b) return true;
+  const n = Math.min(a.length, b.length);
+  return n >= 5 && lev(a, b) <= (n >= 8 ? 2 : 1);
+}
+/* Getrennt oder zusammen geschrieben (buon giorno / buongiorno, perfavore / per favore) soll keine Rolle spielen */
+function fixSpaces(target, heard){
+  const keys = new Set(target.map(soundKey)), pairs = new Map();
+  target.forEach((w, i) => { if (i + 1 < target.length) pairs.set(soundKey(w + target[i+1]), [w, target[i+1]]); });
+  const out = [];
+  for (let i=0; i<heard.length; i++){
+    const h = heard[i], k = soundKey(h);
+    if (keys.has(k)) out.push(h);
+    else if (i + 1 < heard.length && keys.has(soundKey(h + heard[i+1]))){ out.push(h + heard[i+1]); i++; }
+    else if (pairs.has(k)) out.push(...pairs.get(k));
+    else out.push(h);
+  }
+  return out;
+}
 /* Welche Wörter des Zielsatzes kommen (in der richtigen Reihenfolge) im Gehörten vor? */
 function wordHits(a, b){
   const dp = Array.from({length:a.length+1}, () => new Array(b.length+1).fill(0));
@@ -2989,23 +3012,38 @@ function startRec(btn){
 }
 function judgeSpeech(st, alts){
   const words = st.it.replace(/^[^:]{1,24}: /,'').split(' ');
-  const target = words.flatMap(spTokens);
-  let best = null;
-  alts.forEach(a => { const hit = wordHits(target, spTokens(a)), n = hit.filter(Boolean).length; if (!best || n > best.n) best = {n, hit, text:a}; });
-  const ratio = target.length ? best.n / target.length : 0;
-  let k = 0;
-  const marked = words.map(w => { const n = spTokens(w).length, ok = best.hit.slice(k, k + n).every(Boolean); k += n; return ok ? esc(w) : `<span class="miss">${esc(w)}</span>`; }).join(' ');
+  const parts = words.map(w => ({w, toks:spTokens(w), name:NAMES.has(w.replace(/^[^\p{L}]+|[^\p{L}]+$/gu,''))}));
+  const target = parts.flatMap(p => p.toks);
+  /* Ein Wort zählt als erkannt, wenn es in irgendeiner der Vorschläge der Spracherkennung vorkommt */
+  const hit = new Array(target.length).fill(false);
+  let heardText = alts[0], bestN = -1;
+  alts.forEach(a => { const h = wordHits(target, fixSpaces(target, spTokens(a))), n = h.filter(Boolean).length; h.forEach((v,i) => { if (v) hit[i] = true; }); if (n > bestN){ bestN = n; heardText = a; } });
+  /* Bewertet wird pro Wort. Namen (Anna, Luca …) zählen nicht mit, die kennt die Spracherkennung oft nicht. */
+  let k = 0, need = 0, got = 0, lastOk = -1, firstMiss = -1;
+  const marked = parts.map(p => {
+    const n = p.toks.length, ok = hit.slice(k, k + n).every(Boolean); k += n;
+    if (!n || p.name) return esc(p.w);
+    need++;
+    if (ok){ got++; lastOk = need; } else if (firstMiss < 0) firstMiss = need;
+    return ok ? esc(p.w) : `<span class="miss">${esc(p.w)}</span>`;
+  }).join(' ');
+  const missing = need - got, ratio = need ? got / need : 1;
   const fb = document.getElementById('fb'), msg = document.getElementById('msg'), out = document.getElementById('recout');
   out.textContent = '';
-  const heard = `Verstanden: <span class="it">„${esc(best.text.trim())}“</span>`;
-  if (ratio >= 0.85){
+  const heard = `Verstanden: <span class="it">„${esc(String(heardText).trim())}“</span>`;
+  if (ratio >= 0.7 || (need >= 3 && missing <= 1)){
     fb.classList.add('ok');
-    msg.innerHTML = ['Perfetto!','Bravissimo!','Ottimo!','Che bella pronuncia!'][Math.floor(Math.random()*4)] + `<small>${heard}</small>`;
+    msg.innerHTML = (missing ? 'Bene!' : ['Perfetto!','Bravissimo!','Ottimo!','Che bella pronuncia!'][Math.floor(Math.random()*4)])
+      + `<small>${heard}${missing ? `<br>Das passt! Nicht ganz sicher war ich mir hier: <span class="it">${marked}</span>` : ''}</small>`;
     const again = document.getElementById('again'); if (again) again.hidden = true;
     const m = document.getElementById('main'); m.textContent = 'Weiter'; m.focus();
   } else {
     fb.classList.add('bad');
-    msg.innerHTML = (ratio >= 0.5 ? 'Fast!' : 'Nochmal!') + `<small>${heard}<br>${ratio >= 0.5 ? 'Diese Wörter habe ich nicht erkannt: ' : 'Das passt noch nicht ganz: '}<span class="it">${marked}</span><br>Hör dir den Satz nochmal an und tipp dann wieder aufs Mikrofon.</small>`;
+    /* Fehlt nur das Ende, hat die Aufnahme vermutlich bei einer kurzen Pause aufgehört */
+    const cutOff = got > 0 && firstMiss > lastOk;
+    msg.innerHTML = (ratio >= 0.5 ? 'Fast!' : 'Nochmal!') + `<small>${heard}<br>${ratio >= 0.5 ? 'Diese Wörter habe ich nicht erkannt: ' : 'Das passt noch nicht ganz: '}<span class="it">${marked}</span><br>`
+      + (cutOff ? 'Die Aufnahme hört auf, sobald du kurz Pause machst. Sprich den Satz am besten in einem Zug durch.' : 'Hör dir den Satz nochmal an und tipp dann wieder aufs Mikrofon.')
+      + ` Du kannst dich auch selbst bewerten.</small>`;
   }
 }
 
