@@ -3494,7 +3494,7 @@ function startRec(btn){
   try{ r.start(); }catch(e){ rec = null; idle(); out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; }
 }
 /* Englische Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht. */
-const SP_ALIAS = {apple:'apro'};
+const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra'};
 const spAlias = (target, heard) => heard.map(h => SP_ALIAS[h] && target.includes(SP_ALIAS[h]) ? SP_ALIAS[h] : h);
 function judgeSpeech(st, alts){
   const words = st.it.replace(/^[^:]{1,24}: /,'').split(' ');
