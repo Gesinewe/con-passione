@@ -3068,6 +3068,23 @@ function speakDone(ok){
 
 function setReady(v){ document.getElementById('main').disabled = !v; }
 
+/* Schreibaufgaben mit zwei Formen („stanco / stanca“): Leerzeichen um den Schrägstrich und Reihenfolge egal,
+   eine der Formen allein reicht auch. Nur „ / “ mit Leerzeichen trennt, damit „andato/a“ im Verben-Trainer ganz bleibt. */
+function slashHit(targets, pa){
+  const forms = new Set(targets.flatMap(tg => tg.split(/\s+\/\s+/)).map(f => plain(f)));
+  const parts = pa.split(/\s*\/\s*/).filter(Boolean);
+  return parts.length > 0 && new Set(parts).size === parts.length
+    && parts.every(p => forms.has(p) || [...forms].some(f => stripArt(f) === stripArt(p)));
+}
+/* Ein Tippfehler (ein Buchstabe falsch, zu viel oder zu wenig) wird verziehen, ab 20 Buchstaben zwei.
+   Nicht bei kurzen Wörtern und nie am Wortende: Die Endung zeigt im Italienischen Person und Geschlecht (guardo/guarda, stanco/stanca). */
+function typoOk(tg, pa){
+  const letters = tg.replace(/\s/g,'').length;
+  if (letters < 5 || tg === pa) return false;
+  const tw = tg.split(' '), aw = pa.split(' ');
+  if (tw.length !== aw.length || tw.some((w,i) => w.slice(-1) !== aw[i].slice(-1))) return false;
+  return lev(tg, pa) <= (letters >= 20 ? 2 : 1);
+}
 function check(){
   const c = L.cur, st = c.st;
   let ok = false, correct = '', note = '';
@@ -3083,8 +3100,11 @@ function check(){
     const targets = [st.word.it, ...(st.alts||[])].map(norm);
     const hit = targets.find(tg => plain(tg) === pa);
     const hitArt = !hit && targets.find(tg => stripArt(plain(tg)) === stripArt(pa));
-    ok = !!(hit || hitArt);
-    if (hit && !targets.includes(a)) note = 'Achte auf die Schreibweise: ';
+    const hitSlash = !hit && !hitArt && slashHit(targets, pa);
+    const hitTypo = !hit && !hitArt && !hitSlash && targets.find(tg => typoOk(plain(tg), pa) || typoOk(stripArt(plain(tg)), stripArt(pa)));
+    ok = !!(hit || hitArt || hitSlash || hitTypo);
+    if (hitTypo) note = 'Fast richtig! Achte auf die Schreibweise: ';
+    else if (hit && !targets.includes(a)) note = 'Achte auf die Schreibweise: ';
     else if (hitArt) note = 'Mit Artikel: ';
     correct = st.word.it;
     document.getElementById('typein').disabled = true;
@@ -3633,7 +3653,7 @@ function startVerbs(){
     const big = `${PERS[p]} + ${v.inf}`;
     const sub = `${TENSES[tn].name} · ${v.inf} = ${v.de.split(' (')[0]} · ${PERS[p]} = ${PERS_DE[p]}`;
     if ([2,5,8].includes(steps.length)){
-      steps.push({type:'type', word:{it:answer, de:big}, bigHtml:big, hint:sub, alts:[...variants(answer), ...variants(forms[p])]});
+      steps.push({type:'type', word:{it:answer, de:big}, bigHtml:big, hint:sub, alts:[forms[p], ...variants(answer), ...variants(forms[p])]});
     } else {
       const wrong = shuffle([...new Set(forms.filter(f => f !== forms[p]))]).slice(0,3).map(f => PERS[p] + ' ' + f);
       steps.push({type:'choice', ask:'Welche Form passt?', big, sub, options:shuffle([answer, ...wrong]), answer, itFont:true, say:answer});
