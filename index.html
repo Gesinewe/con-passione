@@ -3367,7 +3367,9 @@ function numWord(d){
   const T = ['','','venti','trenta','quaranta','cinquanta','sessanta','settanta','ottanta','novanta'][Math.floor(n/10)], u = n % 10;
   return !u ? T : (u === 1 || u === 8 ? T.slice(0,-1) : T) + NUM_IT[u];
 }
-const spTokens = s => plain(String(s).replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).replace(/[^a-z ]/g,' ').split(' ').filter(Boolean);
+/* Die Spracherkennung schreibt Geldbeträge oft als Zeichen: „8 €“, „2,50 €“ → „otto euro“, „due euro e cinquanta“ */
+const spMoney = s => String(s).replace(/(\d+)[.,](\d{1,2})\s*(€|eur\b)/gi, '$1 euro e $2').replace(/€|\beur\b/gi, ' euro ');
+const spTokens = s => plain(spMoney(s).replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).replace(/[^a-z ]/g,' ').split(' ').filter(Boolean);
 function lev(a, b){
   let prev = [...Array(b.length+1).keys()];
   for (let i=1; i<=a.length; i++){
