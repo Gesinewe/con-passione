@@ -3495,7 +3495,7 @@ function startRec(btn){
 }
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
-const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete'};
+const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto'};
 const spAlias = (target, heard) => heard.map(h => SP_ALIAS[h] && target.includes(SP_ALIAS[h]) && !target.includes(h) ? SP_ALIAS[h] : h);
 function judgeSpeech(st, alts){
   const words = st.it.replace(/^[^:]{1,24}: /,'').split(' ');
