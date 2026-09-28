@@ -308,6 +308,7 @@ body.muted .aplay{opacity:.35}
 .opts.tf{grid-template-columns:1fr 1fr}
 .lesson.story .n{border-style:dashed;font-size:14px}
 .lesson.story.done .n{border-style:solid}
+.linkbtn.later{justify-self:center;align-self:center;font-weight:600;color:var(--muted)}
 .offl{margin-top:22px;display:grid;gap:4px}
 .micbig{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:14px;border:2px solid var(--t);background:var(--surface);color:var(--t);font-weight:800;font-size:16px}
 .micbig svg{width:24px;height:24px}
@@ -2876,7 +2877,8 @@ function renderStep(){
         <div class="track"><div class="fill" style="width:${pct}%"></div></div>${micBtn()}${sndBtn()}</div>
       <div class="stage">${rv ? '<div class="rv">Rückblick: frühere Aufgabe<button class="linkbtn" data-now>Zur aktuellen Aufgabe</button></div>' : ''}${body}</div>
       <div class="fb" id="fb"><div class="msg" id="msg"></div>
-        ${st.type==='speak' && !rv ? `<div class="row2"><button class="ghost" id="again">Nochmal üben</button><button class="main" id="main">${btn}</button></div>` : `<button class="main" id="main" ${ready?'':'disabled'}>${btn}</button>`}</div>
+        ${st.type==='speak' && !rv ? `<div class="row2"><button class="ghost" id="again">Nochmal üben</button><button class="main" id="main">${btn}</button></div>
+        <button class="linkbtn later" data-later>Überspringen, später nochmal üben</button>` : `<button class="main" id="main" ${ready?'':'disabled'}>${btn}</button>`}</div>
     </div>`;
   L.cur.mode = (st.type==='tip'||st.type==='intro'||st.type==='wordlist'||st.type==='listenstory') ? 'next' : st.type==='speak' ? 'speak' : (st.type==='match' ? 'match' : 'check');
   if (saved) showSaved(st, saved);
@@ -3002,6 +3004,18 @@ function judgeSpeech(st, alts){
     fb.classList.add('bad');
     msg.innerHTML = (ratio >= 0.5 ? 'Fast!' : 'Nochmal!') + `<small>${heard}<br>${ratio >= 0.5 ? 'Diese Wörter habe ich nicht erkannt: ' : 'Das passt noch nicht ganz: '}<span class="it">${marked}</span><br>Hör dir den Satz nochmal an und tipp dann wieder aufs Mikrofon.</small>`;
   }
+}
+
+/* Sprechaufgabe sofort wiederholen: Rückmeldung zurücksetzen, Satz nochmal vorspielen */
+function speakAgain(){
+  stopRec();
+  const fb = document.getElementById('fb'), msg = document.getElementById('msg'), out = document.getElementById('recout');
+  fb.classList.remove('ok','bad'); msg.innerHTML = '';
+  if (out) out.textContent = 'Hör genau hin und versuch es nochmal.';
+  const m = document.getElementById('main'); m.textContent = 'Hat geklappt';
+  const again = document.getElementById('again'); if (again) again.hidden = false;
+  const lbl = document.querySelector('[data-rec] span'); if (lbl) lbl.textContent = 'Tippen und sprechen';
+  speak(L.cur.st.it);
 }
 
 function speakDone(ok){
@@ -3707,7 +3721,9 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-now')){ L.back = null; return renderStep(); }
   if (c.mode === 'review' && b.id === 'main') return stepForward();
 
-  if (c.mode === 'speak' && (b.id === 'main' || b.id === 'again')) return speakDone(b.id === 'main');
+  if (c.mode === 'speak' && b.id === 'main') return speakDone(true);
+  if (c.mode === 'speak' && b.id === 'again') return speakAgain();
+  if (c.mode === 'speak' && b.hasAttribute('data-later')) return speakDone(false);
   if (b.id === 'main'){
     if (c.mode==='next' || c.mode==='continue') return next();
     if (c.mode==='match'){ return finishMatch(); }
