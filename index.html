@@ -3834,7 +3834,8 @@ const REC_ERR = {
 };
 function startRec(btn){
   if (!SR || !L || L.cur.st.type !== 'speak') return;
-  if (rec){ stopRec(); return; }
+  /* Nochmal tippen während der Aufnahme = fertig (Ergebnis wird noch ausgewertet) */
+  if (rec){ try{ rec.stop(); }catch(e){ stopRec(); } return; }
   try{ player.pause(); }catch(e){} try{ speechSynthesis.cancel(); }catch(e){}
   const st = L.cur.st, out = document.getElementById('recout'), fb = document.getElementById('fb');
   fb.classList.remove('ok','bad','warn'); out.textContent = '';
@@ -3842,27 +3843,38 @@ function startRec(btn){
   let r;
   try{ r = new SR(); }catch(e){ out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; return; }
   rec = r;
-  r.lang = 'it-IT'; r.interimResults = true; r.maxAlternatives = 5; r.continuous = false;
-  let got = null, err = null;
+  /* Weiter zuhören, auch bei kurzen Pausen: Schluss ist erst nach 2 Sekunden Stille, nach 15 Sekunden oder beim nochmal Tippen.
+     So geht das letzte Wort nicht verloren. */
+  r.lang = 'it-IT'; r.interimResults = true; r.maxAlternatives = 5; r.continuous = true;
+  let got = null, err = null, lastText = '', quiet = null;
+  const done = () => { clearTimeout(quiet); try{ r.stop(); }catch(e){} };
+  const maxT = setTimeout(done, 15000);
   r.onresult = e => {
-    const res = e.results[e.results.length-1];
-    out.textContent = '„' + res[0].transcript + '“';
-    if (res.isFinal) got = Array.from(res, a => a.transcript);
+    /* Alle Teilstücke zusammensetzen; manche Handys liefern dasselbe Stück doppelt, das wird übersprungen */
+    const parts = [];
+    Array.from(e.results).forEach(res => { const t = res[0].transcript.trim(); if (t && !(parts.length && parts[parts.length-1][0].transcript.trim() === t)) parts.push(res); });
+    lastText = parts.map(res => res[0].transcript.trim()).join(' ');
+    out.textContent = '„' + lastText + '“';
+    const fin = parts.filter(res => res.isFinal);
+    if (fin.length) got = [...new Set([0,1,2,3,4].map(j => fin.map(res => (res[j] || res[0]).transcript.trim()).join(' ')))];
+    clearTimeout(quiet); quiet = setTimeout(done, 2000);
   };
   r.onerror = e => { err = e.error; };
   r.onend = () => {
+    clearTimeout(quiet); clearTimeout(maxT);
     if (rec !== r) return;
     rec = null; idle();
+    if (!got && lastText) got = [lastText];
     if (got) judgeSpeech(st, got);
     else if (err === 'network' && isBrave()) out.textContent = 'Brave unterstützt die Spracherkennung leider nicht. Öffne die App zum Sprechen in Chrome (oder bewerte dich selbst).';
     else if (err !== 'aborted') out.textContent = REC_ERR[err] || (err ? 'Die Spracherkennung hat nicht geklappt (' + err + '). Tipp nochmal aufs Mikrofon.' : REC_ERR['no-speech']);
   };
-  btn.classList.add('on'); lbl.textContent = 'Ich höre zu …';
+  btn.classList.add('on'); lbl.textContent = 'Ich höre zu … (tippen = fertig)';
   try{ r.start(); }catch(e){ rec = null; idle(); out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; }
 }
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
-const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli'};
+const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli', sulcaccia:'squadra', sculaccia:'squadra', veri:'perde'};
 /* Verhörer aus zwei Wörtern: „o lato“ → „urlato“. Gleiche Regeln wie oben, beide gehörten Wörter dürfen nicht im Zielsatz stehen. */
 const SP_ALIAS2 = {'o lato':'urlato', 'ho lato':'urlato'};
 function spAlias(target, heard){
@@ -3911,7 +3923,7 @@ function judgeSpeech(st, alts){
     /* Fehlt nur das Ende, hat die Aufnahme vermutlich bei einer kurzen Pause aufgehört */
     const cutOff = got > 0 && firstMiss > lastOk;
     msg.innerHTML = (ratio >= 0.5 ? 'Fast!' : 'Nochmal!') + `<small>${heard}<br>${ratio >= 0.5 ? 'Diese Wörter habe ich nicht erkannt: ' : 'Das passt noch nicht ganz: '}<span class="it">${marked}</span><br>`
-      + (cutOff ? 'Die Aufnahme hört auf, sobald du kurz Pause machst. Sprich den Satz am besten in einem Zug durch.' : 'Hör dir den Satz nochmal an und tipp dann wieder aufs Mikrofon.')
+      + (cutOff ? 'Das Ende des Satzes ist nicht angekommen. Sprich den Satz nochmal ganz und tipp erst danach aufs Mikrofon, wenn du fertig bist.' : 'Hör dir den Satz nochmal an und tipp dann wieder aufs Mikrofon.')
       + ` Du kannst dich auch selbst bewerten.</small>`;
   }
 }
