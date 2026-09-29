@@ -393,6 +393,8 @@ body.muted .aplay{opacity:.35}
 <div class="wrap" id="app"></div>
 
 <script>
+/* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
+const APP_VERSION = 62;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -3057,7 +3059,7 @@ function renderHome(){
     ${installBox()}
     ${window.CP_WEB && 'caches' in window ? `<div class="offl"><button class="ghost" data-offline>${S.offlineAt ? 'Offline gespeichert ✓ · auf neue Töne prüfen' : 'Alle Töne für offline speichern (ca. 71 MB)'}</button>
       <p class="hint" id="offmsg">${S.offlineAt ? 'Die App funktioniert auch ohne Internet (Sprechen mit Mikrofon braucht aber Internet).' : 'Danach funktioniert die App auch ohne Internet. Am besten im WLAN.'}</p></div>` : ''}
-    <p class="foot">Prototyp · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
+    <p class="foot">Prototyp · Version ${APP_VERSION} · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
   window.scrollTo(0,0);
 }
 
@@ -3835,7 +3837,7 @@ const REC_ERR = {
 function startRec(btn){
   if (!SR || !L || L.cur.st.type !== 'speak') return;
   /* Nochmal tippen während der Aufnahme = fertig (Ergebnis wird noch ausgewertet) */
-  if (rec){ try{ rec.stop(); }catch(e){ stopRec(); } return; }
+  if (rec){ rec._done && rec._done(); return; }
   try{ player.pause(); }catch(e){} try{ speechSynthesis.cancel(); }catch(e){}
   const st = L.cur.st, out = document.getElementById('recout'), fb = document.getElementById('fb');
   fb.classList.remove('ok','bad','warn'); out.textContent = '';
@@ -3844,29 +3846,43 @@ function startRec(btn){
   try{ r = new SR(); }catch(e){ out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; return; }
   rec = r;
   /* Weiter zuhören, auch bei kurzen Pausen: Schluss ist erst nach 2 Sekunden Stille, nach 15 Sekunden oder beim nochmal Tippen.
-     So geht das letzte Wort nicht verloren. */
+     Beendet sich die Spracherkennung vorher von selbst (Android nach einer kurzen Pause), startet sie neu, und das Gesagte wird angehängt. */
   r.lang = 'it-IT'; r.interimResults = true; r.maxAlternatives = 5; r.continuous = true;
-  let got = null, err = null, lastText = '', quiet = null;
-  const done = () => { clearTimeout(quiet); try{ r.stop(); }catch(e){} };
+  let got = null, err = null, lastText = '', quiet = null, finished = false, lastAt = Date.now(), cur = [], prev = [];
+  const t0 = Date.now(), goal = spTokens(st.it.replace(/^[^:]{1,24}: /,''));
+  const done = () => { finished = true; clearTimeout(quiet); try{ r.stop(); }catch(e){} };
   const maxT = setTimeout(done, 15000);
-  r.onresult = e => {
-    /* Alle Teilstücke zusammensetzen. Android schickt den Satz oft stückweise immer wieder von vorn
-       („ecco“, „ecco una“, „ecco una lettera per te“): Beginnt ein Stück wie das vorige, ersetzt es das vorige. */
-    const parts = [], first = res => (res[0].transcript.trim().toLowerCase().split(/\s+/)[0] || '');
-    Array.from(e.results).forEach(res => {
-      if (!res[0].transcript.trim()) return;
-      if (parts.length && first(parts[parts.length-1]) === first(res)) parts[parts.length-1] = res; else parts.push(res);
-    });
+  r._done = done;
+  const collect = () => {
+    /* Android schickt den Satz beim Zuhören oft stückweise immer wieder von vorn, manchmal leicht verändert
+       („Quanto“, „Quanto costa“, „Quanto costa l’aglio“, „quanta costa l’olio“). Beginnt ein Stück ungefähr wie das vorige,
+       ist es eine neue Fassung desselben Satzes und ersetzt es; sonst ist es die Fortsetzung nach einer Pause. */
+    const all = [...prev, ...cur].filter(res => res[0].transcript.trim());
+    const head = res => spTokens(res[0].transcript)[0] || '';
+    /* Von mehreren Fassungen bleibt die, die am besten zum Satz passt (bei Gleichstand die neuere) */
+    const fit = res => new Set(spTokens(res[0].transcript).filter(w => goal.includes(w))).size;
+    const parts = [];
+    all.forEach(res => { const p = parts[parts.length-1]; if (p && sameWord(head(p), head(res))) { if (fit(res) >= fit(p)) parts[parts.length-1] = res; } else parts.push(res); });
     lastText = parts.map(res => res[0].transcript.trim()).join(' ');
     out.textContent = '„' + lastText + '“';
-    const fin = parts.filter(res => res.isFinal);
-    if (fin.length) got = [...new Set([0,1,2,3,4].map(j => fin.map(res => (res[j] || res[0]).transcript.trim()).join(' ')))];
+    const fin = parts.filter(res => res.isFinal), allFin = all.filter(res => res.isFinal).map(res => res[0].transcript.trim());
+    /* Zur Bewertung: die zusammengesetzte Fassung (auch mit den anderen Vorschlägen), jede einzelne Fassung und alles aneinander */
+    if (fin.length) got = [...new Set([...[0,1,2,3,4].map(j => fin.map(res => (res[j] || res[0]).transcript.trim()).join(' ')), ...allFin, allFin.join(' ')])];
+  };
+  r.onresult = e => {
+    cur = Array.from(e.results).map(res => { const c = Array.from(res, a => ({transcript:a.transcript})); c.isFinal = res.isFinal; return c; });
+    collect(); lastAt = Date.now();
     clearTimeout(quiet); quiet = setTimeout(done, 2000);
   };
   r.onerror = e => { err = e.error; };
   r.onend = () => {
+    if (rec !== r) { clearTimeout(quiet); clearTimeout(maxT); return; }
+    /* Zu früh beendet, obwohl gerade noch gesprochen wurde: weiter zuhören */
+    if (!finished && (!err || err === 'no-speech') && Date.now() - lastAt < 2000 && Date.now() - t0 < 14000){
+      prev = [...prev, ...cur.filter(res => res.isFinal)]; cur = [];
+      try{ r.start(); return; }catch(e){}
+    }
     clearTimeout(quiet); clearTimeout(maxT);
-    if (rec !== r) return;
     rec = null; idle();
     if (!got && lastText) got = [lastText];
     if (got) judgeSpeech(st, got);
@@ -3901,7 +3917,8 @@ function judgeSpeech(st, alts){
   /* Ein Wort zählt als erkannt, wenn es in irgendeiner der Vorschläge der Spracherkennung vorkommt */
   const hit = new Array(target.length).fill(false);
   let heardText = alts[0], bestN = -1;
-  alts.forEach(a => { const h = wordHits(target, fixSpaces(target, spAlias(target, spTokens(a)))), n = h.filter(Boolean).length; h.forEach((v,i) => { if (v) hit[i] = true; }); if (n > bestN){ bestN = n; heardText = a; } });
+  alts.forEach(a => { const h = wordHits(target, fixSpaces(target, spAlias(target, spTokens(a)))), n = h.filter(Boolean).length; h.forEach((v,i) => { if (v) hit[i] = true; }); const ex = new Set(spTokens(a).filter(w => target.includes(w))).size, exB = new Set(spTokens(heardText).filter(w => target.includes(w))).size;
+    if (n > bestN || (n === bestN && (ex > exB || (ex === exB && a.length < heardText.length)))){ bestN = n; heardText = a; } });
   /* Bewertet wird pro Wort. Namen (Anna, Luca …) zählen nicht mit, die kennt die Spracherkennung oft nicht. */
   let k = 0, need = 0, got = 0, lastOk = -1, firstMiss = -1;
   const marked = parts.map(p => {
