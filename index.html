@@ -3632,7 +3632,7 @@ function startRec(btn){
 }
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
-const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri'};
+const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato'};
 /* Verhörer aus zwei Wörtern: „o lato“ → „urlato“. Gleiche Regeln wie oben, beide gehörten Wörter dürfen nicht im Zielsatz stehen. */
 const SP_ALIAS2 = {'o lato':'urlato', 'ho lato':'urlato'};
 function spAlias(target, heard){
@@ -3640,7 +3640,11 @@ function spAlias(target, heard){
   for (let i=0; i<heard.length; i++){
     const h = heard[i], two = SP_ALIAS2[h + ' ' + heard[i+1]];
     if (two && target.includes(two) && !target.includes(h) && !target.includes(heard[i+1])){ out.push(two); i++; }
-    else out.push(SP_ALIAS[h] && target.includes(SP_ALIAS[h]) && !target.includes(h) ? SP_ALIAS[h] : h);
+    else {
+      /* Ein gehörtes Wort kann auch für mehrere stehen: „occupato“ → „ho provato“ */
+      const one = SP_ALIAS[h] && SP_ALIAS[h].split(' ');
+      if (one && one.every(w => target.includes(w)) && !target.includes(h)) out.push(...one); else out.push(h);
+    }
   }
   return out;
 }
