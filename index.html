@@ -245,6 +245,7 @@ body.muted .aplay{opacity:.35}
 .tip b{color:var(--t)}
 
 /* Footer feedback */
+.player:has(#typein:focus){padding-bottom:calc(var(--kb,0px) + 40vh)}
 .fb{position:sticky;bottom:var(--kb,0px);margin-inline:-16px;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
 .fb.ok{background:var(--ok-bg);border-color:transparent}
 .fb.bad{background:var(--bad-bg);border-color:transparent}
@@ -4742,6 +4743,17 @@ document.addEventListener('keydown', e => {
 try{ speechSynthesis.getVoices(); }catch(e){}
 /* Handy-Tastatur: Die Leiste mit „Prüfen“ rutscht über die Tastatur, statt dahinter zu verschwinden.
    Nötig, wenn der Browser beim Tippen nur den sichtbaren Bereich verkleinert (z. B. auf claude.ai). */
+/* Beim Tippen: Das Eingabefeld soll immer oberhalb der „Prüfen“-Leiste sichtbar sein, nicht dahinter */
+function fitInput(){
+  const inp = document.getElementById('typein'), fb = document.getElementById('fb');
+  if (!inp || !fb || document.activeElement !== inp) return;
+  const vv = window.visualViewport, top = (vv ? vv.offsetTop : 0) + 8;
+  const r = inp.getBoundingClientRect(), f = fb.getBoundingClientRect();
+  if (r.bottom > f.top - 10) window.scrollBy(0, r.bottom - f.top + 16);
+  else if (r.top < top) window.scrollBy(0, r.top - top);
+}
+document.addEventListener('focusin', e => { if (e.target.id === 'typein') [150, 400, 800].forEach(ms => setTimeout(fitInput, ms)); });
+window.addEventListener('resize', () => setTimeout(fitInput, 50));
 (function keyboardFix(){
   const vv = window.visualViewport; if (!vv) return;
   const upd = () => {
@@ -4749,10 +4761,7 @@ try{ speechSynthesis.getVoices(); }catch(e){}
     document.documentElement.style.setProperty('--kb', (kb > 60 ? kb : 0) + 'px');
     return kb > 60;
   };
-  vv.addEventListener('resize', () => {
-    const inp = document.activeElement;
-    if (upd() && inp && inp.id === 'typein') inp.scrollIntoView({block:'center'});
-  });
+  vv.addEventListener('resize', () => { upd(); setTimeout(fitInput, 50); });
   vv.addEventListener('scroll', upd);
 })();
 
