@@ -394,7 +394,7 @@ body.muted .aplay{opacity:.35}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 62;
+const APP_VERSION = 63;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -3252,7 +3252,7 @@ const PICS = {
 Object.assign(PICS, {'la mosca':'🪰','la formica / le formiche':'🐜','l’ape':'🐝','la farfalla':'🦋','la lumaca':'🐌','la ragnatela':'🕸️','lo scarafaggio':'🪳',
   'la foglia / le foglie':'🍂','la neve':'☃️','la primavera':'🌸','l’autunno':'🍁','il verme / i vermi':'🪱','la zampa / le zampe':'🐾','il veleno':'☠️','la lingua':'👅',
   'il pallone':'⚽','il pacco':'📦','le patate':'🥔','la cipolla / le cipolle':'🧅','l’aglio':'🧄','la radio':'📻','il bicchiere':'🥂','l’ambulanza':'🚑',
-  'il coltello':'🔪','la nave':'🚢','la sposa / lo sposo':'👰','la tempesta':'🌪️','la guardia':'💂','il postino':'📮'});
+  'il coltello':'🔪','la nave':'🚢','la sposa / lo sposo':'👰🤵','la tempesta':'🌪️','la guardia':'💂','il postino':'📮'});
 /* Bild-Wörter der Lektionen from..to eines Themas; it = erste Form (bei „la candela / le candele“ also „la candela“) */
 const picWords = (t, from, to) => t.lessons.slice(from, to + 1).flatMap(l => (l.words || []).filter(([it]) => PICS[it])
   .map(([it,de]) => ({it: it.split(' / ')[0], de: de.split(' / ')[0], pic: PICS[it], all: it.split(' / '), say: it})));
