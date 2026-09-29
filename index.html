@@ -330,7 +330,41 @@ body.muted .aplay{opacity:.35}
 @keyframes micpulse{50%{box-shadow:0 0 0 8px color-mix(in srgb,var(--t) 25%,transparent)}}
 .recout{min-height:1.3em;margin:0;text-align:center;font-size:16px;color:var(--ink)}
 .miss{color:var(--bad);text-decoration:underline wavy;text-underline-offset:4px}
-@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+/* Animationen (Tu-Wörter) */
+.anim *{transform-box:view-box}
+.an-fly{animation:an-fly 5s linear infinite}
+.an-bob{animation:an-bob 1s ease-in-out infinite alternate}
+@keyframes an-fly{from{transform:translateX(-50px)}to{transform:translateX(210px)}}
+@keyframes an-bob{from{transform:translateY(-4px)}to{transform:translateY(4px)}}
+.an-knock{animation:an-knock 2.4s ease-in-out infinite}
+@keyframes an-knock{0%,50%,100%{transform:translateX(0)}8%,22%,36%{transform:translateX(-9px)}15%,29%{transform:translateX(0)}}
+.an-toc1,.an-toc2,.an-toc3{opacity:0;animation:an-toc 2.4s infinite}
+.an-toc2{animation-delay:.34s}.an-toc3{animation-delay:.68s}
+@keyframes an-toc{0%,5%{opacity:0}9%,30%{opacity:1}45%,100%{opacity:0}}
+.an-head{transform-origin:62px 58px;animation:an-howl 3.2s ease-in-out infinite}
+@keyframes an-howl{0%,15%{transform:rotate(0)}35%,75%{transform:rotate(-24deg)}95%,100%{transform:rotate(0)}}
+.an-wave{opacity:0;animation:an-wave 3.2s infinite}
+.an-w2{animation-delay:.25s}.an-w3{animation-delay:.5s}
+@keyframes an-wave{0%,35%{opacity:0}45%,70%{opacity:1}85%,100%{opacity:0}}
+.an-z{opacity:0;animation:an-z 3s ease-out infinite}
+.an-z2{animation-delay:1s}.an-z3{animation-delay:2s}
+@keyframes an-z{0%{opacity:0;transform:translate(0,0)}20%{opacity:1}100%{opacity:0;transform:translate(22px,-34px)}}
+.an-breath{transform-origin:80px 70px;animation:an-breath 3s ease-in-out infinite}
+@keyframes an-breath{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.05)}}
+.an-legA{transform-origin:112px 66px;animation:an-leg .45s ease-in-out infinite alternate}
+.an-legB{transform-origin:112px 66px;animation:an-leg .45s ease-in-out infinite alternate-reverse}
+.an-armA{transform-origin:112px 50px;animation:an-leg .45s ease-in-out infinite alternate-reverse}
+.an-armB{transform-origin:112px 50px;animation:an-leg .45s ease-in-out infinite alternate}
+@keyframes an-leg{from{transform:rotate(-32deg)}to{transform:rotate(32deg)}}
+.an-runner{animation:an-hop .225s ease-in-out infinite alternate}
+@keyframes an-hop{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+.an-speed{animation:an-speed .6s linear infinite}
+@keyframes an-speed{from{transform:translateX(0)}to{transform:translateX(-40px)}}
+.an-ghost{animation:an-chase 2.5s ease-in-out infinite alternate}
+@keyframes an-chase{from{transform:translate(0,0)}to{transform:translate(12px,-6px)}}
+.animbox{align-self:center;width:100%;max-width:380px;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+.animbox svg{display:block;width:100%;height:auto}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}.an-toc1,.an-toc2,.an-toc3,.an-wave,.an-z{opacity:1}}
 @media (max-width:420px){.brand{font-size:38px}.card .it{font-size:44px}.big .it{font-size:40px}.thead .it{font-size:50px}}
 </style>
 
@@ -3015,6 +3049,34 @@ function startPics(tid){
   t.lessons.slice(0, reviewUpto(t) + 1).forEach((l,i) => loadSounds(bundleOf(t, i)));
 }
 
+/* ---------- Animationen: Tu-Wörter in Bewegung (gezeichnet, SVG + CSS) ---------- */
+const ANIM_SVG = {
+  vola:'<svg class="anim" viewBox="0 0 160 100" aria-label="Eine Hexe fliegt auf dem Besen am Mond vorbei"> <rect width="160" height="100" fill="#2a2140"/> <circle cx="112" cy="40" r="24" fill="#f6dc7a"/><circle cx="104" cy="32" r="4" fill="#ecc95a"/><circle cx="120" cy="50" r="3" fill="#ecc95a"/> <g fill="#fff"><circle cx="20" cy="15" r="1"/><circle cx="50" cy="28" r="1.2"/><circle cx="75" cy="10" r="1"/><circle cx="145" cy="80" r="1"/><circle cx="30" cy="70" r="1"/></g> <path d="M0 92 Q40 82 80 90 T160 88 V100 H0Z" fill="#171226"/> <g class="an-fly"><g class="an-bob"> <path d="M-22 60 L22 54" stroke="#a8742a" stroke-width="2.5" stroke-linecap="round"/> <path d="M-20 58 L-34 52 L-35 66 L-20 62Z" fill="#d9a441"/> <path d="M-4 38 L8 38 L14 58 L-10 60Z" fill="#8f5ad0"/> <path d="M-8 40 Q-22 44 -26 52 Q-16 50 -10 54Z" fill="#5b3a8a"/> <circle cx="4" cy="33" r="5.5" fill="#7cc45a"/><path d="M8 32 L13 34 L8 35Z" fill="#6ab04a"/><circle cx="6" cy="31.5" r="1" fill="#1f1a17"/> <path d="M-5 29 L13 29 L5 17 L0 8 L2 19Z" fill="#141019" stroke="#8a6fc0" stroke-width="1"/> <path d="M-2 26.5 L11 26.5 L12 29 L-3 29Z" fill="#8f5ad0"/> </g></g> </svg>',
+  bussa:'<svg class="anim" viewBox="0 0 160 100" aria-label="Eine Hand klopft an eine Tür"> <rect width="160" height="100" fill="#3a3350"/> <rect y="88" width="160" height="12" fill="#2a2438"/> <rect x="30" y="12" width="52" height="78" rx="2" fill="#8b5a2b" stroke="#5e3a1a" stroke-width="2"/> <rect x="37" y="20" width="16" height="26" rx="1.5" fill="#7a4a24"/><rect x="59" y="20" width="16" height="26" rx="1.5" fill="#7a4a24"/> <rect x="37" y="54" width="16" height="28" rx="1.5" fill="#7a4a24"/><rect x="59" y="54" width="16" height="28" rx="1.5" fill="#7a4a24"/> <circle cx="74" cy="52" r="2.6" fill="#f2c230"/> <g class="an-knock"> <rect x="102" y="40" width="70" height="14" rx="4" fill="#6fbf4a"/> <rect x="97" y="38" width="9" height="18" rx="3" fill="#5aa33a"/> <rect x="86" y="38" width="14" height="17" rx="6" fill="#f3c9a4" stroke="#c99a74" stroke-width="1"/> <path d="M88 42 H97 M88 46.5 H97 M88 51 H97" stroke="#c99a74" stroke-width="1"/> </g> <g font-family="Figtree, sans-serif" font-weight="800" fill="#ffd23f" font-size="11"> <text class="an-toc1" x="96" y="26">TOC</text><text class="an-toc2" x="112" y="18">TOC</text><text class="an-toc3" x="128" y="28">TOC</text> </g> </svg>',
+  ulula:'<svg class="anim" viewBox="0 0 160 100" aria-label="Ein Wolf heult den Vollmond an"> <rect width="160" height="100" fill="#1d2440"/> <circle cx="118" cy="30" r="20" fill="#f4f1e8"/><circle cx="112" cy="26" r="4" fill="#dcd8cc"/><circle cx="124" cy="36" r="3" fill="#dcd8cc"/> <g fill="#fff"><circle cx="20" cy="12" r="1"/><circle cx="45" cy="22" r="1"/><circle cx="85" cy="8" r="1.2"/><circle cx="150" cy="62" r="1"/></g> <path d="M0 90 Q30 70 70 78 Q110 86 160 80 V100 H0Z" fill="#23402e"/> <path d="M40 80 Q42 58 58 56 L66 60 Q70 72 66 80Z" fill="#8a8f99"/> <path d="M44 80 L44 88 M60 80 L60 88" stroke="#6f7580" stroke-width="5" stroke-linecap="round"/> <path d="M40 76 Q26 78 22 70" stroke="#8a8f99" stroke-width="5" fill="none" stroke-linecap="round"/> <g class="an-head"> <circle cx="64" cy="52" r="9" fill="#9aa0aa"/> <path d="M70 47 L84 50 L71 56Z" fill="#9aa0aa"/><circle cx="83.5" cy="50" r="1.6" fill="#1d1612"/> <path d="M58 45 L57 34 L64 43Z M64 43 L66 33 L69 44Z" fill="#6f7580"/> <circle cx="66" cy="49" r="1.3" fill="#ffd23f"/> </g> <g stroke="#f6dc7a" stroke-width="2" fill="none" stroke-linecap="round"> <path class="an-wave" d="M88 30 Q94 36 90 44"/><path class="an-wave an-w2" d="M94 24 Q102 34 97 46"/><path class="an-wave an-w3" d="M100 18 Q110 32 104 48"/> </g> </svg>',
+  dorme:'<svg class="anim" viewBox="0 0 160 100" aria-label="Ein Vampir schläft im Sarg"> <rect width="160" height="100" fill="#2a2438"/> <rect y="84" width="160" height="16" fill="#1f1a2b"/> <path d="M20 74 L36 56 L124 56 L140 74 L124 90 L36 90Z" fill="#6b3f1f" stroke="#3e2210" stroke-width="2"/> <path d="M30 72 L40 62 L120 62 L130 72 L120 84 L40 84Z" fill="#9e1f23"/> <g class="an-breath"> <path d="M60 72 Q80 60 118 66 L118 80 Q82 84 60 80Z" fill="#141019"/> <path d="M60 70 L50 60 L66 64Z M60 70 L52 80 L66 76Z" fill="#c0282d"/> </g> <circle cx="50" cy="71" r="9" fill="#e8e4f0"/> <path d="M41 68 Q45 60 50 64 Q55 60 59 68 Q55 64 50 67 Q45 64 41 68Z" fill="#141019"/> <path d="M45 72 Q47 74 49 72 M51 72 Q53 74 55 72" stroke="#3a3350" stroke-width="1.2" fill="none" stroke-linecap="round"/> <path d="M48 76.5 L49 79 L50 76.5Z" fill="#fff"/> <g font-family="Instrument Serif, Georgia, serif" fill="#cdb8f0"> <text class="an-z" x="58" y="54" font-size="14">z</text><text class="an-z an-z2" x="58" y="54" font-size="18">Z</text><text class="an-z an-z3" x="58" y="54" font-size="12">z</text> </g> </svg>',
+  scappa:'<svg class="anim" viewBox="0 0 160 100" aria-label="Ein Junge rennt vor einem Gespenst weg"> <rect width="160" height="100" fill="#3b3350"/> <rect y="82" width="160" height="18" fill="#2a2438"/> <g class="an-speed" stroke="#6a5f86" stroke-width="2" stroke-linecap="round"> <path d="M20 88 H34 M70 94 H86 M120 88 H132 M170 94 H186 M60 30 H74 M150 36 H164"/> </g> <g class="an-ghost"> <path d="M18 70 Q16 34 36 32 Q56 34 54 70 L48 64 L42 72 L36 64 L30 72 L24 64Z" fill="#f4f1e8"/> <ellipse cx="31" cy="47" rx="3" ry="4" fill="#2b2b2b"/><ellipse cx="41" cy="47" rx="3" ry="4" fill="#2b2b2b"/> <ellipse cx="36" cy="57" rx="4" ry="5" fill="#2b2b2b"/> <text x="54" y="30" font-family="Figtree, sans-serif" font-weight="800" font-size="10" fill="#f4f1e8">BUUU!</text> </g> <g class="an-runner"> <path class="an-legA" d="M112 66 L112 82" stroke="#2f6fd6" stroke-width="5" stroke-linecap="round"/> <path class="an-legB" d="M112 66 L112 82" stroke="#1f4fa8" stroke-width="5" stroke-linecap="round"/> <path class="an-armB" d="M112 50 L112 62" stroke="#c9661a" stroke-width="4" stroke-linecap="round"/> <rect x="105" y="46" width="14" height="22" rx="5" fill="#f28c28"/> <path class="an-armA" d="M112 50 L112 62" stroke="#f3c9a4" stroke-width="4" stroke-linecap="round"/> <circle cx="114" cy="38" r="7.5" fill="#f3c9a4"/> <path d="M106 36 Q108 28 116 29 Q122 30 121 36 Q116 32 106 36Z" fill="#7a4520"/> <circle cx="112" cy="38" r="1.4" fill="#1d1612"/> <ellipse cx="116" cy="42" rx="1.8" ry="2.2" fill="#7a1f1f"/> </g> </svg>'
+};
+/* Welche Wortkarte welche Animation bekommt, pro Thema. avoid = Wörter, die als falsche Antwort zu ähnlich wären */
+const ANIMS = {
+  brividi:{'vola':{a:'vola'}, 'bussano alla porta':{a:'bussa'}, 'ha bussato':{a:'bussa'}, 'ulula':{a:'ulula'}, 'dorme':{a:'dorme'}, 'scappare':{a:'scappa', avoid:['corre']}}
+};
+const animOf = (t, it) => (ANIMS[t.id] || {})[it];
+/* Eine Animationsaufgabe: „Was passiert hier?“ – Tu-Wort wählen oder schreiben. Falsche Antworten: andere bekannte Tu-Wörter */
+function animStep(x, t, upto){
+  const an = animOf(t, x.it), stem = w => wordToks(w).filter(v => !FREE.has(v)).map(v => v.slice(0,4));
+  const mine = stem(x.it);
+  const verbs = [...new Map(t.lessons.slice(0, upto + 1).flatMap(l => (l.words || []))
+    .filter(([it,de,cat]) => (cat || WORD_CATS[it] || '').split(' ').includes('verben'))
+    .map(([it,de]) => [it, {it, de}])).values()];
+  const others = shuffle(verbs.filter(o => o.it !== x.it && !(animOf(t, o.it) && animOf(t, o.it).a === an.a)
+    && !(an.avoid || []).includes(o.it) && !stem(o.it).some(v => mine.includes(v)))).slice(0,3);
+  if (others.length >= 2 && Math.random() < 0.7)
+    return {type:'choice', ask:'Was passiert hier?', anim:an.a, itOpts:true, options:shuffle([x.it, ...others.map(o => o.it)]), answer:x.it, say:x.it};
+  return {type:'type', anim:an.a, word:{it:x.it, de:x.de}, alts:[x.it], say:x.it};
+}
+const animWords = (t, from, to) => t.lessons.slice(from, to + 1).flatMap(l => (l.words || []).filter(([it]) => animOf(t, it)).map(([it,de]) => ({it, de})));
+
 function buildSteps(lesson, topic){
   const steps = [{type:'tip'}];
   const onlyWords = !lesson.sentences;
@@ -3028,6 +3090,7 @@ function buildSteps(lesson, topic){
       if (topic){
         const known = picWords(topic, 0, topic.lessons.indexOf(lesson));
         grp.filter(x => PICS[x.it]).forEach(x => steps.push(picStep(known.find(p => p.pic === PICS[x.it]), known)));
+        grp.filter(x => animOf(topic, x.it)).forEach(x => steps.push(animStep(x, topic, topic.lessons.indexOf(lesson))));
       }
     }
     if (onlyWords){
@@ -3154,6 +3217,7 @@ function startReview(tid){
   });
   const pics = picWords(t, 0, reviewUpto(t));
   shuffle(pics).slice(0,3).forEach(x => steps.push(picStep(x, pics)));
+  shuffle(animWords(t, 0, reviewUpto(t))).slice(0,2).forEach(x => steps.push(animStep(x, t, reviewUpto(t))));
   shuffle([...sents, ...words]).slice(0,2).forEach(x => steps.push({type:'speak', it:x.it, de:x.de}));
   startRun({id:'review-'+tid, name:t.name, title:'Gemischt wiederholen', color:t.color, backTo:'topic:'+tid, steps, restart:() => startReview(tid), sounds:bundleOf(t, reviewUpto(t))});
   t.lessons.slice(0, reviewUpto(t) + 1).forEach((l,i) => loadSounds(bundleOf(t, i)));
@@ -3177,6 +3241,7 @@ function startPractice(tid, st){
   steps.push({type:'match', pairs:shuffle(words).slice(0,4)});
   const pics = picWords(t, 0, stageEnd(t, st)), own = picWords(t, t.lessons.indexOf(ls[0]), stageEnd(t, st));
   shuffle(own.length >= 2 ? own : pics).slice(0,3).forEach(x => steps.push(picStep(x, pics)));
+  shuffle(animWords(t, t.lessons.indexOf(ls[0]), stageEnd(t, st))).slice(0,2).forEach(x => steps.push(animStep(x, t, stageEnd(t, st))));
   shuffle(sents).slice(0,2).forEach(x => steps.push({type:'speak', it:x.it, de:x.de}));
   ls.forEach((l,i) => loadSounds(bundleOf(t, t.lessons.indexOf(l))));
   startRun({id:`practice-${tid}-${st}`, name:t.name, title:'Übungsrunde ' + STAGES[st-1].split(' · ')[0], color:t.color, backTo:'topic:'+tid,
@@ -3290,7 +3355,7 @@ function renderStep(){
   }
   else if (st.type==='choice'){
     body = `<p class="ask">${st.ask}</p>
-      ${st.listen ? `<div class="big listen">${spkBtn(st.say,true)}<button class="linkbtn" data-slow="${esc(st.say)}">Langsam anhören</button></div>
+      ${st.anim ? `<div class="animbox" role="img" aria-label="Animation">${ANIM_SVG[st.anim]}</div>` : st.listen ? `<div class="big listen">${spkBtn(st.say,true)}<button class="linkbtn" data-slow="${esc(st.say)}">Langsam anhören</button></div>
       <p class="hint">Tipp auf den Lautsprecher, um es nochmal zu hören.</p>` : st.pic ? `<div class="picbox" role="img" aria-label="Bild">${st.pic}</div>` : `<div class="big">${st.bigIt && !st.noSpk ? spkBtn(st.big,true) : ''}<span class="it${st.bigIt?'':' de'}"${st.gloss?' style="font-size:34px"':''}>${st.gloss ? glossify(st.big) : st.big}</span></div>`}
       ${st.sub ? `<p class="hint">${st.sub}</p>` : ''}
       ${st.gloss ? '<p class="hint">Tipp auf ein Wort, um die Übersetzung zu sehen.</p>' : ''}
@@ -3312,8 +3377,8 @@ function renderStep(){
     btn = 'Weiter';
   }
   else if (st.type==='type'){
-    body = `<p class="ask">${st.dict ? 'Schreib auf, was du hörst' : st.pic ? 'Wie heißt das auf Italienisch?' : 'Schreib auf Italienisch'}</p>
-      ${st.pic ? `<div class="picbox" role="img" aria-label="Bild">${st.pic}</div>` : st.dict ? `<div class="big listen">${spkBtn(st.word.it,true)}<button class="linkbtn" data-slow="${esc(st.word.it)}">Langsam anhören</button></div>`
+    body = `<p class="ask">${st.dict ? 'Schreib auf, was du hörst' : st.anim ? 'Was passiert hier? Schreib es auf Italienisch.' : st.pic ? 'Wie heißt das auf Italienisch?' : 'Schreib auf Italienisch'}</p>
+      ${st.anim ? `<div class="animbox" role="img" aria-label="Animation">${ANIM_SVG[st.anim]}</div>` : st.pic ? `<div class="picbox" role="img" aria-label="Bild">${st.pic}</div>` : st.dict ? `<div class="big listen">${spkBtn(st.word.it,true)}<button class="linkbtn" data-slow="${esc(st.word.it)}">Langsam anhören</button></div>`
         : `<div class="big"><span class="it de">${st.bigHtml || st.word.de}</span></div>`}
       <input class="field" id="typein" enterkeyhint="go" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf Italienisch …" aria-label="Deine Antwort auf Italienisch">
       <p style="margin:0;font-size:14px;color:var(--muted)">${st.hint || (/^(il|lo|la|l’|un|una) /.test(st.word.it) || st.word.it.startsWith('l’') ? 'Mit Artikel (il, lo, la, l’), wenn du ihn weißt.' : 'Satzzeichen und Akzente müssen nicht perfekt sein.')}</p>`;
