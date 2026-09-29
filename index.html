@@ -3850,9 +3850,13 @@ function startRec(btn){
   const done = () => { clearTimeout(quiet); try{ r.stop(); }catch(e){} };
   const maxT = setTimeout(done, 15000);
   r.onresult = e => {
-    /* Alle Teilstücke zusammensetzen; manche Handys liefern dasselbe Stück doppelt, das wird übersprungen */
-    const parts = [];
-    Array.from(e.results).forEach(res => { const t = res[0].transcript.trim(); if (t && !(parts.length && parts[parts.length-1][0].transcript.trim() === t)) parts.push(res); });
+    /* Alle Teilstücke zusammensetzen. Android schickt den Satz oft stückweise immer wieder von vorn
+       („ecco“, „ecco una“, „ecco una lettera per te“): Beginnt ein Stück wie das vorige, ersetzt es das vorige. */
+    const parts = [], first = res => (res[0].transcript.trim().toLowerCase().split(/\s+/)[0] || '');
+    Array.from(e.results).forEach(res => {
+      if (!res[0].transcript.trim()) return;
+      if (parts.length && first(parts[parts.length-1]) === first(res)) parts[parts.length-1] = res; else parts.push(res);
+    });
     lastText = parts.map(res => res[0].transcript.trim()).join(' ');
     out.textContent = '„' + lastText + '“';
     const fin = parts.filter(res => res.isFinal);
