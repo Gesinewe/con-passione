@@ -3496,7 +3496,17 @@ function startRec(btn){
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
 const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto'};
-const spAlias = (target, heard) => heard.map(h => SP_ALIAS[h] && target.includes(SP_ALIAS[h]) && !target.includes(h) ? SP_ALIAS[h] : h);
+/* Verhörer aus zwei Wörtern: „o lato“ → „urlato“. Gleiche Regeln wie oben, beide gehörten Wörter dürfen nicht im Zielsatz stehen. */
+const SP_ALIAS2 = {'o lato':'urlato', 'ho lato':'urlato'};
+function spAlias(target, heard){
+  const out = [];
+  for (let i=0; i<heard.length; i++){
+    const h = heard[i], two = SP_ALIAS2[h + ' ' + heard[i+1]];
+    if (two && target.includes(two) && !target.includes(h) && !target.includes(heard[i+1])){ out.push(two); i++; }
+    else out.push(SP_ALIAS[h] && target.includes(SP_ALIAS[h]) && !target.includes(h) ? SP_ALIAS[h] : h);
+  }
+  return out;
+}
 function judgeSpeech(st, alts){
   const words = st.it.replace(/^[^:]{1,24}: /,'').split(' ');
   const parts = words.map(w => ({w, toks:spTokens(w), name:NAMES.has(w.replace(/^[^\p{L}]+|[^\p{L}]+$/gu,''))}));
@@ -3504,7 +3514,7 @@ function judgeSpeech(st, alts){
   /* Ein Wort zählt als erkannt, wenn es in irgendeiner der Vorschläge der Spracherkennung vorkommt */
   const hit = new Array(target.length).fill(false);
   let heardText = alts[0], bestN = -1;
-  alts.forEach(a => { const h = wordHits(target, spAlias(target, fixSpaces(target, spTokens(a)))), n = h.filter(Boolean).length; h.forEach((v,i) => { if (v) hit[i] = true; }); if (n > bestN){ bestN = n; heardText = a; } });
+  alts.forEach(a => { const h = wordHits(target, fixSpaces(target, spAlias(target, spTokens(a)))), n = h.filter(Boolean).length; h.forEach((v,i) => { if (v) hit[i] = true; }); if (n > bestN){ bestN = n; heardText = a; } });
   /* Bewertet wird pro Wort. Namen (Anna, Luca …) zählen nicht mit, die kennt die Spracherkennung oft nicht. */
   let k = 0, need = 0, got = 0, lastOk = -1, firstMiss = -1;
   const marked = parts.map(p => {
