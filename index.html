@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <meta name="theme-color" content="#F1F4F2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111513" media="(prefers-color-scheme: dark)">
 <meta name="description" content="Italienisch lernen mit Themen, die dich begeistern.">
@@ -245,7 +245,7 @@ body.muted .aplay{opacity:.35}
 .tip b{color:var(--t)}
 
 /* Footer feedback */
-.fb{position:sticky;bottom:0;margin-inline:-16px;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.fb{position:sticky;bottom:var(--kb,0px);margin-inline:-16px;padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px));background:var(--bg);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
 .fb.ok{background:var(--ok-bg);border-color:transparent}
 .fb.bad{background:var(--bad-bg);border-color:transparent}
 .fb.warn{background:var(--warn-bg);border-color:transparent}
@@ -3315,7 +3315,7 @@ function renderStep(){
     body = `<p class="ask">${st.dict ? 'Schreib auf, was du hörst' : st.pic ? 'Wie heißt das auf Italienisch?' : 'Schreib auf Italienisch'}</p>
       ${st.pic ? `<div class="picbox" role="img" aria-label="Bild">${st.pic}</div>` : st.dict ? `<div class="big listen">${spkBtn(st.word.it,true)}<button class="linkbtn" data-slow="${esc(st.word.it)}">Langsam anhören</button></div>`
         : `<div class="big"><span class="it de">${st.bigHtml || st.word.de}</span></div>`}
-      <input class="field" id="typein" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf Italienisch …" aria-label="Deine Antwort auf Italienisch">
+      <input class="field" id="typein" enterkeyhint="go" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Auf Italienisch …" aria-label="Deine Antwort auf Italienisch">
       <p style="margin:0;font-size:14px;color:var(--muted)">${st.hint || (/^(il|lo|la|l’|un|una) /.test(st.word.it) || st.word.it.startsWith('l’') ? 'Mit Artikel (il, lo, la, l’), wenn du ihn weißt.' : 'Satzzeichen und Akzente müssen nicht perfekt sein.')}</p>`;
   }
   if (st.type==='type' && st.dict) setTimeout(() => speak(st.word.it), 250);
@@ -4393,6 +4393,21 @@ document.addEventListener('keydown', e => {
   if (m && !m.disabled){ e.preventDefault(); m.click(); }
 });
 try{ speechSynthesis.getVoices(); }catch(e){}
+/* Handy-Tastatur: Die Leiste mit „Prüfen“ rutscht über die Tastatur, statt dahinter zu verschwinden.
+   Nötig, wenn der Browser beim Tippen nur den sichtbaren Bereich verkleinert (z. B. auf claude.ai). */
+(function keyboardFix(){
+  const vv = window.visualViewport; if (!vv) return;
+  const upd = () => {
+    const kb = Math.max(0, Math.round(innerHeight - vv.height - vv.offsetTop));
+    document.documentElement.style.setProperty('--kb', (kb > 60 ? kb : 0) + 'px');
+    return kb > 60;
+  };
+  vv.addEventListener('resize', () => {
+    const inp = document.activeElement;
+    if (upd() && inp && inp.id === 'typein') inp.scrollIntoView({block:'center'});
+  });
+  vv.addEventListener('scroll', upd);
+})();
 
 document.body.classList.toggle('muted', !!S.muted);
 renderHome();
