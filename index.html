@@ -394,7 +394,7 @@ body.muted .aplay{opacity:.35}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 64;
+const APP_VERSION = 65;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -3687,7 +3687,7 @@ function renderStep(){
         <button class="linkbtn" data-slow="${esc(st.it)}">Langsam anhören</button>
       </div>
       ${SR && !rv ? `<button class="micbig" data-rec>${ICON_MIC}<span>Tippen und sprechen</span></button><p class="recout" id="recout" aria-live="polite"></p>` : ''}
-      <p class="hint">${S.muted ? 'Der Ton ist aus. Schalte ihn oben rechts ein, um den Satz zu hören.' : SR ? 'Hör zu, dann tipp aufs Mikrofon und sprich den Satz nach. Die App sagt dir, ob sie dich verstanden hat. Du kannst dich auch selbst bewerten.' : 'Hör zu und sprich laut nach, gern mehrmals. Dann bewerte dich selbst.'}</p>`;
+      <p class="hint">${S.muted ? 'Der Ton ist aus. Schalte ihn oben rechts ein, um den Satz zu hören.' : SR ? 'Hör zu, dann tipp aufs Mikrofon. Sprich los, sobald dort „Jetzt sprechen!“ steht. Die App sagt dir, ob sie dich verstanden hat. Du kannst dich auch selbst bewerten.' : 'Hör zu und sprich laut nach, gern mehrmals. Dann bewerte dich selbst.'}</p>`;
     btn = 'Hat geklappt'; ready = true;
     setTimeout(() => speak(st.it), 250);
   }
@@ -3879,6 +3879,10 @@ function startRec(btn){
     collect(); lastAt = Date.now();
     clearTimeout(quiet); quiet = setTimeout(done, 2000);
   };
+  /* Erst sprechen, wenn das Mikrofon wirklich aufnimmt – sonst geht das erste Wort verloren */
+  let started = false;
+  const go = () => { if (started || rec !== r) return; started = true; lbl.textContent = 'Jetzt sprechen! (tippen = fertig)'; try{ navigator.vibrate && navigator.vibrate(40); }catch(e){} };
+  r.onaudiostart = go; setTimeout(go, 1500);
   r.onerror = e => { err = e.error; };
   r.onend = () => {
     if (rec !== r) { clearTimeout(quiet); clearTimeout(maxT); return; }
@@ -3894,7 +3898,7 @@ function startRec(btn){
     else if (err === 'network' && isBrave()) out.textContent = 'Brave unterstützt die Spracherkennung leider nicht. Öffne die App zum Sprechen in Chrome (oder bewerte dich selbst).';
     else if (err !== 'aborted') out.textContent = REC_ERR[err] || (err ? 'Die Spracherkennung hat nicht geklappt (' + err + '). Tipp nochmal aufs Mikrofon.' : REC_ERR['no-speech']);
   };
-  btn.classList.add('on'); lbl.textContent = 'Ich höre zu … (tippen = fertig)';
+  btn.classList.add('on'); lbl.textContent = 'Einen Moment …';
   try{ r.start(); }catch(e){ rec = null; idle(); out.textContent = 'Die Spracherkennung lässt sich hier nicht starten.'; }
 }
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
