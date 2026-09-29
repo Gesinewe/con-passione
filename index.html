@@ -2579,6 +2579,23 @@ const KEY = 'conpassione.v1';
 function load(){ try{ return Object.assign({done:{},xp:0,streak:0,lastDay:''}, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){ return {done:{},xp:0,streak:0,lastDay:''}; } }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 let S = load();
+/* Wörter, die man schon gesehen oder gehört hat (in Lektionen, Geschichten, Übungen). Eine Wortkarte heißt nur „neu“,
+   wenn eines ihrer Wörter hier noch fehlt. Beim ersten Start mit dieser Funktion zählen alle erledigten Lektionen und Geschichten. */
+const wordToks = s => tokenize(String(s).replace(/\s\/\s/g,' ')).flatMap(splitElision).map(x => x.toLowerCase());
+const seenSet = new Set(S.seen || []);
+function markSeen(...texts){
+  const n = seenSet.size;
+  texts.filter(Boolean).forEach(s => wordToks(s).forEach(w => seenSet.add(w)));
+  if (seenSet.size !== n) S.seen = [...seenSet];
+}
+if (!S.seen){
+  TOPICS.forEach(t => {
+    t.lessons.filter(l => S.done[l.id]).forEach(l => markSeen(...(l.words || []).map(w => w[0]), ...(l.sentences || []).map(x => x[0]), l.reading && l.reading.text));
+    t.stories.forEach((st,i) => { if (S.done[t.id + '-s' + (i+1)] || S.done[t.id + '-s' + (i+1) + 'h']) markSeen(st.text, ...(st.words || []).map(w => w[0])); });
+  });
+  S.seen = [...seenSet];
+}
+const allSeen = (text, seen) => { const ws = wordToks(text).filter(w => !FREE.has(w)); return ws.length > 0 && ws.every(w => seen.has(w)); };
 /* Angefangene Lektionen und Geschichten: Stand merken, um später dort weiterzumachen */
 const pausedAt = id => S.paused && S.paused[id];
 function savePause(){
@@ -3172,7 +3189,7 @@ function glossify(text, known){
     if (i % 2 === 0) return esc(part).replace(/\n/g,'<br>');
     const g = glossOf(part);
     if (!g) return esc(part);
-    const nw = known && !isKnown(part, known);
+    const nw = known && !isKnown(part, known) && !(L && L.seen0 && splitElision(part.toLowerCase()).every(p => L.seen0.has(p)));
     return `<span class="w${nw?' nw':''}" tabindex="0" data-g="${esc(g)}">${esc(part)}</span>`;
   }).join('');
 }
@@ -3222,6 +3239,8 @@ const kindLegend = () => `<details class="vfold"><summary><span class="ti">Was b
   <div class="kindlegend">${Object.entries(KINDS).map(([k,x]) => `<div class="kl">${kindChip(k)}<span>${x.de}</span></div>`).join('')}</div></details>`;
 function renderStep(){
   pop.hidden = true; stopRec();
+  /* Was man vor dieser Lektion schon kannte (für „neu“-Schild und markierte Wörter) */
+  if (!L.seen0) L.seen0 = new Set(seenSet);
   L.hist = L.hist || []; L.saved = L.saved || {};
   /* L.back: Position in L.hist, wenn man sich eine frühere Aufgabe ansieht (Rückblick) */
   let idx;
@@ -3263,8 +3282,9 @@ function renderStep(){
     if (!rv && player._key !== slug(r.text)) setTimeout(() => playLong(r.text), 250);
   }
   else if (st.type==='intro'){
-    body = `<p class="ask">Neues Wort</p>
-      <div class="card"><span class="new">neu</span><span class="it">${st.word.it}</span><span class="de">${st.word.de}</span>${spkBtn(st.word.it,true)}</div>`;
+    if (st.fresh === undefined) st.fresh = !allSeen(st.word.it, L.seen0);
+    body = `<p class="ask">${st.fresh ? 'Neues Wort' : 'Kennst du schon'}</p>
+      <div class="card"><span class="new">${st.fresh ? 'neu' : 'Wiederholung'}</span><span class="it">${st.word.it}</span><span class="de">${st.word.de}</span>${spkBtn(st.word.it,true)}</div>`;
     btn = 'Weiter'; ready = true;
     setTimeout(() => speak(st.word.it), 250);
   }
@@ -3359,6 +3379,9 @@ function renderStep(){
   else if (saved) L.cur.mode = 'continue';
   const inp = document.getElementById('typein');
   if (inp && !L.cur.checked){ inp.focus(); inp.addEventListener('input', () => { L.cur.answer = inp.value; document.getElementById('main').disabled = !inp.value.trim(); }); }
+  /* Gesehene und gehörte Wörter merken (Antwortmöglichkeiten zählen nicht mit) */
+  if (!rv) markSeen(st.word && st.word.it, st.it, st.bigIt && st.big, st.say, st.s && st.s.it, ...(st.pairs || []).map(p => p.it),
+    (st.type === 'read' || st.type === 'listenstory') && les.reading && les.reading.text);
   window.scrollTo(0,0);
 }
 
