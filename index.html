@@ -394,7 +394,7 @@ body.muted .aplay{opacity:.35}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 65;
+const APP_VERSION = 66;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -3686,8 +3686,8 @@ function renderStep(){
         <span class="de">${esc(st.de)}</span>
         <button class="linkbtn" data-slow="${esc(st.it)}">Langsam anhören</button>
       </div>
-      ${SR && !rv ? `<button class="micbig" data-rec>${ICON_MIC}<span>Tippen und sprechen</span></button><p class="recout" id="recout" aria-live="polite"></p>` : ''}
-      <p class="hint">${S.muted ? 'Der Ton ist aus. Schalte ihn oben rechts ein, um den Satz zu hören.' : SR ? 'Hör zu, dann tipp aufs Mikrofon. Sprich los, sobald dort „Jetzt sprechen!“ steht. Die App sagt dir, ob sie dich verstanden hat. Du kannst dich auch selbst bewerten.' : 'Hör zu und sprich laut nach, gern mehrmals. Dann bewerte dich selbst.'}</p>`;
+      ${SR && !(rv && S.speakOff) ? `<button class="micbig" data-rec>${ICON_MIC}<span>Tippen und sprechen</span></button><p class="recout" id="recout" aria-live="polite"></p>` : ''}
+      <p class="hint">${S.muted ? 'Der Ton ist aus. Schalte ihn oben rechts ein, um den Satz zu hören.' : rv ? (SR && !S.speakOff ? 'Du kannst den Satz hier nochmal üben: Tipp aufs Mikrofon und sprich los, sobald dort „Jetzt sprechen!“ steht. An deinen Punkten ändert das nichts.' : 'Du kannst den Satz hier nochmal üben: Hör zu und sprich laut nach.') : SR ? 'Hör zu, dann tipp aufs Mikrofon. Sprich los, sobald dort „Jetzt sprechen!“ steht. Die App sagt dir, ob sie dich verstanden hat. Du kannst dich auch selbst bewerten.' : 'Hör zu und sprich laut nach, gern mehrmals. Dann bewerte dich selbst.'}</p>`;
     btn = 'Hat geklappt'; ready = true;
     setTimeout(() => speak(st.it), 250);
   }
@@ -3716,8 +3716,8 @@ function renderStep(){
         <div class="track"><div class="fill" style="width:${pct}%"></div></div>${micBtn()}${sndBtn()}</div>
       <div class="stage">${kindChip(kind)}${rv ? '<div class="rv">Rückblick: frühere Aufgabe<button class="linkbtn" data-now>Zur aktuellen Aufgabe</button></div>' : ''}${body}</div>
       <div class="fb" id="fb"><div class="msg" id="msg"></div>
-        ${st.type==='speak' && !rv ? `<div class="row2"><button class="ghost" id="again">Nochmal üben</button><button class="main" id="main">${btn}</button></div>
-        <button class="linkbtn later" data-later>Überspringen, später nochmal üben</button>` : `<button class="main" id="main" ${ready?'':'disabled'}>${btn}</button>`}</div>
+        ${st.type==='speak' ? `<div class="row2"><button class="ghost" id="again">Nochmal üben</button><button class="main" id="main">${btn}</button></div>
+        ${rv ? '' : '<button class="linkbtn later" data-later>Überspringen, später nochmal üben</button>'}` : `<button class="main" id="main" ${ready?'':'disabled'}>${btn}</button>`}</div>
     </div>`;
   L.cur.mode = (st.type==='tip'||st.type==='intro'||st.type==='wordlist'||st.type==='listenstory') ? 'next' : st.type==='speak' ? 'speak' : (st.type==='match' ? 'match' : 'check');
   if (saved) showSaved(st, saved);
@@ -3964,7 +3964,8 @@ function speakAgain(){
   const fb = document.getElementById('fb'), msg = document.getElementById('msg'), out = document.getElementById('recout');
   fb.classList.remove('ok','bad','warn'); msg.innerHTML = '';
   if (out) out.textContent = 'Hör genau hin und versuch es nochmal.';
-  const m = document.getElementById('main'); m.textContent = 'Hat geklappt';
+  /* Im Rückblick wird nur geübt, nicht neu bewertet */
+  const m = document.getElementById('main'); m.textContent = L.back != null ? 'Weiter' : 'Hat geklappt';
   const again = document.getElementById('again'); if (again) again.hidden = false;
   const lbl = document.querySelector('[data-rec] span'); if (lbl) lbl.textContent = 'Tippen und sprechen';
   speak(L.cur.st.it);
@@ -4716,6 +4717,7 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-prev')) return stepBack();
   if (b.hasAttribute('data-now')){ L.back = null; return renderStep(); }
   if (c.mode === 'review' && b.id === 'main') return stepForward();
+  if (c.mode === 'review' && b.id === 'again' && c.st.type === 'speak') return speakAgain();
 
   if (c.mode === 'speak' && b.id === 'main') return speakDone(true);
   if (c.mode === 'speak' && b.id === 'again') return speakAgain();
