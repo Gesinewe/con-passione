@@ -430,8 +430,8 @@ body{margin-block:0}
 .order .wt{font-size:16.5px;padding:6px 12px}
 .wt{padding:6px 12px;font-size:21px}
 .reading{padding:14px 16px}
-.sbody > .reading:has(.txt){flex:0 1 auto;min-height:170px;overflow-y:auto}
 .reading .txt{font-size:20px;line-height:1.4;margin-top:6px}
+.sbody > .reading.boxscroll{flex:0 1 auto;min-height:170px;overflow-y:auto}
 .reading h3{font-size:25px}
 .abox{margin:8px 0 2px;padding:8px 12px}
 .tip{padding:12px 14px}
@@ -476,7 +476,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 76;
+const APP_VERSION = 77;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -6280,8 +6280,10 @@ function renderStep(){
   else if (st.type==='read'){
     const r = les.reading;
     const known = les.isStory ? storyKnown(t, r) : knownWords(t, les.knownIdx ?? t.lessons.indexOf(les));
+    /* Den Hinweis gibt es nur bei der ersten Frage zum Text, danach braucht der Text den Platz */
+    if (L.readHint == null) L.readHint = idx;
     const txt = `<p class="txt">${storyHtml(r, known)}</p>
-        <p class="hint">Tipp auf ein Wort für die Übersetzung. <span class="w nw">Markierte</span> Wörter sind neu für dich.</p>
+        ${L.readHint === idx ? '<p class="hint">Tipp auf ein Wort für die Übersetzung. <span class="w nw">Markierte</span> Wörter sind neu für dich.</p>' : ''}
         <button class="linkbtn" data-tr>Übersetzung anzeigen</button>
         <p class="tr" id="tr" hidden>${esc(r.tr).replace(/\n/g,'<br>')}</p>`;
     body = les.listen
@@ -6314,7 +6316,44 @@ function renderStep(){
   /* Gesehene und gehörte Wörter merken (Antwortmöglichkeiten zählen nicht mit) */
   if (!rv) markSeen(st.word && st.word.it, st.it, st.bigIt && st.big, st.say, st.s && st.s.it, ...(st.pairs || []).map(p => p.it),
     (st.type === 'read' || st.type === 'listenstory') && les.reading && les.reading.text);
+  fitRead();
   window.scrollTo(0,0);
+}
+/* Lesetext mit Frage (v77): Text, Frage und Antworten sollen ohne Scrollen auf den Bildschirm passen.
+   Dafür wird der Inhalt des Kastens so weit verkleinert wie nötig. Das gilt auch, wenn nach dem Prüfen
+   die Leiste unten wächst. Ist die Übersetzung aufgeklappt, darf gescrollt werden. */
+let fitObs = null;
+function fitRead(){
+  if (fitObs){ fitObs.disconnect(); fitObs = null; }
+  const sb = document.querySelector('.sbody');
+  if (!sb || !sb.querySelector('.reading')) return;
+  const kids = [...sb.children];
+  /* Erst wird nur der Lesetext kleiner (bis 60 %), Frage und Antworten höchstens bis 85 %. Reicht das nicht, dürfen sie bis 72 % */
+  const set = (f, low) => kids.forEach(k => k.style.zoom = (1.2 * (k.classList.contains('reading') ? f : Math.max(f, low))).toFixed(3));
+  const fits = () => sb.scrollHeight <= sb.clientHeight + 1;
+  const search = low => {
+    set(0.6, low); if (!fits()) return false;
+    let lo = 0.6, hi = 1;
+    for (let n = 0; n < 7; n++){ const m = (lo + hi) / 2; set(m, low); if (fits()) lo = m; else hi = m; }
+    set(lo, low); return true;
+  };
+  const fit = () => {
+    const tr = document.getElementById('tr');
+    if (tr && !tr.hidden) return;
+    sb.querySelector('.reading').classList.remove('boxscroll');
+    set(1, 1); if (fits()) return;
+    if (search(0.85) || search(0.72)) return;
+    /* Passt es auch ganz klein nicht, scrollt nur der Text in seinem Kasten: bei langen Geschichten in normaler Schrift,
+       bei Lektionstexten (selten, ein kurzes Stück) in der kleinsten Stufe */
+    if (L.lesson.isStory) set(1, 1); else set(0.6, 0.72);
+    sb.querySelector('.reading').classList.add('boxscroll');
+  };
+  fit();
+  if (window.ResizeObserver){
+    let w = sb.clientWidth, h = sb.clientHeight;
+    fitObs = new ResizeObserver(() => { if (sb.clientWidth !== w || sb.clientHeight !== h){ w = sb.clientWidth; h = sb.clientHeight; fit(); } });
+    fitObs.observe(sb);
+  }
 }
 
 /* Eine schon beantwortete Aufgabe so zeigen, wie sie nach dem Prüfen aussah */
