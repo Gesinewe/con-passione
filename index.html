@@ -416,11 +416,9 @@ body{margin-block:0}
 .card .linkbtn{padding:2px 0}
 .card .it{font-size:44px}
 .opts{gap:8px}
-.opt{padding:10px 14px;font-size:16px;line-height:1.35}
-.opt.itf{font-size:23px}
+.opt{padding:8px 14px;font-size:16px;line-height:1.35}
+.opt.itf{font-size:23px;padding-block:4px}
 .opt.itf{padding-block:7px}
-.opts.two{grid-template-columns:1fr 1fr}
-.opts.two .opt{text-align:center;padding-inline:8px}
 .opt.picopt{font-size:38px;padding:8px}
 .match .opt{min-height:48px;padding:9px 8px}
 .match .col,.match{gap:8px}
@@ -485,7 +483,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 78;
+const APP_VERSION = 79;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -6183,7 +6181,7 @@ function speedNext(){
         <div class="sphead"><span class="hearts" aria-label="${SP.lives} Leben">${'❤️'.repeat(SP.lives)}${'🤍'.repeat(SPEED_LIVES - SP.lives)}</span>
           <span class="eyebrow">${toIt ? 'Wie heißt das auf Italienisch?' : 'Was bedeutet das?'}</span></div>
         <div class="big spword"><span class="it${toIt ? ' de' : ''}">${toIt ? x.de : x.it}</span></div>
-        <div class="opts${twoCol(options, toIt) ? ' two' : ''}">${options.map(o => `<button class="opt${toIt ? ' itf' : ''}" data-spopt="${esc(o)}">${o}</button>`).join('')}</div>
+        <div class="opts">${options.map(o => `<button class="opt${toIt ? ' itf' : ''}" data-spopt="${esc(o)}">${o}</button>`).join('')}</div>
       </div></div>
       <div class="fb" id="fb"><div class="msg" id="msg"></div></div>
     </div>`;
@@ -6305,8 +6303,6 @@ function kindOf(st){
 const kindChip = k => `<span class="kindchip" style="--k:var(--k-${k})">${KINDS[k].icon} ${KINDS[k].name}</span>`;
 const kindLegend = () => `<details class="vfold"><summary><span class="ti">Was bedeuten die Farben?</span><span class="sub">Jede Übungsart hat ihre eigene Farbe</span></summary>
   <div class="kindlegend">${Object.entries(KINDS).map(([k,x]) => `<div class="kl">${kindChip(k)}<span>${x.de}</span></div>`).join('')}</div></details>`;
-/* Kurze Antworten stehen zu zweit nebeneinander, damit alles ohne Scrollen auf den Bildschirm passt */
-const twoCol = (opts, itf) => opts.length % 2 === 0 && opts.every(o => String(o).replace(/<[^>]*>/g,'').length <= (itf ? 15 : 17));
 function renderStep(){
   pop.hidden = true; stopRec();
   /* Was man vor dieser Lektion schon kannte (für „neu“-Schild und markierte Wörter) */
@@ -6363,7 +6359,7 @@ function renderStep(){
       ${st.anim ? `<div class="animbox" role="img" aria-label="Animation">${ANIM_SVG[st.anim]}</div>` : st.listen ? `<div class="big listen">${spkBtn(st.say,true)}<button class="linkbtn" data-slow="${esc(st.say)}">Langsam anhören</button></div>` : st.pic ? `<div class="picbox" role="img" aria-label="Bild">${st.pic}</div>` : `<div class="big">${st.bigIt && !st.noSpk ? spkBtn(st.big,true) : ''}<span class="it${st.bigIt?'':' de'}"${st.gloss?' style="font-size:34px"':''}>${st.gloss ? glossify(st.big) : st.big}</span></div>`}
       ${st.sub ? `<p class="hint">${st.sub}</p>` : ''}
       ${st.gloss ? '<p class="hint">Tipp auf ein Wort, um die Übersetzung zu sehen.</p>' : ''}
-      <div class="opts${st.picOpts?' picopts':twoCol(st.options, st.itOpts||st.itFont)?' two':''}">${st.options.map(o => `<button class="opt${st.itOpts||st.itFont?' itf':''}${st.picOpts?' picopt':''}" data-opt="${esc(o)}" aria-pressed="false">${o}</button>`).join('')}</div>`;
+      <div class="opts${st.picOpts?' picopts':''}">${st.options.map(o => `<button class="opt${st.itOpts||st.itFont?' itf':''}${st.picOpts?' picopt':''}" data-opt="${esc(o)}" aria-pressed="false">${o}</button>`).join('')}</div>`;
     if (st.listen) setTimeout(() => speak(st.say), 250);
   }
   else if (st.type==='match' && rv){
@@ -6430,7 +6426,7 @@ function renderStep(){
         ${r.long ? audioBox(r.text) : ''}${txt}</div>`;
     body += `
       <p class="ask">${st.q}</p>
-      <div class="opts${st.fixed?' tf':twoCol(st.options)?' two':''}">${st.options.map(o => `<button class="opt" data-opt="${esc(o)}" aria-pressed="false">${o}</button>`).join('')}</div>`;
+      <div class="opts${st.fixed?' tf':''}">${st.options.map(o => `<button class="opt" data-opt="${esc(o)}" aria-pressed="false">${o}</button>`).join('')}</div>`;
   }
 
   const kind = kindOf(st);
