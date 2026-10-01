@@ -411,7 +411,7 @@ body{margin-block:0}
 .animbox{max-width:300px}
 .card{padding:14px 16px;gap:6px}
 .card .big{gap:8px 12px}
-.card .big .it[style]{font-size:28px!important;line-height:1.15}
+.card > .it[style]{font-size:28px!important;line-height:1.15}
 .card .de{font-size:16px}
 .card .linkbtn{padding:2px 0}
 .card .it{font-size:44px}
@@ -439,7 +439,11 @@ body{margin-block:0}
 .main{padding:13px}
 .ghost{padding:12px}
 .fb .linkbtn.later{padding:2px 0}
+.row2 .main,.row2 .ghost{font-size:14.5px;letter-spacing:.02em;padding-inline:8px}
+.card .big.listen .spk.lg{width:52px;height:52px}
 @media (max-width:420px){.card .it{font-size:40px}.big .it{font-size:36px}}
+/* Größer (v76, Wunsch des Users): alles in der Lektion 1,2-fach. zoom an den Kindern, damit Bildschirmhöhe und Kasten gleich bleiben */
+.pbar > *,.sbody > *,.fb > *,.player[data-kind] .stage > .kindchip{zoom:1.2}
 /* Kleine Bildschirme: noch etwas enger */
 @media (max-height:700px){
   .pbar{padding-block:6px 2px}
@@ -449,7 +453,7 @@ body{margin-block:0}
   .big .it{font-size:32px}
   .card{padding:10px 12px}
   .card .it{font-size:36px}
-  .card .big .it[style]{font-size:25px!important}
+  .card > .it[style]{font-size:25px!important}
   .big.listen .spk.lg{width:52px;height:52px}
   .opt{padding:8px 12px;font-size:15px}
   .opt.itf{font-size:21px;padding-block:5px}
@@ -472,7 +476,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 75;
+const APP_VERSION = 76;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -6264,12 +6268,12 @@ function renderStep(){
   else if (st.type==='speak'){
     body = `<p class="ask">Sprich laut nach</p>
       <div class="card">
-        <div class="big" style="justify-content:center">${spkBtn(st.it,true)}<span class="it" style="font-size:34px;color:var(--ink)">${glossify(st.it)}</span></div>
+        <div class="big listen">${spkBtn(st.it,true)}<button class="linkbtn" data-slow="${esc(st.it)}">Langsam anhören</button></div>
+        <span class="it" style="font-size:34px;color:var(--ink)">${glossify(st.it)}</span>
         <span class="de">${esc(st.de)}</span>
-        <button class="linkbtn" data-slow="${esc(st.it)}">Langsam anhören</button>
       </div>
       ${SR && !(rv && S.speakOff) ? `<button class="micbig" data-rec>${ICON_MIC}<span>Tippen und sprechen</span></button><p class="recout" id="recout" aria-live="polite"></p>` : ''}
-      <p class="hint">${S.muted ? 'Der Ton ist aus. Schalte ihn oben rechts ein, um den Satz zu hören.' : rv ? (SR && !S.speakOff ? 'Du kannst den Satz hier nochmal üben: Tipp aufs Mikrofon und sprich los, sobald dort „Jetzt sprechen!“ steht. An deinen Punkten ändert das nichts.' : 'Du kannst den Satz hier nochmal üben: Hör zu und sprich laut nach.') : SR ? 'Hör zu, tipp aufs Mikrofon und sprich, sobald „Jetzt sprechen!“ dasteht. Oder bewerte dich selbst.' : 'Hör zu und sprich laut nach, gern mehrmals. Dann bewerte dich selbst.'}</p>`;
+      <p class="hint">${S.muted ? 'Der Ton ist aus. Schalte ihn oben rechts ein, um den Satz zu hören.' : rv ? (SR && !S.speakOff ? 'Du kannst den Satz hier nochmal üben: Tipp aufs Mikrofon und sprich los, sobald dort „Jetzt sprechen!“ steht. An deinen Punkten ändert das nichts.' : 'Du kannst den Satz hier nochmal üben: Hör zu und sprich laut nach.') : SR ? 'Tipp aufs Mikrofon und sprich, sobald „Jetzt sprechen!“ dasteht. Oder bewerte dich selbst.' : 'Hör zu und sprich laut nach, gern mehrmals. Dann bewerte dich selbst.'}</p>`;
     btn = 'Hat geklappt'; ready = true;
     setTimeout(() => speak(st.it), 250);
   }
