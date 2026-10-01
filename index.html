@@ -451,10 +451,18 @@ body{margin-block:0}
 .speed .fill{transition:none}
 .speed .fill.low{background:var(--bad)}
 .sptime{font-weight:800;font-variant-numeric:tabular-nums;font-size:15px;min-width:52px;text-align:right}
-.sphead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-direction:row-reverse}
+/* Feste Plätze: Kopfzeile, Wort, Antworten und Rückmeldung haben immer dieselbe Höhe, damit nichts springt */
+.sphead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-direction:row-reverse;height:28px;white-space:nowrap}
 .hearts{flex:none;font-size:18px;letter-spacing:2px}
-.spword{justify-content:center;padding-block:14px 10px;text-align:center}
-.speed .opt{text-align:center}
+.big.spword{justify-content:center;align-items:center;height:84px;padding:0;text-align:center;flex-wrap:nowrap;overflow:hidden}
+.spword .it{display:block;line-height:1.1}
+.speed .opt{text-align:center;height:54px;padding-block:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.speed .opt > span{display:block;line-height:1.15}
+.spmsg{height:56px;font-weight:800;font-size:19px;line-height:1.25;overflow:hidden}
+.spmsg.ok{color:var(--ok)}
+.spmsg.bad{color:var(--bad)}
+.spmsg small{display:block;font-size:15px;font-weight:500;color:var(--ink);white-space:nowrap}
+.spmsg small .it{font-size:19px}
 .speedintro .gp{text-align:center}
 /* Kleine Bildschirme: noch etwas enger */
 @media (max-height:700px){
@@ -489,7 +497,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 80;
+const APP_VERSION = 81;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -6137,7 +6145,8 @@ let SP = null;
 const speedTime = n => Math.max(SPEED_MIN, SPEED_START * Math.pow(SPEED_STEP, n));
 function speedWords(t){
   const ls = t.lessons.slice(0, reviewUpto(t) + 1);
-  return uniqBy(uniqBy(ls.flatMap(l => (l.words||[]).map(([it,de]) => ({it,de}))), o => o.it), o => o.de);
+  /* Im Schnelltest ohne „(wörtlich: …)“, das wäre zu lang zum schnellen Lesen */
+  return uniqBy(uniqBy(ls.flatMap(l => (l.words||[]).map(([it,de]) => ({it, de:de.replace(/\s*\(wörtlich:[^)]*\)/, '')}))), o => o.it), o => o.de);
 }
 function speedIntro(tid){
   const t = topicById(tid), words = speedWords(t), best = (S.speed || {})[tid] || 0;
@@ -6185,12 +6194,14 @@ function speedNext(){
         <span class="sptime" id="sptime">${time.toFixed(1)} s</span>${sndBtn()}</div>
       <div class="stage"><span class="kindchip">⚡ Blitz · ${SP.right} richtig</span><div class="sbody">
         <div class="sphead"><span class="hearts" aria-label="${SP.lives} Leben">${'❤️'.repeat(SP.lives)}${'🤍'.repeat(SPEED_LIVES - SP.lives)}</span>
-          <span class="eyebrow">${toIt ? 'Wie heißt das auf Italienisch?' : 'Was bedeutet das?'}</span></div>
+          <span class="eyebrow">${toIt ? 'Auf Italienisch?' : 'Was bedeutet das?'}</span></div>
         <div class="big spword"><span class="it${toIt ? ' de' : ''}">${toIt ? x.de : x.it}</span></div>
-        <div class="opts">${options.map(o => `<button class="opt${toIt ? ' itf' : ''}" data-spopt="${esc(o)}">${o}</button>`).join('')}</div>
+        <div class="opts">${options.map(o => `<button class="opt${toIt ? ' itf' : ''}" data-spopt="${esc(o)}"><span>${o}</span></button>`).join('')}</div>
+        <div class="spmsg" id="msg" aria-live="polite"></div>
       </div></div>
-      <div class="fb" id="fb"><div class="msg" id="msg"></div></div>
     </div>`;
+  /* Alles hat einen festen Platz: zu lange Wörter und Antworten werden kleiner geschrieben statt umzubrechen */
+  document.querySelectorAll('.spword .it, .speed .opt > span').forEach(fitLine);
   cancelAnimationFrame(SP.raf);
   const tick = () => {
     if (!SP || !SP.cur || SP.cur.done) return;
@@ -6206,6 +6217,12 @@ function speedNext(){
   SP.raf = requestAnimationFrame(tick);
   window.scrollTo(0,0);
 }
+/* Text in sein festes Kästchen einpassen (höchstens zwei Zeilen): Schrift verkleinern, bis er hineinpasst (höchstens auf 60 %) */
+function fitLine(el){
+  const p = el.parentElement, base = parseFloat(getComputedStyle(el).fontSize);
+  let f = base;
+  while ((el.offsetHeight > p.clientHeight - 2 || el.scrollWidth > p.clientWidth - 4) && f > base * 0.6){ f -= 1; el.style.fontSize = f + 'px'; }
+}
 function speedAnswer(pick){
   if (!SP || !SP.cur || SP.cur.done) return;
   const c = SP.cur; c.done = true; cancelAnimationFrame(SP.raf);
@@ -6215,15 +6232,15 @@ function speedAnswer(pick){
     if (b.dataset.spopt === c.answer) b.classList.add('right');
     else if (b.dataset.spopt === pick) b.classList.add('wrong');
   });
-  const fb = document.getElementById('fb'), msg = document.getElementById('msg');
+  const msg = document.getElementById('msg');
   if (ok){
     SP.right++;
-    fb.classList.add('ok'); msg.innerHTML = 'Giusto!';
+    msg.className = 'spmsg ok'; msg.innerHTML = 'Giusto!';
     speak(c.x.it);
   } else {
     SP.lives--;
     if (!SP.missed.some(m => m.it === c.x.it)) SP.missed.push(c.x);
-    fb.classList.add('bad');
+    msg.className = 'spmsg bad';
     msg.innerHTML = `${pick == null ? 'Zeit um!' : 'Leider falsch'}<small><span class="it">${c.x.it}</span> = ${c.x.de}</small>`;
   }
   setTimeout(() => { if (!SP || SP.cur !== c) return; SP.lives > 0 ? speedNext() : speedEnd(); }, ok ? 650 : 1800);
