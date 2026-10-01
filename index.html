@@ -519,7 +519,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 90;
+const APP_VERSION = 91;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -8987,11 +8987,21 @@ const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 let rec = null;
 function stopRec(){ const r = rec; rec = null; if (r){ try{ r.abort(); }catch(e){} } }
 const NUM_IT = ['zero','uno','due','tre','quattro','cinque','sei','sette','otto','nove','dieci','undici','dodici','tredici','quattordici','quindici','sedici','diciassette','diciotto','diciannove','venti'];
+/* Die Spracherkennung schreibt Zahlen als Ziffern: „1000“ → „mille“, „250“ → „duecentocinquanta“, „2000000“ → „due milioni“ */
 function numWord(d){
   const n = +d; if (n <= 20) return NUM_IT[n];
-  if (n >= 100) return d;
-  const T = ['','','venti','trenta','quaranta','cinquanta','sessanta','settanta','ottanta','novanta'][Math.floor(n/10)], u = n % 10;
-  return !u ? T : (u === 1 || u === 8 ? T.slice(0,-1) : T) + NUM_IT[u];
+  if (n < 100){
+    const T = ['','','venti','trenta','quaranta','cinquanta','sessanta','settanta','ottanta','novanta'][Math.floor(n/10)], u = n % 10;
+    return !u ? T : (u === 1 || u === 8 ? T.slice(0,-1) : T) + NUM_IT[u];
+  }
+  if (n < 1000){
+    const r = n % 100, H = (n < 200 ? '' : NUM_IT[Math.floor(n/100)]) + 'cento';
+    if (!r) return H;
+    const R = numWord(r); return (R[0] === 'o' ? H.slice(0,-1) : H) + R;
+  }
+  if (n < 1e6){ const r = n % 1000, t = Math.floor(n/1000); return (t === 1 ? 'mille' : numWord(t) + 'mila') + (r ? numWord(r) : ''); }
+  if (n % 1e6 === 0 && n < 1e9) return n === 1e6 ? 'un milione' : numWord(n/1e6) + ' milioni';
+  return String(d);
 }
 /* Die Spracherkennung schreibt Geldbeträge oft als Zeichen: „8 €“, „2,50 €“ → „otto euro“, „due euro e cinquanta“ */
 const spMoney = s => String(s).replace(/(\d+)[.,](\d{1,2})\s*(€|eur\b)/gi, '$1 euro e $2').replace(/€|\beur\b/gi, ' euro ');
@@ -9004,7 +9014,7 @@ const spTime = s => s.replace(/(?:\bl['’])?\b(\d{1,2})[:.](\d{2})\b/gi, (m, h,
   const min = mm === 0 ? '' : mm === 15 ? 'e un quarto' : mm === 30 ? 'e mezza' : mm === 45 ? 'e tre quarti' : 'e ' + mm;
   return ' ' + hour + ' ' + min + ' ';
 });
-const spTokens = s => plain(spTime(spMoney(s)).replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).replace(/[^a-z ]/g,' ').split(' ').filter(Boolean);
+const spTokens = s => plain(spTime(spMoney(s)).replace(/(\d)[.\u202f\u00a0 ](?=\d{3}\b)/g, '$1').replace(/\b1\s+(milion)/gi, 'un $1').replace(/\d+/g, d => ' ' + numWord(d) + ' ').replace(/['’]/g,'').replace(/-/g,' ')).replace(/[^a-z ]/g,' ').split(' ').filter(Boolean);
 function lev(a, b){
   let prev = [...Array(b.length+1).keys()];
   for (let i=1; i<=a.length; i++){
