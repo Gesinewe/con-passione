@@ -416,11 +416,16 @@ body{margin-block:0}
 .card .linkbtn{padding:2px 0}
 .card .it{font-size:44px}
 .opts{gap:8px}
-.opt{padding:8px 14px;font-size:16px;line-height:1.35}
-.opt.itf{font-size:23px;padding-block:4px}
+/* Deutsch und Italienisch gleich groß (v80): gleiche Schriftgröße für Fragewort und Antworten, Italienisch bei Antworten etwas größer,
+   weil die schmale italienische Schrift sonst zierlicher wirkt. Deutsch nicht mehr fett, sondern halbfett */
+.opt{padding:8px 14px;font-size:17px;font-weight:500;line-height:1.3}
+.opt.itf{font-size:21px;padding-block:6px}
+.big .it{font-size:42px}
+.big .it.de{font-size:36px;font-weight:500;line-height:1.15}
 .opt.itf{padding-block:7px}
 .opt.picopt{font-size:38px;padding:8px}
-.match .opt{min-height:48px;padding:9px 8px}
+.match .opt{min-height:48px;padding:9px 8px;font-size:16px;font-weight:500}
+.match .opt.itf{font-size:20px}
 .match .col,.match{gap:8px}
 .answer-line{min-height:52px;padding-bottom:6px}
 .answer-line.order{min-height:64px;gap:6px}
@@ -439,7 +444,7 @@ body{margin-block:0}
 .fb .linkbtn.later{padding:2px 0}
 .row2 .main,.row2 .ghost{font-size:14.5px;letter-spacing:.02em;padding-inline:8px}
 .card .big.listen .spk.lg{width:52px;height:52px}
-@media (max-width:420px){.card .it{font-size:40px}.big .it{font-size:36px}}
+@media (max-width:420px){.card .it{font-size:40px}.big .it{font-size:35px}.big .it.de{font-size:30px}}
 /* Größer (v76, Wunsch des Users): alles in der Lektion 1,2-fach. zoom an den Kindern, damit Bildschirmhöhe und Kasten gleich bleiben */
 .pbar > *,.sbody > *,.fb > *,.player[data-kind] .stage > .kindchip{zoom:1.2}
 /* Blitz-Vokabeln */
@@ -458,12 +463,13 @@ body{margin-block:0}
   .sbody{gap:9px;padding:14px 12px 10px}
   .ask{font-size:17.5px}
   .big .it{font-size:32px}
+  .big .it.de{font-size:28px}
   .card{padding:10px 12px}
   .card .it{font-size:36px}
   .card > .it[style]{font-size:25px!important}
   .big.listen .spk.lg{width:52px;height:52px}
-  .opt{padding:8px 12px;font-size:15px}
-  .opt.itf{font-size:21px;padding-block:5px}
+  .opt{padding:7px 12px;font-size:16px}
+  .opt.itf{font-size:20px;padding-block:5px}
   .micbig{padding:10px}
   .sbody .hint{font-size:12.5px}
   .animbox{max-width:250px}
@@ -483,7 +489,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 79;
+const APP_VERSION = 80;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
