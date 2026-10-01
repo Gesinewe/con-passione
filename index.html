@@ -444,6 +444,15 @@ body{margin-block:0}
 @media (max-width:420px){.card .it{font-size:40px}.big .it{font-size:36px}}
 /* Größer (v76, Wunsch des Users): alles in der Lektion 1,2-fach. zoom an den Kindern, damit Bildschirmhöhe und Kasten gleich bleiben */
 .pbar > *,.sbody > *,.fb > *,.player[data-kind] .stage > .kindchip{zoom:1.2}
+/* Blitz-Vokabeln */
+.speed .fill{transition:none}
+.speed .fill.low{background:var(--bad)}
+.sptime{font-weight:800;font-variant-numeric:tabular-nums;font-size:15px;min-width:52px;text-align:right}
+.sphead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-direction:row-reverse}
+.hearts{flex:none;font-size:18px;letter-spacing:2px}
+.spword{justify-content:center;padding-block:14px 10px;text-align:center}
+.speed .opt{text-align:center}
+.speedintro .gp{text-align:center}
 /* Kleine Bildschirme: noch etwas enger */
 @media (max-height:700px){
   .pbar{padding-block:6px 2px}
@@ -476,7 +485,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 77;
+const APP_VERSION = 78;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -5547,6 +5556,8 @@ function renderTopic(id){
           <span class="sub">Bilder aus Lektion 1 bis ${reviewUpto(t)+1}</span></button>` : ''}
         <button class="tile practice" data-review="${t.id}"><span class="tn">↻</span><span class="ti">Gemischt wiederholen</span>
           <span class="sub">Aufgaben aus Lektion 1 bis ${reviewUpto(t)+1}</span></button>
+        <button class="tile practice" data-speed="${t.id}"><span class="tn">⚡</span><span class="ti">Blitz-Vokabeln</span>
+          <span class="sub">Gegen die Uhr · Wörter aus Lektion 1 bis ${reviewUpto(t)+1}${(S.speed || {})[t.id] ? ` · Rekord: ${S.speed[t.id]}` : ''}</span></button>
       </div>
       <h2 class="eyebrow section-h" id="sec-vocab">Dein Wortschatz</h2>
       <details class="vfold">
@@ -6112,6 +6123,132 @@ function startPractice(tid, st){
   ls.forEach((l,i) => loadSounds(bundleOf(t, t.lessons.indexOf(l))));
   startRun({id:`practice-${tid}-${st}`, name:t.name, title:'Übungsrunde ' + STAGES[st-1].split(' · ')[0], color:t.color, backTo:'topic:'+tid,
     steps, restart:() => startPractice(tid, st), sounds:tid + '-' + st + 'x'});
+}
+
+/* ---------- Blitz-Vokabeln: Wörter gegen die Uhr ----------
+   Zum ersten Wort gibt es 10 Sekunden, mit jedem richtigen Wort 7 % weniger (höchstens bis 2 Sekunden).
+   Falsch oder zu langsam kostet ein Herz, nach 3 Fehlern ist Schluss. Wörter aus den Lektionen 1 bis reviewUpto. */
+const SPEED_START = 10, SPEED_STEP = 0.93, SPEED_MIN = 2, SPEED_LIVES = 3;
+let SP = null;
+const speedTime = n => Math.max(SPEED_MIN, SPEED_START * Math.pow(SPEED_STEP, n));
+function speedWords(t){
+  const ls = t.lessons.slice(0, reviewUpto(t) + 1);
+  return uniqBy(uniqBy(ls.flatMap(l => (l.words||[]).map(([it,de]) => ({it,de}))), o => o.it), o => o.de);
+}
+function speedIntro(tid){
+  const t = topicById(tid), words = speedWords(t), best = (S.speed || {})[tid] || 0;
+  SP = null; L = null;
+  t.lessons.slice(0, reviewUpto(t) + 1).forEach((l,i) => loadSounds(bundleOf(t, i)));
+  app.innerHTML = `
+    <div class="result speedintro" style="--t:${t.color}">
+      <p class="eyebrow">${t.name} · Blitz-Vokabeln</p>
+      <h1 class="it">Pronti, via!</h1>
+      <p class="gp" style="margin:0 auto">Tipp so schnell du kannst die richtige Übersetzung an. Beim ersten Wort hast du ${SPEED_START} Sekunden,
+        danach wird es mit jedem richtigen Wort ein bisschen schneller. Nach ${SPEED_LIVES} Fehlern ist Schluss.</p>
+      <div class="rstats">
+        <div class="rstat"><b>${words.length}</b><span>Wörter</span></div>
+        <div class="rstat"><b>${best}</b><span>Dein Rekord</span></div>
+      </div>
+      <p class="hint" style="margin:0">Wörter aus Lektion 1 bis ${reviewUpto(t)+1}. Je mehr Lektionen du machst, desto mehr Wörter kommen dazu.</p>
+      <div class="actions">
+        <button class="main" data-speedgo="${tid}">Los geht’s</button>
+        <button class="ghost" data-go="topic:${tid}">Zurück</button>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);
+}
+function startSpeed(tid){
+  const t = topicById(tid), words = speedWords(t);
+  SP = {t, words, bag:[], n:0, right:0, lives:SPEED_LIVES, missed:[], cur:null, raf:0};
+  speedNext();
+}
+function speedNext(){
+  if (!SP) return;
+  if (!SP.bag.length) SP.bag = shuffle(SP.words.slice()).filter(x => !SP.cur || x.it !== SP.cur.x.it);
+  const x = SP.bag.pop(), w = SP.words;
+  /* Meist Italienisch → Deutsch, jedes dritte Wort andersherum */
+  const toIt = SP.n % 3 === 2;
+  const others = uniqBy(uniqBy(shuffle(w.filter(o => o.it !== x.it && o.de !== x.de)), o => o.de), o => o.it).slice(0,3);
+  const options = shuffle([x, ...others]).map(o => toIt ? o.it : o.de), answer = toIt ? x.it : x.de;
+  const time = speedTime(SP.right);
+  SP.cur = {x, answer, time, t0:performance.now(), done:false};
+  SP.n++;
+  const t = SP.t;
+  app.innerHTML = `
+    <div class="player speed" style="--t:${t.color};--k:var(--t)" data-kind="speed">
+      <div class="pbar"><button class="x" data-speedquit aria-label="Blitz-Vokabeln beenden">${ICON_X}</button>
+        <div class="track"><div class="fill" id="spfill" style="width:100%;transition:none"></div></div>
+        <span class="sptime" id="sptime">${time.toFixed(1)} s</span>${sndBtn()}</div>
+      <div class="stage"><span class="kindchip">⚡ Blitz · ${SP.right} richtig</span><div class="sbody">
+        <div class="sphead"><span class="hearts" aria-label="${SP.lives} Leben">${'❤️'.repeat(SP.lives)}${'🤍'.repeat(SPEED_LIVES - SP.lives)}</span>
+          <span class="eyebrow">${toIt ? 'Wie heißt das auf Italienisch?' : 'Was bedeutet das?'}</span></div>
+        <div class="big spword"><span class="it${toIt ? ' de' : ''}">${toIt ? x.de : x.it}</span></div>
+        <div class="opts${twoCol(options, toIt) ? ' two' : ''}">${options.map(o => `<button class="opt${toIt ? ' itf' : ''}" data-spopt="${esc(o)}">${o}</button>`).join('')}</div>
+      </div></div>
+      <div class="fb" id="fb"><div class="msg" id="msg"></div></div>
+    </div>`;
+  cancelAnimationFrame(SP.raf);
+  const tick = () => {
+    if (!SP || !SP.cur || SP.cur.done) return;
+    const fill = document.getElementById('spfill'), lab = document.getElementById('sptime');
+    if (!fill) { SP = null; return; }
+    const left = Math.max(0, SP.cur.time - (performance.now() - SP.cur.t0) / 1000);
+    fill.style.width = (left / SP.cur.time * 100) + '%';
+    fill.classList.toggle('low', left < SP.cur.time * 0.3);
+    lab.textContent = left.toFixed(1) + ' s';
+    if (left <= 0) return speedAnswer(null);
+    SP.raf = requestAnimationFrame(tick);
+  };
+  SP.raf = requestAnimationFrame(tick);
+  window.scrollTo(0,0);
+}
+function speedAnswer(pick){
+  if (!SP || !SP.cur || SP.cur.done) return;
+  const c = SP.cur; c.done = true; cancelAnimationFrame(SP.raf);
+  const ok = pick === c.answer;
+  document.querySelectorAll('[data-spopt]').forEach(b => {
+    b.disabled = true;
+    if (b.dataset.spopt === c.answer) b.classList.add('right');
+    else if (b.dataset.spopt === pick) b.classList.add('wrong');
+  });
+  const fb = document.getElementById('fb'), msg = document.getElementById('msg');
+  if (ok){
+    SP.right++;
+    fb.classList.add('ok'); msg.innerHTML = 'Giusto!';
+    speak(c.x.it);
+  } else {
+    SP.lives--;
+    if (!SP.missed.some(m => m.it === c.x.it)) SP.missed.push(c.x);
+    fb.classList.add('bad');
+    msg.innerHTML = `${pick == null ? 'Zeit um!' : 'Leider falsch'}<small><span class="it">${c.x.it}</span> = ${c.x.de}</small>`;
+  }
+  setTimeout(() => { if (!SP || SP.cur !== c) return; SP.lives > 0 ? speedNext() : speedEnd(); }, ok ? 650 : 1800);
+}
+function speedEnd(){
+  const t = SP.t, score = SP.right, missed = SP.missed;
+  S.speed = S.speed || {};
+  const old = S.speed[t.id] || 0, rec = score > old;
+  if (rec) S.speed[t.id] = score;
+  S.xp += score; bumpStreak(); save();
+  SP = null;
+  const head = rec && old ? 'Nuovo record!' : score >= 20 ? 'Fulmineo!' : score >= 10 ? 'Bravo!' : 'Ancora una volta?';
+  app.innerHTML = `
+    <div class="result" style="--t:${t.color}">
+      <p class="eyebrow">${t.name} · Blitz-Vokabeln</p>
+      <h1 class="it">${head}</h1>
+      <p style="margin:0;color:var(--muted)">${rec ? (old ? `Dein alter Rekord war ${old}.` : 'Dein erster Rekord!') : `Dein Rekord: ${old}.`} Zuletzt hattest du nur noch ${speedTime(score).toFixed(1)} Sekunden pro Wort.</p>
+      <div class="rstats">
+        <div class="rstat"><b>${score}</b><span>Richtig</span></div>
+        <div class="rstat"><b>${Math.max(score, old)}</b><span>Rekord</span></div>
+      </div>
+      ${missed.length ? `<div style="width:100%;text-align:left"><p class="eyebrow" style="margin-bottom:6px">Diese Wörter üben</p>
+        <div class="vocab">${missed.map(w => `<div class="vrow">${spkBtn(w.it)}<span class="v-it">${w.it}</span><span class="v-de">${w.de}</span></div>`).join('')}</div></div>` : ''}
+      <div class="actions">
+        <button class="main" data-speedgo="${t.id}">Nochmal</button>
+        <button class="ghost" data-go="topic:${t.id}">Zurück zu ${t.name}</button>
+      </div>
+    </div>`;
+  window.scrollTo(0,0);
 }
 
 /* ---------- antippbare Wörter ---------- */
@@ -6682,16 +6819,19 @@ function next(){
   renderStep();
 }
 
-function renderResult(){
-  const t = L.topic, les = L.lesson;
-  if (!t.pseudo){ S.done[les.id] = true; if (S.paused) delete S.paused[les.id]; }
-  S.xp += L.xp;
+function bumpStreak(){
   const d = today();
   if (S.lastDay !== d){
     const y = new Date(Date.now()-864e5).toISOString().slice(0,10);
     S.streak = S.lastDay === y ? S.streak + 1 : 1;
     S.lastDay = d;
   }
+}
+function renderResult(){
+  const t = L.topic, les = L.lesson;
+  if (!t.pseudo){ S.done[les.id] = true; if (S.paused) delete S.paused[les.id]; }
+  S.xp += L.xp;
+  bumpStreak();
   save();
   const acc = L.graded ? Math.round(L.right / L.graded * 100) : 100;
   const head = acc >= 90 ? 'Fantastico!' : acc >= 70 ? 'Ben fatto!' : 'Continua così!';
@@ -7320,6 +7460,10 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-arate')){ S.arate = S.arate === 0.8 ? 1 : 0.8; save(); player.playbackRate = S.arate; document.querySelectorAll('[data-arate]').forEach(x => x.textContent = rateLabel()); return; }
   if (b.hasAttribute('data-showtxt')){ L.showTxt = true; return renderStep(); }
   if (b.dataset.review) return startReview(b.dataset.review);
+  if (b.dataset.speed) return speedIntro(b.dataset.speed);
+  if (b.dataset.speedgo) return startSpeed(b.dataset.speedgo);
+  if (b.dataset.spopt != null) return speedAnswer(b.dataset.spopt);
+  if (b.hasAttribute('data-speedquit')){ const tid = SP && SP.t.id; if (SP) cancelAnimationFrame(SP.raf); SP = null; return tid ? renderTopic(tid) : renderHome(); }
   if (b.dataset.pics) return startPics(b.dataset.pics);
   if (b.dataset.next){ const t = topicById(b.dataset.next), nx = nextOpen(t); if (!nx) return; return nx.kind === 'lesson' ? startLesson(t.id, nx.l.id) : startStory(t.id, nx.i); }
   if (b.hasAttribute('data-openonly')){ S.openOnly = !S.openOnly; save(); const y = scrollY; renderTopic(lastTopic); scrollTo(0, y); return; }
@@ -7403,6 +7547,12 @@ function finishMatch(){
   next();
 }
 
+/* Blitz-Vokabeln am Computer: Tasten 1 bis 4 wählen die Antwort */
+document.addEventListener('keydown', e => {
+  if (!SP || !/^[1-4]$/.test(e.key)) return;
+  const b = document.querySelectorAll('[data-spopt]')[+e.key - 1];
+  if (b && !b.disabled) b.click();
+});
 document.addEventListener('keydown', e => {
   if (e.key !== 'Enter' || !L) return;
   if (e.target.tagName === 'BUTTON') return;
