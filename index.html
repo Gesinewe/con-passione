@@ -325,6 +325,21 @@ body.muted .aplay{opacity:.35}
 .lesson.story.done .n{border-style:solid}
 .linkbtn.later{justify-self:center;align-self:center;font-weight:600;color:var(--muted)}
 .offl{margin-top:22px;display:grid;gap:4px}
+.topic.get{cursor:default}
+.topic.get:hover,.topic.get:active{transform:none;box-shadow:0 3px 0 var(--line)}
+.topic.get .name{font-size:30px}
+.getbtn{grid-column:1/-1;margin-top:10px;padding:12px;font-size:14px}
+.getmsg{grid-column:1/-1;margin:0}
+.tsize{text-transform:none;letter-spacing:0;font-weight:600}
+.mtlink{justify-self:center;font-weight:600}
+.mtlist{display:grid;gap:10px}
+.mt{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--t);border-radius:14px}
+.mt .hint{display:block;margin:2px 0 0}
+.mtname{font-family:var(--display);font-size:26px;color:var(--t);font-weight:400}
+.mtbtns{display:grid;gap:6px}
+.ghost.sm{padding:8px 12px;font-size:13.5px}
+.warnbtn{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 45%,transparent)}
+@media (max-width:420px){.mt{grid-template-columns:1fr}.mtbtns{grid-template-columns:1fr 1fr}}
 .micbig{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:14px;border:2px solid var(--t);background:var(--surface);color:var(--t);font-weight:800;font-size:16px}
 .micbig svg{width:24px;height:24px}
 .micbig.on{background:var(--t);color:var(--surface);animation:micpulse 1.2s ease-in-out infinite}
@@ -497,7 +512,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 85;
+const APP_VERSION = 86;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -7529,6 +7544,15 @@ const KEY = 'conpassione.v1';
 function load(){ try{ return Object.assign({done:{},xp:0,streak:0,lastDay:''}, JSON.parse(localStorage.getItem(KEY)||'{}')); }catch(e){ return {done:{},xp:0,streak:0,lastDay:''}; } }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 let S = load();
+/* Meine Themen: Nur diese erscheinen auf der Startseite, ihre Töne werden aufs Handy geladen.
+   Wer die App schon vorher benutzt hat (es gibt schon einen Spielstand), behält beim Update alle Themen, die es damals gab.
+   Neue Nutzer wählen ihre Themen selbst. Entfernt wird ein Thema nur, wenn der Nutzer es selbst entfernt. */
+if (!Array.isArray(S.topics)){
+  let had = false; try{ had = !!localStorage.getItem(KEY); }catch(e){}
+  S.topics = had ? TOPICS.map(t => t.id) : [];
+  save();
+}
+const myTopics = () => TOPICS.filter(t => S.topics.includes(t.id));
 /* Wörter, die man schon gesehen oder gehört hat (in Lektionen, Geschichten, Übungen). Eine Wortkarte heißt nur „neu“,
    wenn eines ihrer Wörter hier noch fehlt. Beim ersten Start mit dieser Funktion zählen alle erledigten Lektionen und Geschichten. */
 const wordToks = s => tokenize(String(s).replace(/\s\/\s/g,' ')).flatMap(splitElision).map(x => x.toLowerCase());
@@ -7728,15 +7752,25 @@ function renderHome(){
         <div class="stat"><b>${lessonsDone}</b><span>Lektionen</span></div>
       </div>
     </header>
-    <p class="lead">Wähl ein Thema, das dich begeistert. Du lernst Italienisch mit genau den Wörtern und Geschichten, die dich interessieren.</p>
+    <p class="lead">${myTopics().length ? 'Wähl ein Thema, das dich begeistert. Du lernst Italienisch mit genau den Wörtern und Geschichten, die dich interessieren.' : 'Willkommen! Such dir unten die Themen aus, die dich interessieren, und lade sie aufs Handy. Du kannst jederzeit weitere hinzufügen.'}</p>
     <div class="topics">
-      ${TOPICS.map(t => `
+      ${myTopics().map(t => `
         <button class="topic" style="--t:${t.color}" data-topic="${t.id}">
           <span class="name">${t.name}</span>
           <span class="de">${t.de}</span>
           ${ring(t)}
           <span class="blurb">${t.blurb}</span>
         </button>`).join('')}
+      ${myTopics().length ? '<button class="linkbtn mtlink" data-go="mytopics">Meine Themen verwalten</button>' : ''}
+      ${TOPICS.length > myTopics().length ? `<h2 class="eyebrow section-h">${myTopics().length ? 'Weitere Themen' : 'Themen zum Herunterladen'}</h2>
+      ${TOPICS.filter(t => !S.topics.includes(t.id)).map(t => `
+        <div class="topic get" style="--t:${t.color}">
+          <span class="name">${t.name}</span>
+          <span class="de">${t.de} · ${t.lessons.length} Lektionen</span>
+          <span class="blurb">${t.blurb}</span>
+          <button class="main getbtn" data-get="${t.id}">Herunterladen<span class="tsize" data-tsize="${t.id}"></span></button>
+          <p class="hint getmsg" id="get-${t.id}"></p>
+        </div>`).join('')}` : ''}
       <div class="soon"><b>Dein Thema fehlt?</b> Später kannst du hier eigene Leidenschaften hinzufügen, und die App erstellt passende Lektionen dazu.
         <div class="chips"><span class="chip">Formel 1</span><span class="chip">Fotografie</span><span class="chip">Gärtnern</span><span class="chip">K-Pop</span><span class="chip">Wandern</span></div>
       </div>
@@ -7750,10 +7784,11 @@ function renderHome(){
       <button class="tool" data-go="tenses"><span class="tname">Zeiten üben</span><span class="tde">Gegenwart & Vergangenheit</span></button>
     </div>
     ${installBox()}
-    ${window.CP_WEB && 'caches' in window ? `<div class="offl"><button class="ghost" data-offline>${S.offlineAt ? 'Offline gespeichert ✓ · auf neue Töne prüfen' : 'Alle Töne für offline speichern (ca. 71 MB)'}</button>
+    ${window.CP_WEB && 'caches' in window ? `<div class="offl"><button class="ghost" data-offline>${S.offlineAt ? 'Offline gespeichert ✓ · auf neue Töne prüfen' : 'Töne meiner Themen offline speichern'}<span class="tsize" data-tsize="*"></span></button>
       <p class="hint" id="offmsg">${S.offlineAt ? 'Die App funktioniert auch ohne Internet (Sprechen mit Mikrofon braucht aber Internet).' : 'Danach funktioniert die App auch ohne Internet. Am besten im WLAN.'}</p></div>` : ''}
     <p class="foot">Prototyp · Version ${APP_VERSION} · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
   window.scrollTo(0,0);
+  fillSizes();
 }
 
 /* ---------- topic ---------- */
@@ -9796,7 +9831,7 @@ function go(where){
   L = null; pop.hidden = true;
   if (where.startsWith('folder:')) return renderFolder(where.slice(7));
   if (where.startsWith('topic:')) return renderTopic(where.slice(6));
-  ({home:renderHome, vocab:renderVocab, grammar:renderGrammar, verbs:renderVerbs, tenses:renderTenses}[where] || renderHome)();
+  ({home:renderHome, mytopics:renderMyTopics, vocab:renderVocab, grammar:renderGrammar, verbs:renderVerbs, tenses:renderTenses}[where] || renderHome)();
 }
 
 /* ---------- Installieren (nur Web-App): Knopf, wenn der Browser es anbietet, sonst Anleitung ---------- */
@@ -9819,28 +9854,114 @@ async function doInstall(){
   const box = document.getElementById('inst'); if (box) box.outerHTML = installBox();
 }
 
-/* ---------- Offline: alle Tonbündel in den Speicher der Web-App legen ---------- */
+/* ---------- Themenpakete: Töne eines Themas aufs Handy laden oder wieder entfernen ---------- */
+/* Tonbündel heißen <thema>-…; alles andere (Grammatik, Verben) gehört allen Themen und wird immer mitgeladen */
+const canCache = () => window.CP_WEB && 'caches' in window;
+const isTopicBundle = id => TOPICS.some(t => id.startsWith(t.id + '-'));
+const bundlesFor = (idx, tids) => Object.keys(idx).filter(k => k !== '_v' && !k.startsWith('_') && (!isTopicBundle(k) || tids.some(tid => k.startsWith(tid + '-'))));
+const bundleBytes = (idx, id) => Object.values(idx[id] || {}).reduce((a, p) => Math.max(a, p[0] + p[1]), 0);
+const topicBytes = (idx, tid) => Object.keys(idx).filter(k => k.startsWith(tid + '-')).reduce((a, k) => a + bundleBytes(idx, k), 0);
+const fmtMB = b => (b < 1e6 ? '< 1' : Math.round(b / 1e6)) + ' MB';
+async function fillSizes(){
+  if (!canCache()) return;
+  const idx = await soundIndex;
+  document.querySelectorAll('[data-tsize]').forEach(el => {
+    const tid = el.dataset.tsize;
+    const b = tid === '*' ? bundlesFor(idx, S.topics).reduce((a, k) => a + bundleBytes(idx, k), 0) : topicBytes(idx, tid);
+    if (b) el.textContent = ' · ca. ' + fmtMB(b);
+  });
+}
+/* Bündel in den Offline-Speicher legen (schon vorhandene bleiben, ältere Fassungen derselben Datei werden ersetzt) */
+async function cacheBundles(ids, step){
+  try{ await navigator.storage.persist(); }catch(e){}
+  const idx = await soundIndex, cache = await caches.open('cp-sounds'), old = await cache.keys();
+  let n = 0, fail = 0;
+  for (const id of ids){
+    const url = new URL(soundFile(idx, id), location.href).href;
+    if (!(await cache.match(url))){
+      try{
+        const r = await fetch(url, {cache:'no-store'});
+        if (!r.ok) throw 0;
+        await cache.put(url, r);
+        await Promise.all(old.filter(q => q.url !== url && q.url.split('?')[0] === url.split('?')[0]).map(q => cache.delete(q)));
+      }catch(e){ fail++; }
+    }
+    if (step) step(++n, ids.length);
+  }
+  return fail;
+}
+/* Wie viele Bündel eines Themas liegen schon im Speicher? */
+async function cachedCount(tid){
+  const idx = await soundIndex, cache = await caches.open('cp-sounds');
+  const ids = Object.keys(idx).filter(k => k.startsWith(tid + '-'));
+  let have = 0;
+  for (const id of ids) if (await cache.match(new URL(soundFile(idx, id), location.href).href)) have++;
+  return [have, ids.length];
+}
+/* Thema herunterladen: sofort zu „Meine Themen“, dann die Töne laden. Ohne Internet geht es trotzdem: Töne kommen später beim Üben */
+async function getTopic(tid, btn){
+  if (!S.topics.includes(tid)) { S.topics.push(tid); save(); }
+  if (!canCache()) return renderHome();
+  const msg = document.getElementById('get-' + tid);
+  btn.disabled = true;
+  const idx = await soundIndex;
+  const fail = await cacheBundles(bundlesFor(idx, [tid]), (n, all) => { btn.textContent = `Lädt … ${Math.round(n / all * 100)} %`; });
+  if (fail){
+    btn.disabled = false; btn.textContent = 'Zum Thema';
+    btn.removeAttribute('data-get'); btn.dataset.go = 'topic:' + tid;
+    if (msg) msg.textContent = 'Das Thema ist da. Ein paar Töne konnten nicht geladen werden (Internet?). Sie werden beim Üben nachgeladen.';
+  } else renderHome();
+}
+/* Thema entfernen: nur auf Wunsch des Nutzers. Die Töne werden gelöscht, der Fortschritt bleibt für später erhalten */
+async function removeTopic(tid){
+  const t = topicById(tid);
+  if (!confirm(`„${t.name}“ vom Handy entfernen?\n\nDie Töne dieses Themas werden gelöscht. Dein Fortschritt bleibt gespeichert, falls du das Thema später wieder herunterlädst.`)) return;
+  S.topics = S.topics.filter(x => x !== tid); save();
+  Object.keys(sounds).filter(k => k.startsWith(tid + '-')).forEach(k => delete sounds[k]);
+  if (canCache()){
+    try{
+      const cache = await caches.open('cp-sounds');
+      const ks = await cache.keys();
+      await Promise.all(ks.filter(q => new URL(q.url).pathname.split('/').pop().startsWith(tid + '-')).map(q => cache.delete(q)));
+    }catch(e){}
+  }
+  renderMyTopics();
+}
+/* Seite „Meine Themen“: Übersicht, Töne nachladen, Thema entfernen */
+function renderMyTopics(){
+  const mine = myTopics();
+  app.innerHTML = `${backBtn('home', 'Start')}
+    <h1 class="brand" style="font-size:40px;margin-top:6px">Meine Themen</h1>
+    <p class="lead">Diese Themen sind auf deinem Handy.${TOPICS.length > mine.length ? ' Weitere Themen findest du auf der Startseite unter „Weitere Themen“.' : ''} Beim Entfernen bleibt dein Fortschritt gespeichert.</p>
+    <div class="mtlist">${mine.length ? mine.map(t => `
+      <div class="mt" style="--t:${t.color}">
+        <div><b class="mtname">${t.name}</b><span class="hint">${doneCount(t)} von ${t.lessons.length} Lektionen erledigt<span data-tsize="${t.id}"></span></span>
+          ${canCache() ? `<span class="hint" id="mts-${t.id}"> </span>` : ''}</div>
+        <div class="mtbtns">${canCache() ? `<button class="ghost sm" data-getsnd="${t.id}">Töne laden</button>` : ''}<button class="ghost sm warnbtn" data-remove="${t.id}">Entfernen</button></div>
+      </div>`).join('') : '<p class="hint">Noch keine Themen. Auf der Startseite kannst du welche herunterladen.</p>'}</div>`;
+  window.scrollTo(0,0);
+  fillSizes();
+  if (canCache()) mine.forEach(t => cachedCount(t.id).then(([have, all]) => {
+    const el = document.getElementById('mts-' + t.id); if (!el) return;
+    el.textContent = have >= all ? 'Töne: alle offline gespeichert ✓' : have ? `Töne: ${have} von ${all} Paketen offline gespeichert` : 'Töne: werden beim Üben aus dem Internet geladen';
+  }));
+}
+async function getTopicSounds(tid, btn){
+  btn.disabled = true;
+  const idx = await soundIndex;
+  const fail = await cacheBundles(bundlesFor(idx, [tid]), (n, all) => { btn.textContent = `${Math.round(n / all * 100)} %`; });
+  btn.disabled = false; btn.textContent = 'Töne laden';
+  const el = document.getElementById('mts-' + tid);
+  if (el) el.textContent = fail ? `${fail} Pakete konnten nicht geladen werden. Prüf die Internetverbindung.` : 'Töne: alle offline gespeichert ✓';
+}
+
+/* ---------- Offline: die Töne aller meiner Themen in den Speicher der Web-App legen ---------- */
 async function saveOffline(btn){
   const msg = document.getElementById('offmsg');
   btn.disabled = true;
   try{
-    try{ await navigator.storage.persist(); }catch(e){}
-    const idx = await soundIndex, ids = Object.keys(idx).filter(k => k !== '_v');
-    const cache = await caches.open('cp-sounds');
-    const old = await cache.keys();
-    let n = 0, fail = 0;
-    for (const id of ids){
-      const url = new URL(soundFile(idx, id), location.href).href;
-      if (!(await cache.match(url))){
-        try{
-          const r = await fetch(url, {cache:'no-store'});
-          if (!r.ok) throw 0;
-          await cache.put(url, r);
-          await Promise.all(old.filter(q => q.url !== url && q.url.split('?')[0] === url.split('?')[0]).map(q => cache.delete(q)));
-        }catch(e){ fail++; }
-      }
-      msg.textContent = `Speichere Töne … ${++n} von ${ids.length}`;
-    }
+    const idx = await soundIndex;
+    const fail = await cacheBundles(bundlesFor(idx, S.topics), (n, all) => { msg.textContent = `Speichere Töne … ${n} von ${all}`; });
     if (fail){ msg.textContent = `${fail} Tondateien konnten nicht geladen werden. Prüf die Internetverbindung und tipp nochmal.`; }
     else { S.offlineAt = today(); save(); msg.textContent = 'Fertig! Die App funktioniert jetzt auch ohne Internet.'; btn.textContent = 'Offline gespeichert ✓ · auf neue Töne prüfen'; }
   }catch(e){ msg.textContent = 'Das Speichern hat nicht geklappt. Tipp bitte nochmal.'; }
@@ -9854,6 +9975,9 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-mic')) return toggleMic();
   if (b.hasAttribute('data-rec')) return startRec(b);
   if (b.hasAttribute('data-offline')) return saveOffline(b);
+  if (b.dataset.get) return getTopic(b.dataset.get, b);
+  if (b.dataset.getsnd) return getTopicSounds(b.dataset.getsnd, b);
+  if (b.dataset.remove) return removeTopic(b.dataset.remove);
   if (b.hasAttribute('data-install')) return doInstall();
   if (b.hasAttribute('data-resume')) return RESUME && RESUME.go();
   if (b.hasAttribute('data-fresh')) return RESUME && RESUME.fresh();
