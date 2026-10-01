@@ -467,6 +467,12 @@ body{margin-block:0}
 .speed .fill.low{background:var(--bad)}
 .sptime{font-weight:800;font-variant-numeric:tabular-nums;font-size:15px;min-width:52px;text-align:right}
 /* Feste Plätze: Kopfzeile, Wort, Antworten und Rückmeldung haben immer dieselbe Höhe, damit nichts springt */
+.spmodes{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%}
+.spm{display:grid;gap:1px;padding:9px 8px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);text-align:center}
+.spm b{font-size:14.5px}
+.spm span{font-size:12.5px;color:var(--muted)}
+.spm.on{border-color:var(--t);background:color-mix(in srgb,var(--t) 12%,var(--surface))}
+.spm.on b{color:var(--t)}
 .sphead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-direction:row-reverse;height:28px;white-space:nowrap}
 .hearts{flex:none;font-size:18px;letter-spacing:2px}
 .big.spword{justify-content:center;align-items:center;height:84px;padding:0;text-align:center;flex-wrap:nowrap;overflow:hidden}
@@ -512,7 +518,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 86;
+const APP_VERSION = 87;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -7871,7 +7877,7 @@ function renderTopic(id){
         <button class="tile practice" data-review="${t.id}"><span class="tn">↻</span><span class="ti">Gemischt wiederholen</span>
           <span class="sub">Aufgaben aus Lektion 1 bis ${reviewUpto(t)+1}</span></button>
         <button class="tile practice" data-speed="${t.id}"><span class="tn">⚡</span><span class="ti">Blitz-Vokabeln</span>
-          <span class="sub">Gegen die Uhr · Wörter aus Lektion 1 bis ${reviewUpto(t)+1}${(S.speed || {})[t.id] ? ` · Rekord: ${S.speed[t.id]}` : ''}</span></button>
+          <span class="sub">Gegen die Uhr · Wörter aus Lektion 1 bis ${reviewUpto(t)+1}${speedRec(t.id, speedMode()) ? ` · Rekord (${SPEED_MODES.find(m => m[0] === speedMode())[1]}): ${speedRec(t.id, speedMode())}` : ''}</span></button>
       </div>
       <h2 class="eyebrow section-h" id="sec-vocab">Dein Wortschatz</h2>
       <details class="vfold">
@@ -8563,22 +8569,34 @@ function startPractice(tid, st){
    Falsch oder zu langsam kostet ein Herz, nach 3 Fehlern ist Schluss. Wörter aus den Lektionen 1 bis reviewUpto. */
 const SPEED_START = 10, SPEED_STEP = 0.93, SPEED_MIN = 2, SPEED_LIVES = 3;
 let SP = null;
-const speedTime = n => Math.max(SPEED_MIN, SPEED_START * Math.pow(SPEED_STEP, n));
+/* Tempo wählbar: „up“ = erst 10 Sekunden, dann immer schneller (wie bisher); sonst fest 10, 5 oder 2 Sekunden pro Wort.
+   Rekorde: „up“ wie bisher in S.speed[thema], die festen Tempi in S.speedC[thema][Sekunden] */
+const SPEED_MODES = [['up','Immer schneller','10 → 2 Sek.'],['10','Immer 10 Sek.','gemütlich'],['5','Immer 5 Sek.','flott'],['2','Immer 2 Sek.','blitzschnell']];
+const speedMode = () => SPEED_MODES.some(m => m[0] === S.speedMode) ? S.speedMode : 'up';
+const speedTime = (n, mode = 'up') => mode === 'up' ? Math.max(SPEED_MIN, SPEED_START * Math.pow(SPEED_STEP, n)) : +mode;
+const speedRec = (tid, mode) => mode === 'up' ? (S.speed || {})[tid] || 0 : ((S.speedC || {})[tid] || {})[mode] || 0;
+function setSpeedRec(tid, mode, v){
+  if (mode === 'up'){ S.speed = S.speed || {}; S.speed[tid] = v; return; }
+  S.speedC = S.speedC || {}; S.speedC[tid] = S.speedC[tid] || {}; S.speedC[tid][mode] = v;
+}
 function speedWords(t){
   const ls = t.lessons.slice(0, reviewUpto(t) + 1);
   /* Im Schnelltest ohne „(wörtlich: …)“, das wäre zu lang zum schnellen Lesen */
   return uniqBy(uniqBy(ls.flatMap(l => (l.words||[]).map(([it,de]) => ({it, de:de.replace(/\s*\(wörtlich:[^)]*\)/, '')}))), o => o.it), o => o.de);
 }
 function speedIntro(tid){
-  const t = topicById(tid), words = speedWords(t), best = (S.speed || {})[tid] || 0;
+  const t = topicById(tid), words = speedWords(t), mode = speedMode(), best = speedRec(tid, mode);
   SP = null; L = null;
   t.lessons.slice(0, reviewUpto(t) + 1).forEach((l,i) => loadSounds(bundleOf(t, i)));
   app.innerHTML = `
     <div class="result speedintro" style="--t:${t.color}">
       <p class="eyebrow">${t.name} · Blitz-Vokabeln</p>
       <h1 class="it">Pronti, via!</h1>
-      <p class="gp" style="margin:0 auto">Tipp so schnell du kannst die richtige Übersetzung an. Beim ersten Wort hast du ${SPEED_START} Sekunden,
-        danach wird es mit jedem richtigen Wort ein bisschen schneller. Nach ${SPEED_LIVES} Fehlern ist Schluss.</p>
+      <div class="spmodes" role="radiogroup" aria-label="Tempo">${SPEED_MODES.map(([k, a, b]) =>
+        `<button class="spm${k === mode ? ' on' : ''}" role="radio" aria-checked="${k === mode}" data-spmode="${tid}:${k}"><b>${a}</b><span>${b}</span></button>`).join('')}</div>
+      <p class="gp" style="margin:0 auto">Tipp so schnell du kannst die richtige Übersetzung an. ${mode === 'up'
+        ? `Beim ersten Wort hast du ${SPEED_START} Sekunden, danach wird es mit jedem richtigen Wort ein bisschen schneller.`
+        : `Du hast für jedes Wort ${mode} Sekunden.`} Nach ${SPEED_LIVES} Fehlern ist Schluss.</p>
       <div class="rstats">
         <div class="rstat"><b>${words.length}</b><span>Wörter</span></div>
         <div class="rstat"><b>${best}</b><span>Dein Rekord</span></div>
@@ -8593,7 +8611,7 @@ function speedIntro(tid){
 }
 function startSpeed(tid){
   const t = topicById(tid), words = speedWords(t);
-  SP = {t, words, bag:[], n:0, right:0, lives:SPEED_LIVES, missed:[], cur:null, raf:0};
+  SP = {t, words, mode:speedMode(), bag:[], n:0, right:0, lives:SPEED_LIVES, missed:[], cur:null, raf:0};
   speedNext();
 }
 function speedNext(){
@@ -8604,7 +8622,7 @@ function speedNext(){
   const toIt = SP.n % 3 === 2;
   const others = uniqBy(uniqBy(shuffle(w.filter(o => o.it !== x.it && o.de !== x.de)), o => o.de), o => o.it).slice(0,3);
   const options = shuffle([x, ...others]).map(o => toIt ? o.it : o.de), answer = toIt ? x.it : x.de;
-  const time = speedTime(SP.right);
+  const time = speedTime(SP.right, SP.mode);
   SP.cur = {x, answer, time, t0:performance.now(), done:false};
   SP.n++;
   const t = SP.t;
@@ -8667,18 +8685,17 @@ function speedAnswer(pick){
   setTimeout(() => { if (!SP || SP.cur !== c) return; SP.lives > 0 ? speedNext() : speedEnd(); }, ok ? 650 : 1800);
 }
 function speedEnd(){
-  const t = SP.t, score = SP.right, missed = SP.missed;
-  S.speed = S.speed || {};
-  const old = S.speed[t.id] || 0, rec = score > old;
-  if (rec) S.speed[t.id] = score;
+  const t = SP.t, score = SP.right, missed = SP.missed, mode = SP.mode;
+  const old = speedRec(t.id, mode), rec = score > old;
+  if (rec) setSpeedRec(t.id, mode, score);
   S.xp += score; bumpStreak(); save();
   SP = null;
   const head = rec && old ? 'Nuovo record!' : score >= 20 ? 'Fulmineo!' : score >= 10 ? 'Bravo!' : 'Ancora una volta?';
   app.innerHTML = `
     <div class="result" style="--t:${t.color}">
-      <p class="eyebrow">${t.name} · Blitz-Vokabeln</p>
+      <p class="eyebrow">${t.name} · Blitz-Vokabeln · ${SPEED_MODES.find(m => m[0] === mode)[1]}</p>
       <h1 class="it">${head}</h1>
-      <p style="margin:0;color:var(--muted)">${rec ? (old ? `Dein alter Rekord war ${old}.` : 'Dein erster Rekord!') : `Dein Rekord: ${old}.`} Zuletzt hattest du nur noch ${speedTime(score).toFixed(1)} Sekunden pro Wort.</p>
+      <p style="margin:0;color:var(--muted)">${rec ? (old ? `Dein alter Rekord war ${old}.` : 'Dein erster Rekord!') : `Dein Rekord: ${old}.`} ${mode === 'up' ? `Zuletzt hattest du nur noch ${speedTime(score).toFixed(1)} Sekunden pro Wort.` : `Tempo: ${mode} Sekunden pro Wort.`}</p>
       <div class="rstats">
         <div class="rstat"><b>${score}</b><span>Richtig</span></div>
         <div class="rstat"><b>${Math.max(score, old)}</b><span>Rekord</span></div>
@@ -8687,7 +8704,8 @@ function speedEnd(){
         <div class="vocab">${missed.map(w => `<div class="vrow">${spkBtn(w.it)}<span class="v-it">${w.it}</span><span class="v-de">${w.de}</span></div>`).join('')}</div></div>` : ''}
       <div class="actions">
         <button class="main" data-speedgo="${t.id}">Nochmal</button>
-        <button class="ghost" data-go="topic:${t.id}">Zurück zu ${t.name}</button>
+        <button class="ghost" data-speed="${t.id}">Anderes Tempo</button>
+        <button class="linkbtn" data-go="topic:${t.id}">Zurück zu ${t.name}</button>
       </div>
     </div>`;
   window.scrollTo(0,0);
@@ -9993,6 +10011,7 @@ app.addEventListener('click', e => {
   if (b.dataset.review) return startReview(b.dataset.review);
   if (b.dataset.speed) return speedIntro(b.dataset.speed);
   if (b.dataset.speedgo) return startSpeed(b.dataset.speedgo);
+  if (b.dataset.spmode){ const [tid, m] = b.dataset.spmode.split(':'); S.speedMode = m; save(); return speedIntro(tid); }
   if (b.dataset.spopt != null) return speedAnswer(b.dataset.spopt);
   if (b.hasAttribute('data-speedquit')){ const tid = SP && SP.t.id; if (SP) cancelAnimationFrame(SP.raf); SP = null; return tid ? renderTopic(tid) : renderHome(); }
   if (b.dataset.pics) return startPics(b.dataset.pics);
