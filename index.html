@@ -519,7 +519,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 92;
+const APP_VERSION = 93;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -9884,7 +9884,7 @@ function renderStep(){
       </div>
       ${SR && !(rv && S.speakOff) ? `<button class="micbig" data-rec>${ICON_MIC}<span>Tippen und sprechen</span></button><p class="recout" id="recout" aria-live="polite"></p>` : ''}
       <p class="hint">${S.muted ? 'Der Ton ist aus. Schalte ihn oben rechts ein, um den Satz zu hören.' : rv ? (SR && !S.speakOff ? 'Du kannst den Satz hier nochmal üben: Tipp aufs Mikrofon und sprich los, sobald dort „Jetzt sprechen!“ steht. An deinen Punkten ändert das nichts.' : 'Du kannst den Satz hier nochmal üben: Hör zu und sprich laut nach.') : SR ? 'Tipp aufs Mikrofon und sprich, sobald „Jetzt sprechen!“ dasteht. Oder bewerte dich selbst.' : 'Hör zu und sprich laut nach, gern mehrmals. Dann bewerte dich selbst.'}</p>`;
-    btn = 'Hat geklappt'; ready = true;
+    btn = 'Weiter'; ready = true;
     setTimeout(() => speak(st.it), 250);
   }
   else if (st.type==='read'){
@@ -10212,7 +10212,7 @@ function speakAgain(){
   fb.classList.remove('ok','bad','warn'); msg.innerHTML = '';
   if (out) out.textContent = 'Hör genau hin und versuch es nochmal.';
   /* Im Rückblick wird nur geübt, nicht neu bewertet */
-  const m = document.getElementById('main'); m.textContent = L.back != null ? 'Weiter' : 'Hat geklappt';
+  const m = document.getElementById('main'); m.textContent = 'Weiter';
   const again = document.getElementById('again'); if (again) again.hidden = false;
   const lbl = document.querySelector('[data-rec] span'); if (lbl) lbl.textContent = 'Tippen und sprechen';
   speak(L.cur.st.it);
