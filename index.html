@@ -333,6 +333,17 @@ body.muted .aplay{opacity:.35}
 .getmsg{grid-column:1/-1;margin:0}
 .tsize{text-transform:none;letter-spacing:0;font-weight:600}
 .mtlink{justify-self:center;font-weight:600}
+/* Startseite: Themen zu zweit nebeneinander, kompakt (v97) */
+.topics{grid-template-columns:1fr 1fr;gap:10px}
+.topics>:not(.topic){grid-column:1/-1}
+.topics .topic{grid-template-columns:1fr auto;align-content:start;gap:2px 6px;padding:12px 10px 12px 14px;border-radius:14px}
+.topics .topic .name{font-size:27px;line-height:1.05;align-self:center;overflow-wrap:anywhere}
+.topics .topic .de{grid-column:1/-1;font-size:12.5px;line-height:1.3}
+.topics .topic .ring{grid-row:1;grid-column:2;width:42px;height:42px}
+.topics .topic .blurb{display:none}
+.topics .topic.get .name{font-size:24px}
+.topics .topic.get .getbtn{margin-top:8px;padding:9px 6px;font-size:13px}
+.topics .topic.get .getmsg{font-size:12px}
 .mtlist{display:grid;gap:10px}
 .mt{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px 12px;padding:14px 16px;background:var(--surface);border:1px solid var(--line);border-left:5px solid var(--t);border-radius:14px}
 .mt .hint{display:block;margin:2px 0 0}
@@ -519,7 +530,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 96;
+const APP_VERSION = 97;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
