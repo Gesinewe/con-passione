@@ -530,7 +530,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 98;
+const APP_VERSION = 99;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -12010,14 +12010,14 @@ function startRec(btn){
 }
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
-const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli', sulcaccia:'squadra', sculaccia:'squadra', veri:'perde'};
+const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli', sulcaccia:'squadra', sculaccia:'squadra', veri:'perde', spider:'calderone'};
 /* Verhörer aus zwei Wörtern: „o lato“ → „urlato“. Gleiche Regeln wie oben, beide gehörten Wörter dürfen nicht im Zielsatz stehen. */
-const SP_ALIAS2 = {'o lato':'urlato', 'ho lato':'urlato', 'linndse miria':'linfermiera', 'lindse miria':'linfermiera', 'linde miria':'linfermiera', 'linse miria':'linfermiera'};
+const SP_ALIAS2 = {'the spider':'nel calderone', 'o lato':'urlato', 'ho lato':'urlato', 'linndse miria':'linfermiera', 'lindse miria':'linfermiera', 'linde miria':'linfermiera', 'linse miria':'linfermiera'};
 function spAlias(target, heard){
   const out = [];
   for (let i=0; i<heard.length; i++){
-    const h = heard[i], two = SP_ALIAS2[h + ' ' + heard[i+1]];
-    if (two && target.includes(two) && !target.includes(h) && !target.includes(heard[i+1])){ out.push(two); i++; }
+    const h = heard[i], two = SP_ALIAS2[h + ' ' + heard[i+1]] && SP_ALIAS2[h + ' ' + heard[i+1]].split(' ');
+    if (two && two.every(w => target.includes(w)) && !target.includes(h) && !target.includes(heard[i+1])){ out.push(...two); i++; }
     else {
       /* Ein gehörtes Wort kann auch für mehrere stehen: „occupato“ → „ho provato“ */
       const one = SP_ALIAS[h] && SP_ALIAS[h].split(' ');
