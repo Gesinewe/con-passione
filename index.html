@@ -118,6 +118,18 @@ h1,h2,h3{text-wrap:balance;margin:0}
 .ring text{fill:var(--ink);font:700 13px var(--body);text-anchor:middle;dominant-baseline:central}
 .soon{border:1.5px dashed var(--line);border-radius:16px;padding:18px 20px;color:var(--muted);font-size:14.5px}
 .soon b{color:var(--ink)}
+.wish p{margin:6px 0 0}
+.wish .wnote{font-size:13.5px;font-style:italic}
+.wform{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.wform .field{flex:1 1 180px;min-width:0;font-size:17px;padding:10px 14px}
+.wform .ghost{width:auto;flex:0 0 auto}
+.wlist{margin-top:10px;display:grid;gap:6px}
+.wsub{font-weight:700;color:var(--ink)}
+.wrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:8px 0;border-top:1px solid var(--line)}
+.wname{flex:1 1 120px;min-width:0;color:var(--ink);font-weight:600}
+.wn{font-size:13px;font-variant-numeric:tabular-nums}
+.wrow .ghost{width:auto}
+.wdone{font-size:13px;font-weight:600}
 .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
 .chip{font-size:13px;padding:3px 10px;border-radius:99px;background:var(--bg);border:1px solid var(--line)}
 .foot{margin-top:auto;padding-block:32px 20px;font-size:12.5px;color:var(--muted);text-align:center}
@@ -532,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 116;
+const APP_VERSION = 117;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -27033,9 +27045,7 @@ function renderHome(){
           <button class="main getbtn" data-get="${t.id}">Herunterladen<span class="tsize" data-tsize="${t.id}"></span></button>
           <p class="hint getmsg" id="get-${t.id}"></p>
         </div>`).join('')}` : ''}
-      <div class="soon"><b>Dein Thema fehlt?</b> Später kannst du hier eigene Leidenschaften hinzufügen, und die App erstellt passende Lektionen dazu.
-        <div class="chips"><span class="chip">Formel 1</span><span class="chip">Fotografie</span><span class="chip">Gärtnern</span><span class="chip">K-Pop</span><span class="chip">Wandern</span></div>
-      </div>
+      ${wishBox()}
     </div>
     <div style="margin-top:18px">${kindLegend()}</div>
     <h2 class="eyebrow section-h">Nachschlagen & Üben</h2>
@@ -27052,7 +27062,62 @@ function renderHome(){
       <p class="hint" id="hoermsg">Wörter, die das Mikrofon beim Nachsprechen nicht erkannt hat. Kopieren und bei Claude einfügen, dann wird die Erkennung gezielt besser.</p></div>` : ''}
     <p class="foot">Prototyp · Version ${APP_VERSION} · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
   window.scrollTo(0,0);
-  fillSizes();
+  fillSizes(); loadWishes();
+}
+
+/* ---------- Themen-Wunschliste (gemeinsam für alle, gespeichert bei Supabase) ----------
+   Tabelle cp_wuensche: neue Wünsche sind erst sichtbar, wenn sie freigegeben wurden (Häkchen „freigegeben“ in Supabase).
+   Schreiben nur über die Funktionen cp_wunsch_neu / cp_wunsch_stimme. Gespeichert wird nur der Themenname und die Stimmen. */
+const WISH_URL = 'https://mlsgzbamarhgaeohtfxk.supabase.co', WISH_KEY = 'sb_publishable_mrQmjsl681WTHIejdSiUwg_AEc36a__';
+const wishHead = () => Object.assign({'apikey': WISH_KEY, 'Content-Type': 'application/json'}, WISH_KEY.startsWith('sb_') ? {} : {'Authorization': 'Bearer ' + WISH_KEY});
+function wishBox(){
+  return `<div class="soon wish"><b>Themen-Wunschliste</b>
+    <p>Dir fehlt ein Thema? Setz es auf die Wunschliste oder stimme bei den Wünschen anderer mit ab. Die Themen mit den meisten Stimmen werden nach und nach ausgearbeitet und erscheinen dann für alle hier unter den Themen.</p>
+    <p class="wnote">Das ist nur eine Wunschliste: Es entsteht kein Thema sofort oder automatisch, und nicht jeder Wunsch kann umgesetzt werden. Ein neues Thema braucht einige Zeit.</p>
+    ${WISH_KEY ? `<div class="wform"><input class="field" id="wishin" maxlength="40" enterkeyhint="send" autocomplete="off" placeholder="z. B. Fotografie" aria-label="Thema für die Wunschliste"><button class="ghost sm" data-wish>Auf die Wunschliste</button></div>
+    <p class="hint" id="wishmsg" aria-live="polite"></p>
+    <div id="wishlist" class="wlist"><p class="hint">Wunschliste wird geladen …</p></div>` : '<p class="hint">Die Wunschliste startet in Kürze.</p>'}
+  </div>`;
+}
+async function loadWishes(){
+  const box = document.getElementById('wishlist');
+  if (!box || !WISH_KEY) return;
+  try{
+    const r = await fetch(WISH_URL + '/rest/v1/cp_wuensche?select=id,thema,stimmen&order=stimmen.desc,id.asc&limit=30', {headers: wishHead()});
+    if (!r.ok) throw 0;
+    const list = await r.json(), voted = S.wVotes || [];
+    box.innerHTML = list.length ? '<p class="wsub">Bisher gewünscht</p>' + list.map(w => `<div class="wrow"><span class="wname">${esc(w.thema)}</span><span class="wn">${w.stimmen} ${w.stimmen === 1 ? 'Stimme' : 'Stimmen'}</span>${voted.includes(w.id)
+      ? '<span class="wdone">✓ abgestimmt</span>' : `<button class="ghost sm" data-wvote="${w.id}">Will ich auch</button>`}</div>`).join('')
+      : '<p class="hint">Noch keine Wünsche. Mach den Anfang!</p>';
+  }catch(e){ box.innerHTML = '<p class="hint">Die Wunschliste braucht Internet und lässt sich gerade nicht laden.</p>'; }
+}
+async function sendWish(){
+  const inp = document.getElementById('wishin'), msg = document.getElementById('wishmsg');
+  const t = (inp.value || '').replace(/\s+/g, ' ').trim();
+  if (t.length < 2) { msg.textContent = 'Bitte schreib ein Thema (mindestens 2 Buchstaben).'; return; }
+  const deName = x => (FOLDERS.find(f => f.id === x.id) || {}).name;
+  const have = TOPICS.find(x => [x.name, deName(x), x.id].filter(Boolean).some(n => String(n).toLowerCase() === t.toLowerCase()));
+  if (have) { msg.textContent = 'Dieses Thema gibt es schon: ' + have.name + (deName(have) ? ' (' + deName(have) + ')' : '') + '. Du findest es oben bei den Themen.'; return; }
+  if ((S.wSent || []).includes(t.toLowerCase())) { msg.textContent = 'Diesen Wunsch hast du schon abgeschickt. Danke!'; return; }
+  msg.textContent = 'Wird gesendet …';
+  try{
+    const r = await fetch(WISH_URL + '/rest/v1/rpc/cp_wunsch_neu', {method:'POST', headers: wishHead(), body: JSON.stringify({p_thema: t})});
+    const res = r.ok ? await r.json() : null;
+    if (res === 'zuviel') { msg.textContent = 'Gerade kommen sehr viele Wünsche an. Versuch es bitte später nochmal.'; return; }
+    if (res !== 'ok') throw 0;
+    S.wSent = [...(S.wSent || []), t.toLowerCase()]; save();
+    inp.value = '';
+    msg.textContent = 'Danke! Dein Wunsch „' + t + '“ ist angekommen. Er wird geprüft und erscheint dann in der Wunschliste.';
+  }catch(e){ msg.textContent = 'Das hat nicht geklappt. Hast du Internet? Versuch es bitte nochmal.'; }
+}
+async function voteWish(id, b){
+  b.disabled = true;
+  try{
+    const r = await fetch(WISH_URL + '/rest/v1/rpc/cp_wunsch_stimme', {method:'POST', headers: wishHead(), body: JSON.stringify({p_id: id})});
+    if (!r.ok) throw 0;
+    S.wVotes = [...(S.wVotes || []), id]; save();
+    loadWishes();
+  }catch(e){ b.disabled = false; const m = document.getElementById('wishmsg'); if (m) m.textContent = 'Abstimmen hat nicht geklappt. Hast du Internet?'; }
 }
 
 /* ---------- topic ---------- */
@@ -28368,6 +28433,7 @@ function showGloss(el){
 }
 document.addEventListener('click', e => { const w = e.target.closest('.w'); if (w && !w.closest('.hint')) showGloss(w); else pop.hidden = true; });
 document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.classList && e.target.classList.contains('w')) showGloss(e.target); });
+document.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.id === 'wishin'){ e.preventDefault(); sendWish(); } });
 window.addEventListener('scroll', () => pop.hidden = true, {passive:true});
 
 /* ---------- lesson player ---------- */
@@ -29685,6 +29751,8 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-rec')) return startRec(b);
   if (b.hasAttribute('data-offline')) return saveOffline(b);
   if (b.hasAttribute('data-hoerlog')) return copyHoerLog(b);
+  if (b.hasAttribute('data-wish')) return sendWish();
+  if (b.dataset.wvote) return voteWish(+b.dataset.wvote, b);
   if (b.hasAttribute('data-hoerclear')){ S.hoer = []; save(); return renderHome(); }
   if (b.dataset.get) return getTopic(b.dataset.get, b);
   if (b.dataset.getsnd) return getTopicSounds(b.dataset.getsnd, b);
