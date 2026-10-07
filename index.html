@@ -532,7 +532,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 114;
+const APP_VERSION = 115;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -27048,6 +27048,8 @@ function renderHome(){
     ${installBox()}
     ${window.CP_WEB && 'caches' in window ? `<div class="offl"><button class="ghost" data-offline>${S.offlineAt ? 'Offline gespeichert ✓ · auf neue Töne prüfen' : 'Töne meiner Themen offline speichern'}<span class="tsize" data-tsize="*"></span></button>
       <p class="hint" id="offmsg">${S.offlineAt ? 'Die App funktioniert auch ohne Internet (Sprechen mit Mikrofon braucht aber Internet).' : 'Danach funktioniert die App auch ohne Internet. Am besten im WLAN.'}</p></div>` : ''}
+    ${(S.hoer || []).length ? `<div class="offl"><button class="ghost" data-hoerlog>Hörprobleme kopieren (${S.hoer.length})</button>
+      <p class="hint" id="hoermsg">Wörter, die das Mikrofon beim Nachsprechen nicht erkannt hat. Kopieren und bei Claude einfügen, dann wird die Erkennung gezielt besser.</p></div>` : ''}
     <p class="foot">Prototyp · Version ${APP_VERSION} · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
   window.scrollTo(0,0);
   fillSizes();
@@ -28787,6 +28789,25 @@ function spAlias(target, heard){
   }
   return out;
 }
+/* Hörprotokoll: nicht erkannte Wörter merken (nur in diesem Browser), damit man die Erkennung gezielt verbessern kann.
+   Startseite → „Hörprobleme kopieren“ → bei Claude einfügen. */
+function hoerLog(it, heard, alts, marked, passed){
+  const miss = [...marked.matchAll(/<span class="miss">([^<]*)<\/span>/g)].map(m => m[1].replace(/&[^;]+;/g, ''));
+  S.hoer = [...(S.hoer || []), {t:it, h:String(heard).trim(), a:[...new Set(alts.map(x => String(x).trim()))].slice(0,4), m:miss, ok:passed, v:APP_VERSION}].slice(-80);
+  save();
+}
+function hoerSelf(ok){
+  const e = S.hoer && S.hoer[S.hoer.length - 1];
+  if (ok && e && L && L.cur && e.t === L.cur.st.it && !e.ok){ e.self = true; save(); }
+}
+function copyHoerLog(b){
+  const list = S.hoer || [], msg = document.getElementById('hoermsg');
+  const txt = 'Hörprotokoll Con Passione (' + list.length + ' Einträge)\n' + list.map(e =>
+    `• Satz: ${e.t}\n  Verstanden: ${e.h}${e.a.length > 1 ? '\n  Andere Vorschläge: ' + e.a.filter(x => x !== e.h).join(' | ') : ''}\n  Nicht erkannt: ${e.m.join(', ')}${e.ok ? ' (trotzdem geschafft)' : e.self ? ' (selbst als richtig bewertet)' : ''}`).join('\n');
+  const ok = () => { msg.innerHTML = 'Kopiert! Füge die Liste bei Claude ein. <button class="ghost" data-hoerclear>Liste danach leeren</button>'; };
+  const fallback = () => { msg.innerHTML = 'Kopieren hat nicht geklappt. Markiere den Text und kopiere ihn von Hand:<textarea readonly rows="6" style="width:100%">' + esc(txt) + '</textarea>'; };
+  try{ navigator.clipboard.writeText(txt).then(ok, fallback); }catch(e){ fallback(); }
+}
 function judgeSpeech(st, alts){
   const words = st.it.replace(/^[^:]{1,24}: /,'').split(' ');
   const parts = words.map(w => ({w, toks:spTokens(w), name:NAMES.has(w.replace(/^[^\p{L}]+|[^\p{L}]+$/gu,''))}));
@@ -28806,6 +28827,7 @@ function judgeSpeech(st, alts){
     return ok ? esc(p.w) : `<span class="miss">${esc(p.w)}</span>`;
   }).join(' ');
   const missing = need - got, ratio = need ? got / need : 1;
+  if (missing) hoerLog(st.it, heardText, alts, marked, ratio >= 0.7 || (need >= 3 && missing <= 1));
   const fb = document.getElementById('fb'), msg = document.getElementById('msg'), out = document.getElementById('recout');
   out.textContent = '';
   const heard = `Verstanden: <span class="it">„${esc(String(heardText).trim())}“</span>`;
@@ -28840,6 +28862,7 @@ function speakAgain(){
 }
 
 function speakDone(ok){
+  hoerSelf(ok);
   const st = L.cur.st;
   if (ok) L.xp += 5;
   else if (!st.retry) L.queue.push(Object.assign({}, st, {retry:true}));
@@ -29651,6 +29674,8 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-mic')) return toggleMic();
   if (b.hasAttribute('data-rec')) return startRec(b);
   if (b.hasAttribute('data-offline')) return saveOffline(b);
+  if (b.hasAttribute('data-hoerlog')) return copyHoerLog(b);
+  if (b.hasAttribute('data-hoerclear')){ S.hoer = []; save(); return renderHome(); }
   if (b.dataset.get) return getTopic(b.dataset.get, b);
   if (b.dataset.getsnd) return getTopicSounds(b.dataset.getsnd, b);
   if (b.dataset.remove) return removeTopic(b.dataset.remove);
