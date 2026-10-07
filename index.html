@@ -532,7 +532,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 115;
+const APP_VERSION = 116;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -28403,6 +28403,15 @@ function kindOf(st){
 const kindChip = k => `<span class="kindchip" style="--k:var(--k-${k})">${KINDS[k].icon} ${KINDS[k].name}</span>`;
 const kindLegend = () => `<details class="vfold"><summary><span class="ti">Was bedeuten die Farben?</span><span class="sub">Jede Übungsart hat ihre eigene Farbe</span></summary>
   <div class="kindlegend">${Object.entries(KINDS).map(([k,x]) => `<div class="kl">${kindChip(k)}<span>${x.de}</span></div>`).join('')}</div></details>`;
+/* Antworten beim ersten Anzeigen neu mischen: die richtige steht nie auf demselben Platz wie bei der vorigen Aufgabe,
+   und eine wiederholte Aufgabe (falsch beantwortet) hat eine neue Reihenfolge – man soll zuhören, nicht sich den Platz merken. */
+let lastAnsPos = -1;
+function arrangeOpts(st){
+  if (st._arr || !Array.isArray(st.options) || st.fixed || st.options.length < 3 || !st.options.includes(st.answer)) return;
+  let o;
+  for (let n = 0; n < 20; n++){ o = shuffle(st.options); if (o.indexOf(st.answer) !== lastAnsPos) break; }
+  st.options = o; st._arr = true; lastAnsPos = o.indexOf(st.answer);
+}
 function renderStep(){
   pop.hidden = true; stopRec();
   /* Was man vor dieser Lektion schon kannte (für „neu“-Schild und markierte Wörter) */
@@ -28422,6 +28431,7 @@ function renderStep(){
   const rv = L.back != null, saved = L.saved[idx];
   const pos = rv ? L.back : L.hist.length-1;
   const st = L.queue[idx], t = L.topic, les = L.lesson;
+  if (!rv && !saved) arrangeOpts(st);
   L.cur = {st, answer:null, checked:rv || !!saved};
   const pct = Math.round(idx / L.queue.length * 100);
   let body = '', btn = 'Prüfen', ready = false;
@@ -28865,7 +28875,7 @@ function speakDone(ok){
   hoerSelf(ok);
   const st = L.cur.st;
   if (ok) L.xp += 5;
-  else if (!st.retry) L.queue.push(Object.assign({}, st, {retry:true}));
+  else if (!st.retry) L.queue.push(Object.assign({}, st, {retry:true, _arr:false}));
   next();
 }
 
@@ -28928,7 +28938,7 @@ function finish(ok, correct, note, warn){
   L.cur.checked = true; L.cur.mode = 'continue';
   if (!st.retry){ L.graded++; if (ok){ L.right++; L.xp += 10; } }
   else if (ok) L.xp += 5;
-  if (!ok) L.queue.push(Object.assign({}, st, {retry:true, options: st.options ? shuffle(st.options) : undefined, tiles: st.tiles ? shuffle(st.tiles) : undefined}));
+  if (!ok) L.queue.push(Object.assign({}, st, {retry:true, _arr:false, options: st.options ? shuffle(st.options) : undefined, tiles: st.tiles ? shuffle(st.tiles) : undefined}));
   const fb = document.getElementById('fb'), msg = document.getElementById('msg');
   const cls = ok ? (warn ? 'warn' : 'ok') : 'bad';
   fb.classList.add(cls);
