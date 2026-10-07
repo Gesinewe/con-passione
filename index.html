@@ -532,7 +532,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 112;
+const APP_VERSION = 113;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -26884,6 +26884,10 @@ const ICON_BACK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" st
 const ICON_X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>';
 const canSpeak = true;
 const slug = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,60);
+/* Ton-Schlüssel eines Textes. Meist = slug; haben zwei verschiedene Texte denselben slug (z. B. „sarà“/„Sara!“), bekommt der spätere einen eigenen (slug-2 …), siehe regSound */
+const nzk = x => x.toLowerCase().replace(/[^\p{L}\d]+/gu,' ').trim();
+const SKEY_ALT = {};
+const skey = t => SKEY_ALT[nzk(t)] || slug(t);
 const player = new Audio();
 /* Aufnahmen liegen gebündelt in sounds/<bündel>.mp3 (aneinandergehängte MP3s);
    sounds/index.json sagt pro Bündel, wo jede Aufnahme liegt: {Schlüssel: [Start-Byte, Länge]} */
@@ -26919,17 +26923,17 @@ function soundUrl(d, k){
 }
 function speak(t, rate){
   if (S.muted) return;
-  const src = SOUND_SRC[slug(t)];
+  const src = SOUND_SRC[skey(t)];
   if (!src) return speakFallback(t);
   const id = src.bundles.includes(curTopic) ? curTopic
     : (src.bundles.find(x => sounds[x] && sounds[x].data) || src.bundles.find(x => sounds[x]) || src.bundles[0]);
   loadSounds(id);
   const b = sounds[id];
   const play = d => {
-    const url = soundUrl(d, slug(t));
+    const url = soundUrl(d, skey(t));
     if (!url) return speakFallback(t);
     try{ player.pause(); }catch(e){}
-    player.src = url; player._key = slug(t);
+    player.src = url; player._key = skey(t);
     player.defaultPlaybackRate = player.playbackRate = rate || 1;
     const p = player.play();
     if (p && p.catch) p.catch(() => {});
@@ -26953,15 +26957,15 @@ const ICON_PAUSE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v
 /* Tempo für lange Hörtexte: normal → schnell (wie flotte Italiener) → langsam → normal */
 const FAST = 1.3;
 const rateLabel = () => (S.arate === 0.8 ? 'Tempo: langsam' : S.arate === FAST ? 'Tempo: schnell' : 'Tempo: normal');
-const isOn = t => player._key === slug(t) && !player.paused && !player.ended;
-const audioBox = t => `<div class="abox" data-akey="${slug(t)}">
+const isOn = t => player._key === skey(t) && !player.paused && !player.ended;
+const audioBox = t => `<div class="abox" data-akey="${skey(t)}">
     <button class="aplay" data-aplay="${esc(t)}" aria-label="${isOn(t) ? 'Pause' : 'Abspielen'}">${isOn(t) ? ICON_PAUSE : ICON_PLAY}</button>
     <div class="ameta"><div class="abar"><div class="afill"></div></div>
       <div class="actl"><button class="linkbtn" data-aback aria-label="5 Sekunden zurück">↺ 5 Sek.</button><span class="atime">0:00</span><button class="linkbtn" data-arate>${rateLabel()}</button></div></div>
   </div>`;
 function playLong(t){
   if (S.muted) return;
-  if (player._key === slug(t) && player.src && !player.ended){
+  if (player._key === skey(t) && player.src && !player.ended){
     if (player.paused){ const p = player.play(); if (p && p.catch) p.catch(() => {}); } else player.pause();
     return;
   }
@@ -28439,7 +28443,7 @@ function renderStep(){
       ${audioBox(r.text)}
       <div class="tip">Hör dir die Geschichte in Ruhe an, gern mehrmals und auch langsamer. Danach kommen Fragen. Den Text kannst du bei den Fragen aufdecken, wenn du nicht weiterkommst.${who.length ? `<br><b>Es sprechen:</b> ${who.join(', ')}${r.text.split('\n').some(l => !/^[^:]{1,24}: /.test(l)) ? ' und eine Erzählerin' : ''}.` : ''}</div>`;
     btn = 'Zu den Fragen'; ready = true;
-    if (!rv && player._key !== slug(r.text)) setTimeout(() => playLong(r.text), 250);
+    if (!rv && player._key !== skey(r.text)) setTimeout(() => playLong(r.text), 250);
   }
   else if (st.type==='intro'){
     if (st.fresh === undefined) st.fresh = !allSeen(st.word.it, L.seen0);
@@ -29290,10 +29294,14 @@ const GRAMMAR = [
 const SOUND_SRC = {};
 /* voices: Stimme pro Sprecher bei Dialogen; voice: Stimme für einen einzelnen Satz (sonst Isabella) */
 function regSound(text, bundle, voices, voice){
-  const k = slug(text);
-  const nz = x => x.toLowerCase().replace(/[^\p{L}\d]+/gu,' ').trim();
+  let k = slug(text);
+  if (SOUND_SRC[k] && nzk(SOUND_SRC[k].text) !== nzk(text)){
+    /* anderer Text mit gleichem slug: eigenen Schlüssel suchen bzw. anlegen */
+    let n = 2;
+    while (SOUND_SRC[k + '-' + n] && nzk(SOUND_SRC[k + '-' + n].text) !== nzk(text)) n++;
+    k = SKEY_ALT[nzk(text)] = k + '-' + n;
+  }
   if (!SOUND_SRC[k]){ SOUND_SRC[k] = {text, bundles:[]}; if (voices) SOUND_SRC[k].voices = voices; if (voice) SOUND_SRC[k].voice = voice; }
-  else if (nz(SOUND_SRC[k].text) !== nz(text)) console.warn('Ton-Kollision:', k);
   if (!SOUND_SRC[k].bundles.includes(bundle)) SOUND_SRC[k].bundles.push(bundle);
 }
 (function buildSoundIndex(){
@@ -29315,7 +29323,7 @@ function regSound(text, bundle, voices, voice){
   WHICH_TENSE.forEach(([it]) => regSound(it, 'grammatica'));
   CLOZE.forEach(c => regSound(c[4], 'grammatica'));
 })();
-const hasSound = t => !!SOUND_SRC[slug(t)];
+const hasSound = t => !!SOUND_SRC[skey(t)];
 const spkIf = (t, lg) => hasSound(t) ? spkBtn(t, lg) : '';
 
 /* ---------- Bildschirme: Nachschlagen & Üben ---------- */
