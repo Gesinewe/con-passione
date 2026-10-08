@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 134;
+const APP_VERSION = 135;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37421,6 +37421,86 @@ Marco: Jeden Morgen kommt hier jemand traurig herein und geht mit einem Lächeln
 Draußen hört es auf zu regnen. Die Glocken schlagen sieben. Die Stadt wacht auf.
 Das war „Voci della pasticceria“. Guten Appetit beim Frühstück, euch allen!`,
     fact:'In Italien frühstückt man meist in der Bar: ein Cappuccino oder Espresso und ein Cornetto, im Stehen an der Theke. Die Konditoreien backen dafür schon mitten in der Nacht – oft ab drei oder vier Uhr.' }
+];
+/* Hörgeschichten Formula (Podcast „Voci dalla pista“). Figuren aus dem Thema: Martina, Bruder Leo (Kartfahrer), Opa Ivo (40 Jahre Ferrari-Mechaniker). */
+PODCAST_INFO.formula = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Leos Kart-Finale, mit Startampel, heulenden Motoren, quietschenden Reifen und Zielflagge, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.formula = [
+  { id:'formula-p1', show:'Voci dalla pista', ep:1, title:'La finale di Leo', de:'Leos Finale',
+    place:'Una pista di kart vicino al lago di Garda', level:'ab A2', kind:'Spannend · Rennen',
+    voices:{Martina:'Elsa', Leo:'Diego', Nonno:'Giuseppe', Speaker:'Isabella'},
+    stil:{'':['-4%','+0Hz'], Martina:['+0%','+20Hz'], Leo:['+6%','+36Hz'], Nonno:['-8%','-14Hz'], Speaker:['+4%','+0Hz']},
+    mormorio:['Forza Leo!','Che curva!','Chi è primo?','Dai, dai!','Che velocità!','Attento!','Bravo!','Vai così!'],
+    words:[['la pista','die Rennstrecke'],['il kart','das Kart'],['il casco','der Helm'],['la pressione delle gomme','der Reifendruck'],['la griglia di partenza','die Startaufstellung'],['il semaforo','die Ampel'],['la curva','die Kurve'],['sorpassare','überholen'],['frenare','bremsen'],['il testacoda','der Dreher'],['il giro','die Runde'],['il cartello','die Tafel (am Boxenrand)'],['la bandiera a scacchi','die Zielflagge'],['il podio','das Siegerpodest'],['il meccanico','der Mechaniker']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Il nonno tira la corda':'motore_kart_dopo', 'Martina controlla':'pneumatico', 'Alle due i kart':'griglia_an', 'Speaker: Signore e signori':'altoparlante', 'Il semaforo si accende':'semaforo partenza_dopo griglia_aus', 'Primo giro.':'pista_an', 'Alla prima curva':'stridio', 'Leo resta sesto':'passaggio', 'Martina alza il cartello':'passaggio', 'Al quinto giro':'passaggio_dopo', 'Leo frena tardi':'stridio passaggio_dopo', 'Ultimo giro.':'pausa', 'Il kart numero tre':'stridio', 'Leo passa sotto':'pista_aus gol', 'Sul podio':'applausi', 'Martina apre':'tappo', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dalla pista», il podcast che va veloce. Oggi siamo su una pista di kart vicino al lago di Garda. È domenica, c’è il sole. E c’è la finale del campionato regionale. Al via c’è anche Leo, tredici anni, numero diciassette.
+Leo: Nonno, il diciassette porta sfortuna!
+Nonno: Sfortuna? Io ho lavorato quarant’anni alla Ferrari. La fortuna non esiste. Esiste un motore preparato bene.
+Il nonno tira la corda dell’avviamento. Il motore si accende al primo colpo.
+Nonno: Senti? Canta come un violino.
+Martina controlla la pressione delle gomme. Ha un tablet con tutti i dati.
+Martina: Le gomme sono perfette. Leo, nella curva tre frena più tardi. Lì puoi sorpassare.
+Leo: Lo so, lo so. L’hai detto cento volte.
+Alle due i kart vanno sulla griglia di partenza. Sono venti. Leo parte sesto.
+Speaker: Signore e signori, comincia la finale! Quindici giri!
+Il nonno mette la mano sul casco di Leo. Non dice niente. Poi va al muretto con Martina.
+Il semaforo si accende. Una luce rossa. Due. Tre. Quattro. Cinque. Poi tutto si spegne. Via!
+Primo giro. I venti kart arrivano tutti insieme alla prima curva.
+Alla prima curva due kart si toccano. Uno fa un testacoda. Leo passa all’interno, per un pelo.
+Martina: È passato! È quinto!
+Leo resta sesto… no, quinto. Il kart è veloce. Giro dopo giro, Leo si avvicina al quarto.
+Martina alza il cartello: «P5. Curva 3!»
+Al quinto giro Leo frena tardi alla curva tre e sorpassa. Quarto.
+Nonno: Bravo. Così. Pulito.
+Al decimo giro piove un po’, solo per un minuto. La pista diventa scivolosa.
+Leo frena tardi un’altra volta, e passa il terzo e il secondo in una curva sola. Secondo!
+Martina: Nonno! È secondo! Secondo!
+Il nonno non parla. Ha gli occhi fissi sulla pista.
+Ultimo giro. Davanti c’è solo il kart numero tre, il campione dell’anno scorso. Leo è dietro, vicinissimo.
+Il kart numero tre sbaglia l’ultima curva. Va largo. Leo vede lo spazio, entra all’interno. Sono uno accanto all’altro sul rettilineo.
+Leo passa sotto la bandiera a scacchi. Primo! Per otto centesimi di secondo!
+Sul podio Leo alza la coppa. Martina e il nonno applaudono sotto il podio.
+Martina apre una bottiglia di spumante analcolico e lo spruzza su Leo.
+Leo: Nonno! Il diciassette porta fortuna!
+Nonno: No, Leo. Te l’ho detto. La fortuna non esiste. Esisti tu. E un motore che canta.
+Poi il nonno si gira, e Martina lo vede: ha gli occhi lucidi.
+Martina: Nonno, piangi?
+Nonno: Io? No. È l’olio del motore. Mi è andato negli occhi.
+Questo era «Voci dalla pista». Allacciate le cinture, e alla prossima gara!`,
+    tr:`Guten Tag und willkommen bei „Voci dalla pista“ (Stimmen von der Rennstrecke), dem Podcast, der schnell ist. Heute sind wir auf einer Kartbahn am Gardasee. Es ist Sonntag, die Sonne scheint. Und es ist das Finale der Regionalmeisterschaft. Am Start ist auch Leo, dreizehn Jahre, Startnummer siebzehn.
+Leo: Opa, die Siebzehn bringt Unglück!
+Opa: Unglück? Ich habe vierzig Jahre bei Ferrari gearbeitet. Glück gibt es nicht. Es gibt einen gut vorbereiteten Motor.
+Opa zieht an der Starterschnur. Der Motor springt beim ersten Zug an.
+Opa: Hörst du? Er singt wie eine Geige.
+Martina kontrolliert den Reifendruck. Sie hat ein Tablet mit allen Daten.
+Martina: Die Reifen sind perfekt. Leo, in Kurve drei bremst du später. Dort kannst du überholen.
+Leo: Ich weiß, ich weiß. Das hast du hundertmal gesagt.
+Um zwei fahren die Karts in die Startaufstellung. Es sind zwanzig. Leo startet als Sechster.
+Sprecherin: Meine Damen und Herren, das Finale beginnt! Fünfzehn Runden!
+Opa legt die Hand auf Leos Helm. Er sagt nichts. Dann geht er mit Martina an die Boxenmauer.
+Die Ampel geht an. Ein rotes Licht. Zwei. Drei. Vier. Fünf. Dann geht alles aus. Los!
+Erste Runde. Die zwanzig Karts kommen alle gleichzeitig an die erste Kurve.
+In der ersten Kurve berühren sich zwei Karts. Eins dreht sich. Leo fährt innen vorbei, ganz knapp.
+Martina: Er ist durch! Er ist Fünfter!
+Leo bleibt Sechster … nein, Fünfter. Das Kart ist schnell. Runde um Runde kommt Leo dem Vierten näher.
+Martina hebt die Tafel: „P5. Kurve 3!“
+In der fünften Runde bremst Leo spät in Kurve drei und überholt. Vierter.
+Opa: Gut so. Genau so. Sauber.
+In der zehnten Runde regnet es ein bisschen, nur eine Minute. Die Strecke wird rutschig.
+Leo bremst noch einmal spät und überholt den Dritten und den Zweiten in einer einzigen Kurve. Zweiter!
+Martina: Opa! Er ist Zweiter! Zweiter!
+Opa sagt nichts. Seine Augen kleben an der Strecke.
+Letzte Runde. Vorne ist nur noch das Kart mit der Nummer drei, der Meister vom letzten Jahr. Leo ist dahinter, ganz dicht.
+Das Kart Nummer drei verpatzt die letzte Kurve. Es kommt zu weit nach außen. Leo sieht die Lücke und geht innen hinein. Auf der Geraden fahren sie nebeneinander.
+Leo fährt unter der Zielflagge durch. Erster! Mit acht Hundertstelsekunden Vorsprung!
+Auf dem Podest hebt Leo den Pokal. Martina und Opa klatschen unten am Podest.
+Martina öffnet eine Flasche alkoholfreien Sekt und spritzt Leo nass.
+Leo: Opa! Die Siebzehn bringt Glück!
+Opa: Nein, Leo. Ich habe es dir gesagt. Glück gibt es nicht. Es gibt dich. Und einen Motor, der singt.
+Dann dreht sich Opa um, und Martina sieht es: Er hat feuchte Augen.
+Martina: Opa, weinst du?
+Opa: Ich? Nein. Das ist Motoröl. Das ist mir in die Augen gekommen.
+Das war „Voci dalla pista“. Schnallt euch an, und bis zum nächsten Rennen!`,
+    fact:'Viele Formel-1-Fahrer haben als Kinder im Kart angefangen. Italien hat eine große Kart-Tradition: Am Gardasee liegt eine der bekanntesten Kartbahnen Europas. In Italien gilt die 17 als Unglückszahl.' }
 ];
 /* Hörgeschichten Luna park (Podcast „Voci del luna park“). Nina führt über den Jahrmarkt in Rimini. */
 PODCAST_INFO.lunapark = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Abend auf dem Jahrmarkt mit Orgelmusik, Autoscooter, Achterbahn und Feuerwerk, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
