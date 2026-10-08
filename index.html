@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 121;
+const APP_VERSION = 122;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -32648,6 +32648,40 @@ function nextOpen(t){
 const storyOrder = t => t.stories.map((st,i) => i).sort((a,b) => t.stories[a].after - t.stories[b].after || a - b);
 
 let lastTopic = null;
+/* ---------- Hör-Legenden (Podcast): nur zuhören, Text und Übersetzung zum Aufklappen ---------- */
+function podcastsHtml(t){
+  const list = PODCASTS[t.id] || [];
+  if (!list.length) return '';
+  return `<h2 class="eyebrow section-h" id="sec-podcast">Legenden zum Zuhören</h2>
+      <p class="gp">Wie ein kleiner Podcast: gruselige italienische Legenden, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.</p>
+      <div class="tiles">${list.map((p, i) => `<button class="tile story${S.done[p.id] ? ' done' : ''}" data-podcast="${t.id}:${i}">
+        <span class="tn">${S.done[p.id] ? '✓' : '🎧'}</span><span class="ti">${p.title}</span>
+        <span class="sub">${p.de} · Folge ${p.ep} · ${p.level}</span>
+        <span>${p.kind.split(' · ').map(k => `<span class="kind">${k}</span>`).join('')}</span></button>`).join('')}</div>`;
+}
+let podcastOpen = null;
+function renderPodcast(tid, i){
+  const t = topicById(tid), p = PODCASTS[tid][i];
+  curTopic = 'leggende-' + tid; podcastOpen = p;
+  app.innerHTML = `<div class="topicpage" style="--t:${t.color}">
+      <button class="back" data-topic="${t.id}">← ${t.name}</button>
+      <div class="thead"><p class="eyebrow">Podcast · ${esc(p.show)} · Folge ${p.ep}</p><h1 class="it">${p.title}</h1><p>${p.de} · ${p.place}</p></div>
+      ${audioBox(p.text)}
+      <div class="tip">Mach es dir gemütlich und hör einfach zu, gern auch mehrmals oder langsamer. Du musst nicht jedes Wort verstehen.<br><b>Es sprechen:</b> eine Erzählerin, ${Object.keys(p.voices).join(', ')}.</div>
+      <details class="vfold"><summary><span class="ti">Wörter zum Verstehen</span><span class="sub">${p.words.length} Wörter · antippen zum Aufklappen</span></summary>
+        <div class="vocab">${p.words.map(([it,de]) => `<div class="vrow"><span class="v-it">${it}</span><span class="v-de">${de}</span></div>`).join('')}</div></details>
+      <details class="vfold" style="margin-top:10px"><summary><span class="ti">Italienischer Text</span><span class="sub">Tipp auf ein Wort, um die Übersetzung zu sehen</span></summary>
+        <p class="it" style="line-height:1.6">${storyHtml(p)}</p></details>
+      <details class="vfold" style="margin-top:10px"><summary><span class="ti">Deutsche Übersetzung</span><span class="sub">antippen zum Aufklappen</span></summary>
+        <p style="line-height:1.6">${esc(p.tr).replace(/\n/g, '<br>')}</p></details>
+      ${p.fact ? `<p class="gp" style="margin-top:14px">ℹ️ ${esc(p.fact)}</p>` : ''}
+    </div>`;
+  window.scrollTo(0,0);
+  if (player._key !== skey(p.text)) setTimeout(() => playLong(p.text), 250);
+}
+/* Bis zum Ende angehört = erledigt (Häkchen auf der Themenseite) */
+if (player.addEventListener) player.addEventListener('ended', () => { if (podcastOpen && player._key === skey(podcastOpen.text) && !S.done[podcastOpen.id]){ S.done[podcastOpen.id] = true; save(); } });
+
 function renderTopic(id){
   const t = topicById(id); lastTopic = id;
   curTopic = bundleOf(t, 0);
@@ -32702,7 +32736,7 @@ function renderTopic(id){
           <span class="prog">${doneL} von ${t.lessons.length} Lektionen · ${doneS} von ${t.stories.length} Geschichten</span>
           <button class="chipbtn" data-openonly aria-pressed="${only}">${only ? '✓ ' : ''}Nur offene Aufgaben zeigen</button>
         </div>
-        <nav class="toc" aria-label="Springe zu"><a href="#sec-lessons">Lektionen</a><a href="#sec-stories">Geschichten</a><a href="#sec-practice">Üben</a><a href="#sec-vocab">Wortschatz</a></nav>
+        <nav class="toc" aria-label="Springe zu"><a href="#sec-lessons">Lektionen</a><a href="#sec-stories">Geschichten</a>${(PODCASTS[t.id] || []).length ? '<a href="#sec-podcast">Legenden</a>' : ''}<a href="#sec-practice">Üben</a><a href="#sec-vocab">Wortschatz</a></nav>
       </div>
       <div style="margin-top:14px">${kindLegend()}</div>
       <h2 class="eyebrow section-h" id="sec-lessons">Lektionen</h2>
@@ -32710,6 +32744,7 @@ function renderTopic(id){
       <h2 class="eyebrow section-h" id="sec-stories">Geschichten & Hörverständnis</h2>
       <p class="gp">Jede Geschichte passt zu einer Lektion. Du kannst sie <b>lesen</b> oder nur <b>hören</b>, beim Hören bleibt der Text erst einmal versteckt.</p>
       ${storiesHtml}
+      ${podcastsHtml(t)}
       <h2 class="eyebrow section-h" id="sec-practice">Üben & Wiederholen</h2>
       <div class="tiles">
         ${picWords(t, 0, t.lessons.length - 1).length ? `<button class="tile practice" data-pics="${t.id}"><span class="tn">🖼</span><span class="ti">Bilder benennen</span>
@@ -35004,6 +35039,61 @@ const GRAMMAR = [
       {link:['go','tenses','Zeiten üben']} ] }
 ];
 
+/*LEGG-START*/
+/* Gruselige Legenden zum Zuhören (Podcast „Brividi nella notte“) – Thema Brividi. Nur hören, keine Aufgaben.
+   Zeilen ohne „Name: “ liest die Erzählerin (Isabella). Ton-Bündel: leggende-<thema> (zweiter Speicher, EXT_THEMEN). */
+const PODCASTS = {
+  brividi:[
+    { id:'brividi-p1', show:'Brividi nella notte', ep:1, title:'Azzurrina', de:'Die Legende von Azzurrina',
+      place:'Castello di Montebello (Rimini)', level:'ab A2', kind:'Legende · Gruselig',
+      voices:{Azzurrina:'Elsa', Domenico:'Diego', Padre:'Giuseppe'},
+      words:[['il castello','die Burg, das Schloss'],['albina','albino (sehr helle Haut und Haare)'],['la strega','die Hexe'],['la guardia','der Wächter'],['il temporale','das Gewitter'],['la palla di stoffa','der Stoffball'],['rotola','rollt'],['la ghiacciaia','der Eiskeller'],['il grido','der Schrei'],['la torcia','die Fackel'],['il solstizio d’estate','die Sommersonnenwende'],['le cuffie','die Kopfhörer']],
+      text:`Buonasera e benvenuti a «Brividi nella notte», il podcast delle leggende italiane più paurose. Spegnete la luce, mettete le cuffie… e ascoltate.
+Stasera andiamo in Romagna, sulle colline vicino a Rimini. Qui, sopra un piccolo paese, c’è un castello antico: il castello di Montebello. Di giorno è un posto tranquillo. Ma di notte… di notte qualcuno dice che si sente piangere una bambina.
+Questa è la storia di Azzurrina.
+Siamo nel 1375. Nel castello vive il signore di Montebello con la sua famiglia. Ha una figlia di cinque anni, Guendalina. Guendalina è una bambina speciale: ha la pelle bianchissima e i capelli bianchi come la neve. È albina.
+In quei tempi la gente ha paura delle persone diverse. Una bambina con i capelli bianchi? Forse è una strega! Così il padre non la lascia mai uscire dal castello. E due guardie la seguono sempre, giorno e notte.
+La mamma vuole proteggere la figlia. Prova a colorare i capelli di Guendalina con le erbe. Ma i capelli non diventano neri. Diventano… azzurri. Per questo tutti la chiamano Azzurrina.
+È il 21 giugno 1375, il giorno più lungo dell’anno. Ma quel giorno il cielo è nero come la notte. Fuori c’è un temporale fortissimo. Azzurrina gioca nel castello con la sua palla di stoffa.
+Azzurrina: Domenico, guarda! La mia palla scappa!
+Domenico: Piano, piccola! Non correre!
+La palla rotola giù per le scale. Giù, giù, sempre più giù, fino alla ghiacciaia: la stanza fredda sotto il castello, dove si tiene il ghiaccio. Azzurrina corre dietro alla palla.
+Domenico: Azzurrina? Azzurrina, dove sei?
+In quel momento si sente un grido. Un grido acuto, terribile. Le guardie scendono di corsa con le torce. Ma nella ghiacciaia non c’è nessuno. Né la bambina, né la palla. Niente.
+Il padre arriva, pallido come un fantasma.
+Padre: Dov’è mia figlia? Cercatela! Cercatela dappertutto!
+Cercano per giorni. Per settimane. Nel castello, nel bosco, nel paese. Ma Azzurrina non torna più. Nessuno la trova. Mai.
+Sono passati più di seicento anni. Ma la leggenda dice che Azzurrina è ancora lì. Ogni cinque anni, il 21 giugno, nel giorno del solstizio d’estate, nel castello si sente la sua voce. Una voce di bambina che piange. Che chiama. Che ride.
+Negli anni Novanta alcuni ricercatori hanno registrato i suoni del castello proprio nel giorno del solstizio. Nelle registrazioni, dicono, si sentono rumori strani: un tuono, la pioggia… e poi una vocina.
+Oggi il castello di Montebello è aperto ai visitatori. La guida vi porta giù, nella ghiacciaia. È buio. È freddo. E se ascoltate bene, forse…
+Azzurrina: Hai visto la mia palla?
+Forse anche voi la sentirete.
+Questo era «Brividi nella notte». Alla prossima leggenda… se avete il coraggio.`,
+      tr:`Guten Abend und willkommen bei „Brividi nella notte“ (Gänsehaut in der Nacht), dem Podcast der gruseligsten italienischen Legenden. Macht das Licht aus, setzt die Kopfhörer auf … und hört zu.
+Heute Abend reisen wir in die Romagna, in die Hügel bei Rimini. Hier, oberhalb eines kleinen Dorfes, steht eine alte Burg: die Burg von Montebello. Tagsüber ist es ein ruhiger Ort. Aber nachts … nachts, sagen manche, hört man ein kleines Mädchen weinen.
+Das ist die Geschichte von Azzurrina.
+Wir sind im Jahr 1375. In der Burg lebt der Herr von Montebello mit seiner Familie. Er hat eine fünfjährige Tochter, Guendalina. Guendalina ist ein besonderes Kind: Sie hat schneeweiße Haut und Haare so weiß wie Schnee. Sie ist ein Albino.
+Damals haben die Leute Angst vor Menschen, die anders sind. Ein Mädchen mit weißen Haaren? Vielleicht ist sie eine Hexe! Deshalb lässt der Vater sie nie aus der Burg. Und zwei Wächter folgen ihr immer, Tag und Nacht.
+Die Mutter will ihre Tochter beschützen. Sie versucht, Guendalinas Haare mit Kräutern zu färben. Aber die Haare werden nicht schwarz. Sie werden … blau. Deshalb nennen sie alle Azzurrina (die kleine Blaue).
+Es ist der 21. Juni 1375, der längste Tag des Jahres. Aber an diesem Tag ist der Himmel schwarz wie die Nacht. Draußen tobt ein heftiges Gewitter. Azzurrina spielt in der Burg mit ihrem Stoffball.
+Azzurrina: Domenico, schau! Mein Ball läuft weg!
+Domenico: Langsam, Kleine! Nicht rennen!
+Der Ball rollt die Treppe hinunter. Hinunter, hinunter, immer tiefer, bis in den Eiskeller: den kalten Raum unter der Burg, in dem man das Eis aufbewahrt. Azzurrina rennt dem Ball hinterher.
+Domenico: Azzurrina? Azzurrina, wo bist du?
+In diesem Moment hört man einen Schrei. Einen schrillen, schrecklichen Schrei. Die Wächter rennen mit Fackeln hinunter. Aber im Eiskeller ist niemand. Weder das Mädchen noch der Ball. Nichts.
+Der Vater kommt, bleich wie ein Gespenst.
+Vater: Wo ist meine Tochter? Sucht sie! Sucht sie überall!
+Sie suchen tagelang. Wochenlang. In der Burg, im Wald, im Dorf. Aber Azzurrina kommt nie mehr zurück. Niemand findet sie. Nie.
+Mehr als sechshundert Jahre sind vergangen. Aber die Legende sagt, dass Azzurrina immer noch dort ist. Alle fünf Jahre, am 21. Juni, am Tag der Sommersonnenwende, hört man ihre Stimme in der Burg. Die Stimme eines kleinen Mädchens, das weint. Das ruft. Das lacht.
+In den Neunzigerjahren haben einige Forscher genau am Tag der Sonnenwende die Geräusche der Burg aufgenommen. Auf den Aufnahmen, so sagt man, hört man seltsame Geräusche: einen Donner, den Regen … und dann ein Stimmchen.
+Heute kann man die Burg von Montebello besichtigen. Die Führerin bringt euch hinunter in den Eiskeller. Es ist dunkel. Es ist kalt. Und wenn ihr gut zuhört, vielleicht …
+Azzurrina: Hast du meinen Ball gesehen?
+Vielleicht hört auch ihr sie.
+Das war „Brividi nella notte“. Bis zur nächsten Legende … wenn ihr euch traut.`,
+      fact:'Die Legende von Azzurrina ist eine der bekanntesten Spukgeschichten Italiens. Die Burg von Montebello (Poggio Torriana, Provinz Rimini) gibt es wirklich – man kann sie besichtigen, und zur Sonnenwende gibt es dort Abendführungen.' }
+  ]
+};
+/*LEGG-END*/
 /* ---------- Tonindex: welcher Text liegt in welcher Sammeldatei ---------- */
 const SOUND_SRC = {};
 /* voices: Stimme pro Sprecher bei Dialogen; voice: Stimme für einen einzelnen Satz (sonst Isabella) */
@@ -35034,6 +35124,7 @@ function regSound(text, bundle, voices, voice){
   TOPICS.forEach(t => Object.entries((MORE[t.id] || {}).practice || {}).forEach(([st, list]) => list.forEach(([it]) => regSound(it, t.id + '-' + st + 'x'))));
   VERBS.forEach(v => TENSE_KEYS.forEach(tn => PERS.forEach((_,p) => regSound(vform(v,tn,p), 'verbi-' + tn))));
   GRAMMAR.forEach(g => g.blocks.forEach(b => (b.ex||[]).forEach(([it]) => regSound(it, 'grammatica'))));
+  Object.entries(PODCASTS).forEach(([tid, list]) => list.forEach(p => regSound(p.text, 'leggende-' + tid, p.voices)));
   WHICH_TENSE.forEach(([it]) => regSound(it, 'grammatica'));
   CLOZE.forEach(c => regSound(c[4], 'grammatica'));
 })();
@@ -35381,6 +35472,7 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-home')) return renderHome();
   if (b.dataset.go) return go(b.dataset.go);
   if (b.dataset.story){ const [tid, i, h] = b.dataset.story.split(':'); return startStory(tid, +i, h === 'h'); }
+  if (b.dataset.podcast){ const [tid, i] = b.dataset.podcast.split(':'); return renderPodcast(tid, +i); }
   if (b.dataset.aplay){ playLong(b.dataset.aplay); return; }
   if (b.hasAttribute('data-aback')){ player.currentTime = Math.max(0, player.currentTime - 5); return; }
   if (b.hasAttribute('data-arate')){ S.arate = S.arate === FAST ? 0.8 : S.arate === 0.8 ? 1 : FAST; save(); player.playbackRate = S.arate; document.querySelectorAll('[data-arate]').forEach(x => x.textContent = rateLabel()); return; }
