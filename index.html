@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 120;
+const APP_VERSION = 121;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -34444,12 +34444,14 @@ function startRec(btn){
     if (rec !== r) { clearTimeout(quiet); clearTimeout(maxT); return; }
     /* Zu früh beendet, obwohl gerade noch gesprochen wurde: weiter zuhören */
     if (!finished && (!err || err === 'no-speech') && Date.now() - lastAt < 2000 && Date.now() - t0 < 14000){
-      prev = [...prev, ...cur.filter(res => res.isFinal)]; cur = [];
+      /* Auch das noch nicht endgültige Stück behalten – sonst fehlt nach dem Neustart der Satzanfang („Oggi ho cominciato un …“) */
+      prev = [...prev, ...cur.map(res => { const c = res.slice(); c.isFinal = true; return c; })]; cur = [];
       try{ r.start(); return; }catch(e){}
     }
     clearTimeout(quiet); clearTimeout(maxT);
     rec = null; idle();
-    if (!got && lastText) got = [lastText];
+    /* Das zuletzt angezeigte Gehörte zählt immer mit: Manchmal fehlt im endgültigen Ergebnis das letzte Wort („… c’è una bara“) */
+    if (lastText) got = got ? (got.includes(lastText) ? got : [...got, lastText]) : [lastText];
     if (got) judgeSpeech(st, got);
     else if (err === 'network' && isBrave()) out.textContent = 'Brave unterstützt die Spracherkennung leider nicht. Öffne die App zum Sprechen in Chrome (oder bewerte dich selbst).';
     else if (err !== 'aborted') out.textContent = REC_ERR[err] || (err ? 'Die Spracherkennung hat nicht geklappt (' + err + '). Tipp nochmal aufs Mikrofon.' : REC_ERR['no-speech']);
@@ -34459,9 +34461,9 @@ function startRec(btn){
 }
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
-const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli', sulcaccia:'squadra', sculaccia:'squadra', veri:'perde', spider:'calderone'};
+const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli', sulcaccia:'squadra', sculaccia:'squadra', veri:'perde', spider:'calderone', lusone:'lo zombie', usone:'zombie', siete:'si e', cova:'curva', signosera:'fine', stipulata:'decollata'};
 /* Verhörer aus zwei Wörtern: „o lato“ → „urlato“. Gleiche Regeln wie oben, beide gehörten Wörter dürfen nicht im Zielsatz stehen. */
-const SP_ALIAS2 = {'the spider':'nel calderone', 'o lato':'urlato', 'ho lato':'urlato', 'linndse miria':'linfermiera', 'lindse miria':'linfermiera', 'linde miria':'linfermiera', 'linse miria':'linfermiera'};
+const SP_ALIAS2 = {'the spider':'nel calderone', 'o lato':'urlato', 'ho lato':'urlato', 'linndse miria':'linfermiera', 'lindse miria':'linfermiera', 'linde miria':'linfermiera', 'linse miria':'linfermiera', 'fa tutto':'ha sbattuto', 'siete nata':'si e tenuta'};
 function spAlias(target, heard){
   const out = [];
   for (let i=0; i<heard.length; i++){
