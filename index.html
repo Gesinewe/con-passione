@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 128;
+const APP_VERSION = 129;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37086,6 +37086,98 @@ Fulmine bewegt die Ohren. Dann schnaubt er leise.
 Sara ist sicher: Das heißt „gern geschehen“.
 Das war „In sella!“. Bis zum nächsten Ausritt. Und denkt daran: Vom Pferderücken aus ist die Welt schöner.`,
     fact:'San Gimignano mit seinen mittelalterlichen Geschlechtertürmen liegt zwischen Florenz und Siena. Auf den „strade bianche“, den weißen Schotterwegen der Toskana, wird viel geritten – Ausritte durch Weinberge und Sonnenblumenfelder sind dort sehr beliebt.' }
+];
+/* Hörgeschichten Cinema (Podcast „Voci dal cinema“). Figuren aus dem Thema: Sara, Luca, Giulia (Regisseurin), Opa Pippo (Kino Paradiso), Schauspieler Marcello. */
+PODCAST_INFO.cinema = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Drehtag am Filmset und ein Abend im alten Kino, mit Filmklappe, Regenmaschine und ratterndem Projektor, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.cinema = [
+  { id:'cinema-p1', show:'Voci dal cinema', ep:1, title:'Ciak, si gira!', de:'Klappe, wir drehen!',
+    place:'Un set a Roma e il cinema Paradiso', level:'ab A2', kind:'Lustig · Filmset',
+    voices:{Sara:'Elsa', Giulia:'Elsa', Luca:'Diego', Marcello:'Giuseppe', Nonno:'Giuseppe', Assistente:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Sara:['-2%','+28Hz'], Giulia:['+2%','-8Hz'], Luca:['+2%','+6Hz'], Marcello:['-8%','-10Hz'], Nonno:['-12%','-16Hz'], Assistente:['+4%','+10Hz']},
+    mormorio:['Dov’è il trucco?','Le luci sono pronte?','Un caffè, per favore!','Marcello è arrivato?','Spostate la telecamera!','Che caldo sotto i fari!','Il copione dov’è?','Pronti tra cinque minuti!','Chi ha visto il cappello?','Ciao, ragazzi!'],
+    words:[['il set','das Filmset'],['la regista','die Regisseurin'],['il fonico','der Tontechniker'],['la comparsa / le comparse','der Statist / die Statisten'],['il faro','der Scheinwerfer'],['Motore!','Kamera läuft!'],['il ciak','die Filmklappe'],['Azione!','Action!'],['Stop!','Stopp!'],['la macchina della pioggia','die Regenmaschine'],['la carrozza','die Kutsche'],['starnutire','niesen'],['buona la prima','gleich der erste Versuch ist gut'],['il proiettore','der Projektor'],['la pellicola','die Filmrolle'],['la cabina di proiezione','der Vorführraum']],
+    fx:{'Buonasera e benvenuti':'folla_an', 'Giulia: Silenzio, per favore!':'folla_aus', 'Il set diventa silenzioso':'ronzio_an', 'Luca: Motore partito!':'motore', 'Una ragazza batte il ciak':'ciak_dopo', 'Giulia: Pioggia!':'pioggia_an', 'Giulia: Vento!':'vento_an', 'Giulia: Azione!':'pausa', 'Una carrozza arriva':'carrozza', 'Marcello: Ti ho cercato in tutta Roma…':'tuono', 'Marcello: Etciù!':'pausa', 'Giulia: Stop! Stop!':'pioggia_aus vento_aus', 'Tutti ridono.':'risate_adulti', 'Assistente: Scena dodici, seconda!':'ciak_dopo', 'Giulia: Ultima volta.':'motore', 'Giulia: Pioggia, vento':'pioggia_an vento_an', 'La pioggia cade.':'carrozza', 'Giulia: Stop! Buona!':'pioggia_aus vento_aus ronzio_aus applausi_dopo', 'La sera, al cinema Paradiso':'pausa folla_an', 'Nonno: Ecco il cuore':'folla_aus proiettore_an', 'Sullo schermo, la pioggia':'popcorn', 'Nonno: Senti?':'risate_adulti', 'Il film finisce.':'proiettore_aus applausi', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dal cinema», il podcast che vi porta dietro lo schermo. Oggi siamo su un set, a Roma. Giulia gira una scena del suo nuovo film. Una scena difficile: con la pioggia.
+Sara: Ciao a tutti! Sono Sara. Oggi sono sul set con Giulia, la regista. Qui c’è tanta gente: il fonico, la truccatrice, il cameraman e cinquanta comparse. Tutti parlano, tutti corrono.
+Giulia: Silenzio, per favore! Silenzio sul set!
+Il set diventa silenzioso. Si sente solo il ronzio dei fari.
+Giulia: Motore!
+Luca: Motore partito!
+Giulia: Ciak!
+Una ragazza batte il ciak davanti alla telecamera.
+Assistente: Scena dodici, prima!
+Giulia: Pioggia!
+Dall’alto comincia a cadere la pioggia. Non è vera: è la macchina della pioggia.
+Giulia: Vento!
+Un grande ventilatore comincia a girare. Il vento muove i cappotti e gli ombrelli delle comparse.
+Giulia: Azione!
+Una carrozza arriva sulla strada bagnata. Si ferma. Scende Marcello, con un cappello nero. Guarda la ragazza sotto l’ombrello. Il momento più importante del film.
+Marcello: Ti ho cercato in tutta Roma…
+Marcello si avvicina. Apre la bocca per dire la frase più bella del film. E poi…
+Marcello: Etciù!
+Silenzio. Poi un altro starnuto. Più forte.
+Marcello: Etciù! Scusate. La pioggia è freddissima.
+Giulia: Stop! Stop!
+Tutti ridono. Anche Marcello. La truccatrice corre con un asciugamano.
+Luca: Giulia, la scena è perfetta… se il film è una commedia.
+Giulia: Va bene. Dieci minuti di pausa. Un tè caldo per Marcello!
+Dieci minuti dopo tutti sono di nuovo al loro posto. Giulia respira.
+Giulia: Ultima volta. Motore! Ciak!
+Assistente: Scena dodici, seconda!
+Giulia: Pioggia, vento… azione!
+La pioggia cade. Il vento soffia. Marcello scende dalla carrozza, guarda la ragazza e dice la frase. Piano. Con il cuore.
+Marcello: Ti ho cercato in tutta Roma, Anna. E adesso non ti lascio più.
+La ragazza lascia cadere l’ombrello. Tutto il set trattiene il respiro.
+Giulia: Stop! Buona!
+Tutti applaudono. Il fonico, la truccatrice, le comparse bagnate. Marcello fa un inchino. Poi starnutisce ancora.
+La sera, al cinema Paradiso, il nonno Pippo ci aspetta nella cabina di proiezione. Mette una pellicola vecchia nel proiettore.
+Nonno: Ecco il cuore del cinema. Prima del digitale, tutto era così: luce, pellicola e pazienza.
+Sullo schermo, la pioggia di un film degli anni Cinquanta. In sala, il profumo dei popcorn.
+Nonno: Senti? Tic-tic-tic. Per me è la musica più bella del mondo.
+Il film finisce. Le luci si accendono. In sala qualcuno applaude.
+Sara: Oggi ho imparato una cosa: per due minuti di film ci vuole un giorno intero di lavoro. E a volte, un fazzoletto.
+Questo era «Voci dal cinema». Alla prossima scena. Ciak!`,
+    tr:`Guten Abend und willkommen bei „Voci dal cinema“ (Stimmen aus dem Kino), dem Podcast, der euch hinter die Leinwand bringt. Heute sind wir an einem Filmset in Rom. Giulia dreht eine Szene ihres neuen Films. Eine schwierige Szene: mit Regen.
+Sara: Hallo zusammen! Ich bin Sara. Heute bin ich mit Giulia, der Regisseurin, am Set. Hier sind viele Leute: der Tontechniker, die Maskenbildnerin, der Kameramann und fünfzig Statisten. Alle reden, alle rennen.
+Giulia: Ruhe, bitte! Ruhe am Set!
+Am Set wird es still. Man hört nur das Summen der Scheinwerfer.
+Giulia: Kamera!
+Luca: Kamera läuft!
+Giulia: Klappe!
+Ein Mädchen schlägt vor der Kamera die Filmklappe.
+Assistentin: Szene zwölf, die erste!
+Giulia: Regen!
+Von oben beginnt Regen zu fallen. Er ist nicht echt: Das ist die Regenmaschine.
+Giulia: Wind!
+Ein großer Ventilator beginnt sich zu drehen. Der Wind bewegt die Mäntel und Regenschirme der Statisten.
+Giulia: Action!
+Eine Kutsche kommt auf der nassen Straße an. Sie hält. Marcello steigt aus, mit einem schwarzen Hut. Er schaut das Mädchen unter dem Regenschirm an. Der wichtigste Moment des Films.
+Marcello: Ich habe dich in ganz Rom gesucht …
+Marcello geht näher. Er öffnet den Mund, um den schönsten Satz des Films zu sagen. Und dann …
+Marcello: Hatschi!
+Stille. Dann noch ein Niesen. Lauter.
+Marcello: Hatschi! Entschuldigung. Der Regen ist eiskalt.
+Giulia: Stopp! Stopp!
+Alle lachen. Auch Marcello. Die Maskenbildnerin rennt mit einem Handtuch herbei.
+Luca: Giulia, die Szene ist perfekt … wenn der Film eine Komödie ist.
+Giulia: Na gut. Zehn Minuten Pause. Einen heißen Tee für Marcello!
+Zehn Minuten später sind alle wieder auf ihrem Platz. Giulia atmet tief durch.
+Giulia: Letztes Mal. Kamera! Klappe!
+Assistentin: Szene zwölf, die zweite!
+Giulia: Regen, Wind … Action!
+Der Regen fällt. Der Wind weht. Marcello steigt aus der Kutsche, schaut das Mädchen an und sagt den Satz. Leise. Mit dem Herzen.
+Marcello: Ich habe dich in ganz Rom gesucht, Anna. Und jetzt lasse ich dich nie mehr los.
+Das Mädchen lässt den Regenschirm fallen. Das ganze Set hält den Atem an.
+Giulia: Stopp! Im Kasten!
+Alle klatschen. Der Tontechniker, die Maskenbildnerin, die nassen Statisten. Marcello verbeugt sich. Dann niest er noch einmal.
+Am Abend wartet Opa Pippo im Kino Paradiso im Vorführraum auf uns. Er legt eine alte Filmrolle in den Projektor ein.
+Opa: Das ist das Herz des Kinos. Vor dem Digitalen war alles so: Licht, Film und Geduld.
+Auf der Leinwand der Regen aus einem Film der Fünfzigerjahre. Im Saal der Duft von Popcorn.
+Opa: Hörst du? Tick-tick-tick. Für mich ist das die schönste Musik der Welt.
+Der Film ist zu Ende. Das Licht geht an. Im Saal klatscht jemand.
+Sara: Heute habe ich etwas gelernt: Für zwei Minuten Film braucht man einen ganzen Arbeitstag. Und manchmal ein Taschentuch.
+Das war „Voci dal cinema“. Bis zur nächsten Szene. Klappe!`,
+    fact:'Regen im Film ist fast immer künstlich: Regenmaschinen lassen Wasser von Gerüsten oder Kränen fallen, oft mit etwas Milch vermischt, damit die Tropfen vor der Kamera besser sichtbar sind. „Ciak, si gira!“ ist der berühmteste Ausruf am italienischen Filmset.' }
 ];
 /* Hörgeschichten Luna park (Podcast „Voci del luna park“). Nina führt über den Jahrmarkt in Rimini. */
 PODCAST_INFO.lunapark = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Abend auf dem Jahrmarkt mit Orgelmusik, Autoscooter, Achterbahn und Feuerwerk, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
