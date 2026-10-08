@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 138;
+const APP_VERSION = 139;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37814,6 +37814,97 @@ Dann, ganz langsam, gehen die Lichter aus. Die Orgel spielt das letzte Lied. Die
 Nina: Das ist meine Welt. Laut, bunt, ein bisschen verrückt. Und heute Abend war es auch eure. Danke, dass ihr gekommen seid. Gute Nacht!
 Das war „Voci del luna park“. Bis zum nächsten Karussell!`,
     fact:'Auf italienischen Jahrmärkten sind die Fahrgeschäfte oft seit Generationen in Familienbesitz. Viele Schaustellerfamilien kommen aus dem Polesine, besonders aus Bergantino, wo es auch ein Karussellmuseum gibt.' }
+];
+/* Hörgeschichten Natura (Podcast „Voci del bosco“). Figuren aus dem Thema: Alice, Tante Irene (Zia), kleiner Cousin Dario (Angst vor Käfern), Wohnmobil „Lumaca“. */
+PODCAST_INFO.natura = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: eine Oktobernacht im Wald, wenn die Hirsche röhren – mit Eule, raschelndem Laub, Wildschwein, Bach und Specht am Morgen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.natura = [
+  { id:'natura-p1', show:'Voci del bosco', ep:1, title:'La notte dei cervi', de:'Die Nacht der Hirsche',
+    place:'Foreste Casentinesi, tra Toscana e Romagna, una notte di ottobre', level:'ab A2', kind:'Geheimnisvoll · Wald',
+    voices:{Alice:'Isabella', Zia:'Isabella', Dario:'Elsa', Guardaparco:'Giuseppe'},
+    stil:{'':['-8%','+0Hz'], Alice:['+2%','+24Hz'], Zia:['-6%','-8Hz'], Dario:['+6%','+44Hz'], Guardaparco:['-6%','-12Hz']},
+    words:[['il bosco','der Wald'],['il cervo','der Hirsch'],['il bramito','das Röhren (des Hirsches)'],['le corna','das Geweih'],['la civetta','das Käuzchen'],['il cinghiale','das Wildschwein'],['le foglie secche','das trockene Laub'],['la torcia','die Taschenlampe'],['il binocolo','das Fernglas'],['il guardaparco','der Parkranger'],['la radura','die Lichtung'],['sottovoce','leise, flüsternd'],['il picchio','der Specht'],['l’alba','die Morgendämmerung'],['il sacco a pelo','der Schlafsack']],
+    fx:{'Buonasera e benvenuti':'pausa', 'La Lumaca è parcheggiata':'notte_an', 'Alle dieci':'porta_camper', 'Camminano piano':'foglie', 'Una civetta':'civetta', 'Dario: Che cos’era?':'pausa', 'Dal buio arriva':'bramito', 'Dario si ferma':'pausa', 'Il guardaparco Marco':'foglie_dopo', 'Arrivano a una radura':'pausa', 'Dall’altra parte':'bramito_lontano', 'Il cervo risponde':'bramito', 'Poi i due cervi':'corna', 'Qualcosa corre':'cinghiale foglie', 'Dario: Aiuto!':'pausa', 'Tornano alla Lumaca':'notte_aus ruscello_an', 'Dario non dorme':'cerniera', 'All’alba':'ruscello_aus uccelli_an', 'Toc toc toc':'picchio', 'Questo era':'uccelli_aus pausa'},
+    text:`Buonasera e benvenuti a «Voci del bosco», il podcast che si ascolta con le orecchie aperte. Stasera siamo nelle Foreste Casentinesi, tra la Toscana e la Romagna. È ottobre. E in ottobre, nel bosco, succede una cosa speciale: i cervi cercano una compagna. E per farlo… gridano.
+La Lumaca è parcheggiata ai margini del bosco. Fuori è buio e fa freddo. Dentro ci sono Alice, la zia Irene e il piccolo Dario.
+Zia: Pronti? Giacca, torcia, binocolo. E soprattutto: silenzio.
+Dario: Zia, nel bosco di notte ci sono gli insetti?
+Zia: Pochi. Fa troppo freddo per loro. Stasera ci sono animali più grandi.
+Dario: Più grandi?! Ancora peggio!
+Alle dieci aprono la porta del camper e partono. Li aspetta Marco, il guardaparco.
+Camminano piano sul sentiero. Le foglie secche fanno rumore sotto i piedi.
+Una civetta canta su un ramo, sopra le loro teste.
+Dario: Che cos’era?
+Alice: Una civetta, Dario. È piccola. Mangia i topi, non i bambini.
+Dal buio arriva un suono profondo, fortissimo. Come un leone. Come un mostro.
+Dario si ferma. Prende la mano di Alice e non la lascia più.
+Dario: Alice… quello non è una civetta.
+Il guardaparco Marco arriva dal sentiero, con la torcia rossa.
+Guardaparco: Buonasera! Avete sentito? È un cervo maschio. Si chiama bramito. Lo fa per dire alle femmine: «Sono qui, sono il più forte». E agli altri maschi: «Andate via!»
+Alice: Possiamo vederlo?
+Guardaparco: Se state zitti, sì. Seguitemi. E spegnete le torce.
+Arrivano a una radura. C’è la luna. Nell’erba ci sono dieci, dodici ombre: le femmine. In mezzo, un cervo enorme, con le corna grandi come un albero.
+Dall’altra parte della radura risponde un altro cervo, più lontano.
+Il cervo risponde ancora più forte. Il bosco trema.
+Poi i due cervi si incontrano in mezzo alla radura e si scontrano con le corna. Crac, crac!
+Alice: Si fanno male?
+Guardaparco: Di solito no. È una gara di forza, non una guerra. Chi perde se ne va.
+Il secondo cervo perde, e corre nel bosco. Il cervo grande alza la testa e bramisce, una volta, verso la luna.
+Qualcosa corre vicino a loro, tra le foglie, e grugnisce. Una famiglia di cinghiali!
+Dario: Aiuto! Un mostro!
+Guardaparco: Tranquillo. Sono cinghiali. Hanno più paura loro di noi.
+Alice ride. Anche Dario, alla fine, ride. Un po’.
+Tornano alla Lumaca a mezzanotte. Vicino al camper c’è un piccolo torrente.
+Dario non dorme. Apre il sacco a pelo, lo richiude, lo riapre.
+Dario: Zia… sono stato coraggioso?
+Zia: Coraggiosissimo. Hai visto un cervo, dei cinghiali e una civetta. E non hai pianto.
+Dario: Una volta sola. Dentro.
+All’alba il bosco si sveglia. Gli uccelli cantano, il sole entra tra gli alberi.
+Toc toc toc. Alice apre la finestra.
+Alice: Dario, guarda! Un picchio! Sul tronco!
+Dario guarda il picchio. Poi guarda un piccolo scarabeo sul tronco, vicino al picchio. Non scappa. Lo guarda e basta.
+Dario: Ciao, scarabeo. Oggi non ho paura di te. Ieri ho visto un mostro con le corna.
+Questo era «Voci del bosco». E ricordate: di notte il bosco non dorme. Parla. Basta ascoltare.`,
+    tr:`Guten Abend und willkommen bei „Voci del bosco“ (Stimmen des Waldes), dem Podcast, den man mit offenen Ohren hört. Heute Abend sind wir in den Foreste Casentinesi, zwischen der Toskana und der Romagna. Es ist Oktober. Und im Oktober passiert im Wald etwas Besonderes: Die Hirsche suchen eine Partnerin. Und dafür … schreien sie.
+Die Lumaca steht am Waldrand. Draußen ist es dunkel und kalt. Drinnen sind Alice, Tante Irene und der kleine Dario.
+Tante: Fertig? Jacke, Taschenlampe, Fernglas. Und vor allem: Ruhe.
+Dario: Tante, gibt es nachts im Wald Insekten?
+Tante: Wenige. Es ist zu kalt für sie. Heute Abend gibt es größere Tiere.
+Dario: Größere?! Noch schlimmer!
+Um zehn öffnen sie die Tür des Wohnmobils und gehen los. Marco, der Parkranger, wartet auf sie.
+Sie gehen langsam auf dem Pfad. Das trockene Laub raschelt unter den Füßen.
+Ein Käuzchen ruft auf einem Ast, über ihren Köpfen.
+Dario: Was war das?
+Alice: Ein Käuzchen, Dario. Es ist klein. Es frisst Mäuse, keine Kinder.
+Aus der Dunkelheit kommt ein tiefer, sehr lauter Ton. Wie ein Löwe. Wie ein Monster.
+Dario bleibt stehen. Er nimmt Alices Hand und lässt sie nicht mehr los.
+Dario: Alice … das ist kein Käuzchen.
+Der Parkranger Marco kommt den Pfad entlang, mit einer roten Taschenlampe.
+Parkranger: Guten Abend! Habt ihr das gehört? Das ist ein Hirschmännchen. Das heißt „Röhren“. Damit sagt er den Weibchen: „Ich bin hier, ich bin der Stärkste.“ Und den anderen Männchen: „Haut ab!“
+Alice: Können wir ihn sehen?
+Parkranger: Wenn ihr leise seid, ja. Folgt mir. Und macht die Taschenlampen aus.
+Sie kommen an eine Lichtung. Der Mond scheint. Im Gras sind zehn, zwölf Schatten: die Weibchen. In der Mitte ein riesiger Hirsch, mit einem Geweih so groß wie ein Baum.
+Von der anderen Seite der Lichtung antwortet ein anderer Hirsch, weiter weg.
+Der Hirsch antwortet noch lauter. Der Wald bebt.
+Dann treffen sich die zwei Hirsche mitten auf der Lichtung und stoßen mit den Geweihen zusammen. Krach, krach!
+Alice: Tun sie sich weh?
+Parkranger: Normalerweise nicht. Es ist ein Kräftemessen, kein Krieg. Wer verliert, geht.
+Der zweite Hirsch verliert und rennt in den Wald. Der große Hirsch hebt den Kopf und röhrt noch einmal zum Mond.
+Etwas rennt nahe an ihnen vorbei, durchs Laub, und grunzt. Eine Wildschweinfamilie!
+Dario: Hilfe! Ein Monster!
+Parkranger: Ruhig. Das sind Wildschweine. Die haben mehr Angst vor uns als wir vor ihnen.
+Alice lacht. Am Ende lacht auch Dario. Ein bisschen.
+Um Mitternacht kommen sie zur Lumaca zurück. Neben dem Wohnmobil fließt ein kleiner Bach.
+Dario schläft nicht. Er macht den Schlafsack auf, wieder zu, wieder auf.
+Dario: Tante … war ich mutig?
+Tante: Total mutig. Du hast einen Hirsch gesehen, Wildschweine und ein Käuzchen. Und du hast nicht geweint.
+Dario: Nur einmal. Innen drin.
+In der Morgendämmerung wacht der Wald auf. Die Vögel singen, die Sonne scheint zwischen die Bäume.
+Tock, tock, tock. Alice macht das Fenster auf.
+Alice: Dario, schau! Ein Specht! Am Stamm!
+Dario schaut den Specht an. Dann schaut er einen kleinen Käfer am Stamm an, neben dem Specht. Er läuft nicht weg. Er schaut ihn einfach an.
+Dario: Hallo, Käfer. Heute habe ich keine Angst vor dir. Gestern habe ich ein Monster mit Geweih gesehen.
+Das war „Voci del bosco“. Und denkt daran: Nachts schläft der Wald nicht. Er spricht. Man muss nur zuhören.`,
+    fact:'Im Nationalpark Foreste Casentinesi leben über tausend Rothirsche. Von Mitte September bis Mitte Oktober ist Brunftzeit, der „bramito“: Die Männchen röhren nachts, um Weibchen anzulocken und Rivalen zu vertreiben. Parkranger führen dann Gruppen zum Zuhören in den Wald – mit rotem Licht, weil es die Tiere weniger stört.' }
 ];
 /* Hörgeschichten Roma antica (Podcast „Voci dall’antica Roma“). Wahre Geschichte: Verus und Priscus, Eröffnung des Kolosseums 80 n. Chr. (Martial, Liber spectaculorum 29). */
 PODCASTS.roma = [
