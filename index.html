@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 131;
+const APP_VERSION = 132;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37404,6 +37404,88 @@ Diese Geschichte ist wahr. Ein römischer Dichter, Martial, war an diesem Tag da
 Heute ist das Kolosseum still. Es gibt Touristen, Fotografen, Katzen. Aber wenn ihr bei Sonnenuntergang hingeht und die Augen schließt … hört ihr vielleicht noch das Eisen der Schwerter. Und fünfzigtausend Stimmen, die rufen: missio!
 Das war „Voci dall’antica Roma“. Valete (lebt wohl), Freunde. Bis zur nächsten Geschichte.`,
     fact:'Die Geschichte ist überliefert: Der Dichter Martial beschreibt im „Buch der Schauspiele“ den Kampf von Verus und Priscus bei der Eröffnung des Kolosseums im Jahr 80 n. Chr. Kaiser Titus erklärte beide zu Siegern und schenkte ihnen die Freiheit. Livia und die Gespräche sind für die Erzählung erfunden.' }
+];
+/* Hörgeschichten Soldi (Podcast „Voci dei soldi“). Figuren aus dem Thema: Chiara, Bruder Tommaso, Opa, Oma. */
+PODCAST_INFO.soldi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Tommasos erster Tag mit seiner Eisdiele, mit Sparschwein, Münzen, Geldautomat und alter Registrierkasse, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.soldi = [
+  { id:'soldi-p1', show:'Voci dei soldi', ep:1, title:'Il primo incasso', de:'Die erste Tageskasse',
+    place:'Una piccola gelateria, un sabato d’estate', level:'ab A2', kind:'Fröhlich · Geld',
+    voices:{Tommaso:'Diego', Chiara:'Elsa', Nonno:'Giuseppe', Nonna:'Isabella', Signora:'Isabella', Signore:'Giuseppe', Terminale:'Elsa'},
+    stil:{'':['-6%','+0Hz'], Tommaso:['+4%','+40Hz'], Chiara:['-2%','+20Hz'], Nonno:['-10%','-14Hz'], Nonna:['-8%','-10Hz'], Signora:['+0%','+4Hz'], Signore:['-4%','+2Hz'], Terminale:['+0%','+0Hz']},
+    mormorio:['Che gusti avete?','Io voglio il cioccolato!','Mamma, un gelato!','Quanto costa la coppetta?','Pistacchio e limone, per favore.','Che caldo oggi!','Posso assaggiare?','Grazie, buonissimo!','Due coni, per favore.','C’è la fila!'],
+    words:[['il salvadanaio','das Sparschwein'],['i risparmi','die Ersparnisse'],['la moneta / le monete','die Münze / die Münzen'],['i centesimi','die Cent'],['il bancomat','der Geldautomat'],['la banconota','der Geldschein'],['il resto','das Wechselgeld'],['il registratore di cassa','die Registrierkasse'],['il cono','die Waffel (Eis)'],['pagare con la carta','mit Karte zahlen'],['la lira','die Lira (alte Währung)'],['incassare','einnehmen'],['le spese','die Ausgaben'],['il guadagno','der Gewinn'],['mettere da parte','zur Seite legen, sparen']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Tommaso: Addio, maialino!':'salvadanaio_dopo', 'Chiara: Contiamo.':'monete', 'Tommaso: Duecentotrentasette':'pausa', 'Al bancomat Chiara':'bancomat', 'Alle undici arriva il nonno':'cassa_dopo', 'Alle dodici Tommaso apre':'campanello_porta freezer_an', 'Signora: Buongiorno!':'pausa', 'Tommaso prende la paletta':'paletta', 'Tommaso: Ecco il resto':'cassa', 'Il secondo cliente':'pos_dopo', 'Terminale: Pagamento accettato.':'altoparlante', 'Nel pomeriggio':'gelateria_an', 'Un signore anziano':'moneta_banco', 'Alle sette la gelateria chiude':'gelateria_aus freezer_aus campanello_porta', 'Chiara conta le banconote':'banconote monete', 'Il nonno prende un salvadanaio nuovo':'salvadanaio_monete', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dei soldi», il podcast che fa i conti con la vita. Oggi è un giorno importante: Tommaso apre la sua gelateria. Una gelateria piccolissima, sotto casa. Ma prima deve fare una cosa difficile.
+Tommaso: Addio, maialino! Tre anni di risparmi!
+Il salvadanaio è rotto. Sul tavolo ci sono tantissime monete.
+Chiara: Contiamo. Monete da due euro, da un euro, da cinquanta centesimi, da venti…
+Tommaso: Duecentotrentasette euro e cinquanta! Sono ricco!
+Chiara: Ricco? Hai bisogno del resto per i clienti. Andiamo al bancomat.
+Al bancomat Chiara inserisce la carta e digita il codice. La macchina conta le banconote.
+Chiara: Ecco cento euro. Adesso andiamo in banca a cambiarli in monete.
+Alle undici arriva il nonno con una scatola grande. Dentro c’è un vecchio registratore di cassa del 1970.
+Nonno: Questa era la cassa del mio negozio. Funziona ancora! Senti?
+Tommaso: Che rumore! È bellissima!
+Alle dodici Tommaso apre la porta della gelateria. Il freezer ronza. I gusti sono pronti: cioccolato, fragola, pistacchio, limone e fiordilatte.
+Signora: Buongiorno! Un cono pistacchio e cioccolato, per favore. Quanto costa?
+Tommaso: Tre euro, signora.
+Tommaso prende la paletta e fa due palline perfette. La signora paga con una banconota da cinque euro.
+Tommaso: Ecco il resto: due euro. Grazie e arrivederci!
+Il secondo cliente è un ragazzo. Vuole pagare con la carta. Chiara prende il terminale.
+Terminale: Pagamento accettato.
+Tommaso: Anche la tecnologia! Siamo una gelateria moderna.
+Nel pomeriggio fa caldissimo. Davanti alla gelateria c’è la fila. Bambini, mamme, operai, turisti.
+Un signore anziano paga con una moneta strana. Il nonno la prende e ride.
+Nonno: Cinquecento lire! Signore, questa moneta non si usa più dal 2002!
+Signore: Lo so. Volevo solo vedere se il ragazzo è attento.
+Tommaso: Sono attentissimo! Sono tre euro, signore. In euro, per favore.
+Alle sette la gelateria chiude. Tommaso è stanco, ma felice.
+Chiara conta le banconote e le monete. Tommaso scrive i numeri sul quaderno.
+Chiara: Abbiamo incassato centosettantasei euro.
+Tommaso: Centosettantasei! Sono di nuovo ricco!
+Chiara: Aspetta. Le spese: latte, zucchero, frutta, coni. Centodieci euro. Il guadagno è sessantasei euro.
+Tommaso: Sessantasei euro… ma è comunque il mio primo guadagno!
+Il nonno prende un salvadanaio nuovo, a forma di cono gelato. Tommaso mette dentro le monete, una per una.
+Nonno: Il primo guadagno non si spende. Si mette da parte. Così domani hai ancora una gelateria.
+Nonna: E un gelato al nonno, gratis. Per la cassa.
+Tutti ridono.
+Questo era «Voci dei soldi». E ricordate: ogni grande negozio è cominciato con un salvadanaio rotto.`,
+    tr:`Guten Tag und willkommen bei „Voci dei soldi“ (Stimmen des Geldes), dem Podcast, der mit dem Leben abrechnet. Heute ist ein wichtiger Tag: Tommaso eröffnet seine Eisdiele. Eine winzige Eisdiele, unten im Haus. Aber vorher muss er etwas Schwieriges tun.
+Tommaso: Leb wohl, Schweinchen! Drei Jahre Ersparnisse!
+Das Sparschwein ist kaputt. Auf dem Tisch liegen unglaublich viele Münzen.
+Chiara: Zählen wir. Zwei-Euro-Münzen, Ein-Euro-Münzen, Fünfzig-Cent-Münzen, Zwanziger …
+Tommaso: Zweihundertsiebenunddreißig Euro fünfzig! Ich bin reich!
+Chiara: Reich? Du brauchst Wechselgeld für die Kunden. Gehen wir zum Geldautomaten.
+Am Geldautomaten steckt Chiara die Karte ein und tippt die Geheimzahl. Die Maschine zählt die Scheine.
+Chiara: Hier sind hundert Euro. Jetzt gehen wir zur Bank und wechseln sie in Münzen.
+Um elf kommt Opa mit einer großen Schachtel. Darin ist eine alte Registrierkasse von 1970.
+Opa: Das war die Kasse meines Ladens. Sie funktioniert noch! Hör mal!
+Tommaso: Was für ein Geräusch! Sie ist wunderschön!
+Um zwölf öffnet Tommaso die Tür der Eisdiele. Der Gefrierschrank brummt. Die Sorten sind bereit: Schokolade, Erdbeere, Pistazie, Zitrone und Fiordilatte.
+Dame: Guten Tag! Eine Waffel Pistazie und Schokolade, bitte. Was kostet das?
+Tommaso: Drei Euro, Signora.
+Tommaso nimmt den Spatel und macht zwei perfekte Kugeln. Die Dame zahlt mit einem Fünf-Euro-Schein.
+Tommaso: Hier ist das Wechselgeld: zwei Euro. Danke und auf Wiedersehen!
+Der zweite Kunde ist ein Junge. Er will mit Karte zahlen. Chiara nimmt das Kartenterminal.
+Terminal: Zahlung akzeptiert.
+Tommaso: Sogar mit Technik! Wir sind eine moderne Eisdiele.
+Am Nachmittag ist es sehr heiß. Vor der Eisdiele ist eine Schlange. Kinder, Mütter, Arbeiter, Touristen.
+Ein älterer Herr zahlt mit einer seltsamen Münze. Opa nimmt sie und lacht.
+Opa: Fünfhundert Lire! Mein Herr, diese Münze benutzt man seit 2002 nicht mehr!
+Herr: Ich weiß. Ich wollte nur sehen, ob der Junge aufpasst.
+Tommaso: Ich passe sehr gut auf! Das macht drei Euro, mein Herr. In Euro, bitte.
+Um sieben schließt die Eisdiele. Tommaso ist müde, aber glücklich.
+Chiara zählt die Scheine und die Münzen. Tommaso schreibt die Zahlen ins Heft.
+Chiara: Wir haben hundertsechsundsiebzig Euro eingenommen.
+Tommaso: Hundertsechsundsiebzig! Ich bin wieder reich!
+Chiara: Warte. Die Ausgaben: Milch, Zucker, Obst, Waffeln. Hundertzehn Euro. Der Gewinn sind sechsundsechzig Euro.
+Tommaso: Sechsundsechzig Euro … aber es ist trotzdem mein erster Gewinn!
+Opa nimmt ein neues Sparschwein in Form einer Eistüte. Tommaso wirft die Münzen hinein, eine nach der anderen.
+Opa: Den ersten Gewinn gibt man nicht aus. Man legt ihn zur Seite. Damit du morgen noch eine Eisdiele hast.
+Oma: Und ein Eis für Opa, umsonst. Für die Kasse.
+Alle lachen.
+Das war „Voci dei soldi“. Und denkt daran: Jeder große Laden hat mit einem kaputten Sparschwein angefangen.`,
+    fact:'Der Euro wurde in Italien am 1. Januar 2002 eingeführt; 1936,27 Lire waren ein Euro. Lire-Münzen konnte man nur noch bis Anfang 2002 benutzen – heute sind sie Sammlerstücke.' }
 ];
 /* Hörgeschichten Viaggio (Podcast „Voci in viaggio“). Figuren aus dem Thema: Anna (aus München), Luca (aus Bologna). */
 PODCAST_INFO.viaggio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: mit dem Zug von Bologna nach Venedig, mit Bahnhofsdurchsagen, Wasserbus und Möwen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
