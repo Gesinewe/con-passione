@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 132;
+const APP_VERSION = 133;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37178,6 +37178,86 @@ Der Film ist zu Ende. Das Licht geht an. Im Saal klatscht jemand.
 Sara: Heute habe ich etwas gelernt: Für zwei Minuten Film braucht man einen ganzen Arbeitstag. Und manchmal ein Taschentuch.
 Das war „Voci dal cinema“. Bis zur nächsten Szene. Klappe!`,
     fact:'Regen im Film ist fast immer künstlich: Regenmaschinen lassen Wasser von Gerüsten oder Kränen fallen, oft mit etwas Milch vermischt, damit die Tropfen vor der Kamera besser sichtbar sind. „Ciak, si gira!“ ist der berühmteste Ausruf am italienischen Filmset.' }
+];
+/* Hörgeschichten Cucina (Podcast „Voci dalla cucina“). Figuren aus dem Thema: Köchin Elena, Nonna Pina, Bruder Matteo, Koch Rocco, Hund Polpetta, Restaurant „Da Pina“. */
+PODCAST_INFO.cucina = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein voller Samstagabend in der Restaurantküche, mit Messern, Pfannen, kochendem Wasser und der Glocke am Pass, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.cucina = [
+  { id:'cucina-p1', show:'Voci dalla cucina', ep:1, title:'Il sabato sera da Pina', de:'Samstagabend bei „Da Pina“',
+    place:'Il ristorante «Da Pina», dalle sette a mezzanotte', level:'ab A2', kind:'Lebhaft · Restaurantküche',
+    voices:{Elena:'Elsa', Rocco:'Giuseppe', Matteo:'Diego', Nonna:'Isabella', Cliente:'Diego'},
+    stil:{'':['-6%','+0Hz'], Elena:['+0%','+18Hz'], Rocco:['+2%','-10Hz'], Matteo:['+4%','+10Hz'], Nonna:['-10%','-14Hz'], Cliente:['-4%','-14Hz']},
+    mormorio:['Che profumo!','Un tavolo per quattro?','Avete il menù?','Un bicchiere di vino rosso.','Buonissimo!','Mi passi il pane?','Salute!','Il conto, per favore.','Prendo le orecchiette.','Complimenti alla cuoca!'],
+    words:[['la cucina','die Küche'],['il tagliere','das Schneidebrett'],['tagliare','schneiden'],['la cipolla','die Zwiebel'],['il soffritto','das angebratene Gemüse (Grundlage)'],['la pentola','der Topf'],['l’acqua bolle','das Wasser kocht'],['buttare la pasta','die Nudeln ins Wasser geben'],['la comanda','die Bestellung (in der Küche)'],['il servizio','der Service; „Bitte servieren!“'],['impiattare','anrichten'],['la padella','die Pfanne'],['flambare','flambieren'],['il tappo','der Korken'],['la lavastoviglie','die Spülmaschine'],['stanco morto','todmüde']],
+    fx:{'Buonasera e benvenuti':'cucina_an', 'Elena taglia le cipolle':'coltello', 'Poi mette l’olio':'soffritto', 'Sul fuoco c’è una pentola':'bollore_an', 'Alle otto Matteo apre':'campanello_porta sala_an', 'Dalla stampante':'stampante_dopo', 'Matteo: Comanda!':'campanella_dopo', 'Elena butta la pasta':'pausa', 'Rocco muove le padelle':'padelle', 'Elena: Servizio!':'campanella piatti_dopo', 'Alle nove e mezza':'pausa', 'La nonna impasta':'impasto', 'Al tavolo sei':'tappo', 'Rocco versa il cognac':'fiammata_dopo', 'Dalla porta di dietro':'abbaio', 'Alle undici e mezza':'pausa sala_aus bollore_aus', 'La lavastoviglie':'lavastoviglie', 'Questo era':'cucina_aus pausa'},
+    text:`Buonasera e benvenuti a «Voci dalla cucina», il podcast che vi porta dietro la porta della cucina. Siamo al ristorante «Da Pina». È sabato, sono le sette di sera. Fra un’ora arrivano i clienti.
+Elena taglia le cipolle sul tagliere. Veloce, velocissima.
+Rocco: Brava, chef! Ma attenta alle dita.
+Elena: Rocco, io ho imparato dalla nonna. Le mie dita sono al sicuro.
+Poi mette l’olio nella padella, aggiunge le cipolle, il sedano e la carota. Il soffritto comincia a cantare.
+Sul fuoco c’è una pentola enorme. L’acqua bolle. Elena aggiunge il sale.
+Elena: Il sale si mette quando l’acqua bolle. Mai prima!
+Alle otto Matteo apre la porta del ristorante. Arrivano i primi clienti. In pochi minuti la sala è piena.
+Dalla stampante esce il primo foglio. Matteo lo legge ad alta voce.
+Matteo: Comanda! Tavolo tre: due orecchiette alle cime di rapa, una carbonara, un risotto ai funghi!
+Elena: Ricevuto!
+Elena butta la pasta. Rocco prende il riso. Tutti si muovono veloci, come in una danza.
+Rocco muove le padelle sul fuoco. Il fuoco è alto. Fa caldissimo.
+Elena: Servizio! Tavolo tre!
+Matteo prende i piatti e corre in sala. Un minuto dopo torna in cucina.
+Matteo: Il tavolo tre dice: complimenti alla cuoca!
+Alle nove e mezza la cucina è un vulcano. Le comande arrivano una dopo l’altra. Ma in un angolo c’è un’isola di calma: la nonna Pina.
+La nonna impasta la farina e l’acqua con le mani, piano piano. Poi con il coltello fa le orecchiette, una per una.
+Nonna: In Puglia le facciamo così da trecento anni. La fretta non è amica della pasta.
+Al tavolo sei un signore festeggia il compleanno. Matteo apre una bottiglia di vino.
+Cliente: Ragazzo, il dolce lo volete fare speciale?
+Rocco sorride. Prepara i gamberi in padella, per lo spettacolo.
+Rocco versa il cognac e accende il fuoco. Una fiammata alta, arancione.
+Dalla sala arriva un «Oooh!» e poi un applauso. Rocco fa un inchino dalla porta della cucina.
+Dalla porta di dietro si sente un abbaio. È Polpetta, il cane. Annusa il profumo delle polpette.
+Elena: Polpetta, no! Le polpette sono per i clienti!
+Nonna: Una sola. Ha lavorato anche lui. Ha fatto la guardia.
+Alle undici e mezza l’ultimo cliente va via. La sala è vuota. In cucina restano piatti, pentole e padelle.
+La lavastoviglie lavora. Rocco pulisce il fuoco. Matteo conta le mance.
+Elena: Ragazzi, adesso mangiamo noi. Che cosa volete?
+Rocco: Una cosa semplice. Pasta, pomodoro e basilico.
+Nonna: La cena dei cuochi è sempre la più buona.
+Si siedono tutti al tavolo della cucina, stanchi morti. Polpetta dorme sotto il tavolo con la sua polpetta.
+Questo era «Voci dalla cucina». Buon appetito, e grazie a tutti quelli che cucinano per noi.`,
+    tr:`Guten Abend und willkommen bei „Voci dalla cucina“ (Stimmen aus der Küche), dem Podcast, der euch hinter die Küchentür bringt. Wir sind im Restaurant „Da Pina“. Es ist Samstag, sieben Uhr abends. In einer Stunde kommen die Gäste.
+Elena schneidet Zwiebeln auf dem Schneidebrett. Schnell, sehr schnell.
+Rocco: Gut gemacht, Chefin! Aber pass auf deine Finger auf.
+Elena: Rocco, ich habe es von Oma gelernt. Meine Finger sind sicher.
+Dann gibt sie Öl in die Pfanne, dazu die Zwiebeln, den Sellerie und die Karotte. Das Soffritto fängt an zu singen.
+Auf dem Herd steht ein riesiger Topf. Das Wasser kocht. Elena gibt das Salz dazu.
+Elena: Das Salz kommt rein, wenn das Wasser kocht. Nie vorher!
+Um acht macht Matteo die Tür des Restaurants auf. Die ersten Gäste kommen. In wenigen Minuten ist der Saal voll.
+Aus dem Drucker kommt der erste Zettel. Matteo liest ihn laut vor.
+Matteo: Bestellung! Tisch drei: zweimal Orecchiette mit Stängelkohl, eine Carbonara, ein Pilzrisotto!
+Elena: Verstanden!
+Elena gibt die Nudeln ins Wasser. Rocco nimmt den Reis. Alle bewegen sich schnell, wie bei einem Tanz.
+Rocco schwenkt die Pfannen auf dem Feuer. Die Flamme ist hoch. Es ist sehr heiß.
+Elena: Service! Tisch drei!
+Matteo nimmt die Teller und rennt in den Saal. Eine Minute später kommt er in die Küche zurück.
+Matteo: Tisch drei sagt: Kompliment an die Köchin!
+Um halb zehn ist die Küche ein Vulkan. Die Bestellungen kommen eine nach der anderen. Aber in einer Ecke gibt es eine Insel der Ruhe: Nonna Pina.
+Oma knetet Mehl und Wasser mit den Händen, ganz langsam. Dann formt sie mit dem Messer die Orecchiette, eine nach der anderen.
+Oma: In Apulien machen wir sie seit dreihundert Jahren so. Eile ist keine Freundin der Pasta.
+An Tisch sechs feiert ein Herr Geburtstag. Matteo öffnet eine Flasche Wein.
+Gast: Junge, macht ihr den Nachtisch zu etwas Besonderem?
+Rocco lächelt. Er bereitet Garnelen in der Pfanne zu, für die Show.
+Rocco gießt den Cognac hinein und zündet ihn an. Eine hohe, orangefarbene Stichflamme.
+Aus dem Saal kommt ein „Oooh!“ und dann Applaus. Rocco verbeugt sich in der Küchentür.
+Von der Hintertür hört man ein Bellen. Das ist Polpetta, der Hund. Er schnuppert den Duft der Fleischbällchen.
+Elena: Polpetta, nein! Die Fleischbällchen sind für die Gäste!
+Oma: Nur eins. Er hat auch gearbeitet. Er hat Wache gehalten.
+Um halb zwölf geht der letzte Gast. Der Saal ist leer. In der Küche bleiben Teller, Töpfe und Pfannen.
+Die Spülmaschine arbeitet. Rocco putzt den Herd. Matteo zählt das Trinkgeld.
+Elena: Leute, jetzt essen wir. Was wollt ihr?
+Rocco: Etwas Einfaches. Nudeln, Tomate und Basilikum.
+Oma: Das Essen der Köche ist immer das beste.
+Alle setzen sich todmüde an den Küchentisch. Polpetta schläft mit seinem Fleischbällchen unter dem Tisch.
+Das war „Voci dalla cucina“. Guten Appetit, und danke an alle, die für uns kochen.`,
+    fact:'In italienischen Restaurantküchen ruft man „Comanda!“, wenn eine neue Bestellung kommt, und „Servizio!“ oder „Pronto!“, wenn ein Teller fertig ist – oft begleitet von einer kleinen Glocke am Pass. Orecchiette („Öhrchen“) sind die typische Pasta Apuliens und werden traditionell von Hand geformt.' }
 ];
 /* Hörgeschichten Dolci (Podcast „Voci della pasticceria“). Figuren aus dem Thema: Sofia, Bruder Leo, Papa Marco (Konditorei), Oma Rosa, Kater Ercole. */
 PODCAST_INFO.dolci = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: eine Nacht in der Konditorei und der erste Kaffee am Morgen, mit Rührmaschine, Ofen und Kaffeemaschine, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
