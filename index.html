@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 130;
+const APP_VERSION = 131;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37404,6 +37404,88 @@ Diese Geschichte ist wahr. Ein römischer Dichter, Martial, war an diesem Tag da
 Heute ist das Kolosseum still. Es gibt Touristen, Fotografen, Katzen. Aber wenn ihr bei Sonnenuntergang hingeht und die Augen schließt … hört ihr vielleicht noch das Eisen der Schwerter. Und fünfzigtausend Stimmen, die rufen: missio!
 Das war „Voci dall’antica Roma“. Valete (lebt wohl), Freunde. Bis zur nächsten Geschichte.`,
     fact:'Die Geschichte ist überliefert: Der Dichter Martial beschreibt im „Buch der Schauspiele“ den Kampf von Verus und Priscus bei der Eröffnung des Kolosseums im Jahr 80 n. Chr. Kaiser Titus erklärte beide zu Siegern und schenkte ihnen die Freiheit. Livia und die Gespräche sind für die Erzählung erfunden.' }
+];
+/* Hörgeschichten Viaggio (Podcast „Voci in viaggio“). Figuren aus dem Thema: Anna (aus München), Luca (aus Bologna). */
+PODCAST_INFO.viaggio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: mit dem Zug von Bologna nach Venedig, mit Bahnhofsdurchsagen, Wasserbus und Möwen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.viaggio = [
+  { id:'viaggio-p1', show:'Voci in viaggio', ep:1, title:'In treno fino a Venezia', de:'Mit dem Zug nach Venedig',
+    place:'Da Bologna Centrale a Venezia', level:'ab A2', kind:'Fröhlich · Unterwegs',
+    voices:{Anna:'Elsa', Luca:'Diego', Annuncio:'Isabella', Controllore:'Giuseppe', Venditore:'Diego', Gondoliere:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Anna:['-2%','+22Hz'], Luca:['+0%','+4Hz'], Annuncio:['+0%','+0Hz'], Controllore:['-4%','-8Hz'], Venditore:['+6%','-14Hz'], Gondoliere:['-10%','-12Hz']},
+    mormorio:['Scusi, dov’è il binario quattro?','Il treno è in ritardo?','Ciao, amore!','Un biglietto per Firenze.','Dove sono le valigie?','Mamma, ho fame!','Corri, corri!','Buon viaggio!','A che ora parte?','Permesso, permesso!'],
+    words:[['la stazione','der Bahnhof'],['il binario','das Gleis'],['in partenza','abfahrbereit'],['convalidare il biglietto','die Fahrkarte entwerten'],['il capotreno','der Zugführer'],['il controllore','der Schaffner'],['il carrello','der Wagen (für Getränke)'],['la laguna','die Lagune'],['la prossima fermata','die nächste Haltestelle'],['il capolinea','die Endstation'],['il vaporetto','der Wasserbus'],['la linea','die Linie'],['il gabbiano','die Möwe'],['il piccione','die Taube'],['il ponte','die Brücke']],
+    fx:{'Buongiorno e benvenuti':'stazione_an', 'Annuncio: Il treno regionale':'gong altoparlante', 'Luca: Aspetta, devo convalidare':'obliteratrice_dopo', 'Il capotreno fischia':'fischietto porte stazione_aus', 'Il treno parte.':'treno_an', 'Venditore: Caffè':'pausa', 'Dopo due ore':'pausa', 'Annuncio: Prossima fermata':'gong altoparlante', 'Il treno si ferma.':'treno_aus porte', 'Usciamo dalla stazione':'acqua_an gabbiani', 'Luca: Due biglietti':'vaporetto_dopo', 'Il vaporetto parte':'motore_barca_an', 'Gondoliere: Oooh-è!':'pausa', 'Scendiamo a San Marco':'motore_barca_aus campane', 'Sulla piazza ci sono':'piccioni', 'La sera, sul ponte di Rialto':'pausa', 'Questo era':'acqua_aus pausa'},
+    text:`Buongiorno e benvenuti a «Voci in viaggio», il podcast per chi ama partire. Oggi Anna e Luca fanno una gita: da Bologna a Venezia, in treno. Siamo alla stazione di Bologna Centrale. Sono le otto di mattina.
+Annuncio: Il treno regionale veloce per Venezia Santa Lucia è in partenza dal binario quattro.
+Anna: Binario quattro! Corri, Luca!
+Luca: Aspetta, devo convalidare il biglietto!
+Luca mette il biglietto nella macchinetta gialla. Poi corrono sul binario con lo zaino.
+Il capotreno fischia. Le porte si chiudono. Anna e Luca sono dentro. Appena in tempo.
+Il treno parte. Anna e Luca trovano due posti vicino al finestrino.
+Anna: Finalmente seduti! Il mio cuore batte come un tamburo.
+Controllore: Buongiorno. Biglietti, prego.
+Luca dà i biglietti. Il controllore li guarda e sorride.
+Controllore: Perfetto, convalidati. Buon viaggio a Venezia!
+Fuori dal finestrino passa la pianura: campi, file di pioppi, case di campagna, il fiume Po. Poi arriva il carrello delle bibite.
+Venditore: Caffè, acqua, panini! Caffè, acqua, panini!
+Luca: Due caffè, per favore.
+Anna beve il caffè e guarda fuori. Il treno corre, e il rumore delle ruote è come una ninna nanna. Luca si addormenta sulla sua spalla.
+Dopo due ore il treno passa su un ponte lunghissimo. A destra e a sinistra c’è solo acqua: la laguna.
+Annuncio: Prossima fermata: Venezia Santa Lucia. Capolinea.
+Il treno si ferma. Tutti scendono. Anna sveglia Luca.
+Anna: Luca! Siamo arrivati!
+Usciamo dalla stazione. E all’improvviso: niente macchine, niente motorini. Davanti a noi c’è il Canal Grande. Si sentono l’acqua e i gabbiani.
+Luca: Due biglietti per il vaporetto, linea uno, per favore.
+Il vaporetto parte piano. Passiamo davanti a palazzi antichi, a gondole nere, al ponte di Rialto. Una gondola gira l’angolo di un canale piccolo. Il gondoliere grida per avvisare.
+Gondoliere: Oooh-è!
+Anna: Che cosa vuol dire?
+Luca: Vuol dire: attenzione, arrivo! È il clacson dei gondolieri.
+Scendiamo a San Marco. Le campane del campanile suonano mezzogiorno.
+Sulla piazza ci sono turisti da tutto il mondo. E i piccioni. Tantissimi piccioni.
+Anna: Non dare da mangiare ai piccioni, Luca! È vietato.
+Luca: Non do niente! Sono loro che mi seguono!
+Anna ride. Passano il pomeriggio a camminare tra calli, ponti e campi. Si perdono tre volte. Ma a Venezia perdersi è bello.
+La sera, sul ponte di Rialto, guardano il tramonto sul Canal Grande.
+Luca: Ti piace Venezia?
+Anna: È come un sogno. Un sogno sull’acqua.
+Luca: Allora… il prossimo viaggio lo scegli tu.
+Questo era «Voci in viaggio». Buon viaggio a tutti, e ricordate: convalidate sempre il biglietto!`,
+    tr:`Guten Morgen und willkommen bei „Voci in viaggio“ (Stimmen unterwegs), dem Podcast für alle, die gern verreisen. Heute machen Anna und Luca einen Ausflug: von Bologna nach Venedig, mit dem Zug. Wir sind am Hauptbahnhof von Bologna. Es ist acht Uhr morgens.
+Durchsage: Der Regionalexpress nach Venezia Santa Lucia fährt von Gleis vier ab.
+Anna: Gleis vier! Lauf, Luca!
+Luca: Warte, ich muss die Fahrkarte entwerten!
+Luca steckt die Fahrkarte in den gelben Automaten. Dann rennen sie mit dem Rucksack auf das Gleis.
+Der Zugführer pfeift. Die Türen gehen zu. Anna und Luca sind drin. Gerade noch rechtzeitig.
+Der Zug fährt ab. Anna und Luca finden zwei Plätze am Fenster.
+Anna: Endlich sitzen wir! Mein Herz schlägt wie eine Trommel.
+Schaffner: Guten Tag. Die Fahrkarten, bitte.
+Luca gibt die Fahrkarten. Der Schaffner schaut sie an und lächelt.
+Schaffner: Perfekt, entwertet. Gute Reise nach Venedig!
+Draußen vor dem Fenster zieht die Ebene vorbei: Felder, Pappelreihen, Bauernhäuser, der Fluss Po. Dann kommt der Getränkewagen.
+Verkäufer: Kaffee, Wasser, Brötchen! Kaffee, Wasser, Brötchen!
+Luca: Zwei Kaffee, bitte.
+Anna trinkt den Kaffee und schaut hinaus. Der Zug rast, und das Geräusch der Räder ist wie ein Schlaflied. Luca schläft an ihrer Schulter ein.
+Nach zwei Stunden fährt der Zug über eine sehr lange Brücke. Rechts und links ist nur Wasser: die Lagune.
+Durchsage: Nächster Halt: Venezia Santa Lucia. Endstation.
+Der Zug hält. Alle steigen aus. Anna weckt Luca.
+Anna: Luca! Wir sind da!
+Wir verlassen den Bahnhof. Und plötzlich: keine Autos, keine Motorroller. Vor uns liegt der Canal Grande. Man hört das Wasser und die Möwen.
+Luca: Zwei Fahrkarten für den Wasserbus, Linie eins, bitte.
+Der Wasserbus fährt langsam los. Wir fahren an alten Palästen vorbei, an schwarzen Gondeln, an der Rialtobrücke. Eine Gondel biegt um die Ecke eines kleinen Kanals. Der Gondoliere ruft, um zu warnen.
+Gondoliere: Oooh-è!
+Anna: Was bedeutet das?
+Luca: Das bedeutet: Achtung, ich komme! Das ist die Hupe der Gondolieri.
+Wir steigen am Markusplatz aus. Die Glocken des Kirchturms läuten Mittag.
+Auf dem Platz sind Touristen aus aller Welt. Und die Tauben. Unglaublich viele Tauben.
+Anna: Füttere die Tauben nicht, Luca! Das ist verboten.
+Luca: Ich gebe ihnen nichts! Sie laufen mir hinterher!
+Anna lacht. Sie verbringen den Nachmittag damit, durch Gassen, über Brücken und Plätze zu laufen. Sie verlaufen sich dreimal. Aber in Venedig ist Verlaufen schön.
+Am Abend schauen sie von der Rialtobrücke dem Sonnenuntergang über dem Canal Grande zu.
+Luca: Gefällt dir Venedig?
+Anna: Es ist wie ein Traum. Ein Traum auf dem Wasser.
+Luca: Dann … suchst du die nächste Reise aus.
+Das war „Voci in viaggio“. Gute Reise euch allen, und denkt daran: Entwertet immer eure Fahrkarte!`,
+    fact:'Regionalzug-Fahrkarten auf Papier muss man in Italien vor dem Einsteigen in einem kleinen Automaten am Bahnsteig entwerten („convalidare“) – sonst droht eine Strafe. In Venedig gibt es keine Autos: Man fährt mit dem Vaporetto (Wasserbus) oder geht zu Fuß.' }
 ];
 /*LEGG-END*/
 /* ---------- Tonindex: welcher Text liegt in welcher Sammeldatei ---------- */
