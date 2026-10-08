@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 125;
+const APP_VERSION = 126;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -32652,8 +32652,9 @@ let lastTopic = null;
 function podcastsHtml(t){
   const list = PODCASTS[t.id] || [];
   if (!list.length) return '';
-  return `<h2 class="eyebrow section-h" id="sec-podcast">Legenden zum Zuhören</h2>
-      <p class="gp">Wie ein kleiner Podcast: gruselige italienische Legenden, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.</p>
+  const info = PODCAST_INFO[t.id] || {h:'Zum Zuhören', lead:''};
+  return `<h2 class="eyebrow section-h" id="sec-podcast">${info.h}</h2>
+      <p class="gp">${info.lead}</p>
       <div class="tiles">${list.map((p, i) => `<button class="tile story${S.done[p.id] ? ' done' : ''}" data-podcast="${t.id}:${i}">
         <span class="tn">${S.done[p.id] ? '✓' : '🎧'}</span><span class="ti">${p.title}</span>
         <span class="sub">${p.de} · Folge ${p.ep} · ${p.level}</span>
@@ -32736,7 +32737,7 @@ function renderTopic(id){
           <span class="prog">${doneL} von ${t.lessons.length} Lektionen · ${doneS} von ${t.stories.length} Geschichten</span>
           <button class="chipbtn" data-openonly aria-pressed="${only}">${only ? '✓ ' : ''}Nur offene Aufgaben zeigen</button>
         </div>
-        <nav class="toc" aria-label="Springe zu"><a href="#sec-lessons">Lektionen</a><a href="#sec-stories">Geschichten</a>${(PODCASTS[t.id] || []).length ? '<a href="#sec-podcast">Legenden</a>' : ''}<a href="#sec-practice">Üben</a><a href="#sec-vocab">Wortschatz</a></nav>
+        <nav class="toc" aria-label="Springe zu"><a href="#sec-lessons">Lektionen</a><a href="#sec-stories">Geschichten</a>${(PODCASTS[t.id] || []).length ? `<a href="#sec-podcast">${(PODCAST_INFO[t.id] || {}).nav || 'Zuhören'}</a>` : ''}<a href="#sec-practice">Üben</a><a href="#sec-vocab">Wortschatz</a></nav>
       </div>
       <div style="margin-top:14px">${kindLegend()}</div>
       <h2 class="eyebrow section-h" id="sec-lessons">Lektionen</h2>
@@ -35042,6 +35043,11 @@ const GRAMMAR = [
 /*LEGG-START*/
 /* Gruselige Legenden zum Zuhören (Podcast „Brividi nella notte“) – Thema Brividi. Nur hören, keine Aufgaben.
    Zeilen ohne „Name: “ liest die Erzählerin (Isabella). Ton-Bündel: leggende-<thema> (zweiter Speicher, EXT_THEMEN). */
+/* Überschrift und Einleitung des Abschnitts auf der Themenseite, pro Thema */
+const PODCAST_INFO = {
+  brividi:{h:'Legenden zum Zuhören', nav:'Legenden', lead:'Wie ein kleiner Podcast: gruselige italienische Legenden, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'},
+  roma:{h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: spannende Geschichten aus dem alten Rom, mit Geräuschen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'}
+};
 const PODCASTS = {
   brividi:[
     { id:'brividi-p1', show:'Brividi nella notte', ep:1, title:'Azzurrina', de:'Die Legende von Azzurrina',
@@ -35123,6 +35129,90 @@ Das war „Brividi nella notte“. Jetzt könnt ihr das Licht wieder anmachen. W
       fact:'Die Legende von Azzurrina ist eine der bekanntesten Spukgeschichten Italiens. Die Burg von Montebello (Poggio Torriana, Provinz Rimini) gibt es wirklich – man kann sie besichtigen, und zur Sonnenwende gibt es dort Abendführungen.' }
   ]
 };
+/* Hörgeschichten Roma antica (Podcast „Voci dall’antica Roma“). Wahre Geschichte: Verus und Priscus, Eröffnung des Kolosseums 80 n. Chr. (Martial, Liber spectaculorum 29). */
+PODCASTS.roma = [
+  { id:'roma-p1', show:'Voci dall’antica Roma', ep:1, title:'Vero e Prisco', de:'Verus und Priscus – zwei Gladiatoren im Kolosseum',
+    place:'Colosseo, Roma, anno 80 d.C.', level:'ab A2', kind:'Spannend · Wahre Geschichte',
+    voices:{Livia:'Elsa', Prisco:'Giuseppe', Vero:'Diego', Tito:'Giuseppe'},
+    /* Sprechweise je Sprecher (Tempo, Tonhöhe) für werkzeuge/podcast_mischen.py; Tito tiefer als Prisco */
+    stil:{'':['-10%','-3Hz'], Tito:['-14%','-16Hz'], Prisco:['-6%','-2Hz'], Vero:['-4%','-2Hz'], Livia:['-4%','+30Hz']},
+    coro:'Missio! Missio! Missio!',
+    words:[['l’anfiteatro','das Amphitheater'],['il gladiatore / i gladiatori','der Gladiator / die Gladiatoren'],['la folla','die Menschenmenge'],['le gradinate','die Zuschauerränge'],['l’arena','die Arena'],['la sabbia','der Sand'],['il gladio','das Kurzschwert der Römer'],['lo scudo','der Schild'],['l’elmo','der Helm'],['il cancello','das Gittertor'],['la tromba','die Trompete'],['colpisce','trifft, schlägt'],['in ginocchio','auf den Knien'],['la pietà','das Mitleid, die Gnade'],['la palma della vittoria','der Siegespalmzweig'],['la spada di legno','das Holzschwert (Zeichen der Freiheit)'],['libero / libera','frei']],
+    fx:{'Ave, ascoltatori':'tromba', 'Sentite questo rumore':'folla_an', 'Sotto l’arena':'pausa folla_aus sotto_an', 'Suonano le trombe':'sotto_aus folla_an tromba', 'Un cancello di ferro':'cancello', 'I due gladiatori salgono':'urlo_dopo', 'Tito: Che il combattimento':'tamburo', 'Le spade si toccano':'spade', 'Poi Prisco gira veloce':'spade', 'Vero cade in ginocchio':'gemito_vero urlo', 'Vero si alza':'pausa', 'Attacca di nuovo':'spade', 'Prisco cade':'spade gemito_prisco', 'Dopo un’ora':'pausa', 'La folla comincia a gridare':'coro', 'Tutti guardano l’imperatore':'pausa', 'Tito dà a tutti e due':'urlo', 'Vero e Prisco si abbracciano':'urlo', 'Questa storia è vera':'pausa folla_aus', 'Questo era':'pausa tromba_dopo'},
+    text:`Ave, ascoltatori, e benvenuti a «Voci dall’antica Roma». Chiudete gli occhi. Adesso non siamo più nel ventunesimo secolo. Siamo a Roma. È l’anno 80 dopo Cristo.
+Sentite questo rumore? Sono cinquantamila persone. Sono tutte in un edificio nuovo, enorme, bianchissimo: l’Anfiteatro Flavio. Oggi lo chiamiamo Colosseo.
+È un giorno speciale. L’imperatore Tito inaugura il Colosseo con cento giorni di giochi. E oggi, finalmente, c’è il combattimento più atteso: Vero contro Prisco.
+Sulle gradinate, in alto, c’è una bambina di dieci anni. Si chiama Livia. È la prima volta che viene all’anfiteatro. Stringe forte la mano del padre.
+Livia: Papà, quanta gente! E quanto rumore!
+Sotto l’arena, nel buio, ci sono corridoi, stanze e gabbie per gli animali. Lì aspettano i gladiatori. Vero è seduto su una panca di legno. Accanto a lui c’è Prisco.
+Vero e Prisco si conoscono da anni. Si allenano nella stessa scuola. Mangiano lo stesso pane. Dormono nella stessa stanza. Oggi devono combattere. Uno contro l’altro.
+Prisco: Vero. Hai paura?
+Vero: Sì. E tu?
+Prisco: Anch’io. Ma la paura resta qui sotto. Lassù combattiamo bene. Per noi. Non per loro.
+Vero: E se uno di noi muore?
+Prisco: Allora l’altro si ricorda di lui. Per sempre.
+Suonano le trombe. È il momento.
+Un cancello di ferro si apre.
+I due gladiatori salgono la rampa ed entrano nella luce. La sabbia è calda e bianca. Il sole brucia.
+Livia: Papà, guarda! Sono loro!
+Vero ha un grande scudo rettangolare e una spada corta, il gladio. Prisco ha un elmo con la cresta e uno scudo più piccolo. Salutano l’imperatore. Tito alza la mano. Silenzio.
+Tito: Che il combattimento cominci!
+Le spade si toccano. Una volta. Due volte. Tre. Il rumore del ferro rimbalza sui muri. Vero attacca. Prisco si difende con lo scudo.
+Poi Prisco gira veloce e colpisce.
+Vero cade in ginocchio.
+Livia: No! Alzati! Alzati!
+Vero si alza. Ha la sabbia negli occhi e il sangue sul braccio. Ma si alza.
+Attacca di nuovo. Il combattimento dura tanto. Troppo. Il sole sale. Il sudore scende. Le braccia diventano pesanti come il piombo.
+Prisco cade. Poi cade anche Vero. Poi si rialzano tutti e due. Ancora. E ancora.
+Dopo un’ora nessuno vince. I due gladiatori sono stanchi morti. Respirano forte. Si guardano. Poi, insieme, fanno una cosa che nessuno si aspetta. Abbassano le spade. E alzano un dito verso l’imperatore. È il segno che vuol dire: basta, chiediamo pietà.
+La folla comincia a gridare. In latino «missio» vuol dire: lasciateli andare!
+Livia: Missio! Missio!
+Tutti guardano l’imperatore. Tito si alza. Il Colosseo diventa silenzioso. Cinquantamila persone non respirano.
+Tito: Ho visto due uomini coraggiosi. Oggi non c’è un vincitore. Ci sono due vincitori.
+Tito dà a tutti e due la palma della vittoria. E poi dà a tutti e due una spada di legno, la rudis. Chi riceve la spada di legno è libero. Non deve combattere mai più.
+Vero e Prisco si abbracciano in mezzo all’arena. La folla impazzisce. Livia piange e ride insieme.
+Livia: Papà, sono liberi! Tutti e due!
+Questa storia è vera. Un poeta romano, Marziale, era lì quel giorno. Ha scritto tutto in una poesia. È l’unico combattimento tra gladiatori di cui conosciamo i nomi e la fine.
+Oggi il Colosseo è silenzioso. Ci sono turisti, fotografi, gatti. Ma se andate lì al tramonto e chiudete gli occhi… forse sentite ancora il ferro delle spade. E cinquantamila voci che gridano: missio!
+Questo era «Voci dall’antica Roma». Valete, amici. Alla prossima storia.`,
+    tr:`Ave (sei gegrüßt), liebe Zuhörer, und willkommen bei „Voci dall’antica Roma“ (Stimmen aus dem alten Rom). Schließt die Augen. Jetzt sind wir nicht mehr im einundzwanzigsten Jahrhundert. Wir sind in Rom. Es ist das Jahr 80 nach Christus.
+Hört ihr diesen Lärm? Das sind fünfzigtausend Menschen. Sie sind alle in einem neuen, riesigen, schneeweißen Gebäude: dem Flavischen Amphitheater. Heute nennen wir es Kolosseum.
+Es ist ein besonderer Tag. Kaiser Titus eröffnet das Kolosseum mit hundert Tagen Spielen. Und heute gibt es endlich den Kampf, auf den alle warten: Verus gegen Priscus.
+Oben auf den Rängen sitzt ein zehnjähriges Mädchen. Sie heißt Livia. Sie ist zum ersten Mal im Amphitheater. Sie hält die Hand ihres Vaters ganz fest.
+Livia: Papa, so viele Leute! Und so ein Lärm!
+Unter der Arena, im Dunkeln, gibt es Gänge, Räume und Käfige für die Tiere. Dort warten die Gladiatoren. Verus sitzt auf einer Holzbank. Neben ihm sitzt Priscus.
+Verus und Priscus kennen sich seit Jahren. Sie trainieren in derselben Schule. Sie essen dasselbe Brot. Sie schlafen im selben Raum. Heute müssen sie kämpfen. Einer gegen den anderen.
+Priscus: Verus. Hast du Angst?
+Verus: Ja. Und du?
+Priscus: Ich auch. Aber die Angst bleibt hier unten. Da oben kämpfen wir gut. Für uns. Nicht für sie.
+Verus: Und wenn einer von uns stirbt?
+Priscus: Dann erinnert sich der andere an ihn. Für immer.
+Die Trompeten erklingen. Es ist so weit.
+Ein Eisentor öffnet sich.
+Die beiden Gladiatoren gehen die Rampe hinauf und treten ins Licht. Der Sand ist heiß und weiß. Die Sonne brennt.
+Livia: Papa, schau! Da sind sie!
+Verus hat einen großen rechteckigen Schild und ein kurzes Schwert, den Gladius. Priscus hat einen Helm mit Kamm und einen kleineren Schild. Sie grüßen den Kaiser. Titus hebt die Hand. Stille.
+Titus: Der Kampf soll beginnen!
+Die Schwerter treffen sich. Einmal. Zweimal. Dreimal. Der Klang des Eisens hallt von den Mauern wider. Verus greift an. Priscus wehrt sich mit dem Schild.
+Dann dreht sich Priscus schnell und trifft.
+Verus fällt auf die Knie.
+Livia: Nein! Steh auf! Steh auf!
+Verus steht auf. Er hat Sand in den Augen und Blut am Arm. Aber er steht auf.
+Er greift wieder an. Der Kampf dauert lange. Zu lange. Die Sonne steigt. Der Schweiß rinnt. Die Arme werden schwer wie Blei.
+Priscus fällt. Dann fällt auch Verus. Dann stehen beide wieder auf. Noch einmal. Und noch einmal.
+Nach einer Stunde gewinnt keiner. Die beiden Gladiatoren sind todmüde. Sie atmen schwer. Sie sehen sich an. Dann tun sie gemeinsam etwas, womit niemand rechnet. Sie senken die Schwerter. Und heben einen Finger zum Kaiser. Das ist das Zeichen für: Genug, wir bitten um Gnade.
+Die Menge beginnt zu rufen. Auf Lateinisch bedeutet „missio“: Lasst sie gehen!
+Livia: Missio! Missio!
+Alle schauen zum Kaiser. Titus steht auf. Das Kolosseum wird still. Fünfzigtausend Menschen halten den Atem an.
+Titus: Ich habe zwei mutige Männer gesehen. Heute gibt es nicht einen Sieger. Es gibt zwei Sieger.
+Titus gibt beiden den Siegespalmzweig. Und dann gibt er beiden ein Holzschwert, die Rudis. Wer das Holzschwert bekommt, ist frei. Er muss nie wieder kämpfen.
+Verus und Priscus umarmen sich mitten in der Arena. Die Menge tobt. Livia weint und lacht zugleich.
+Livia: Papa, sie sind frei! Alle beide!
+Diese Geschichte ist wahr. Ein römischer Dichter, Martial, war an diesem Tag dabei. Er hat alles in einem Gedicht aufgeschrieben. Es ist der einzige Gladiatorenkampf, von dem wir die Namen und das Ende kennen.
+Heute ist das Kolosseum still. Es gibt Touristen, Fotografen, Katzen. Aber wenn ihr bei Sonnenuntergang hingeht und die Augen schließt … hört ihr vielleicht noch das Eisen der Schwerter. Und fünfzigtausend Stimmen, die rufen: missio!
+Das war „Voci dall’antica Roma“. Valete (lebt wohl), Freunde. Bis zur nächsten Geschichte.`,
+    fact:'Die Geschichte ist überliefert: Der Dichter Martial beschreibt im „Buch der Schauspiele“ den Kampf von Verus und Priscus bei der Eröffnung des Kolosseums im Jahr 80 n. Chr. Kaiser Titus erklärte beide zu Siegern und schenkte ihnen die Freiheit. Livia und die Gespräche sind für die Erzählung erfunden.' }
+];
 /*LEGG-END*/
 /* ---------- Tonindex: welcher Text liegt in welcher Sammeldatei ---------- */
 const SOUND_SRC = {};
