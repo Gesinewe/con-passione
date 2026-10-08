@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 126;
+const APP_VERSION = 127;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -35129,6 +35129,101 @@ Das war „Brividi nella notte“. Jetzt könnt ihr das Licht wieder anmachen. W
       fact:'Die Legende von Azzurrina ist eine der bekanntesten Spukgeschichten Italiens. Die Burg von Montebello (Poggio Torriana, Provinz Rimini) gibt es wirklich – man kann sie besichtigen, und zur Sonnenwende gibt es dort Abendführungen.' }
   ]
 };
+/* Hörgeschichten Cavalli (Podcast „In sella!“). Figuren aus dem Thema: Sara (Fulmine), Luca (Tornado), Carla (Reitstall, Stute Stella), Pony Pepe. */
+PODCAST_INFO.cavalli = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Ausritte und Geschichten mit Pferden, mit Geräuschen aus der Natur, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.cavalli = [
+  { id:'cavalli-p1', show:'In sella!', ep:1, title:'Una passeggiata in Toscana', de:'Ein Ausritt in der Toskana',
+    place:'Colline toscane, vicino a San Gimignano', level:'ab A2', kind:'Ruhig · Natur',
+    voices:{Sara:'Elsa', Luca:'Diego', Carla:'Isabella'},
+    stil:{'':['-8%','+0Hz'], Carla:['-3%','-12Hz'], Sara:['-4%','+25Hz'], Luca:['-2%','+0Hz']},
+    words:[['il maneggio','der Reitstall'],['la sella','der Sattel'],['le briglie','das Zaumzeug, die Zügel'],['al passo','im Schritt'],['al trotto','im Trab'],['al galoppo','im Galopp'],['lo zoccolo / gli zoccoli','der Huf / die Hufe'],['sbuffa','schnaubt'],['la vigna','der Weinberg'],['il cipresso','die Zypresse'],['la quercia','die Eiche'],['il ruscello','der Bach'],['il muso','das Maul'],['il girasole / i girasoli','die Sonnenblume / die Sonnenblumen'],['la cicala / le cicale','die Zikade / die Zikaden'],['rallentano','sie werden langsamer'],['accarezza','streichelt']],
+    fx:{'Ciao a tutti':'uccelli_an', 'Fulmine sbuffa':'sbuffo', 'I tre cavalli escono':'passo_an', 'Poi la strada entra nel bosco':'vento_an', 'Dopo mezz’ora':'passo_aus ruscello_an', 'Tornado mette tutto il muso':'sbuffo', 'Dall’altra parte del ruscello':'ruscello_aus vento_aus', 'I cavalli trottano':'trotto_an', 'Alla fine del bosco':'trotto_aus cicale_an', 'I cavalli partono':'galoppo_an', 'Alla fine del campo':'galoppo_aus', 'Carla: Bravi tutti':'sbuffo', 'Si fermano sotto una vecchia quercia':'cicale_aus vento_an', 'Per un po’ nessuno parla':'pausa', 'Lontano, suonano le campane':'campane', 'Tornano piano':'passo_an', 'Sara è sicura':'sbuffo', 'Questo era':'pausa passo_aus'},
+    text:`Ciao a tutti e benvenuti a «In sella!», il podcast per chi ama i cavalli. Oggi niente gare e niente paura. Oggi facciamo una passeggiata. Mettetevi comodi… e venite con noi.
+È domenica mattina, in Toscana. Sono le sette. Il sole è ancora basso e l’aria è fresca. Nel maneggio di Carla tre cavalli sono già pronti, con la sella e le briglie.
+Fulmine sbuffa. Ha voglia di partire.
+Sara: Buongiorno, Fulmine! Oggi andiamo lontano, sai?
+Luca sale su Tornado, il cavallo più vivace del maneggio. Carla prende Stella, la cavalla bianca, calma e saggia.
+Carla: Allora, ragazzi. Prima al passo, poi vediamo. E restiamo sempre in fila, va bene?
+Luca: Va bene, capo!
+I tre cavalli escono dal cancello. Al passo. Uno dietro l’altro. Si sentono solo gli zoccoli sulla strada bianca e gli uccelli negli alberi.
+La strada passa tra le vigne. Le foglie sono verdi e l’uva è quasi matura. A destra c’è una fila di cipressi, alti e scuri. In lontananza si vedono le colline, una dopo l’altra, morbide come onde.
+Sara chiude gli occhi un momento. Sente il profumo dell’erba, il calore del cavallo, il movimento lento e tranquillo. Pensa: questa è la felicità.
+Poi la strada entra nel bosco. Qui fa più fresco. Il vento muove le foglie delle querce. Sembra il rumore del mare.
+Luca: Sentite? Il bosco parla!
+Carla: È solo il vento, Luca. Ma è bello, vero?
+Dopo mezz’ora arrivano a un piccolo ruscello. L’acqua è chiara e fredda. I cavalli si fermano e bevono.
+Tornado mette tutto il muso nell’acqua. Poi alza la testa e sbuffa. L’acqua vola dappertutto. Su Luca.
+Luca: Tornado! Sono tutto bagnato!
+Sara ride così forte che quasi cade dalla sella.
+Carla: Lo fa sempre. Gli piacciono gli scherzi.
+Dall’altra parte del ruscello il sentiero sale. Carla si gira.
+Carla: Pronti? Adesso al trotto!
+I cavalli trottano. Su e giù, su e giù. Sara si alza e si siede sulla sella, a ritmo con Fulmine. Il cuore batte più veloce.
+Alla fine del bosco c’è un grande campo di girasoli. Migliaia di fiori gialli guardano tutti il sole. Fa già caldo. Le cicale cantano.
+Luca: Carla… possiamo? Solo un po’?
+Carla guarda il campo. Il sentiero è largo e piano. Sorride.
+Carla: Va bene. Ma state attenti. Al mio via… galoppo!
+I cavalli partono. Il vento soffia sulla faccia. I girasoli passano veloci: giallo, giallo, giallo. Sara non pensa a niente. C’è solo il rumore degli zoccoli, il respiro di Fulmine e il cielo azzurro.
+Sara: È fantastico!
+Alla fine del campo i cavalli rallentano. Sono sudati e contenti. Anche i cavalieri.
+Carla: Bravi tutti. E bravi i cavalli.
+Si fermano sotto una vecchia quercia, in cima a una collina. Da lì si vede tutta la valle e, lontano, le torri di San Gimignano.
+Scendono da cavallo. Fulmine, Tornado e Stella mangiano l’erba. Carla apre lo zaino: pane, formaggio, pomodori e una bottiglia d’acqua fresca.
+Luca: Questo è il panino più buono della mia vita.
+Sara: Dici sempre così.
+Luca: Ma oggi è vero.
+Per un po’ nessuno parla. Si sentono solo il vento negli alberi, gli uccelli e i cavalli che mangiano l’erba.
+Lontano, suonano le campane di una chiesa. È mezzogiorno.
+Carla: Ragazzi, è ora di tornare. I cavalli hanno fame. E Pepe ci aspetta.
+Tornano piano, al passo, per un’altra strada. Sara accarezza il collo di Fulmine.
+Sara: Grazie, Fulmine. Per oggi.
+Fulmine muove le orecchie. Poi sbuffa piano.
+Sara è sicura: vuol dire «prego».
+Questo era «In sella!». Alla prossima passeggiata. E ricordate: il mondo è più bello visto da un cavallo.`,
+    tr:`Hallo zusammen und willkommen bei „In sella!“ (Im Sattel!), dem Podcast für alle, die Pferde lieben. Heute keine Turniere und keine Angst. Heute machen wir einen Ausritt. Macht es euch gemütlich … und kommt mit.
+Es ist Sonntagmorgen in der Toskana. Es ist sieben Uhr. Die Sonne steht noch tief und die Luft ist frisch. In Carlas Reitstall stehen schon drei Pferde bereit, mit Sattel und Zaumzeug.
+Fulmine schnaubt. Er will los.
+Sara: Guten Morgen, Fulmine! Heute reiten wir weit, weißt du?
+Luca steigt auf Tornado, das lebhafteste Pferd im Stall. Carla nimmt Stella, die weiße Stute, ruhig und klug.
+Carla: Also, Leute. Erst im Schritt, dann sehen wir weiter. Und wir bleiben immer hintereinander, in Ordnung?
+Luca: In Ordnung, Chefin!
+Die drei Pferde gehen durch das Tor hinaus. Im Schritt. Eins hinter dem anderen. Man hört nur die Hufe auf dem weißen Schotterweg und die Vögel in den Bäumen.
+Der Weg führt durch die Weinberge. Die Blätter sind grün und die Trauben sind fast reif. Rechts steht eine Reihe Zypressen, hoch und dunkel. In der Ferne sieht man die Hügel, einer nach dem anderen, sanft wie Wellen.
+Sara schließt kurz die Augen. Sie riecht das Gras, spürt die Wärme des Pferdes, die langsame, ruhige Bewegung. Sie denkt: Das ist Glück.
+Dann führt der Weg in den Wald. Hier ist es kühler. Der Wind bewegt die Blätter der Eichen. Es klingt wie das Rauschen des Meeres.
+Luca: Hört ihr? Der Wald spricht!
+Carla: Das ist nur der Wind, Luca. Aber schön, oder?
+Nach einer halben Stunde kommen sie an einen kleinen Bach. Das Wasser ist klar und kalt. Die Pferde bleiben stehen und trinken.
+Tornado steckt das ganze Maul ins Wasser. Dann hebt er den Kopf und schnaubt. Das Wasser fliegt überallhin. Auf Luca.
+Luca: Tornado! Ich bin ganz nass!
+Sara lacht so laut, dass sie fast aus dem Sattel fällt.
+Carla: Das macht er immer. Er mag Späße.
+Auf der anderen Seite des Bachs geht der Weg bergauf. Carla dreht sich um.
+Carla: Fertig? Jetzt im Trab!
+Die Pferde traben. Auf und ab, auf und ab. Sara steht auf und setzt sich in den Sattel, im Takt mit Fulmine. Ihr Herz schlägt schneller.
+Am Ende des Waldes liegt ein großes Sonnenblumenfeld. Tausende gelbe Blüten schauen alle zur Sonne. Es ist schon heiß. Die Zikaden singen.
+Luca: Carla … dürfen wir? Nur ein bisschen?
+Carla schaut über das Feld. Der Weg ist breit und eben. Sie lächelt.
+Carla: Na gut. Aber passt auf. Auf mein Kommando … Galopp!
+Die Pferde laufen los. Der Wind bläst ins Gesicht. Die Sonnenblumen fliegen vorbei: gelb, gelb, gelb. Sara denkt an nichts. Es gibt nur das Geräusch der Hufe, den Atem von Fulmine und den blauen Himmel.
+Sara: Das ist fantastisch!
+Am Ende des Feldes werden die Pferde langsamer. Sie sind verschwitzt und zufrieden. Die Reiter auch.
+Carla: Gut gemacht, alle. Und gut gemacht, Pferde.
+Sie halten unter einer alten Eiche, oben auf einem Hügel. Von dort sieht man das ganze Tal und, weit weg, die Türme von San Gimignano.
+Sie steigen ab. Fulmine, Tornado und Stella fressen Gras. Carla öffnet den Rucksack: Brot, Käse, Tomaten und eine Flasche kühles Wasser.
+Luca: Das ist das beste Brötchen meines Lebens.
+Sara: Das sagst du immer.
+Luca: Aber heute stimmt es.
+Eine Weile spricht niemand. Man hört nur den Wind in den Bäumen, die Vögel und die Pferde, die Gras fressen.
+In der Ferne läuten die Glocken einer Kirche. Es ist Mittag.
+Carla: Leute, wir müssen zurück. Die Pferde haben Hunger. Und Pepe wartet auf uns.
+Sie reiten langsam zurück, im Schritt, auf einem anderen Weg. Sara streichelt Fulmines Hals.
+Sara: Danke, Fulmine. Für heute.
+Fulmine bewegt die Ohren. Dann schnaubt er leise.
+Sara ist sicher: Das heißt „gern geschehen“.
+Das war „In sella!“. Bis zum nächsten Ausritt. Und denkt daran: Vom Pferderücken aus ist die Welt schöner.`,
+    fact:'San Gimignano mit seinen mittelalterlichen Geschlechtertürmen liegt zwischen Florenz und Siena. Auf den „strade bianche“, den weißen Schotterwegen der Toskana, wird viel geritten – Ausritte durch Weinberge und Sonnenblumenfelder sind dort sehr beliebt.' }
+];
 /* Hörgeschichten Roma antica (Podcast „Voci dall’antica Roma“). Wahre Geschichte: Verus und Priscus, Eröffnung des Kolosseums 80 n. Chr. (Martial, Liber spectaculorum 29). */
 PODCASTS.roma = [
   { id:'roma-p1', show:'Voci dall’antica Roma', ep:1, title:'Vero e Prisco', de:'Verus und Priscus – zwei Gladiatoren im Kolosseum',
