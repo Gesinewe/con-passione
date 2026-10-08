@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 137;
+const APP_VERSION = 138;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37155,6 +37155,89 @@ Sofia: Opa, heute habe ich etwas verstanden. Fußball ist nicht nur ein Spiel.
 Opa: Genau. Fußball ist eine Familie aus fünfzigtausend Menschen. Sogar mit einem Juve-Papa.
 Das war „Voci dallo stadio“. Bis zum nächsten Spiel. Und immer: Forza!`,
     fact:'Das Stadion von Neapel heißt seit 2020 „Stadio Diego Armando Maradona“, nach dem argentinischen Spieler, der Napoli 1987 und 1990 zur Meisterschaft führte. Viele Fans hören das Spiel im Stadion zusätzlich im Radio – eine alte italienische Gewohnheit.' }
+];
+/* Hörgeschichten Cani (Podcast „Voci a quattro zampe“). Figuren aus dem Thema: Giulia, Bruder Tommaso, Hündin Briciola, Opa Nicola (Schäfer in den Abruzzen), sein Hirtenhund Re. */
+PODCAST_INFO.cani = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: mit Opa Nicola, dreihundert Schafen und Briciola auf die Sommerweide in den Abruzzen – mit Schafglocken, Pfiffen, Bellen, Bach, Lagerfeuer und Wölfen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.cani = [
+  { id:'cani-p1', show:'Voci a quattro zampe', ep:1, title:'La transumanza', de:'Der Almauftrieb',
+    place:'Dal paese ai pascoli della Majella, Abruzzo, inizio giugno', level:'ab A2', kind:'Abenteuer · Berge',
+    voices:{Giulia:'Isabella', Tommaso:'Elsa', Nonno:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Giulia:['+0%','+14Hz'], Tommaso:['+6%','+44Hz'], Nonno:['-10%','-16Hz']},
+    words:[['il pastore','der Schäfer'],['il gregge','die Herde'],['la pecora','das Schaf'],['l’agnellino','das Lämmchen'],['il campanaccio','die Herdenglocke'],['la transumanza','der Herdenwechsel auf die Sommerweide'],['il pascolo','die Weide'],['il cane da pastore','der Hirtenhund'],['fischiare','pfeifen'],['abbaiare','bellen'],['il ruscello','der Bach'],['annusare','schnuppern'],['il fuoco','das Feuer'],['il lupo','der Wolf'],['ululare','heulen'],['fare la guardia','Wache halten']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Alle cinque':'campanacci_an pecore', 'Il nonno fischia':'fischio_pastore abbaio_dopo', 'Re è un grande':'pausa', 'Briciola invece':'abbaio pecore_dopo', 'La strada sale':'uccelli_an', 'A mezzogiorno':'ruscello_an pecore', 'Il nonno conta':'pausa', 'Briciola alza il naso':'ansimare', 'Dietro un cespuglio':'agnello', 'Briciola torna':'agnello pecore_dopo', 'Nel pomeriggio':'ruscello_aus uccelli_aus vento_an', 'La sera':'campanacci_aus falo_an', 'Dal bosco':'lupo', 'Re si alza':'ringhio', 'Il nonno mette':'pausa', 'La mattina dopo':'falo_aus vento_aus uccelli_an', 'Questo era':'uccelli_aus pausa'},
+    text:`Buongiorno e benvenuti a «Voci a quattro zampe», il podcast che ha il naso sempre per terra. Oggi siamo in Abruzzo, in un piccolo paese di montagna. È giugno. Ed è il giorno della transumanza: il nonno Nicola porta le sue pecore sui pascoli alti della Majella.
+Tommaso: Nonno, quante pecore hai?
+Nonno: Trecentoventi. E due cani. Re, il mio cane da pastore. E quest’anno… Briciola.
+Giulia: Briciola è un cane di città, nonno. Non ha mai visto una pecora.
+Nonno: Allora oggi impara.
+Alle cinque di mattina il gregge parte. Trecentoventi pecore, trecentoventi campanacci.
+Il nonno fischia. Re corre subito dietro il gregge, in silenzio, e lo tiene unito.
+Re è un grande cane bianco, un pastore maremmano. Non abbaia quasi mai. Lavora e basta.
+Briciola invece abbaia, corre avanti, corre indietro e salta in mezzo alle pecore. Le pecore scappano da tutte le parti.
+Giulia: Briciola! Vieni qui! Che disastro!
+Nonno: Tranquilla. Il primo giorno anche Re era così. Guarda e impara, Briciola. Guarda Re.
+La strada sale tra i faggi. Il sole si alza. Le pecore camminano piano, e Briciola cammina piano dietro Re. Comincia a capire.
+A mezzogiorno si fermano vicino a un ruscello. Le pecore bevono. I ragazzi mangiano pane e pecorino.
+Il nonno conta le pecore. Una volta. Due volte.
+Nonno: Trecentodiciannove. Manca un agnellino.
+Tommaso: Dove può essere?
+Nonno: Forse è rimasto indietro, nel bosco. Il bosco è grande.
+Briciola alza il naso. Annusa l’aria. Poi corre lungo il ruscello, veloce.
+Giulia: Briciola! Aspetta!
+Giulia e Tommaso le corrono dietro. Dopo cinque minuti sentono un belato piccolo piccolo.
+Dietro un cespuglio, vicino all’acqua, c’è l’agnellino. Ha la zampa incastrata tra due sassi.
+Giulia libera la zampa. L’agnellino sta bene. Briciola gli lecca il muso.
+Briciola torna al gregge con l’agnellino. Cammina davanti a lui, piano, come una maestra.
+Nonno: Trecentoventi. Brava, Briciola. Un cane di città con il naso di montagna.
+Nel pomeriggio arrivano ai pascoli alti. Non ci sono alberi, solo erba, vento e cielo.
+La sera il nonno accende un fuoco vicino al rifugio. Le pecore dormono. Le stelle sono tantissime.
+Dal bosco arriva un suono lungo, lontano. Uuuuh.
+Tommaso: Nonno… è un lupo?
+Nonno: Sì. Sulla Majella ci sono i lupi. Ma non avere paura. Per questo c’è Re.
+Re si alza. Va davanti al gregge e guarda verso il bosco. Ringhia piano, una volta sola.
+Il lupo non ulula più.
+Il nonno mette un’altra legna sul fuoco. Briciola si sdraia vicino a Re. Per la prima volta, non abbaia. Fa la guardia anche lei.
+La mattina dopo il sole sorge sulle montagne. Briciola dorme ancora, con la testa sulla zampa di Re.
+Giulia: Nonno, l’anno prossimo torniamo?
+Nonno: Certo. Adesso ho tre cani. E due pastori nuovi.
+Questo era «Voci a quattro zampe». E ricordate: ogni cane ha un talento. Bisogna solo dargli una montagna.`,
+    tr:`Guten Tag und willkommen bei „Voci a quattro zampe“ (Stimmen auf vier Pfoten), dem Podcast, der die Nase immer am Boden hat. Heute sind wir in den Abruzzen, in einem kleinen Bergdorf. Es ist Juni. Und es ist der Tag der „transumanza“: Opa Nicola bringt seine Schafe auf die hohen Weiden der Majella.
+Tommaso: Opa, wie viele Schafe hast du?
+Opa: Dreihundertzwanzig. Und zwei Hunde. Re, meinen Hirtenhund. Und dieses Jahr … Briciola.
+Giulia: Briciola ist ein Stadthund, Opa. Sie hat noch nie ein Schaf gesehen.
+Opa: Dann lernt sie es heute.
+Um fünf Uhr morgens bricht die Herde auf. Dreihundertzwanzig Schafe, dreihundertzwanzig Glocken.
+Opa pfeift. Re läuft sofort hinter die Herde, ganz leise, und hält sie zusammen.
+Re ist ein großer weißer Hund, ein Maremmano-Hirtenhund. Er bellt fast nie. Er arbeitet einfach.
+Briciola dagegen bellt, rennt nach vorn, rennt zurück und springt mitten zwischen die Schafe. Die Schafe laufen in alle Richtungen davon.
+Giulia: Briciola! Komm her! Was für ein Chaos!
+Opa: Ruhig. Am ersten Tag war Re genauso. Schau zu und lerne, Briciola. Schau dir Re an.
+Der Weg führt zwischen Buchen bergauf. Die Sonne geht auf. Die Schafe gehen langsam, und Briciola geht langsam hinter Re. Sie fängt an zu verstehen.
+Mittags halten sie an einem Bach. Die Schafe trinken. Die Kinder essen Brot und Pecorino.
+Opa zählt die Schafe. Einmal. Zweimal.
+Opa: Dreihundertneunzehn. Ein Lämmchen fehlt.
+Tommaso: Wo kann es sein?
+Opa: Vielleicht ist es zurückgeblieben, im Wald. Der Wald ist groß.
+Briciola hebt die Nase. Sie schnuppert in der Luft. Dann rennt sie schnell am Bach entlang.
+Giulia: Briciola! Warte!
+Giulia und Tommaso rennen ihr nach. Nach fünf Minuten hören sie ein ganz leises Blöken.
+Hinter einem Busch, am Wasser, ist das Lämmchen. Sein Bein steckt zwischen zwei Steinen fest.
+Giulia befreit das Bein. Dem Lämmchen geht es gut. Briciola leckt ihm die Schnauze.
+Briciola kommt mit dem Lämmchen zur Herde zurück. Sie geht langsam vor ihm her, wie eine Lehrerin.
+Opa: Dreihundertzwanzig. Gut gemacht, Briciola. Ein Stadthund mit einer Bergnase.
+Am Nachmittag kommen sie auf den hohen Weiden an. Es gibt keine Bäume, nur Gras, Wind und Himmel.
+Am Abend macht Opa ein Feuer neben der Hütte. Die Schafe schlafen. Es gibt unglaublich viele Sterne.
+Aus dem Wald kommt ein langer, ferner Ton. Huuuuh.
+Tommaso: Opa … ist das ein Wolf?
+Opa: Ja. Auf der Majella gibt es Wölfe. Aber hab keine Angst. Dafür ist Re da.
+Re steht auf. Er stellt sich vor die Herde und schaut zum Wald. Er knurrt leise, ein einziges Mal.
+Der Wolf heult nicht mehr.
+Opa legt noch ein Holzscheit aufs Feuer. Briciola legt sich neben Re. Zum ersten Mal bellt sie nicht. Sie hält auch Wache.
+Am nächsten Morgen geht die Sonne über den Bergen auf. Briciola schläft noch, den Kopf auf Res Pfote.
+Giulia: Opa, kommen wir nächstes Jahr wieder?
+Opa: Natürlich. Jetzt habe ich drei Hunde. Und zwei neue Hirten.
+Das war „Voci a quattro zampe“. Und denkt daran: Jeder Hund hat ein Talent. Man muss ihm nur einen Berg geben.`,
+    fact:'Die „transumanza“, der jahreszeitliche Herdenwechsel zwischen Tal und Bergweide, ist seit 2019 UNESCO-Kulturerbe. In den Abruzzen schützen große weiße Maremmano-Abruzzese-Hirtenhunde die Schafe vor Wölfen – sie bellen wenig und arbeiten sehr selbstständig.' }
 ];
 /* Hörgeschichten Cavalli (Podcast „In sella!“). Figuren aus dem Thema: Sara (Fulmine), Luca (Tornado), Carla (Reitstall, Stute Stella), Pony Pepe. */
 PODCAST_INFO.cavalli = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Ausritte und Geschichten mit Pferden, mit Geräuschen aus der Natur, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
