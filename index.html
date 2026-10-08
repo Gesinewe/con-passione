@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 136;
+const APP_VERSION = 137;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37580,6 +37580,93 @@ Martina: Opa, weinst du?
 Opa: Ich? Nein. Das ist Motoröl. Das ist mir in die Augen gekommen.
 Das war „Voci dalla pista“. Schnallt euch an, und bis zum nächsten Rennen!`,
     fact:'Viele Formel-1-Fahrer haben als Kinder im Kart angefangen. Italien hat eine große Kart-Tradition: Am Gardasee liegt eine der bekanntesten Kartbahnen Europas. In Italien gilt die 17 als Unglückszahl.' }
+];
+/* Hörgeschichten Gatti (Podcast „Voci dai tetti“). Figuren aus dem Thema: Bianca, große Schwester Chiara (Tiermedizin, Katzenasyl Torre Argentina), Oma Lia (gattara von Trastevere). */
+PODCAST_INFO.gatti = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Abends mit Oma Lia die Straßenkatzen von Trastevere füttern – mit Glocken, Trockenfutter, Miauen, Gewitter und Schnurren, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.gatti = [
+  { id:'gatti-p1', show:'Voci dai tetti', ep:1, title:'Il giro della nonna gattara', de:'Die Runde der Katzen-Oma',
+    place:'Trastevere e Torre Argentina, Roma, una sera di ottobre', level:'ab A2', kind:'Gemütlich · Katzen',
+    voices:{Bianca:'Elsa', Nonna:'Isabella', Chiara:'Isabella', Signore:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Bianca:['+4%','+40Hz'], Nonna:['-10%','-16Hz'], Chiara:['+0%','+12Hz'], Signore:['-4%','-10Hz']},
+    words:[['la gattara','die Katzen-Oma (füttert Straßenkatzen)'],['la colonia felina','die Straßenkatzen-Kolonie'],['le crocchette','das Trockenfutter'],['la scatoletta','die Futterdose'],['la ciotola','der Napf'],['miagolare','miauen'],['soffiare','fauchen'],['le fusa','das Schnurren'],['fare le fusa','schnurren'],['il temporale','das Gewitter'],['il micino','das Kätzchen'],['tremare','zittern'],['il trasportino','die Transportbox'],['il gattile','das Katzenasyl'],['adottare','adoptieren']],
+    fx:{'Buonasera e benvenuti':'campane atmo_an', 'Si fermano in una piazzetta':'crocchette', 'Da tutte le parti':'gatti_coro', 'La nonna apre':'scatoletta', 'Un gatto grosso':'soffio', 'Una Vespa passa':'vespa', 'All’improvviso':'tuono pioggia_an atmo_aus', 'Bianca: Nonna, senti?':'gattino', 'Sotto una Vespa':'gattino_dopo', 'Nonna: Piano, piano':'pausa', 'Il gattile di Torre Argentina':'pioggia_aus pausa', 'Chiara apre la porta':'campanello_porta', 'Chiara visita':'gattino', 'Dopo la pappa':'fusa', 'Bianca: Nonna, possiamo':'pausa', 'A casa della nonna':'fusa', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dai tetti», il podcast che cammina sui tetti di Roma. Oggi siamo a Trastevere. È ottobre, sono le sette di sera e suonano le campane. È l’ora del giro della nonna Lia.
+La nonna Lia è una gattara. Ogni sera, da quarant’anni, dà da mangiare ai gatti di strada del quartiere. Stasera c’è anche Bianca, la nipote.
+Bianca: Nonna, quanti gatti ci sono?
+Nonna: Nella nostra colonia? Diciotto. E li conosco tutti per nome.
+Si fermano in una piazzetta, vicino a una fontanella. La nonna scuote il sacchetto delle crocchette.
+Da tutte le parti arrivano i gatti. Dai muri, dalle macchine, dai tetti.
+Nonna: Ecco Garibaldi, Cleopatra, Pizza, Sor Pietro… e quella è Contessa. Non mangia mai con gli altri.
+La nonna apre una scatoletta per Contessa e la mette in una ciotola, un po’ lontano.
+Un gatto grosso e arancione vuole la scatoletta di Contessa. Contessa soffia. Il gatto arancione scappa.
+Bianca: Brava, Contessa!
+Nonna: Le gatte di Roma sono come le signore di Roma. Non si toccano.
+Una Vespa passa veloce nella strada. Un signore si ferma con il casco in mano.
+Signore: Signora Lia! Buonasera! Come stanno i suoi gatti?
+Nonna: Benissimo, Ernesto. Meglio di noi.
+All’improvviso arriva il temporale. Piove fortissimo. Bianca e la nonna corrono sotto un portone.
+Bianca: Nonna, senti? Che cos’è?
+Un miagolio piccolo piccolo. Viene dalla strada, da sotto la pioggia.
+Sotto una Vespa parcheggiata c’è una scatola di cartone bagnata. Dentro c’è un micino nero. È piccolissimo. Trema.
+Bianca: Nonna! Qualcuno l’ha lasciato qui!
+Nonna: Piano, piano. Prendilo con due mani. Mettilo sotto la tua giacca. Al caldo.
+La nonna chiama Chiara. Chiara studia veterinaria e stasera lavora al gattile di Torre Argentina.
+Il gattile di Torre Argentina è in mezzo alle rovine romane, dove duemila anni fa è morto Giulio Cesare. Oggi lì vivono più di cento gatti.
+Chiara apre la porta. Ha già pronto un asciugamano caldo.
+Chiara: Fatemi vedere. Oh, che piccolo! Ha quattro settimane, più o meno.
+Chiara visita il micino. Gli guarda gli occhi, le orecchie, la pancia.
+Chiara: È sano. Ha solo freddo e fame. Bianca, dagli tu il latte. Latte per gattini, non latte di mucca!
+Bianca prende il biberon. Il micino beve, beve, beve.
+Dopo la pappa il micino si addormenta nella mano di Bianca. E comincia a fare le fusa.
+Bianca: Chiara, senti? Fa le fusa!
+Chiara: Vuol dire che è felice. E che si fida di te.
+Bianca: Nonna, possiamo tenerlo? Per favore, per favore, per favore!
+La nonna guarda Chiara. Chiara guarda la nonna.
+Nonna: Diciotto gatti in strada e nessuno a casa… Forse è ora.
+Chiara: Va bene. Ma deve tornare qui fra una settimana. Per il controllo.
+Bianca: Come lo chiamiamo?
+Nonna: Si chiama Temporale. È arrivato con il temporale.
+A casa della nonna, Temporale dorme in una scatola nuova, asciutta, con una coperta di lana. Bianca dorme sul divano accanto a lui.
+Questo era «Voci dai tetti». E ricordate: a Roma i gatti non sono di nessuno. Sono di tutti.`,
+    tr:`Guten Abend und willkommen bei „Voci dai tetti“ (Stimmen von den Dächern), dem Podcast, der über die Dächer Roms läuft. Heute sind wir in Trastevere. Es ist Oktober, sieben Uhr abends, und die Glocken läuten. Es ist Zeit für Oma Lias Runde.
+Oma Lia ist eine „gattara“. Jeden Abend, seit vierzig Jahren, füttert sie die Straßenkatzen des Viertels. Heute Abend ist auch Bianca dabei, die Enkelin.
+Bianca: Oma, wie viele Katzen gibt es?
+Oma: In unserer Kolonie? Achtzehn. Und ich kenne sie alle beim Namen.
+Sie bleiben auf einem kleinen Platz stehen, neben einem Trinkbrunnen. Oma schüttelt die Tüte mit dem Trockenfutter.
+Von überall kommen die Katzen. Von den Mauern, unter den Autos hervor, von den Dächern.
+Oma: Da sind Garibaldi, Cleopatra, Pizza, Sor Pietro … und das ist Contessa. Sie frisst nie mit den anderen.
+Oma öffnet eine Dose für Contessa und füllt sie in einen Napf, ein bisschen weiter weg.
+Ein dicker, orangefarbener Kater will Contessas Dose. Contessa faucht. Der orange Kater haut ab.
+Bianca: Gut gemacht, Contessa!
+Oma: Die Katzendamen von Rom sind wie die Damen von Rom. Die rührt man nicht an.
+Eine Vespa fährt schnell durch die Straße. Ein Herr hält an, den Helm in der Hand.
+Herr: Frau Lia! Guten Abend! Wie geht es Ihren Katzen?
+Oma: Sehr gut, Ernesto. Besser als uns.
+Plötzlich kommt das Gewitter. Es regnet heftig. Bianca und Oma rennen unter einen Torbogen.
+Bianca: Oma, hörst du? Was ist das?
+Ein ganz kleines Miauen. Es kommt von der Straße, aus dem Regen.
+Unter einer geparkten Vespa steht ein nasser Pappkarton. Darin ist ein schwarzes Kätzchen. Es ist winzig. Es zittert.
+Bianca: Oma! Jemand hat es hier zurückgelassen!
+Oma: Langsam, langsam. Nimm es mit beiden Händen. Steck es unter deine Jacke. Ins Warme.
+Oma ruft Chiara an. Chiara studiert Tiermedizin und arbeitet heute Abend im Katzenasyl von Torre Argentina.
+Das Katzenasyl von Torre Argentina liegt mitten in den römischen Ruinen, wo vor zweitausend Jahren Julius Cäsar gestorben ist. Heute leben dort mehr als hundert Katzen.
+Chiara öffnet die Tür. Sie hat schon ein warmes Handtuch bereit.
+Chiara: Lasst mal sehen. Oh, wie klein! Ungefähr vier Wochen alt.
+Chiara untersucht das Kätzchen. Sie schaut ihm in die Augen, in die Ohren, auf den Bauch.
+Chiara: Es ist gesund. Es friert nur und hat Hunger. Bianca, gib du ihm die Milch. Kätzchenmilch, keine Kuhmilch!
+Bianca nimmt das Fläschchen. Das Kätzchen trinkt und trinkt und trinkt.
+Nach dem Essen schläft das Kätzchen in Biancas Hand ein. Und fängt an zu schnurren.
+Bianca: Chiara, hörst du? Es schnurrt!
+Chiara: Das heißt, es ist glücklich. Und dass es dir vertraut.
+Bianca: Oma, dürfen wir es behalten? Bitte, bitte, bitte!
+Oma schaut Chiara an. Chiara schaut Oma an.
+Oma: Achtzehn Katzen auf der Straße und keine zu Hause … Vielleicht ist es Zeit.
+Chiara: Na gut. Aber in einer Woche muss es wieder herkommen. Zur Kontrolle.
+Bianca: Wie nennen wir es?
+Oma: Es heißt Temporale. Es ist mit dem Gewitter gekommen.
+Bei Oma zu Hause schläft Temporale in einer neuen, trockenen Schachtel mit einer Wolldecke. Bianca schläft daneben auf dem Sofa.
+Das war „Voci dai tetti“. Und denkt daran: In Rom gehören die Katzen niemandem. Sie gehören allen.`,
+    fact:'In Rom sind Straßenkatzen seit 1988 gesetzlich geschützt und gelten als „Teil des lebenden Erbes“ der Stadt. Die „gattare“, meist ältere Frauen, füttern die Kolonien. Im Katzenasyl am Largo di Torre Argentina, wo Julius Cäsar ermordet wurde, leben über hundert Katzen zwischen den antiken Tempeln.' }
 ];
 /* Hörgeschichten Luna park (Podcast „Voci del luna park“). Nina führt über den Jahrmarkt in Rimini. */
 PODCAST_INFO.lunapark = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Abend auf dem Jahrmarkt mit Orgelmusik, Autoscooter, Achterbahn und Feuerwerk, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
