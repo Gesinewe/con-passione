@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 129;
+const APP_VERSION = 130;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37178,6 +37178,84 @@ Der Film ist zu Ende. Das Licht geht an. Im Saal klatscht jemand.
 Sara: Heute habe ich etwas gelernt: Für zwei Minuten Film braucht man einen ganzen Arbeitstag. Und manchmal ein Taschentuch.
 Das war „Voci dal cinema“. Bis zur nächsten Szene. Klappe!`,
     fact:'Regen im Film ist fast immer künstlich: Regenmaschinen lassen Wasser von Gerüsten oder Kränen fallen, oft mit etwas Milch vermischt, damit die Tropfen vor der Kamera besser sichtbar sind. „Ciak, si gira!“ ist der berühmteste Ausruf am italienischen Filmset.' }
+];
+/* Hörgeschichten Dolci (Podcast „Voci della pasticceria“). Figuren aus dem Thema: Sofia, Bruder Leo, Papa Marco (Konditorei), Oma Rosa, Kater Ercole. */
+PODCAST_INFO.dolci = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: eine Nacht in der Konditorei und der erste Kaffee am Morgen, mit Rührmaschine, Ofen und Kaffeemaschine, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.dolci = [
+  { id:'dolci-p1', show:'Voci della pasticceria', ep:1, title:'La notte dei cornetti', de:'Die Nacht der Cornetti',
+    place:'Una pasticceria di Napoli, dalle tre alle sette', level:'ab A2', kind:'Gemütlich · Backstube',
+    voices:{Sofia:'Elsa', Leo:'Diego', Marco:'Giuseppe', Rosa:'Isabella', Cliente:'Diego'},
+    stil:{'':['-8%','+0Hz'], Sofia:['-2%','+24Hz'], Leo:['+4%','+45Hz'], Marco:['-4%','-6Hz'], Rosa:['-8%','-14Hz'], Cliente:['-2%','-12Hz']},
+    mormorio:['Un caffè, per favore!','Buongiorno!','Due cornetti alla crema.','Che profumo!','Quanto pago?','Un cappuccino senza schiuma.','Ciao, Rosa!','Piove ancora?','Buona giornata!','Grazie, arrivederci!'],
+    words:[['la pasticceria','die Konditorei'],['il cornetto / i cornetti','das Hörnchen / die Hörnchen'],['il grembiule','die Schürze'],['l’impastatrice','die Knetmaschine'],['rompere le uova','die Eier aufschlagen'],['pesare','wiegen'],['il mattarello','das Nudelholz'],['arrotolare','aufrollen'],['lievitare','gehen (Teig)'],['la frusta','der Schneebesen'],['la buccia di limone','die Zitronenschale'],['infornare','in den Ofen schieben'],['dorato','goldbraun'],['lo zucchero a velo','der Puderzucker'],['montare il latte','die Milch aufschäumen'],['vale la pena','es lohnt sich']],
+    fx:{'Buongiorno… anzi, buonanotte!':'sveglia_dopo', 'Fuori piove piano.':'pioggia_an', 'La porta della pasticceria':'campanello_porta pioggia_aus cucina_an', 'Prima l’impastatrice':'impastatrice', 'Marco: Sofia, rompi le uova.':'uova_dopo', 'Poi Marco stende la pasta':'mattarello', 'Mentre i cornetti lievitano':'frusta', 'Ercole, il gatto, entra':'miao', 'Alle cinque Marco apre il forno':'forno', 'Il timer suona.':'timer', 'Alle sei e mezza':'pausa', 'Rosa: Il primo caffè':'macchina_caffe', 'La nonna monta il latte':'schiuma', 'Alle sette la porta':'cucina_aus campanello_porta bar_an', 'Fuori smette di piovere':'campane', 'Questo era':'bar_aus pausa'},
+    text:`Buongiorno… anzi, buonanotte! Benvenuti a «Voci della pasticceria». Sono le tre di notte. In una casa di Napoli suona una sveglia.
+Sofia: Leo, svegliati! Sono le tre! Il papà ci aspetta in pasticceria.
+Leo: Alle tre? Ma è ancora notte!
+Sofia: È la notte dei cornetti. Dai, andiamo!
+Fuori piove piano. Le strade sono vuote, la città dorme. Sofia e Leo corrono sotto l’ombrello.
+La porta della pasticceria si apre. Dentro c’è luce, ed è caldo.
+Marco: Buongiorno, ragazzi! Lavatevi le mani e mettete il grembiule. Stanotte dobbiamo fare trecento cornetti.
+Prima l’impastatrice. La grande macchina gira e gira: farina, uova, zucchero, burro e lievito.
+Marco: Sofia, rompi le uova. Leo, pesa lo zucchero.
+Leo: Trecento grammi… trecentocinque… ops, trecentoventi!
+Marco: Leo! Togline un po’!
+Poi Marco stende la pasta con il mattarello. La taglia in triangoli e la arrotola. Uno, due, dieci, cento cornetti.
+Sofia: Sembrano tanti piccoli cuscini.
+Mentre i cornetti lievitano, Marco prepara la crema. La frusta gira nella pentola.
+Marco: Questa è la ricetta della nonna Rosa. Il segreto? Una buccia di limone. E tanta pazienza.
+Ercole, il gatto, entra dalla finestra. Salta sul tavolo e guarda la panna.
+Leo: Ercole, no! Non qui!
+Leo prende Ercole in braccio appena in tempo.
+Alle cinque Marco apre il forno. Arriva un’onda di caldo. Inforna i cornetti. Venti minuti.
+Il profumo riempie la pasticceria. Poi esce in strada.
+Il timer suona. I cornetti sono dorati e croccanti.
+Marco: Pronti! Adesso la crema dentro e lo zucchero a velo sopra.
+Alle sei e mezza arriva la nonna Rosa per aprire il bar. Accende la macchina del caffè.
+Rosa: Il primo caffè è sempre per chi ha lavorato di notte.
+La nonna monta il latte per i cappuccini. Sofia beve il suo primo cappuccino della giornata.
+Alle sette la porta si apre. Arrivano i primi clienti: un vigile, due operai, una signora con il cane.
+Cliente: Buongiorno, Rosa! Un caffè e un cornetto alla crema. Ancora caldo, eh!
+Rosa: Caldissimo! Li hanno fatti i miei nipoti.
+Sofia guarda Leo. Leo dorme in piedi, con un cornetto in mano.
+Sofia: Papà, il tuo lavoro è bellissimo. Ma come fai tutte le notti?
+Marco: Ogni mattina qualcuno entra qui triste ed esce con un sorriso. Per questo vale la pena.
+Fuori smette di piovere. Le campane suonano le sette. La città si sveglia.
+Questo era «Voci della pasticceria». Buona colazione a tutti!`,
+    tr:`Guten Morgen … oder besser: gute Nacht! Willkommen bei „Voci della pasticceria“ (Stimmen aus der Konditorei). Es ist drei Uhr nachts. In einem Haus in Neapel klingelt ein Wecker.
+Sofia: Leo, wach auf! Es ist drei! Papa wartet in der Konditorei auf uns.
+Leo: Um drei? Aber es ist doch noch Nacht!
+Sofia: Es ist die Nacht der Cornetti. Komm, los!
+Draußen regnet es leise. Die Straßen sind leer, die Stadt schläft. Sofia und Leo rennen unter dem Regenschirm.
+Die Tür der Konditorei geht auf. Drinnen ist Licht, und es ist warm.
+Marco: Guten Morgen, ihr zwei! Wascht euch die Hände und zieht die Schürze an. Heute Nacht müssen wir dreihundert Cornetti machen.
+Zuerst die Knetmaschine. Die große Maschine dreht und dreht sich: Mehl, Eier, Zucker, Butter und Hefe.
+Marco: Sofia, schlag die Eier auf. Leo, wieg den Zucker ab.
+Leo: Dreihundert Gramm … dreihundertfünf … hoppla, dreihundertzwanzig!
+Marco: Leo! Nimm ein bisschen weg!
+Dann rollt Marco den Teig mit dem Nudelholz aus. Er schneidet ihn in Dreiecke und rollt sie auf. Eins, zwei, zehn, hundert Cornetti.
+Sofia: Sie sehen aus wie lauter kleine Kissen.
+Während die Cornetti gehen, macht Marco die Creme. Der Schneebesen dreht sich im Topf.
+Marco: Das ist das Rezept von Oma Rosa. Das Geheimnis? Eine Zitronenschale. Und viel Geduld.
+Ercole, der Kater, kommt durchs Fenster herein. Er springt auf den Tisch und schaut die Sahne an.
+Leo: Ercole, nein! Nicht hier!
+Leo nimmt Ercole gerade noch rechtzeitig auf den Arm.
+Um fünf öffnet Marco den Ofen. Eine Hitzewelle kommt heraus. Er schiebt die Cornetti in den Ofen. Zwanzig Minuten.
+Der Duft füllt die Konditorei. Dann zieht er hinaus auf die Straße.
+Der Timer klingelt. Die Cornetti sind goldbraun und knusprig.
+Marco: Fertig! Jetzt die Creme hinein und den Puderzucker darauf.
+Um halb sieben kommt Oma Rosa, um die Bar zu öffnen. Sie schaltet die Kaffeemaschine ein.
+Rosa: Der erste Kaffee ist immer für die, die nachts gearbeitet haben.
+Oma schäumt die Milch für die Cappuccini auf. Sofia trinkt ihren ersten Cappuccino des Tages.
+Um sieben geht die Tür auf. Die ersten Kunden kommen: ein Polizist, zwei Arbeiter, eine Dame mit Hund.
+Kunde: Guten Morgen, Rosa! Einen Espresso und ein Cornetto mit Creme. Noch warm, was!
+Rosa: Ganz heiß! Die haben meine Enkel gemacht.
+Sofia schaut zu Leo. Leo schläft im Stehen, mit einem Cornetto in der Hand.
+Sofia: Papa, deine Arbeit ist wunderschön. Aber wie schaffst du das jede Nacht?
+Marco: Jeden Morgen kommt hier jemand traurig herein und geht mit einem Lächeln hinaus. Deshalb lohnt es sich.
+Draußen hört es auf zu regnen. Die Glocken schlagen sieben. Die Stadt wacht auf.
+Das war „Voci della pasticceria“. Guten Appetit beim Frühstück, euch allen!`,
+    fact:'In Italien frühstückt man meist in der Bar: ein Cappuccino oder Espresso und ein Cornetto, im Stehen an der Theke. Die Konditoreien backen dafür schon mitten in der Nacht – oft ab drei oder vier Uhr.' }
 ];
 /* Hörgeschichten Luna park (Podcast „Voci del luna park“). Nina führt über den Jahrmarkt in Rimini. */
 PODCAST_INFO.lunapark = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Abend auf dem Jahrmarkt mit Orgelmusik, Autoscooter, Achterbahn und Feuerwerk, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
