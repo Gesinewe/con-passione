@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 135;
+const APP_VERSION = 136;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -36992,6 +36992,85 @@ Das war „Brividi nella notte“. Jetzt könnt ihr das Licht wieder anmachen. W
       fact:'Die Legende von Azzurrina ist eine der bekanntesten Spukgeschichten Italiens. Die Burg von Montebello (Poggio Torriana, Provinz Rimini) gibt es wirklich – man kann sie besichtigen, und zur Sonnenwende gibt es dort Abendführungen.' }
   ]
 };
+/* Hörgeschichten Auto (Podcast „Voci della strada“). Figuren aus dem Thema: Nina, Bruder Matteo, Onkel Franco (Werkstatt), Oma Teresa, der Fiat 500 „Gina“ (1968), Hund Clacson. */
+PODCAST_INFO.auto = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Omas alter Fiat 500 springt nicht an – mit Anlasser, Werkstatt, Druckluftschrauber, Hupen und Straßenbahn, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.auto = [
+  { id:'auto-p1', show:'Voci della strada', ep:1, title:'Gina non parte', de:'Gina springt nicht an',
+    place:'Torino, una mattina d’inverno', level:'ab A2', kind:'Lustig · Werkstatt',
+    voices:{Nina:'Elsa', Matteo:'Diego', Franco:'Giuseppe', Nonna:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Nina:['+0%','+20Hz'], Matteo:['+6%','+42Hz'], Franco:['-4%','-12Hz'], Nonna:['-8%','-12Hz']},
+    words:[['la macchina non parte','das Auto springt nicht an'],['la batteria è scarica','die Batterie ist leer'],['spingere','schieben'],['l’officina','die Autowerkstatt'],['il meccanico','der Mechaniker'],['il ponte sollevatore','die Hebebühne'],['la candela','die Zündkerze'],['l’avvitatore','der Schlagschrauber'],['il motore','der Motor'],['la marcia','der Gang'],['il clacson','die Hupe'],['il tram','die Straßenbahn'],['il semaforo','die Ampel'],['la salita','die Steigung'],['il panorama','die Aussicht']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Nina gira la chiave. Il motore fa':'avviamento', 'Nina riprova':'avviamento', 'Allora spingono':'spinta', 'L’officina dello zio':'saracinesca officina_an', 'Lo zio solleva Gina':'sollevatore', 'Franco: Vediamo':'attrezzi', 'Lo zio cambia le candele':'avvitatore', 'Franco: Adesso, Nina':'officina_aus pausa', 'Nina gira la chiave. Il motore tossisce':'avviamento_breve motore500_an', 'Partono per un giro':'traffico_an', 'Al semaforo':'freccia', 'Davanti a loro passa':'tram', 'Dietro di loro':'clacson', 'Nina mette la seconda':'cambio', 'La strada sale':'traffico_aus', 'In cima':'motore500_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci della strada», il podcast con il motore acceso. Oggi siamo a Torino. È gennaio, fa freddissimo, ci sono meno tre gradi. Nel cortile della nonna c’è Gina: una Fiat Cinquecento azzurra del 1968.
+Nina: Nonna, oggi porto Gina a fare un giro. Ho la patente da una settimana!
+Nonna: Va bene. Ma trattala bene. Gina ha cinquantotto anni. Come una signora.
+Nina gira la chiave. Il motore fa un rumore strano. Ma non parte.
+Matteo: Forse dorme?
+Nina riprova. Niente. Il motore tossisce, poi più niente.
+Nina: La batteria è scarica. Con questo freddo…
+Nonna: Allora spingete! Quando ero giovane, si faceva sempre così.
+Allora spingono. Nina, Matteo e due vicini spingono Gina nella strada. Ma Gina non parte. Arriva solo fino all’angolo. All’angolo c’è l’officina dello zio Franco.
+L’officina dello zio è piena di macchine, di attrezzi e di musica alla radio.
+Franco: Ma guarda chi c’è! La signora Gina! Che cosa le avete fatto?
+Lo zio solleva Gina sul ponte sollevatore. Gina sale piano, piano, fino in alto.
+Franco: Vediamo. Batteria scarica, certo. E le candele sono vecchie. Matteo, passami la chiave del tredici.
+Matteo: Quale? Ce ne sono cento!
+Franco: Quella con il manico blu. Bravo.
+Lo zio cambia le candele. Poi mette una batteria nuova. Matteo lo guarda a bocca aperta.
+Matteo: Zio, da grande voglio fare il meccanico.
+Franco: Brava scelta. Le macchine non mentono mai. Le persone, a volte sì.
+Franco: Adesso, Nina. Prova.
+Nina gira la chiave. Il motore tossisce una volta… e poi parte! Brum, brum, brum. Il suono di Gina: piccolo, allegro, testardo.
+Nonna: Eccola! La mia Gina!
+Partono per un giro: Nina al volante, la nonna accanto, Matteo dietro. Le strade di Torino sono piene di macchine.
+Al semaforo Nina mette la freccia a destra.
+Davanti a loro passa un vecchio tram arancione. Suona la campanella.
+Dietro di loro una macchina grande suona il clacson. Il semaforo è verde da un secondo.
+Nonna: Calma, signore! Siamo in Cinquecento, non in Ferrari!
+Matteo ride. Nina parte piano. Poi la strada sale verso Superga, sulla collina.
+Nina mette la seconda. Gina sale, piano ma sicura. Il motore canta.
+La strada sale tra gli alberi. Le macchine sono sempre meno.
+In cima, Nina spegne il motore. Davanti a loro c’è tutta Torino, il fiume Po e dietro le Alpi bianche di neve.
+Nonna: Con tuo nonno venivamo qui ogni domenica. Con Gina. Lui guidava, io guardavo il panorama.
+Nina: Adesso guido io, nonna. E tu guardi il panorama.
+La nonna sorride e prende la mano di Nina sul volante.
+Questo era «Voci della strada». Guidate con prudenza, e trattate bene le vostre macchine vecchie.`,
+    tr:`Guten Morgen und willkommen bei „Voci della strada“ (Stimmen der Straße), dem Podcast mit laufendem Motor. Heute sind wir in Turin. Es ist Januar, eiskalt, minus drei Grad. Im Hof von Oma steht Gina: ein hellblauer Fiat 500 von 1968.
+Nina: Oma, heute mache ich mit Gina eine Runde. Ich habe seit einer Woche den Führerschein!
+Oma: Na gut. Aber behandle sie gut. Gina ist achtundfünfzig. Wie eine Dame.
+Nina dreht den Schlüssel. Der Motor macht ein seltsames Geräusch. Aber er springt nicht an.
+Matteo: Vielleicht schläft sie?
+Nina versucht es noch einmal. Nichts. Der Motor hustet, dann nichts mehr.
+Nina: Die Batterie ist leer. Bei dieser Kälte …
+Oma: Dann schiebt! Als ich jung war, hat man das immer so gemacht.
+Also schieben sie. Nina, Matteo und zwei Nachbarn schieben Gina auf die Straße. Aber Gina springt nicht an. Sie kommt nur bis zur Ecke. An der Ecke ist Onkel Francos Werkstatt.
+Onkels Werkstatt ist voller Autos, Werkzeug und Radiomusik.
+Franco: Schau mal, wer da ist! Frau Gina! Was habt ihr mit ihr gemacht?
+Der Onkel hebt Gina auf die Hebebühne. Gina fährt langsam, ganz langsam nach oben.
+Franco: Mal sehen. Batterie leer, klar. Und die Zündkerzen sind alt. Matteo, gib mir den Dreizehner-Schlüssel.
+Matteo: Welchen? Es gibt hundert!
+Franco: Den mit dem blauen Griff. Gut gemacht.
+Der Onkel wechselt die Zündkerzen. Dann baut er eine neue Batterie ein. Matteo schaut mit offenem Mund zu.
+Matteo: Onkel, wenn ich groß bin, werde ich Mechaniker.
+Franco: Gute Wahl. Autos lügen nie. Menschen manchmal schon.
+Franco: Jetzt, Nina. Probier mal.
+Nina dreht den Schlüssel. Der Motor hustet einmal … und springt an! Brumm, brumm, brumm. Ginas Klang: klein, fröhlich, stur.
+Oma: Da ist sie! Meine Gina!
+Sie fahren eine Runde: Nina am Steuer, Oma daneben, Matteo hinten. Die Straßen von Turin sind voller Autos.
+An der Ampel setzt Nina den Blinker nach rechts.
+Vor ihnen fährt eine alte orangefarbene Straßenbahn vorbei. Sie läutet ihre Glocke.
+Hinter ihnen hupt ein großes Auto. Die Ampel ist seit einer Sekunde grün.
+Oma: Ruhig, mein Herr! Wir sitzen in einem Fiat 500, nicht in einem Ferrari!
+Matteo lacht. Nina fährt langsam an. Dann führt die Straße hinauf nach Superga, auf den Hügel.
+Nina schaltet in den zweiten Gang. Gina klettert langsam, aber sicher. Der Motor singt.
+Die Straße führt zwischen Bäumen bergauf. Es werden immer weniger Autos.
+Oben schaltet Nina den Motor aus. Vor ihnen liegt ganz Turin, der Po und dahinter die schneeweißen Alpen.
+Oma: Mit deinem Opa sind wir jeden Sonntag hierhergekommen. Mit Gina. Er fuhr, ich schaute auf die Aussicht.
+Nina: Jetzt fahre ich, Oma. Und du schaust auf die Aussicht.
+Oma lächelt und legt ihre Hand auf Ninas Hand am Lenkrad.
+Das war „Voci della strada“. Fahrt vorsichtig, und behandelt eure alten Autos gut.`,
+    fact:'Der Fiat 500 („Cinquecento“) wurde ab 1957 in Turin gebaut und hatte einen kleinen Zweizylindermotor im Heck – deshalb sein typisches knatterndes Geräusch. Die Basilika von Superga liegt auf einem Hügel über Turin und bietet einen berühmten Blick auf die Alpen.' }
+];
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.calcio = [
