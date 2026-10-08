@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 139;
+const APP_VERSION = 140;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -38071,6 +38071,85 @@ Oma: Und ein Eis für Opa, umsonst. Für die Kasse.
 Alle lachen.
 Das war „Voci dei soldi“. Und denkt daran: Jeder große Laden hat mit einem kaputten Sparschwein angefangen.`,
     fact:'Der Euro wurde in Italien am 1. Januar 2002 eingeführt; 1936,27 Lire waren ein Euro. Lire-Münzen konnte man nur noch bis Anfang 2002 benutzen – heute sind sie Sammlerstücke.' }
+];
+/* Hörgeschichten Tech (Podcast „Voci dai circuiti“). Figuren aus dem Thema: Sofia (Turin, Roboter Bullone), Opa Bruno (traut Handys nicht, repariert alles), kleiner Bruder Pietro. */
+PODCAST_INFO.tech = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Stromausfall in Turin, und Opa Bruno holt die alte Technik aus dem Schrank – Kurbellampe, Radio, Plattenspieler, Schreibmaschine und Wählscheibentelefon, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.tech = [
+  { id:'tech-p1', show:'Voci dai circuiti', ep:1, title:'La sera senza corrente', de:'Der Abend ohne Strom',
+    place:'Torino, un appartamento, una sera di temporale', level:'ab A2', kind:'Lustig · Technik',
+    voices:{Sofia:'Isabella', Pietro:'Elsa', Nonno:'Giuseppe', Radio:'Diego', Bullone:'Elsa'},
+    stil:{'':['-6%','+0Hz'], Sofia:['+2%','+20Hz'], Pietro:['+6%','+46Hz'], Nonno:['-8%','-14Hz'], Radio:['+8%','+4Hz'], Bullone:['+10%','+60Hz']},
+    words:[['la corrente','der Strom'],['il blackout','der Stromausfall'],['la batteria è scarica','der Akku ist leer'],['il wifi','das WLAN'],['la torcia a manovella','die Kurbel-Taschenlampe'],['girare la manovella','die Kurbel drehen'],['la radio','das Radio'],['le pile','die Batterien'],['il giradischi','der Plattenspieler'],['il disco','die Schallplatte'],['la macchina da scrivere','die Schreibmaschine'],['il telefono fisso','das Festnetztelefon'],['squillare','klingeln'],['ricaricare','aufladen'],['la notifica','die Benachrichtigung']],
+    fx:{'Buonasera e benvenuti':'pioggia_an', 'Pietro guarda video':'notifiche', 'Sofia lavora':'bullone', 'All’improvviso un tuono':'tuono spegnimento_dopo', 'Pietro: Nonno!':'pausa', 'Il nonno apre':'cassetto', 'Il nonno gira':'manovella', 'Poi il nonno accende':'radio_sintonia', 'Radio: Attenzione':'radio', 'Pietro: Un’ora?!':'pausa', 'Il nonno mette un disco':'giradischi_an', 'Sofia scopre':'giradischi_aus macchina_scrivere', 'Alla fine della riga':'macchina_scrivere', 'All’improvviso, nel buio':'telefono_fisso', 'Nonno: Pronto?':'pausa', 'Alle dieci':'accensione notifiche_dopo', 'Bullone si riaccende':'bullone', 'Questo era':'pioggia_aus pausa'},
+    text:`Buonasera e benvenuti a «Voci dai circuiti», il podcast che ha sempre la batteria carica. Oggi siamo a Torino, a casa di Sofia e Pietro. È sabato sera, e fuori c’è un temporale fortissimo. I genitori sono al cinema. Con i ragazzi c’è il nonno Bruno.
+Pietro guarda video sul tablet. Il telefono di Sofia fa «din» ogni trenta secondi.
+Sofia lavora al computer sul programma di Bullone, il robot della sua squadra. Bullone è sul tavolo, con le lucine accese.
+Nonno: Tre schermi per due ragazzi. Ai miei tempi avevamo una radio. Per tutto il palazzo.
+All’improvviso un tuono, fortissimo. E poi… buio. Tutto si spegne. Il computer, il tablet, la luce, il frigorifero. Anche Bullone.
+Pietro: Nonno! Il wifi non va! E il tablet ha il dieci per cento!
+Sofia: Il mio programma! Non l’ho salvato!
+Nonno: Calma, calma. Niente panico. Il nonno è preparato.
+Il nonno apre un cassetto in cucina. Dentro ci sono cose vecchie: una torcia, una radio, delle pile.
+Il nonno gira la manovella della torcia. Gira, gira, gira. Una piccola luce si accende.
+Nonno: Questa non ha bisogno di corrente. Solo di braccia.
+Poi il nonno accende la vecchia radio a pile. Gira la rotella, cerca una stazione.
+Radio: Attenzione: blackout in tutta la zona nord di Torino a causa del temporale. I tecnici sono al lavoro. La corrente tornerà fra circa un’ora.
+Pietro: Un’ora?! Senza internet?! Che cosa facciamo per un’ora?
+Nonno: Venite in camera mia. Vi faccio vedere il mio museo.
+Il nonno mette un disco sul vecchio giradischi a molla, del 1950. Non serve la corrente: basta girare la manovella. La musica è un po’ rotta, un po’ lontana. Ma è bellissima.
+Sofia: Nonno, questa canzone la conosco! È in un video su TikTok!
+Nonno: Su TikTok? Io la ballavo con la nonna nel 1962!
+Sofia scopre una macchina da scrivere sotto una coperta. Mette un foglio e prova a scrivere il suo nome.
+Alla fine della riga la macchina fa «dlin!». Sofia ride.
+Sofia: Nonno, ma come si cancella?
+Nonno: Non si cancella. Si pensa prima di scrivere.
+All’improvviso, nel buio, suona un telefono. Ma non è un cellulare. È il vecchio telefono grigio sul muro, quello con la rotella.
+Pietro: Nonno, quel telefono funziona?!
+Nonno: Il telefono fisso funziona anche senza corrente. Te l’ho sempre detto.
+Nonno: Pronto? Ah, sei tu! Sì, stiamo bene. Siamo al buio, ma ci divertiamo. No, non hanno pianto. Quasi.
+È la mamma. Dal cinema. Anche il cinema è al buio.
+Alle dieci la corrente torna. Le luci si accendono, il frigorifero ronza. E i telefoni cominciano a suonare: din, din, din, cento notifiche.
+Bullone si riaccende. Fa un piccolo suono, come un saluto.
+Bullone: Ciao, Sofia. Ho salvato il programma automaticamente.
+Sofia: Bullone! Ti voglio bene!
+Pietro guarda il tablet. Poi guarda il nonno. Poi spegne il tablet.
+Pietro: Nonno… ci fai sentire un altro disco?
+Questo era «Voci dai circuiti». E ricordate: la tecnologia è bellissima. Ma una torcia a manovella in un cassetto non fa mai male.`,
+    tr:`Guten Abend und willkommen bei „Voci dai circuiti“ (Stimmen aus den Schaltkreisen), dem Podcast mit immer vollem Akku. Heute sind wir in Turin, bei Sofia und Pietro zu Hause. Es ist Samstagabend, und draußen tobt ein heftiges Gewitter. Die Eltern sind im Kino. Bei den Kindern ist Opa Bruno.
+Pietro schaut Videos auf dem Tablet. Sofias Handy macht alle dreißig Sekunden „Ding“.
+Sofia arbeitet am Computer am Programm von Bullone, dem Roboter ihres Teams. Bullone steht auf dem Tisch, mit leuchtenden Lämpchen.
+Opa: Drei Bildschirme für zwei Kinder. Zu meiner Zeit hatten wir ein Radio. Für das ganze Haus.
+Plötzlich ein Donner, sehr laut. Und dann … dunkel. Alles geht aus. Der Computer, das Tablet, das Licht, der Kühlschrank. Auch Bullone.
+Pietro: Opa! Das WLAN geht nicht! Und das Tablet hat zehn Prozent!
+Sofia: Mein Programm! Ich habe es nicht gespeichert!
+Opa: Ruhig, ruhig. Keine Panik. Opa ist vorbereitet.
+Opa öffnet eine Schublade in der Küche. Darin sind alte Sachen: eine Taschenlampe, ein Radio, Batterien.
+Opa dreht die Kurbel der Taschenlampe. Er dreht und dreht und dreht. Ein kleines Licht geht an.
+Opa: Die braucht keinen Strom. Nur Arme.
+Dann schaltet Opa das alte Batterieradio ein. Er dreht am Rädchen und sucht einen Sender.
+Radio: Achtung: Stromausfall im ganzen Norden von Turin wegen des Gewitters. Die Techniker arbeiten daran. Der Strom kommt in etwa einer Stunde zurück.
+Pietro: Eine Stunde?! Ohne Internet?! Was machen wir eine Stunde lang?
+Opa: Kommt in mein Zimmer. Ich zeige euch mein Museum.
+Opa legt eine Platte auf den alten Plattenspieler mit Federwerk, von 1950. Man braucht keinen Strom: Man muss nur die Kurbel drehen. Die Musik klingt ein bisschen kaputt, ein bisschen weit weg. Aber sie ist wunderschön.
+Sofia: Opa, das Lied kenne ich! Das ist in einem Video auf TikTok!
+Opa: Auf TikTok? Dazu habe ich 1962 mit Oma getanzt!
+Sofia entdeckt unter einer Decke eine Schreibmaschine. Sie spannt ein Blatt ein und versucht, ihren Namen zu schreiben.
+Am Ende der Zeile macht die Maschine „Pling!“. Sofia lacht.
+Sofia: Opa, wie löscht man denn?
+Opa: Man löscht nicht. Man denkt nach, bevor man schreibt.
+Plötzlich klingelt im Dunkeln ein Telefon. Aber es ist kein Handy. Es ist das alte graue Telefon an der Wand, das mit der Wählscheibe.
+Pietro: Opa, das Telefon funktioniert?!
+Opa: Das Festnetztelefon funktioniert auch ohne Strom. Das habe ich dir immer gesagt.
+Opa: Hallo? Ah, du bist es! Ja, uns geht es gut. Wir sitzen im Dunkeln, aber wir haben Spaß. Nein, sie haben nicht geweint. Fast nicht.
+Es ist Mama. Aus dem Kino. Auch das Kino ist dunkel.
+Um zehn kommt der Strom zurück. Die Lichter gehen an, der Kühlschrank brummt. Und die Handys fangen an zu klingeln: Ding, ding, ding, hundert Benachrichtigungen.
+Bullone schaltet sich wieder ein. Er macht ein kleines Geräusch, wie ein Gruß.
+Bullone: Hallo, Sofia. Ich habe das Programm automatisch gespeichert.
+Sofia: Bullone! Ich hab dich lieb!
+Pietro schaut aufs Tablet. Dann schaut er Opa an. Dann schaltet er das Tablet aus.
+Pietro: Opa … lässt du uns noch eine Platte hören?
+Das war „Voci dai circuiti“. Und denkt daran: Technik ist wunderschön. Aber eine Kurbel-Taschenlampe in der Schublade schadet nie.`,
+    fact:'Alte analoge Festnetztelefone bekommen ihren Strom über die Telefonleitung selbst – deshalb funktionierten sie früher auch bei Stromausfall. Das Radio verdankt Italien viel: Guglielmo Marconi aus Bologna schickte 1895 die ersten drahtlosen Signale und bekam 1909 den Nobelpreis für Physik.' }
 ];
 /* Hörgeschichten Viaggio (Podcast „Voci in viaggio“). Figuren aus dem Thema: Anna (aus München), Luca (aus Bologna). */
 PODCAST_INFO.viaggio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: mit dem Zug von Bologna nach Venedig, mit Bahnhofsdurchsagen, Wasserbus und Möwen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
