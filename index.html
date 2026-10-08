@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 133;
+const APP_VERSION = 134;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -36992,6 +36992,91 @@ Das war „Brividi nella notte“. Jetzt könnt ihr das Licht wieder anmachen. W
       fact:'Die Legende von Azzurrina ist eine der bekanntesten Spukgeschichten Italiens. Die Burg von Montebello (Poggio Torriana, Provinz Rimini) gibt es wirklich – man kann sie besichtigen, und zur Sonnenwende gibt es dort Abendführungen.' }
   ]
 };
+/* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
+PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.calcio = [
+  { id:'calcio-p1', show:'Voci dallo stadio', ep:1, title:'Una domenica al Maradona', de:'Ein Sonntag im Maradona-Stadion',
+    place:'Stadio Diego Armando Maradona, Napoli', level:'ab A2', kind:'Spannend · Stadion',
+    voices:{Sofia:'Elsa', Pietro:'Diego', Nonno:'Giuseppe', Papà:'Diego', Venditore:'Giuseppe', Speaker:'Isabella', Radio:'Diego'},
+    stil:{'':['-4%','+0Hz'], Sofia:['+0%','+20Hz'], Pietro:['+6%','+40Hz'], Nonno:['-6%','-14Hz'], Papà:['-2%','-10Hz'], Venditore:['+8%','-12Hz'], Speaker:['+0%','+0Hz'], Radio:['+14%','+6Hz']},
+    coro:'Forza Napoli! Forza Napoli!',
+    mormorio:['Forza Napoli!','Dai, ragazzi!','Arbitro!','Che partita!','Siediti!','Passa la palla!','Andiamo!','Vai, vai!','Fuorigioco!','Che rigore!'],
+    words:[['lo stadio','das Stadion'],['la sciarpa','der Schal'],['la curva','die Fankurve'],['i tifosi','die Fans'],['il coro','der Fangesang'],['le formazioni','die Aufstellungen'],['l’arbitro','der Schiedsrichter'],['il fischio d’inizio','der Anpfiff'],['il palo','der Pfosten'],['segnare','ein Tor schießen'],['il pareggio','der Ausgleich'],['il recupero','die Nachspielzeit'],['il colpo di testa','der Kopfball'],['la radiolina','das kleine Radio'],['il fischio finale','der Schlusspfiff']],
+    fx:{'Buongiorno e benvenuti':'stadio_an', 'Venditore: Sciarpe!':'pausa', 'Entriamo nello stadio':'coro', 'Speaker: Buon pomeriggio':'altoparlante', 'Il nonno accende':'pausa', 'L’arbitro fischia. La partita':'fischio_arbitro_dopo', 'Radio: Calcio d’inizio':'radio palla', 'Al decimo minuto':'palla', 'Radio: Tiro! Palo!':'radio oooh_dopo', 'Al trentesimo minuto':'palla', 'Radio: Gol della Juventus':'radio silenzio_dopo', 'Papà: Sì! Gol!':'pausa', 'Nella curva':'tamburo coro', 'Radio: Contropiede':'radio palla gol_dopo', 'Il nonno abbraccia':'trombetta', 'Speaker: Ci sono quattro minuti':'altoparlante', 'Radio: Ultima occasione':'radio palla', 'Radio: Gooool':'radio gol', 'L’arbitro fischia la fine':'fischio_fine coro', 'La sera, a casa':'stadio_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dallo stadio», il podcast che sente il calcio con il cuore. Oggi siamo a Napoli, davanti allo stadio Maradona. È domenica, ci sono cinquantamila persone. E c’è la partita più importante dell’anno: Napoli contro Juventus.
+Sofia, Pietro, il nonno Gennaro e il papà arrivano allo stadio con le sciarpe azzurre. Anzi: tre sciarpe azzurre e una bianconera, nascosta sotto la giacca del papà.
+Venditore: Sciarpe! Bandiere! Panini con la salsiccia!
+Pietro: Nonno, posso avere un panino?
+Nonno: Dopo la partita. Prima si soffre, poi si mangia.
+Entriamo nello stadio. Saliamo le scale e all’improvviso eccolo: il campo verde, le luci, la curva piena di tifosi che cantano.
+Sofia: È bellissimo. Un giorno io gioco qui, nonno.
+Nonno: Lo so, Sofia. Io ci sarò. In prima fila.
+Speaker: Buon pomeriggio, e benvenuti allo stadio Diego Armando Maradona! Ecco le formazioni.
+Il nonno accende la sua vecchia radiolina e mette l’auricolare. Vuole sentire anche la radio. Sempre.
+L’arbitro fischia. La partita comincia.
+Radio: Calcio d’inizio! Il Napoli attacca subito, palla sulla destra…
+Al decimo minuto il Napoli tira in porta.
+Radio: Tiro! Palo! Che sfortuna per il Napoli!
+Pietro: Nooo! Era gol!
+Al trentesimo minuto attacca la Juventus. Cross dalla sinistra, colpo di testa…
+Radio: Gol della Juventus. Uno a zero.
+Papà: Sì! Gol!
+Silenzio intorno. Cinquantamila napoletani guardano il papà.
+Papà: Cioè… no. Che peccato. Che brutto gol.
+Nonno: Enzo. Siediti. E togli quella sciarpa bianconera, si vede.
+Nella curva i tifosi non si arrendono. I tamburi suonano più forte. Tutti cantano.
+Radio: Contropiede del Napoli! Passaggio in mezzo… gol! Gol del Napoli! Uno a uno!
+Il nonno abbraccia Pietro, abbraccia Sofia, abbraccia anche il vicino che non conosce.
+Speaker: Ci sono quattro minuti di recupero.
+Il nonno stringe la radiolina. Sofia tiene la mano di Pietro. Novanta più tre.
+Radio: Ultima occasione per il Napoli! Calcio d’angolo… la palla arriva in area… colpo di testa…
+Radio: Gooool! Gol del Napoli! Due a uno al novantaquattresimo!
+Lo stadio esplode. Il nonno piange. Pietro salta sulla sedia. Sofia urla così forte che perde la voce.
+L’arbitro fischia la fine. Due a uno. I cinquantamila cantano insieme.
+Papà: Va bene, va bene. Oggi ha vinto il calcio.
+Nonno: No, Enzo. Oggi ha vinto Napoli.
+La sera, a casa, il nonno appende la sciarpa vicino alla foto di Maradona. Pietro mangia finalmente il suo panino.
+Sofia: Nonno, oggi ho capito una cosa. Il calcio non è solo un gioco.
+Nonno: Brava. Il calcio è una famiglia di cinquantamila persone. Anche con un papà juventino.
+Questo era «Voci dallo stadio». Alla prossima partita. E forza, sempre!`,
+    tr:`Guten Tag und willkommen bei „Voci dallo stadio“ (Stimmen aus dem Stadion), dem Podcast, der Fußball mit dem Herzen hört. Heute sind wir in Neapel, vor dem Maradona-Stadion. Es ist Sonntag, fünfzigtausend Menschen sind da. Und es läuft das wichtigste Spiel des Jahres: Napoli gegen Juventus.
+Sofia, Pietro, Opa Gennaro und Papa kommen mit hellblauen Schals ins Stadion. Genauer gesagt: drei hellblaue Schals und ein schwarz-weißer, versteckt unter Papas Jacke.
+Verkäufer: Schals! Fahnen! Brötchen mit Wurst!
+Pietro: Opa, darf ich ein Brötchen haben?
+Opa: Nach dem Spiel. Erst wird gelitten, dann gegessen.
+Wir gehen ins Stadion. Wir steigen die Treppe hinauf, und plötzlich ist es da: das grüne Spielfeld, die Lichter, die Kurve voller singender Fans.
+Sofia: Es ist wunderschön. Eines Tages spiele ich hier, Opa.
+Opa: Ich weiß, Sofia. Ich werde dabei sein. In der ersten Reihe.
+Stadionsprecherin: Guten Tag und willkommen im Stadion Diego Armando Maradona! Hier sind die Aufstellungen.
+Opa schaltet sein altes kleines Radio ein und steckt sich den Ohrhörer ins Ohr. Er will auch das Radio hören. Immer.
+Der Schiedsrichter pfeift. Das Spiel beginnt.
+Radio: Anstoß! Napoli greift sofort an, Ball auf rechts …
+In der zehnten Minute schießt Napoli aufs Tor.
+Radio: Schuss! Pfosten! So ein Pech für Napoli!
+Pietro: Neiiin! Das war ein Tor!
+In der dreißigsten Minute greift Juventus an. Flanke von links, Kopfball …
+Radio: Tor für Juventus. Eins zu null.
+Papa: Ja! Tor!
+Stille ringsum. Fünfzigtausend Neapolitaner schauen Papa an.
+Papa: Ich meine … nein. Wie schade. Was für ein hässliches Tor.
+Opa: Enzo. Setz dich. Und nimm den schwarz-weißen Schal ab, den sieht man.
+In der Kurve geben die Fans nicht auf. Die Trommeln werden lauter. Alle singen.
+Radio: Konter von Napoli! Pass in die Mitte … Tor! Tor für Napoli! Eins zu eins!
+Opa umarmt Pietro, umarmt Sofia, umarmt sogar den Nachbarn, den er nicht kennt.
+Stadionsprecherin: Es gibt vier Minuten Nachspielzeit.
+Opa drückt das kleine Radio fest. Sofia hält Pietros Hand. Neunzig plus drei.
+Radio: Letzte Chance für Napoli! Ecke … der Ball kommt in den Strafraum … Kopfball …
+Radio: Tooor! Tor für Napoli! Zwei zu eins in der vierundneunzigsten Minute!
+Das Stadion explodiert. Opa weint. Pietro springt auf den Sitz. Sofia schreit so laut, dass sie die Stimme verliert.
+Der Schiedsrichter pfeift ab. Zwei zu eins. Die Fünfzigtausend singen zusammen.
+Papa: Na gut, na gut. Heute hat der Fußball gewonnen.
+Opa: Nein, Enzo. Heute hat Napoli gewonnen.
+Am Abend, zu Hause, hängt Opa den Schal neben das Foto von Maradona. Pietro isst endlich sein Brötchen.
+Sofia: Opa, heute habe ich etwas verstanden. Fußball ist nicht nur ein Spiel.
+Opa: Genau. Fußball ist eine Familie aus fünfzigtausend Menschen. Sogar mit einem Juve-Papa.
+Das war „Voci dallo stadio“. Bis zum nächsten Spiel. Und immer: Forza!`,
+    fact:'Das Stadion von Neapel heißt seit 2020 „Stadio Diego Armando Maradona“, nach dem argentinischen Spieler, der Napoli 1987 und 1990 zur Meisterschaft führte. Viele Fans hören das Spiel im Stadion zusätzlich im Radio – eine alte italienische Gewohnheit.' }
+];
 /* Hörgeschichten Cavalli (Podcast „In sella!“). Figuren aus dem Thema: Sara (Fulmine), Luca (Tornado), Carla (Reitstall, Stute Stella), Pony Pepe. */
 PODCAST_INFO.cavalli = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Ausritte und Geschichten mit Pferden, mit Geräuschen aus der Natur, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.cavalli = [
