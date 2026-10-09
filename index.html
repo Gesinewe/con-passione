@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 141;
+const APP_VERSION = 142;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -38200,6 +38200,98 @@ Oma: Und ein Eis für Opa, umsonst. Für die Kasse.
 Alle lachen.
 Das war „Voci dei soldi“. Und denkt daran: Jeder große Laden hat mit einem kaputten Sparschwein angefangen.`,
     fact:'Der Euro wurde in Italien am 1. Januar 2002 eingeführt; 1936,27 Lire waren ein Euro. Lire-Münzen konnte man nur noch bis Anfang 2002 benutzen – heute sind sie Sammlerstücke.' }
+];
+/* Hörgeschichten Storia (Elias Podcast „La storia in tasca“). Figuren aus dem Thema: Elia (16, macht den Podcast), Schwester Marta (12), Opa Tullio (85, früher Geschichtslehrer), Luca (Technik, schneidet den Podcast), Kater Polo. Historisch: Besuch Heinrichs III. im Arsenal, Juli 1574. */
+PODCAST_INFO.storia = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Elia nimmt eine Folge von „La storia in tasca“ auf, und Opa Tullio erzählt, wie das Arsenal von Venedig 1574 eine ganze Galeere baute – während der König von Frankreich beim Mittagessen saß. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.storia = [
+  { id:'storia-p1', show:'La storia in tasca', ep:1, title:'Una nave per pranzo', de:'Ein Schiff zum Mittagessen',
+    place:'Venezia, la camera del nonno Tullio – e l’Arsenale nel luglio del 1574', level:'ab A2', kind:'Geschichte · Wahre Begebenheit',
+    voices:{Elia:'Diego', Luca:'Diego', Marta:'Elsa', Nonno:'Giuseppe', Re:'Diego', Proto:'Giuseppe', Doge:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Elia:['+2%','+24Hz'], Luca:['+8%','+44Hz'], Marta:['+4%','+40Hz'], Nonno:['-10%','-14Hz'], Re:['-6%','-8Hz'], Proto:['+0%','+8Hz'], Doge:['-12%','-24Hz']},
+    mormorio:['Viva il re!','Eccolo!','Viva Venezia!','Guarda, guarda!','Che bello!','Forza, ragazzi!','Più veloce!','Passami il martello!','Attento!','Che caldo oggi!'],
+    words:[['il podcast','der Podcast'],['registrare','aufnehmen'],['il microfono','das Mikrofon'],['l’Arsenale','das Arsenal (die Schiffswerft Venedigs)'],['la galea','die Galeere'],['il re','der König'],['il doge','der Doge'],['il cannone','die Kanone'],['gli arsenalotti','die Arbeiter des Arsenals'],['il proto','der Vorarbeiter (im Arsenal)'],['il martello','der Hammer'],['la sega','die Säge'],['la pece','das Pech (heißer Teer)'],['bollire','kochen'],['Maestà','Majestät'],['il banchetto','das Festmahl'],['lo zucchero','der Zucker'],['il tovagliolo','die Serviette'],['si rompe','zerbricht'],['il varo','der Stapellauf'],['le parti','die Teile'],['Impossibile!','Unmöglich!'],['cancellare','löschen'],['salvare','speichern']],
+    fx:{'Elia: Ciao a tutti':'carillon', 'Luca: Microfono':'pausa', 'Polo salta':'miao', 'Venezia, luglio':'pausa acqua_an gabbiani', 'Le navi':'cannone', 'Tutte le campane':'campane', 'Il re scende':'tromba folla_an', 'Il giorno dopo':'acqua_aus folla_aus arsenale_an', 'Proto: Maestà, ora':'pausa', 'Il proto batte':'martello', 'Il re va':'arsenale_aus sala_an', 'Il re prende':'zucchero', 'Re: Ma è':'pausa', 'Il re torna':'sala_aus folla_an', 'Il proto alza':'varo applausi_dopo', 'Il doge sorride':'pausa', 'Torniamo a':'folla_aus pausa', 'In quel momento Polo':'miao tastiera', 'Elia: Polo! Hai':'pausa'},
+    text:`Elia: Ciao a tutti e benvenuti a «La storia in tasca», il podcast che porta la storia in tasca. Io sono Elia, e sono a Venezia, nella camera di mio nonno Tullio.
+Luca: Microfono acceso. Elia, si registra!
+Elia: Oggi c’è un ospite speciale: mio nonno. Per quarant’anni ha insegnato storia.
+Nonno: Buongiorno, ragazzi. E buongiorno anche a Polo.
+Polo salta sul tavolo e si siede sulla vecchia mappa di Venezia. Come sempre.
+Marta: Posso stare qui anch’io? Non parlo, promesso!
+Elia: Va bene, ma zitta. Nonno, oggi ci racconti una storia vera. Una storia con un re, una nave e… un pranzo.
+Nonno: Esatto. Chiudete gli occhi. Siamo nel 1574.
+Venezia, luglio 1574. Fa caldo. Sulla laguna ci sono centinaia di barche e di gondole.
+Il re di Francia, Enrico, arriva a Venezia. Ha solo ventitré anni.
+Le navi lo salutano con i cannoni.
+Tutte le campane della città suonano.
+Il re scende dalla nave. Migliaia di veneziani gridano e applaudono.
+Il giorno dopo il re visita l’Arsenale. È il cantiere più grande del mondo: qui lavorano migliaia di uomini, gli arsenalotti. Costruiscono le navi di Venezia.
+Ci sono martelli, seghe, legno dappertutto. E grandi pentole di pece, che bolle sul fuoco.
+Nonno: Anche Dante, duecento anni prima, ha visto la pece che bolle all’Arsenale. E l’ha messa nell’Inferno!
+Il proto, il capo degli arsenalotti, fa un inchino.
+Proto: Maestà, ora andate a pranzo con il doge. Quando tornate, qui c’è una galea nuova. Pronta per il mare.
+Re: Una nave in un pranzo? Impossibile!
+Il proto batte il martello. E gli arsenalotti cominciano a lavorare. Veloci, velocissimi.
+Il re va al Palazzo Ducale. Il banchetto è enorme: tremila invitati, musica, fiori.
+Sul tavolo del re ci sono piatti, pane, statue, fiori. Tutto bellissimo.
+Il re prende il suo tovagliolo. E il tovagliolo… si rompe!
+Re: Ma è… zucchero?
+Doge: Sì, Maestà. Il tovagliolo, il pane, i piatti, le statue. Tutto di zucchero. A Venezia anche lo zucchero è un’arte.
+Il re torna all’Arsenale. E davanti a lui c’è una galea nuova. Grande, bella, pronta.
+Il proto alza la mano. La galea scivola nell’acqua.
+Re: Venezia è una città di maghi.
+Il doge sorride. Ha vinto lui.
+Torniamo a oggi, nella camera del nonno.
+Marta: Ma nonno… davvero? Una nave in un pranzo? Come hanno fatto?
+Nonno: Le parti della nave erano già pronte. Gli arsenalotti dovevano solo montarle. Come un mobile dell’Ikea. Ma cinquecento anni prima.
+Elia: E il tovagliolo di zucchero?
+Nonno: Vero anche quello. Il re l’ha raccontato per tutta la vita.
+In quel momento Polo cammina sulla tastiera del computer di Luca.
+Luca: Polo! No! Hai cancellato tutto?!
+Elia: Polo! Hai…
+Luca: Aspetta… no. Tranquilli. L’avevo salvato.
+Nonno: Vedi, Elia? Anche nella storia la cosa più importante è salvare i documenti.
+Elia: Questo era «La storia in tasca». La prossima volta: un altro segreto di Venezia. E se avete un gatto… tenetelo lontano dal computer.`,
+    tr:`Elia: Hallo zusammen und willkommen bei „La storia in tasca“ (Geschichte für die Hosentasche), dem Podcast, der Geschichte in die Hosentasche bringt. Ich bin Elia, und ich bin in Venedig, im Zimmer meines Opas Tullio.
+Luca: Mikro an. Elia, es wird aufgenommen!
+Elia: Heute haben wir einen besonderen Gast: meinen Opa. Vierzig Jahre lang hat er Geschichte unterrichtet.
+Opa: Guten Tag, Kinder. Und guten Tag auch an Polo.
+Polo springt auf den Tisch und setzt sich auf die alte Karte von Venedig. Wie immer.
+Marta: Darf ich auch hierbleiben? Ich rede nicht, versprochen!
+Elia: Okay, aber still. Opa, heute erzählst du uns eine wahre Geschichte. Eine Geschichte mit einem König, einem Schiff und … einem Mittagessen.
+Opa: Genau. Macht die Augen zu. Wir sind im Jahr 1574.
+Venedig, Juli 1574. Es ist heiß. Auf der Lagune sind Hunderte von Booten und Gondeln.
+Der König von Frankreich, Heinrich, kommt nach Venedig. Er ist erst dreiundzwanzig Jahre alt.
+Die Schiffe begrüßen ihn mit Kanonen.
+Alle Glocken der Stadt läuten.
+Der König steigt vom Schiff. Tausende Venezianer rufen und klatschen.
+Am nächsten Tag besucht der König das Arsenal. Es ist die größte Werft der Welt: Hier arbeiten Tausende Männer, die Arsenalotti. Sie bauen die Schiffe Venedigs.
+Überall Hämmer, Sägen, Holz. Und große Töpfe mit Pech, das auf dem Feuer kocht.
+Opa: Auch Dante hat zweihundert Jahre vorher das kochende Pech im Arsenal gesehen. Und er hat es in die Hölle gesteckt!
+Der Proto, der Chef der Arsenalotti, verbeugt sich.
+Proto: Majestät, geht jetzt mit dem Dogen zum Mittagessen. Wenn Ihr zurückkommt, steht hier eine neue Galeere. Bereit für das Meer.
+König: Ein Schiff in einem Mittagessen? Unmöglich!
+Der Proto schlägt mit dem Hammer. Und die Arsenalotti fangen an zu arbeiten. Schnell, superschnell.
+Der König geht zum Dogenpalast. Das Festmahl ist riesig: dreitausend Gäste, Musik, Blumen.
+Auf dem Tisch des Königs sind Teller, Brot, Statuen, Blumen. Alles wunderschön.
+Der König nimmt seine Serviette. Und die Serviette … zerbricht!
+König: Ist das etwa … Zucker?
+Doge: Ja, Majestät. Die Serviette, das Brot, die Teller, die Statuen. Alles aus Zucker. In Venedig ist sogar Zucker eine Kunst.
+Der König kehrt zum Arsenal zurück. Und vor ihm liegt eine neue Galeere. Groß, schön, fertig.
+Der Proto hebt die Hand. Die Galeere gleitet ins Wasser.
+König: Venedig ist eine Stadt von Zauberern.
+Der Doge lächelt. Er hat gewonnen.
+Zurück ins Heute, in Opas Zimmer.
+Marta: Aber Opa … wirklich? Ein Schiff in einem Mittagessen? Wie haben sie das gemacht?
+Opa: Die Teile des Schiffs waren schon fertig. Die Arsenalotti mussten sie nur zusammenbauen. Wie ein Ikea-Möbel. Aber fünfhundert Jahre früher.
+Elia: Und die Serviette aus Zucker?
+Opa: Die ist auch wahr. Der König hat das sein ganzes Leben lang erzählt.
+In diesem Moment läuft Polo über die Tastatur von Lucas Computer.
+Luca: Polo! Nein! Hast du alles gelöscht?!
+Elia: Polo! Hast du …
+Luca: Warte … nein. Keine Sorge. Ich hatte es gespeichert.
+Opa: Siehst du, Elia? Auch in der Geschichte ist das Wichtigste, die Dokumente zu sichern.
+Elia: Das war „La storia in tasca“. Nächstes Mal: noch ein Geheimnis Venedigs. Und wenn ihr eine Katze habt … haltet sie vom Computer fern.`,
+    fact:'Heinrich III. besuchte Venedig im Juli 1574 auf dem Weg von Polen nach Frankreich. Überliefert ist, dass das Arsenal während seines Festmahls eine Galeere aus fertigen Teilen zusammensetzte – wie lange es genau dauerte, weiß man nicht sicher. Beim Festmahl waren Teller, Brot und Servietten aus Zucker geformt. Das Arsenal war mit bis zu 16.000 Arbeitern einer der größten Betriebe Europas; Dante beschreibt sein kochendes Pech im 21. Gesang der „Hölle“.' }
 ];
 /* Hörgeschichten Tech (Podcast „Voci dai circuiti“). Figuren aus dem Thema: Sofia (Turin, Roboter Bullone), Opa Bruno (traut Handys nicht, repariert alles), kleiner Bruder Pietro. */
 PODCAST_INFO.tech = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Stromausfall in Turin, und Opa Bruno holt die alte Technik aus dem Schrank – Kurbellampe, Radio, Plattenspieler, Schreibmaschine und Wählscheibentelefon, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
