@@ -555,7 +555,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 152;
+const APP_VERSION = 153;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -36860,10 +36860,10 @@ function startRec(btn){
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
 const SP_ALIAS = {apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli', sulcaccia:'squadra', sculaccia:'squadra', veri:'perde', spider:'calderone', lusone:'lo zombie', usone:'zombie', siete:'si e', cova:'curva', signosera:'fine', stipulata:'decollata',
-  vestiti:'travestiti', on:'un', lu:'blu', dice:'bici', lihana:'le rane', rana:'rane', gioco:'giuro', auspicazione:'la spiegazione', doccia:'notte', caro:'cara', figlio:'qui', mccartney:'mercatino', amato:'remato', miso:'immerso', olgiato:'guidato', affinato:'ha frenato', pratapa:'abracadabra', video:'brivido'};
+  vestiti:'travestiti', on:'un', lu:'blu', dice:'bici', lihana:'le rane', rana:'rane', gioco:'giuro', auspicazione:'la spiegazione', doccia:'notte', caro:'cara', figlio:'qui', mccartney:'mercatino', amato:'remato', miso:'immerso', olgiato:'guidato', affinato:'ha frenato', pratapa:'abracadabra', video:'brivido', volo:'ruolo', patate:'battute', suonato:'sussurrato', fu:'ho', sotto:'sorto', autentica:'gentile'};
 /* Verhörer aus zwei Wörtern: „o lato“ → „urlato“. Gleiche Regeln wie oben, beide gehörten Wörter dürfen nicht im Zielsatz stehen. */
 const SP_ALIAS2 = {'the spider':'nel calderone', 'o lato':'urlato', 'ho lato':'urlato', 'linndse miria':'linfermiera', 'lindse miria':'linfermiera', 'linde miria':'linfermiera', 'linse miria':'linfermiera', 'fa tutto':'ha sbattuto', 'siete nata':'si e tenuta',
-  'del successo':'e successa', 'cerca novara':'cerano rane', 'prima mira':'piramide', 'apri amore':'abbiamo', 'apri olgiato':'ha guidato', 'un lato':'urlato', 'a pratapa':'abracadabra', 'e proprio':'ebbe un'};
+  'del successo':'e successa', 'cerca novara':'cerano rane', 'prima mira':'piramide', 'apri amore':'abbiamo', 'apri olgiato':'ha guidato', 'un lato':'urlato', 'a pratapa':'abracadabra', 'e proprio':'ebbe un', 'esitare o':'il sipario', 'tra classe':'dracula si', 'miss italia':'lotteria'};
 function spAlias(target, heard){
   const out = [];
   for (let i=0; i<heard.length; i++){
