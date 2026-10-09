@@ -544,7 +544,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 140;
+const APP_VERSION = 141;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
 
@@ -37905,6 +37905,135 @@ Dario schaut den Specht an. Dann schaut er einen kleinen Käfer am Stamm an, neb
 Dario: Hallo, Käfer. Heute habe ich keine Angst vor dir. Gestern habe ich ein Monster mit Geweih gesehen.
 Das war „Voci del bosco“. Und denkt daran: Nachts schläft der Wald nicht. Er spricht. Man muss nur zuhören.`,
     fact:'Im Nationalpark Foreste Casentinesi leben über tausend Rothirsche. Von Mitte September bis Mitte Oktober ist Brunftzeit, der „bramito“: Die Männchen röhren nachts, um Weibchen anzulocken und Rivalen zu vertreiben. Parkranger führen dann Gruppen zum Zuhören in den Wald – mit rotem Licht, weil es die Tiere weniger stört.' }
+];
+/* Hörgeschichten Proverbi (Podcast „Voci dei proverbi“). Figuren aus dem Thema: Lara (15), Bruder Nico (8), Mama Silvia, Papa Tom (deutscher Bäcker), nonna Ada (Sprichwörter), nonno Gino (Olivenbauer in Greve, kennt zu jedem Sprichwort das Gegenteil), Papagei Socrate. */
+PODCAST_INFO.proverbi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Sonntagsessen bei Opa Gino in Greve in Chianti – Oma Ada und Opa Gino tragen ein Sprichwort-Duell aus, und Papagei Socrate redet immer dazwischen. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.proverbi = [
+  { id:'proverbi-p1', show:'Voci dei proverbi', ep:1, title:'Il duello dei proverbi', de:'Das Sprichwort-Duell',
+    place:'Greve in Chianti, la casa del nonno Gino, una domenica di settembre', level:'ab A2', kind:'Lustig · Familie',
+    voices:{Lara:'Isabella', Nico:'Elsa', Nonna:'Isabella', Nonno:'Giuseppe', Mamma:'Elsa', Papà:'Diego', 'Papà in tedesco':'de-DE-ConradNeural', Socrate:'Elsa'},
+    stil:{'':['-6%','+0Hz'], Lara:['+2%','+20Hz'], Nico:['+6%','+46Hz'], Nonna:['-10%','-16Hz'], Nonno:['-10%','-14Hz'], Mamma:['-2%','+8Hz'], Papà:['-4%','-2Hz'], 'Papà in tedesco':['-4%','+0Hz'], Socrate:['+14%','+90Hz']},
+    words:[['il proverbio','das Sprichwort'],['il duello','das Duell'],['il gallo','der Hahn'],['il pappagallo','der Papagei'],['Chi dorme non piglia pesci.','Wer schläft, fängt keine Fische. (Der frühe Vogel fängt den Wurm.)'],['apparecchiare la tavola','den Tisch decken'],['la pergola','die Weinlaube'],['il ginocchio','das Knie'],['Rosso di sera, bel tempo si spera.','Abendrot – morgen gutes Wetter.'],['il contrario','das Gegenteil'],['il giudice','der Schiedsrichter, Richter'],['il round','die Runde'],['Chi va piano va sano e va lontano.','Wer langsam geht, kommt gesund und weit.'],['Chi ha tempo non aspetti tempo.','Wer Zeit hat, soll nicht auf Zeit warten.'],['il brindisi','das Anstoßen'],['Cin cin!','Prost!'],['Chi si somiglia si piglia.','Gleich und Gleich gesellt sich gern.'],['Gli opposti si attraggono.','Gegensätze ziehen sich an.'],['Ve l’avevo detto!','Ich hab’s euch doch gesagt!'],['la poltrona','der Sessel'],['russare','schnarchen'],['il pareggio','das Unentschieden'],['il vincitore','der Gewinner'],['l’arcobaleno','der Regenbogen']],
+    fx:{'Buongiorno e benvenuti':'uccelli_an', 'Nel cortile':'gallo', 'Dalla cucina risponde':'pappagallo', 'In cucina la nonna':'coltello', 'Lara ride.':'pausa', 'Primo round':'campanella', 'Secondo round':'campanella', 'Socrate: Chi dorme non piglia pesci! Hai sentito':'pappagallo', 'A tavola':'piatti', 'Il nonno apre una':'tappo', 'Tutti alzano':'brindisi', 'Terzo round':'campanella', 'Per un momento':'pausa', 'Tutti ridono. Anche':'risate_adulti', 'All’improvviso il cielo':'tuono pioggia_an uccelli_aus', 'Tutti corrono':'piatti', 'Dopo cinque minuti':'russare', 'Socrate guarda':'pappagallo', 'Nico batte':'applausi', 'Alle quattro':'pioggia_aus uccelli_an'},
+    text:`Buongiorno e benvenuti a «Voci dei proverbi», il podcast dove ogni frase ha almeno cent’anni. Oggi siamo in Toscana, a Greve in Chianti, fra le colline e gli ulivi. È domenica. La famiglia Weber è venuta da Firenze per il pranzo dal nonno Gino e dalla nonna Ada.
+Nel cortile canta il gallo.
+Dalla cucina risponde Socrate, il vecchio pappagallo della nonna.
+Socrate: Chi dorme non piglia pesci! Chi dorme non piglia pesci!
+Nico: Ma Socrate, sono le undici! Non dorme nessuno!
+Lara: Lui lo dice sempre. Anche a mezzanotte.
+In cucina la nonna Ada taglia le verdure. Sul fuoco c’è il sugo.
+Nonna: Lara, tesoro, apparecchia la tavola. Fuori, sotto la pergola. Oggi c’è il sole.
+Nonno: Il sole sì. Ma oggi pomeriggio piove. Lo sento nel ginocchio.
+Nonna: Il tuo ginocchio sbaglia sempre. Ieri sera il cielo era rosso. E rosso di sera, bel tempo si spera.
+Nonno: Eh, ma non tutte le nuvole portano pioggia. E non tutti i cieli rossi portano il sole.
+Lara ride. I nonni sono sposati da sessant’anni. E da sessant’anni fanno sempre lo stesso gioco: la nonna dice un proverbio, e il nonno risponde con il proverbio contrario.
+Nico: Facciamo una gara! Un duello dei proverbi! Io e Lara siamo i giudici. Io suono il campanello!
+Papà: Posso giocare anch’io? Conosco un proverbio tedesco!
+Mamma: Oh no. Tom, per favore.
+Lara: Dopo, papà. Prima i nonni.
+Primo round.
+Nonna: Chi va piano va sano e va lontano.
+Nonno: Chi ha tempo non aspetti tempo.
+Nico: Bello! Un punto a tutti e due!
+Secondo round.
+Nonno: Il mattino ha l’oro in bocca.
+Nonna: Ogni cosa a suo tempo.
+Socrate: Chi dorme non piglia pesci! Hai sentito?
+Lara: Socrate, non è il tuo turno!
+A tavola, sotto la pergola. La nonna porta i piatti: pici al sugo, il pane di papà, le olive del nonno.
+Il nonno apre una bottiglia del suo vino.
+Nonno: Olio nuovo, vino vecchio. Questo vino ha dieci anni. Come Nico… quasi.
+Tutti alzano i bicchieri e dicono: «Cin cin!»
+Terzo round. La nonna guarda la mamma e il papà.
+Nonna: Chi si somiglia si piglia.
+Nonno: Ma no, Ada. Gli opposti si attraggono. Noi due siamo la prova.
+Papà: Adesso tocca a me! Ecco il mio proverbio tedesco.
+Papà in tedesco: Ich verstehe nur Bahnhof.
+Papà: In italiano vuol dire: capisco solo stazione.
+Per un momento nessuno parla.
+Nonno: Stazione? Quale stazione?
+Papà: Vuol dire: non capisco niente!
+Nonna: E allora perché parli di treni?
+Tutti ridono. Anche il papà.
+Nico: Zero punti per papà!
+All’improvviso il cielo diventa grigio. Un tuono. E poi comincia a piovere forte.
+Nonno: Ve l’avevo detto! Il mio ginocchio non sbaglia mai!
+Tutti corrono dentro con i piatti e i bicchieri. Socrate grida dalla sua gabbia.
+Dentro, il nonno si siede nella sua poltrona, contento.
+Nonno: Hai visto, Ada? Questa volta ho vinto io.
+Nonna: Va bene, Gino. Ma dopo la pioggia viene il sereno.
+Dopo cinque minuti il nonno chiude gli occhi. E comincia a russare.
+Lara: Allora, Nico? Chi ha vinto il duello?
+Nico: Mmm… tre a tre. Pareggio!
+Socrate guarda il nonno che dorme. E poi grida, fortissimo:
+Socrate: Chi dorme non piglia pesci!
+Il nonno apre un occhio.
+Nonno: Socrate… il lupo perde il pelo, ma non il vizio.
+Nico batte le mani.
+Nico: Il vincitore del duello è… Socrate!
+Alle quattro la pioggia finisce. Sopra le colline del Chianti c’è un arcobaleno. La nonna lo guarda e sorride.
+Nonna: Visto? Dopo la pioggia viene il sereno.
+Questo era «Voci dei proverbi». E ricordate: per ogni proverbio c’è un proverbio contrario. Ma il pranzo della domenica mette d’accordo tutti.`,
+    tr:`Guten Tag und willkommen bei „Voci dei proverbi“ (Stimmen der Sprichwörter), dem Podcast, in dem jeder Satz mindestens hundert Jahre alt ist. Heute sind wir in der Toskana, in Greve in Chianti, zwischen Hügeln und Olivenbäumen. Es ist Sonntag. Familie Weber ist aus Florenz zum Mittagessen bei Opa Gino und Oma Ada gekommen.
+Im Hof kräht der Hahn.
+Aus der Küche antwortet Socrate, Omas alter Papagei.
+Socrate: Wer schläft, fängt keine Fische! Wer schläft, fängt keine Fische!
+Nico: Aber Socrate, es ist elf Uhr! Keiner schläft!
+Lara: Das sagt er immer. Sogar um Mitternacht.
+In der Küche schneidet Oma Ada das Gemüse. Auf dem Herd steht die Soße.
+Oma: Lara, Schatz, deck den Tisch. Draußen, unter der Weinlaube. Heute scheint die Sonne.
+Opa: Die Sonne schon. Aber heute Nachmittag regnet es. Ich spüre es im Knie.
+Oma: Dein Knie irrt sich immer. Gestern Abend war der Himmel rot. Und Abendrot – morgen gutes Wetter.
+Opa: Tja, aber nicht alle Wolken bringen Regen. Und nicht jeder rote Himmel bringt Sonne.
+Lara lacht. Oma und Opa sind seit sechzig Jahren verheiratet. Und seit sechzig Jahren spielen sie immer dasselbe Spiel: Oma sagt ein Sprichwort, und Opa antwortet mit dem gegenteiligen Sprichwort.
+Nico: Lass uns einen Wettkampf machen! Ein Sprichwort-Duell! Lara und ich sind die Schiedsrichter. Ich läute die Glocke!
+Papa: Darf ich auch mitspielen? Ich kenne ein deutsches Sprichwort!
+Mama: Oh nein. Tom, bitte.
+Lara: Später, Papa. Zuerst Oma und Opa.
+Erste Runde.
+Oma: Wer langsam geht, kommt gesund und weit.
+Opa: Wer Zeit hat, soll nicht auf Zeit warten.
+Nico: Schön! Ein Punkt für beide!
+Zweite Runde.
+Opa: Morgenstund hat Gold im Mund.
+Oma: Alles zu seiner Zeit.
+Socrate: Wer schläft, fängt keine Fische! Hast du gehört?
+Lara: Socrate, du bist nicht dran!
+Zu Tisch, unter der Weinlaube. Oma bringt die Teller: Pici mit Soße, Papas Brot, Opas Oliven.
+Opa öffnet eine Flasche von seinem Wein.
+Opa: Öl neu, Wein alt. Dieser Wein ist zehn Jahre alt. Wie Nico … fast.
+Alle heben die Gläser und sagen: „Prost!“
+Dritte Runde. Oma schaut Mama und Papa an.
+Oma: Gleich und Gleich gesellt sich gern.
+Opa: Ach was, Ada. Gegensätze ziehen sich an. Wir beide sind der Beweis.
+Papa: Jetzt bin ich dran! Hier ist mein deutsches Sprichwort.
+Papa auf Deutsch: Ich verstehe nur Bahnhof.
+Papa: Auf Italienisch heißt das: „capisco solo stazione“.
+Einen Moment lang sagt niemand etwas.
+Opa: Bahnhof? Welcher Bahnhof?
+Papa: Das heißt: Ich verstehe gar nichts!
+Oma: Und warum redest du dann von Zügen?
+Alle lachen. Auch Papa.
+Nico: Null Punkte für Papa!
+Plötzlich wird der Himmel grau. Ein Donner. Und dann fängt es an, heftig zu regnen.
+Opa: Ich hab’s euch doch gesagt! Mein Knie irrt sich nie!
+Alle rennen mit den Tellern und Gläsern hinein. Socrate kreischt in seinem Käfig.
+Drinnen setzt sich Opa zufrieden in seinen Sessel.
+Opa: Hast du gesehen, Ada? Diesmal habe ich gewonnen.
+Oma: Schon gut, Gino. Aber nach dem Regen kommt Sonnenschein.
+Nach fünf Minuten macht Opa die Augen zu. Und fängt an zu schnarchen.
+Lara: Und, Nico? Wer hat das Duell gewonnen?
+Nico: Hmm … drei zu drei. Unentschieden!
+Socrate schaut den schlafenden Opa an. Und dann kreischt er, ganz laut:
+Socrate: Wer schläft, fängt keine Fische!
+Opa macht ein Auge auf.
+Opa: Socrate … der Wolf verliert sein Fell, aber nicht seine Laster.
+Nico klatscht in die Hände.
+Nico: Der Gewinner des Duells ist … Socrate!
+Um vier hört der Regen auf. Über den Hügeln des Chianti steht ein Regenbogen. Oma schaut ihn an und lächelt.
+Oma: Siehst du? Nach dem Regen kommt Sonnenschein.
+Das war „Voci dei proverbi“. Und denkt daran: Zu jedem Sprichwort gibt es ein gegenteiliges Sprichwort. Aber das Sonntagsessen macht alle wieder einig.`,
+    fact:'„Chi dorme non piglia pesci“ entspricht unserem „Der frühe Vogel fängt den Wurm“: Wer früh aufsteht, hat Erfolg. „Ich verstehe nur Bahnhof“ gibt es auf Italienisch nicht – dort sagt man „Per me è arabo“ (Für mich ist das Arabisch) oder „Non ci capisco un’acca“ (Ich verstehe davon kein H). Pici sind dicke, handgerollte Nudeln aus der Gegend um Siena.' }
 ];
 /* Hörgeschichten Roma antica (Podcast „Voci dall’antica Roma“). Wahre Geschichte: Verus und Priscus, Eröffnung des Kolosseums 80 n. Chr. (Martial, Liber spectaculorum 29). */
 PODCASTS.roma = [
