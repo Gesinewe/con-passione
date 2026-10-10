@@ -1,5 +1,5 @@
 /* Service Worker: App offline verfügbar machen. Erzeugt von werkzeuge/web_bauen.py */
-const SHELL = 'cp-shell-269a3864c5', SOUNDS = 'cp-sounds', EXT = 'https://gesinewe.github.io';
+const SHELL = 'cp-shell-01794b7aa6', SOUNDS = 'cp-sounds', EXT = 'https://gesinewe.github.io';
 const FILES = ['./', 'index.html', 'manifest.webmanifest', 'icon-192.png', 'icon-512.png', 'sounds/index.json'];
 self.addEventListener('install', e => e.waitUntil(caches.open(SHELL).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(caches.keys()
