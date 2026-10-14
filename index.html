@@ -555,7 +555,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 169;
+const APP_VERSION = 170;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -42286,20 +42286,22 @@ function startRec(btn){
 /* Verhörer der Spracherkennung: gehört → gemeint. Gilt nur, wenn das gemeinte Wort im Zielsatz steht
    und das gehörte Wort selbst nicht (sonst würde z. B. das „i“ in „Hai i biglietti?“ verloren gehen). */
 const SP_ALIAS = {picture:'piacerebbe', tipici:'gli piacerebbe', piacerebbero:'piacerebbe avere', funzione:'pozione', fusione:'pozione', crollo:'quello', tattoo:'gatto', ungheret:'un', sposo:'lo zombie', liga:'lega', coda:'corda', usciva:'uscire', parola:'bara', key:'che', palace:'parla e', risultato:'ritratto', trattato:'ritratto', apple:'apro', marco:'magro', marca:'magra', i:'hai', site:'sete', foto:'porto', lato:'ladro', lati:'ladri', occupato:'ho provato', stato:'sotto', sculacciati:'squadra degli', sculacciata:'squadra degli', sulcaccia:'squadra', sculaccia:'squadra', veri:'perde', spider:'calderone', lusone:'lo zombie', usone:'zombie', siete:'si e', cova:'curva', signosera:'fine', stipulata:'decollata',
-  vestiti:'travestiti', on:'un', lu:'blu', dice:'bici', lihana:'le rane', rana:'rane', gioco:'giuro', auspicazione:'la spiegazione', doccia:'notte', caro:'cara', figlio:'qui', mccartney:'mercatino', amato:'remato', miso:'immerso', olgiato:'guidato', affinato:'ha frenato', pratapa:'abracadabra', video:'brivido', volo:'ruolo', patate:'battute', suonato:'sussurrato', fu:'ho', sotto:'sorto', autentica:'gentile'};
+  vestiti:'travestiti', on:'un', lu:'blu', dice:'bici|disse', lihana:'le rane', rana:'rane', gioco:'giuro', auspicazione:'la spiegazione', doccia:'notte', caro:'cara', figlio:'qui', mccartney:'mercatino', amato:'remato', miso:'immerso', olgiato:'guidato', affinato:'ha frenato', pratapa:'abracadabra', video:'brivido|vide|videro', volo:'ruolo|urlo', patate:'battute', suonato:'sussurrato', fu:'ho|fui', sotto:'sorto', autentica:'gentile', soffitto:'soffitta', tappeto:'dappertutto', racchiuso:'era chiuso', aspiagaton:'ha spiegato', afron:'ha raccontato', tatu:'che il quadro', harvard:'ha', covazzo:'quadro', letto:'ladro', lets:'il ladro', mira:'dormire', commesso:'promesso', nono:'nonno', testo:'presto', murato:'innamorato', chiavassi:'dichiararsi', vampire:'vampiri', sindrome:'si dorme', tono:'giorno', deve:'dei', sulcatel:'sul cartello', carrefour:'sul', casale:'cartello', puzzona:'pozione', spaccio:'dispiace', miti:'mi', uno:'una', pozzetto:'boccette', puzzette:'boccette', ragazzo:'razzo', nome:'enorme', spedire:'spegnere', lavoro:'favore', avviato:'intagliato', circuito:'cigolio', cuvo:'trovo', cuve:'trovo', cuvero:'trovo', cubo:'trovo', soia:'soglia', hulot:'urlo', ullow:'urlo', quota:'porta', cadel:'cadde', cise:'chi ce', diesse:'disse', fucile:'fuggi', galleria:'nebbia', fossero:'fuggirono', paura:'palude', hilton:'il', entrare:'entrai', palidoro:'pallido', epic:'ebbi', happy:'ebbi', noches:'notte', colore:'cuore', partiva:'batteva', vacca:'barca', orsolonapaka:'solo una barca', thunderstruck:'tanta paura', thunder:'tanta', trenta:'tanta', vi:'le'};
 /* Verhörer aus zwei Wörtern: „o lato“ → „urlato“. Gleiche Regeln wie oben, beide gehörten Wörter dürfen nicht im Zielsatz stehen. */
 const SP_ALIAS2 = {'picture avrebbe':'piacerebbe', 'tipici avrebbero':'gli piacerebbe avere', 'tipici avrebbe':'gli piacerebbe avere', 'sposo mi':'lo zombie', 'ungheret tattoo':'un gatto', 'key palace':'che parla e', 'the spider':'nel calderone', 'o lato':'urlato', 'ho lato':'urlato', 'linndse miria':'linfermiera', 'lindse miria':'linfermiera', 'linde miria':'linfermiera', 'linse miria':'linfermiera', 'fa tutto':'ha sbattuto', 'siete nata':'si e tenuta',
-  'del successo':'e successa', 'cerca novara':'cerano rane', 'prima mira':'piramide', 'apri amore':'abbiamo', 'apri olgiato':'ha guidato', 'un lato':'urlato', 'a pratapa':'abracadabra', 'e proprio':'ebbe un', 'esitare o':'il sipario', 'tra classe':'dracula si', 'miss italia':'lotteria'};
+  'del successo':'e successa', 'cerca novara':'cerano rane', 'prima mira':'piramide', 'apri amore':'abbiamo', 'apri olgiato':'ha guidato', 'un lato':'urlato', 'a pratapa':'abracadabra', 'e proprio':'ebbe un', 'esitare o':'il sipario', 'tra classe':'dracula si', 'miss italia':'lotteria', 'il soffitto':'in soffitta', 'e tappeto':'dappertutto', 'e racchiuso':'era chiuso', 'harvard cantato':'ha raccontato', 'tu mira':'dormire', 'cathon era':'che tornera', 'tu non':'tornera', 'era testo':'presto', 'e ricca':'incredibile', 'oss sister':'arrossisce', 'ti chiavassi':'dichiararsi', 'like you':'laglio', 'carrefour casale':'sul cartello', 'video spaccio':'mi dispiace', 'fate rima':'partiremo', 'ti amo':'chiamo', 'cerca uomo':'cercarono', 'suo viso':'sorrise', 'center power':'tanta paura', 'col sesso':'confesso', 'lieve avviamo':'intagliato'};
 function spAlias(target, heard){
   const out = [];
   for (let i=0; i<heard.length; i++){
     const A1 = byLang(SP_ALIAS, SP_ALIAS_DE), A2 = byLang(SP_ALIAS2, SP_ALIAS2_DE);
-    const h = heard[i], two = A2[h + ' ' + heard[i+1]] && A2[h + ' ' + heard[i+1]].split(' ');
-    if (two && two.every(w => target.includes(w)) && !target.includes(h) && !target.includes(heard[i+1])){ out.push(...two); i++; }
+    /* Ein Eintrag kann mehrere Möglichkeiten haben („brivido|vide“): genommen wird die erste, die ganz im Zielsatz steht */
+    const pick = v => v && v.split('|').map(x => x.split(' ')).find(ws => ws.every(w => target.includes(w)));
+    const h = heard[i], two = pick(A2[h + ' ' + heard[i+1]]);
+    if (two && !target.includes(h) && !target.includes(heard[i+1])){ out.push(...two); i++; }
     else {
       /* Ein gehörtes Wort kann auch für mehrere stehen: „occupato“ → „ho provato“ */
-      const one = A1[h] && A1[h].split(' ');
-      if (one && one.every(w => target.includes(w)) && !target.includes(h)) out.push(...one); else out.push(h);
+      const one = pick(A1[h]);
+      if (one && !target.includes(h)) out.push(...one); else out.push(h);
     }
   }
   return out;
