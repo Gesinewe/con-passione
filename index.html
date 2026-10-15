@@ -555,7 +555,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 180;
+const APP_VERSION = 181;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -44004,8 +44004,11 @@ const bundleOf = (t, i) => {
   const g = Math.ceil(+l.id.split('-').pop() / 4);
   return t.id + '-' + l.stage + 'x' + (g > 1 ? g : '');
 };
+/* Grundwortschatz-Bündel (grund-1, grund-2 …), die zu einem Bündel gehören, werden mitgeladen (siehe buildGrund) */
+const GRUND_OF = {};
 function loadSounds(id){
   if (!id || sounds[id]) return;
+  (GRUND_OF[id] || []).forEach(loadSounds);
   sounds[id] = {data:null};
   sounds[id].promise = soundIndex.then(idx => fetch(soundFile(idx, id)).then(r => r.ok ? r.arrayBuffer() : null).catch(() => null)
     .then(buf => (sounds[id].data = {idx: (idx || {})[id] || {}, buf, url: {}})));
@@ -48250,6 +48253,20 @@ function regSound(text, bundle, voices, voice){
   Object.entries(PODCASTS).forEach(([tid, list]) => list.forEach(p => regSound(p.text, 'leggende-' + tid, p.voices)));
   WHICH_TENSE.forEach(([it]) => regSound(it, 'grammatica'));
   CLOZE.forEach(c => regSound(c[4], 'grammatica'));
+})();
+/* Grundwortschatz (v181): Töne, die in 5 oder mehr Themen vorkommen (ciao, grazie, die Zahlen …), liegen nur einmal
+   in grund-1, grund-2 … statt in jedem Themenbündel – spart ca. 190 MB Speicher. Reihenfolge nach erstem Vorkommen
+   (Stufe, Lektionsgruppe), je 220 Töne (ca. 2 MB) pro Bündel. GRUND_OF merkt, welche Grundbündel ein Bündel braucht */
+(function buildGrund(){
+  if (LANG === 'de') return;
+  const pos = b => { const m = b.match(/^[a-z]+-(\d)(x(\d*))?$/); return m ? +m[1] * 100 + (m[2] ? +(m[3] || 1) : 0) : 900; };
+  Object.keys(SOUND_SRC).filter(k => !SOUND_SRC[k].voices && new Set(SOUND_SRC[k].bundles.map(b => b.split('-')[0])).size >= 5)
+    .map((k, i) => [k, Math.min(...SOUND_SRC[k].bundles.map(pos)), i]).sort((x, y) => x[1] - y[1] || x[2] - y[2])
+    .forEach(([k], i) => {
+      const g = 'grund-' + (Math.floor(i / 220) + 1);
+      SOUND_SRC[k].bundles.forEach(b => { const l = GRUND_OF[b] || (GRUND_OF[b] = []); if (!l.includes(g)) l.push(g); });
+      SOUND_SRC[k].bundles = [g];
+    });
 })();
 const hasSound = t => !!SOUND_SRC[skey(t)];
 const spkIf = (t, lg) => hasSound(t) ? spkBtn(t, lg) : '';
