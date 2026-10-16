@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 196;
+const APP_VERSION = 197;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -42835,7 +42835,23 @@ const DE = {
     '← Alle Ordner':'← Tutte le cartelle', 'Wortschatz üben':'Esercita il vocabolario',
     'Suchen, z. B. Strand oder spiaggia':'Cerca, per es. spiaggia o Strand', 'Wort suchen':'Cerca una parola',
     'Tippe auf einen Buchstaben oder suche ein Wort.':'Tocca una lettera o cerca una parola.', 'Kein Wort gefunden.':'Nessuna parola trovata.',
-    'Springe zu':'Vai a'
+    'Springe zu':'Vai a',
+    /* Themen-Wunschliste (ab v197 auch im Modus 'de', eigene Liste mit Kürzel „[de]“) */
+    'Themen-Wunschliste':'Lista dei desideri',
+    'Dir fehlt ein Thema? Setz es auf die Wunschliste oder stimme bei den Wünschen anderer mit ab. Die Themen mit den meisten Stimmen werden nach und nach ausgearbeitet und erscheinen dann für alle hier unter den Themen.':
+      'Ti manca un argomento? Mettilo nella lista dei desideri o vota per i desideri degli altri. Gli argomenti con più voti vengono preparati poco a poco e poi compaiono qui per tutti tra gli argomenti.',
+    'Das ist nur eine Wunschliste: Es entsteht kein Thema sofort oder automatisch, und nicht jeder Wunsch kann umgesetzt werden. Ein neues Thema braucht einige Zeit.':
+      'È solo una lista dei desideri: nessun argomento nasce subito o in automatico, e non ogni desiderio può essere realizzato. Un nuovo argomento richiede un po’ di tempo.',
+    'z. B. Fotografie':'per es. Fotografia', 'Thema für die Wunschliste':'Argomento per la lista dei desideri', 'Auf die Wunschliste':'Aggiungi alla lista',
+    'Wunschliste wird geladen …':'Caricamento della lista …', 'Bisher gewünscht':'Desideri finora', '✓ abgestimmt':'✓ votato', 'Will ich auch':'Lo voglio anch’io',
+    'Noch keine Wünsche. Mach den Anfang!':'Ancora nessun desiderio. Comincia tu!',
+    'Die Wunschliste braucht Internet und lässt sich gerade nicht laden.':'La lista dei desideri ha bisogno di internet e al momento non si carica.',
+    'Bitte schreib ein Thema (mindestens 2 Buchstaben).':'Scrivi un argomento (almeno 2 lettere).',
+    'Diesen Wunsch hast du schon abgeschickt. Danke!':'Hai già inviato questo desiderio. Grazie!', 'Wird gesendet …':'Invio in corso …',
+    'Gerade kommen sehr viele Wünsche an. Versuch es bitte später nochmal.':'In questo momento arrivano moltissimi desideri. Riprova più tardi.',
+    'Das hat nicht geklappt. Hast du Internet? Versuch es bitte nochmal.':'Non ha funzionato. Hai internet? Riprova.',
+    'Abstimmen hat nicht geklappt. Hast du Internet?':'Il voto non ha funzionato. Hai internet?',
+    'Die Wunschliste startet in Kürze.':'La lista dei desideri arriva presto.'
   },
 
   uiRx: [
@@ -42844,6 +42860,10 @@ const DE = {
     [/^(.+) · (\d+) Lektionen$/, '$1 · $2 lezioni'],
     [/^(\d+) Wörter in (\d+) Ordnern$/, '$1 parole in $2 cartelle'],
     [/^· ca\. (.+)$/, '· circa $1'],
+    [/^(\d+) Stimmen?$/, (m, n) => n + (n === '1' ? ' voto' : ' voti')],
+    [/^Bitte kürzer \(höchstens (\d+) Zeichen\)\.$/, 'Un po’ più corto, per favore (al massimo $1 caratteri).'],
+    [/^Dieses Thema gibt es schon: (.+)\. Du findest es oben bei den Themen\.$/, 'Questo argomento esiste già: $1. Lo trovi in alto tra gli argomenti.'],
+    [/^Danke! Dein Wunsch „(.+)“ ist angekommen\. Er wird geprüft und erscheint dann in der Wunschliste\.$/, 'Grazie! Il tuo desiderio «$1» è arrivato. Verrà controllato e poi comparirà nella lista dei desideri.'],
     [/^Hörprobleme kopieren \((\d+)\)$/, 'Copia i problemi di ascolto ($1)'],
     [/^Prototyp · Version (\d+) · Dein Fortschritt wird nur in diesem Browser gespeichert$/, 'Prototipo · Versione $1 · I tuoi progressi vengono salvati solo in questo browser'],
     [/^(\d+) von (\d+) Lektionen erledigt$/, '$1 di $2 lezioni completate'],
@@ -48306,7 +48326,7 @@ function renderHome(){
           <button class="main getbtn" data-get="${t.id}">Herunterladen<span class="tsize" data-tsize="${t.id}"></span></button>
           <p class="hint getmsg" id="get-${t.id}"></p>
         </div>`).join('')}` : ''}
-      ${LANG !== 'it' ? '' : wishBox()}
+      ${wishBox()}
     </div>
     <div style="margin-top:18px">${kindLegend()}</div>
     <h2 class="eyebrow section-h">Nachschlagen & Üben</h2>
@@ -48330,12 +48350,18 @@ function renderHome(){
    Tabelle cp_wuensche: neue Wünsche sind erst sichtbar, wenn sie freigegeben wurden (Häkchen „freigegeben“ in Supabase).
    Schreiben nur über die Funktionen cp_wunsch_neu / cp_wunsch_stimme. Gespeichert wird nur der Themenname und die Stimmen. */
 const WISH_URL = 'https://mlsgzbamarhgaeohtfxk.supabase.co', WISH_KEY = 'sb_publishable_mrQmjsl681WTHIejdSiUwg_AEc36a__';
+/* Jede Lernrichtung hat ihre eigene Wunschliste (ab v197): Wünsche aus 'de', 'en' (und jeder künftigen Richtung) bekommen das Kürzel „[de] “, „[en] “ … vor den Namen;
+   die italienischen Wünsche stehen wie bisher ohne Kürzel. Angezeigt wird ohne Kürzel. Die Datenbank (max. 40 Zeichen) bleibt unverändert. */
+const WISH_PRE = LANG === 'it' ? '' : '[' + LANG + '] ';
+const WISH_MAX = 40 - WISH_PRE.length;
+const wishFilter = () => WISH_PRE ? '&thema=like.' + encodeURIComponent(WISH_PRE.trim()) + '*' : '&thema=not.like.' + encodeURIComponent('[') + '*';
+const wishName = t => WISH_PRE && t.startsWith(WISH_PRE) ? t.slice(WISH_PRE.length) : t;
 const wishHead = () => Object.assign({'apikey': WISH_KEY, 'Content-Type': 'application/json'}, WISH_KEY.startsWith('sb_') ? {} : {'Authorization': 'Bearer ' + WISH_KEY});
 function wishBox(){
   return `<div class="soon wish"><b>Themen-Wunschliste</b>
     <p>Dir fehlt ein Thema? Setz es auf die Wunschliste oder stimme bei den Wünschen anderer mit ab. Die Themen mit den meisten Stimmen werden nach und nach ausgearbeitet und erscheinen dann für alle hier unter den Themen.</p>
     <p class="wnote">Das ist nur eine Wunschliste: Es entsteht kein Thema sofort oder automatisch, und nicht jeder Wunsch kann umgesetzt werden. Ein neues Thema braucht einige Zeit.</p>
-    ${WISH_KEY ? `<div class="wform"><input class="field" id="wishin" maxlength="40" enterkeyhint="send" autocomplete="off" placeholder="z. B. Fotografie" aria-label="Thema für die Wunschliste"><button class="ghost sm" data-wish>Auf die Wunschliste</button></div>
+    ${WISH_KEY ? `<div class="wform"><input class="field" id="wishin" maxlength="${WISH_MAX}" enterkeyhint="send" autocomplete="off" placeholder="z. B. Fotografie" aria-label="Thema für die Wunschliste"><button class="ghost sm" data-wish>Auf die Wunschliste</button></div>
     <p class="hint" id="wishmsg" aria-live="polite"></p>
     <div id="wishlist" class="wlist"><p class="hint">Wunschliste wird geladen …</p></div>` : '<p class="hint">Die Wunschliste startet in Kürze.</p>'}
   </div>`;
@@ -48344,10 +48370,10 @@ async function loadWishes(){
   const box = document.getElementById('wishlist');
   if (!box || !WISH_KEY) return;
   try{
-    const r = await fetch(WISH_URL + '/rest/v1/cp_wuensche?select=id,thema,stimmen&order=stimmen.desc,id.asc&limit=30', {headers: wishHead()});
+    const r = await fetch(WISH_URL + '/rest/v1/cp_wuensche?select=id,thema,stimmen&order=stimmen.desc,id.asc&limit=30' + wishFilter(), {headers: wishHead()});
     if (!r.ok) throw 0;
     const list = await r.json(), voted = S.wVotes || [];
-    box.innerHTML = list.length ? '<p class="wsub">Bisher gewünscht</p>' + list.map(w => `<div class="wrow"><span class="wname">${esc(w.thema)}</span><span class="wn">${w.stimmen} ${w.stimmen === 1 ? 'Stimme' : 'Stimmen'}</span>${voted.includes(w.id)
+    box.innerHTML = list.length ? '<p class="wsub">Bisher gewünscht</p>' + list.map(w => `<div class="wrow"><span class="wname">${esc(wishName(w.thema))}</span><span class="wn">${w.stimmen} ${w.stimmen === 1 ? 'Stimme' : 'Stimmen'}</span>${voted.includes(w.id)
       ? '<span class="wdone">✓ abgestimmt</span>' : `<button class="ghost sm" data-wvote="${w.id}">Will ich auch</button>`}</div>`).join('')
       : '<p class="hint">Noch keine Wünsche. Mach den Anfang!</p>';
   }catch(e){ box.innerHTML = '<p class="hint">Die Wunschliste braucht Internet und lässt sich gerade nicht laden.</p>'; }
@@ -48356,13 +48382,14 @@ async function sendWish(){
   const inp = document.getElementById('wishin'), msg = document.getElementById('wishmsg');
   const t = (inp.value || '').replace(/\s+/g, ' ').trim();
   if (t.length < 2) { msg.textContent = 'Bitte schreib ein Thema (mindestens 2 Buchstaben).'; return; }
+  if (t.length > WISH_MAX) { msg.textContent = 'Bitte kürzer (höchstens ' + WISH_MAX + ' Zeichen).'; return; }
   const deName = x => (FOLDERS.find(f => f.id === x.id) || {}).name;
   const have = TOPICS.find(x => [x.name, deName(x), x.id].filter(Boolean).some(n => String(n).toLowerCase() === t.toLowerCase()));
   if (have) { msg.textContent = 'Dieses Thema gibt es schon: ' + have.name + (deName(have) ? ' (' + deName(have) + ')' : '') + '. Du findest es oben bei den Themen.'; return; }
   if ((S.wSent || []).includes(t.toLowerCase())) { msg.textContent = 'Diesen Wunsch hast du schon abgeschickt. Danke!'; return; }
   msg.textContent = 'Wird gesendet …';
   try{
-    const r = await fetch(WISH_URL + '/rest/v1/rpc/cp_wunsch_neu', {method:'POST', headers: wishHead(), body: JSON.stringify({p_thema: t})});
+    const r = await fetch(WISH_URL + '/rest/v1/rpc/cp_wunsch_neu', {method:'POST', headers: wishHead(), body: JSON.stringify({p_thema: WISH_PRE + t})});
     const res = r.ok ? await r.json() : null;
     if (res === 'zuviel') { msg.textContent = 'Gerade kommen sehr viele Wünsche an. Versuch es bitte später nochmal.'; return; }
     if (res !== 'ok') throw 0;
