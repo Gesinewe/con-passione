@@ -349,6 +349,21 @@ body.muted .aplay{opacity:.35}
 .lesson.story.done .n{border-style:solid}
 .linkbtn.later{justify-self:center;align-self:center;font-weight:600;color:var(--muted)}
 .offl{margin-top:22px;display:grid;gap:4px}
+/* Startbildschirm Sprachauswahl (v192) */
+.langpick{display:grid;gap:10px;padding-top:28px}
+.langpick .brand{font-size:44px}
+.langpick .lq{margin:0;font-size:19px;font-weight:700}
+.langpick .lq2{font-weight:500;color:var(--muted);font-size:16px;margin-top:-6px}
+.langcards{display:grid;gap:12px;margin:14px 0 6px}
+.langcard{display:flex;align-items:center;gap:14px;text-align:left;width:100%;padding:16px;border-radius:18px;border:1.5px solid var(--line);background:var(--surface);box-shadow:0 3px 0 var(--line);color:inherit;font:inherit;cursor:pointer}
+.langcard:active{transform:translateY(2px);box-shadow:0 1px 0 var(--line)}
+.langcard.on{border-color:var(--accent)}
+.lflag{font-size:40px;line-height:1}
+.ltext{display:grid;gap:2px;flex:1;min-width:0}
+.lname{font-family:var(--display);font-size:28px;line-height:1.1}
+.lsub{font-weight:700;font-size:14px}
+.linfo{font-size:14px;color:var(--muted)}
+.lnow{font-size:22px;color:var(--accent);font-weight:800}
 .topic.get{cursor:default}
 .topic.get:hover,.topic.get:active{transform:none;box-shadow:0 3px 0 var(--line)}
 .topic.get .name{font-size:30px}
@@ -555,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 191;
+const APP_VERSION = 192;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -567,6 +582,8 @@ const LANG = (() => { try{
   if (v) return v === 'de' || v === 'en' ? v : 'it';
   return !localStorage.getItem('conpassione.v1') && /^it\b/i.test(navigator.language || '') ? 'de' : 'it';
 }catch(e){ return 'it'; } })();
+/* Startbildschirm mit Sprachauswahl (ab v192): erscheint beim ersten Öffnen, wenn noch keine Lernrichtung gewählt ist und es keinen Spielstand gibt */
+const NEED_LANG_PICK = (() => { try{ return typeof location !== 'undefined' && !localStorage.getItem('conpassione.lang') && !['conpassione.v1','conpassione.de.v1','conpassione.en.v1'].some(k => localStorage.getItem(k)); }catch(e){ return false; } })();
 /* Text je nach Lernrichtung: byLang(Text für 'it', Text für 'de', Text für 'en' – fehlt er, gilt der Text für 'it') */
 const byLang = (a, b, c) => LANG === 'de' ? b : LANG === 'en' ? (c === undefined ? a : c) : a;
 const FOCUS = ['Begrüßen & Höflichkeit','Wörter & Artikel','Zahlen & „es gibt“','Fragen stellen','sein, haben & Adjektive','Gegenwart & Vorlieben','Gegenwart: -ere/-ire & „nicht“','Wo ist was?','Vergangenheit – abgeschlossen','Vergangenheit mit „sein“','Pläne: wollen & können','Tagesablauf (Verben mit „sich“)','Vergangenheit – erzählend','Erzählen: Kulisse & Handlung','Zukunft','Wünsche & Höflichkeit („würde“)'];
@@ -42708,7 +42725,7 @@ const DE = {
 
   ui: {
     /* Startseite */
-    'Italienisch lernen':'Imparare il tedesco', 'Punkte':'Punti', 'Tage in Folge':'Giorni di fila', 'Lektionen':'Lezioni',
+    'Italienisch lernen':'Imparare il tedesco', '🇩🇪 Sprache wechseln':'🇩🇪 Cambia lingua', 'Punkte':'Punti', 'Tage in Folge':'Giorni di fila', 'Lektionen':'Lezioni',
     'Wähl ein Thema, das dich begeistert. Du lernst Italienisch mit genau den Wörtern und Geschichten, die dich interessieren.':
       'Scegli un argomento che ti appassiona. Impari il tedesco proprio con le parole e le storie che ti interessano.',
     'Willkommen! Such dir unten die Themen aus, die dich interessieren, und lade sie aufs Handy. Du kannst jederzeit weitere hinzufügen.':
@@ -45466,7 +45483,7 @@ const EN = {
   praise: ['Great!','Perfect!','Correct!','Awesome!','Nice!'],
   praiseSpeak: ['Perfect!','Great!','Awesome!','Great pronunciation!'],
   /* Oberfläche: nur „Italienisch“ wird zu „Englisch“; der Knopf zurück zum Italienischen bleibt, wie er ist */
-  ui: {'🇮🇹 Italienisch lernen':'🇮🇹 Italienisch lernen'},
+  ui: {'🇮🇹 Italienisch lernen':'🇮🇹 Italienisch lernen', 'Italienisch':'Italienisch'},   /* „Italienisch“ allein: Karte im Startbildschirm Sprachauswahl */
   uiRx: [[/^[\s\S]*[Ii]talienisch[\s\S]*$/, w => w.replace(/Italienisch/g, 'Englisch').replace(/italienisch/g, 'englisch')]],
   uiHtml: {}
 };
@@ -47352,6 +47369,7 @@ function ring(t){
     <text x="24" y="24">${d}/${n}</text></svg>`;
 }
 function renderHome(){
+  if (PICK_FIRST){ PICK_FIRST = false; return renderLangPick(); }
   const lessonsDone = TOPICS.flatMap(t => t.lessons).filter(l => S.done[l.id]).length;
   app.innerHTML = `
     <header class="top">
@@ -47363,9 +47381,7 @@ function renderHome(){
         <div class="stat"><b>${lessonsDone}</b><span>Lektionen</span></div>
       </div>
     </header>
-    <div class="langsw">${LANG === 'de' ? '<button class="chipbtn" data-lang="it">🇮🇹 Du sprichst Deutsch? Italienisch lernen</button>'
-      : LANG === 'en' ? '<button class="chipbtn" data-lang="it">🇮🇹 Italienisch lernen</button> <button class="chipbtn" data-lang="de">🇩🇪 Parli italiano? Impara il tedesco!</button>'
-      : '<button class="chipbtn" data-lang="en">🇺🇸 Englisch lernen</button> <button class="chipbtn" data-lang="de">🇩🇪 Parli italiano? Impara il tedesco!</button>'}</div>
+    <div class="langsw"><button class="chipbtn" data-go="lang">${LANG_FLAG[LANG]} Sprache wechseln</button></div>
     <p class="lead">${myTopics().length ? 'Wähl ein Thema, das dich begeistert. Du lernst Italienisch mit genau den Wörtern und Geschichten, die dich interessieren.' : 'Willkommen! Such dir unten die Themen aus, die dich interessieren, und lade sie aufs Handy. Du kannst jederzeit weitere hinzufügen.'}</p>
     <div class="topics">
       ${myTopics().map(t => `
@@ -52114,7 +52130,7 @@ function go(where){
   L = null; pop.hidden = true;
   if (where.startsWith('folder:')) return renderFolder(where.slice(7));
   if (where.startsWith('topic:')) return renderTopic(where.slice(6));
-  ({home:renderHome, mytopics:renderMyTopics, vocab:renderVocab, grammar:renderGrammar, verbs:renderVerbs, tenses:renderTenses}[where] || renderHome)();
+  ({home:renderHome, lang:renderLangPick, mytopics:renderMyTopics, vocab:renderVocab, grammar:renderGrammar, verbs:renderVerbs, tenses:renderTenses}[where] || renderHome)();
 }
 
 /* ---------- Installieren (nur Web-App): Knopf, wenn der Browser es anbietet, sonst Anleitung ---------- */
@@ -52127,6 +52143,31 @@ function installBox(){
     : 'Im Browser-Menü <b>⋮</b> auf <b>„App installieren“</b> oder <b>„Zum Startbildschirm hinzufügen“</b> tippen und dann <b>„Installieren“</b> wählen.';
   return `<div class="offl" id="inst">${window.CP_INSTALL ? '<button class="main" data-install>App installieren</button>' : ''}
     <p class="hint">${window.CP_INSTALL ? 'Dann hast du ein eigenes Symbol auf dem Startbildschirm.' : 'Als App auf den Startbildschirm: ' + how}</p></div>`;
+}
+/* ---------- Startbildschirm: Welche Sprache möchtest du lernen? (ab v192) ----------
+   Drei Karten; ein Tipp speichert conpassione.lang und lädt neu (wie die bisherigen Knöpfe, Handler für data-lang).
+   Die Texte stehen in DE.ui / EN.ui als Ausnahmen, damit die Übersetzungsschicht sie nicht verändert. */
+let PICK_FIRST = false;
+const LANG_FLAG = {it:'🇮🇹', en:'🇺🇸', de:'🇩🇪'};
+function renderLangPick(){
+  const card = (code, name, sub, info) => `<button class="langcard${LANG === code && !NEED_LANG_PICK ? ' on' : ''}" data-lang="${code}">
+      <span class="lflag" aria-hidden="true">${LANG_FLAG[code]}</span>
+      <span class="ltext"><span class="lname">${name}</span><span class="lsub">${sub}</span><span class="linfo">${info}</span></span>
+      ${LANG === code && !NEED_LANG_PICK ? '<span class="lnow">✓</span>' : ''}</button>`;
+  app.innerHTML = `
+    <div class="langpick">
+      <h1 class="brand">Con <em>Passione</em></h1>
+      <p class="lq">Welche Sprache möchtest du lernen?</p>
+      <p class="lq lq2">Quale lingua vuoi imparare?</p>
+      <div class="langcards">
+        ${card('it', 'Italienisch', 'für Deutschsprachige', '18 Themen: Pferde, Grusel, Kochen, Fußball …')}
+        ${card('en', 'Englisch', 'für Deutschsprachige', 'Amerikanisches Englisch: als Touristin durch die USA')}
+        ${card('de', 'Tedesco', 'per chi parla italiano', 'Imparare il tedesco: in giro per la Germania')}
+      </div>
+      ${NEED_LANG_PICK ? '' : '<button class="linkbtn" data-home>Zurück</button>'}
+      <p class="foot">Dein Fortschritt bleibt für jede Sprache getrennt gespeichert.</p>
+    </div>`;
+  window.scrollTo(0,0);
 }
 window.addEventListener('cp-install', () => { const box = document.getElementById('inst'); if (box) box.outerHTML = installBox(); });
 window.addEventListener('appinstalled', () => { window.CP_INSTALL = null; const box = document.getElementById('inst'); if (box) box.remove(); });
@@ -52411,6 +52452,7 @@ window.addEventListener('resize', () => setTimeout(fitInput, 50));
 document.body.classList.toggle('muted', !!S.muted);
 if (LANG === 'de') installUiTranslator();
 if (LANG === 'en') installUiTranslator();
+if (NEED_LANG_PICK) PICK_FIRST = true;
 renderHome();
 </script>
 
