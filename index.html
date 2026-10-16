@@ -555,7 +555,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 186;
+const APP_VERSION = 187;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -48560,6 +48560,371 @@ Oma lächelt und legt ihre Hand auf Ninas Hand am Lenkrad.
 Das war „Voci della strada“. Fahrt vorsichtig, und behandelt eure alten Autos gut.`,
     fact:'Der Fiat 500 („Cinquecento“) wurde ab 1957 in Turin gebaut und hatte einen kleinen Zweizylindermotor im Heck – deshalb sein typisches knatterndes Geräusch. Die Basilika von Superga liegt auf einem Hügel über Turin und bietet einen berühmten Blick auf die Alpen.' }
 ];
+/* Weitere Legenden für „Brividi nella notte“ (Folgen 2–5, v187, Wunsch der Nutzerin: „mach bitte alle“).
+   Wird nach leggende_brividi.js geladen und hängt die Folgen an PODCASTS.brividi an. Stil wie Azzurrina: Erzählerin langsam und tief. */
+PODCASTS.brividi.push(
+  { id:'brividi-p2', show:'Brividi nella notte', ep:2, title:'’O Munaciello', de:'Der kleine Mönch von Neapel',
+    place:'Napoli, i vicoli e la città sotterranea', level:'ab A2', kind:'Legende · Gruselig',
+    voices:{Caterina:'Elsa', Stefano:'Diego', Padre:'Giuseppe', Nonna:'Isabella', Gennaro:'Diego', Munaciello:'Elsa'},
+    stil:{Nonna:['-14%','-20Hz'], Gennaro:['+4%','+40Hz']},
+    words:[['il vicolo','die Gasse'],['sotto terra','unter der Erde'],['la galleria','der Gang, der Tunnel'],['la cisterna','die Zisterne (Wasserspeicher)'],['il monaco','der Mönch'],['il cappuccio','die Kapuze'],['il mercante','der Kaufmann'],['il tetto','das Dach'],['in segreto','heimlich'],['il convento','das Kloster'],['la suora','die Nonne'],['sparire','verschwinden'],['la moneta','die Münze'],['porta fortuna','bringt Glück'],['le coperte','die Bettdecke'],['il pozzo','der Brunnen'],['il pozzaro','der Brunnenreiniger'],['stretto','eng'],['le chiavi','die Schlüssel'],['le tasche','die Taschen (an der Kleidung)']],
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Ma sotto Napoli':'gocce_an', 'E lì sotto':'pausa', 'I napoletani lo chiamano':'gocce_aus', 'Siamo nel 1445':'pausa campane', 'Ma l’amore è più forte':'passi', 'Ma una notte qualcuno':'pausa', 'La mattina dopo trovano':'pausa', 'Pochi mesi dopo':'pausa', 'Da quel giorno':'pausa', 'Le chiavi spariscono':'porta', 'E a volte, la mattina':'moneta_banco', 'Facciamo un salto':'pausa', 'Qualcuno dice che il Munaciello':'pausa gocce_an', 'Un pozzaro? Un fantasma?':'gocce_aus', 'E se una notte sentite':'pausa passi', 'Munaciello: Shhh':'eco', 'Questo era':'pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte», il podcast delle leggende italiane più paurose.
+Spegnete la luce. Mettete le cuffie. E controllate bene le vostre tasche: avete ancora le chiavi?
+Stasera andiamo a Napoli. Una città piena di sole, di musica, di voci.
+Ma sotto Napoli c’è un’altra città. Una città di pietra, buia e silenziosa: chilometri di gallerie, di grotte e di vecchie cisterne piene d’acqua.
+E lì sotto, dicono, vive qualcuno. Qualcuno di molto piccolo.
+I napoletani lo chiamano ’o Munaciello: il piccolo monaco.
+Siamo nel 1445. Nel centro di Napoli vive una ragazza ricca, Caterina. Suo padre è un mercante.
+Caterina ama un ragazzo povero. Si chiama Stefano. Lavora al porto.
+Il padre non vuole.
+Padre: Caterina, quel ragazzo non ha niente! Non lo devi vedere mai più!
+Ma l’amore è più forte. Di notte, quando tutti dormono, Stefano sale sui tetti della città. Passa da un tetto all’altro, fino alla finestra di Caterina.
+Stefano: Caterina… sono io. Apri.
+Caterina: Piano, Stefano! Se mio padre ti sente…
+Per mesi si vedono così, in segreto, sotto le stelle.
+Ma una notte qualcuno li vede. Qualcuno aspetta Stefano sul tetto, nel buio.
+Si sente un grido. Poi niente.
+La mattina dopo trovano Stefano nel vicolo, sotto la casa. Morto.
+Caterina piange per giorni. Poi lascia la casa del padre ed entra in un convento.
+Pochi mesi dopo, nel convento, nasce un bambino. Il figlio di Caterina e Stefano.
+È un bambino strano. È piccolo, troppo piccolo. Ha la testa grande e gli occhi scuri.
+Le suore gli fanno un vestito da monaco, nero, con un piccolo cappuccio. Così la gente lo chiama ’o Munaciello.
+Per le strade i bambini ridono di lui. Le donne fanno il segno della croce quando passa.
+Il bambino muore giovane. Ma la gente dice che non è mai andato via.
+Da quel giorno, nelle case di Napoli, succedono cose strane.
+Le chiavi spariscono. Un piatto cade dal tavolo. Una porta si apre da sola.
+E a volte, la mattina, sul tavolo della cucina ci sono delle monete. Monete vecchie. Nessuno sa da dove vengono.
+Facciamo un salto ai giorni nostri. Nonna Carmela vive in un vecchio palazzo dei Quartieri Spagnoli. Suo nipote Gennaro dorme da lei.
+Gennaro: Nonna! Nonna, vieni! Sul tavolo ci sono tre monete!
+Nonna: Zitto, Gennaro! Non toccarle. E non dire niente a nessuno.
+Gennaro: Ma chi le ha portate?
+Nonna: Lui. Il piccolo monaco. Se lascia i soldi, ti vuole bene. Porta fortuna.
+Gennaro: E se non mi vuole bene?
+Nonna: Allora nasconde le tue scarpe. Rompe i piatti. E di notte… ti tira le coperte.
+Gennaro: Nonna, stanotte dormo nel tuo letto.
+Qualcuno dice che il Munaciello non è un fantasma. Dice che era un pozzaro.
+Una volta, a Napoli, l’acqua arrivava nelle case dalle cisterne sotto la città. I pozzari pulivano le cisterne. Camminavano sotto terra, nelle gallerie, al buio.
+Erano piccoli e magri, per passare nei tunnel stretti. E portavano un mantello con il cappuccio, per il freddo e l’umidità.
+Dalle cisterne potevano salire nei pozzi delle case. Di notte. In silenzio.
+Se la famiglia pagava bene, il pozzaro lasciava un regalo. Se non pagava… spariva qualcosa.
+Un pozzaro? Un fantasma? Chi lo sa.
+Ma ancora oggi molti napoletani lasciano un pezzo di pane in cucina, prima di andare a letto. Per lui.
+E se una notte sentite dei piccoli passi nel corridoio… non accendete la luce. Non dite il suo nome.
+Munaciello: Shhh… Dove sono le tue chiavi?
+Questo era «Brividi nella notte». Controllate le tasche. E alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“ (Gänsehaut in der Nacht), dem Podcast der gruseligsten italienischen Legenden.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und schaut gut in eure Taschen: Habt ihr eure Schlüssel noch?
+Heute Abend reisen wir nach Neapel. Eine Stadt voller Sonne, Musik und Stimmen.
+Aber unter Neapel gibt es eine andere Stadt. Eine Stadt aus Stein, dunkel und still: kilometerlange Gänge, Höhlen und alte Zisternen voller Wasser.
+Und dort unten, sagt man, wohnt jemand. Jemand sehr Kleines.
+Die Neapolitaner nennen ihn ’o Munaciello: den kleinen Mönch.
+Wir sind im Jahr 1445. In der Altstadt von Neapel lebt ein reiches Mädchen, Caterina. Ihr Vater ist Kaufmann.
+Caterina liebt einen armen Jungen. Er heißt Stefano. Er arbeitet im Hafen.
+Der Vater will das nicht.
+Vater: Caterina, dieser Junge hat nichts! Du darfst ihn nie wieder sehen!
+Aber die Liebe ist stärker. Nachts, wenn alle schlafen, steigt Stefano auf die Dächer der Stadt. Er geht von Dach zu Dach, bis zu Caterinas Fenster.
+Stefano: Caterina … ich bin’s. Mach auf.
+Caterina: Leise, Stefano! Wenn mein Vater dich hört …
+Monatelang sehen sie sich so, heimlich, unter den Sternen.
+Aber eines Nachts sieht sie jemand. Jemand wartet auf dem Dach auf Stefano, im Dunkeln.
+Man hört einen Schrei. Dann nichts mehr.
+Am nächsten Morgen findet man Stefano in der Gasse, unter dem Haus. Tot.
+Caterina weint tagelang. Dann verlässt sie das Haus ihres Vaters und geht ins Kloster.
+Ein paar Monate später kommt im Kloster ein Kind zur Welt. Der Sohn von Caterina und Stefano.
+Es ist ein seltsames Kind. Es ist klein, viel zu klein. Es hat einen großen Kopf und dunkle Augen.
+Die Nonnen nähen ihm ein Mönchsgewand, schwarz, mit einer kleinen Kapuze. Deshalb nennen ihn die Leute ’o Munaciello.
+Auf den Straßen lachen die Kinder über ihn. Die Frauen bekreuzigen sich, wenn er vorbeigeht.
+Das Kind stirbt jung. Aber die Leute sagen, dass es nie fortgegangen ist.
+Seit diesem Tag passieren in den Häusern von Neapel seltsame Dinge.
+Schlüssel verschwinden. Ein Teller fällt vom Tisch. Eine Tür geht von allein auf.
+Und manchmal liegen morgens Münzen auf dem Küchentisch. Alte Münzen. Niemand weiß, woher sie kommen.
+Machen wir einen Sprung in die Gegenwart. Oma Carmela wohnt in einem alten Haus im Spanischen Viertel. Ihr Enkel Gennaro schläft bei ihr.
+Gennaro: Oma! Oma, komm! Auf dem Tisch liegen drei Münzen!
+Oma: Still, Gennaro! Fass sie nicht an. Und erzähl niemandem etwas davon.
+Gennaro: Aber wer hat sie gebracht?
+Oma: Er. Der kleine Mönch. Wenn er Geld dalässt, hat er dich gern. Das bringt Glück.
+Gennaro: Und wenn er mich nicht gern hat?
+Oma: Dann versteckt er deine Schuhe. Er zerbricht die Teller. Und nachts … zieht er dir die Decke weg.
+Gennaro: Oma, heute Nacht schlafe ich in deinem Bett.
+Manche sagen, der Munaciello ist kein Gespenst. Sie sagen, er war ein Brunnenreiniger.
+Früher kam das Wasser in Neapel aus den Zisternen unter der Stadt in die Häuser. Die Brunnenreiniger (pozzari) machten die Zisternen sauber. Sie liefen unter der Erde durch die Gänge, im Dunkeln.
+Sie waren klein und dünn, damit sie durch die engen Tunnel passten. Und sie trugen einen Umhang mit Kapuze, gegen die Kälte und die Feuchtigkeit.
+Aus den Zisternen konnten sie in die Brunnen der Häuser hinaufsteigen. Nachts. Ganz leise.
+Wenn die Familie gut bezahlte, ließ der Brunnenreiniger ein Geschenk da. Wenn nicht … verschwand etwas.
+Ein Brunnenreiniger? Ein Gespenst? Wer weiß.
+Aber noch heute lassen viele Neapolitaner ein Stück Brot in der Küche liegen, bevor sie ins Bett gehen. Für ihn.
+Und wenn ihr eines Nachts kleine Schritte im Flur hört … macht kein Licht an. Sagt nicht seinen Namen.
+Munaciello: Pssst … Wo sind deine Schlüssel?
+Das war „Brividi nella notte“. Schaut in eure Taschen. Und bis zur nächsten Legende …`,
+    fact:'’O Munaciello ist der bekannteste Hausgeist Neapels. Die Geschichte von Caterina und Stefano hat die Schriftstellerin Matilde Serao 1881 in ihren „Leggende napoletane“ aufgeschrieben. Die Stadt unter der Stadt gibt es wirklich: Bei „Napoli Sotterranea“ kann man durch die alten Gänge und Zisternen gehen.' },
+
+  { id:'brividi-p3', show:'Brividi nella notte', ep:3, title:'Beatrice Cenci', de:'Das Mädchen von der Engelsbrücke',
+    place:'Roma, Ponte Sant’Angelo', level:'ab A2', kind:'Legende · Wahre Geschichte',
+    voices:{Beatrice:'Elsa', Francesco:'Giuseppe', Lucrezia:'Isabella', Giudice:'Diego', Papa:'Giuseppe', Donna:'Isabella', Pescatore:'Giuseppe'},
+    stil:{Lucrezia:['-10%','-14Hz'], Giudice:['-10%','-14Hz'], Papa:['-14%','-20Hz'], Donna:['-6%','+0Hz'], Pescatore:['-8%','-2Hz']},
+    mormorio:['Eccola!','Povera ragazza!','Pietà!','Guarda, arriva!','Fate passare!','È così giovane!','Santo cielo!','Che ingiustizia!','Silenzio!','Dio la protegga!'],
+    words:[['il ponte','die Brücke'],['il fiume','der Fluss'],['il Tevere','der Tiber'],['l’angelo / gli angeli','der Engel / die Engel'],['il marmo','der Marmor'],['nobile','adelig'],['crudele','grausam'],['comandare','befehlen, bestimmen'],['coraggioso / coraggiosa','mutig'],['odiare','hassen'],['chiudere a chiave','abschließen'],['il balcone','der Balkon'],['il giudice','der Richter'],['arrestare','verhaften'],['la prigione','das Gefängnis'],['confessare','gestehen'],['il popolo','das Volk'],['la pietà','das Mitleid, die Gnade'],['la legge','das Gesetz'],['la folla','die Menschenmenge'],['il velo','der Schleier'],['il tamburo','die Trommel'],['seppellire','begraben'],['il lampione','die Straßenlaterne']],
+    fx:{'Buonasera… e benvenuti':'carillon acqua_an', 'Siamo a Roma':'pausa', 'Ma una notte all’anno':'atmo_an', 'Si chiama Beatrice Cenci':'pausa acqua_aus', 'Siamo alla fine':'pausa', 'Francesco: In questa casa':'porta_dopo', 'Lì le chiude':'porta', 'Beatrice scrive':'pausa', 'Una mattina, sotto un balcone':'pausa vento_an', 'All’inizio tutti':'vento_aus', 'Arrestano Beatrice':'catene', 'La interrogano':'pausa', 'È l’11 settembre':'pausa folla_an campane', 'I tamburi suonano':'tamburo folla_aus', 'Beatrice ha ventidue':'pausa', 'Sono passati più di quattrocento':'pausa acqua_an', 'E una figura bianca':'passi', 'Se un giorno andate':'pausa', 'Beatrice: Ricordatevi':'eco', 'Questo era':'acqua_aus pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera vi racconto una storia vera. E proprio per questo fa più paura.
+Spegnete la luce. Mettete le cuffie. E ascoltate il fiume.
+Siamo a Roma. Davanti a Castel Sant’Angelo c’è un ponte antico, sul Tevere. Di giorno ci passano migliaia di turisti. Ci sono gli angeli di marmo, i venditori, le foto.
+Ma una notte all’anno, tra il 10 e l’11 settembre, molti romani non passano su quel ponte. Mai.
+Perché quella notte, dicono, sul ponte cammina una ragazza. Una ragazza vestita di bianco. E tra le mani… porta la sua testa.
+Si chiama Beatrice Cenci. Questa è la sua storia.
+Siamo alla fine del Cinquecento. A Roma vive una famiglia nobile e molto ricca: i Cenci.
+Il padre si chiama Francesco. È un uomo violento e crudele. Tutti a Roma lo sanno. Tutti hanno paura di lui.
+Francesco: In questa casa comando io! Avete capito? Io!
+Beatrice è sua figlia. È bella, intelligente e coraggiosa.
+Il padre la odia. La picchia. La chiude in casa.
+Un giorno porta Beatrice e la sua seconda moglie, Lucrezia, lontano da Roma, in un castello in montagna, a Petrella Salto.
+Lì le chiude in due stanze buie. Le finestre sono piccole. La porta è sempre chiusa a chiave.
+Beatrice: Lucrezia, non possiamo restare qui. Qui moriamo.
+Lucrezia: Scrivi a Roma, Beatrice. Scrivi ai tuoi fratelli. Scrivi al papa.
+Beatrice scrive. Una lettera, due lettere, dieci lettere. Ma nessuno risponde. Nessuno viene.
+Passano i mesi. È il settembre del 1598.
+Una mattina, sotto un balcone del castello, trovano il corpo di Francesco Cenci. È caduto? Qualcuno l’ha spinto? Il castello è silenzioso. Nessuno parla.
+All’inizio tutti dicono: è stato un incidente. Ma a Roma la gente parla. E i giudici cominciano a fare domande.
+Arrestano Beatrice, Lucrezia e il fratello Giacomo. Li portano in prigione, a Roma.
+Giudice: Beatrice Cenci, chi ha ucciso tuo padre?
+Beatrice: Mio padre era un mostro. Ma io non dico niente.
+La interrogano per giorni. Le fanno molto male. Alla fine i Cenci confessano.
+Il popolo di Roma è dalla parte di Beatrice. Tutti sanno chi era Francesco Cenci. Molti chiedono pietà al papa.
+Donna: Santo Padre, abbiate pietà! È solo una ragazza!
+Ma il papa, Clemente ottavo, non cambia idea.
+Papa: La legge è la legge. Devono morire.
+È l’11 settembre 1599. Fa caldo. Davanti al ponte c’è una folla enorme. Tutta Roma è venuta a vedere.
+Beatrice arriva con un velo bianco. Non piange. Non trema. Guarda il cielo.
+Beatrice: Signore, sono pronta.
+I tamburi suonano. Poi c’è silenzio. Un silenzio terribile.
+Beatrice ha ventidue anni.
+Quella sera la gente porta fiori e candele sul ponte. Le donne piangono. Per i romani Beatrice diventa un simbolo: la ragazza che ha detto no a un padre violento.
+La seppelliscono in una chiesa sul Gianicolo, San Pietro in Montorio. Senza nome. Senza una pietra.
+Sono passati più di quattrocento anni. Ma ogni anno, nella notte tra il 10 e l’11 settembre, qualcosa succede sul ponte.
+Il fiume è nero. L’aria diventa fredda. Le luci dei lampioni tremano.
+E una figura bianca cammina piano sul ponte. Una ragazza. Con la testa tra le mani.
+Pescatore: Io l’ho vista, una volta. Ero sul fiume con la barca. Lei mi ha guardato. Lei non aveva paura. Io sì.
+Se un giorno andate a Roma, passate su quel ponte. Di giorno è bellissimo.
+Ma l’11 settembre… forse è meglio prendere un’altra strada.
+Beatrice: Ricordatevi di me…
+Questo era «Brividi nella notte». Adesso potete accendere la luce. Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend erzähle ich euch eine wahre Geschichte. Und gerade deshalb ist sie so unheimlich.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und hört dem Fluss zu.
+Wir sind in Rom. Vor der Engelsburg steht eine alte Brücke über dem Tiber. Tagsüber gehen Tausende Touristen darüber. Es gibt die Engel aus Marmor, die Verkäufer, die Fotos.
+Aber in einer Nacht im Jahr, zwischen dem 10. und 11. September, gehen viele Römer nicht über diese Brücke. Nie.
+Denn in dieser Nacht, so sagt man, geht ein Mädchen über die Brücke. Ein Mädchen in einem weißen Kleid. Und in den Händen … trägt es seinen Kopf.
+Sie heißt Beatrice Cenci. Das ist ihre Geschichte.
+Wir sind am Ende des 16. Jahrhunderts. In Rom lebt eine adelige, sehr reiche Familie: die Cenci.
+Der Vater heißt Francesco. Er ist ein gewalttätiger, grausamer Mann. Ganz Rom weiß das. Alle haben Angst vor ihm.
+Francesco: In diesem Haus bestimme ich! Habt ihr verstanden? Ich!
+Beatrice ist seine Tochter. Sie ist schön, klug und mutig.
+Der Vater hasst sie. Er schlägt sie. Er sperrt sie im Haus ein.
+Eines Tages bringt er Beatrice und seine zweite Frau Lucrezia weit weg von Rom, in eine Burg in den Bergen, nach Petrella Salto.
+Dort sperrt er sie in zwei dunkle Zimmer. Die Fenster sind klein. Die Tür ist immer abgeschlossen.
+Beatrice: Lucrezia, wir können nicht hierbleiben. Hier sterben wir.
+Lucrezia: Schreib nach Rom, Beatrice. Schreib deinen Brüdern. Schreib dem Papst.
+Beatrice schreibt. Einen Brief, zwei Briefe, zehn Briefe. Aber niemand antwortet. Niemand kommt.
+Die Monate vergehen. Es ist September 1598.
+Eines Morgens findet man unter einem Balkon der Burg die Leiche von Francesco Cenci. Ist er gefallen? Hat ihn jemand gestoßen? Die Burg ist still. Niemand spricht.
+Zuerst sagen alle: Es war ein Unfall. Aber in Rom reden die Leute. Und die Richter fangen an, Fragen zu stellen.
+Man verhaftet Beatrice, Lucrezia und ihren Bruder Giacomo. Man bringt sie ins Gefängnis nach Rom.
+Richter: Beatrice Cenci, wer hat deinen Vater getötet?
+Beatrice: Mein Vater war ein Ungeheuer. Aber ich sage nichts.
+Sie verhören sie tagelang. Sie tun ihr sehr weh. Am Ende gestehen die Cenci.
+Das Volk von Rom steht auf Beatrices Seite. Alle wissen, wer Francesco Cenci war. Viele bitten den Papst um Gnade.
+Frau: Heiliger Vater, habt Erbarmen! Sie ist doch nur ein Mädchen!
+Aber Papst Clemens VIII. ändert seine Meinung nicht.
+Papst: Gesetz ist Gesetz. Sie müssen sterben.
+Es ist der 11. September 1599. Es ist heiß. Vor der Brücke steht eine riesige Menschenmenge. Ganz Rom ist gekommen, um zuzusehen.
+Beatrice kommt mit einem weißen Schleier. Sie weint nicht. Sie zittert nicht. Sie schaut in den Himmel.
+Beatrice: Herr, ich bin bereit.
+Die Trommeln schlagen. Dann ist es still. Eine schreckliche Stille.
+Beatrice ist zweiundzwanzig Jahre alt.
+An diesem Abend bringen die Leute Blumen und Kerzen auf die Brücke. Die Frauen weinen. Für die Römer wird Beatrice zum Symbol: das Mädchen, das zu einem gewalttätigen Vater Nein gesagt hat.
+Man begräbt sie in einer Kirche auf dem Gianicolo, San Pietro in Montorio. Ohne Namen. Ohne Grabstein.
+Mehr als vierhundert Jahre sind vergangen. Aber jedes Jahr, in der Nacht vom 10. auf den 11. September, passiert etwas auf der Brücke.
+Der Fluss ist schwarz. Die Luft wird kalt. Die Lichter der Laternen flackern.
+Und eine weiße Gestalt geht langsam über die Brücke. Ein Mädchen. Mit dem Kopf in den Händen.
+Fischer: Ich habe sie einmal gesehen. Ich war mit dem Boot auf dem Fluss. Sie hat mich angeschaut. Sie hatte keine Angst. Ich schon.
+Wenn ihr eines Tages nach Rom fahrt, geht über diese Brücke. Tagsüber ist sie wunderschön.
+Aber am 11. September … nehmt vielleicht lieber einen anderen Weg.
+Beatrice: Vergesst mich nicht …
+Das war „Brividi nella notte“. Jetzt könnt ihr das Licht wieder anmachen. Bis zur nächsten Legende …`,
+    fact:'Beatrice Cenci (1577–1599) hat es wirklich gegeben. Sie wurde am 11. September 1599 auf dem Platz vor der Engelsbrücke hingerichtet; ganz Rom hatte Mitleid mit ihr. Ihr Porträt (Guido Reni zugeschrieben) hängt im Palazzo Barberini, und Dichter wie Percy Shelley und Stendhal haben über sie geschrieben. Die Erscheinung auf der Brücke ist eine Legende.' },
+
+  { id:'brividi-p4', show:'Brividi nella notte', ep:4, title:'Bianca di Collalto', de:'Die Weiße Frau von San Salvatore',
+    place:'Castello di San Salvatore, Susegana (Treviso)', level:'ab A2', kind:'Legende · Gruselig',
+    voices:{Bianca:'Elsa', Chiara:'Isabella', Tolberto:'Diego', Muratore:'Giuseppe', Soldato:'Diego', Guida:'Isabella'},
+    stil:{Chiara:['-6%','-10Hz'], Tolberto:['-6%','-6Hz'], Muratore:['-10%','-14Hz'], Soldato:['+2%','+8Hz'], Guida:['-4%','+6Hz']},
+    words:[['la gelosia','die Eifersucht'],['geloso / gelosa','eifersüchtig'],['lo specchio','der Spiegel'],['il muro / le mura','die Mauer / die Burgmauern'],['il vigneto','der Weinberg'],['il conte / la contessa','der Graf / die Gräfin'],['la torre','der Turm'],['spesso','dick (Mauer)'],['orgoglioso / orgogliosa','stolz'],['la cameriera','das Dienstmädchen'],['pettinare','kämmen'],['sorridere','lächeln'],['il veleno','das Gift'],['la guerra','der Krieg'],['il muratore','der Maurer'],['il mattone','der Ziegelstein'],['la calce','der Mörtel'],['debole','schwach'],['apparire','erscheinen'],['la disgrazia','das Unglück'],['la goccia / le gocce','der Tropfen / die Tropfen'],['la lacrima','die Träne'],['le ossa','die Knochen'],['umido','feucht'],['girarsi','sich umdrehen']],
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Sopra il paese':'campane', 'Nel castello c’è una torre':'gocce_an', 'Siamo nel Trecento':'gocce_aus pausa', 'Un giorno il conte entra':'passi', 'È solo un sorriso':'pausa', 'Poco tempo dopo':'pausa cancello', 'Una sera Chiara':'pausa', 'Le guardie portano':'passi', 'Il muratore mette':'mattoni', 'La voce di Bianca':'mattoni_dopo', 'Quando il conte torna':'pausa', 'Ma quella notte, nel castello':'civetta', 'Da allora la chiamano':'pausa', 'E sul muro della torre':'gocce_an', 'Nel 1917':'gocce_aus pausa cannone', 'Pochi giorni dopo':'cannone', 'Oggi il castello':'pausa uccelli_an', 'Se ci andate':'uccelli_aus pausa', 'Bianca: Aprite… vi prego':'eco', 'Questo era':'pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera parliamo di gelosia. Di uno specchio. E di un muro.
+Spegnete la luce. Mettete le cuffie. E non guardatevi allo specchio.
+Siamo in Veneto, vicino a Treviso, tra colline verdi e vigneti. Qui si fa il Prosecco.
+Sopra il paese di Susegana c’è un grande castello: il castello di San Salvatore. Per secoli è la casa dei conti di Collalto.
+Nel castello c’è una torre. Una torre vecchia, con i muri spessi. E dicono che quei muri, a volte, piangono.
+Siamo nel Trecento. Il conte Tolberto di Collalto ha una giovane moglie, Chiara. Chiara è bella, ricca, orgogliosa. E molto gelosa.
+Nel castello lavora una ragazza. Si chiama Bianca. È la cameriera della contessa. È dolce, gentile, e ha lunghi capelli biondi.
+Ogni mattina Bianca pettina i capelli della contessa, davanti a un grande specchio.
+Chiara: Piano, Bianca! Mi fai male!
+Bianca: Scusate, signora contessa.
+Un giorno il conte entra nella stanza. Guarda la moglie. Poi guarda Bianca. E sorride.
+È solo un sorriso. Un sorriso gentile. Ma Chiara lo vede nello specchio.
+E da quel giorno nel suo cuore c’è un veleno: la gelosia.
+Poco tempo dopo il conte parte per la guerra. Il castello è silenzioso. La contessa resta sola. Con Bianca.
+Una sera Chiara chiama le guardie.
+Chiara: Prendete quella ragazza. Portatela nella torre.
+Bianca: Signora, perché? Che cosa ho fatto?
+Chiara: Tu lo sai.
+Le guardie portano Bianca in una piccola stanza, in alto, nella torre. Poi arriva il muratore, con i mattoni e la calce.
+Muratore: Signora contessa… devo proprio farlo?
+Chiara: Fallo. E non dire niente a nessuno.
+Il muratore mette un mattone. Poi un altro. Poi un altro ancora.
+Bianca: No! Vi prego! Aprite! Aprite!
+La voce di Bianca diventa sempre più debole. L’ultimo mattone chiude il muro. E poi… silenzio.
+Quando il conte torna dalla guerra, chiede di Bianca.
+Tolberto: Dov’è la ragazza dai capelli biondi?
+Chiara: È andata via. Non so dove.
+Ma quella notte, nel castello, il conte vede una figura sulle mura. Una giovane donna, vestita di bianco. Che lo guarda. Che piange.
+Da allora la chiamano la Dama Bianca.
+Per secoli la Dama Bianca appare sulle mura del castello. Ma non appare a caso. Appare quando sta per succedere una disgrazia alla famiglia Collalto. Una morte. Una guerra. Un incendio.
+E sul muro della torre, anche nei giorni di sole, scendono gocce d’acqua. Come lacrime.
+Nel 1917 arriva la Prima guerra mondiale. Il fronte è vicino, sul fiume Piave. Le bombe cadono sulle colline.
+Soldato: Ieri notte ho visto una donna sulle mura. Tutta bianca. Poi è sparita.
+Pochi giorni dopo le bombe distruggono il castello. E tra le pietre della vecchia torre, si racconta, trovano qualcosa: le ossa di una ragazza. E qualche capello biondo.
+Oggi il castello è di nuovo in piedi. Ci sono matrimoni, feste, visite.
+Guida: E questa è la torre di Bianca. Toccate il muro, se volete. Sentite? È umido. Sempre.
+Se ci andate, e sentite una mano fredda sui capelli… non giratevi.
+Bianca: Aprite… vi prego…
+Questo era «Brividi nella notte». Adesso potete accendere la luce. E se avete uno specchio in camera… copritelo. Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend geht es um Eifersucht. Um einen Spiegel. Und um eine Mauer.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und schaut nicht in den Spiegel.
+Wir sind in Venetien, in der Nähe von Treviso, zwischen grünen Hügeln und Weinbergen. Hier macht man den Prosecco.
+Über dem Dorf Susegana steht eine große Burg: die Burg San Salvatore. Jahrhundertelang wohnen hier die Grafen von Collalto.
+In der Burg gibt es einen Turm. Einen alten Turm mit dicken Mauern. Und man sagt, dass diese Mauern manchmal weinen.
+Wir sind im 14. Jahrhundert. Graf Tolberto von Collalto hat eine junge Frau, Chiara. Chiara ist schön, reich, stolz. Und sehr eifersüchtig.
+In der Burg arbeitet ein Mädchen. Sie heißt Bianca. Sie ist das Dienstmädchen der Gräfin. Sie ist sanft, freundlich und hat lange blonde Haare.
+Jeden Morgen kämmt Bianca der Gräfin die Haare, vor einem großen Spiegel.
+Chiara: Vorsichtig, Bianca! Du tust mir weh!
+Bianca: Verzeiht, Frau Gräfin.
+Eines Tages kommt der Graf ins Zimmer. Er schaut seine Frau an. Dann schaut er Bianca an. Und lächelt.
+Es ist nur ein Lächeln. Ein freundliches Lächeln. Aber Chiara sieht es im Spiegel.
+Und von diesem Tag an ist in ihrem Herzen ein Gift: die Eifersucht.
+Kurz danach zieht der Graf in den Krieg. Die Burg ist still. Die Gräfin bleibt allein. Mit Bianca.
+Eines Abends ruft Chiara die Wachen.
+Chiara: Packt dieses Mädchen. Bringt sie in den Turm.
+Bianca: Herrin, warum? Was habe ich getan?
+Chiara: Das weißt du genau.
+Die Wachen bringen Bianca in ein kleines Zimmer oben im Turm. Dann kommt der Maurer, mit Ziegelsteinen und Mörtel.
+Maurer: Frau Gräfin … muss ich das wirklich tun?
+Chiara: Tu es. Und sag niemandem etwas.
+Der Maurer setzt einen Stein. Dann noch einen. Und noch einen.
+Bianca: Nein! Ich flehe euch an! Macht auf! Macht auf!
+Biancas Stimme wird immer schwächer. Der letzte Stein schließt die Mauer. Und dann … Stille.
+Als der Graf aus dem Krieg zurückkommt, fragt er nach Bianca.
+Tolberto: Wo ist das Mädchen mit den blonden Haaren?
+Chiara: Sie ist fortgegangen. Ich weiß nicht, wohin.
+Aber in dieser Nacht sieht der Graf eine Gestalt auf den Burgmauern. Eine junge Frau, ganz in Weiß. Sie schaut ihn an. Sie weint.
+Seitdem nennt man sie die Weiße Frau (la Dama Bianca).
+Jahrhundertelang erscheint die Weiße Frau auf den Mauern der Burg. Aber sie erscheint nicht zufällig. Sie erscheint, wenn der Familie Collalto bald ein Unglück passiert. Ein Tod. Ein Krieg. Ein Brand.
+Und an der Mauer des Turms laufen Wassertropfen herunter, sogar an sonnigen Tagen. Wie Tränen.
+1917 kommt der Erste Weltkrieg. Die Front ist nah, am Fluss Piave. Bomben fallen auf die Hügel.
+Soldat: Letzte Nacht habe ich eine Frau auf den Mauern gesehen. Ganz weiß. Dann war sie weg.
+Ein paar Tage später zerstören die Bomben die Burg. Und zwischen den Steinen des alten Turms, so erzählt man, findet man etwas: die Knochen eines Mädchens. Und ein paar blonde Haare.
+Heute steht die Burg wieder. Es gibt Hochzeiten, Feste, Führungen.
+Führerin: Und das ist Biancas Turm. Fasst die Mauer an, wenn ihr wollt. Spürt ihr das? Sie ist feucht. Immer.
+Wenn ihr hinfahrt und eine kalte Hand in euren Haaren spürt … dreht euch nicht um.
+Bianca: Macht auf … ich flehe euch an …
+Das war „Brividi nella notte“. Jetzt könnt ihr das Licht wieder anmachen. Und wenn ihr einen Spiegel im Zimmer habt … deckt ihn zu. Bis zur nächsten Legende …`,
+    fact:'Die Burg San Salvatore in Susegana gibt es wirklich. Sie gehört bis heute der Familie Collalto. Im Ersten Weltkrieg lag sie direkt an der Front am Piave und wurde 1917/18 schwer zerstört, danach wurde sie wieder aufgebaut. Die Weiße Frau Bianca ist eine der bekanntesten Geistergeschichten Venetiens.' },
+
+  { id:'brividi-p5', show:'Brividi nella notte', ep:5, title:'Il Ponte del Diavolo', de:'Die Teufelsbrücke',
+    place:'Borgo a Mozzano (Lucca), sul fiume Serchio', level:'ab A2', kind:'Legende · Teufelspakt',
+    voices:{Capomastro:'Diego', Moglie:'Elsa', Diavolo:'Giuseppe', Prete:'Giuseppe', Bambino:'Elsa'},
+    stil:{Capomastro:['-4%','-4Hz'], Moglie:['-6%','+18Hz'], Diavolo:['-22%','-40Hz'], Prete:['-10%','-4Hz'], Bambino:['+6%','+70Hz']},
+    mormorio:['Evviva il ponte!','Guarda, il capomastro!','Che ponte alto!','È arrivato!','Dov’è il prete?','Che bella festa!','Sbrigati!','Guarda là!','Oh!','Ma che cos’è?'],
+    words:[['l’ospite','der Gast'],['le corna','die Hörner'],['la coda','der Schwanz'],['il patto','der Pakt'],['scorrere','fließen'],['storto','krumm, schief'],['la gobba','der Buckel'],['la schiena','der Rücken'],['il Medioevo','das Mittelalter'],['la piena','das Hochwasser'],['il capomastro','der Baumeister'],['l’operaio / gli operai','der Arbeiter / die Arbeiter'],['l’inaugurazione','die Einweihung'],['Non ce la faccio','Ich schaffe es nicht'],['lo zolfo','der Schwefel'],['in cambio','dafür, als Gegenleistung'],['l’anima','die Seele'],['accettare','annehmen'],['la vergogna','die Schande'],['il prete','der Priester'],['furbo','schlau'],['il maiale','das Schwein'],['dare un calcio','einen Tritt geben'],['imbrogliare','betrügen, hereinlegen'],['la tempesta','der Sturm']],
+    fx:{'Buonasera… e benvenuti':'carillon', 'Siamo in Toscana':'ruscello_an', 'Siamo nel Medioevo':'pausa', 'Il lavoro va a':'martello', 'Ma il fiume è forte':'tuono', 'Capomastro: Non ce la faccio':'pausa', 'Una sera il capomastro':'pausa atmo_an', 'Diavolo: Buonasera':'tuono', 'Diavolo: Ah ah':'tuono_dopo', 'Quella notte il paese':'pausa martello mattoni_dopo', 'La mattina dopo il ponte':'atmo_aus gallo', 'Il capomastro corre':'campane', 'Il giorno della festa':'pausa folla_an', 'Bambino: Mamma':'cinghiale', 'Il diavolo salta fuori':'folla_aus tuono', 'Il diavolo è così arrabbiato':'tuffo_dopo', 'Così il paese':'pausa', 'Ma attenzione':'pausa atmo_an', 'Chi lo sa':'pausa', 'Questo era':'ruscello_aus pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera abbiamo un ospite speciale. Un ospite con le corna e la coda.
+Spegnete la luce. Mettete le cuffie. E se qualcuno vi propone un patto… dite di no.
+Siamo in Toscana, vicino a Lucca. Qui scorre un fiume verde e veloce: il Serchio.
+Vicino al paese di Borgo a Mozzano, sul fiume, c’è un ponte strano. Molto strano.
+Non è dritto. È storto, con una grande gobba nel mezzo, alta, altissima. Sembra la schiena di un gatto arrabbiato.
+Il suo vero nome è Ponte della Maddalena. Ma tutti lo chiamano in un altro modo: il Ponte del Diavolo.
+Siamo nel Medioevo. Il paese ha bisogno di un ponte. Un ponte forte, che resiste alle piene del fiume.
+Il lavoro va a un capomastro, un costruttore bravo ed esperto. Lui e i suoi operai lavorano giorno e notte.
+Ma il fiume è forte. Ogni volta che il ponte cresce, arriva la piena e porta via le pietre.
+E la festa per il nuovo ponte è tra pochi giorni.
+Capomastro: Non ce la faccio. Non ce la farò mai. Tutto il paese riderà di me.
+Una sera il capomastro è solo sul fiume. Il cielo diventa nero. Il vento si ferma. E dall’acqua sale un odore strano. Un odore di zolfo.
+Diavolo: Buonasera, capomastro. Hai un problema, vero?
+Capomastro: Chi… chi sei?
+Diavolo: Un amico. Un amico che sa costruire i ponti. Io ti finisco il ponte. Stanotte. In una notte sola.
+Capomastro: E che cosa vuoi in cambio?
+Diavolo: Poca cosa. Voglio l’anima del primo che passa sul ponte.
+Il capomastro pensa. Pensa al paese. Pensa alla festa. Pensa alla vergogna.
+Capomastro: Va bene. Accetto.
+Diavolo: Ah ah ah ah!
+Quella notte il paese non dorme. Dal fiume arrivano rumori terribili: colpi, martelli, pietre. E strane luci rosse sull’acqua.
+La mattina dopo il ponte è finito. Alto, forte, perfetto. Con la sua grande gobba.
+Ma il capomastro non è felice. Ora ha paura. Chi sarà il primo a passare? Un bambino? Una donna? Sua moglie?
+Moglie: Che cosa hai fatto? Vai subito dal prete!
+Il capomastro corre in chiesa e racconta tutto al prete.
+Prete: Il diavolo è furbo, figliolo. Ma tu devi essere più furbo di lui. Ascolta bene…
+Il giorno della festa tutto il paese aspetta davanti al ponte. Dall’altra parte, nascosto nell’ombra, aspetta anche il diavolo.
+Il capomastro arriva. Ma non è solo. Ha un maiale. Un maiale grande e grasso.
+Bambino: Mamma, guarda! Un maiale!
+Il capomastro dà un calcio al maiale. E il maiale corre sul ponte. È il primo a passare!
+Il diavolo salta fuori, prende l’anima… e guarda. È l’anima di un maiale.
+Diavolo: Nooo! Un maiale? Mi hai imbrogliato!
+Il diavolo è così arrabbiato che salta giù dal ponte, nel fiume. Sparisce nell’acqua. E non torna più.
+Così il paese ha il suo ponte. E il diavolo ha… un maiale.
+Ma attenzione: la gente del posto dice che il diavolo non ha dimenticato. In certe notti di tempesta, sotto il ponte, l’acqua bolle. E sale di nuovo quell’odore di zolfo.
+E ogni anno, il 31 ottobre, Borgo a Mozzano fa una grande festa di Halloween. Migliaia di persone arrivano vestite da streghe, fantasmi e diavoli. E di notte camminano sul ponte.
+Chi lo sa… forse tra loro c’è anche lui.
+Diavolo: Ci vediamo sul ponte…
+Questo era «Brividi nella notte». E ricordate: non fate mai patti con gli sconosciuti. Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend haben wir einen besonderen Gast. Einen Gast mit Hörnern und Schwanz.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und wenn euch jemand einen Pakt vorschlägt … sagt Nein.
+Wir sind in der Toskana, in der Nähe von Lucca. Hier fließt ein grüner, schneller Fluss: der Serchio.
+Beim Dorf Borgo a Mozzano führt eine seltsame Brücke über den Fluss. Eine sehr seltsame.
+Sie ist nicht gerade. Sie ist schief, mit einem großen Buckel in der Mitte, hoch, ganz hoch. Sie sieht aus wie der Rücken einer wütenden Katze.
+Ihr richtiger Name ist Ponte della Maddalena (Magdalenenbrücke). Aber alle nennen sie anders: die Teufelsbrücke.
+Wir sind im Mittelalter. Das Dorf braucht eine Brücke. Eine starke Brücke, die das Hochwasser des Flusses aushält.
+Die Arbeit bekommt ein Baumeister, ein guter und erfahrener Erbauer. Er und seine Arbeiter arbeiten Tag und Nacht.
+Aber der Fluss ist stark. Jedes Mal, wenn die Brücke wächst, kommt das Hochwasser und reißt die Steine mit.
+Und das Fest für die neue Brücke ist schon in ein paar Tagen.
+Baumeister: Ich schaffe es nicht. Ich werde es nie schaffen. Das ganze Dorf wird über mich lachen.
+Eines Abends ist der Baumeister allein am Fluss. Der Himmel wird schwarz. Der Wind hört auf. Und aus dem Wasser steigt ein seltsamer Geruch. Ein Geruch nach Schwefel.
+Teufel: Guten Abend, Baumeister. Du hast ein Problem, nicht wahr?
+Baumeister: Wer … wer bist du?
+Teufel: Ein Freund. Ein Freund, der Brücken bauen kann. Ich baue dir die Brücke fertig. Heute Nacht. In einer einzigen Nacht.
+Baumeister: Und was willst du dafür?
+Teufel: Eine Kleinigkeit. Ich will die Seele des Ersten, der über die Brücke geht.
+Der Baumeister denkt nach. Er denkt an das Dorf. Er denkt an das Fest. Er denkt an die Schande.
+Baumeister: Gut. Ich nehme an.
+Teufel: Ha ha ha ha!
+In dieser Nacht schläft das Dorf nicht. Vom Fluss kommen schreckliche Geräusche: Schläge, Hämmer, Steine. Und seltsame rote Lichter auf dem Wasser.
+Am nächsten Morgen ist die Brücke fertig. Hoch, stark, perfekt. Mit ihrem großen Buckel.
+Aber der Baumeister ist nicht glücklich. Jetzt hat er Angst. Wer wird als Erster hinübergehen? Ein Kind? Eine Frau? Seine eigene Frau?
+Ehefrau: Was hast du getan? Geh sofort zum Priester!
+Der Baumeister rennt in die Kirche und erzählt dem Priester alles.
+Priester: Der Teufel ist schlau, mein Sohn. Aber du musst schlauer sein als er. Hör gut zu …
+Am Tag des Festes wartet das ganze Dorf vor der Brücke. Auf der anderen Seite, versteckt im Schatten, wartet auch der Teufel.
+Der Baumeister kommt. Aber er ist nicht allein. Er hat ein Schwein dabei. Ein großes, dickes Schwein.
+Kind: Mama, schau! Ein Schwein!
+Der Baumeister gibt dem Schwein einen Tritt. Und das Schwein rennt über die Brücke. Es ist das Erste, das hinübergeht!
+Der Teufel springt hervor, packt die Seele … und schaut. Es ist die Seele eines Schweins.
+Teufel: Neeein! Ein Schwein? Du hast mich reingelegt!
+Der Teufel ist so wütend, dass er von der Brücke in den Fluss springt. Er verschwindet im Wasser. Und kommt nie wieder.
+So hat das Dorf seine Brücke. Und der Teufel hat … ein Schwein.
+Aber Vorsicht: Die Leute hier sagen, der Teufel hat es nicht vergessen. In manchen Sturmnächten brodelt unter der Brücke das Wasser. Und wieder steigt dieser Geruch nach Schwefel auf.
+Und jedes Jahr am 31. Oktober feiert Borgo a Mozzano ein großes Halloween-Fest. Tausende Menschen kommen, verkleidet als Hexen, Gespenster und Teufel. Und nachts gehen sie über die Brücke.
+Wer weiß … vielleicht ist er auch unter ihnen.
+Teufel: Wir sehen uns auf der Brücke …
+Das war „Brividi nella notte“. Und denkt daran: Macht nie einen Pakt mit Fremden. Bis zur nächsten Legende …`,
+    fact:'Den Ponte della Maddalena bei Borgo a Mozzano gibt es wirklich: eine mittelalterliche Steinbrücke (um das Jahr 1100) über den Serchio mit einem auffällig hohen, schiefen Bogen. Die Teufelslegende kennt man an vielen „Teufelsbrücken“ in Europa. Das Halloween-Fest in Borgo a Mozzano ist eines der größten in Italien.' }
+);
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.calcio = [
