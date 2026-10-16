@@ -555,7 +555,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 185;
+const APP_VERSION = 186;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -49979,19 +49979,24 @@ function regSound(text, bundle, voices, voice){
   WHICH_TENSE.forEach(([it]) => regSound(it, 'grammatica'));
   CLOZE.forEach(c => regSound(c[4], 'grammatica'));
 })();
-/* Grundwortschatz (v181): Töne, die in 5 oder mehr Themen vorkommen (ciao, grazie, die Zahlen …), liegen nur einmal
-   in grund-1, grund-2 … statt in jedem Themenbündel – spart ca. 190 MB Speicher. Reihenfolge nach erstem Vorkommen
-   (Stufe, Lektionsgruppe), je 220 Töne (ca. 2 MB) pro Bündel. GRUND_OF merkt, welche Grundbündel ein Bündel braucht */
+/* Gemeinsame Töne (v181, erweitert v186): Jeder Ton liegt nur noch einmal im Speicher.
+   – In 3 oder mehr Themen (ciao, grazie, die Zahlen …): grund-1, grund-2 …, je 50 Töne, Reihenfolge nach erstem Vorkommen (Stufe, Lektionsgruppe)
+   – In genau 2 Themen oder mehrfach in einem Thema: teil-<thema>[-<thema2>]-1, -2 …, je 220 Töne
+   GRUND_OF merkt, welche dieser Bündel ein Themenbündel braucht (werden mit ihm geladen). Spart zusammen ca. 310 MB */
 (function buildGrund(){
-  if (LANG === 'de') return;
   const pos = b => { const m = b.match(/^[a-z]+-(\d)(x(\d*))?$/); return m ? +m[1] * 100 + (m[2] ? +(m[3] || 1) : 0) : 900; };
-  Object.keys(SOUND_SRC).filter(k => !SOUND_SRC[k].voices && new Set(SOUND_SRC[k].bundles.map(b => b.split('-')[0])).size >= 5)
-    .map((k, i) => [k, Math.min(...SOUND_SRC[k].bundles.map(pos)), i]).sort((x, y) => x[1] - y[1] || x[2] - y[2])
-    .forEach(([k], i) => {
-      const g = 'grund-' + (Math.floor(i / 220) + 1);
-      SOUND_SRC[k].bundles.forEach(b => { const l = GRUND_OF[b] || (GRUND_OF[b] = []); if (!l.includes(g)) l.push(g); });
-      SOUND_SRC[k].bundles = [g];
-    });
+  const themen = k => [...new Set(SOUND_SRC[k].bundles.map(b => b.split('-')[0]))].sort();
+  const gruppen = {};
+  Object.keys(SOUND_SRC).forEach((k, i) => {
+    if (SOUND_SRC[k].voices || SOUND_SRC[k].bundles.length < 2) return;
+    const ts = themen(k), g = ts.length >= 3 ? 'grund' : 'teil-' + ts.join('-');
+    (gruppen[g] || (gruppen[g] = [])).push([k, Math.min(...SOUND_SRC[k].bundles.map(pos)), i]);
+  });
+  Object.entries(gruppen).forEach(([name, l]) => l.sort((x, y) => x[1] - y[1] || x[2] - y[2]).forEach(([k], i) => {
+    const g = name + '-' + (Math.floor(i / (name === 'grund' ? 50 : 220)) + 1);
+    SOUND_SRC[k].bundles.forEach(b => { const l = GRUND_OF[b] || (GRUND_OF[b] = []); if (!l.includes(g)) l.push(g); });
+    SOUND_SRC[k].bundles = [g];
+  }));
 })();
 const hasSound = t => !!SOUND_SRC[skey(t)];
 const spkIf = (t, lg) => hasSound(t) ? spkBtn(t, lg) : '';
