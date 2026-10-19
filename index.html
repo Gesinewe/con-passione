@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 213;
+const APP_VERSION = 214;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -53068,12 +53068,12 @@ let lastTopic = null;
 function podcastsHtml(t){
   const list = PODCASTS[t.id] || [];
   if (!list.length) return '';
-  const info = PODCAST_INFO[t.id] || {h:'Zum Zuhören', lead:''};
+  const info = PODCAST_INFO[t.id] || {h:byLang('Zum Zuhören', 'Da ascoltare', 'Zum Zuhören'), lead:''};
   return `<h2 class="eyebrow section-h" id="sec-podcast">${info.h}</h2>
       <p class="gp">${info.lead}</p>
       <div class="tiles">${list.map((p, i) => `<button class="tile story${S.done[p.id] ? ' done' : ''}" data-podcast="${t.id}:${i}">
         <span class="tn">${S.done[p.id] ? '✓' : '🎧'}</span><span class="ti">${p.title}</span>
-        <span class="sub">${p.de} · Folge ${p.ep} · ${p.level}</span>
+        <span class="sub">${p.de} · ${byLang('Folge', 'Episodio', 'Folge')} ${p.ep} · ${p.level}</span>
         <span>${p.kind.split(' · ').map(k => `<span class="kind">${k}</span>`).join('')}</span></button>`).join('')}</div>`;
 }
 let podcastOpen = null;
@@ -53082,14 +53082,15 @@ function renderPodcast(tid, i){
   curTopic = 'leggende-' + tid; podcastOpen = p;
   app.innerHTML = `<div class="topicpage" style="--t:${t.color}">
       <button class="back" data-topic="${t.id}">← ${t.name}</button>
-      <div class="thead"><p class="eyebrow">Podcast · ${esc(p.show)} · Folge ${p.ep}</p><h1 class="it">${p.title}</h1><p>${p.de} · ${p.place}</p></div>
+      <div class="thead"><p class="eyebrow">Podcast · ${esc(p.show)} · ${byLang('Folge', 'Episodio', 'Folge')} ${p.ep}</p><h1 class="it">${p.title}</h1><p>${p.de} · ${p.place}</p></div>
       ${audioBox(p.text)}
-      <div class="tip">Mach es dir gemütlich und hör einfach zu, gern auch mehrmals oder langsamer. Du musst nicht jedes Wort verstehen.<br><b>Es sprechen:</b> eine Erzählerin, ${Object.keys(p.voices).join(', ')}.</div>
-      <details class="vfold"><summary><span class="ti">Wörter zum Verstehen</span><span class="sub">${p.words.length} Wörter · antippen zum Aufklappen</span></summary>
+      <div class="tip">${byLang('Mach es dir gemütlich und hör einfach zu, gern auch mehrmals oder langsamer. Du musst nicht jedes Wort verstehen.<br><b>Es sprechen:</b> eine Erzählerin, ',
+          'Mettiti comodo e ascolta, anche più volte o più piano. Non devi capire ogni parola.<br><b>Parlano:</b> una narratrice, ')}${Object.keys(p.voices).join(', ')}.</div>
+      <details class="vfold"><summary><span class="ti">${byLang('Wörter zum Verstehen', 'Parole per capire')}</span><span class="sub">${p.words.length} ${byLang('Wörter · antippen zum Aufklappen', 'parole · tocca per aprire')}</span></summary>
         <div class="vocab">${p.words.map(([it,de]) => `<div class="vrow"><span class="v-it">${it}</span><span class="v-de">${de}</span></div>`).join('')}</div></details>
-      <details class="vfold" style="margin-top:10px"><summary><span class="ti">Italienischer Text</span><span class="sub">Tipp auf ein Wort, um die Übersetzung zu sehen</span></summary>
+      <details class="vfold" style="margin-top:10px"><summary><span class="ti">${byLang('Italienischer Text', 'Testo tedesco', 'Englischer Text')}</span><span class="sub">${byLang('Tipp auf ein Wort, um die Übersetzung zu sehen', 'Tocca una parola per vedere la traduzione')}</span></summary>
         <p class="it" style="line-height:1.6">${storyHtml(p)}</p></details>
-      <details class="vfold" style="margin-top:10px"><summary><span class="ti">Deutsche Übersetzung</span><span class="sub">antippen zum Aufklappen</span></summary>
+      <details class="vfold" style="margin-top:10px"><summary><span class="ti">${byLang('Deutsche Übersetzung', 'Traduzione italiana')}</span><span class="sub">${byLang('antippen zum Aufklappen', 'tocca per aprire')}</span></summary>
         <p style="line-height:1.6">${esc(p.tr).replace(/\n/g, '<br>')}</p></details>
       ${p.fact ? `<p class="gp" style="margin-top:14px">ℹ️ ${esc(p.fact)}</p>` : ''}
       ${p.credit ? `<p style="margin-top:14px;font-size:13px;opacity:.7">🎧 ${esc(p.credit)}</p>` : ''}
@@ -57091,6 +57092,83 @@ Heute ist das Kolosseum still. Es gibt Touristen, Fotografen, Katzen. Aber wenn 
 Das war „Voci dall’antica Roma“. Valete (lebt wohl), Freunde. Bis zur nächsten Geschichte.`,
     fact:'Die Geschichte ist überliefert: Der Dichter Martial beschreibt im „Buch der Schauspiele“ den Kampf von Verus und Priscus bei der Eröffnung des Kolosseums im Jahr 80 n. Chr. Kaiser Titus erklärte beide zu Siegern und schenkte ihnen die Freiheit. Livia und die Gespräche sind für die Erzählung erfunden.' }
 ];
+/* Hörgeschichte „Sagen & Legenden“ (Italiener lernen Deutsch, v214). Figuren aus dem Thema: Chiara Bianchi (Illustratorin aus Bologna),
+   Lukas Brandt (Märchenführer in der Grimmwelt Kassel), seine Oma Gerda (Thale im Harz) mit Kater Mephisto.
+   Lukas und Chiara nehmen eine Folge ihres Podcasts „Sagenhaft“ auf: Walpurgisnacht in Thale. Erzählerin Katja. Seiten-Texte auf Italienisch. */
+PODCAST_INFO.sagen = {h:'Storie da ascoltare', nav:'Storie audio', lead:'Come un piccolo podcast: la notte di Valpurga nel Harz, con la nonna Gerda, il gatto Mephisto, il vento, i fuochi e le campane di mezzanotte. Ascolta e basta, senza esercizi: puoi aprire il testo e la traduzione.'};
+PODCASTS.sagen = [
+  { id:'sagen-p1', lang:'de', erzaehler:'Katja', show:'Sagenhaft', ep:1, title:'Die Nacht der Hexen', de:'La notte delle streghe',
+    place:'Thale, nel Harz, la notte del 30 aprile', level:'ab A2', kind:'Leggenda · Da brividi',
+    voices:{Lukas:'Conrad', Chiara:'SeraphinaMultilingual', 'Oma Gerda':'de-AT-IngridNeural'},
+    stil:{'':['-14%','-6Hz'], Lukas:['-6%','-4Hz'], Chiara:['-4%','+0Hz'], 'Oma Gerda':['-12%','-10Hz']},
+    words:[['die Sage','la leggenda'],['die Hexe / die Hexen','la strega / le streghe'],['der Besen','la scopa'],['fliegen','volare'],['der Berg','la montagna'],['der Teufel','il diavolo'],['tanzen','ballare'],['das Feuer','il fuoco'],['der Lärm','il rumore'],['die Glocke','la campana'],['der Stall','la stalla'],['der Kater','il gatto (maschio)'],['verschwinden','sparire'],['Mitternacht','mezzanotte'],['sich verkleiden','travestirsi']],
+    fx:{'Lukas: Hallo und willkommen':'carillon atmo_an', 'Heute sind wir':'pausa', 'Mephisto liegt':'fusa', 'Oma Gerda: Na, dann':'pausa', 'In der Nacht zum ersten Mai':'vento_an', 'Sie fliegen auf Besen':'pausa', 'Auf dem Brocken':'pausa', 'Oma Gerda: Die Leute hatten':'pausa', 'Sie haben Besen versteckt':'porta', 'Und in der Nacht':'campane', 'Chiara: Und heute':'pausa', 'Draußen hört man':'falo_an', 'Mephisto springt':'soffio', 'Oma Gerda: Ach, der':'pausa', 'Es ist fast Mitternacht':'vento_aus falo_aus pausa passi', 'Auf dem Hexentanzplatz':'falo_an', 'Um zwölf Uhr':'campane', 'Chiara: Lukas, schau':'pausa civetta', 'Auf einem Felsen':'miao', 'Lukas: Und wie ist':'pausa', 'Oma Gerda: Ich habe':'pausa', 'Das war':'falo_aus pausa carillon_ende'},
+    text:`Lukas: Hallo und willkommen bei „Sagenhaft“, dem Podcast über deutsche Sagen. Ich bin Lukas.
+Chiara: Und ich bin Chiara. Ich komme aus Italien, aus Bologna. Ich zeichne Bilder für ein Buch mit deutschen Sagen.
+Heute sind wir im Harz, in der kleinen Stadt Thale. Hier wohnt Lukas’ Oma Gerda. Es ist der dreißigste April. Es ist Abend, und es ist kalt. In der Küche ist es warm. Auf dem Tisch stehen Tee und Kuchen.
+Mephisto liegt auf dem Sofa. Mephisto ist ein schwarzer Kater. Er schnurrt.
+Lukas: Oma, heute ist ein besonderer Abend, oder?
+Oma Gerda: Na, dann erzähle ich euch mal die Geschichte. Heute ist Walpurgisnacht. Die Nacht der Hexen.
+In der Nacht zum ersten Mai, so erzählt die Sage, fliegen alle Hexen zum Brocken. Der Brocken ist der höchste Berg im Harz. Früher hieß er auch Blocksberg.
+Sie fliegen auf Besen. Oder auf Ziegen. Oder auf Katzen.
+Chiara: Auf Katzen?
+Mephisto öffnet ein Auge.
+Auf dem Brocken wartet der Teufel. Die Hexen tanzen mit ihm um ein großes Feuer. Sie tanzen die ganze Nacht. Und am Morgen ist der Schnee auf dem Berg weg. Die Hexen haben ihn weggetanzt.
+Lukas: Und die Menschen? Hatten sie keine Angst?
+Oma Gerda: Die Leute hatten große Angst. Sie dachten: Die Hexen fliegen über unser Dorf. Sie nehmen unsere Kühe. Sie machen das Wetter kaputt.
+Sie haben Besen versteckt. Sie haben Kreuze an die Türen und an die Ställe gemalt. Und sie haben Lärm gemacht. Mit Töpfen, mit Peitschen, mit allem.
+Und in der Nacht haben die Glocken der Kirchen geläutet. Lange. Laut. Die Hexen hassen Glocken.
+Chiara: Und heute? Glauben die Leute noch an Hexen?
+Oma Gerda: Heute? Heute verkleiden sich die Leute als Hexen und als Teufel. Und sie feiern! Hier in Thale gibt es ein großes Fest. Oben auf dem Hexentanzplatz.
+Draußen hört man Musik. Und man sieht Feuer auf dem Berg.
+Mephisto springt vom Sofa. Er faucht. Dann läuft er zur Tür. Die Tür ist offen. Und Mephisto ist weg.
+Chiara: Oh nein! Mephisto!
+Oma Gerda: Ach, der kommt wieder. Jedes Jahr in dieser Nacht läuft er weg. Jedes Jahr.
+Es ist fast Mitternacht. Lukas, Chiara und Oma Gerda gehen den Weg hinauf. Es ist dunkel. Nur der Mond scheint.
+Auf dem Hexentanzplatz brennt ein großes Feuer. Viele Menschen tanzen. Sie tragen schwarze Hüte und lange Nasen.
+Um zwölf Uhr läuten unten im Tal die Glocken.
+Chiara: Lukas, schau mal! Da oben!
+Auf einem Felsen, ganz allein, sitzt eine schwarze Katze. Neben ihr liegt ein alter Besen. Sie schaut ins Feuer.
+Lukas: Das ist doch Mephisto! Und der Besen … Oma, ist das nicht dein Besen?
+Oma Gerda: Wie ist der hierher gekommen? Der stand in der Küche!
+Lukas: Und wie ist Mephisto hier hochgekommen, Oma? Mit dem Besen?
+Oma Gerda: Ich habe es euch doch gesagt. Die Hexen fliegen auf Katzen. Oder fliegen die Katzen auf Besen? So genau weiß das keiner.
+Mephisto miaut einmal. Dann springt er vom Felsen und läuft nach Hause. Den Besen lässt er liegen.
+Das war „Sagenhaft“. Und wenn ihr heute Nacht ein Geräusch auf dem Dach hört … schaut lieber nicht nach.`,
+    tr:`Lukas: Ciao e benvenuti a «Sagenhaft» (Leggendario), il podcast sulle leggende tedesche. Io sono Lukas.
+Chiara: E io sono Chiara. Vengo dall’Italia, da Bologna. Disegno le illustrazioni per un libro di leggende tedesche.
+Oggi siamo nello Harz, nella piccola città di Thale. Qui abita la nonna di Lukas, Gerda. È il trenta aprile. È sera e fa freddo. In cucina fa caldo. Sul tavolo ci sono tè e torta.
+Mephisto è sdraiato sul divano. Mephisto è un gatto nero. Fa le fusa.
+Lukas: Nonna, stasera è una sera speciale, vero?
+Nonna Gerda: E allora vi racconto la storia. Stanotte è la notte di Valpurga. La notte delle streghe.
+Nella notte del primo maggio, così racconta la leggenda, tutte le streghe volano sul Brocken. Il Brocken è la montagna più alta dello Harz. Una volta si chiamava anche Blocksberg.
+Volano sulle scope. O sulle capre. O sui gatti.
+Chiara: Sui gatti?
+Mephisto apre un occhio.
+Sul Brocken aspetta il diavolo. Le streghe ballano con lui intorno a un grande fuoco. Ballano tutta la notte. E la mattina la neve sulla montagna non c’è più. Le streghe l’hanno fatta sparire ballando.
+Lukas: E la gente? Non aveva paura?
+Nonna Gerda: La gente aveva tanta paura. Pensavano: le streghe volano sopra il nostro paese. Ci prendono le mucche. Rovinano il tempo.
+Nascondevano le scope. Dipingevano croci sulle porte e sulle stalle. E facevano rumore. Con le pentole, con le fruste, con tutto.
+E di notte suonavano le campane delle chiese. A lungo. Forte. Le streghe odiano le campane.
+Chiara: E oggi? La gente crede ancora alle streghe?
+Nonna Gerda: Oggi? Oggi la gente si traveste da strega e da diavolo. E fa festa! Qui a Thale c’è una grande festa. Lassù, sullo Hexentanzplatz, la piazza del ballo delle streghe.
+Fuori si sente musica. E si vedono fuochi sulla montagna.
+Mephisto salta giù dal divano. Soffia. Poi corre alla porta. La porta è aperta. E Mephisto non c’è più.
+Chiara: Oh no! Mephisto!
+Nonna Gerda: Ah, quello torna. Ogni anno in questa notte scappa. Ogni anno.
+È quasi mezzanotte. Lukas, Chiara e nonna Gerda salgono per il sentiero. È buio. C’è solo la luna.
+Sullo Hexentanzplatz brucia un grande fuoco. Tanta gente balla. Portano cappelli neri e nasi lunghi.
+A mezzanotte, giù nella valle, suonano le campane.
+Chiara: Lukas, guarda! Lassù!
+Su una roccia, tutto solo, è seduto un gatto nero. Accanto a lui c’è una vecchia scopa. Guarda il fuoco.
+Lukas: Ma è Mephisto! E la scopa… nonna, non è la tua scopa?
+Nonna Gerda: Come è arrivata qui? Era in cucina!
+Lukas: E come è salito fin quassù Mephisto, nonna? Con la scopa?
+Nonna Gerda: Ve l’avevo detto. Le streghe volano sui gatti. O sono i gatti che volano sulle scope? Di preciso non lo sa nessuno.
+Mephisto miagola una volta. Poi salta giù dalla roccia e corre a casa. La scopa la lascia lì.
+Questo era «Sagenhaft». E se stanotte sentite un rumore sul tetto… meglio non andare a vedere.`,
+    fact:'La notte di Valpurga (30 aprile) prende il nome da santa Valpurga, una badessa inglese dell’VIII secolo. La leggenda delle streghe sul Brocken è famosa soprattutto grazie al «Faust» di Goethe (1808). Ancora oggi a Thale, sullo Hexentanzplatz, e in molti paesi dello Harz si festeggia con fuochi, musica e costumi da strega.' }
+];
 /* Hörgeschichten Soldi (Podcast „Voci dei soldi“). Figuren aus dem Thema: Chiara, Bruder Tommaso, Opa, Oma. */
 PODCAST_INFO.soldi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Tommasos erster Tag mit seiner Eisdiele, mit Sparschwein, Münzen, Geldautomat und alter Registrierkasse, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.soldi = [
@@ -57344,6 +57422,273 @@ Pietro: Opa … lässt du uns noch eine Platte hören?
 Das war „Voci dai circuiti“. Und denkt daran: Technik ist wunderschön. Aber eine Kurbel-Taschenlampe in der Schublade schadet nie.`,
     fact:'Alte analoge Festnetztelefone bekommen ihren Strom über die Telefonleitung selbst – deshalb funktionierten sie früher auch bei Stromausfall. Das Radio verdankt Italien viel: Guglielmo Marconi aus Bologna schickte 1895 die ersten drahtlosen Signale und bekam 1909 den Nobelpreis für Physik.' }
 ];
+/* Hörgeschichte „Unterwegs“ (Italiener lernen Deutsch, v214; Wunsch der Nutzerin: „für alle 4 jeweils eine“).
+   Figuren aus dem Thema: Elena (Belluno) im Eiscafé von Onkel Beppe in München, Frau Huber (Resi) mit Dackel Waldi, ihr Enkel Jonas.
+   Zeit: Elenas erster Herbst (Oktober). Erzählerin Katja; Beppe spricht mit italienischem Akzent (Giuseppe Multilingual). Seiten-Texte auf Italienisch. */
+PODCAST_INFO.unterwegs = {h:'Storie da ascoltare', nav:'Storie audio', lead:'Come un piccolo podcast: un sabato di pioggia nella gelateria di zio Beppe a Monaco – con la macchina del caffè, il campanello della porta, Waldi che abbaia e le campane della Frauenkirche. Ascolta e basta, senza esercizi: puoi aprire il testo e la traduzione.'};
+PODCASTS.unterwegs = [
+  { id:'unterwegs-p1', lang:'de', erzaehler:'Katja', show:'Geschichten aus München', ep:1, title:'Ein Regentag im Eiscafé', de:'Un giorno di pioggia in gelateria',
+    place:'Monaco di Baviera, la gelateria di zio Beppe, un sabato di ottobre', level:'ab A2', kind:'Quotidiano · Monaco',
+    voices:{Elena:'Amala', Beppe:'it-IT-GiuseppeMultilingualNeural', 'Frau Huber':'de-AT-IngridNeural', Jonas:'Conrad', Mia:'de-CH-LeniNeural'},
+    stil:{'':['-10%','-2Hz'], Elena:['-4%','+0Hz'], Beppe:['-6%','-4Hz'], 'Frau Huber':['-8%','-6Hz'], Jonas:['-2%','+0Hz'], Mia:['+6%','+45Hz']},
+    words:[['das Eiscafé','la gelateria'],['der Regen','la pioggia'],['es regnet','piove'],['leer','vuoto'],['der Gast / die Gäste','il cliente / i clienti'],['die Kugel','la pallina (di gelato)'],['der Becher','la coppetta'],['die Waffel','il cono, la cialda'],['der Cappuccino','il cappuccino'],['nass','bagnato'],['der Regenschirm','l’ombrello'],['sich freuen','essere contento'],['die Saison','la stagione'],['die Sonne kommt raus','esce il sole']],
+    fx:{'Hallo und herzlich willkommen':'pausa pioggia_an', 'Es ist Samstag':'pausa', 'Elena: Onkel Beppe':'pausa', 'Beppe: Pazienza':'macchina_caffe', 'Um elf Uhr':'campanello_porta', 'Waldi schüttelt':'abbaio', 'Frau Huber: Grüß Gott':'pausa', 'Beppe: Ecco':'schiuma', 'Um zwölf Uhr':'campanello_porta', 'Dann kommt noch':'campanello_porta', 'Mia: Ich möchte':'pausa', 'Beppe: Natürlich':'pausa', 'Beppe: Das war':'pausa', 'Plötzlich wird es hell':'pioggia_aus pausa', 'Draußen auf dem Platz':'campane', 'Am Nachmittag':'campanello_porta pausa', 'Das waren':'pausa'},
+    text:`Hallo und herzlich willkommen bei „Geschichten aus München“. Heute sind wir in einem kleinen Eiscafé in der Altstadt. Es gehört Onkel Beppe. Er kommt aus Belluno, in Italien. Seit drei Monaten arbeitet seine Nichte Elena bei ihm.
+Es ist Samstag im Oktober. Und es regnet. Es regnet schon seit dem Morgen. Das Eiscafé ist leer.
+Elena: Onkel Beppe, es ist zehn Uhr. Und wir haben noch keinen Gast.
+Beppe: Pazienza, Elena. Geduld! Bei Regen essen die Münchner kein Eis. Sie trinken Kaffee. Willst du einen Cappuccino?
+Elena: Ja, gern.
+Um elf Uhr geht die Tür auf. Eine Frau mit einem großen Regenschirm kommt herein. Neben ihr steht ein kleiner Hund. Er ist ganz nass.
+Elena: Frau Huber! Und Waldi!
+Waldi schüttelt sich. Jetzt ist auch Elena nass.
+Frau Huber: Grüß Gott! Entschuldigung, Elena. Waldi mag keinen Regen. Aber er mag Eis.
+Elena: Was möchten Sie?
+Frau Huber: Einen Cappuccino, bitte. Und eine Kugel Vanille im Becher. Die ist für Waldi. Nur eine kleine!
+Beppe: Ecco, Signora. Der Cappuccino, mit viel Schaum.
+Frau Huber: Danke, Herr Beppe. Sie machen den besten Cappuccino in München.
+Um zwölf Uhr kommt Jonas, der Enkel von Frau Huber. Seine Haare sind nass. Er hat keinen Regenschirm.
+Jonas: Oma, du bist hier? Ich habe dich überall gesucht!
+Frau Huber: Ich bin immer hier, wenn es regnet. Hier ist es warm.
+Jonas: Elena, ich nehme ein Spaghettieis. Bei jedem Wetter!
+Dann kommt noch ein Gast: ein kleines Mädchen mit einer gelben Regenjacke. Sie heißt Mia. Sie hat zwei Euro in der Hand.
+Mia: Ich möchte eine Kugel Schokolade. In der Waffel, bitte. Reicht das Geld?
+Elena: Ja, das reicht. Eine Kugel kostet einen Euro achtzig.
+Beppe: Und heute gibt es noch eine Kugel gratis. Für alle Kinder mit gelber Jacke.
+Mia: Wirklich? Dann Erdbeere, bitte!
+Jetzt ist das Eiscafé voll. Frau Huber erzählt, Jonas lacht, Waldi schläft unter dem Tisch. Onkel Beppe setzt sich zu ihnen.
+Jonas: Herr Beppe, warum sind Sie eigentlich nach München gekommen?
+Beppe: Ah, das ist eine lange Geschichte. Es war im Jahr neunzehnhundertfünfundachtzig. Ich war zwanzig Jahre alt. Ich hatte kein Geld, aber ich hatte das Rezept von meiner Nonna. Das Rezept für Stracciatella.
+Elena: Und dann?
+Beppe: Am ersten Tag hat es geregnet. Wie heute. Niemand ist gekommen. Ich war sehr traurig. Aber am Abend ist eine junge Frau gekommen. Sie hat einen Cappuccino getrunken und gesagt: Sie machen den besten Cappuccino in München.
+Alle schauen Frau Huber an. Frau Huber wird rot.
+Frau Huber: Das war ich. Und ich habe recht gehabt.
+Beppe: Das war mein erster Gast. Und sie kommt immer noch. Seit vierzig Jahren.
+Plötzlich wird es hell. Der Regen hört auf. Die Sonne kommt raus.
+Draußen auf dem Platz läuten die Glocken der Frauenkirche. Es ist ein Uhr.
+Elena: Schaut mal! Da kommen Leute. Viele Leute!
+Am Nachmittag ist das Eiscafé voll. Elena macht Kugel um Kugel: Vanille, Schokolade, Stracciatella. Am Abend ist sie müde, aber sie lächelt.
+Elena: Onkel Beppe, du hattest recht. Man braucht Geduld.
+Beppe: Pazienza, Elena. Und einen guten Cappuccino.
+Das waren die „Geschichten aus München“. Bis zum nächsten Mal. Und vergesst den Regenschirm nicht!`,
+    tr:`Ciao e benvenuti a «Geschichten aus München» (Storie da Monaco). Oggi siamo in una piccola gelateria nel centro storico. È di zio Beppe. Viene da Belluno, in Italia. Da tre mesi sua nipote Elena lavora da lui.
+È sabato, a ottobre. E piove. Piove già dalla mattina. La gelateria è vuota.
+Elena: Zio Beppe, sono le dieci. E non abbiamo ancora nessun cliente.
+Beppe: Pazienza, Elena. Pazienza! Quando piove, i monacensi non mangiano il gelato. Bevono il caffè. Vuoi un cappuccino?
+Elena: Sì, volentieri.
+Alle undici si apre la porta. Entra una signora con un grande ombrello. Accanto a lei c’è un cagnolino. È tutto bagnato.
+Elena: Signora Huber! E Waldi!
+Waldi si scuote. Adesso anche Elena è bagnata.
+Signora Huber: Buongiorno! Scusa, Elena. A Waldi non piace la pioggia. Ma gli piace il gelato.
+Elena: Che cosa desidera?
+Signora Huber: Un cappuccino, per favore. E una pallina di vaniglia in coppetta. È per Waldi. Solo una piccola!
+Beppe: Ecco, signora. Il cappuccino, con tanta schiuma.
+Signora Huber: Grazie, signor Beppe. Lei fa il cappuccino più buono di Monaco.
+A mezzogiorno arriva Jonas, il nipote della signora Huber. Ha i capelli bagnati. Non ha l’ombrello.
+Jonas: Nonna, sei qui? Ti ho cercata dappertutto!
+Signora Huber: Io sono sempre qui quando piove. Qui fa caldo.
+Jonas: Elena, prendo uno Spaghettieis. Con qualsiasi tempo!
+Poi arriva ancora una cliente: una bambina con una giacca a vento gialla. Si chiama Mia. Ha due euro in mano.
+Mia: Vorrei una pallina al cioccolato. Nel cono, per favore. Bastano i soldi?
+Elena: Sì, bastano. Una pallina costa un euro e ottanta.
+Beppe: E oggi c’è anche una pallina gratis. Per tutti i bambini con la giacca gialla.
+Mia: Davvero? Allora fragola, per favore!
+Adesso la gelateria è piena. La signora Huber racconta, Jonas ride, Waldi dorme sotto il tavolo. Zio Beppe si siede con loro.
+Jonas: Signor Beppe, ma perché è venuto a Monaco?
+Beppe: Ah, è una lunga storia. Era il millenovecentottantacinque. Avevo vent’anni. Non avevo soldi, ma avevo la ricetta di mia nonna. La ricetta della stracciatella.
+Elena: E poi?
+Beppe: Il primo giorno ha piovuto. Come oggi. Non è venuto nessuno. Ero molto triste. Ma la sera è venuta una giovane donna. Ha bevuto un cappuccino e ha detto: Lei fa il cappuccino più buono di Monaco.
+Tutti guardano la signora Huber. La signora Huber diventa rossa.
+Signora Huber: Ero io. E avevo ragione.
+Beppe: Era la mia prima cliente. E viene ancora. Da quarant’anni.
+All’improvviso si fa chiaro. La pioggia smette. Esce il sole.
+Fuori, sulla piazza, suonano le campane della Frauenkirche. È l’una.
+Elena: Guardate! Arriva gente. Tanta gente!
+Il pomeriggio la gelateria è piena. Elena fa pallina dopo pallina: vaniglia, cioccolato, stracciatella. La sera è stanca, ma sorride.
+Elena: Zio Beppe, avevi ragione. Ci vuole pazienza.
+Beppe: Pazienza, Elena. E un buon cappuccino.
+Queste erano le «Storie da Monaco». Alla prossima. E non dimenticate l’ombrello!`,
+    fact:'In Germania la gelateria italiana è un’istituzione: dagli anni Cinquanta molti gelatieri sono venuti dalle valli del Cadore e di Zoldo, vicino a Belluno. Lo «Spaghettieis» (gelato alla vaniglia passato nello schiacciapatate, con salsa di fragole e scaglie di cioccolato bianco) è stato inventato nel 1969 a Mannheim da Dario Fontanella, figlio di un gelatiere italiano.' }
+];
+/* Hörgeschichte „Urban Legends“ (Deutsche lernen amerikanisches Englisch, v214). Figuren aus dem Thema: Lena Hartmann (Radioredakteurin aus Leipzig,
+   Podcast „Spooky America“), Ethan Cole (Geistertour-Guide aus Salem), seine Grandma Rose (Sleepy Hollow) mit Hund Boo.
+   Halloween-Folge von „Spooky America“ auf Grandma Roses Veranda: der kopflose Reiter. Erzählerin Ava. Seiten-Texte auf Deutsch. */
+PODCAST_INFO.urban = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Halloween in Sleepy Hollow, und Grandma Rose erzählt die Legende vom kopflosen Reiter – mit Wind, Laub, Eule, Kirchenglocke und Hufgetrappel in der Nacht, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.urban = [
+  { id:'urban-p1', lang:'en', erzaehler:'Ava', show:'Spooky America', ep:1, title:'The Headless Horseman', de:'Der kopflose Reiter',
+    place:'Sleepy Hollow, New York, an Halloween', level:'ab A2', kind:'Legende · Gruselig',
+    voices:{Lena:'Emma', Ethan:'Christopher', 'Grandma Rose':'Michelle'},
+    stil:{'':['-14%','-6Hz'], Lena:['-4%','+0Hz'], Ethan:['-4%','-2Hz'], 'Grandma Rose':['-14%','-10Hz']},
+    words:[['the legend','die Legende'],['headless','kopflos, ohne Kopf'],['the horseman','der Reiter'],['the porch','die Veranda'],['the pumpkin','der Kürbis'],['the soldier','der Soldat'],['the cannonball','die Kanonenkugel'],['to ride','reiten'],['the bridge','die Brücke'],['the graveyard','der Friedhof'],['the church','die Kirche'],['the hoofbeats','das Hufgetrappel'],['to disappear','verschwinden'],['scared','ängstlich, verängstigt']],
+    fx:{'Lena: Hello, and welcome':'carillon atmo_an', 'Tonight, Lena is':'pausa foglie', 'Boo is a small':'abbaio', 'Grandma Rose: All right':'pausa', 'A long time ago':'pausa', 'One night, during a big battle':'pausa', 'They buried':'pausa campane', 'But every night':'vento_an', 'The schoolteacher':'pausa', 'One autumn night':'pausa', 'The road is dark':'civetta', 'Suddenly, Ichabod hears':'galoppo_an', 'He looks back':'sbuffo', 'Ichabod rides':'pausa', 'Behind the bridge':'pausa', 'The next morning':'galoppo_aus vento_aus pausa', 'Ethan: So the Horseman':'pausa', 'Grandma Rose: Some people say':'pausa', 'Lena: Do you believe':'pausa', 'Grandma Rose: I am eighty':'pausa', 'Suddenly, Boo stands up':'abbaio', 'From the dark road':'galoppo_an', 'Lena: Ethan':'pausa', 'Ethan: It’s Mr. Miller':'galoppo_aus pausa', 'Grandma Rose: Probably':'pausa', 'That was':'pausa carillon_ende'},
+    text:`Lena: Hello, and welcome to “Spooky America,” the podcast about American legends. I’m Lena.
+Ethan: And I’m Ethan. Happy Halloween, everybody.
+Tonight, Lena is in Sleepy Hollow, a small town in New York. She is sitting on a porch with Ethan and his grandmother, Grandma Rose. There are pumpkins on the steps. The wind is cold. The leaves are falling.
+Boo is a small white dog. He is sitting next to Grandma Rose.
+Ethan: Grandma, tell us the story. The real one.
+Grandma Rose: All right. But turn off the lights first. This story is better in the dark.
+A long time ago, more than two hundred years ago, there was a war in America.
+One night, during a big battle, a soldier was on his horse. A cannonball came. And the soldier lost his head.
+They buried the soldier in the graveyard next to the old church. Here in Sleepy Hollow. But they never found his head.
+But every night, people say, the soldier comes out of his grave. He jumps on his black horse, and he rides through the night. He is looking for his head.
+The schoolteacher in Sleepy Hollow was a man called Ichabod Crane. He was tall and thin, and he was scared of everything.
+One autumn night, Ichabod was at a party. It was late. He got on his old horse and rode home alone.
+The road is dark. The trees are moving in the wind. An owl calls.
+Suddenly, Ichabod hears hoofbeats behind him. Big, heavy hoofbeats.
+He looks back. There is a rider on a black horse. A very big rider. But where is his head? The rider has no head!
+Ichabod rides as fast as he can. To the bridge! Everybody knows: The Horseman can’t cross the bridge.
+Behind the bridge, Ichabod looks back again. The Horseman stops. He lifts his arm. And he throws his head at Ichabod!
+The next morning, people found Ichabod’s horse. They found his hat. And next to the hat, they found a broken pumpkin. But they never saw Ichabod again.
+Ethan: So the Horseman threw a pumpkin?
+Grandma Rose: Some people say it was a pumpkin. Some people say it was his head. And some people say a young man from town played a trick. He wanted to marry the same girl as Ichabod.
+Lena: Do you believe the story, Grandma Rose?
+Grandma Rose: I am eighty years old, dear. I have lived in Sleepy Hollow all my life. And I never walk to the bridge at night.
+Suddenly, Boo stands up. He looks at the road. He barks.
+From the dark road, everybody can hear hoofbeats. They are getting closer.
+Lena: Ethan … what is that?
+Ethan: It’s Mr. Miller from next door. He rides his horse every Halloween. In a costume.
+Lena: In a costume? What costume?
+Ethan: Without a head, of course.
+Grandma Rose: Probably. Probably it’s Mr. Miller.
+That was “Spooky America.” Happy Halloween. And if you hear hoofbeats tonight … don’t look back.`,
+    tr:`Lena: Hallo und willkommen bei „Spooky America“ (Gruseliges Amerika), dem Podcast über amerikanische Legenden. Ich bin Lena.
+Ethan: Und ich bin Ethan. Fröhliches Halloween, alle zusammen.
+Heute Abend ist Lena in Sleepy Hollow, einer kleinen Stadt im Bundesstaat New York. Sie sitzt mit Ethan und seiner Großmutter, Grandma Rose, auf einer Veranda. Auf den Stufen stehen Kürbisse. Der Wind ist kalt. Die Blätter fallen.
+Boo ist ein kleiner weißer Hund. Er sitzt neben Grandma Rose.
+Ethan: Oma, erzähl uns die Geschichte. Die echte.
+Grandma Rose: Also gut. Aber macht zuerst das Licht aus. Diese Geschichte ist im Dunkeln besser.
+Vor langer Zeit, vor mehr als zweihundert Jahren, gab es einen Krieg in Amerika.
+Eines Nachts, in einer großen Schlacht, saß ein Soldat auf seinem Pferd. Eine Kanonenkugel kam. Und der Soldat verlor seinen Kopf.
+Man begrub den Soldaten auf dem Friedhof neben der alten Kirche. Hier in Sleepy Hollow. Aber seinen Kopf hat man nie gefunden.
+Aber jede Nacht, so sagen die Leute, kommt der Soldat aus seinem Grab. Er springt auf sein schwarzes Pferd und reitet durch die Nacht. Er sucht seinen Kopf.
+Der Lehrer in Sleepy Hollow war ein Mann namens Ichabod Crane. Er war groß und dünn, und er hatte vor allem Angst.
+Eines Herbstabends war Ichabod auf einem Fest. Es war spät. Er stieg auf sein altes Pferd und ritt allein nach Hause.
+Die Straße ist dunkel. Die Bäume bewegen sich im Wind. Eine Eule ruft.
+Plötzlich hört Ichabod hinter sich Hufgetrappel. Große, schwere Hufe.
+Er schaut zurück. Da ist ein Reiter auf einem schwarzen Pferd. Ein sehr großer Reiter. Aber wo ist sein Kopf? Der Reiter hat keinen Kopf!
+Ichabod reitet so schnell er kann. Zur Brücke! Jeder weiß: Der Reiter kann nicht über die Brücke.
+Hinter der Brücke schaut Ichabod noch einmal zurück. Der Reiter bleibt stehen. Er hebt den Arm. Und er wirft seinen Kopf nach Ichabod!
+Am nächsten Morgen fand man Ichabods Pferd. Man fand seinen Hut. Und neben dem Hut fand man einen kaputten Kürbis. Aber Ichabod hat man nie wieder gesehen.
+Ethan: Der Reiter hat also einen Kürbis geworfen?
+Grandma Rose: Manche sagen, es war ein Kürbis. Manche sagen, es war sein Kopf. Und manche sagen, ein junger Mann aus der Stadt hat einen Streich gespielt. Er wollte dasselbe Mädchen heiraten wie Ichabod.
+Lena: Glauben Sie die Geschichte, Grandma Rose?
+Grandma Rose: Ich bin achtzig Jahre alt, meine Liebe. Ich wohne mein ganzes Leben in Sleepy Hollow. Und nachts gehe ich nie zur Brücke.
+Plötzlich steht Boo auf. Er schaut auf die Straße. Er bellt.
+Von der dunklen Straße hören alle Hufgetrappel. Es kommt näher.
+Lena: Ethan … was ist das?
+Ethan: Das ist Mr. Miller von nebenan. Er reitet an jedem Halloween mit seinem Pferd. Verkleidet.
+Lena: Verkleidet? Als was?
+Ethan: Ohne Kopf natürlich.
+Grandma Rose: Wahrscheinlich. Wahrscheinlich ist es Mr. Miller.
+Das war „Spooky America“. Fröhliches Halloween. Und wenn ihr heute Nacht Hufgetrappel hört … schaut nicht zurück.`,
+    fact:'Die Geschichte stammt von Washington Irving: „The Legend of Sleepy Hollow“ erschien 1820. Den Ort gibt es wirklich – das Dorf North Tarrytown nannte sich 1996 in Sleepy Hollow um. An der Old Dutch Church von 1685 und auf dem Friedhof daneben, wo Irving selbst begraben ist, feiert der Ort jedes Jahr ein großes Halloween-Fest.' }
+];
+/* Hörgeschichte „On the Road“ (Deutsche lernen amerikanisches Englisch, v214). Figuren aus dem Thema: Julia Becker (Lehrerin aus Köln),
+   Linda Brooks (Gastgeberin in Brooklyn), ihr Enkel Marcus (jobbt im Diner). Nachts im Diner bei Gewitter: bestellen, Kaffee nachfüllen, Trinkgeld.
+   Erzählerin Ava. Seiten-Texte auf Deutsch. */
+PODCAST_INFO.usa = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Mitternacht in einem Diner in Brooklyn – mit Gewitter, Türglocke, Kaffeemaschine, brutzelnden Pancakes und der Glocke aus der Küche, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.usa = [
+  { id:'usa-p1', lang:'en', erzaehler:'Ava', show:'Stories from the Road', ep:1, title:'Midnight at the Diner', de:'Mitternacht im Diner',
+    place:'Brooklyn, New York, ein Diner um Mitternacht', level:'ab A2', kind:'Alltag · New York',
+    voices:{Julia:'Emma', Linda:'Michelle', Marcus:'Andrew', Sal:'Roger'},
+    stil:{'':['-10%','-2Hz'], Julia:['-4%','+0Hz'], Linda:['-8%','-4Hz'], Marcus:['-2%','+0Hz'], Sal:['-6%','-8Hz']},
+    words:[['the diner','das Diner, das amerikanische Imbiss-Restaurant'],['the booth','die Sitznische'],['the menu','die Speisekarte'],['to order','bestellen'],['pancakes','Pfannkuchen'],['maple syrup','Ahornsirup'],['sunny side up','Spiegelei (Eigelb oben)'],['scrambled eggs','Rührei'],['a refill','das Nachfüllen'],['the check','die Rechnung'],['the tip','das Trinkgeld'],['the storm','das Gewitter'],['wet','nass'],['open all night','die ganze Nacht geöffnet']],
+    fx:{'Hello and welcome':'pausa pioggia_an', 'It is midnight':'tuono', 'Julia: Linda, look':'pausa', 'They run across':'campanello_porta', 'Marcus: Grandma':'pausa', 'Linda: The storm woke':'pausa', 'Marcus: Okay. Coffee':'macchina_caffe', 'Julia: Can I see':'pausa', 'Marcus: Sure. How':'pausa', 'Marcus: Got it':'campanella', 'In the kitchen':'soffritto', 'Ten minutes later':'campanella', 'Sal: Order up':'pausa', 'Marcus: Here you go':'piatti', 'Julia: These pancakes':'pausa', 'Marcus: More coffee':'pausa', 'Outside, the storm':'tuono', 'Linda: I met':'pausa', 'Linda: It was':'pausa', 'At one o’clock':'pioggia_aus pausa', 'Julia: Can we':'pausa', 'Marcus: Here’s':'cassa', 'Julia puts':'monete', 'That was':'pausa'},
+    text:`Hello and welcome to “Stories from the Road.” Tonight we are in Brooklyn, New York. Julia is from Germany. She is a teacher from Cologne. She is staying with Linda, an old lady, and her dog Peanut.
+It is midnight. There is a big storm. Julia can’t sleep. Linda can’t sleep. And Peanut is under the bed.
+Julia: Linda, look! The light is still on at the diner.
+Linda: Of course. The diner is open all night. Let’s go. I want pancakes.
+They run across the street in the rain. They open the door.
+Marcus: Grandma? Julia? It’s midnight!
+Marcus is Linda’s grandson. He works at the diner at night.
+Linda: The storm woke us up, honey. We’re hungry.
+Marcus: Okay. Coffee first?
+Linda: Yes, please. Two coffees. Black.
+They sit in a booth by the window. The seats are red. The table is a little sticky. There is a small jukebox on the wall. The rain is very loud.
+Julia: Can I see the menu, please?
+Marcus: Sure. Here you go.
+The menu is very big. Julia reads and reads. Burgers, sandwiches, eggs, waffles, pie …
+Julia: There are so many things! What do you recommend?
+Marcus: The pancakes are the best in Brooklyn. With maple syrup and butter.
+Julia: Okay. I’ll have the pancakes, please. And two eggs.
+Marcus: Sure. How do you want your eggs? Sunny side up, over easy, or scrambled?
+Julia: Um … sunny side up?
+Marcus: Good choice. And for you, Grandma?
+Linda: The usual.
+Marcus: Got it. One stack of pancakes, two eggs sunny side up, and “the usual.”
+In the kitchen is Sal, the cook. He is sixty years old. He has worked at the diner for thirty years.
+Ten minutes later, a bell rings.
+Sal: Order up!
+Marcus: Here you go. Pancakes for Julia. And the usual for Grandma: a grilled cheese sandwich and a slice of apple pie.
+Julia: These pancakes are huge!
+Linda: Welcome to America, dear.
+Marcus: More coffee?
+Julia: Oh, no, thank you. I can’t pay for another coffee.
+Marcus: It’s free. In a diner, refills are always free.
+Julia: Really? Then yes, please!
+Outside, the storm is very strong now. The lights go off for a moment. Then they come back on.
+Linda: I love this place. Do you know, Julia? I met my husband here.
+Julia: Here? In this diner?
+Linda: It was in nineteen seventy-five. It was midnight. And there was a storm, just like tonight. He sat in this booth. He was wet and he had no money. I paid for his coffee.
+Julia: And then?
+Linda: Then he paid for my coffee. Every day, for fifty years. Well, not this week. This week he is in Florida with his brother.
+At one o’clock, the rain stops. The street is quiet and wet.
+Julia: Can we have the check, please?
+Marcus: Here’s your check. It’s twenty-four dollars.
+Julia: And the tip? In Germany we give a little. Maybe ten percent.
+Linda: Here in America, we give fifteen or twenty percent. Waiters need the tips.
+Julia puts five dollars on the table. And then one more.
+Julia: Thank you, Marcus. Thank you, Sal! Best pancakes in Brooklyn.
+Sal: Come back anytime!
+That was “Stories from the Road.” Goodnight, and see you next time.`,
+    tr:`Hallo und willkommen bei „Stories from the Road“ (Geschichten von unterwegs). Heute Nacht sind wir in Brooklyn, New York. Julia kommt aus Deutschland. Sie ist Lehrerin aus Köln. Sie wohnt bei Linda, einer älteren Dame, und ihrem Hund Peanut.
+Es ist Mitternacht. Es gibt ein starkes Gewitter. Julia kann nicht schlafen. Linda kann nicht schlafen. Und Peanut ist unter dem Bett.
+Julia: Linda, schau! Im Diner ist noch Licht.
+Linda: Natürlich. Das Diner ist die ganze Nacht offen. Komm, wir gehen. Ich will Pancakes.
+Sie laufen im Regen über die Straße. Sie öffnen die Tür.
+Marcus: Oma? Julia? Es ist Mitternacht!
+Marcus ist Lindas Enkel. Er arbeitet nachts im Diner.
+Linda: Das Gewitter hat uns geweckt, Schatz. Wir haben Hunger.
+Marcus: Okay. Zuerst Kaffee?
+Linda: Ja, bitte. Zwei Kaffee. Schwarz.
+Sie setzen sich in eine Sitznische am Fenster. Die Sitze sind rot. Der Tisch klebt ein bisschen. An der Wand hängt eine kleine Jukebox. Der Regen ist sehr laut.
+Julia: Kann ich bitte die Speisekarte sehen?
+Marcus: Klar. Bitte schön.
+Die Speisekarte ist sehr groß. Julia liest und liest. Burger, Sandwiches, Eier, Waffeln, Kuchen …
+Julia: So viele Sachen! Was empfiehlst du?
+Marcus: Die Pancakes sind die besten in Brooklyn. Mit Ahornsirup und Butter.
+Julia: Okay. Ich nehme bitte die Pancakes. Und zwei Eier.
+Marcus: Gern. Wie möchtest du die Eier? Spiegelei, von beiden Seiten gebraten oder Rührei?
+Julia: Äh … Spiegelei?
+Marcus: Gute Wahl. Und für dich, Oma?
+Linda: Wie immer.
+Marcus: Alles klar. Ein Stapel Pancakes, zwei Spiegeleier und „wie immer“.
+In der Küche ist Sal, der Koch. Er ist sechzig Jahre alt. Er arbeitet seit dreißig Jahren im Diner.
+Zehn Minuten später klingelt eine Glocke.
+Sal: Bestellung fertig!
+Marcus: Bitte schön. Pancakes für Julia. Und „wie immer“ für Oma: ein gegrilltes Käsesandwich und ein Stück Apfelkuchen.
+Julia: Diese Pancakes sind riesig!
+Linda: Willkommen in Amerika, meine Liebe.
+Marcus: Noch Kaffee?
+Julia: Oh, nein danke. Ich kann nicht noch einen Kaffee bezahlen.
+Marcus: Der ist gratis. Im Diner ist Nachfüllen immer gratis.
+Julia: Wirklich? Dann ja, bitte!
+Draußen ist das Gewitter jetzt sehr stark. Das Licht geht kurz aus. Dann geht es wieder an.
+Linda: Ich liebe diesen Ort. Weißt du was, Julia? Hier habe ich meinen Mann kennengelernt.
+Julia: Hier? In diesem Diner?
+Linda: Das war neunzehnhundertfünfundsiebzig. Es war Mitternacht. Und es gab ein Gewitter, genau wie heute Nacht. Er saß in dieser Nische. Er war nass und hatte kein Geld. Ich habe seinen Kaffee bezahlt.
+Julia: Und dann?
+Linda: Dann hat er meinen Kaffee bezahlt. Jeden Tag, fünfzig Jahre lang. Na ja, diese Woche nicht. Diese Woche ist er mit seinem Bruder in Florida.
+Um ein Uhr hört der Regen auf. Die Straße ist still und nass.
+Julia: Können wir bitte die Rechnung haben?
+Marcus: Hier ist eure Rechnung. Das macht vierundzwanzig Dollar.
+Julia: Und das Trinkgeld? In Deutschland geben wir ein bisschen. Vielleicht zehn Prozent.
+Linda: Hier in Amerika geben wir fünfzehn oder zwanzig Prozent. Die Kellner brauchen das Trinkgeld.
+Julia legt fünf Dollar auf den Tisch. Und dann noch einen.
+Julia: Danke, Marcus. Danke, Sal! Die besten Pancakes in Brooklyn.
+Sal: Kommt jederzeit wieder!
+Das war „Stories from the Road“. Gute Nacht und bis zum nächsten Mal.`,
+    fact:'Diner gibt es in den USA seit dem Ende des 19. Jahrhunderts – die ersten waren umgebaute Eisenbahnwaggons, darum sind viele bis heute lang und schmal. Viele haben rund um die Uhr geöffnet, und Kaffee wird meist kostenlos nachgefüllt. Trinkgeld (15 bis 20 Prozent) ist fast immer üblich, weil Kellnerinnen und Kellner einen sehr niedrigen Grundlohn bekommen.' }
+];
 /* Hörgeschichten Viaggio (Podcast „Voci in viaggio“). Figuren aus dem Thema: Anna (aus München), Luca (aus Bologna). */
 PODCAST_INFO.viaggio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: mit dem Zug von Bologna nach Venedig, mit Bahnhofsdurchsagen, Wasserbus und Möwen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.viaggio = [
@@ -57455,10 +57800,11 @@ function regSound(text, bundle, voices, voice){
     (st.words || []).forEach(([it]) => regSound(it, g));
   }));
   TOPICS.forEach(t => Object.entries((MORE[t.id] || {}).practice || {}).forEach(([st, list]) => list.forEach(([it]) => regSound(it, t.id + '-' + st + 'x'))));
+  /* Hörgeschichten (ab v214 in jeder Lernrichtung): nur die der Themen dieser Lernrichtung */
+  Object.entries(PODCASTS).forEach(([tid, list]) => { if (TOPICS.some(t => t.id === tid)) list.forEach(p => regSound(p.text, 'leggende-' + tid, p.voices)); });
   if (LANG !== 'it') return;
   VERBS.forEach(v => TENSE_KEYS.forEach(tn => PERS.forEach((_,p) => regSound(vform(v,tn,p), 'verbi-' + tn))));
   GRAMMAR.forEach(g => g.blocks.forEach(b => (b.ex||[]).forEach(([it]) => regSound(it, 'grammatica'))));
-  Object.entries(PODCASTS).forEach(([tid, list]) => list.forEach(p => regSound(p.text, 'leggende-' + tid, p.voices)));
   WHICH_TENSE.forEach(([it]) => regSound(it, 'grammatica'));
   CLOZE.forEach(c => regSound(c[4], 'grammatica'));
 })();
