@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 216;
+const APP_VERSION = 217;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -56310,6 +56310,149 @@ Sara ist sicher: Das heißt „gern geschehen“.
 Das war „In sella!“. Bis zum nächsten Ausritt. Und denkt daran: Vom Pferderücken aus ist die Welt schöner.`,
     fact:'San Gimignano mit seinen mittelalterlichen Geschlechtertürmen liegt zwischen Florenz und Siena. Auf den „strade bianche“, den weißen Schotterwegen der Toskana, wird viel geritten – Ausritte durch Weinberge und Sonnenblumenfelder sind dort sehr beliebt.' }
 ];
+/* Weitere Hörgeschichten für „In sella!“ (Folge 2, v217, Wunsch der Nutzerin: „der Tierarzt ist da und soll bei ein paar Pferden verschiedene Krankheiten behandeln“).
+   Wird nach leggende_cavalli.js geladen und hängt die Folge an PODCASTS.cavalli an. Krankheiten passend zu den Lektionen „Gesundheit & Handwerk“ (cavalli-v4-47 …). */
+PODCASTS.cavalli.push(
+  { id:'cavalli-p2', show:'In sella!', ep:2, title:'Il giorno del veterinario', de:'Der Tag des Tierarztes',
+    place:'Il maneggio di Carla, in Toscana', level:'ab A2', kind:'Stall · Spannend',
+    voices:{Sara:'Elsa', Luca:'Diego', Carla:'Isabella', 'Dottor Neri':'Giuseppe'},
+    stil:{'':['-8%','+0Hz'], Carla:['-3%','-12Hz'], Sara:['-4%','+25Hz'], Luca:['-2%','+0Hz'], 'Dottor Neri':['-6%','-6Hz']},
+    words:[['il veterinario','der Tierarzt'],['il paziente','der Patient'],['lo zoccolo / gli zoccoli','der Huf / die Hufe'],['la laminite','die Hufrehe'],['il ghiaccio','das Eis'],['tossisce','hustet'],['il termometro','das Fieberthermometer'],['la febbre','das Fieber'],['i polmoni','die Lunge'],['la polvere','der Staub'],['bagnare','nass machen'],['la ferita','die Wunde'],['gonfio / gonfia','geschwollen'],['il recinto','der Zaun, die Koppel'],['la pomata','die Salbe'],['la benda','der Verband'],['il vaccino contro il tetano','die Tetanus-Impfung'],['la colica','die Kolik'],['si sdraia','legt sich hin'],['la pancia','der Bauch'],['l’iniezione','die Spritze'],['la cacca','der Mist, der Kot']],
+    fx:{'Ciao a tutti':'uccelli_an', 'È sabato mattina':'gallo', 'Tornado alza la testa':'sbuffo', 'Una vecchia macchina verde':'motore500_an', 'Si ferma davanti':'motore500_aus porta_camper', 'Pepe è nel suo box':'pausa', 'Poi tocca a Stella':'pausa', 'Sara: Dottore':'pausa', 'Il dottore pulisce':'sbuffo', 'Luca: E adesso Tornado':'pausa', 'Dottor Neri: Silenzio':'pausa', 'Luca prende la corda':'passo_an', 'Dopo un’ora':'passo_aus pausa', 'Il dottore chiude':'pausa', 'La vecchia macchina verde riparte':'motore500_an', 'Nel cortile torna':'motore500_aus pausa', 'Tornado sbuffa':'sbuffo', 'Questo era':'pausa'},
+    text:`Ciao a tutti e bentornati a «In sella!», il podcast per chi ama i cavalli. Oggi non andiamo lontano. Oggi restiamo nel maneggio di Carla. Perché oggi è un giorno speciale: arriva il veterinario.
+È sabato mattina, presto. Il gallo canta. Nella stalla i cavalli mangiano il fieno.
+Sara e Luca sono già lì. Carla ha una lista in mano.
+Carla: Allora, ragazzi. Oggi il dottor Neri ha molto lavoro. Pepe, Stella, Fulmine… e un controllo per Tornado.
+Luca: Tornado sta benissimo! Guardalo!
+Tornado alza la testa e sbuffa. Sembra d’accordo.
+Una vecchia macchina verde entra nel cortile.
+Si ferma davanti alla stalla. Scende un uomo alto, con i capelli grigi e una grande borsa nera.
+Dottor Neri: Buongiorno a tutti! Allora, chi è il primo paziente?
+Carla: Pepe. Da tre giorni cammina male.
+Pepe è nel suo box. È piccolo, rotondo e molto goloso. Ma oggi non si muove. Sta fermo, con le zampe davanti in avanti, come se fosse seduto.
+Il dottore tocca gli zoccoli di Pepe, uno dopo l’altro.
+Dottor Neri: Sono caldi. Molto caldi. E sentite qui, sopra lo zoccolo: il polso batte forte. Pepe, hai mangiato troppa erba, vero?
+Sara: In primavera è sempre nel prato. Tutto il giorno.
+Dottor Neri: Ecco il problema. È la laminite. L’erba di primavera è buona, ma ha tanto zucchero. Per un pony è pericolosa.
+Luca: E adesso che cosa facciamo?
+Dottor Neri: Adesso una medicina contro il dolore. Ghiaccio sui piedi, due volte al giorno. Tanta paglia morbida nel box. E niente prato per un mese. Solo fieno.
+Luca: E le carote?
+Dottor Neri: Niente carote. Pepe è a dieta.
+Pepe guarda il dottore. Non sembra contento.
+Poi tocca a Stella. La cavalla bianca tossisce. Una volta, due volte.
+Carla: Tossisce da una settimana. Soprattutto quando mangia il fieno.
+Il dottore prende il termometro.
+Dottor Neri: Trentasette e mezzo. Non ha la febbre. Bene.
+Poi ascolta i polmoni con lo stetoscopio. A lungo. Tutti stanno zitti.
+Dottor Neri: I polmoni sono un po’ irritati. Secondo me è la polvere.
+Prende un po’ di fieno e lo scuote. Una piccola nuvola grigia vola nella luce del sole.
+Dottor Neri: Vedete? Per Stella questa polvere è come il fumo per noi. Prima di darle il fieno, mettetelo nell’acqua per qualche minuto. E aprite le finestre della stalla. Stella ha bisogno di aria fresca.
+Carla: Lo facciamo subito.
+Sara: Dottore… adesso Fulmine? Ieri si è fatto male.
+Fulmine ha una ferita sulla gamba davanti. Non è grande, ma è rossa e un po’ gonfia.
+Sara: Si è graffiato sul recinto. È colpa mia. Non ho visto il filo rotto.
+Dottor Neri: Non è colpa di nessuno, Sara. I cavalli sono curiosi. Mettono il naso dappertutto. E anche le gambe.
+Il dottore pulisce la ferita con acqua e disinfettante. Fulmine muove le orecchie, ma sta fermo. Sara gli tiene la testa e gli parla piano.
+Sara: Bravo, Fulmine. Bravo. È quasi finito.
+Dottor Neri: Una pomata, una benda, e domani la cambiate. Carla, il vaccino contro il tetano è a posto?
+Carla apre il passaporto di Fulmine.
+Carla: Sì, l’abbiamo fatto a marzo.
+Dottor Neri: Perfetto. Tra una settimana non si vede più niente.
+Sara respira. Adesso si sente più leggera.
+Luca: E adesso Tornado! Il controllo!
+Ma Tornado non mangia. È nell’angolo del box e si guarda la pancia. Poi si sdraia. Si rialza. Gratta la terra con lo zoccolo.
+Carla: Dottore… guardi Tornado.
+Il dottore entra subito nel box. Mette lo stetoscopio sulla pancia di Tornado. Ascolta a destra. Poi a sinistra.
+Dottor Neri: Silenzio. La pancia non fa nessun rumore. È una colica.
+Luca diventa bianco.
+Luca: Una colica? È grave?
+Dottor Neri: Può essere grave. Ma l’abbiamo vista presto, e questo è molto importante.
+Il dottore fa un’iniezione a Tornado: una medicina contro il dolore e contro i crampi.
+Dottor Neri: Luca, adesso hai un lavoro importante. Porta Tornado a camminare. Piano, al passo. E non lasciarlo sdraiare per terra.
+Luca prende la corda. Cammina con Tornado nel cortile. Avanti e indietro. Avanti e indietro. Un quarto d’ora. Mezz’ora. Un’ora.
+Luca: Dai, Tornado. Dai, amico mio. Tu sei forte.
+Dopo un’ora il dottore ascolta di nuovo la pancia. Tutti aspettano. Anche Pepe guarda dal suo box.
+Il dottore sorride.
+Dottor Neri: Sentite? Glu, glu, glu… La pancia lavora di nuovo!
+Luca: È il rumore più bello del mondo!
+E poi Tornado alza la coda e… fa la cacca. Proprio davanti alle scarpe del dottore.
+Tutti ridono. Anche il dottore.
+Dottor Neri: Questa è la notizia migliore di oggi! Stasera solo un po’ di fieno bagnato. E domani mattina mi chiamate.
+Il dottore chiude la grande borsa nera. Carla gli offre un caffè.
+Dottor Neri: Grazie, Carla, ma oggi ho ancora tre maneggi. E una mucca.
+La vecchia macchina verde riparte.
+Nel cortile torna il silenzio. Sara accarezza Fulmine. Carla apre le finestre per Stella. Pepe mangia il suo fieno, un po’ triste. E Luca resta con Tornado, seduto sulla paglia, nel box.
+Luca: Mi hai fatto paura, sai?
+Tornado sbuffa piano. Poi mette il muso sulla spalla di Luca.
+Questo era «In sella!». Alla prossima puntata. E ricordate: un cavallo non può dire «ho male». Dobbiamo guardarlo e ascoltarlo noi.`,
+    tr:`Hallo zusammen und willkommen zurück bei „In sella!“ (Im Sattel!), dem Podcast für alle, die Pferde lieben. Heute reiten wir nicht weit weg. Heute bleiben wir in Carlas Reitstall. Denn heute ist ein besonderer Tag: Der Tierarzt kommt.
+Es ist Samstagmorgen, früh. Der Hahn kräht. Im Stall fressen die Pferde Heu.
+Sara und Luca sind schon da. Carla hat eine Liste in der Hand.
+Carla: Also, Leute. Heute hat Doktor Neri viel Arbeit. Pepe, Stella, Fulmine … und eine Kontrolle für Tornado.
+Luca: Tornado geht es super! Schau ihn dir an!
+Tornado hebt den Kopf und schnaubt. Er scheint einverstanden.
+Ein altes grünes Auto fährt in den Hof.
+Es hält vor dem Stall. Ein großer Mann mit grauen Haaren und einer großen schwarzen Tasche steigt aus.
+Doktor Neri: Guten Morgen zusammen! Also, wer ist der erste Patient?
+Carla: Pepe. Seit drei Tagen läuft er schlecht.
+Pepe steht in seiner Box. Er ist klein, rund und sehr verfressen. Aber heute bewegt er sich nicht. Er steht still, die Vorderbeine nach vorn gestreckt, als würde er sitzen.
+Der Tierarzt fasst Pepes Hufe an, einen nach dem anderen.
+Doktor Neri: Sie sind warm. Sehr warm. Und fühlt mal hier, über dem Huf: Der Puls schlägt stark. Pepe, du hast zu viel Gras gefressen, stimmt’s?
+Sara: Im Frühling ist er immer auf der Wiese. Den ganzen Tag.
+Doktor Neri: Da haben wir das Problem. Das ist Hufrehe. Frühlingsgras ist gut, aber es hat viel Zucker. Für ein Pony ist es gefährlich.
+Luca: Und was machen wir jetzt?
+Doktor Neri: Jetzt ein Mittel gegen die Schmerzen. Eis auf die Füße, zweimal am Tag. Viel weiches Stroh in die Box. Und einen Monat keine Wiese. Nur Heu.
+Luca: Und die Karotten?
+Doktor Neri: Keine Karotten. Pepe ist auf Diät.
+Pepe schaut den Tierarzt an. Er sieht nicht glücklich aus.
+Dann ist Stella dran. Die weiße Stute hustet. Einmal, zweimal.
+Carla: Sie hustet seit einer Woche. Vor allem, wenn sie Heu frisst.
+Der Tierarzt nimmt das Fieberthermometer.
+Doktor Neri: Siebenunddreißigeinhalb. Sie hat kein Fieber. Gut.
+Dann hört er mit dem Stethoskop die Lunge ab. Lange. Alle sind still.
+Doktor Neri: Die Lunge ist ein bisschen gereizt. Ich glaube, es ist der Staub.
+Er nimmt etwas Heu und schüttelt es. Eine kleine graue Wolke fliegt durch das Sonnenlicht.
+Doktor Neri: Seht ihr? Für Stella ist dieser Staub wie Rauch für uns. Bevor ihr ihr das Heu gebt, legt es ein paar Minuten ins Wasser. Und macht die Stallfenster auf. Stella braucht frische Luft.
+Carla: Das machen wir sofort.
+Sara: Herr Doktor … jetzt Fulmine? Er hat sich gestern verletzt.
+Fulmine hat eine Wunde am Vorderbein. Sie ist nicht groß, aber rot und ein bisschen geschwollen.
+Sara: Er hat sich am Zaun gekratzt. Das ist meine Schuld. Ich habe den kaputten Draht nicht gesehen.
+Doktor Neri: Das ist niemandes Schuld, Sara. Pferde sind neugierig. Sie stecken die Nase überall hinein. Und die Beine auch.
+Der Tierarzt reinigt die Wunde mit Wasser und Desinfektionsmittel. Fulmine bewegt die Ohren, aber er steht still. Sara hält seinen Kopf und spricht leise mit ihm.
+Sara: Brav, Fulmine. Brav. Gleich ist es vorbei.
+Doktor Neri: Eine Salbe, ein Verband, und morgen wechselt ihr ihn. Carla, ist die Tetanus-Impfung in Ordnung?
+Carla öffnet Fulmines Pferdepass.
+Carla: Ja, die haben wir im März gemacht.
+Doktor Neri: Perfekt. In einer Woche sieht man nichts mehr.
+Sara atmet auf. Jetzt fühlt sie sich leichter.
+Luca: Und jetzt Tornado! Die Kontrolle!
+Aber Tornado frisst nicht. Er steht in der Ecke der Box und schaut auf seinen Bauch. Dann legt er sich hin. Steht wieder auf. Scharrt mit dem Huf im Boden.
+Carla: Herr Doktor … schauen Sie sich Tornado an.
+Der Tierarzt geht sofort in die Box. Er legt das Stethoskop auf Tornados Bauch. Er horcht rechts. Dann links.
+Doktor Neri: Stille. Der Bauch macht kein einziges Geräusch. Das ist eine Kolik.
+Luca wird ganz blass.
+Luca: Eine Kolik? Ist das schlimm?
+Doktor Neri: Es kann schlimm sein. Aber wir haben sie früh bemerkt, und das ist sehr wichtig.
+Der Tierarzt gibt Tornado eine Spritze: ein Mittel gegen die Schmerzen und gegen die Krämpfe.
+Doktor Neri: Luca, jetzt hast du eine wichtige Aufgabe. Führ Tornado herum. Langsam, im Schritt. Und lass ihn nicht auf den Boden legen.
+Luca nimmt den Strick. Er geht mit Tornado im Hof herum. Hin und her. Hin und her. Eine Viertelstunde. Eine halbe Stunde. Eine Stunde.
+Luca: Komm, Tornado. Komm, mein Freund. Du bist stark.
+Nach einer Stunde hört der Tierarzt noch einmal den Bauch ab. Alle warten. Auch Pepe schaut aus seiner Box.
+Der Tierarzt lächelt.
+Doktor Neri: Hört ihr? Blubb, blubb, blubb … Der Bauch arbeitet wieder!
+Luca: Das ist das schönste Geräusch der Welt!
+Und dann hebt Tornado den Schweif und … äpfelt. Genau vor die Schuhe des Tierarztes.
+Alle lachen. Auch der Tierarzt.
+Doktor Neri: Das ist die beste Nachricht des Tages! Heute Abend nur ein bisschen nasses Heu. Und morgen früh ruft ihr mich an.
+Der Tierarzt schließt die große schwarze Tasche. Carla bietet ihm einen Kaffee an.
+Doktor Neri: Danke, Carla, aber ich muss heute noch in drei Reitställe. Und zu einer Kuh.
+Das alte grüne Auto fährt wieder los.
+Im Hof wird es wieder still. Sara streichelt Fulmine. Carla öffnet die Fenster für Stella. Pepe frisst sein Heu, ein bisschen traurig. Und Luca bleibt bei Tornado, er sitzt im Stroh, in der Box.
+Luca: Du hast mir Angst gemacht, weißt du?
+Tornado schnaubt leise. Dann legt er das Maul auf Lucas Schulter.
+Das war „In sella!“. Bis zur nächsten Folge. Und denkt daran: Ein Pferd kann nicht sagen „mir tut etwas weh“. Wir müssen es selbst anschauen und ihm zuhören.`,
+    fact:'Kolik ist beim Pferd ein Notfall: Pferde können sich nicht übergeben, und der Darm ist sehr lang. Typische Zeichen sind Scharren, Hinlegen und Aufstehen, Blick zum Bauch und fehlende Darmgeräusche – dann sofort den Tierarzt rufen. Hufrehe (laminite) bekommen vor allem Ponys auf fettem Frühlingsgras, und Heustaub ist eine häufige Ursache für Husten im Stall.' }
+);
 /* Hörgeschichten Cinema (Podcast „Voci dal cinema“). Figuren aus dem Thema: Sara, Luca, Giulia (Regisseurin), Opa Pippo (Kino Paradiso), Schauspieler Marcello. */
 PODCAST_INFO.cinema = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Drehtag am Filmset und ein Abend im alten Kino, mit Filmklappe, Regenmaschine und ratterndem Projektor, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.cinema = [
