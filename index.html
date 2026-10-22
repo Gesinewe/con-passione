@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 222;
+const APP_VERSION = 223;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -55635,8 +55635,11 @@ Object.assign(PICS, {'la gallina / le galline':'🐔','la mucca':'🐄','la capr
 Object.assign(PICS, {'l’estate':'🍉🌞','la sedia / le sedie':'🪑','lo specchio / gli specchi':'🪞','la lampada':'🪔','il luna park':'🎡🎢','la giostra':'🎠','la ruota panoramica':'🎡','il treno fantasma':'🚃👻','il palloncino':'🎈','il fungo / i funghi':'🍄','la stella / le stelle':'⭐','la macchina / le macchine':'🚗','la bicicletta':'🚲','la barca':'🛶','il concerto':'🎼🎶','la chitarra':'🎸','il violino':'🎻','il cantante / la cantante':'🧑‍🎤','il cuoco / la cuoca':'🧑‍🍳','la padella':'🍳','il cervello':'🧠','l’ombrellone':'⛱️','la crema solare':'🧴','il costume da bagno':'🩱','il pesce / i pesci':'🐟','la palla di lana':'🧶','la ciotola del gatto':'<svg viewBox="0 0 100 100" width="1.15em" height="1.15em" style="vertical-align:middle" aria-hidden="true"><path d="M6 56 L16 86 L84 86 L94 56 Z" fill="#4caf7a" stroke="#256b45" stroke-width="2.5" stroke-linejoin="round"/><ellipse cx="50" cy="56" rx="44" ry="10" fill="#2f8a5a" stroke="#256b45" stroke-width="2.5"/><g fill="#a0612e" stroke="#6e3f19" stroke-width="1"><circle cx="34" cy="52" r="4.5"/><circle cx="44" cy="49" r="4.5"/><circle cx="55" cy="51" r="4.5"/><circle cx="65" cy="49" r="4.5"/><circle cx="40" cy="56" r="4.5"/><circle cx="51" cy="57" r="4.5"/><circle cx="62" cy="56" r="4.5"/><circle cx="72" cy="54" r="4.5"/><circle cx="28" cy="56" r="4.5"/></g><g fill="#fff"><ellipse cx="50" cy="77" rx="7" ry="5.5"/><circle cx="40" cy="69" r="3"/><circle cx="46" cy="65" r="3"/><circle cx="54" cy="65" r="3"/><circle cx="60" cy="69" r="3"/></g></svg>','la pianta / le piante':'🪴','la scatola / le scatole':'📦📦','il camion':'🚚','l’incubo':'😱','il minuto / i minuti':'⏱️','il campeggio':'🏕️','la zanzara / le zanzare':'🦟','il riccio':'🦔','la bugia':'🤥','il rospo':'🐸','il vagone':'🚃','il binario':'🛤️','il pirata / i pirati':'🏴‍☠️','il robot':'🤖','il razzo':'🚀','il pianeta':'🪐','lo spazio':'🌌'});
 /*B120-PICS-END*/
 /* Bild-Wörter der Lektionen from..to eines Themas; it = erste Form (bei „la candela / le candele“ also „la candela“) */
-const picWords = (t, from, to) => t.lessons.slice(from, to + 1).flatMap(l => (l.words || []).filter(([it]) => PICS[it])
-  .map(([it,de]) => ({it: it.split(' / ')[0], de: de.split(' / ')[0], pic: PICS[it], all: it.split(' / '), say: it})));
+/* Bilder, die nur in einem Thema gelten (gleiche Wortkarte, anderes Bild): z. B. „la coda“ ist bei Cavalli der Pferdeschweif, nicht die Echse */
+const TOPIC_PICS = {cavalli: {'la coda':'<svg viewBox="0 0 100 100" width="1.15em" height="1.15em" style="vertical-align:middle" aria-hidden="true"><path d="M26 44 L14 22 Q12 16 6 18 L2 26 Q1 30 5 31 L14 32 L18 50 Z" fill="#a0663a" stroke="#6b4022" stroke-width="2" stroke-linejoin="round"/><path d="M12 16 L14 8 L17 16 Z" fill="#a0663a" stroke="#6b4022" stroke-width="1.5" stroke-linejoin="round"/><circle cx="9" cy="22" r="1.4" fill="#1b1b1b"/><path d="M15 16 Q24 22 28 40" fill="none" stroke="#3a2414" stroke-width="3" stroke-linecap="round"/><path d="M18 42 Q20 34 32 34 L62 36 Q76 37 76 48 Q76 60 66 62 L64 88 L58 88 L58 64 L32 64 L30 88 L24 88 L23 62 Q16 56 18 42 Z" fill="#a0663a" stroke="#6b4022" stroke-width="2" stroke-linejoin="round"/><path d="M58 88 L58 92 L65 92 L64 88 Z M24 88 L23 92 L31 92 L30 88 Z" fill="#3a2a1e"/><path d="M73 38 Q86 36 88 50 Q92 64 87 78 Q85 87 92 96 Q79 92 77 80 Q75 66 78 54 Q79 46 72 43 Z" fill="#3a2414" stroke="#24160c" stroke-width="1.5" stroke-linejoin="round"/><path d="M80 48 Q84 62 80 76 M84 52 Q88 66 85 84" fill="none" stroke="#6a4428" stroke-width="1.6" stroke-linecap="round"/><path d="M96 12 L84 33" stroke="#f2b632" stroke-width="5" stroke-linecap="round"/><path d="M82 25 L83 36 L92 31" fill="none" stroke="#f2b632" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>'}};
+const picOf = (t, it) => (TOPIC_PICS[t && t.id] || {})[it] || PICS[it];
+const picWords = (t, from, to) => t.lessons.slice(from, to + 1).flatMap(l => (l.words || []).filter(([it]) => picOf(t, it))
+  .map(([it,de]) => ({it: it.split(' / ')[0], de: de.split(' / ')[0], pic: picOf(t, it), all: it.split(' / '), say: it})));
 /* Eine Bildaufgabe: Bild → Wort wählen, Wort (gelesen oder gehört) → Bild wählen, oder Bild → Wort schreiben */
 function picStep(x, pool, kind){
   const seen = new Set([x.pic]), seenIt = new Set([x.it]);
@@ -56541,7 +56544,7 @@ function buildSteps(lesson, topic){
       if (grp.length > 1) steps.push({type:'match', pairs:grp});
       if (topic){
         const known = picWords(topic, 0, topic.lessons.indexOf(lesson));
-        grp.filter(x => PICS[x.it]).forEach(x => steps.push(picStep(known.find(p => p.pic === PICS[x.it]), known)));
+        grp.filter(x => picOf(topic, x.it)).forEach(x => steps.push(picStep(known.find(p => p.pic === picOf(topic, x.it)), known)));
         grp.filter(x => animOf(topic, x.it)).forEach(x => steps.push(animStep(x, topic, topic.lessons.indexOf(lesson))));
       }
     }
