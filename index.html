@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 229;
+const APP_VERSION = 230;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -62533,6 +62533,137 @@ Um vier hört der Regen auf. Über den Hügeln des Chianti steht ein Regenbogen.
 Oma: Siehst du? Nach dem Regen kommt Sonnenschein.
 Das war „Voci dei proverbi“. Und denkt daran: Zu jedem Sprichwort gibt es ein gegenteiliges Sprichwort. Aber das Sonntagsessen macht alle wieder einig.`,
     fact:'„Chi dorme non piglia pesci“ entspricht unserem „Der frühe Vogel fängt den Wurm“: Wer früh aufsteht, hat Erfolg. „Ich verstehe nur Bahnhof“ gibt es auf Italienisch nicht – dort sagt man „Per me è arabo“ (Für mich ist das Arabisch) oder „Non ci capisco un’acca“ (Ich verstehe davon kein H). Pici sind dicke, handgerollte Nudeln aus der Gegend um Siena.' }
+];
+/* Hörgeschichte „Rennrad“ (Italiener lernen Deutsch, v230; Wunsch der Nutzerin: „mach für rennrad bitte eine hörgeschichte“).
+   Podcast „Bergauf – der Radpodcast aus Freiburg“ von Martina und Nele, Folge 1: Papa Ferraro ist zu Besuch und fordert Felix
+   zum Duell auf den Schauinsland heraus (Hausberg von Freiburg, 1284 m). Passt nach Stufe 4, Niveau ab B1.
+   Stimmen: Erzählerin Katja, Martina SeraphinaMultilingual, Felix FlorianMultilingual, Papa Ferraro it-IT-GiuseppeMultilingualNeural
+   (Deutsch mit italienischem Akzent), Nele Amala, Oma Hilde de-AT-IngridNeural. Neue Geräusche: klingel, freilauf, fahrt, hubschrauber (podcast_mischen.py v230). */
+PODCAST_INFO.rennrad = {h:'Storie da ascoltare', nav:'Storie audio', lead:'Come un piccolo podcast: papà Ferraro è in visita a Friburgo e sfida Felix sullo Schauinsland, la montagna di casa – con il tram, i campanacci delle mucche, una foratura, un temporale e una scommessa con la maglia dell’Atalanta. Ascolta e basta, senza esercizi: puoi aprire il testo e la traduzione.'};
+PODCASTS.rennrad = [
+  { id:'rennrad-p1', lang:'de', erzaehler:'Katja', show:'Bergauf', ep:1, title:'Das Duell am Schauinsland', de:'Il duello sullo Schauinsland',
+    place:'Friburgo e lo Schauinsland, una domenica di settembre', level:'ab B1', kind:'Ciclismo · Famiglia',
+    voices:{Martina:'SeraphinaMultilingual', Nele:'Amala', Felix:'FlorianMultilingual', 'Papa Ferraro':'it-IT-GiuseppeMultilingualNeural', 'Oma Hilde':'de-AT-IngridNeural'},
+    stil:{'':['-8%','-2Hz'], Martina:['-4%','+0Hz'], Nele:['+2%','+2Hz'], Felix:['-2%','+0Hz'], 'Papa Ferraro':['-6%','-4Hz'], 'Oma Hilde':['-10%','-2Hz']},
+    words:[['das Duell','il duello'],['die Wette','la scommessa'],['wetten','scommettere'],['der Hausberg','la montagna di casa'],['die Steigung','la pendenza'],['das Trikot','la maglia'],['die Kuh / die Kühe','la mucca / le mucche'],['die Kuhglocke','il campanaccio'],['der Platten','la foratura'],['der Schlauch','la camera d’aria'],['das Gewitter','il temporale'],['der Gipfel','la cima'],['aufgeben','arrendersi'],['schummeln','imbrogliare'],['gewinnen / gewonnen','vincere / vinto']],
+    fx:{'Martina: Hallo und herzlich willkommen':'pausa', 'Es ist Sonntag':'pausa', 'Papa Ferraro: Felix! Ich habe':'brindisi', 'Am nächsten Morgen um sieben':'pausa tram', 'Nele: Eins, zwei, drei':'klingel', 'Die beiden fahren los':'fahrt_an', 'Felix fährt gleichmäßig':'pausa', 'Nach einer halben Stunde':'campanacci_an', 'Mitten auf der Straße stehen':'pausa', 'Papa Ferraro: Permesso':'klingel', 'Die Kühe schauen':'campanacci_aus', 'Kilometer acht':'pausa', 'Dann hört Felix':'pneumatico', 'Felix: Ein Platten':'freilauf', 'Papa Ferraro hält an':'pausa', 'Oben am Himmel wird es dunkel':'tuono', 'Es beginnt zu regnen':'pioggia_an', 'Kurz vor dem Gipfel':'pausa', 'Plötzlich hören sie eine Klingel':'klingel', 'Oma Hilde fährt an ihnen':'pausa', 'Oben am Gipfel':'fahrt_aus pioggia_aus pausa', 'Speiche bellt':'abbaio', 'Am Abend sitzen alle':'pausa', 'Martina: Und das war':'pausa'},
+    text:`Martina: Hallo und herzlich willkommen bei „Bergauf“, dem Radpodcast aus Freiburg. Ich bin Martina.
+Nele: Und ich bin Nele. Heute erzählen wir euch eine Geschichte, die wirklich passiert ist. Na ja … fast wirklich.
+Martina: Es ist die Geschichte von einem Duell. Mein Vater gegen meinen Freund. Bergamo gegen Freiburg.
+Es ist Sonntag, ein warmer Abend im September. Papa Ferraro ist zum ersten Mal in Freiburg. Alle sitzen im Garten von Oma Hilde und trinken Wein.
+Papa Ferraro: Felix! Ich habe eine Frage. Wie hoch ist euer Berg hier? Dieser … Schauinsland?
+Felix: Zwölfhundertvierundachtzig Meter. Von Freiburg sind es fast tausend Höhenmeter bis oben.
+Papa Ferraro: Tausend Meter? Pff. Das ist kein Berg. Das ist ein Hügel. In Bergamo fahren wir so etwas zum Frühstück.
+Felix: Zum Frühstück? Mit siebzig?
+Papa Ferraro: Achtundsechzig! Wollen wir wetten? Morgen früh. Du und ich. Wer zuerst oben ist.
+Oma Hilde: Oh, eine Wette! Und was bekommt der Sieger?
+Papa Ferraro: Wenn ich gewinne, trägt Felix eine Woche lang das Trikot von Atalanta. Im Laden. Vor allen Kunden.
+Felix: Und wenn ich gewinne, trinken Sie zum Abendessen Bier statt Wein. Und Sie sagen: Der Schwarzwald ist schöner als Bergamo.
+Papa Ferraro: Niemals! … Gut. Abgemacht.
+Am nächsten Morgen um sieben steht die ganze Familie an der Straßenbahnhaltestelle in Günterstal. Hier beginnt der Anstieg.
+Nele hat ihr Handy in der Hand. Sie filmt alles.
+Nele: Eins, zwei, drei … los!
+Die beiden fahren los. Papa Ferraro fährt sofort sehr schnell. Er steht in den Pedalen, wie ein Profi beim Giro.
+Felix fährt gleichmäßig. Ruhig. Er kennt den Berg. Er weiß: Der Schauinsland ist lang. Sehr lang.
+Felix: Langsam, Schwiegerpapa! Das sind noch zwölf Kilometer!
+Papa Ferraro: Ciao, Felix! Wir sehen uns oben!
+Nach einer halben Stunde kommen sie auf eine Wiese. Überall hört man Kuhglocken.
+Mitten auf der Straße stehen zehn Kühe. Große, braune Schwarzwälder Kühe. Sie bewegen sich nicht.
+Papa Ferraro: Permesso! Entschuldigung! Bitte, signora Kuh!
+Die Kühe schauen ihn an. Eine Kuh frisst ruhig weiter. Felix kommt langsam näher. Er fährt ganz ruhig links an den Kühen vorbei. Papa Ferraro muss absteigen und schieben.
+Felix: Im Schwarzwald haben die Kühe Vorfahrt, Schwiegerpapa!
+Kilometer acht. Jetzt fährt Felix vorne. Papa Ferraro ist zwanzig Meter hinter ihm. Er atmet schwer.
+Dann hört Felix ein Geräusch. Psssss. Sein Hinterrad ist plötzlich weich.
+Felix: Ein Platten! Nein! Nicht jetzt!
+Papa Ferraro hält an. Er schaut Felix an. Er könnte weiterfahren. Er könnte gewinnen.
+Papa Ferraro: Hast du einen Schlauch?
+Felix: Nein. Ich habe ihn heute Morgen vergessen. Ich bin Mechaniker, und ich habe den Schlauch vergessen.
+Papa Ferraro: Dann nimm meinen. Ein Italiener fährt nie ohne zwei Schläuche.
+Zusammen wechseln sie den Schlauch. Felix pumpt, Papa hält das Rad. Nach fünf Minuten fahren sie wieder. Nebeneinander.
+Oben am Himmel wird es dunkel. Über dem Berg kommt ein Gewitter.
+Es beginnt zu regnen. Erst leicht, dann stark. Das Wasser läuft über die Straße.
+Papa Ferraro: Felix! Wollen wir aufgeben?
+Felix: Aufgeben? Ein Bergamasker gibt doch nie auf, oder?
+Papa Ferraro: Ha! Richtig. Avanti!
+Kurz vor dem Gipfel sind beide nass bis auf die Haut. Sie fahren immer noch nebeneinander. Keiner will verlieren. Noch fünfhundert Meter. Noch zweihundert.
+Plötzlich hören sie eine Klingel hinter sich. Ding, ding!
+Oma Hilde fährt an ihnen vorbei. Auf ihrem E-Bike. In einer gelben Regenjacke. Hinten im Korb sitzt Speiche.
+Oma Hilde: Guten Morgen, meine Herren! Ich fahre schon mal vor und mache Kaffee!
+Felix: Oma! Das ist Schummeln!
+Oma Hilde: Nein, mein Junge. Das ist Technik.
+Oben am Gipfel ist der Regen vorbei. Die Sonne kommt hinter den Wolken hervor. Man sieht bis zu den Alpen.
+Oma Hilde steht neben ihrem E-Bike. Sie hat eine Thermoskanne mit Kaffee und einen Kuchen dabei. Martina und Nele sind mit der Seilbahn hochgefahren und warten schon.
+Speiche bellt. Felix und Papa Ferraro fahren nebeneinander über die Linie. Genau gleichzeitig.
+Nele: Ich habe es gefilmt! Unentschieden! Ihr seid beide gleich schnell!
+Papa Ferraro: Unentschieden? Hm. Dann hat niemand gewonnen.
+Oma Hilde: Doch. Ich. Ich war zuerst oben.
+Am Abend sitzen alle wieder im Garten. Felix trägt das blaue und schwarze Trikot von Atalanta. Papa Ferraro hat ein Bier in der Hand.
+Papa Ferraro: Also gut. Ich sage es. Der Schwarzwald ist … auch schön.
+Felix: Nur „auch“?
+Papa Ferraro: Felix. Du bist ein guter Mechaniker und ein guter Fahrer. Aber vor allem bist du ein guter Mensch. Du hast mir heute nicht davonfahren wollen – und ich dir auch nicht.
+Martina: Papa … weinst du?
+Papa Ferraro: Nein! Das ist nur der Regen. Von heute Morgen.
+Martina: Und das war „Bergauf“. Nächstes Mal erzählen wir, wie Oma Hilde ihr E-Bike bekommen hat.
+Nele: Spoiler: Es ist eine lange Geschichte. Tschüss und gute Fahrt!`,
+    tr:`Martina: Ciao e benvenuti a «Bergauf», il podcast di ciclismo da Friburgo. Io sono Martina.
+Nele: E io sono Nele. Oggi vi raccontiamo una storia che è successa davvero. Beh … quasi davvero.
+Martina: È la storia di un duello. Mio padre contro il mio ragazzo. Bergamo contro Friburgo.
+È domenica, una sera calda di settembre. Papà Ferraro è a Friburgo per la prima volta. Sono tutti seduti nel giardino della nonna Hilde e bevono vino.
+Papà Ferraro: Felix! Ho una domanda. Quanto è alta la vostra montagna qui? Questo … Schauinsland?
+Felix: Milleduecentoottantaquattro metri. Da Friburgo sono quasi mille metri di dislivello fino in cima.
+Papà Ferraro: Mille metri? Pff. Non è una montagna. È una collina. A Bergamo una cosa così la facciamo a colazione.
+Felix: A colazione? A settant’anni?
+Papà Ferraro: Sessantotto! Scommettiamo? Domani mattina. Tu e io. Chi arriva prima in cima.
+Nonna Hilde: Oh, una scommessa! E che cosa riceve il vincitore?
+Papà Ferraro: Se vinco io, Felix porta per una settimana la maglia dell’Atalanta. In negozio. Davanti a tutti i clienti.
+Felix: E se vinco io, a cena lei beve birra invece del vino. E dice: la Foresta Nera è più bella di Bergamo.
+Papà Ferraro: Mai! … Va bene. Affare fatto.
+La mattina dopo alle sette tutta la famiglia è alla fermata del tram di Günterstal. Qui comincia la salita.
+Nele ha il cellulare in mano. Filma tutto.
+Nele: Uno, due, tre … via!
+I due partono. Papà Ferraro va subito molto veloce. Pedala in piedi sui pedali, come un professionista al Giro.
+Felix pedala regolare. Tranquillo. Conosce la montagna. Sa che lo Schauinsland è lungo. Molto lungo.
+Felix: Piano, suocero! Mancano ancora dodici chilometri!
+Papà Ferraro: Ciao, Felix! Ci vediamo in cima!
+Dopo mezz’ora arrivano a un prato. Dappertutto si sentono i campanacci delle mucche.
+In mezzo alla strada ci sono dieci mucche. Grandi mucche marroni della Foresta Nera. Non si muovono.
+Papà Ferraro: Permesso! Scusi! Prego, signora mucca!
+Le mucche lo guardano. Una mucca continua a mangiare tranquilla. Felix si avvicina piano. Passa tranquillissimo a sinistra delle mucche. Papà Ferraro deve scendere e spingere.
+Felix: Nella Foresta Nera le mucche hanno la precedenza, suocero!
+Chilometro otto. Adesso è davanti Felix. Papà Ferraro è venti metri dietro di lui. Respira a fatica.
+Poi Felix sente un rumore. Psssss. La sua ruota posteriore all’improvviso è morbida.
+Felix: Una foratura! No! Non adesso!
+Papà Ferraro si ferma. Guarda Felix. Potrebbe continuare. Potrebbe vincere.
+Papà Ferraro: Hai una camera d’aria?
+Felix: No. L’ho dimenticata stamattina. Sono un meccanico e ho dimenticato la camera d’aria.
+Papà Ferraro: Allora prendi la mia. Un italiano non va mai in bici senza due camere d’aria.
+Insieme cambiano la camera d’aria. Felix gonfia, papà tiene la bici. Dopo cinque minuti ripartono. Uno accanto all’altro.
+In alto il cielo diventa scuro. Sopra la montagna arriva un temporale.
+Comincia a piovere. Prima piano, poi forte. L’acqua scorre sulla strada.
+Papà Ferraro: Felix! Vogliamo ritirarci?
+Felix: Ritirarci? Un bergamasco non si arrende mai, giusto?
+Papà Ferraro: Ah! Giusto. Avanti!
+Poco prima della cima sono tutti e due bagnati fino alle ossa. Pedalano ancora uno accanto all’altro. Nessuno vuole perdere. Ancora cinquecento metri. Ancora duecento.
+All’improvviso sentono un campanello dietro di loro. Drin, drin!
+La nonna Hilde li sorpassa. Sulla sua e-bike. Con una giacca a vento gialla. Dietro nel cestino c’è Speiche.
+Nonna Hilde: Buongiorno, signori! Io vado avanti e preparo il caffè!
+Felix: Nonna! Così si imbroglia!
+Nonna Hilde: No, ragazzo mio. Questa è tecnica.
+In cima la pioggia è finita. Il sole esce da dietro le nuvole. Si vede fino alle Alpi.
+La nonna Hilde è accanto alla sua e-bike. Ha con sé un thermos di caffè e una torta. Martina e Nele sono salite con la funivia e aspettano già.
+Speiche abbaia. Felix e papà Ferraro passano la linea uno accanto all’altro. Esattamente nello stesso momento.
+Nele: L’ho filmato! Pareggio! Siete veloci uguali!
+Papà Ferraro: Pareggio? Mh. Allora non ha vinto nessuno.
+Nonna Hilde: Sì invece. Io. Sono arrivata prima io in cima.
+La sera sono tutti di nuovo in giardino. Felix porta la maglia nerazzurra dell’Atalanta. Papà Ferraro ha una birra in mano.
+Papà Ferraro: E va bene. Lo dico. La Foresta Nera è … bella anche lei.
+Felix: Solo «anche»?
+Papà Ferraro: Felix. Sei un bravo meccanico e un bravo ciclista. Ma soprattutto sei una brava persona. Oggi non hai voluto staccarmi – e io nemmeno te.
+Martina: Papà … stai piangendo?
+Papà Ferraro: No! È solo la pioggia. Di stamattina.
+Martina: Ed era «Bergauf». La prossima volta vi raccontiamo come la nonna Hilde ha avuto la sua e-bike.
+Nele: Spoiler: è una lunga storia. Ciao e buona pedalata!`,
+    fact:'Lo Schauinsland (1284 m) è la montagna di casa di Friburgo: dal quartiere di Günterstal una strada di circa 12 chilometri sale per quasi mille metri di dislivello, e la funivia dello Schauinsland, inaugurata nel 1930, è una delle più lunghe cabinovie della Germania. Dal 1925 al 1984 sulla sua strada si corse il «Schauinslandrennen», una famosa cronoscalata per auto e moto. Nei pascoli d’estate si incontrano spesso le mucche «Hinterwälder», una razza piccola e robusta della Foresta Nera.' }
 ];
 /* Hörgeschichten Roma antica (Podcast „Voci dall’antica Roma“). Wahre Geschichte: Verus und Priscus, Eröffnung des Kolosseums 80 n. Chr. (Martial, Liber spectaculorum 29). */
 PODCASTS.roma = [
