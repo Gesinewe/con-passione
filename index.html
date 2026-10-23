@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 234;
+const APP_VERSION = 235;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -64274,6 +64274,96 @@ Dario schaut den Specht an. Dann schaut er einen kleinen Käfer am Stamm an, neb
 Dario: Hallo, Käfer. Heute habe ich keine Angst vor dir. Gestern habe ich ein Monster mit Geweih gesehen.
 Das war „Voci del bosco“. Und denkt daran: Nachts schläft der Wald nicht. Er spricht. Man muss nur zuhören.`,
     fact:'Im Nationalpark Foreste Casentinesi leben über tausend Rothirsche. Von Mitte September bis Mitte Oktober ist Brunftzeit, der „bramito“: Die Männchen röhren nachts, um Weibchen anzulocken und Rivalen zu vertreiben. Parkranger führen dann Gruppen zum Zuhören in den Wald – mit rotem Licht, weil es die Tiere weniger stört.' }
+];
+/* Hörgeschichte „God tur!“ (Deutsche lernen Norwegisch, v235; Wunsch der Nutzerin: „mach eine hörgeschichte für norwegisch“).
+   Podcast „Fortellinger fra nord“, Folge 1: Lenas erste Nacht auf der Hurtigruten – Sturm am Stadhavet (passt nach Stufe 3, norge-v3-1 ff.).
+   Stimmen: Erzählerin Pernille, Lena de-DE-SeraphinaMultilingual (Norwegisch mit deutschem Akzent), Torbjørn Finn (tiefer, langsamer),
+   Kapitän Finn als Lautsprecher (altoparlante), Klaus de-DE-FlorianMultilingual (seekranker Tourist aus Bayern). Niveau ab A2. Seiten-Texte auf Deutsch. */
+PODCAST_INFO.norge = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Lenas erste Nacht auf der Hurtigruten – mit Schiffsmotor, Wellen, Sturm und Donner, Durchsagen des Kapitäns, einem seekranken Touristen und Möwen im Morgenlicht, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.norge = [
+  { id:'norge-p1', lang:'no', erzaehler:'Pernille', show:'Fortellinger fra nord', ep:1, title:'Stormen ved Stad', de:'Der Sturm bei Stad',
+    place:'An Bord der Hurtigruten, zwischen Bergen und Ålesund, eine Nacht im Juli', level:'ab A2', kind:'Abenteuer · Meer',
+    voices:{Lena:'de-DE-SeraphinaMultilingualNeural', 'Torbjørn':'Finn', Kapteinen:'Finn', Klaus:'de-DE-FlorianMultilingualNeural'},
+    stil:{'':['-8%','-2Hz'], Lena:['-4%','+0Hz'], 'Torbjørn':['-12%','-8Hz'], Kapteinen:['-2%','-3Hz'], Klaus:['-6%','+0Hz']},
+    words:[['et skip / skipet','ein Schiff / das Schiff'],['en storm / stormen','ein Sturm / der Sturm'],['ei bølge / bølgene','eine Welle / die Wellen'],['sjøsyk','seekrank'],['kvalm','übel'],['en kahytt / lugar','eine Kabine'],['kapteinen','der Kapitän'],['å gynge','schaukeln'],['frisk luft','frische Luft'],['horisonten','der Horizont'],['et fyr','ein Leuchtturm'],['ei måke / måkene','eine Möwe / die Möwen'],['soloppgangen','der Sonnenaufgang'],['ingefær','Ingwer']],
+    fx:{'Hei, og velkommen til':'pausa motore_barca_an', 'Klokka er elleve':'acqua_an', 'Kapteinen: God kveld':'altoparlante', 'Lena går ned':'passi porta', 'Klokka ett':'vento_an tuono', 'Hele skipet':'pausa', 'Lena: Hallo? Er det noen':'pausa', 'Plutselig hører':'porta', 'Klaus: Entschuldigung':'pausa', 'Lena tar ham med':'passi', 'Oppe i salongen':'pioggia_an', 'Torbjørn: Det er Stad':'pausa', 'Torbjørn: I 1962':'tuono', 'Kapteinen: Kjære passasjerer':'altoparlante', 'Klokka fire':'pioggia_aus vento_aus pausa', 'Ute på dekket':'gabbiani', 'Klaus: Ich … jeg':'pausa', 'Skipsfløyta tuter':'vaporetto', 'Det var Fortellinger':'acqua_aus motore_barca_aus pausa'},
+    text:`Hei, og velkommen til «Fortellinger fra nord». I kveld er vi om bord på Hurtigruten. Skipet har nettopp forlatt Bergen. Det er sommer, og himmelen er lys, selv om klokka er mye.
+Klokka er elleve om kvelden. Lena står på dekket. Hun har aldri vært på Hurtigruten før. Ved siden av henne sitter en gammel mann i en stol. Han drikker kaffe fra en termos.
+Torbjørn: Første gang?
+Lena: Ja. Er det så tydelig?
+Torbjørn: Du tar bilder av alt. Til og med av måkene. Æ heter Torbjørn.
+Lena: Lena. Fra Hamburg.
+Torbjørn: Velkommen om bord, Lena. Har du spist ingefær?
+Lena: Ingefær? Hvorfor det?
+Torbjørn: I natt skal vi forbi Stad.
+Kapteinen: God kveld, kjære passasjerer. Her er kapteinen. I natt passerer vi Stadhavet. Det blir litt vind og noen bølger. Vi anbefaler å bli i lugaren etter midnatt. God natt.
+Lena går ned i lugaren sin. Den er liten og har ikke vindu. Hun legger seg i køya og sovner med en gang.
+Klokka ett våkner hun. Køya gynger. Opp og ned. Opp og ned. Ute hyler vinden.
+Hele skipet beveger seg. En flaske ruller over gulvet. Lena tar på seg jakka og går ut i gangen.
+Lena: Hallo? Er det noen her?
+Plutselig hører hun en dør. En mann kommer ut av lugaren ved siden av. Han er helt hvit i ansiktet og holder seg i veggen.
+Klaus: Entschuldigung … unnskyld … jeg er så kvalm. Jeg er Klaus. Fra Bayern.
+Lena: Du er sjøsyk. Kom, du trenger frisk luft. Og du må se på horisonten.
+Klaus: Horisonten? Det er jo natt!
+Lena: Det er juli. Det er lyst!
+Lena tar ham med opp til salongen. Den store salongen har store vinduer. Der sitter Torbjørn i en stol, som om ingenting har skjedd.
+Oppe i salongen regner det på vinduene. Bølgene er høye. Men himmelen i nord er lys.
+Torbjørn: Det er Stad. Her møtes Nordsjøen og Norskehavet. Her er det alltid bølger. Sett deg. Se ut. Ikke se ned.
+Klaus setter seg. Torbjørn gir ham et lite stykke ingefær fra lomma.
+Torbjørn: Tygg. Sakte.
+Klaus: Danke. Takk. Har du … har du vært redd her noen gang?
+Torbjørn: I 1962. Da var æ fisker. Båten vår var bare tolv meter lang. Bølgene var høyere enn huset ditt. Vi så ingenting. Bare mørke.
+Lena: Hva skjedde?
+Torbjørn: Vi så et lys. Fyret på Stad. Vi fulgte lyset, og vi kom hjem. Alle sammen. Siden da har æ aldri vært redd for denne lille vinden her.
+Kapteinen: Kjære passasjerer. Det verste er over. Om en time er vi i rolig farvann. Takk for tålmodigheten.
+Klokka fire er bølgene mindre. Klaus sover i stolen. Torbjørn har også lukket øynene. Lena går ut.
+Ute på dekket er alt stille. Havet er grått og rolig. Bak fjellene i øst kommer sola opp. Rosa og gull. Måkene flyr rundt skipet.
+Lena tar et bilde. Så et til. Bak henne kommer Klaus ut, med farge i ansiktet igjen.
+Klaus: Ich … jeg tror jeg overlevde.
+Lena: Du gjorde det bra.
+Klaus: Takket være en gammel fisker og litt ingefær.
+Skipsfløyta tuter. Foran dem ligger en by med fargerike hus. Ålesund. Torbjørn står i døra med termosen.
+Torbjørn: God morgen. Vel overstått. Kaffe?
+Det var «Fortellinger fra nord». Neste gang: en gammel mann, en hemmelig plass og en bøtte full av molter. Ha det bra – og husk ingefær!`,
+    tr:`Hallo und willkommen bei „Geschichten aus dem Norden“. Heute Abend sind wir an Bord der Hurtigruten. Das Schiff hat gerade Bergen verlassen. Es ist Sommer, und der Himmel ist hell, obwohl es schon spät ist.
+Es ist elf Uhr abends. Lena steht an Deck. Sie war noch nie auf der Hurtigruten. Neben ihr sitzt ein alter Mann auf einem Stuhl. Er trinkt Kaffee aus einer Thermoskanne.
+Torbjørn: Zum ersten Mal?
+Lena: Ja. Sieht man das so deutlich?
+Torbjørn: Du fotografierst alles. Sogar die Möwen. Ich heiße Torbjørn.
+Lena: Lena. Aus Hamburg.
+Torbjørn: Willkommen an Bord, Lena. Hast du Ingwer gegessen?
+Lena: Ingwer? Warum das?
+Torbjørn: Heute Nacht fahren wir an Stad vorbei.
+Kapitän: Guten Abend, liebe Passagiere. Hier spricht der Kapitän. Heute Nacht passieren wir das Stadhavet. Es gibt etwas Wind und ein paar Wellen. Wir empfehlen, nach Mitternacht in der Kabine zu bleiben. Gute Nacht.
+Lena geht hinunter in ihre Kabine. Sie ist klein und hat kein Fenster. Sie legt sich in die Koje und schläft sofort ein.
+Um eins wacht sie auf. Die Koje schaukelt. Auf und ab. Auf und ab. Draußen heult der Wind.
+Das ganze Schiff bewegt sich. Eine Flasche rollt über den Boden. Lena zieht die Jacke an und geht hinaus in den Gang.
+Lena: Hallo? Ist hier jemand?
+Plötzlich hört sie eine Tür. Ein Mann kommt aus der Kabine nebenan. Er ist ganz weiß im Gesicht und hält sich an der Wand fest.
+Klaus: Entschuldigung … unnskyld … mir ist so übel. Ich bin Klaus. Aus Bayern.
+Lena: Du bist seekrank. Komm, du brauchst frische Luft. Und du musst auf den Horizont schauen.
+Klaus: Den Horizont? Es ist doch Nacht!
+Lena: Es ist Juli. Es ist hell!
+Lena nimmt ihn mit hinauf in den Salon. Der große Salon hat große Fenster. Dort sitzt Torbjørn in einem Sessel, als wäre nichts passiert.
+Oben im Salon regnet es gegen die Fenster. Die Wellen sind hoch. Aber der Himmel im Norden ist hell.
+Torbjørn: Das ist Stad. Hier treffen sich die Nordsee und das Europäische Nordmeer. Hier gibt es immer Wellen. Setz dich. Schau hinaus. Nicht nach unten schauen.
+Klaus setzt sich. Torbjørn gibt ihm ein kleines Stück Ingwer aus der Tasche.
+Torbjørn: Kauen. Langsam.
+Klaus: Danke. Takk. Hattest du … hattest du hier jemals Angst?
+Torbjørn: 1962. Damals war ich Fischer. Unser Boot war nur zwölf Meter lang. Die Wellen waren höher als dein Haus. Wir sahen nichts. Nur Dunkelheit.
+Lena: Was ist passiert?
+Torbjørn: Wir sahen ein Licht. Den Leuchtturm von Stad. Wir folgten dem Licht, und wir kamen nach Hause. Alle zusammen. Seitdem habe ich vor diesem kleinen Wind hier nie Angst gehabt.
+Kapitän: Liebe Passagiere. Das Schlimmste ist vorbei. In einer Stunde sind wir in ruhigem Gewässer. Danke für Ihre Geduld.
+Um vier sind die Wellen kleiner. Klaus schläft im Sessel. Torbjørn hat auch die Augen geschlossen. Lena geht hinaus.
+Draußen an Deck ist alles still. Das Meer ist grau und ruhig. Hinter den Bergen im Osten geht die Sonne auf. Rosa und gold. Die Möwen fliegen um das Schiff.
+Lena macht ein Foto. Dann noch eins. Hinter ihr kommt Klaus heraus, wieder mit Farbe im Gesicht.
+Klaus: Ich … ich glaube, ich habe überlebt.
+Lena: Du hast das gut gemacht.
+Klaus: Dank eines alten Fischers und ein bisschen Ingwer.
+Das Schiffshorn tönt. Vor ihnen liegt eine Stadt mit bunten Häusern. Ålesund. Torbjørn steht mit der Thermoskanne in der Tür.
+Torbjørn: Guten Morgen. Gut überstanden. Kaffee?
+Das war „Geschichten aus dem Norden“. Nächstes Mal: ein alter Mann, ein geheimer Platz und ein Eimer voller Moltebeeren. Macht’s gut – und denkt an den Ingwer!`,
+    fact:'Das Stadhavet vor der Halbinsel Stad gilt als das gefährlichste Seegebiet an der norwegischen Küste: Hier treffen Nordsee und Europäisches Nordmeer aufeinander, und es gibt kaum Schutz durch Inseln. Die Hurtigruten fährt diese Strecke seit 1893 jeden Tag. Norwegen baut gerade den Stad skipstunnel – den ersten Schiffstunnel der Welt für große Schiffe, 1,7 km lang durch den Berg, damit Schiffe das Stadhavet umfahren können.' }
 ];
 /* Hörgeschichten Proverbi (Podcast „Voci dei proverbi“). Figuren aus dem Thema: Lara (15), Bruder Nico (8), Mama Silvia, Papa Tom (deutscher Bäcker), nonna Ada (Sprichwörter), nonno Gino (Olivenbauer in Greve, kennt zu jedem Sprichwort das Gegenteil), Papagei Socrate. */
 PODCAST_INFO.proverbi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Sonntagsessen bei Opa Gino in Greve in Chianti – Oma Ada und Opa Gino tragen ein Sprichwort-Duell aus, und Papagei Socrate redet immer dazwischen. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
