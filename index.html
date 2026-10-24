@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 238;
+const APP_VERSION = 239;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -64644,6 +64644,135 @@ Eine Woche später ist das Bild auf der Titelseite der Zeitschrift: ein Schlitte
 Torbjørn kauft fünf Exemplare. Eins für jeden in der Familie und eins für Solveig.
 Das war „Geschichten aus dem Norden“. Nächstes Mal: der siebzehnte Mai, eine geliehene Tracht und eine Blaskapelle, die nicht aufhören will zu spielen. Macht’s gut – und haltet die Akkus warm!`,
     fact:'Das Finnmarksløpet in der nördlichsten Provinz Norwegens gilt als längstes Hundeschlittenrennen Europas: Die lange Strecke führt rund 1200 Kilometer von Alta bis Kirkenes an der russischen Grenze und zurück, über die baumlose Hochebene Finnmarksvidda. Nachts kann es dort kälter als minus 40 Grad werden. An den Kontrollpunkten müssen die Musher Pausen machen – und zuerst die Hunde versorgen: Futter, Stroh, Pfotenkontrolle, kleine Socken gegen Eis zwischen den Zehen. Ein Hund, der nicht mehr laufen soll, wird am Kontrollpunkt abgegeben und zurück zum Start gebracht. Akkus verlieren in der Kälte schnell ihre Kraft – Fotografen tragen Ersatzakkus deshalb am Körper.' }
+);
+/* Vierte Hörgeschichte für „God tur!“ (Folge 4, v239, Wunsch der Nutzerin: „mach folge 4 der norwegischen hörgeschichte“).
+   Wird nach leggende_norge3.js geladen. Löst die Ankündigung am Ende von Folge 3 ein („syttende mai, en lånt bunad og et korps
+   som ikke vil slutte å spille“). Passt zu Stufe 5 (Lektion „Syttende mai i Tromsø“: Hanne leiht Lena ihre alte Bunad mit Sølje).
+   Solveig aus Folge 2 näht seit fünfzig Jahren Bunader. Mathias spielt Tuba im Studentenkorps.
+   Neues Geräusch korps_an/aus (eigener Marsch, podcast_mischen.py v239); Menge und „Hurra“ mit norwegischen Stimmen.
+   Stimmen: Erzählerin Pernille, Lena Seraphina, Even/Torbjørn/Mathias Finn (verschieden hoch), Hanne/Solveig Pernille. Niveau ab B1. */
+PODCASTS.norge.push(
+  { id:'norge-p4', lang:'no', erzaehler:'Pernille', show:'Fortellinger fra nord', ep:4, title:'Korpset som ikke ville slutte', de:'Die Kapelle, die nicht aufhören wollte',
+    place:'Tromsø, der 17. Mai', level:'ab B1', kind:'Fest · Humor · Familie',
+    voices:{Lena:'de-DE-SeraphinaMultilingualNeural', Even:'Finn', Hanne:'Pernille', Solveig:'Pernille', 'Torbjørn':'Finn', Mathias:'Finn', Dirigenten:'Finn'},
+    stil:{'':['-8%','-2Hz'], Lena:['-4%','+0Hz'], Even:['-2%','+3Hz'], Hanne:['-2%','+4Hz'], Solveig:['-12%','-14Hz'], 'Torbjørn':['-12%','-8Hz'], Mathias:['+2%','+8Hz'], Dirigenten:['-4%','-14Hz']},
+    coro:'Hurra! Hurra! Hurra!',
+    mormorio:['Gratulerer med dagen!', 'Hipp hipp hurra!', 'Se, der kommer barnetoget!', 'Vil du ha is?', 'Hvor er flagget mitt?', 'Så fin bunad!', 'Hurra for syttende mai!', 'Mamma, jeg vil ha pølse!'],
+    words:[['syttende mai','der 17. Mai (Nationalfeiertag)'],['en bunad / bunaden','eine Tracht / die Tracht'],['ei sølje / sølja','eine Trachtenbrosche / die Brosche'],['et korps / korpset','eine Blaskapelle / die Kapelle'],['en tuba','eine Tuba'],['dirigenten','der Dirigent'],['barnetoget','der Kinderumzug'],['ei hekte','ein Haken (am Kleid)'],['å sy / sydd','nähen / genäht'],['ei nål','eine Nadel'],['å arve / arvet','erben / geerbt'],['eggerøre','Rührei'],['røkelaks','Räucherlachs'],['bløtkake','Sahnetorte'],['å lete etter','suchen nach'],['å riste','schütteln'],['en gang til','noch einmal'],['tromsøværing','Tromsøer, jemand aus Tromsø']],
+    fx:{'Hei, og velkommen tilbake':'pausa campane', 'Klokka er sju om morgenen':'korps_an', 'Even: Er det krig':'pausa', 'Lena står foran speilet':'korps_aus pausa', 'Pling!':'moneta_banco', 'Ti minutter senere':'porta', 'Klokka ni sitter':'pausa', 'Klokka elleve står':'folla_an', 'Og så kommer barnetoget':'korps_an', 'Alle roper':'coro', 'Korpset stopper':'korps_aus', 'Lena tar seg til brystet':'pausa', 'Korpset begynner å spille igjen':'korps_an', 'Klokka to':'korps_aus pausa', 'Dirigenten løfter':'korps_an', 'Mathias tar av seg':'korps_aus folla_aus pausa', 'Noe faller ut':'moneta_banco', 'Alle klapper':'applausi', 'Klokka er elleve om kvelden':'pausa', 'Langt borte i byen':'korps_an', 'Det var «Fortellinger':'korps_aus pausa'},
+    text:`Hei, og velkommen tilbake til «Fortellinger fra nord». I dag er det syttende mai, Norges nasjonaldag. Og vi er i Tromsø.
+Klokka er sju om morgenen. Lena våkner av musikk. Utenfor vinduet marsjerer et korps nedover gata. Trommer, trompeter, en stor tuba.
+Even: Er det krig?
+Lena: Nei. Det er syttende mai. Hanne sa at korpset begynner klokka sju. Og at det ikke slutter før i kveld.
+Even: Hele dagen? Med den musikken?
+Lena: Velkommen til Norge.
+Lena står foran speilet i bunaden til Hanne. Den er svart, med rødt og grønt broderi. Hanne står bak henne og lukker de små hektene, én etter én.
+Hanne: Pust ut. Enda litt. Og … nå!
+Pling!
+En hekte flyr gjennom rommet og lander under senga.
+Lena: Å nei. Jeg har ødelagt bunaden din!
+Hanne: Rolig. Vi har en ekspert i familien nå. Jeg ringer Solveig.
+Ti minutter senere står Solveig i døra med en gammel boks med nåler og tråd. Torbjørn står bak henne. Han har dress og en stor sløyfe i rødt, hvitt og blått, og han ser litt nervøs ut.
+Solveig: Jeg har sydd bunader i femti år. Stå stille, jenta mi.
+Hun ser på bunaden. Så smiler hun.
+Solveig: Denne kjenner jeg. Denne har jeg sydd selv. I 1998. Til konfirmasjonen din, Hanne.
+Hanne: Det er ikke mulig!
+Solveig: Se her. Inne i kragen. En liten S.
+Fem minutter senere sitter hekta der den skal. Hanne tar fram en liten eske.
+Hanne: Og så sølja. Den har jeg arvet etter bestemor Marie. Pass godt på den, Lena.
+Lena: Jeg lover det.
+Klokka ni sitter alle rundt bordet hos Hanne. Det er eggerøre, røkelaks, rundstykker og en stor bløtkake. Torbjørn gir Solveig det største kakestykket.
+Mathias: Oldefar. Du ga aldri meg det største stykket.
+Torbjørn: Du har ikke ventet i sekstifem år.
+Mathias må løpe. Han spiller tuba i studentkorpset, og de skal gå i toget.
+Klokka elleve står Lena, Even, Hanne, Torbjørn og Solveig i Storgata. Det er fullt av folk, flagg og is. Sola skinner, men det er bare åtte grader.
+Og så kommer barnetoget. Hundrevis av barn med flagg. Skole etter skole. Og mellom dem: korpsene.
+Alle roper:
+Der kommer studentkorpset. Helt bak går Mathias med den store tubaen. Han blunker til Lena.
+Korpset stopper rett foran dem og tar en liten pause. Lena løper fram og gir Mathias en klem. Hun lener seg over tubaen og tar en selfie.
+Lena: Hipp hipp hurra, Mathias!
+Mathias: Ikke ødelegg tubaen min!
+Korpset begynner å spille igjen og marsjerer videre. Lena går tilbake til de andre.
+Lena tar seg til brystet. Sølja. Den er borte.
+Lena: Nei. Nei, nei, nei. Sølja!
+Hanne blir hvit i ansiktet. Even ser på bakken. Solveig ser under en benk. De leter i gresset, mellom flaggene, under en barnevogn. Ingenting.
+Torbjørn: Rolig. Ting som blir borte, kommer tilbake. Se på meg og Solveig.
+Lena: Torbjørn, det tok sekstifem år!
+Klokka to står de ved Rådhuset. Toget er ferdig, men studentkorpset spiller fortsatt. Den samme marsjen. Igjen og igjen.
+Dirigenten ser irritert på tubaen. Hver gang Mathias blåser, hører man en rar lyd. Klirr. Klirr.
+Dirigenten: En gang til! Fra begynnelsen! Og tubaen: ordentlig denne gangen!
+Dirigenten løfter armene. Korpset spiller marsjen en gang til. Klirr. En gang til. Klirr. Folk begynner å le. Noen ber om en gang til.
+Mathias tar av seg tubaen. Han snur den opp ned og rister den.
+Noe faller ut og lander på asfalten. Noe som skinner i sola.
+Mathias: Lena? Er dette ditt?
+Det er sølja. Hun falt rett ned i tubaen da Lena tok selfien.
+Lena: Mathias! Du har spilt med sølja til bestemor Marie i tre timer!
+Mathias: Det forklarer lyden.
+Alle klapper. Dirigenten rister på hodet, men til slutt ler han også. Hanne tar sølja og fester den på bunaden til Lena igjen. Denne gangen med en ekstra sikkerhetsnål fra Solveigs boks.
+Klokka er elleve om kvelden, og det er fortsatt lyst. Lena og Torbjørn sitter på trappa utenfor huset. Inne danser Solveig med Even. Hanne spiller musikk fra telefonen.
+Torbjørn: Nå har du hatt bunad. Du har mistet sølja. Du har funnet den igjen. Og du har spist bløtkake klokka ni om morgenen. Nå er du tromsøværing.
+Lena: Takk, Torbjørn.
+Langt borte i byen spiller et korps fortsatt. Den samme marsjen.
+Lena: Slutter de aldri?
+Torbjørn: Ikke før i morgen. Gratulerer med dagen, Lena.
+Det var «Fortellinger fra nord». Neste gang: midnattssol, en liten fiskebåt og en veldig stor fisk. Ha det bra – og gratulerer med dagen!`,
+    tr:`Hallo und willkommen zurück bei „Geschichten aus dem Norden“. Heute ist der siebzehnte Mai, Norwegens Nationalfeiertag. Und wir sind in Tromsø.
+Es ist sieben Uhr morgens. Lena wacht von Musik auf. Vor dem Fenster marschiert eine Blaskapelle die Straße hinunter. Trommeln, Trompeten, eine große Tuba.
+Even: Ist Krieg?
+Lena: Nein. Es ist der siebzehnte Mai. Hanne hat gesagt, dass die Kapelle um sieben anfängt. Und dass sie erst heute Abend aufhört.
+Even: Den ganzen Tag? Mit dieser Musik?
+Lena: Willkommen in Norwegen.
+Lena steht in Hannes Tracht vor dem Spiegel. Sie ist schwarz, mit roter und grüner Stickerei. Hanne steht hinter ihr und schließt die kleinen Haken, einen nach dem anderen.
+Hanne: Ausatmen. Noch ein bisschen. Und … jetzt!
+Pling!
+Ein Haken fliegt durchs Zimmer und landet unter dem Bett.
+Lena: Oh nein. Ich habe deine Tracht kaputt gemacht!
+Hanne: Ruhig. Wir haben jetzt eine Expertin in der Familie. Ich rufe Solveig an.
+Zehn Minuten später steht Solveig mit einer alten Dose voller Nadeln und Faden in der Tür. Torbjørn steht hinter ihr. Er trägt Anzug und eine große Schleife in Rot, Weiß und Blau, und er sieht ein bisschen nervös aus.
+Solveig: Ich nähe seit fünfzig Jahren Trachten. Halt still, Mädchen.
+Sie schaut sich die Tracht an. Dann lächelt sie.
+Solveig: Die kenne ich. Die habe ich selbst genäht. 1998. Zu deiner Konfirmation, Hanne.
+Hanne: Das gibt’s doch nicht!
+Solveig: Schau hier. Innen im Kragen. Ein kleines S.
+Fünf Minuten später sitzt der Haken, wo er hingehört. Hanne holt ein kleines Kästchen hervor.
+Hanne: Und jetzt die Brosche. Die habe ich von Oma Marie geerbt. Pass gut auf sie auf, Lena.
+Lena: Ich verspreche es.
+Um neun sitzen alle bei Hanne um den Tisch. Es gibt Rührei, Räucherlachs, Brötchen und eine große Sahnetorte. Torbjørn gibt Solveig das größte Stück Torte.
+Mathias: Uropa. Mir hast du nie das größte Stück gegeben.
+Torbjørn: Du hast ja auch nicht fünfundsechzig Jahre gewartet.
+Mathias muss los. Er spielt Tuba im Studentenkorps, und sie laufen im Umzug mit.
+Um elf stehen Lena, Even, Hanne, Torbjørn und Solveig in der Storgata. Es ist voller Menschen, Fahnen und Eis. Die Sonne scheint, aber es sind nur acht Grad.
+Und dann kommt der Kinderumzug. Hunderte Kinder mit Fahnen. Eine Schule nach der anderen. Und dazwischen: die Blaskapellen.
+Alle rufen:
+Da kommt das Studentenkorps. Ganz hinten geht Mathias mit der großen Tuba. Er zwinkert Lena zu.
+Die Kapelle hält direkt vor ihnen an und macht eine kleine Pause. Lena läuft nach vorn und umarmt Mathias. Sie beugt sich über die Tuba und macht ein Selfie.
+Lena: Hipp hipp hurra, Mathias!
+Mathias: Mach meine Tuba nicht kaputt!
+Die Kapelle fängt wieder an zu spielen und marschiert weiter. Lena geht zurück zu den anderen.
+Lena fasst sich an die Brust. Die Brosche. Sie ist weg.
+Lena: Nein. Nein, nein, nein. Die Brosche!
+Hanne wird ganz weiß im Gesicht. Even schaut auf den Boden. Solveig schaut unter eine Bank. Sie suchen im Gras, zwischen den Fahnen, unter einem Kinderwagen. Nichts.
+Torbjørn: Ruhig. Dinge, die verloren gehen, kommen zurück. Schau mich und Solveig an.
+Lena: Torbjørn, das hat fünfundsechzig Jahre gedauert!
+Um zwei stehen sie am Rathaus. Der Umzug ist vorbei, aber das Studentenkorps spielt immer noch. Denselben Marsch. Immer wieder.
+Der Dirigent schaut genervt auf die Tuba. Jedes Mal, wenn Mathias bläst, hört man ein komisches Geräusch. Klirr. Klirr.
+Der Dirigent: Noch einmal! Von vorn! Und die Tuba: diesmal ordentlich!
+Der Dirigent hebt die Arme. Die Kapelle spielt den Marsch noch einmal. Klirr. Noch einmal. Klirr. Die Leute fangen an zu lachen. Manche rufen nach einer Zugabe.
+Mathias nimmt die Tuba ab. Er dreht sie um und schüttelt sie.
+Etwas fällt heraus und landet auf dem Asphalt. Etwas, das in der Sonne glänzt.
+Mathias: Lena? Gehört das dir?
+Es ist die Brosche. Sie ist direkt in die Tuba gefallen, als Lena das Selfie gemacht hat.
+Lena: Mathias! Du hast drei Stunden lang mit Oma Maries Brosche gespielt!
+Mathias: Das erklärt das Geräusch.
+Alle klatschen. Der Dirigent schüttelt den Kopf, aber am Ende lacht er auch. Hanne nimmt die Brosche und steckt sie wieder an Lenas Tracht. Diesmal mit einer extra Sicherheitsnadel aus Solveigs Dose.
+Es ist elf Uhr abends, und es ist immer noch hell. Lena und Torbjørn sitzen auf der Treppe vor dem Haus. Drinnen tanzt Solveig mit Even. Hanne spielt Musik vom Handy.
+Torbjørn: Jetzt hast du eine Tracht getragen. Du hast die Brosche verloren. Du hast sie wiedergefunden. Und du hast um neun Uhr morgens Sahnetorte gegessen. Jetzt bist du eine Tromsøerin.
+Lena: Danke, Torbjørn.
+Weit weg in der Stadt spielt immer noch eine Kapelle. Denselben Marsch.
+Lena: Hören die nie auf?
+Torbjørn: Nicht vor morgen. Herzlichen Glückwunsch zum Feiertag, Lena.
+Das war „Geschichten aus dem Norden“. Nächstes Mal: Mitternachtssonne, ein kleines Fischerboot und ein sehr großer Fisch. Macht’s gut – und herzlichen Glückwunsch zum Feiertag!`,
+    fact:'Am 17. Mai feiert Norwegen seine Verfassung von 1814. Anders als in vielen Ländern gibt es keine Militärparade: Im Mittelpunkt steht das „barnetog“, der Kinderumzug, bei dem jede Schule mit Fahnen und eigener Schulkapelle durch die Stadt zieht. Viele Kapellen („korps“) spielen schon ab dem frühen Morgen. Viele Menschen tragen ihre „bunad“, eine Tracht, die je nach Region anders aussieht und oft von Hand genäht wird – eine Bunad kostet schnell mehrere tausend Euro und wird oft vererbt, genau wie der Silberschmuck („sølje“). Typisch sind ein großes Frühstück mit Rührei und Räucherlachs, Eis und Würstchen ohne Ende und der Ruf „Hipp hipp hurra!“.' }
 );
 /* Hörgeschichten Proverbi (Podcast „Voci dei proverbi“). Figuren aus dem Thema: Lara (15), Bruder Nico (8), Mama Silvia, Papa Tom (deutscher Bäcker), nonna Ada (Sprichwörter), nonno Gino (Olivenbauer in Greve, kennt zu jedem Sprichwort das Gegenteil), Papagei Socrate. */
 PODCAST_INFO.proverbi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Sonntagsessen bei Opa Gino in Greve in Chianti – Oma Ada und Opa Gino tragen ein Sprichwort-Duell aus, und Papagei Socrate redet immer dazwischen. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
