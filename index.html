@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 237;
+const APP_VERSION = 238;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -64523,6 +64523,127 @@ Mathias: Schon gelöscht, Uropa.
 Im Auto auf dem Heimweg schaut Lena auf Mathias’ Handy. Der Punkt ist nicht gelöscht. Er hat einen neuen Namen bekommen: „Uropas Geheimnis – und Solveigs“. Lena sagt nichts. Sie hat es ja versprochen.
 Das war „Geschichten aus dem Norden“. Nächstes Mal: zwölf Hunde, ein Schlitten und eine sehr kalte Nacht. Macht’s gut – und denkt an die Bergstiefel!`,
     fact:'Moltebeeren (norwegisch „molter“ oder „multer“) wachsen in Mooren und tragen nur eine einzige Beere pro Pflanze – deshalb heißen sie „myrens gull“, das Gold des Moores. Sie reifen Ende Juli bis August: erst rot und hart, reif dann goldgelb und weich. Eigentlich darf in Norwegen jeder nach dem Jedermannsrecht Beeren pflücken – aber im Norden, in Nordland, Troms und Finnmark, dürfen Grundbesitzer das Moltebeerenpflücken auf ihrem Land verbieten. Wer einen guten Platz kennt, verrät ihn deshalb nicht. Zu Weihnachten gibt es traditionell „multekrem“: Moltebeeren mit geschlagener Sahne.' }
+);
+/* Dritte Hörgeschichte für „God tur!“ (Folge 3, v238, Wunsch der Nutzerin: „mach folge 3 der norwegischen hörgeschichte“).
+   Wird nach leggende_norge2.js geladen. Löst die Ankündigung am Ende von Folge 2 ein („tolv hunder, en slede og en veldig kald natt“).
+   Spielt im März von Stufe 5 (Lena arbeitet bei Nordlys Foto für Henrik): Finnmarksløpet, Nacht an einem Kontrollpunkt auf der Vidda.
+   Neue Figur: Máret Somby (Musherin aus Kautokeino, Cousine von Ánne), Leithunde Biegga (samisch „Wind“) und Guovssahas („Nordlicht“).
+   Stimmen: Erzählerin Pernille, Lena Seraphina, Even Finn, Máret Pernille (tiefer), Mannen Finn (tief), Torbjørn Finn am Telefon (radio).
+   Niveau ab B1. Am Ende angekündigt: Folge 4 zum 17. Mai (Stufe 5b: geliehene Bunad). */
+PODCASTS.norge.push(
+  { id:'norge-p3', lang:'no', erzaehler:'Pernille', show:'Fortellinger fra nord', ep:3, title:'Hundene først', de:'Die Hunde zuerst',
+    place:'Ein Kontrollpunkt des Finnmarksløpet auf der Finnmarksvidda, eine Nacht im März', level:'ab B1', kind:'Winter · Abenteuer · Tiere',
+    voices:{Lena:'de-DE-SeraphinaMultilingualNeural', Even:'Finn', 'Máret':'Pernille', Mannen:'Finn', 'Torbjørn':'Finn'},
+    stil:{'':['-8%','-2Hz'], Lena:['-4%','+0Hz'], Even:['-2%','+3Hz'], 'Máret':['-8%','-10Hz'], Mannen:['-4%','-12Hz'], 'Torbjørn':['-12%','-8Hz']},
+    words:[['et hundeløp','ein Hundeschlittenrennen'],['vidda','die Hochebene'],['et sjekkpunkt','ein Kontrollpunkt'],['ei fjellstue','eine Berghütte'],['minus trettiåtte grader','minus achtunddreißig Grad'],['ei pannelykt','eine Stirnlampe'],['en slede / sleden','ein Schlitten / der Schlitten'],['en lederhund','ein Leithund'],['ei pote / potene','eine Pfote / die Pfoten'],['å halte','hinken'],['halm','Stroh'],['ei gryte','ein Topf'],['et batteri / batteriene','eine Batterie / die Batterien'],['å fryse','frieren'],['mot kroppen','am Körper'],['å ule','heulen'],['i mål','im Ziel'],['forsiden','die Titelseite']],
+    fx:{'Hei, og velkommen tilbake':'pausa', 'Klokka er ett om natta':'falo_an atmo_an', 'Døra går opp':'porta', 'Lena tar kameraet og løper':'falo_aus', 'Tolv hunder løper inn':'ansimare', 'Hundene stopper':'abbaio', 'Lena ringer den eneste':'pausa', 'Torbjørn: Lena? Er det':'radio', 'Torbjørn: Gamle menn':'radio', 'Torbjørn: Da æ var':'radio', 'Inne i fjellstua sitter':'pausa falo_an', 'Even: Han snorker':'russare', 'Klokka fire skal':'pausa falo_aus', 'Hundene bjeffer. De vil':'abbaio', 'Máret: Kjør!':'pausa', 'Inne i fjellstua uler':'lupo', 'Tre dager senere':'atmo_aus pausa', 'Plutselig reiser han seg':'abbaio', 'Uka etter':'pausa', 'Det var «Fortellinger':'pausa'},
+    text:`Hei, og velkommen tilbake til «Fortellinger fra nord». Det er mars, og vi er på Finnmarksvidda. Her går Finnmarksløpet, det lengste hundeløpet i Europa: over tusen kilometer, fra Alta til Kirkenes og tilbake.
+Lena er her på jobb. Sjefen hennes, Henrik, vil ha bilder til et magasin. Even er med som sjåfør og assistent. Han bærer kameraveska og termosen.
+Klokka er ett om natta. De sitter i en gammel fjellstue ved et sjekkpunkt. I ovnen brenner det. Ute er det minus trettiåtte grader.
+Even: Minus trettiåtte. Og jeg som trodde Tromsø var kaldt.
+Lena: Folk her sier at Tromsø er Syden.
+Døra går opp. En mann med pannelykt roper inn:
+Mannen: Hun kommer! Nummer fjorten!
+Lena tar kameraet og løper ut. Langt borte på vidda ser hun et lite lys. Det kommer nærmere. Så hører hun hundene.
+Tolv hunder løper inn mot sjekkpunktet. Bak dem, på sleden, står en kvinne. Hun har is i øyenbrynene og is på skjerfet.
+Máret: Wo! Wo!
+Hundene stopper. Kvinnen heter Máret Somby. Hun er fra Kautokeino, og hun er kusinen til Ánne.
+Lena: Máret! Hvordan går det?
+Máret: Kaldt. Men hundene er glade. Se på dem.
+Hundene ruller seg i snøen. Noen spiser snø for å drikke.
+Máret: Først hundene. Så meg.
+I en time jobber Máret. Hun legger halm på snøen, så hundene kan ligge varmt. Hun lager varm mat til dem i en stor gryte: kjøtt, fisk og vann. Hun tar av de små sokkene på potene og ser på hver eneste pote.
+Lena tar bilde etter bilde. Men plutselig blir skjermen svart.
+Lena: Nei! Batteriet er tomt. Det var fullt for en time siden!
+Even: Det er kulden. Batterier hater kulde.
+Lena: Og jeg har bare ett ekstra batteri. Det er også iskaldt.
+Lena ringer den eneste hun kjenner som er våken klokka to om natta.
+Torbjørn: Lena? Er det noe galt?
+Lena: Unnskyld at jeg ringer så sent, Torbjørn. Kameraet mitt fryser. Batteriene dør.
+Torbjørn: Gamle menn sover ikke uansett. Hør her. Batteriene skal bo inni jakka di. Mot kroppen. Som en liten fugl. Bytt hver halvtime.
+Lena: Hvordan vet du det?
+Torbjørn: Da æ var i militæret på vidda, hadde æ en liten radio. Den virket bare når den lå i soveposen min. Æ sov med nyhetene i et helt år.
+Lena ler og legger batteriene inn under genseren. Det er iskaldt mot magen.
+Inne i fjellstua sitter Máret ved ovnen. Hun spiser suppe, men hun ser trist ut.
+Máret: Biegga halter. Lederhunden min. Venstre forpote.
+Even: Er det alvorlig?
+Máret: Nei. Men han kan ikke løpe sju hundre kilometer til. Hvis jeg tar ham med, blir det verre.
+Lena: Hva gjør du da?
+Máret: Han må bli her. Det er regelen min: hundene først. Alltid. Dere kjører tilbake til Alta i morgen, ikke sant? Kan dere ta ham med? Han er snill. Han liker bare ikke katter.
+Even: Selvfølgelig.
+Biegga er en stor grå hund med ett blått og ett brunt øye. Han legger seg ved ovnen, ved siden av Even, og sovner med en gang.
+Even: Han snorker.
+Lena: Som deg.
+Klokka fire skal Máret videre. Ute er det enda kaldere. Men himmelen har forandret seg. Over vidda danser nordlyset, grønt og lilla.
+Hundene bjeffer. De vil løpe. Bare én hund er stille: Biegga står i vinduet i fjellstua og ser ut.
+Máret: Nå får den nye lederhunden prøve seg. Hun heter Guovssahas. Det betyr nordlys på samisk. Hun er bare tre år. Dette er hennes første natt foran.
+Lena tar batteriet fra innsiden av jakka. Det er varmt. Kameraet virker.
+Máret: Kjør!
+Sleden forsvinner ut på vidda. Bare pannelykta er igjen, et lite lys under det store, grønne nordlyset. Klikk. Lena har bildet.
+Inne i fjellstua uler Biegga. Lenge. Og langt borte på vidda svarer hundene hans.
+Even: Hørte du? De svarer ham.
+Lena: De sier: Vi ses i mål.
+Tre dager senere står Lena og Even ved målet i Alta. Biegga sitter mellom dem. Han har en liten bandasje på foten, og han ser på hver eneste slede som kommer inn.
+Plutselig reiser han seg. Halen går som en propell. Han bjeffer så høyt at alle snur seg.
+Langt borte kommer en slede med elleve hunder. Foran løper en liten lederhund. Det er Máret og Guovssahas. Sjuende plass.
+Máret: Biegga! Har du passet godt på Lena og Even?
+Uka etter er bildet på forsiden av magasinet: en slede, et lite lys og et enormt nordlys. Tittelen er: «Hundene først».
+Torbjørn kjøper fem eksemplarer. Ett til hver i familien, og ett til Solveig.
+Det var «Fortellinger fra nord». Neste gang: syttende mai, en lånt bunad og et korps som ikke vil slutte å spille. Ha det bra – og hold batteriene varme!`,
+    tr:`Hallo und willkommen zurück bei „Geschichten aus dem Norden“. Es ist März, und wir sind auf der Finnmarksvidda. Hier läuft das Finnmarksløpet, das längste Hundeschlittenrennen Europas: über tausend Kilometer, von Alta nach Kirkenes und zurück.
+Lena ist beruflich hier. Ihr Chef Henrik möchte Bilder für eine Zeitschrift. Even ist als Fahrer und Assistent dabei. Er trägt die Kameratasche und die Thermoskanne.
+Es ist ein Uhr nachts. Sie sitzen in einer alten Berghütte an einem Kontrollpunkt. Im Ofen brennt Feuer. Draußen sind es minus achtunddreißig Grad.
+Even: Minus achtunddreißig. Und ich dachte, Tromsø wäre kalt.
+Lena: Die Leute hier sagen, Tromsø ist der Süden.
+Die Tür geht auf. Ein Mann mit Stirnlampe ruft herein:
+Der Mann: Sie kommt! Nummer vierzehn!
+Lena nimmt die Kamera und läuft hinaus. Weit draußen auf der Vidda sieht sie ein kleines Licht. Es kommt näher. Dann hört sie die Hunde.
+Zwölf Hunde laufen auf den Kontrollpunkt zu. Hinter ihnen, auf dem Schlitten, steht eine Frau. Sie hat Eis in den Augenbrauen und Eis am Schal.
+Máret: Wo! Wo!
+Die Hunde halten an. Die Frau heißt Máret Somby. Sie ist aus Kautokeino, und sie ist Ánnes Cousine.
+Lena: Máret! Wie geht’s?
+Máret: Kalt. Aber die Hunde sind froh. Schau sie dir an.
+Die Hunde wälzen sich im Schnee. Manche fressen Schnee, um zu trinken.
+Máret: Zuerst die Hunde. Dann ich.
+Eine Stunde lang arbeitet Máret. Sie legt Stroh auf den Schnee, damit die Hunde warm liegen können. Sie macht ihnen in einem großen Topf warmes Futter: Fleisch, Fisch und Wasser. Sie zieht die kleinen Socken von den Pfoten und schaut sich jede einzelne Pfote an.
+Lena macht ein Foto nach dem anderen. Aber plötzlich wird der Bildschirm schwarz.
+Lena: Nein! Der Akku ist leer. Vor einer Stunde war er noch voll!
+Even: Das ist die Kälte. Akkus hassen Kälte.
+Lena: Und ich habe nur einen Ersatzakku. Der ist auch eiskalt.
+Lena ruft den einzigen Menschen an, den sie kennt, der um zwei Uhr nachts wach ist.
+Torbjørn: Lena? Ist etwas passiert?
+Lena: Entschuldige, dass ich so spät anrufe, Torbjørn. Meine Kamera friert. Die Akkus sterben.
+Torbjørn: Alte Männer schlafen sowieso nicht. Hör zu. Die Akkus müssen in deiner Jacke wohnen. Am Körper. Wie ein kleiner Vogel. Wechsle jede halbe Stunde.
+Lena: Woher weißt du das?
+Torbjørn: Als ich beim Militär auf der Vidda war, hatte ich ein kleines Radio. Es funktionierte nur, wenn es in meinem Schlafsack lag. Ich habe ein ganzes Jahr mit den Nachrichten geschlafen.
+Lena lacht und steckt die Akkus unter ihren Pullover. Es ist eiskalt am Bauch.
+Drinnen in der Berghütte sitzt Máret am Ofen. Sie isst Suppe, aber sie sieht traurig aus.
+Máret: Biegga hinkt. Mein Leithund. Linke Vorderpfote.
+Even: Ist es schlimm?
+Máret: Nein. Aber er kann nicht noch siebenhundert Kilometer laufen. Wenn ich ihn mitnehme, wird es schlimmer.
+Lena: Was machst du dann?
+Máret: Er muss hierbleiben. Das ist meine Regel: die Hunde zuerst. Immer. Ihr fahrt morgen zurück nach Alta, oder? Könnt ihr ihn mitnehmen? Er ist lieb. Er mag nur keine Katzen.
+Even: Natürlich.
+Biegga ist ein großer grauer Hund mit einem blauen und einem braunen Auge. Er legt sich an den Ofen, neben Even, und schläft sofort ein.
+Even: Er schnarcht.
+Lena: Wie du.
+Um vier Uhr muss Máret weiter. Draußen ist es noch kälter. Aber der Himmel hat sich verändert. Über der Vidda tanzt das Nordlicht, grün und lila.
+Die Hunde bellen. Sie wollen laufen. Nur ein Hund ist still: Biegga steht im Fenster der Berghütte und schaut hinaus.
+Máret: Jetzt darf sich die neue Leithündin versuchen. Sie heißt Guovssahas. Das heißt Nordlicht auf Samisch. Sie ist erst drei Jahre alt. Das ist ihre erste Nacht vorne.
+Lena holt den Akku aus ihrer Jacke. Er ist warm. Die Kamera funktioniert.
+Máret: Los!
+Der Schlitten verschwindet auf der Vidda. Nur die Stirnlampe bleibt, ein kleines Licht unter dem großen, grünen Nordlicht. Klick. Lena hat das Bild.
+Drinnen in der Berghütte heult Biegga. Lange. Und weit draußen auf der Vidda antworten seine Hunde.
+Even: Hast du das gehört? Sie antworten ihm.
+Lena: Sie sagen: Wir sehen uns im Ziel.
+Drei Tage später stehen Lena und Even am Ziel in Alta. Biegga sitzt zwischen ihnen. Er hat einen kleinen Verband am Fuß, und er schaut jeden einzelnen Schlitten an, der hereinkommt.
+Plötzlich steht er auf. Der Schwanz dreht sich wie ein Propeller. Er bellt so laut, dass sich alle umdrehen.
+Weit hinten kommt ein Schlitten mit elf Hunden. Vorne läuft eine kleine Leithündin. Das sind Máret und Guovssahas. Siebter Platz.
+Máret: Biegga! Hast du gut auf Lena und Even aufgepasst?
+Eine Woche später ist das Bild auf der Titelseite der Zeitschrift: ein Schlitten, ein kleines Licht und ein riesiges Nordlicht. Der Titel lautet: „Die Hunde zuerst“.
+Torbjørn kauft fünf Exemplare. Eins für jeden in der Familie und eins für Solveig.
+Das war „Geschichten aus dem Norden“. Nächstes Mal: der siebzehnte Mai, eine geliehene Tracht und eine Blaskapelle, die nicht aufhören will zu spielen. Macht’s gut – und haltet die Akkus warm!`,
+    fact:'Das Finnmarksløpet in der nördlichsten Provinz Norwegens gilt als längstes Hundeschlittenrennen Europas: Die lange Strecke führt rund 1200 Kilometer von Alta bis Kirkenes an der russischen Grenze und zurück, über die baumlose Hochebene Finnmarksvidda. Nachts kann es dort kälter als minus 40 Grad werden. An den Kontrollpunkten müssen die Musher Pausen machen – und zuerst die Hunde versorgen: Futter, Stroh, Pfotenkontrolle, kleine Socken gegen Eis zwischen den Zehen. Ein Hund, der nicht mehr laufen soll, wird am Kontrollpunkt abgegeben und zurück zum Start gebracht. Akkus verlieren in der Kälte schnell ihre Kraft – Fotografen tragen Ersatzakkus deshalb am Körper.' }
 );
 /* Hörgeschichten Proverbi (Podcast „Voci dei proverbi“). Figuren aus dem Thema: Lara (15), Bruder Nico (8), Mama Silvia, Papa Tom (deutscher Bäcker), nonna Ada (Sprichwörter), nonno Gino (Olivenbauer in Greve, kennt zu jedem Sprichwort das Gegenteil), Papagei Socrate. */
 PODCAST_INFO.proverbi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Sonntagsessen bei Opa Gino in Greve in Chianti – Oma Ada und Opa Gino tragen ein Sprichwort-Duell aus, und Papagei Socrate redet immer dazwischen. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
