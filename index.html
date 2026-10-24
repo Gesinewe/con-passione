@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 235;
+const APP_VERSION = 236;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -64365,6 +64365,165 @@ Torbjørn: Guten Morgen. Gut überstanden. Kaffee?
 Das war „Geschichten aus dem Norden“. Nächstes Mal: ein alter Mann, ein geheimer Platz und ein Eimer voller Moltebeeren. Macht’s gut – und denkt an den Ingwer!`,
     fact:'Das Stadhavet vor der Halbinsel Stad gilt als das gefährlichste Seegebiet an der norwegischen Küste: Hier treffen Nordsee und Europäisches Nordmeer aufeinander, und es gibt kaum Schutz durch Inseln. Die Hurtigruten fährt diese Strecke seit 1893 jeden Tag. Norwegen baut gerade den Stad skipstunnel – den ersten Schiffstunnel der Welt für große Schiffe, 1,7 km lang durch den Berg, damit Schiffe das Stadhavet umfahren können.' }
 ];
+/* Zweite Hörgeschichte für „God tur!“ (Folge 2, v236, Wunsch der Nutzerin: „mach eine zweite hörgeschichte für norwegisch“).
+   Wird nach leggende_norge.js geladen und hängt die Folge an PODCASTS.norge an. Löst die Ankündigung am Ende von Folge 1 ein
+   („en gammel mann, en hemmelig plass og en bøtte full av molter“). Passt zu Stufe 4 (Tromsø, Lektion „Molter og blåbær“, Kvaløya, Myr).
+   Stimmen: Erzählerin Pernille, Lena de-DE-SeraphinaMultilingual, Torbjørn Finn (tief, langsam), Mathias Finn (heller, schneller),
+   Solveig Pernille (tiefer, langsamer – es gibt nur zwei norwegische Stimmen). Niveau ab B1. */
+PODCAST_INFO.norge.lead = 'Wie ein kleiner Podcast: Geschichten von Lena und Torbjørn – auf der Hurtigruten im Sturm und im Moor auf Kvaløya, mit Wind, Wellen, Vögeln, Nebel und einem alten Auto, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.norge.push(
+  { id:'norge-p2', lang:'no', erzaehler:'Pernille', show:'Fortellinger fra nord', ep:2, title:'Myrens gull', de:'Das Gold des Moores',
+    place:'Im Moor auf Kvaløya bei Tromsø, ein Sonntag Ende August', level:'ab B1', kind:'Natur · Liebe · Humor',
+    voices:{Lena:'de-DE-SeraphinaMultilingualNeural', 'Torbjørn':'Finn', Mathias:'Finn', Solveig:'Pernille'},
+    stil:{'':['-8%','-2Hz'], Lena:['-4%','+0Hz'], 'Torbjørn':['-12%','-8Hz'], Mathias:['+2%','+6Hz'], Solveig:['-12%','-14Hz']},
+    words:[['ei myr / myra','ein Moor / das Moor'],['molter / multer','Moltebeeren'],['en molteplass','ein Moltebeerenplatz'],['ei bøtte / bøtta','ein Eimer / der Eimer'],['å plukke','pflücken'],['moden / modne','reif'],['å røpe','verraten'],['fjellstøvler','Bergstiefel'],['å synke','sinken, einsinken'],['ei tue / tuene','ein Grasbüschel / die Grasbüschel'],['en mygg / myggen','eine Mücke / die Mücken'],['en bekk','ein Bach'],['oldefar','Urgroßvater'],['en hemmelighet','ein Geheimnis'],['et brev / brev','ein Brief / Briefe'],['ei tåke / tåka','ein Nebel / der Nebel'],['å gå i ring','im Kreis gehen'],['å slette','löschen']],
+    fx:{'Hei, og velkommen tilbake':'pausa', 'Klokka er seks':'porta', 'Den gamle Volvoen':'motore500_an', 'Lena ler. Mathias lukker':'pausa', 'Til slutt stopper':'motore500_aus porta_camper', 'Ute er det stille':'uccelli_an vento_an', 'Etter en time kommer':'ruscello_an', 'Torbjørn: Her. Velkommen':'ruscello_aus pausa', 'Men plutselig hører':'pausa', 'Det blir helt stille':'pausa', 'De plukker sammen':'pausa', 'Men så blir det kaldt':'vento_aus atmo_an', 'Mathias går først':'pausa', 'Ved bilen letter tåka':'atmo_aus gabbiani', 'Torbjørn: Kaffe, Solveig':'pausa', 'I bilen hjem':'uccelli_aus motore500_an', 'Det var «Fortellinger':'motore500_aus pausa'},
+    text:`Hei, og velkommen tilbake til «Fortellinger fra nord». Det er slutten av august i Tromsø. Bjørkene er allerede gule, og på fjellene ligger den første nysnøen.
+Klokka er seks om morgenen. Det banker på døra til Lena.
+Torbjørn: Lena! Opp! Ta på deg fjellstøvlene. Vi skal på tur.
+Lena: Nå? Klokka er seks!
+Torbjørn: Multene venter ikke.
+I gangen står Mathias. Han har allerede jakke og lue på.
+Mathias: Jeg blir med. Oldefar har aldri vist meg molteplassen sin. Ikke mamma heller. I tjueto år har jeg ventet.
+Torbjørn: Greit. Men det er tre regler. Ingen bilder. Ingen GPS. Og du forteller det aldri til noen.
+Mathias: Oldefar, det er 2026.
+Torbjørn: Multene var her før telefonene. Og de skal være her etter.
+Den gamle Volvoen til Torbjørn er fra 1987. Den bråker, men den går. De kjører over brua til Kvaløya og videre langs fjorden.
+Etter en halv time sier Torbjørn:
+Torbjørn: Mathias. Lukk øynene.
+Mathias: Hva? Seriøst?
+Torbjørn: Lukk øynene. Lena, du passer på ham.
+Lena ler. Mathias lukker øynene. Bilen svinger til venstre, så til høyre, så til venstre igjen.
+Til slutt stopper den ved en liten grusvei.
+Ute er det stille. Bare vinden og noen fugler. De går ut på myra. Den er våt og myk, og hvert skritt sier: plask.
+Mathias: Hjelp! Jeg synker!
+Torbjørn: Gå på tuene. Der det er gress. Ikke der det er grønt og fint. Det grønne er vann.
+Lena: Og myggen?
+Torbjørn: Myggen er gratis.
+Etter en time kommer de til en liten bekk. De hopper over steinene. Bak en lav bakke stopper Torbjørn.
+Torbjørn: Her. Velkommen til myrens gull.
+Overalt i myra lyser det oransje. Små, runde bær. Bare ett bær på hver plante.
+Torbjørn: De røde er ikke modne. Ta bare de gule. De som er myke.
+Mathias plukker et bær og smaker.
+Mathias: Det smaker … som sol og honning.
+Torbjørn: Nå forstår du hvorfor ingen røper plassen sin.
+Men plutselig hører de en stemme bak bakken.
+Solveig: Hvem er det som tråkker på multene mine?
+En gammel dame kommer fram. Hun har en rød bøtte, og den er allerede halvfull.
+Torbjørn: Multene dine? Dette er min plass! Æ har plukket her i seksti år!
+Solveig: Seksti år? Jeg har plukket her siden 1961.
+Torbjørn: Det er umulig. Ingen vet om denne plassen.
+Solveig: Én person vet om den. Den som viste meg den.
+Det blir helt stille. Torbjørn ser lenge på henne.
+Torbjørn: Solveig? Solveig fra dansen i Kårvik?
+Solveig: Så du husker det likevel.
+Mathias hvisker til Lena:
+Mathias: Oldefar har en hemmelighet til.
+Solveig: Sommeren 1961 tok du meg med hit. Du sa: Ikke fortell det til noen. Så dro du til sjøs. Og du skrev aldri.
+Torbjørn: Æ skrev. Tre brev. Fra Lofoten. Du svarte aldri.
+Solveig: Jeg fikk aldri noe brev.
+Torbjørn: Æ skrev til Solveig Hansen, Kårvik.
+Solveig: Å, Torbjørn. Det bodde to Solveig Hansen i Kårvik. Den andre var åtti år gammel.
+Lena må le. Så ler Solveig også. Og til slutt ler Torbjørn så høyt at fuglene flyr opp fra myra.
+Torbjørn: Stakkars gamle dame. Tre kjærlighetsbrev fra en ung fisker.
+Solveig: Hun leste dem nok med stor glede.
+De plukker sammen. Solveig og Torbjørn snakker om gamle dager: om dansen, om båtene, om Marie og om Solveigs mann, som døde for to år siden. Bøttene blir fulle.
+Men så blir det kaldt. Vinden snur. Fra havet kommer tåka. Først som en grå vegg. Så er den overalt. Etter fem minutter ser de ikke bakken lenger.
+Torbjørn: Ingen fare. Æ finner veien. Følg meg.
+Lena: Torbjørn … den steinen der. Den har vi sett før. To ganger.
+Torbjørn: Alle steiner ser like ut i tåka.
+Solveig: Nei, Torbjørn. Vi går i ring.
+Mathias kremter. Han tar noe ut av lomma.
+Mathias: Oldefar … jeg har kanskje … en liten GPS. På telefonen.
+Torbjørn: Regel nummer to, Mathias!
+Solveig: Torbjørn. Du er åttien, og jeg er åtti. Jeg vil ikke sove i myra. Gi gutten lov.
+Torbjørn: Greit. Bare denne ene gangen.
+Mathias går først med telefonen. Etter en halvtime ser de bilen.
+Ved bilen letter tåka. Sola kommer fram over fjorden, og måkene skriker. Torbjørn tar fram termosen.
+Torbjørn: Kaffe, Solveig?
+Solveig: Ja takk. Den har jeg ventet på i sekstifem år.
+De sitter på en stein med hver sin kopp. Bøttene står ved siden av dem, fulle av gull.
+Solveig: Neste år? Samme plass?
+Torbjørn: Samme plass. Men du må love meg én ting. Ikke fortell det til noen.
+Mathias: Og ikke legg det ut på Instagram.
+Torbjørn: Og du, Mathias. Slett punktet på telefonen.
+Mathias: Allerede slettet, oldefar.
+I bilen hjem ser Lena på telefonen til Mathias. Punktet er ikke slettet. Det har fått et nytt navn: «Oldefars hemmelighet – og Solveigs». Lena sier ingenting. Hun har jo lovet det.
+Det var «Fortellinger fra nord». Neste gang: tolv hunder, en slede og en veldig kald natt. Ha det bra – og ta med fjellstøvler!`,
+    tr:`Hallo und willkommen zurück bei „Geschichten aus dem Norden“. Es ist Ende August in Tromsø. Die Birken sind schon gelb, und auf den Bergen liegt der erste Neuschnee.
+Es ist sechs Uhr morgens. Es klopft an Lenas Tür.
+Torbjørn: Lena! Aufstehen! Zieh deine Bergstiefel an. Wir machen einen Ausflug.
+Lena: Jetzt? Es ist sechs Uhr!
+Torbjørn: Die Moltebeeren warten nicht.
+Im Flur steht Mathias. Er hat schon Jacke und Mütze an.
+Mathias: Ich komme mit. Uropa hat mir seinen Moltebeerenplatz nie gezeigt. Mama auch nicht. Zweiundzwanzig Jahre habe ich gewartet.
+Torbjørn: Gut. Aber es gibt drei Regeln. Keine Fotos. Kein GPS. Und du erzählst es nie jemandem.
+Mathias: Uropa, wir haben 2026.
+Torbjørn: Die Moltebeeren waren vor den Handys da. Und sie werden auch danach da sein.
+Torbjørns alter Volvo ist von 1987. Er ist laut, aber er fährt. Sie fahren über die Brücke nach Kvaløya und weiter am Fjord entlang.
+Nach einer halben Stunde sagt Torbjørn:
+Torbjørn: Mathias. Mach die Augen zu.
+Mathias: Was? Im Ernst?
+Torbjørn: Augen zu. Lena, du passt auf ihn auf.
+Lena lacht. Mathias macht die Augen zu. Das Auto biegt nach links ab, dann nach rechts, dann wieder nach links.
+Schließlich hält es an einem kleinen Schotterweg.
+Draußen ist es still. Nur der Wind und ein paar Vögel. Sie gehen hinaus aufs Moor. Es ist nass und weich, und jeder Schritt sagt: platsch.
+Mathias: Hilfe! Ich sinke ein!
+Torbjørn: Geh auf die Grasbüschel. Wo Gras ist. Nicht dahin, wo es grün und schön ist. Das Grüne ist Wasser.
+Lena: Und die Mücken?
+Torbjørn: Die Mücken gibt’s gratis.
+Nach einer Stunde kommen sie an einen kleinen Bach. Sie springen über die Steine. Hinter einem niedrigen Hügel bleibt Torbjørn stehen.
+Torbjørn: Hier. Willkommen beim Gold des Moores.
+Überall im Moor leuchtet es orange. Kleine, runde Beeren. Nur eine Beere an jeder Pflanze.
+Torbjørn: Die roten sind nicht reif. Nehmt nur die gelben. Die weichen.
+Mathias pflückt eine Beere und probiert.
+Mathias: Das schmeckt … wie Sonne und Honig.
+Torbjørn: Jetzt verstehst du, warum niemand seinen Platz verrät.
+Aber plötzlich hören sie eine Stimme hinter dem Hügel.
+Solveig: Wer trampelt da auf meinen Moltebeeren herum?
+Eine alte Dame kommt hervor. Sie hat einen roten Eimer, und der ist schon halb voll.
+Torbjørn: Deine Moltebeeren? Das ist mein Platz! Ich pflücke hier seit sechzig Jahren!
+Solveig: Sechzig Jahre? Ich pflücke hier seit 1961.
+Torbjørn: Das ist unmöglich. Niemand weiß von diesem Platz.
+Solveig: Eine Person weiß davon. Der, der ihn mir gezeigt hat.
+Es wird ganz still. Torbjørn sieht sie lange an.
+Torbjørn: Solveig? Solveig vom Tanz in Kårvik?
+Solveig: Du erinnerst dich also doch.
+Mathias flüstert Lena zu:
+Mathias: Uropa hat noch ein Geheimnis.
+Solveig: Im Sommer 1961 hast du mich hierher mitgenommen. Du hast gesagt: Erzähl es niemandem. Dann bist du zur See gefahren. Und du hast nie geschrieben.
+Torbjørn: Ich habe geschrieben. Drei Briefe. Von den Lofoten. Du hast nie geantwortet.
+Solveig: Ich habe nie einen Brief bekommen.
+Torbjørn: Ich habe an Solveig Hansen, Kårvik, geschrieben.
+Solveig: Ach, Torbjørn. In Kårvik wohnten zwei Solveig Hansen. Die andere war achtzig Jahre alt.
+Lena muss lachen. Dann lacht auch Solveig. Und schließlich lacht Torbjørn so laut, dass die Vögel vom Moor auffliegen.
+Torbjørn: Die arme alte Dame. Drei Liebesbriefe von einem jungen Fischer.
+Solveig: Sie hat sie bestimmt mit großer Freude gelesen.
+Sie pflücken zusammen. Solveig und Torbjørn erzählen von früher: vom Tanz, von den Booten, von Marie und von Solveigs Mann, der vor zwei Jahren gestorben ist. Die Eimer werden voll.
+Aber dann wird es kalt. Der Wind dreht. Vom Meer kommt der Nebel. Zuerst wie eine graue Wand. Dann ist er überall. Nach fünf Minuten sehen sie den Hügel nicht mehr.
+Torbjørn: Keine Gefahr. Ich finde den Weg. Folgt mir.
+Lena: Torbjørn … der Stein da. Den haben wir schon gesehen. Zweimal.
+Torbjørn: Im Nebel sehen alle Steine gleich aus.
+Solveig: Nein, Torbjørn. Wir gehen im Kreis.
+Mathias räuspert sich. Er holt etwas aus der Tasche.
+Mathias: Uropa … ich habe vielleicht … ein kleines GPS. Auf dem Handy.
+Torbjørn: Regel Nummer zwei, Mathias!
+Solveig: Torbjørn. Du bist einundachtzig, und ich bin achtzig. Ich will nicht im Moor schlafen. Erlaub es dem Jungen.
+Torbjørn: Na gut. Nur dieses eine Mal.
+Mathias geht mit dem Handy voraus. Nach einer halben Stunde sehen sie das Auto.
+Am Auto lichtet sich der Nebel. Die Sonne kommt über dem Fjord hervor, und die Möwen schreien. Torbjørn holt die Thermoskanne heraus.
+Torbjørn: Kaffee, Solveig?
+Solveig: Ja, danke. Auf den warte ich seit fünfundsechzig Jahren.
+Sie sitzen auf einem Stein, jeder mit seiner Tasse. Die Eimer stehen neben ihnen, voller Gold.
+Solveig: Nächstes Jahr? Gleicher Platz?
+Torbjørn: Gleicher Platz. Aber du musst mir eins versprechen. Erzähl es niemandem.
+Mathias: Und stell es nicht auf Instagram.
+Torbjørn: Und du, Mathias. Lösch den Punkt auf dem Handy.
+Mathias: Schon gelöscht, Uropa.
+Im Auto auf dem Heimweg schaut Lena auf Mathias’ Handy. Der Punkt ist nicht gelöscht. Er hat einen neuen Namen bekommen: „Uropas Geheimnis – und Solveigs“. Lena sagt nichts. Sie hat es ja versprochen.
+Das war „Geschichten aus dem Norden“. Nächstes Mal: zwölf Hunde, ein Schlitten und eine sehr kalte Nacht. Macht’s gut – und denkt an die Bergstiefel!`,
+    fact:'Moltebeeren (norwegisch „molter“ oder „multer“) wachsen in Mooren und tragen nur eine einzige Beere pro Pflanze – deshalb heißen sie „myrens gull“, das Gold des Moores. Sie reifen Ende Juli bis August: erst rot und hart, reif dann goldgelb und weich. Eigentlich darf in Norwegen jeder nach dem Jedermannsrecht Beeren pflücken – aber im Norden, in Nordland, Troms und Finnmark, dürfen Grundbesitzer das Moltebeerenpflücken auf ihrem Land verbieten. Wer einen guten Platz kennt, verrät ihn deshalb nicht. Zu Weihnachten gibt es traditionell „multekrem“: Moltebeeren mit geschlagener Sahne.' }
+);
 /* Hörgeschichten Proverbi (Podcast „Voci dei proverbi“). Figuren aus dem Thema: Lara (15), Bruder Nico (8), Mama Silvia, Papa Tom (deutscher Bäcker), nonna Ada (Sprichwörter), nonno Gino (Olivenbauer in Greve, kennt zu jedem Sprichwort das Gegenteil), Papagei Socrate. */
 PODCAST_INFO.proverbi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Sonntagsessen bei Opa Gino in Greve in Chianti – Oma Ada und Opa Gino tragen ein Sprichwort-Duell aus, und Papagei Socrate redet immer dazwischen. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.proverbi = [
