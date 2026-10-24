@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 239;
+const APP_VERSION = 240;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -64773,6 +64773,147 @@ Lena: Hören die nie auf?
 Torbjørn: Nicht vor morgen. Herzlichen Glückwunsch zum Feiertag, Lena.
 Das war „Geschichten aus dem Norden“. Nächstes Mal: Mitternachtssonne, ein kleines Fischerboot und ein sehr großer Fisch. Macht’s gut – und herzlichen Glückwunsch zum Feiertag!`,
     fact:'Am 17. Mai feiert Norwegen seine Verfassung von 1814. Anders als in vielen Ländern gibt es keine Militärparade: Im Mittelpunkt steht das „barnetog“, der Kinderumzug, bei dem jede Schule mit Fahnen und eigener Schulkapelle durch die Stadt zieht. Viele Kapellen („korps“) spielen schon ab dem frühen Morgen. Viele Menschen tragen ihre „bunad“, eine Tracht, die je nach Region anders aussieht und oft von Hand genäht wird – eine Bunad kostet schnell mehrere tausend Euro und wird oft vererbt, genau wie der Silberschmuck („sølje“). Typisch sind ein großes Frühstück mit Rührei und Räucherlachs, Eis und Würstchen ohne Ende und der Ruf „Hipp hipp hurra!“.' }
+);
+/* Fünfte Hörgeschichte für „God tur!“ (Folge 5, v240, Wunsch der Nutzerin: „mach folge 5 der norwegischen hörgeschichte“).
+   Wird nach leggende_norge4.js geladen. Löst die Ankündigung am Ende von Folge 4 ein („midnattssol, en liten fiskebåt og en veldig stor fisk“).
+   Juni in Tromsø (Stufe 5b, Mitternachtssonne). Torbjørn wird 82 (in Folge 2 im August davor: 81). Sein altes Boot „Marie“ liegt seit
+   Maries Tod (vor zehn Jahren, Stufe 4) im Bootshaus – Mathias und Even haben es heimlich repariert. Rückgriff auf Folge 2: diesmal muss
+   Torbjørn die Augen schließen. Lena fängt einen großen Heilbutt, sie lassen ihn frei. Am Ende angekündigt: Buchpremiere mit Rede (Stufe 5c).
+   Stimmen: Erzählerin Pernille, Lena Seraphina, Torbjørn/Mathias/Even Finn (verschieden hoch), Solveig Pernille (tief). Niveau ab B1. */
+PODCASTS.norge.push(
+  { id:'norge-p5', lang:'no', erzaehler:'Pernille', show:'Fortellinger fra nord', ep:5, title:'Kveita under midnattssola', de:'Der Heilbutt unter der Mitternachtssonne',
+    place:'Ein kleines Fischerboot vor Tromsø, eine Nacht im Juni', level:'ab B1', kind:'Meer · Familie · Spannend',
+    voices:{Lena:'de-DE-SeraphinaMultilingualNeural', 'Torbjørn':'Finn', Mathias:'Finn', Even:'Finn', Solveig:'Pernille'},
+    stil:{'':['-8%','-2Hz'], Lena:['-4%','+0Hz'], 'Torbjørn':['-12%','-8Hz'], Mathias:['+2%','+8Hz'], Even:['-2%','+3Hz'], Solveig:['-12%','-14Hz']},
+    words:[['et naust / naustet','ein Bootshaus / das Bootshaus'],['en sjark / sjarken','ein kleines Fischerboot'],['å male / malt','streichen, malen / gestrichen'],['motoren','der Motor'],['å fylle år','Geburtstag haben'],['midnattssola','die Mitternachtssonne'],['et snøre / snøret','eine Angelschnur / die Schnur'],['ei fiskestang / stanga','eine Angel / die Angel'],['en krok','ein Haken'],['en torsk','ein Dorsch'],['ei kveite / kveita','ein Heilbutt / der Heilbutt'],['å dra opp','hochziehen'],['å slippe ut','freilassen'],['bunnen','der Grund, der Boden'],['hjulet','die Rolle (an der Angel)'],['å holde igjen','dagegenhalten'],['kilo','Kilo'],['å gråte','weinen'],['ei vaffel / vafler','eine Waffel / Waffeln']],
+    fx:{'Hei, og velkommen tilbake':'pausa gabbiani', 'Klokka er ti om kvelden':'acqua_an', 'Mathias åpner døra':'porta', 'Det blir helt stille':'pausa', 'Even trykker på':'motore_barca_an', 'Sjarken tøffer':'gabbiani', 'Klokka er tolv':'pausa', 'Torbjørn slår av motoren':'motore_barca_aus pausa', 'Snøret går ned':'manovella', 'Etter ti minutter':'pausa', 'Plutselig bøyer':'manovella', 'Det går et kvarter':'pausa manovella', 'Lena sveiver':'manovella', 'Så ser de den':'tuffo', 'Torbjørn ser lenge':'pausa', 'Kveita ligger stille':'tuffo pausa', 'Klokka er tre':'motore_barca_an', 'Det var «Fortellinger':'motore_barca_aus acqua_aus pausa'},
+    text:`Hei, og velkommen tilbake til «Fortellinger fra nord». Det er juni i Tromsø. Sola har ikke gått ned på tre uker. Og i dag fyller Torbjørn åttito år.
+Klokka er ti om kvelden. Torbjørn står ved sjøen, nede ved et gammelt naust. Mathias holder ham i armen.
+Mathias: Lukk øynene, oldefar.
+Torbjørn: Hva? Hvorfor det?
+Mathias: Lukk øynene. Lena, du passer på ham.
+Lena: Nå er det din tur, Torbjørn.
+Torbjørn: Æ husker ikke at æ har lært deg dette, Mathias.
+Mathias: Du lærte meg det på Kvaløya. I fjor.
+Mathias åpner døra til naustet. Inne står en liten båt. En sjark, rød og hvit, med et nytt navn malt i hvitt på siden: Marie.
+Mathias: Nå kan du se.
+Det blir helt stille. Torbjørn ser på båten. Han legger hånda på den. Han sier ingenting på lenge.
+Torbjørn: Hun har ligget her i ti år. Siden Marie døde. Æ trodde motoren var ødelagt.
+Even: Den var ødelagt. Mathias og jeg har jobbet med den hver lørdag siden januar.
+Mathias: Even kan motorer. Jeg kan Youtube.
+Solveig står i døra med en stor kurv.
+Solveig: Og jeg har vafler. En fiskerdatter drar ikke på sjøen uten vafler.
+Torbjørn tørker øynene med erma.
+Torbjørn: Det er bare støv. Det er mye støv i naustet.
+Even trykker på startknappen. Motoren hoster, hoster igjen, og så går den.
+Sjarken tøffer ut fra land. Måkene følger etter. Byen blir mindre og mindre bak dem. Torbjørn står ved roret. Han ser tjue år yngre ut.
+Torbjørn: Den går som før. Hun går som før.
+Klokka er tolv midt på natta. Sola står lavt i nord, over havet. Den går ikke ned. Den bare ruller langs horisonten, gul og oransje. Havet er blankt som et speil.
+Lena: Det er midnatt. Og jeg trenger solbriller.
+Torbjørn slår av motoren. Nå er det bare vann som slår mot båten.
+Torbjørn: Her. Her fisket æ i førti år. Marie sa alltid: Torbjørn, du finner fisk med nesa.
+Han gir hver av dem en fiskestang med en stor krok.
+Torbjørn: Regelen på denne båten er enkel. Den som får den første fisken, koker kaffe.
+Snøret går ned. Lenge. Til bunnen. Lena sveiver litt opp igjen, som Torbjørn viser henne.
+Etter ti minutter roper Mathias.
+Mathias: Fisk! Jeg har fisk!
+Han drar opp en fin torsk. Så en til. Even får også en torsk. Solveig får tre på rad.
+Solveig: Fiskerdatter, sa jeg.
+Mathias koker kaffe. Bare Lena har ikke fått noe.
+Lena: Kanskje fiskene ikke forstår norsken min.
+Torbjørn: Vent. De store fiskene er tålmodige. Da må vi være det også.
+Plutselig bøyer stanga til Lena seg nesten i to. Snøret synger. Hjulet snurrer.
+Lena: Hjelp! Den drar meg ut av båten!
+Torbjørn: Hold igjen! Ikke slipp! Og ikke sveiv når den drar. La den bli trøtt.
+Det går et kvarter. Lena sveiver litt. Fisken drar snøret ut igjen. Lena sveiver igjen. Armene hennes brenner.
+Even: Skal jeg ta over?
+Lena: Ikke tenk på det!
+Lena sveiver og sveiver. Mathias filmer. Solveig holder Lena fast i jakka.
+Så ser de den. Under vannet kommer det noe stort og flatt og brunt. Det er større enn en dør.
+Mathias: Det er en kveite! En kjempekveite!
+Torbjørn: Herregud. Hun er minst hundre kilo. Kanskje mer.
+Kveita ligger ved båten. Det ene øyet ser rett opp på dem. Hun er gammel. Mye eldre enn Mathias.
+Torbjørn ser lenge på henne.
+Torbjørn: Lena. Det er din fisk. Du bestemmer.
+Lena ser på kveita. Så ser hun på Torbjørn.
+Lena: Hvor gammel er hun?
+Torbjørn: Kanskje tretti år. Kanskje førti. Store kveiter er nesten alltid hunner. Hun har hatt barn i dette havet hvert år.
+Lena: Da får hun leve. Hun har vært her lenger enn meg.
+Torbjørn smiler. Han tar fram en lang tang og tar kroken forsiktig ut av munnen.
+Kveita ligger stille et øyeblikk ved båten. Så slår hun med halen, og hun er borte i det grønne vannet.
+Torbjørn: Nå har du en historie, Lena. Det er bedre enn fisk. Fisk spiser du én gang. En historie forteller du hele livet.
+Mathias: Og jeg har den på film. Hundre tusen visninger innen i morgen.
+Torbjørn: Ikke si hvor vi var.
+Klokka er tre om natta da de kommer tilbake til naustet. Sola står høyere nå. Det er morgen, men det har aldri vært natt.
+Solveig steker torsk på et lite gassapparat på brygga. Torbjørn sitter ved siden av henne med en kopp kaffe.
+Torbjørn: Det er den beste bursdagen på ti år.
+Solveig: Bare ti?
+Torbjørn: Den beste bursdagen på sekstifem år.
+Det var «Fortellinger fra nord». Neste gang: en bok, en premiere og en tale som ingen glemmer. Ha det bra – og ta med solbriller, også midt på natta!`,
+    tr:`Hallo und willkommen zurück bei „Geschichten aus dem Norden“. Es ist Juni in Tromsø. Die Sonne ist seit drei Wochen nicht untergegangen. Und heute wird Torbjørn zweiundachtzig.
+Es ist zehn Uhr abends. Torbjørn steht am Meer, unten bei einem alten Bootshaus. Mathias hält ihn am Arm.
+Mathias: Mach die Augen zu, Uropa.
+Torbjørn: Was? Wieso das denn?
+Mathias: Augen zu. Lena, du passt auf ihn auf.
+Lena: Jetzt bist du dran, Torbjørn.
+Torbjørn: Ich kann mich nicht erinnern, dass ich dir das beigebracht habe, Mathias.
+Mathias: Du hast es mir auf Kvaløya beigebracht. Letztes Jahr.
+Mathias öffnet die Tür des Bootshauses. Drinnen steht ein kleines Boot. Ein Fischerboot, rot und weiß, mit einem neuen Namen in Weiß an der Seite: Marie.
+Mathias: Jetzt darfst du schauen.
+Es wird ganz still. Torbjørn sieht das Boot an. Er legt die Hand darauf. Lange sagt er nichts.
+Torbjørn: Sie hat zehn Jahre hier gelegen. Seit Marie gestorben ist. Ich dachte, der Motor ist kaputt.
+Even: Er war kaputt. Mathias und ich haben seit Januar jeden Samstag daran gearbeitet.
+Mathias: Even kann Motoren. Ich kann Youtube.
+Solveig steht mit einem großen Korb in der Tür.
+Solveig: Und ich habe Waffeln. Eine Fischerstochter fährt nicht ohne Waffeln aufs Meer.
+Torbjørn wischt sich mit dem Ärmel die Augen.
+Torbjørn: Das ist nur Staub. Im Bootshaus ist viel Staub.
+Even drückt auf den Startknopf. Der Motor hustet, hustet noch einmal, und dann läuft er.
+Das Boot tuckert vom Ufer weg. Die Möwen fliegen hinterher. Die Stadt wird hinter ihnen immer kleiner. Torbjørn steht am Steuer. Er sieht zwanzig Jahre jünger aus.
+Torbjørn: Er läuft wie früher. Sie läuft wie früher.
+Es ist zwölf Uhr mitten in der Nacht. Die Sonne steht tief im Norden über dem Meer. Sie geht nicht unter. Sie rollt einfach den Horizont entlang, gelb und orange. Das Meer ist glatt wie ein Spiegel.
+Lena: Es ist Mitternacht. Und ich brauche eine Sonnenbrille.
+Torbjørn macht den Motor aus. Jetzt ist nur noch das Wasser zu hören, das gegen das Boot schlägt.
+Torbjørn: Hier. Hier habe ich vierzig Jahre lang gefischt. Marie hat immer gesagt: Torbjørn, du findest Fisch mit der Nase.
+Er gibt jedem eine Angel mit einem großen Haken.
+Torbjørn: Die Regel auf diesem Boot ist einfach. Wer den ersten Fisch fängt, kocht Kaffee.
+Die Schnur geht hinunter. Lange. Bis zum Grund. Lena kurbelt ein bisschen wieder hoch, so wie Torbjørn es ihr zeigt.
+Nach zehn Minuten ruft Mathias.
+Mathias: Fisch! Ich habe einen Fisch!
+Er zieht einen schönen Dorsch hoch. Dann noch einen. Even fängt auch einen Dorsch. Solveig fängt drei hintereinander.
+Solveig: Fischerstochter, hab ich doch gesagt.
+Mathias kocht Kaffee. Nur Lena hat noch gar nichts gefangen.
+Lena: Vielleicht verstehen die Fische mein Norwegisch nicht.
+Torbjørn: Warte. Die großen Fische sind geduldig. Dann müssen wir es auch sein.
+Plötzlich biegt sich Lenas Angel fast in der Mitte durch. Die Schnur singt. Die Rolle surrt.
+Lena: Hilfe! Der zieht mich aus dem Boot!
+Torbjørn: Halt dagegen! Nicht loslassen! Und nicht kurbeln, wenn er zieht. Lass ihn müde werden.
+Eine Viertelstunde vergeht. Lena kurbelt ein bisschen. Der Fisch zieht die Schnur wieder heraus. Lena kurbelt wieder. Ihre Arme brennen.
+Even: Soll ich übernehmen?
+Lena: Denk nicht mal dran!
+Lena kurbelt und kurbelt. Mathias filmt. Solveig hält Lena an der Jacke fest.
+Dann sehen sie ihn. Unter Wasser kommt etwas Großes, Flaches, Braunes nach oben. Es ist größer als eine Tür.
+Mathias: Das ist ein Heilbutt! Ein Riesenheilbutt!
+Torbjørn: Meine Güte. Sie hat mindestens hundert Kilo. Vielleicht mehr.
+Der Heilbutt liegt am Boot. Das eine Auge schaut direkt zu ihnen hoch. Sie ist alt. Viel älter als Mathias.
+Torbjørn sieht sie lange an.
+Torbjørn: Lena. Das ist dein Fisch. Du entscheidest.
+Lena sieht den Heilbutt an. Dann sieht sie Torbjørn an.
+Lena: Wie alt ist sie?
+Torbjørn: Vielleicht dreißig Jahre. Vielleicht vierzig. Große Heilbutte sind fast immer Weibchen. Sie hat jedes Jahr in diesem Meer Junge bekommen.
+Lena: Dann darf sie leben. Sie ist schon länger hier als ich.
+Torbjørn lächelt. Er holt eine lange Zange heraus und nimmt ihr vorsichtig den Haken aus dem Maul.
+Der Heilbutt liegt einen Moment still am Boot. Dann schlägt sie mit dem Schwanz, und sie ist im grünen Wasser verschwunden.
+Torbjørn: Jetzt hast du eine Geschichte, Lena. Das ist besser als Fisch. Fisch isst man einmal. Eine Geschichte erzählt man sein ganzes Leben.
+Mathias: Und ich habe sie auf Video. Hunderttausend Aufrufe bis morgen.
+Torbjørn: Sag nicht, wo wir waren.
+Es ist drei Uhr nachts, als sie zum Bootshaus zurückkommen. Die Sonne steht jetzt höher. Es ist Morgen, aber es war nie Nacht.
+Solveig brät Dorsch auf einem kleinen Gaskocher auf dem Steg. Torbjørn sitzt mit einer Tasse Kaffee neben ihr.
+Torbjørn: Das ist der schönste Geburtstag seit zehn Jahren.
+Solveig: Nur seit zehn?
+Torbjørn: Der schönste Geburtstag seit fünfundsechzig Jahren.
+Das war „Geschichten aus dem Norden“. Nächstes Mal: ein Buch, eine Premiere und eine Rede, die niemand vergisst. Macht’s gut – und nehmt eine Sonnenbrille mit, auch mitten in der Nacht!`,
+    fact:'In Tromsø geht die Sonne vom 20. Mai bis zum 22. Juli nicht unter – die Mitternachtssonne steht um Mitternacht tief im Norden über dem Horizont. Der Heilbutt („kveite“) ist der größte Plattfisch der Welt: Er kann über drei Meter lang und mehr als 200 Kilo schwer werden. Die ganz großen Tiere sind fast immer Weibchen, und sie können über 40 Jahre alt werden. Viele Angler lassen große Heilbutt-Weibchen deshalb wieder frei, damit sie weiter Junge bekommen. Kleine offene Fischerboote wie Torbjørns „Marie“ heißen in Nordnorwegen „sjark“ – früher hatte fast jede Familie an der Küste eins und ein „naust“, ein Bootshaus am Ufer.' }
 );
 /* Hörgeschichten Proverbi (Podcast „Voci dei proverbi“). Figuren aus dem Thema: Lara (15), Bruder Nico (8), Mama Silvia, Papa Tom (deutscher Bäcker), nonna Ada (Sprichwörter), nonno Gino (Olivenbauer in Greve, kennt zu jedem Sprichwort das Gegenteil), Papagei Socrate. */
 PODCAST_INFO.proverbi = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Sonntagsessen bei Opa Gino in Greve in Chianti – Oma Ada und Opa Gino tragen ein Sprichwort-Duell aus, und Papagei Socrate redet immer dazwischen. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
