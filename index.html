@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 246;
+const APP_VERSION = 247;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -68176,6 +68176,174 @@ Eirik: Und wartest zehn Minuten.
 Das war „Sagen am Kamin“. Hast du einen Vardøger? Wenn du das nächste Mal auf jemanden wartest – hör gut hin. Macht’s gut, und gute Nacht!`,
     fact:'Der „vardøger“ (auch „vardøgr“, von altnordisch „vǫrðr“, Wächter) ist ein Volksglaube, den es fast nur in Norwegen gibt: ein Geist oder Doppelgänger, der kurz vor einem Menschen ankommt. Man hört das Auto, die Tür, die Schritte im Flur – und ein paar Minuten später kommt die Person wirklich und macht alles genauso. Viele Norwegerinnen und Norweger erzählen solche Erlebnisse halb im Scherz, halb im Ernst; in manchen Familien sagt man noch heute „Nå kom vardøgeren hans“ und setzt schon mal den Kaffee auf. Flatdal ist ein Tal zwischen Seljord und Rauland, durch das die Straße nach Westen führt.' }
 ];
+/* Zweite Hörgeschichte für „Troll og sagn“ (Folge 2, v247, Wunsch der Nutzerin: „mach Folge 2 der Hörgeschichte für Troll og sagn“).
+   Wird nach leggende_troll.js geladen. Ende Oktober (nach Folge 1, vor Halvors Lungenentzündung in Stufe 5): Halvors alte Bachmühle
+   am Kvernbekken – sein Vater hat sie gebaut, seit Astrids Tod stand sie still. Sindre will Mehl für Gunvors Fladenbrot zu Weihnachten.
+   Nachts bleibt das Rad zweimal stehen, unter der Mühle knurrt es. Halvor erzählt die Sage vom Kvernknurren (kochender Brei: „Har du sett
+   så stor en munn?“ – „Har du sett så varm en grøt?“). Sindre stellt ihm eine Schüssel Brei hin, und das Rad läuft die ganze Nacht.
+   Am Morgen kommt ein dicker Dachs unter der Mühle hervor – aber wer hat das Rad angehalten?
+   Stimmen: Erzählerin Pernille, Paula Seraphina, Sindre Pernille +30 Hz, Halvor Finn (tief, langsam), Gunvor Pernille (tief). Niveau ab B1. */
+PODCASTS.troll.push(
+  { id:'troll-p2', lang:'no', erzaehler:'Pernille', show:'Sagn ved peisen', ep:2, title:'Kvernknurren', de:'Der Mühlenbrummer',
+    place:'Halvors alte Bachmühle im Wald über dem Seljordsvatnet, eine Nacht Ende Oktober', level:'ab B1', kind:'Unheimlich · Sage',
+    voices:{Paula:'de-DE-SeraphinaMultilingualNeural', Sindre:'Pernille', Halvor:'Finn', Gunvor:'Pernille'},
+    stil:{'':['-10%','-3Hz'], Paula:['-4%','+0Hz'], Sindre:['+4%','+30Hz'], Halvor:['-14%','-10Hz'], Gunvor:['-10%','-6Hz']},
+    words:[['ei kvern / kverna','eine Mühle / die Mühle'],['en bekk / bekken','ein Bach / der Bach'],['kvernsteinen','der Mühlstein'],['hjulet','das Rad'],['å male / maler','mahlen / mahlt'],['mel','Mehl'],['et korn / kornet','ein Korn / das Getreide'],['flatbrød','Fladenbrot (dünnes, knuspriges Brot)'],['ei lykt / lykta','eine Laterne / die Laterne'],['å stoppe','anhalten, stehen bleiben'],['å knurre','knurren, brummen'],['et gap / gapet','ein aufgerissenes Maul'],['kokende','kochend'],['ei skål / skåla','eine Schüssel / die Schüssel'],['rømmegrøt','Sauerrahmbrei'],['en termos','eine Thermoskanne'],['slikket ren','sauber geleckt'],['en grevling / grevlingen','ein Dachs / der Dachs'],['et spor / sporene','eine Spur / die Spuren'],['å gi seg','aufgeben']],
+    fx:{'Hei, og velkommen tilbake':'pausa ruscello_an', 'Klokka er sju':'vento_an', 'Halvor låser opp':'porta', 'Halvor drar i':'kvern_an', 'Snart renner':'pausa', 'Det blir mørkt':'civetta', 'Halvor setter seg':'pausa', 'Plutselig stopper':'kvern_aus pausa', 'Under kverna':'ringhio', 'Halvor tar lykta':'passi', 'Halvor kommer tilbake':'pausa', 'Han drar i spaken igjen':'kvern_an', 'Det går en halvtime':'pausa', 'Så stopper':'kvern_aus pausa ringhio', 'Gunvor kommer':'passi porta', 'Sindre tar skåla':'porta', 'Sindre kommer inn igjen':'porta', 'De venter':'pausa', 'Og da, helt':'kvern_an', 'Hjulet går hele':'pausa civetta', 'Om morgenen':'kvern_aus vento_aus pausa picchio', 'Da rasler det':'foglie', 'Grevlingen ser på':'ringhio', 'Det var «Sagn':'ruscello_aus pausa'},
+    text:`Hei, og velkommen tilbake til «Sagn ved peisen». Det er slutten av oktober i Seljord. Bladene har falt, og bekkene er fulle av vann. Det er tid for å male korn.
+Oppe i skogen over huset til Halvor renner en liten bekk. Den heter Kvernbekken. Og ved bekken står ei gammel kvern av tre, med mose på taket.
+Halvor: Far bygde denne kverna i nittentretti. Vi malte her hver høst. Men etter at Astrid døde, har den stått stille.
+Sindre: I år skal vi male, Halvor! Bestemor trenger mel til flatbrød til jul.
+Paula: Og jeg vil tegne kverna. Den ser ut som et lite troll med lue.
+Klokka er sju om kvelden. Det er allerede mørkt. Halvor har med seg ei lykt og en sekk med korn. Sindre bærer en sekk til. Paula har tegneblokka under armen.
+Halvor låser opp den lille døra. Inne lukter det av gammelt tre og støv. Midt i rommet ligger to store, runde kvernsteiner.
+Halvor: Den øverste steinen går rundt. Den nederste ligger stille. Kornet kommer ned i midten, og mellom steinene blir det mel.
+Sindre: Og hva får steinen til å gå rundt?
+Halvor: Vannet. Under gulvet er det et hjul. Når vannet treffer hjulet, går steinen rundt.
+Halvor drar i en gammel spak. Vannet fosser ned på hjulet under gulvet. Først skjer det ingenting. Så knirker det, og steinen begynner å gå rundt. Hele kverna dirrer. Tikk, tikk, tikk, sier en liten trebit som slår mot steinen.
+Sindre: Den går! Den går, Halvor!
+Halvor: Hun har ikke glemt det. Hun er like gammel som meg, men hun har ikke glemt det.
+Snart renner det fint, grått mel ut av renna. Sindre holder hånda under. Melet er varmt.
+Paula: Varmt? Hvorfor er det varmt?
+Halvor: Steinene blir varme. Derfor maler vi om natta. Det er kaldere, og det er mer vann i bekken.
+Det blir mørkt i skogen. Ei ugle roper et sted mellom trærne. Paula tegner i lyset fra lykta.
+Halvor setter seg på en sekk og ser på steinen.
+Halvor: I gamle dager ville ingen være alene i kverna om natta.
+Sindre: Hvorfor ikke?
+Halvor: På grunn av kvernknurren.
+Paula: Kvernknurren? Hva er det?
+Halvor: Han bor under kverna. Han er liten og grå og har et stort gap. Og han liker ikke at folk maler om natta. Så tar han tak i hjulet. Og kverna stopper.
+Sindre: Hva gjorde folk da?
+Halvor: Det fortalte bestefar meg. En gutt skulle male en natt, og kverna stoppet hele tiden. Så kokte han en stor gryte med grøt. Plutselig kom kvernknurren opp gjennom gulvet. Han åpnet gapet, og det ble større og større, til det var like stort som døra. «Har du sett så stor en munn?» sa kvernknurren. «Har du sett så varm en grøt?» sa gutten. Og så kastet han den kokende grøten rett i gapet.
+Sindre: Æsj!
+Halvor: Kvernknurren skrek og forsvant. Og han kom aldri tilbake til den kverna.
+Paula: Stakkars kvernknurren. Han ville jo bare sove.
+Plutselig stopper steinen. Hjulet under gulvet står stille. Nå hører de bare bekken.
+Sindre: Halvor … Den stoppet.
+Under kverna knurrer det. Lavt og dypt.
+Sindre: Hørte dere det?
+Paula: Det var … vannet. Sikkert.
+Halvor: Vann knurrer ikke.
+Halvor tar lykta og går ut. Paula og Sindre går tett etter ham. Ute er det bekmørkt. Vannet renner fort forbi hjulet.
+Halvor: Rart. Det sitter ingen grein fast. Ingen steiner. Ingenting.
+Halvor kommer tilbake og ser lenge på hjulet. Så går han inn igjen.
+Han drar i spaken igjen. Steinen går rundt. Tikk, tikk, tikk.
+Halvor: Sånn. Hun var bare litt trøtt.
+Det går en halvtime. Sekken med korn blir mindre. Sindre gjesper. Paula har tegnet kverna fire ganger.
+Så stopper steinen igjen. Og under gulvet knurrer det. Høyere nå.
+Sindre: Det er kvernknurren! Han er sint på oss!
+Halvor: Eller så er det en gammel kvern og en gammel mann.
+Gunvor kommer opp stien med ei lommelykt og en stor termos.
+Gunvor: Jeg tenkte dere var sultne. Det er rømmegrøt. Fortsatt varm.
+Sindre ser på termosen. Så ser han på Halvor.
+Sindre: Bestemor! Det er perfekt! Vi kan gi grøt til kvernknurren!
+Paula: Ikke kokende, Sindre. Vær snill med ham.
+Sindre: Nei, nei. Bare varm. Med smør og sukker. Som til nissen.
+Gunvor heller rømmegrøt i ei skål. Sindre legger en stor klatt smør på toppen og strør over sukker og kanel.
+Sindre tar skåla og går ut. Han setter den ned på en stein ved bekken, rett ved hjulet.
+Sindre: Kjære kvernknurr. Dette er til deg. Den er ikke for varm. Vær så snill, la hjulet gå. Vi skal bare male litt mel til jul.
+Sindre kommer inn igjen og lukker døra.
+De venter. Ingen sier noe. Gunvor heller kaffe i fire kopper. Bekken renner. Ugla roper igjen.
+Og da, helt av seg selv, knirker det under gulvet. Steinen begynner å gå rundt. Tikk, tikk, tikk.
+Sindre: Han likte grøten!
+Halvor: Hm. Eller så har vannet tatt med seg noe som satt fast.
+Gunvor: Du har alltid en forklaring, Halvor.
+Halvor: Og du har alltid grøt, Gunvor.
+Hjulet går hele natta. Det stopper ikke én gang. Sindre sovner på melsekkene. Paula tegner Halvor og Gunvor ved lykta, med hver sin kaffekopp.
+Om morgenen er sekkene fulle av mel. Lyset kommer grått mellom trærne. En hakkespett banker på et tre.
+Sindre våkner og løper ut til bekken.
+Sindre: Skåla! Den er tom! Den er slikket ren!
+Paula kommer etter. Rundt steinen er det små spor i melet. Fem tær. Lange klør.
+Paula: Det er ikke spor etter en katt.
+Da rasler det i bladene under kverna. Noe kommer ut. Noe grått, med en svart og hvit stripe på hodet. Det er tjukt, og det har grøt på nesa.
+Sindre: En grevling!
+Grevlingen ser på dem. Den freser litt. Så tusler den inn i skogen, uten å ha det travelt.
+Halvor: Der har vi kvernknurren din, Sindre. Han bor under kverna. Han er liten og grå. Og han liker grøt.
+Sindre: Men en grevling kan ikke stoppe et hjul.
+Halvor ser på hjulet. Han sier ingenting.
+Gunvor: Nei. Det kan han ikke.
+Sindre: Da vet jeg det. Grevlingen er bare kjæledyret til kvernknurren.
+Paula: Og neste høst tar vi med to skåler.
+Halvor: Tre. Jeg vil også ha grøt.
+Det var «Sagn ved peisen». Hvis du har ei gammel kvern i skogen – sett ut litt grøt. Den skal ikke være for varm. Ha det bra, og god natt!`,
+    tr:`Hallo und willkommen zurück bei „Sagen am Kamin“. Es ist Ende Oktober in Seljord. Die Blätter sind gefallen, und die Bäche sind voller Wasser. Es ist Zeit, Getreide zu mahlen.
+Oben im Wald über Halvors Haus fließt ein kleiner Bach. Er heißt Mühlbach. Und am Bach steht eine alte Mühle aus Holz, mit Moos auf dem Dach.
+Halvor: Vater hat diese Mühle neunzehnhundertdreißig gebaut. Wir haben hier jeden Herbst gemahlen. Aber seit Astrid gestorben ist, steht sie still.
+Sindre: Dieses Jahr mahlen wir, Halvor! Oma braucht Mehl für Fladenbrot zu Weihnachten.
+Paula: Und ich will die Mühle zeichnen. Sie sieht aus wie ein kleiner Troll mit Mütze.
+Es ist sieben Uhr abends. Es ist schon dunkel. Halvor hat eine Laterne und einen Sack Getreide dabei. Sindre trägt noch einen Sack. Paula hat den Zeichenblock unter dem Arm.
+Halvor schließt die kleine Tür auf. Drinnen riecht es nach altem Holz und Staub. Mitten im Raum liegen zwei große, runde Mühlsteine.
+Halvor: Der obere Stein dreht sich. Der untere liegt still. Das Getreide kommt in der Mitte herunter, und zwischen den Steinen wird es zu Mehl.
+Sindre: Und was bringt den Stein dazu, sich zu drehen?
+Halvor: Das Wasser. Unter dem Boden ist ein Rad. Wenn das Wasser das Rad trifft, dreht sich der Stein.
+Halvor zieht an einem alten Hebel. Das Wasser stürzt unter dem Boden auf das Rad. Erst passiert nichts. Dann knarrt es, und der Stein fängt an, sich zu drehen. Die ganze Mühle zittert. Tick, tick, tick, macht ein kleines Holzstück, das gegen den Stein schlägt.
+Sindre: Sie läuft! Sie läuft, Halvor!
+Halvor: Sie hat es nicht vergessen. Sie ist so alt wie ich, aber sie hat es nicht vergessen.
+Bald rinnt feines, graues Mehl aus der Rinne. Sindre hält die Hand darunter. Das Mehl ist warm.
+Paula: Warm? Warum ist es warm?
+Halvor: Die Steine werden warm. Deshalb mahlen wir nachts. Es ist kühler, und es ist mehr Wasser im Bach.
+Im Wald wird es dunkel. Irgendwo zwischen den Bäumen ruft eine Eule. Paula zeichnet im Licht der Laterne.
+Halvor setzt sich auf einen Sack und schaut auf den Stein.
+Halvor: Früher wollte niemand nachts allein in der Mühle sein.
+Sindre: Warum nicht?
+Halvor: Wegen des Kvernknurren.
+Paula: Kvernknurren? Was ist das?
+Halvor: Er wohnt unter der Mühle. Er ist klein und grau und hat ein riesiges Maul. Und er mag es nicht, wenn die Leute nachts mahlen. Dann packt er das Rad. Und die Mühle bleibt stehen.
+Sindre: Was haben die Leute dann gemacht?
+Halvor: Das hat mir mein Großvater erzählt. Ein Junge sollte eines Nachts mahlen, und die Mühle blieb immer wieder stehen. Da kochte er einen großen Topf Brei. Plötzlich kam der Kvernknurr durch den Boden herauf. Er riss das Maul auf, und es wurde größer und größer, bis es so groß war wie die Tür. „Hast du schon mal so ein großes Maul gesehen?“, sagte der Kvernknurr. „Hast du schon mal so heißen Brei gesehen?“, sagte der Junge. Und dann warf er den kochenden Brei direkt in das Maul.
+Sindre: Igitt!
+Halvor: Der Kvernknurr schrie und verschwand. Und er kam nie wieder zu dieser Mühle.
+Paula: Der arme Kvernknurr. Er wollte doch nur schlafen.
+Plötzlich bleibt der Stein stehen. Das Rad unter dem Boden steht still. Jetzt hören sie nur noch den Bach.
+Sindre: Halvor … Sie ist stehen geblieben.
+Unter der Mühle knurrt es. Leise und tief.
+Sindre: Habt ihr das gehört?
+Paula: Das war … das Wasser. Bestimmt.
+Halvor: Wasser knurrt nicht.
+Halvor nimmt die Laterne und geht hinaus. Paula und Sindre gehen dicht hinter ihm. Draußen ist es stockdunkel. Das Wasser fließt schnell am Rad vorbei.
+Halvor: Seltsam. Da steckt kein Ast fest. Keine Steine. Nichts.
+Halvor kommt zurück und schaut das Rad lange an. Dann geht er wieder hinein.
+Er zieht wieder am Hebel. Der Stein dreht sich. Tick, tick, tick.
+Halvor: So. Sie war nur ein bisschen müde.
+Eine halbe Stunde vergeht. Der Getreidesack wird kleiner. Sindre gähnt. Paula hat die Mühle viermal gezeichnet.
+Dann bleibt der Stein wieder stehen. Und unter dem Boden knurrt es. Jetzt lauter.
+Sindre: Das ist der Kvernknurr! Er ist böse auf uns!
+Halvor: Oder es ist eine alte Mühle und ein alter Mann.
+Gunvor kommt mit einer Taschenlampe und einer großen Thermoskanne den Pfad herauf.
+Gunvor: Ich dachte, ihr habt Hunger. Das ist Sauerrahmbrei. Noch warm.
+Sindre schaut die Thermoskanne an. Dann schaut er Halvor an.
+Sindre: Oma! Das ist perfekt! Wir können dem Kvernknurr Brei geben!
+Paula: Nicht kochend, Sindre. Sei nett zu ihm.
+Sindre: Nein, nein. Nur warm. Mit Butter und Zucker. Wie für den Wichtel.
+Gunvor gießt Sauerrahmbrei in eine Schüssel. Sindre legt ein großes Stück Butter obendrauf und streut Zucker und Zimt darüber.
+Sindre nimmt die Schüssel und geht hinaus. Er stellt sie auf einen Stein am Bach, direkt neben das Rad.
+Sindre: Lieber Kvernknurr. Das ist für dich. Er ist nicht zu heiß. Bitte lass das Rad laufen. Wir wollen nur ein bisschen Mehl für Weihnachten mahlen.
+Sindre kommt wieder herein und macht die Tür zu.
+Sie warten. Niemand sagt etwas. Gunvor gießt Kaffee in vier Tassen. Der Bach rauscht. Die Eule ruft wieder.
+Und dann, ganz von selbst, knarrt es unter dem Boden. Der Stein fängt an, sich zu drehen. Tick, tick, tick.
+Sindre: Ihm hat der Brei geschmeckt!
+Halvor: Hm. Oder das Wasser hat etwas mitgenommen, das festgesteckt hat.
+Gunvor: Du hast immer eine Erklärung, Halvor.
+Halvor: Und du hast immer Brei, Gunvor.
+Das Rad läuft die ganze Nacht. Es bleibt kein einziges Mal stehen. Sindre schläft auf den Mehlsäcken ein. Paula zeichnet Halvor und Gunvor an der Laterne, jeder mit seiner Kaffeetasse.
+Am Morgen sind die Säcke voller Mehl. Das Licht kommt grau zwischen den Bäumen hervor. Ein Specht klopft an einen Baum.
+Sindre wacht auf und rennt hinaus zum Bach.
+Sindre: Die Schüssel! Sie ist leer! Sie ist sauber geleckt!
+Paula kommt hinterher. Rund um den Stein sind kleine Spuren im Mehl. Fünf Zehen. Lange Krallen.
+Paula: Das sind keine Katzenspuren.
+Da raschelt es im Laub unter der Mühle. Etwas kommt heraus. Etwas Graues, mit einem schwarz-weißen Streifen auf dem Kopf. Es ist dick, und es hat Brei auf der Nase.
+Sindre: Ein Dachs!
+Der Dachs schaut sie an. Er faucht ein bisschen. Dann trottet er in den Wald, ohne jede Eile.
+Halvor: Da haben wir deinen Kvernknurr, Sindre. Er wohnt unter der Mühle. Er ist klein und grau. Und er mag Brei.
+Sindre: Aber ein Dachs kann kein Rad anhalten.
+Halvor schaut das Rad an. Er sagt nichts.
+Gunvor: Nein. Das kann er nicht.
+Sindre: Dann weiß ich es. Der Dachs ist nur das Haustier vom Kvernknurr.
+Paula: Und nächsten Herbst bringen wir zwei Schüsseln mit.
+Halvor: Drei. Ich will auch Brei.
+Das war „Sagen am Kamin“. Wenn du eine alte Mühle im Wald hast – stell ein bisschen Brei hin. Er darf nicht zu heiß sein. Macht’s gut, und gute Nacht!`,
+    fact:'Fast jeder Hof in Norwegen hatte früher eine eigene kleine Bachmühle („bekkekvern“) mit einem waagrechten Wasserrad unter dem Boden. Gemahlen wurde vor allem im Herbst, wenn die Bäche viel Wasser führten – oft die ganze Nacht. Hunderte solcher Mühlen sind heute restauriert. Aus vielen Gegenden stammt die Sage vom „kvernknurr“ oder „kvernkall“, der das Mühlrad festhält: Ein mutiger Bursche schüttet ihm kochenden Brei oder heißen Teer ins aufgerissene Maul („Har du sett så stort et gap?“ – „Har du sett så varm en grøt?“), und der Unhold kommt nie wieder. Der Dachs („grevling“) lebt in ganz Südnorwegen, gräbt seine Baue gern unter Scheunen und alten Gebäuden und frisst fast alles – auch Süßes.' }
+);
 /* Hörgeschichte „Unterwegs“ (Italiener lernen Deutsch, v214; Wunsch der Nutzerin: „für alle 4 jeweils eine“).
    Figuren aus dem Thema: Elena (Belluno) im Eiscafé von Onkel Beppe in München, Frau Huber (Resi) mit Dackel Waldi, ihr Enkel Jonas.
    Zeit: Elenas erster Herbst (Oktober). Erzählerin Katja; Beppe spricht mit italienischem Akzent (Giuseppe Multilingual). Seiten-Texte auf Italienisch. */
