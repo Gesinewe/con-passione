@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 250;
+const APP_VERSION = 251;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -65701,6 +65701,118 @@ Totò: Danke, Opa.
 In Sizilien suchen die Kinder auch heute noch in der Nacht vom 1. auf den 2. November die Geschenke der Toten. Und viele Omas stellen ein Glas Wasser auf den Tisch. Nur so, zur Sicherheit.
 Das war „Brividi nella notte“. Schlaft heute Nacht mit den Füßen unter der Decke. Und wenn ihr morgen ein Geschenk findet … fragt nicht, wer es gebracht hat. Bis zur nächsten Legende …`,
     fact:'In Sizilien ist der 2. November, „il giorno dei morti“, für Kinder fast wie Weihnachten: In der Nacht davor bringen die verstorbenen Verwandten Geschenke und verstecken sie im Haus. Die Kinder schreiben vorher Briefe an „i cari morti“. Typisch sind die „pupi di zucchero“ (bunte Zuckerfiguren, oft Ritter und Paladine), die „frutta martorana“ (Marzipanfrüchte, benannt nach der Kirche della Martorana in Palermo) und die harten Kekse „ossa di morto“. In Palermo gibt es dafür eigene Märkte, die „fiere dei morti“. Den Kindern sagt man, dass die Toten ihnen an den Füßen kratzen, wenn sie nicht schlafen. In vielen Gegenden Italiens deckt man in dieser Nacht den Tisch für die Verstorbenen mit Wasser und Brot und lässt die Tür offen. Die Sage von der Totenprozession und der Kerze, die sich in einen Knochen verwandelt, wird in vielen Regionen erzählt, von Sizilien bis in die Alpen.' }
+);
+/* Brividi-Podcast Folge 7 (v251, Wunsch der Nutzerin: Ideenliste „alles“ – nach der Allerseelen-Folge weiter mit Linchetto).
+   Wird nach leggende_brividi3.js geladen. Garfagnana (Toskana): Marta (12) macht Herbstferien auf dem Pferdehof von Zio Beppe.
+   Jeden Morgen haben die Stute Stella und das Pony Briciola winzige Knoten in der Mähne und sind verschwitzt. Zio Beppe sagt: der Linchetto.
+   Marta legt sich nachts mit dem Handy auf die Lauer: Kichern, ein Lichtlein, ein kleiner Schatten. Die alte Nachbarin Ida kennt das Mittel:
+   Der Linchetto erträgt keine schlechten Manieren. Abendessen im Stall mit den Händen, Rülpser – „Che schifo!“ – und er ist weg.
+   Am Ende: Marta ist wieder in Florenz, und am Morgen hat sie selbst winzige Knoten in den Haaren. Witzig-gruselig.
+   Stimmen: Erzählerin Isabella, Marta Elsa, Zio Beppe Diego, Ida Isabella (tief), Linchetto Elsa (sehr hoch, Echo). */
+PODCASTS.brividi.push(
+  { id:'brividi-p7', show:'Brividi nella notte', ep:7, title:'Il Linchetto', de:'Der Linchetto',
+    place:'Un maneggio in Garfagnana (Toscana), le vacanze d’autunno', level:'ab A2', kind:'Legende · Witzig',
+    voices:{Marta:'Elsa', Beppe:'Diego', Ida:'Isabella', Linchetto:'Elsa'},
+    stil:{Marta:['+2%','+30Hz'], Beppe:['-4%','-6Hz'], Ida:['-16%','-24Hz'], Linchetto:['+10%','+95Hz']},
+    words:[['il maneggio','der Reitstall'],['la stalla','der Stall'],['la cavalla','die Stute'],['il pony','das Pony'],['la criniera','die Mähne'],['il nodo / i nodi','der Knoten / die Knoten'],['la treccia','der Zopf'],['sudato / sudata','verschwitzt'],['stanco morto','todmüde'],['lo spiritello','der Kobold, der kleine Geist'],['dispettoso','frech, boshaft'],['fare i dispetti','Streiche spielen'],['il fieno','das Heu'],['la lanterna','die Laterne'],['nascondersi','sich verstecken'],['la ridarella','das Kichern'],['maleducato / maleducata','unhöflich, ohne Manieren'],['il rutto','der Rülpser'],['Che schifo!','Wie eklig!'],['pettinare','kämmen']],
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Stasera andiamo in Toscana':'atmo_aus uccelli_an', 'Marta ha dodici anni':'pausa', 'Il primo giorno':'passo_an', 'La mattina dopo Marta':'passo_aus uccelli_aus gallo', 'Stella sbuffa':'sbuffo', 'Il giorno dopo':'pausa gallo', 'Beppe: Lo sapevo':'pausa', 'Beppe: È il Linchetto':'pausa', 'Quella sera Marta':'pausa notte_an', 'Fuori è buio':'civetta', 'Mezzanotte':'campane', 'Poi, nel silenzio':'pausa', 'Linchetto: Ih ih':'eco', 'Una lucina':'pausa', 'Briciola nitrisce':'sbuffo', 'Marta accende':'pausa', 'La mattina Marta':'notte_aus gallo', 'Nel video':'pausa', 'Il pomeriggio':'passi porta', 'Ida: Il Linchetto':'pausa', 'Ida: Ma c’è':'pausa', 'La sera stessa':'pausa notte_an', 'Beppe mangia':'piatti', 'Poi Beppe':'pausa', 'Linchetto: Che schifo':'eco', 'Una porta sbatte':'porta', 'Quella notte':'russare', 'La mattina dopo le criniere':'notte_aus gallo', 'Una settimana dopo':'pausa traffico_an', 'Ma quando si guarda':'traffico_aus pausa', 'Questo era':'pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera la nostra storia non fa paura. O forse sì. Dipende da voi. E dai vostri capelli.
+Spegnete la luce. Mettete le cuffie. E prima di dormire, pettinatevi bene.
+Stasera andiamo in Toscana, in Garfagnana. Qui ci sono montagne verdi, boschi di castagni e piccoli paesi di pietra. E qui, da secoli, vive uno spiritello. Si chiama Linchetto.
+Marta ha dodici anni e abita a Firenze. Per le vacanze d’autunno va da suo zio Beppe. Zio Beppe ha un maneggio in montagna, con sei cavalli. La sua preferita è Stella, una cavalla bianca. E poi c’è Briciola, un pony piccolo e grasso che mangia tutto.
+Il primo giorno Marta e lo zio fanno una passeggiata a cavallo nel bosco. Le foglie sono rosse e gialle. Stella cammina tranquilla.
+La mattina dopo Marta entra nella stalla. Si ferma. Le criniere dei cavalli sono piene di nodi. Piccoli nodi, tantissimi, come treccine minuscole. E i cavalli sono sudati e stanchi morti, come se avessero corso tutta la notte.
+Stella sbuffa. Ha la testa bassa.
+Marta: Zio! Zio, vieni! Chi ha fatto questo?
+Beppe: Mah. Sarà il vento.
+Marta: Il vento non fa le trecce, zio.
+Il giorno dopo succede di nuovo. E il giorno dopo ancora. Ogni mattina, nuovi nodi. Ogni mattina, cavalli stanchi. E Briciola ha un nodo perfino sulla coda.
+Beppe: Lo sapevo. Lo sapevo che prima o poi tornava.
+Marta: Chi?
+Beppe: È il Linchetto. Mio nonno lo diceva sempre. È uno spiritello piccolo, alto così, con un cappellino rosso. Di notte entra nelle stalle e fa i dispetti. Fa i nodi alle criniere. E poi prende i cavalli e ci corre sopra fino all’alba.
+Marta: Zio, hai quarantacinque anni. E credi ai folletti?
+Beppe: Io credo ai nodi. Quelli li vedo.
+Quella sera Marta prende una coperta, una torcia e il telefono. Si nasconde nella stalla, dietro le balle di fieno. Vuole fare un video. Così domani lo fa vedere allo zio, e anche a tutta la scuola.
+Fuori è buio. Una civetta chiama nel bosco. I cavalli dormono in piedi. Marta ha sonno, ma resiste.
+Mezzanotte. Le campane del paese suonano lontano.
+Poi, nel silenzio, Marta sente qualcosa. Una risatina. Piccola, acuta, come un bambino che fa uno scherzo.
+Linchetto: Ih ih ih! Ih ih ih!
+Una lucina appare vicino alla porta. Si muove. Passa da un cavallo all’altro. Marta vede un’ombra piccola, piccolissima, che salta sulla schiena di Briciola.
+Briciola nitrisce e sbatte gli zoccoli.
+Marta accende la torcia. Niente. Nessuno. Solo Briciola, con gli occhi grandi e spaventati. E un nodo nuovo nella criniera.
+La mattina Marta corre dallo zio con il telefono.
+Marta: Zio! Guarda! L’ho filmato!
+Nel video si vede la stalla, buia. Si sente la risatina. Si vede la lucina. E poi, per un secondo, qualcosa di piccolo con un cappellino rosso. Poi il video diventa nero.
+Beppe: Allora? Il vento?
+Marta: Va bene. Ho capito. Come lo mandiamo via?
+Il pomeriggio vanno dalla vicina, la signora Ida. Ha novant’anni e conosce tutte le storie della valle.
+Ida: Il Linchetto? Eh, quello è un furbo. Non lo puoi prendere. Non lo puoi chiudere fuori. Passa dal buco della serratura.
+Marta: E allora? Dobbiamo vivere con i nodi per sempre?
+Ida: Ma c’è una cosa che il Linchetto non sopporta. Lui è uno spirito molto educato, molto per bene. Non sopporta le persone maleducate. Se uno è maleducato davanti a lui, gli fa schifo. E se ne va. Per sempre.
+Marta: Maleducati? Come?
+Ida: Mangiate con le mani. Parlate con la bocca piena. E poi… beh. Fate un bel rutto. Il più forte che potete.
+La sera stessa Marta e lo zio portano la cena nella stalla. Una tovaglia sul fieno, pane, salame, e un piatto di pasta al sugo.
+Beppe mangia la pasta con le mani. Si sporca tutta la faccia di sugo. Marta parla con la bocca piena. Si pulisce le dita sulla maglietta.
+Poi Beppe beve un bicchiere d’acqua gassata. Si alza. Respira forte. E fa un rutto enorme. Lunghissimo. Così forte che Stella alza la testa.
+Marta ride così tanto che quasi cade dal fieno. E poi lo fa anche lei.
+Dal buio, dietro le balle di fieno, si sente una vocina arrabbiata.
+Linchetto: Che schifo! Che maleducati! In questa casa non ci torno più!
+Una porta sbatte. Poi silenzio.
+Quella notte lo zio dorme benissimo. Russa come un trattore.
+La mattina dopo le criniere sono lisce. Nessun nodo. I cavalli sono riposati e mangiano il fieno. Anche Briciola, con la coda perfetta.
+Una settimana dopo Marta è di nuovo a Firenze. Si sveglia nel suo letto, nella sua camera, in città. Fuori passano le macchine.
+Ma quando si guarda allo specchio, si ferma. Nei suoi capelli ci sono tanti piccoli nodi. Treccine minuscole, perfette.
+E sul cuscino c’è un bigliettino, con una scrittura piccola piccola: «I bambini maleducati mi piacciono di più. Ih ih ih.»
+Questo era «Brividi nella notte». Stanotte siate gentili… ma non troppo. Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend macht unsere Geschichte keine Angst. Oder vielleicht doch. Das hängt von euch ab. Und von euren Haaren.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und kämmt euch gut, bevor ihr schlafen geht.
+Heute Abend fahren wir in die Toskana, in die Garfagnana. Hier gibt es grüne Berge, Kastanienwälder und kleine Dörfer aus Stein. Und hier lebt seit Jahrhunderten ein Kobold. Er heißt Linchetto.
+Marta ist zwölf und wohnt in Florenz. In den Herbstferien fährt sie zu ihrem Onkel Beppe. Onkel Beppe hat einen Reitstall in den Bergen, mit sechs Pferden. Sein Liebling ist Stella, eine weiße Stute. Und dann ist da noch Briciola, ein kleines, dickes Pony, das alles frisst.
+Am ersten Tag machen Marta und der Onkel einen Ausritt in den Wald. Die Blätter sind rot und gelb. Stella geht ruhig.
+Am nächsten Morgen kommt Marta in den Stall. Sie bleibt stehen. Die Mähnen der Pferde sind voller Knoten. Kleine Knoten, ganz viele, wie winzige Zöpfchen. Und die Pferde sind verschwitzt und todmüde, als wären sie die ganze Nacht gerannt.
+Stella schnaubt. Sie lässt den Kopf hängen.
+Marta: Onkel! Onkel, komm! Wer hat das gemacht?
+Beppe: Tja. Das wird der Wind sein.
+Marta: Der Wind flicht keine Zöpfe, Onkel.
+Am nächsten Tag passiert es wieder. Und am Tag danach noch einmal. Jeden Morgen neue Knoten. Jeden Morgen müde Pferde. Und Briciola hat sogar einen Knoten im Schweif.
+Beppe: Ich wusste es. Ich wusste, dass er früher oder später zurückkommt.
+Marta: Wer?
+Beppe: Das ist der Linchetto. Mein Großvater hat das immer gesagt. Er ist ein kleiner Kobold, so groß, mit einem roten Mützchen. Nachts schleicht er in die Ställe und spielt Streiche. Er macht Knoten in die Mähnen. Und dann nimmt er die Pferde und reitet auf ihnen bis zum Morgengrauen.
+Marta: Onkel, du bist fünfundvierzig. Und du glaubst an Kobolde?
+Beppe: Ich glaube an Knoten. Die sehe ich.
+An diesem Abend nimmt Marta eine Decke, eine Taschenlampe und ihr Handy. Sie versteckt sich im Stall hinter den Heuballen. Sie will ein Video machen. Damit sie es morgen dem Onkel zeigen kann, und der ganzen Schule.
+Draußen ist es dunkel. Eine Eule ruft im Wald. Die Pferde schlafen im Stehen. Marta ist müde, aber sie hält durch.
+Mitternacht. Die Glocken des Dorfes läuten in der Ferne.
+Dann, in der Stille, hört Marta etwas. Ein Kichern. Klein, hoch, wie ein Kind, das einen Streich spielt.
+Linchetto: Hi hi hi! Hi hi hi!
+Ein Lichtlein erscheint bei der Tür. Es bewegt sich. Es wandert von einem Pferd zum anderen. Marta sieht einen kleinen, winzigen Schatten, der auf Briciolas Rücken springt.
+Briciola wiehert und stampft mit den Hufen.
+Marta macht die Taschenlampe an. Nichts. Niemand. Nur Briciola, mit großen, erschrockenen Augen. Und einem neuen Knoten in der Mähne.
+Am Morgen rennt Marta mit dem Handy zum Onkel.
+Marta: Onkel! Schau! Ich hab’s gefilmt!
+Im Video sieht man den dunklen Stall. Man hört das Kichern. Man sieht das Lichtlein. Und dann, eine Sekunde lang, etwas Kleines mit einem roten Mützchen. Dann wird das Video schwarz.
+Beppe: Na? Der Wind?
+Marta: Schon gut. Ich hab’s verstanden. Wie werden wir ihn los?
+Am Nachmittag gehen sie zur Nachbarin, Signora Ida. Sie ist neunzig und kennt alle Geschichten aus dem Tal.
+Ida: Der Linchetto? Tja, der ist ein Schlaumeier. Den kannst du nicht fangen. Den kannst du nicht aussperren. Der kommt durchs Schlüsselloch.
+Marta: Und dann? Müssen wir für immer mit den Knoten leben?
+Ida: Aber es gibt eine Sache, die der Linchetto nicht aushält. Er ist ein sehr gut erzogener, sehr anständiger Geist. Er erträgt keine Leute ohne Manieren. Wenn sich jemand vor ihm schlecht benimmt, ekelt er sich. Und dann geht er. Für immer.
+Marta: Schlechte Manieren? Wie denn?
+Ida: Esst mit den Händen. Redet mit vollem Mund. Und dann … na ja. Macht einen ordentlichen Rülpser. So laut ihr könnt.
+Noch am selben Abend bringen Marta und der Onkel das Abendessen in den Stall. Eine Tischdecke auf dem Heu, Brot, Salami und ein Teller Nudeln mit Tomatensoße.
+Beppe isst die Nudeln mit den Händen. Er hat das ganze Gesicht voller Soße. Marta redet mit vollem Mund. Sie wischt sich die Finger am T-Shirt ab.
+Dann trinkt Beppe ein Glas Sprudelwasser. Er steht auf. Er atmet tief ein. Und er macht einen riesigen Rülpser. Ganz lang. So laut, dass Stella den Kopf hebt.
+Marta lacht so sehr, dass sie fast vom Heu fällt. Und dann macht sie es auch.
+Aus dem Dunkeln, hinter den Heuballen, hört man ein wütendes Stimmchen.
+Linchetto: Wie eklig! Was für Rüpel! In dieses Haus komme ich nie wieder!
+Eine Tür knallt. Dann Stille.
+In dieser Nacht schläft der Onkel wunderbar. Er schnarcht wie ein Traktor.
+Am nächsten Morgen sind die Mähnen glatt. Kein Knoten. Die Pferde sind ausgeruht und fressen Heu. Auch Briciola, mit perfektem Schweif.
+Eine Woche später ist Marta wieder in Florenz. Sie wacht in ihrem Bett auf, in ihrem Zimmer, in der Stadt. Draußen fahren Autos vorbei.
+Aber als sie in den Spiegel schaut, erstarrt sie. In ihren Haaren sind ganz viele kleine Knoten. Winzige, perfekte Zöpfchen.
+Und auf dem Kopfkissen liegt ein Zettelchen, in einer ganz kleinen Schrift: „Unerzogene Kinder mag ich am liebsten. Hi hi hi.“
+Das war „Brividi nella notte“. Seid heute Nacht freundlich … aber nicht zu sehr. Bis zur nächsten Legende …`,
+    fact:'Der „Linchetto“ (Mehrzahl „Linchetti“) ist ein Kobold aus der Toskana, vor allem aus der Lucchesia, der Garfagnana und der Lunigiana. Er ist klein, oft mit roter Mütze, und spielt nachts Streiche: Er verknotet Pferden und Eseln die Mähnen und reitet sie bis zum Morgen, sodass sie verschwitzt im Stall stehen, er versteckt Gegenstände oder setzt sich Schlafenden auf die Brust. Weil er ein sehr „anständiger“ Geist sein soll, vertreibt man ihn der Überlieferung nach mit Ekel und schlechten Manieren. Tatsächlich bilden sich in langen Pferdemähnen über Nacht leicht verfilzte Knoten – früher nannte man sie „Hexenzöpfe“ oder eben die Zöpfe des Linchetto.' }
 );
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
