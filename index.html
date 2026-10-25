@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 253;
+const APP_VERSION = 254;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -66043,6 +66043,99 @@ Ganz hinten, hinter allen, zwischen den Bäumen, steht eine Dame. Weiß gekleide
 Bis heute erzählen manche in der Villa Ada von einer Dame in Weiß am kleinen See. Und wenn euch abends jemand nach der Uhrzeit fragt, freundlich, mit sanfter Stimme … dann schaut nach, bevor ihr antwortet, ob die Person nasse Schuhe hat.
 Das war „Brividi nella notte“. Und jetzt … wisst ihr, wie spät es ist? Bis zur nächsten Legende …`,
     fact:'Villa Ada im Norden Roms ist mit rund 160 Hektar einer der größten Parks der Stadt. Ihren Namen hat sie von Ada, der Frau des Grafen Giuseppe Telfener, dem das Gelände im 19. Jahrhundert gehörte. Danach war sie unter dem Namen „Villa Savoia“ Wohnsitz von König Viktor Emanuel III. Hier wurde Benito Mussolini am 25. Juli 1943 nach einem Gespräch mit dem König verhaftet. Im Park liegt ein Luftschutzbunker, der im Zweiten Weltkrieg für die Königsfamilie gebaut wurde und heute bei Führungen besichtigt werden kann. Die Geschichte von der Dame in Weiß am See, die nach der Uhrzeit fragt, ist eine Gruselsage, wie sie über viele alte Parks und Villen erzählt wird.' }
+);
+/* Brividi-Podcast Folge 10 (v254, Wunsch der Nutzerin: Ideenliste „alles“ – nach Villa Ada weiter mit Colapesce).
+   Wird nach leggende_brividi6.js geladen. Messina, Meerenge: Giada (24), Apnoetaucherin, trainiert mit Nonno Saro (Schwertfischer).
+   Letzten Sommer hat sie im Meer den Ring ihrer verstorbenen Mutter verloren. Mittags auf dem Domplatz: die astronomische Uhr (Löwe brüllt,
+   Hahn kräht). Auf dem Boot erzählt Nonno die ganze Sage: Colas Mutter verflucht ihn („Che tu possa diventare un pesce!“), König Friedrich II.
+   wirft Becher, Krone und Ring ins Meer, Cola sieht die drei Säulen, eine bricht, beim dritten Tauchgang nimmt er eine Handvoll Linsen mit –
+   steigen die Linsen auf, kommt er nicht zurück. Giada taucht so tief wie nie, im Dunkeln legt ihr eine Hand etwas in die Handfläche:
+   der Ring der Mutter. Nachts bebt kurz die Erde. Berührend, geheimnisvoll.
+   Stimmen: Erzählerin Isabella, Giada Elsa, Nonno Saro Giuseppe (alt), Re Diego (tief), Cola Diego (jung), Madre Isabella (tiefer). */
+PODCASTS.brividi.push(
+  { id:'brividi-p10', show:'Brividi nella notte', ep:10, title:'Colapesce', de:'Colapesce, der Fischjunge',
+    place:'Messina e lo Stretto, tra la Sicilia e la Calabria', level:'ab A2', kind:'Legende · Meer',
+    voices:{Giada:'Elsa', Nonno:'Giuseppe', Re:'Diego', Cola:'Diego', Madre:'Isabella'},
+    stil:{Giada:['+0%','+14Hz'], Nonno:['-14%','-28Hz'], Re:['-10%','-20Hz'], Cola:['+4%','+28Hz'], Madre:['-10%','-16Hz']},
+    words:[['lo Stretto','die Meerenge'],['l’apnea','das Apnoetauchen (ohne Flasche)'],['immergersi','tauchen, untertauchen'],['il fondo','der Grund'],['il pescatore','der Fischer'],['il pesce spada','der Schwertfisch'],['l’anello','der Ring'],['la corona','die Krone'],['la coppa d’oro','der goldene Becher'],['la colonna','die Säule'],['crepata / rotta','gesprungen / zerbrochen'],['reggere','tragen, halten'],['le lenticchie','die Linsen'],['galleggiare','an der Oberfläche schwimmen'],['la corrente','die Strömung'],['il respiro','der Atem'],['la maledizione','der Fluch'],['il terremoto','das Erdbeben'],['trattenere il fiato','die Luft anhalten'],['il palmo della mano','die Handfläche']],
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Stasera andiamo in Sicilia':'atmo_aus acqua_an gabbiani', 'Giada ha ventiquattro':'pausa', 'È mezzogiorno':'acqua_aus campane gallo', 'Il pomeriggio':'pausa acqua_an motore_barca_an', 'Al largo il nonno':'motore_barca_aus pausa', 'Nonno: C’era una volta':'pausa', 'Madre: Cola!':'pausa', 'Nonno: E così':'tuffo', 'Re: Ragazzo':'pausa', 'Nonno: Il re prese':'tuffo_dopo', 'Nonno: Ma la terza':'pausa', 'Cola: Maestà':'pausa', 'Nonno: Il re non':'tuffo_dopo', 'Nonno: Passarono':'pausa', 'Giada guarda':'pausa', 'La mattina dopo':'pausa gabbiani', 'Giada respira':'pausa', 'Poi si immerge':'tuffo acqua_aus atmo_an', 'Dieci metri':'pausa', 'A trenta metri':'pausa', 'E poi':'pausa', 'Giada risale':'atmo_aus acqua_an', 'Giada apre':'pausa', 'Quella notte':'acqua_aus pausa tuono', 'Ancora oggi':'pausa atmo_an', 'Questo era':'atmo_aus pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera non c’è nessun fantasma. C’è un ragazzo. Un ragazzo che è sotto i nostri piedi da ottocento anni. E non si è mai riposato.
+Spegnete la luce. Mettete le cuffie. E trattenete il fiato.
+Stasera andiamo in Sicilia, a Messina. Davanti alla città c’è lo Stretto, il mare tra la Sicilia e la Calabria. L’acqua qui è blu scuro, profondissima, con correnti forti e veloci. I marinai la temono da sempre.
+Giada ha ventiquattro anni. Fa apnea: si immerge in fondo al mare senza bombole, con un solo respiro. Si allena ogni mattina con suo nonno Saro, un vecchio pescatore di pesce spada. Ma quest’estate Giada ha un pensiero fisso. L’anno scorso, proprio qui, ha perso in mare l’anello di sua madre. Sua madre è morta tre anni fa.
+È mezzogiorno. Giada e il nonno passano dalla piazza del Duomo. Sul campanile c’è il grande orologio astronomico. A mezzogiorno in punto un leone di bronzo ruggisce, un gallo canta e le campane suonano. I turisti fanno le foto.
+Il pomeriggio escono in mare con la barca del nonno. La città diventa piccola. Il mare è calmo, ma sotto l’acqua la corrente tira.
+Al largo il nonno spegne il motore. Guarda l’acqua per un lungo minuto.
+Giada: Nonno, che c’è?
+Nonno: Niente. Pensavo a Cola. Te l’ho mai raccontata, la storia vera di Colapesce?
+Giada: Me la raccontavi quando ero piccola. Ma racconta.
+Nonno: C’era una volta, qui a Messina, un ragazzo che si chiamava Cola. Era figlio di un pescatore. E amava il mare più di ogni altra cosa. Stava in acqua dalla mattina alla sera. Sua madre lo chiamava, lo chiamava, ma lui non tornava mai a casa.
+Madre: Cola! Cola, vieni a casa! Se ami così tanto il mare… che tu possa diventare un pesce!
+Nonno: E così fu. Cola cominciò a nuotare come un pesce. Poteva stare sotto l’acqua per ore. Gli crebbero le dita sottili, come le pinne. Tutti lo chiamavano Colapesce. La sua fama arrivò fino al re. Il grande re Federico, l’imperatore.
+Re: Ragazzo, dicono che tu conosci il mare meglio dei pesci. Vediamo. Ecco una coppa d’oro. La butto in mare. Riportamela.
+Nonno: Il re prese la coppa e la buttò nell’acqua. Cola si tuffò. E dopo un po’ tornò su, con la coppa in mano. Allora il re buttò la sua corona, ancora più lontano. E Cola gliela riportò.
+Nonno: Ma la terza volta il re voleva sapere una cosa sola. Su che cosa sta la Sicilia? Cola si immerse e restò sotto per tanto tempo. Quando tornò, era pallido.
+Cola: Maestà, la Sicilia sta su tre colonne. Una è forte. Una è vecchia. Ma la terza, quella sotto Messina, è crepata. Il fuoco dell’Etna la mangia. Prima o poi si romperà.
+Nonno: Il re non era contento. Voleva vedere con i suoi occhi. Allora prese il suo anello e lo buttò nel punto più profondo dello Stretto. Cola guardò il mare per tanto tempo. Poi prese in mano una manciata di lenticchie.
+Cola: Se tornano su le lenticchie, vuol dire che io non torno.
+Nonno: Passarono le ore. Il re aspettava. Il popolo aspettava. La madre di Cola aspettava. Poi, sull’acqua, apparvero le lenticchie. Una, due, cento. Galleggiavano. E Cola non tornò mai più.
+Nonno: Dicono che vide la colonna rompersi. E che rimase là sotto a reggerla, al posto suo. E ancora oggi è lì. Regge la Sicilia sulle spalle. E quando si stanca e cambia spalla, la terra trema.
+Giada guarda il mare. È blu, quasi nero. Non dice niente.
+La mattina dopo Giada torna in mare con il nonno. Oggi vuole fare la sua immersione più profonda. Quaranta metri. Mai fatto prima.
+Giada respira. Lenta. Profonda. Il nonno tiene la corda e la guarda negli occhi.
+Nonno: Se senti qualcosa di strano, torni su. Promettimelo.
+Poi si immerge. Il mondo diventa silenzioso. Solo il cuore che batte, lento.
+Dieci metri. L’acqua è blu chiaro. Venti metri. Più fredda, più scura. La corrente la spinge da una parte.
+A trenta metri la luce quasi non c’è più. Giada scende lungo la corda. Trentacinque. Trentotto. Quaranta. Il fondo. Sabbia grigia e buio.
+E poi sente una cosa. Una mano. Fredda, ma gentile. Le prende la mano destra. Le apre le dita. E le mette qualcosa nel palmo. Poi la lascia.
+Giada risale. Lenta, come le ha insegnato il nonno. Il cuore batte forte. Esce dall’acqua e respira, una volta, due volte, come se fosse la prima volta nella vita.
+Nonno: Giada! Tutto bene? Sei stata giù tanto!
+Giada apre la mano. Nel palmo c’è un anello. Un anello d’oro sottile, con una piccola pietra blu. L’anello di sua madre.
+Giada: Nonno… qualcuno me l’ha dato. Laggiù.
+Il nonno guarda l’anello. Poi guarda il mare. Si fa il segno della croce.
+Nonno: Grazie, Cola.
+Quella notte, a Messina, la terra trema. Poco. Solo un attimo. I bicchieri suonano nella credenza, un cane abbaia, e poi tutto torna tranquillo.
+Ancora oggi i pescatori di Messina, quando la terra trema, dicono che Colapesce ha cambiato spalla. E qualcuno, prima di immergersi nello Stretto, butta in acqua una manciata di lenticchie. Per salutarlo.
+Questo era «Brividi nella notte». Stanotte, se il vostro letto trema un po’… non abbiate paura. È solo un ragazzo stanco. Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend gibt es kein Gespenst. Es gibt einen Jungen. Einen Jungen, der seit achthundert Jahren unter unseren Füßen ist. Und er hat sich nie ausgeruht.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und haltet die Luft an.
+Heute Abend fahren wir nach Sizilien, nach Messina. Vor der Stadt liegt die Meerenge, das Meer zwischen Sizilien und Kalabrien. Das Wasser hier ist dunkelblau, sehr tief, mit starken, schnellen Strömungen. Die Seeleute fürchten es seit jeher.
+Giada ist vierundzwanzig. Sie macht Apnoetauchen: Sie taucht ohne Flasche auf den Meeresgrund, mit einem einzigen Atemzug. Sie trainiert jeden Morgen mit ihrem Großvater Saro, einem alten Schwertfischer. Aber diesen Sommer geht Giada ein Gedanke nicht aus dem Kopf. Letztes Jahr hat sie genau hier im Meer den Ring ihrer Mutter verloren. Ihre Mutter ist vor drei Jahren gestorben.
+Es ist Mittag. Giada und der Großvater gehen über den Domplatz. Am Glockenturm ist die große astronomische Uhr. Um Punkt zwölf brüllt ein Löwe aus Bronze, ein Hahn kräht, und die Glocken läuten. Die Touristen machen Fotos.
+Am Nachmittag fahren sie mit dem Boot des Großvaters hinaus. Die Stadt wird klein. Das Meer ist ruhig, aber unter Wasser zieht die Strömung.
+Draußen auf dem Meer macht der Großvater den Motor aus. Er schaut eine lange Minute aufs Wasser.
+Giada: Opa, was ist?
+Opa: Nichts. Ich habe an Cola gedacht. Habe ich dir je die wahre Geschichte von Colapesce erzählt?
+Giada: Du hast sie mir erzählt, als ich klein war. Aber erzähl.
+Opa: Es war einmal, hier in Messina, ein Junge, der Cola hieß. Er war der Sohn eines Fischers. Und er liebte das Meer mehr als alles andere. Er war von morgens bis abends im Wasser. Seine Mutter rief und rief ihn, aber er kam nie nach Hause.
+Mutter: Cola! Cola, komm nach Hause! Wenn du das Meer so sehr liebst … dann sollst du doch ein Fisch werden!
+Opa: Und so geschah es. Cola fing an, wie ein Fisch zu schwimmen. Er konnte stundenlang unter Wasser bleiben. Seine Finger wurden dünn wie Flossen. Alle nannten ihn Colapesce. Sein Ruhm gelangte bis zum König. Zum großen König Friedrich, dem Kaiser.
+König: Junge, man sagt, du kennst das Meer besser als die Fische. Mal sehen. Hier ist ein goldener Becher. Ich werfe ihn ins Meer. Bring ihn mir zurück.
+Opa: Der König nahm den Becher und warf ihn ins Wasser. Cola sprang hinein. Und nach einer Weile kam er wieder hoch, mit dem Becher in der Hand. Da warf der König seine Krone, noch weiter weg. Und Cola brachte sie ihm zurück.
+Opa: Aber beim dritten Mal wollte der König nur eins wissen. Worauf steht Sizilien? Cola tauchte hinab und blieb sehr lange unten. Als er zurückkam, war er blass.
+Cola: Majestät, Sizilien steht auf drei Säulen. Eine ist stark. Eine ist alt. Aber die dritte, die unter Messina, hat einen Riss. Das Feuer des Ätna frisst sie auf. Früher oder später wird sie brechen.
+Opa: Der König war nicht zufrieden. Er wollte es mit eigenen Augen sehen. Also nahm er seinen Ring und warf ihn an die tiefste Stelle der Meerenge. Cola schaute lange aufs Meer. Dann nahm er eine Handvoll Linsen.
+Cola: Wenn die Linsen hochkommen, heißt das, dass ich nicht zurückkomme.
+Opa: Die Stunden vergingen. Der König wartete. Das Volk wartete. Colas Mutter wartete. Dann erschienen auf dem Wasser die Linsen. Eine, zwei, hundert. Sie trieben oben. Und Cola kam nie mehr zurück.
+Opa: Man sagt, er sah, wie die Säule brach. Und dass er dort unten blieb, um sie an ihrer Stelle zu tragen. Und bis heute ist er dort. Er trägt Sizilien auf den Schultern. Und wenn er müde wird und die Schulter wechselt, bebt die Erde.
+Giada schaut aufs Meer. Es ist blau, fast schwarz. Sie sagt nichts.
+Am nächsten Morgen fährt Giada mit dem Großvater wieder hinaus. Heute will sie ihren tiefsten Tauchgang machen. Vierzig Meter. Das hat sie noch nie geschafft.
+Giada atmet. Langsam. Tief. Der Großvater hält das Seil und sieht ihr in die Augen.
+Opa: Wenn du etwas Seltsames spürst, kommst du hoch. Versprich es mir.
+Dann taucht sie ab. Die Welt wird still. Nur das Herz, das langsam schlägt.
+Zehn Meter. Das Wasser ist hellblau. Zwanzig Meter. Kälter, dunkler. Die Strömung drückt sie zur Seite.
+Auf dreißig Metern gibt es fast kein Licht mehr. Giada gleitet am Seil hinab. Fünfunddreißig. Achtunddreißig. Vierzig. Der Grund. Grauer Sand und Dunkelheit.
+Und dann spürt sie etwas. Eine Hand. Kalt, aber sanft. Sie nimmt ihre rechte Hand. Sie öffnet ihre Finger. Und legt ihr etwas in die Handfläche. Dann lässt sie los.
+Giada steigt auf. Langsam, wie der Großvater es ihr beigebracht hat. Ihr Herz klopft heftig. Sie kommt aus dem Wasser und atmet, einmal, zweimal, als wäre es das erste Mal in ihrem Leben.
+Opa: Giada! Alles in Ordnung? Du warst lange unten!
+Giada öffnet die Hand. In der Handfläche liegt ein Ring. Ein feiner goldener Ring mit einem kleinen blauen Stein. Der Ring ihrer Mutter.
+Giada: Opa … jemand hat ihn mir gegeben. Da unten.
+Der Großvater schaut den Ring an. Dann schaut er aufs Meer. Er bekreuzigt sich.
+Opa: Danke, Cola.
+In dieser Nacht bebt in Messina die Erde. Nur ein wenig. Nur einen Augenblick. Die Gläser klirren im Schrank, ein Hund bellt, und dann ist alles wieder ruhig.
+Bis heute sagen die Fischer von Messina, wenn die Erde bebt, dass Colapesce die Schulter gewechselt hat. Und manche werfen, bevor sie in der Meerenge tauchen, eine Handvoll Linsen ins Wasser. Um ihn zu grüßen.
+Das war „Brividi nella notte“. Wenn heute Nacht euer Bett ein bisschen wackelt … habt keine Angst. Das ist nur ein müder Junge. Bis zur nächsten Legende …`,
+    fact:'Die Sage von Colapesce („Fisch-Cola“) ist eine der bekanntesten Siziliens und wird seit dem Mittelalter erzählt; schon im 12. und 13. Jahrhundert schrieben Chronisten über einen Taucher namens Nicola aus Messina. Der König in der Geschichte ist meist Friedrich II. von Hohenstaufen, König von Sizilien und Kaiser. Sizilien heißt in der Antike „Trinacria“, Land der drei Spitzen – daher die drei Säulen. Die Meerenge von Messina ist bis zu 250 Meter tief und für ihre starken Strömungen berüchtigt (die Sage von Skylla und Charybdis spielt hier). Messina wurde 1908 von einem schweren Erdbeben fast völlig zerstört. Die astronomische Uhr am Domturm (1933) ist eine der größten der Welt: Um zwölf Uhr brüllt der Löwe und kräht der Hahn.' }
 );
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
