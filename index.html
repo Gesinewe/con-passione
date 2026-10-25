@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 245;
+const APP_VERSION = 246;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -67994,6 +67994,187 @@ Pietro schaut aufs Tablet. Dann schaut er Opa an. Dann schaltet er das Tablet au
 Pietro: Opa … lässt du uns noch eine Platte hören?
 Das war „Voci dai circuiti“. Und denkt daran: Technik ist wunderschön. Aber eine Kurbel-Taschenlampe in der Schublade schadet nie.`,
     fact:'Alte analoge Festnetztelefone bekommen ihren Strom über die Telefonleitung selbst – deshalb funktionierten sie früher auch bei Stromausfall. Das Radio verdankt Italien viel: Guglielmo Marconi aus Bologna schickte 1895 die ersten drahtlosen Signale und bekam 1909 den Nobelpreis für Physik.' }
+];
+/* Hörgeschichte „Troll og sagn“ (Deutsche lernen Norwegisch, v246; Wunsch der Nutzerin: „Mach eine Hörgeschichte für Troll og sagn“).
+   Podcast „Sagn ved peisen“, Folge 1: „Vardøgeren“ – ein Sturmabend im Oktober auf Gunvors Hof (zwischen Stufe 4 und 5: Eirik ist schon
+   Paulas Freund und Sindres Geigenlehrer). Strom und Handynetz fallen aus, Eirik ist von Rauland unterwegs. Gunvor erzählt vom Vardøger,
+   dem Geist, der vor einem Menschen ankommt – dann hört man Auto, Tür und Schritte, aber niemand ist da. Zehn Minuten später kommt Eirik
+   wirklich. Zum Schluss ruft Halvor an: Jemand hat an sein Bootshaus geklopft …
+   Stimmen: Erzählerin Pernille, Paula Seraphina (Norwegisch mit deutschem Akzent), Gunvor Pernille (tief), Sindre Pernille +30 Hz,
+   Eirik Finn, Halvor Finn (tief, langsam, Telefon). Niveau ab B1. */
+PODCAST_INFO.troll = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sturmabend auf Gunvors Hof – mit Wind, Regen, Kaminfeuer und einem Besucher, der zu früh kommt. Einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.troll = [
+  { id:'troll-p1', lang:'no', erzaehler:'Pernille', show:'Sagn ved peisen', ep:1, title:'Vardøgeren', de:'Der Vardøger',
+    place:'Gunvors Hof in Seljord, ein stürmischer Abend im Oktober', level:'ab B1', kind:'Unheimlich · Sage',
+    voices:{Paula:'de-DE-SeraphinaMultilingualNeural', Gunvor:'Pernille', Sindre:'Pernille', Eirik:'Finn', Halvor:'Finn'},
+    stil:{'':['-10%','-3Hz'], Paula:['-4%','+0Hz'], Gunvor:['-10%','-6Hz'], Sindre:['+4%','+30Hz'], Eirik:['-2%','+4Hz'], Halvor:['-14%','-10Hz']},
+    words:[['en vardøger / vardøgeren','ein Vardøger (Geist, der vor einem Menschen ankommt)'],['en storm / stormen','ein Sturm / der Sturm'],['strømmen er borte','der Strom ist weg'],['et stearinlys / stearinlysene','eine Kerze / die Kerzen'],['peisen','der Kamin'],['dekning','Handyempfang'],['å være på vei','unterwegs sein'],['gangen','der Flur'],['å henge opp','aufhängen'],['å sparke av seg støvlene','die Stiefel abstreifen'],['å plystre','pfeifen'],['å skjelve','zittern'],['et tre / treet','ein Baum / der Baum'],['å velte','umstürzen'],['gjennomvåt','klatschnass'],['å banke på','anklopfen'],['naustet','das Bootshaus'],['presis','pünktlich'],['å gå feil','sich verlaufen'],['overtro','Aberglaube']],
+    fx:{'Hei, og velkommen til':'pausa vento_an', 'Det er en mørk kveld':'pioggia_an', 'Plutselig blir det mørkt':'spegnimento pausa', 'Gunvor tenner':'falo_an', 'Ute i stormen':'tuono', 'Gunvor ser inn i':'pausa', 'Da hører de det':'pausa motore500_an', 'Bilen stopper':'motore500_aus spegnimento porta_camper', 'Så går døra':'porta', 'Noen går inn i gangen':'passi', 'Paula reiser seg':'pausa', 'Gangen er tom':'pausa', 'Pus står':'soffio', 'Paula ser på telefonen':'pausa', 'Det går ti minutter':'pausa tuono', 'Igjen hører de':'pausa motore500_an', 'Døra går':'porta passi', 'Pus går bort':'miao', 'Da ringer':'pausa telefono_fisso', 'Halvor: Jeg ville bare':'radio', 'Halvor: Ja, for det sto':'radio', 'Halvor: Han banket på':'radio', 'Halvor: Godt.':'radio', 'Alle ser på':'pausa', 'Akkurat da':'accensione', 'Det var «Sagn':'falo_aus vento_aus pioggia_aus pausa'},
+    text:`Hei, og velkommen til «Sagn ved peisen». I dag skal vi til Seljord i Telemark. Det er oktober, og det blåser.
+Det er en mørk kveld på gården til Gunvor. Regnet slår mot vinduene. Paula og Sindre sitter ved kjøkkenbordet og spiller kort. Gunvor strikker.
+Sindre: Når kommer Eirik? Han lovet å komme før åtte.
+Paula: Han kjører fra Rauland. Det tar en time. Og i dette været …
+Gunvor: Han kjører forsiktig. Eirik er en forsiktig gutt.
+Plutselig blir det mørkt. Lampene går av. Kjøleskapet blir stille.
+Sindre: Strømmen er borte!
+Gunvor: Det skjer hver høst. Sindre, hent stearinlysene i skuffen. Paula, kan du legge ved i peisen?
+Gunvor tenner tre stearinlys. Paula legger to store vedkubber i peisen. Snart brenner det, og kjøkkenet blir varmt og gult.
+Paula ser på telefonen.
+Paula: Jeg har ikke dekning. Jeg kan ikke ringe Eirik.
+Gunvor: Mobilnettet går alltid samtidig med strømmen. Sett deg. Han er på vei.
+Ute i stormen knaker det i de gamle trærne.
+Sindre: Bestemor, fortell noe. Noe skummelt.
+Gunvor: Skummelt? I mørket? Er du sikker?
+Sindre: Ja!
+Gunvor legger fra seg strikketøyet.
+Gunvor: Har du hørt om vardøgeren?
+Sindre: Nei. Er det et troll?
+Gunvor: Nei, ikke et troll. Vardøgeren er en ånd. Mange mennesker har en. Den kommer før deg. Alltid før deg.
+Paula: Hva mener du, før?
+Gunvor: Du sitter hjemme og venter på noen. Så hører du bilen. Du hører døra. Du hører at noen henger opp jakka i gangen og sparker av seg støvlene. Du går ut for å si hei. Og gangen er tom.
+Sindre: Tom?
+Gunvor: Tom. Ingen der. Og ti minutter senere kommer personen. Den ordentlige. Og han gjør alt helt likt. Bilen, døra, jakka, støvlene.
+Paula: Det er bare noe man tror.
+Gunvor: Faren min hadde en vardøger. Mor sa alltid: Nå kommer vardøgeren hans, da kan jeg sette på kaffen. Og hun hadde alltid rett.
+Gunvor ser inn i flammene. Det er stille lenge. Bare regnet og vinden.
+Da hører de det. En bil kommer opp bakken. Lyset fra frontlyktene glir over veggen.
+Paula: Endelig! Det er Eirik.
+Bilen stopper på tunet. En bildør slår igjen.
+Så går døra til gangen. Den knirker, slik den alltid gjør.
+Noen går inn i gangen. Tunge skritt. En jakke blir hengt opp. Én støvel faller på gulvet. Så én til. Og noen plystrer. Det er «Paulas vals».
+Sindre: Det er Eirik! Han plystrer alltid den!
+Paula reiser seg og går ut med et stearinlys.
+Paula: Eirik? Hei! Du er helt …
+Gangen er tom. Det henger ingen ny jakke der. Det står ingen støvler på gulvet. Og gulvet er tørt.
+Paula åpner ytterdøra. Ute er det bare regn og mørke. Det står ingen bil på tunet.
+Paula: Gunvor … Det er ingen her.
+Pus står i døra til kjøkkenet. Han ser ut i den tomme gangen, og han freser.
+Sindre: Bestemor! Var det … vardøgeren?
+Gunvor: Det høres sånn ut.
+Paula setter seg igjen. Hun skjelver litt. Hun sier at det er fordi hun fryser.
+Paula ser på telefonen. Fremdeles ingen dekning.
+Paula: Men hvis det var vardøgeren … Betyr det at det har skjedd noe?
+Gunvor: Nei, vennen min. Vardøgeren betyr bare én ting: Han er på vei. Han kommer snart.
+Det går ti minutter. Ingen sier noe. Sindre teller sekundene høyt, til Gunvor ber ham slutte.
+Igjen hører de en bil. Den kommer opp bakken. Lyset glir over veggen, akkurat som før.
+Bilen stopper igjen på tunet. En bildør slår igjen.
+Døra går. Den knirker. Tunge skritt i gangen. Jakka. Én støvel. To støvler. Og noen plystrer «Paulas vals».
+Ingen reiser seg. Alle tre ser på døra til kjøkkenet.
+Eirik: Hallo? Hvorfor er det så mørkt her? Og hvorfor ser dere sånn på meg?
+Eirik står i døra. Han er gjennomvåt. Håret drypper. Han har fela på ryggen.
+Paula: Eirik! Er det deg? Den ordentlige?
+Eirik: Den ordentlige? Hvem andre skulle det være?
+Sindre: Du kom for ti minutter siden! Vi hørte deg! Du plystret!
+Eirik ler. Han setter seg ved peisen og varmer hendene.
+Eirik: Et tre hadde veltet over veien ved Flatdal. Jeg måtte vente en halvtime. Men for ti minutter siden satt jeg i bilen og tenkte bare på én ting: varm kaffe hos Gunvor.
+Gunvor: Da er det klart. Det var vardøgeren din.
+Eirik: Oldemor sa alltid at vardøgeren min er mer presis enn meg.
+Pus går bort til Eirik og gnir seg mot beina hans. Nå freser han ikke.
+Da ringer den gamle telefonen på veggen. Gunvor tar den.
+Gunvor: Haugen. Å, det er deg, Halvor.
+Halvor: Jeg ville bare høre om alt er bra hos dere. Er Eirik kommet?
+Gunvor: Ja, han kom akkurat nå. Hvorfor spør du?
+Halvor: Ja, for det sto noen ved naustet mitt for en halvtime siden. I stormen. Og han plystret den valsen. Den valsen til Paula.
+Gunvor: Og så?
+Halvor: Han banket på døra. Men da jeg åpnet, var det ingen der.
+Det er helt stille på kjøkkenet. Eirik ser på Paula. Paula ser på Gunvor.
+Eirik: Jeg har ikke vært ved naustet. Jeg sto i Flatdal hele tiden.
+Gunvor: Han kom nettopp, Halvor. Den ordentlige Eirik. Vardøgeren hans gikk nok feil i stormen.
+Halvor: Godt. Da går jeg og legger meg. Men jeg låser døra i natt.
+Gunvor legger på. Hun tar strikketøyet igjen, som om ingenting har skjedd.
+Paula: Gunvor. Du tror ikke på dette. Ikke sant?
+Gunvor: Jeg? Nei da. Det er bare overtro. Sindre, sett på kaffen. Vi får kanskje besøk.
+Sindre: Av hvem?
+Gunvor: Det vet man aldri.
+Alle ser på døra til gangen. Men den blir stående lukket.
+Akkurat da kommer strømmen tilbake. Lampene blinker, og kjøleskapet begynner å brumme igjen. Sindre puster ut.
+Eirik tar fram fela. Han spiller «Paulas vals», sakte og lavt. Ute har vinden roet seg litt.
+Paula: Nå vet jeg i hvert fall én ting. Når jeg hører deg plystre i gangen, setter jeg på kaffen.
+Eirik: Og venter ti minutter.
+Det var «Sagn ved peisen». Har du en vardøger? Neste gang du venter på noen – lytt godt etter. Ha det bra, og god natt!`,
+    tr:`Hallo und willkommen bei „Sagen am Kamin“. Heute geht es nach Seljord in Telemark. Es ist Oktober, und es stürmt.
+Es ist ein dunkler Abend auf Gunvors Hof. Der Regen schlägt gegen die Fenster. Paula und Sindre sitzen am Küchentisch und spielen Karten. Gunvor strickt.
+Sindre: Wann kommt Eirik? Er hat versprochen, vor acht zu kommen.
+Paula: Er fährt aus Rauland. Das dauert eine Stunde. Und bei diesem Wetter …
+Gunvor: Er fährt vorsichtig. Eirik ist ein vorsichtiger Junge.
+Plötzlich wird es dunkel. Die Lampen gehen aus. Der Kühlschrank wird still.
+Sindre: Der Strom ist weg!
+Gunvor: Das passiert jeden Herbst. Sindre, hol die Kerzen aus der Schublade. Paula, kannst du Holz in den Kamin legen?
+Gunvor zündet drei Kerzen an. Paula legt zwei große Holzscheite in den Kamin. Bald brennt es, und die Küche wird warm und gelb.
+Paula schaut aufs Handy.
+Paula: Ich habe keinen Empfang. Ich kann Eirik nicht anrufen.
+Gunvor: Das Handynetz fällt immer zusammen mit dem Strom aus. Setz dich. Er ist unterwegs.
+Draußen im Sturm knarren die alten Bäume.
+Sindre: Oma, erzähl was. Was Gruseliges.
+Gunvor: Was Gruseliges? Im Dunkeln? Bist du sicher?
+Sindre: Ja!
+Gunvor legt das Strickzeug weg.
+Gunvor: Hast du schon mal vom Vardøger gehört?
+Sindre: Nein. Ist das ein Troll?
+Gunvor: Nein, kein Troll. Der Vardøger ist ein Geist. Viele Menschen haben einen. Er kommt vor dir. Immer vor dir.
+Paula: Was meinst du mit „vor“?
+Gunvor: Du sitzt zu Hause und wartest auf jemanden. Dann hörst du das Auto. Du hörst die Tür. Du hörst, wie jemand im Flur die Jacke aufhängt und die Stiefel abstreift. Du gehst hinaus, um Hallo zu sagen. Und der Flur ist leer.
+Sindre: Leer?
+Gunvor: Leer. Niemand da. Und zehn Minuten später kommt die Person. Die echte. Und sie macht alles ganz genauso. Das Auto, die Tür, die Jacke, die Stiefel.
+Paula: Das ist nur etwas, woran man glaubt.
+Gunvor: Mein Vater hatte einen Vardøger. Mutter hat immer gesagt: Jetzt kommt sein Vardøger, dann kann ich den Kaffee aufsetzen. Und sie hatte immer recht.
+Gunvor schaut in die Flammen. Lange ist es still. Nur der Regen und der Wind.
+Da hören sie es. Ein Auto kommt den Hang herauf. Das Licht der Scheinwerfer gleitet über die Wand.
+Paula: Endlich! Das ist Eirik.
+Das Auto hält auf dem Hofplatz. Eine Autotür schlägt zu.
+Dann geht die Flurtür. Sie knarrt, wie immer.
+Jemand kommt in den Flur. Schwere Schritte. Eine Jacke wird aufgehängt. Ein Stiefel fällt auf den Boden. Dann noch einer. Und jemand pfeift. Es ist „Paulas Walzer“.
+Sindre: Das ist Eirik! Den pfeift er immer!
+Paula steht auf und geht mit einer Kerze hinaus.
+Paula: Eirik? Hallo! Du bist ja ganz …
+Der Flur ist leer. Da hängt keine neue Jacke. Da stehen keine Stiefel auf dem Boden. Und der Boden ist trocken.
+Paula öffnet die Haustür. Draußen sind nur Regen und Dunkelheit. Auf dem Hofplatz steht kein Auto.
+Paula: Gunvor … Hier ist niemand.
+Pus steht in der Küchentür. Er schaut in den leeren Flur, und er faucht.
+Sindre: Oma! War das … der Vardøger?
+Gunvor: Es klingt so.
+Paula setzt sich wieder. Sie zittert ein bisschen. Sie sagt, das sei, weil sie friert.
+Paula schaut aufs Handy. Immer noch kein Empfang.
+Paula: Aber wenn das der Vardøger war … Heißt das, dass etwas passiert ist?
+Gunvor: Nein, meine Liebe. Der Vardøger bedeutet nur eins: Er ist unterwegs. Er kommt bald.
+Zehn Minuten vergehen. Niemand sagt etwas. Sindre zählt laut die Sekunden, bis Gunvor ihn bittet aufzuhören.
+Wieder hören sie ein Auto. Es kommt den Hang herauf. Das Licht gleitet über die Wand, genau wie vorhin.
+Das Auto hält wieder auf dem Hofplatz. Eine Autotür schlägt zu.
+Die Tür geht. Sie knarrt. Schwere Schritte im Flur. Die Jacke. Ein Stiefel. Zwei Stiefel. Und jemand pfeift „Paulas Walzer“.
+Niemand steht auf. Alle drei schauen auf die Küchentür.
+Eirik: Hallo? Warum ist es hier so dunkel? Und warum schaut ihr mich so an?
+Eirik steht in der Tür. Er ist klatschnass. Seine Haare tropfen. Er hat die Geige auf dem Rücken.
+Paula: Eirik! Bist du das? Der echte?
+Eirik: Der echte? Wer sollte es denn sonst sein?
+Sindre: Du bist vor zehn Minuten gekommen! Wir haben dich gehört! Du hast gepfiffen!
+Eirik lacht. Er setzt sich an den Kamin und wärmt sich die Hände.
+Eirik: Bei Flatdal war ein Baum über die Straße gestürzt. Ich musste eine halbe Stunde warten. Aber vor zehn Minuten saß ich im Auto und habe nur an eins gedacht: heißen Kaffee bei Gunvor.
+Gunvor: Dann ist es klar. Das war dein Vardøger.
+Eirik: Meine Urgroßmutter hat immer gesagt, mein Vardøger ist pünktlicher als ich.
+Pus geht zu Eirik und streicht ihm um die Beine. Jetzt faucht er nicht.
+Da klingelt das alte Telefon an der Wand. Gunvor nimmt ab.
+Gunvor: Haugen. Ach, du bist es, Halvor.
+Halvor: Ich wollte nur hören, ob bei euch alles in Ordnung ist. Ist Eirik schon da?
+Gunvor: Ja, er ist gerade gekommen. Warum fragst du?
+Halvor: Na, weil vor einer halben Stunde jemand an meinem Bootshaus stand. Im Sturm. Und er hat diesen Walzer gepfiffen. Paulas Walzer.
+Gunvor: Und dann?
+Halvor: Er hat an die Tür geklopft. Aber als ich aufgemacht habe, war niemand da.
+In der Küche ist es ganz still. Eirik sieht Paula an. Paula sieht Gunvor an.
+Eirik: Ich war nicht am Bootshaus. Ich stand die ganze Zeit in Flatdal.
+Gunvor: Er ist gerade gekommen, Halvor. Der echte Eirik. Sein Vardøger hat sich im Sturm wohl verlaufen.
+Halvor: Gut. Dann gehe ich jetzt schlafen. Aber heute Nacht schließe ich die Tür ab.
+Gunvor legt auf. Sie nimmt wieder ihr Strickzeug, als wäre nichts gewesen.
+Paula: Gunvor. Du glaubst doch nicht daran. Oder?
+Gunvor: Ich? Ach was. Das ist nur Aberglaube. Sindre, setz Kaffee auf. Vielleicht bekommen wir Besuch.
+Sindre: Von wem?
+Gunvor: Das weiß man nie.
+Alle schauen auf die Flurtür. Aber sie bleibt zu.
+Genau in dem Moment kommt der Strom zurück. Die Lampen flackern, und der Kühlschrank fängt wieder an zu brummen. Sindre atmet auf.
+Eirik holt die Geige heraus. Er spielt „Paulas Walzer“, langsam und leise. Draußen hat sich der Wind ein wenig gelegt.
+Paula: Jetzt weiß ich wenigstens eins. Wenn ich dich im Flur pfeifen höre, setze ich den Kaffee auf.
+Eirik: Und wartest zehn Minuten.
+Das war „Sagen am Kamin“. Hast du einen Vardøger? Wenn du das nächste Mal auf jemanden wartest – hör gut hin. Macht’s gut, und gute Nacht!`,
+    fact:'Der „vardøger“ (auch „vardøgr“, von altnordisch „vǫrðr“, Wächter) ist ein Volksglaube, den es fast nur in Norwegen gibt: ein Geist oder Doppelgänger, der kurz vor einem Menschen ankommt. Man hört das Auto, die Tür, die Schritte im Flur – und ein paar Minuten später kommt die Person wirklich und macht alles genauso. Viele Norwegerinnen und Norweger erzählen solche Erlebnisse halb im Scherz, halb im Ernst; in manchen Familien sagt man noch heute „Nå kom vardøgeren hans“ und setzt schon mal den Kaffee auf. Flatdal ist ein Tal zwischen Seljord und Rauland, durch das die Straße nach Westen führt.' }
 ];
 /* Hörgeschichte „Unterwegs“ (Italiener lernen Deutsch, v214; Wunsch der Nutzerin: „für alle 4 jeweils eine“).
    Figuren aus dem Thema: Elena (Belluno) im Eiscafé von Onkel Beppe in München, Frau Huber (Resi) mit Dackel Waldi, ihr Enkel Jonas.
