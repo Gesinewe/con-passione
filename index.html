@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 249;
+const APP_VERSION = 250;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -65568,6 +65568,139 @@ Wer weiß … vielleicht ist er auch unter ihnen.
 Teufel: Wir sehen uns auf der Brücke …
 Das war „Brividi nella notte“. Und denkt daran: Macht nie einen Pakt mit Fremden. Bis zur nächsten Legende …`,
     fact:'Den Ponte della Maddalena bei Borgo a Mozzano gibt es wirklich: eine mittelalterliche Steinbrücke (um das Jahr 1100) über den Serchio mit einem auffällig hohen, schiefen Bogen. Die Teufelslegende kennt man an vielen „Teufelsbrücken“ in Europa. Das Halloween-Fest in Borgo a Mozzano ist eines der größten in Italien.' }
+);
+/* Brividi-Podcast Folge 6 (v250, Wunsch der Nutzerin: Sonderfolge zu Allerseelen – „fang mit 1 an“).
+   Wird nach leggende_brividi2.js geladen. Palermo, Nacht vom 1. auf den 2. November: In Sizilien bringen „i morti“ den Kindern Geschenke.
+   Totò (8) und Giulia (14, glaubt an nichts) schlafen bei Nonna Rosa. Fiera dei morti, Pupi di zucchero, Frutta martorana, Ossa di morto;
+   Tisch für die Toten gedeckt, Tür nicht abgeschlossen. Nonna erzählt die alte Sage von der Prozession der Toten und der Kerze, die zum
+   Knochen wird. Nachts kratzt etwas an Totòs Füßen (die Katze Minnie – oder?). Am Morgen Geschenke versteckt im Haus, darunter ein kleines
+   Holzpferd, das Nonno Turi (letztes Jahr gestorben) Totò versprochen hatte. Nonna hat es nicht hingelegt. Berührend, leicht gruselig.
+   Stimmen: Erzählerin Isabella, Nonna Isabella (tiefer), Totò Elsa (hoch, Kind), Giulia Elsa, Morto Giuseppe (sehr tief, mit Echo). */
+PODCASTS.brividi.push(
+  { id:'brividi-p6', show:'Brividi nella notte', ep:6, title:'La notte dei morti', de:'Die Nacht der Toten',
+    place:'Palermo, la notte tra il primo e il 2 novembre', level:'ab A2', kind:'Sonderfolge · Allerseelen',
+    voices:{Nonna:'Isabella', 'Totò':'Elsa', Giulia:'Elsa', Morto:'Giuseppe', Venditore:'Diego'},
+    stil:{Nonna:['-14%','-20Hz'], 'Totò':['+6%','+70Hz'], Giulia:['-2%','+10Hz'], Morto:['-24%','-40Hz'], Venditore:['+4%','+0Hz']},
+    mormorio:['Pupi di zucchero!','Martorana fresca!','Mamma, guarda!','Quanto costa?','Che bello!','Due chili, per favore.','Ossa di morto!','Totò, vieni!','Torrone!','Prego, signora!'],
+    words:[['i morti','die Toten'],['Ognissanti','Allerheiligen (1. November)'],['il giorno dei morti','Allerseelen (2. November)'],['la fiera','der Markt, die Messe'],['il pupo di zucchero','die Zuckerpuppe'],['la frutta martorana','Früchte aus Marzipan'],['le ossa di morto','„Totenknochen“ (harte Kekse)'],['il cimitero','der Friedhof'],['la tomba','das Grab'],['apparecchiare la tavola','den Tisch decken'],['chiudere a chiave','abschließen'],['la processione','die Prozession'],['la candela','die Kerze'],['l’osso','der Knochen'],['grattare','kratzen'],['i piedi','die Füße'],['nascondere','verstecken'],['il cavallino di legno','das Holzpferdchen'],['la calligrafia','die Handschrift'],['promettere / promesso','versprechen / versprochen']],
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Stasera andiamo in Sicilia':'atmo_aus pausa', 'È il primo novembre':'folla_an', 'Venditore: Pupi':'pausa', 'La sera Giulia':'folla_aus pausa campane', 'Dopo cena la nonna':'pausa', 'Poi va alla porta':'porta', 'Nonna: Perché i morti':'pausa vento_an', 'Nonna: Quando io':'pausa', 'Morto: Tienila':'eco', 'Nonna: La mattina':'pausa', 'Totò: E poi?':'pausa', 'Alle undici':'civetta', 'Totò non dorme':'pausa', 'È quasi l’una':'passi', 'Una luce piccola':'pausa', 'E poi qualcosa':'pausa', 'Totò: Aaah':'miao', 'Giulia accende':'fusa', 'Quando Totò si sveglia':'vento_aus gallo', 'Totò corre':'cassetto', 'Sotto il letto':'pausa', 'Poi Giulia trova':'pausa', 'Nonna prende':'pausa', 'La nonna non risponde':'pausa campane', 'In Sicilia ancora oggi':'pausa atmo_an', 'Questo era':'atmo_aus pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Questa è una puntata speciale. Una puntata per la notte più lunga dell’anno: la notte dei morti.
+Spegnete la luce. Mettete le cuffie. E stanotte non chiudete la porta a chiave. Potrebbe arrivare qualcuno.
+Stasera andiamo in Sicilia, a Palermo. Qui la notte tra il primo e il 2 novembre è diversa da tutte le altre. In questa notte i morti tornano a casa. E portano i regali ai bambini.
+È il primo novembre, Ognissanti. Totò ha otto anni. Sua sorella Giulia ne ha quattordici. Questa notte dormono a casa di Nonna Rosa, nel centro di Palermo. Ma prima vanno alla fiera dei morti.
+La fiera è piena di gente e di luci. Ci sono bancarelle con giocattoli, dolci e frutta di zucchero.
+Venditore: Pupi di zucchero! Belli i pupi! Guarda, piccolo: un cavaliere, una ballerina, un paladino!
+Totò guarda i pupi di zucchero. Sono grandi, colorati, e lucidi come il vetro. Accanto ci sono pesche, fichi e arance. Ma non sono vere: sono di marzapane. È la frutta martorana.
+Giulia: Totò, non toccare. I regali li portano i morti, non la nonna.
+Totò: Giulia, tu ci credi ai morti?
+Giulia: Io? Ho quattordici anni. Io credo solo al telefono.
+Nonna: Brava. E stanotte il telefono lo lasci in cucina.
+La sera Giulia e Totò vanno con la nonna al cimitero. Ci sono migliaia di candele. Tutte le tombe sono piene di fiori. Sulla tomba del nonno Turi c’è una foto: un uomo con i baffi bianchi e un sorriso grande.
+Totò: Ciao, nonno. Ti ricordi? Mi avevi promesso un cavallino di legno. Per il mio compleanno.
+Nonna: Il nonno non ha fatto in tempo, amore. Era malato.
+Dopo cena la nonna apparecchia la tavola. Ma non per loro. Mette un bicchiere d’acqua, un pezzo di pane e un piatto di ossa di morto, i biscotti duri e bianchi.
+Totò: Nonna, per chi è?
+Nonna: Per loro. Vengono da lontano. Avranno sete.
+Poi va alla porta di casa. Non la chiude a chiave. La lascia così, solo appoggiata.
+Giulia: Nonna! Siamo a Palermo! Chiudi la porta!
+Nonna: Una notte all’anno si può lasciare aperta.
+Nonna: Perché i morti, quando tornano, non bussano. Entrano piano piano. Lasciano i regali. E vanno via prima dell’alba. Ma i bambini devono dormire. Se un bambino resta sveglio per guardarli… i morti gli grattano i piedi.
+Totò: Mi grattano i piedi?
+Nonna: Sì. Con le loro dita fredde, fredde.
+Giulia: Nonna, sono storie per spaventare i bambini.
+Nonna: Può darsi. Allora ve ne racconto un’altra. Me la raccontava mia nonna.
+Nonna: Quando io ero piccola, in un paese vicino a Palermo viveva una vecchia. La notte dei morti non riusciva a dormire. Allora si è messa alla finestra. Verso mezzanotte, per la strada vuota, è arrivata una processione. Tante persone, in silenzio, ognuna con una candela in mano. Camminavano piano, senza fare rumore. L’ultimo della fila si è fermato sotto la sua finestra. Era vestito di bianco. Le ha dato la sua candela.
+Morto: Tienila tu. Fino a domani.
+Nonna: La mattina la vecchia ha guardato la candela. Non era più una candela. Era un osso. Un osso lungo e bianco.
+Totò: E poi? E poi?
+Nonna: E poi la notte dopo è tornata alla finestra. E ha restituito l’osso. Da quel giorno ha sempre dormito, la notte dei morti. Con gli occhi chiusi e la testa sotto la coperta.
+Alle undici Totò e Giulia sono a letto, nella vecchia camera degli ospiti. Fuori il vento muove le persiane. Una civetta canta sul tetto.
+Totò non dorme. Tiene gli occhi aperti. Poi chiusi. Poi di nuovo aperti.
+Totò: Giulia… dormi?
+Giulia: Sì. Dormo. Dormi anche tu.
+È quasi l’una. La casa è silenziosa. Poi sente un rumore. La porta di casa si apre. Piano piano. Dei passi nel corridoio. Lenti. Leggeri.
+Una luce piccola passa sotto la porta della camera. Gialla, come la luce di una candela. Poi sparisce.
+Totò tira la coperta fino agli occhi. Ma i piedi… i piedi sono fuori.
+E poi qualcosa gli tocca il piede. Qualcosa di freddo. Gratta. Una volta. Due volte.
+Totò: Aaah! Giulia! I morti! Mi grattano i piedi!
+Giulia accende la luce. In fondo al letto c’è Minnie, la gatta della nonna. Ha le zampe fredde e gli occhi gialli. Fa le fusa.
+Giulia: Ecco il tuo morto. Si chiama Minnie. E adesso dormi!
+Totò ride. Ma la luce sotto la porta… quella non era la gatta. Totò lo sa. Mette i piedi sotto la coperta e chiude gli occhi. Questa volta dorme davvero.
+Quando Totò si sveglia, fuori c’è il sole. Un gallo canta da qualche parte, anche se siamo in città.
+Totò corre in cucina. Il bicchiere è vuoto. Il pane non c’è più. Nel piatto restano solo due biscotti.
+Nonna: Buongiorno! Allora? Sono venuti? Cercate, cercate! I morti nascondono sempre i regali.
+Sotto il letto Totò trova una macchinina rossa. Nell’armadio c’è un pupo di zucchero: un paladino con la spada. Sul balcone, nel vaso dei gerani, c’è un sacchetto di frutta martorana.
+Giulia trova un libro e un paio di orecchini. Fa finta di niente, ma sorride.
+Poi Giulia trova un’altra cosa. Sulla sedia della cucina, accanto al piatto con i biscotti, c’è un pacchetto. Una carta marrone, vecchia, chiusa con lo spago. Sopra c’è un biglietto: «Per Totò».
+Totò lo apre. Dentro c’è un cavallino di legno. Piccolo, fatto a mano, con la criniera dipinta di nero.
+Totò: Nonna! Il cavallino! Quello del nonno!
+Nonna prende il biglietto. Lo guarda a lungo. Le mani le tremano un po’.
+Giulia: Nonna, l’hai messo tu. Vero?
+La nonna non risponde subito. Guarda il biglietto. Poi guarda la porta di casa, ancora socchiusa.
+Nonna: Non l’ho messo io, Giulia. Questa è la calligrafia del nonno.
+In cucina nessuno parla. Solo Minnie fa le fusa sotto il tavolo. Giulia guarda il cavallino. Poi guarda il telefono. Per la prima volta, non lo prende.
+Totò: Grazie, nonno.
+In Sicilia ancora oggi, la notte tra il primo e il 2 novembre, i bambini cercano i regali dei morti. E molte nonne lasciano un bicchiere d’acqua sulla tavola. Così, per sicurezza.
+Questo era «Brividi nella notte». Stanotte dormite con i piedi sotto la coperta. E se domani trovate un regalo… non chiedete chi l’ha portato. Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Das ist eine Sonderfolge. Eine Folge für die längste Nacht des Jahres: die Nacht der Toten.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und schließt heute Nacht die Tür nicht ab. Es könnte jemand kommen.
+Heute Abend fahren wir nach Sizilien, nach Palermo. Hier ist die Nacht vom 1. auf den 2. November anders als alle anderen. In dieser Nacht kommen die Toten nach Hause. Und sie bringen den Kindern Geschenke.
+Es ist der 1. November, Allerheiligen. Totò ist acht Jahre alt. Seine Schwester Giulia ist vierzehn. Heute Nacht schlafen sie bei Nonna Rosa, mitten in Palermo. Aber vorher gehen sie auf den Markt der Toten.
+Der Markt ist voller Menschen und Lichter. Es gibt Stände mit Spielzeug, Süßigkeiten und Früchten aus Zucker.
+Verkäufer: Zuckerpuppen! Schöne Puppen! Schau, Kleiner: ein Ritter, eine Tänzerin, ein Paladin!
+Totò schaut die Zuckerpuppen an. Sie sind groß, bunt und glänzen wie Glas. Daneben liegen Pfirsiche, Feigen und Orangen. Aber sie sind nicht echt: Sie sind aus Marzipan. Das ist die Frutta martorana.
+Giulia: Totò, nicht anfassen. Die Geschenke bringen die Toten, nicht Oma.
+Totò: Giulia, glaubst du an die Toten?
+Giulia: Ich? Ich bin vierzehn. Ich glaube nur an mein Handy.
+Oma: Sehr gut. Und heute Nacht lässt du das Handy in der Küche.
+Am Abend gehen Giulia und Totò mit Oma auf den Friedhof. Dort brennen Tausende Kerzen. Alle Gräber sind voller Blumen. Auf dem Grab von Opa Turi steht ein Foto: ein Mann mit weißem Schnurrbart und einem breiten Lächeln.
+Totò: Hallo, Opa. Weißt du noch? Du hattest mir ein Holzpferdchen versprochen. Zum Geburtstag.
+Oma: Opa hat es nicht mehr geschafft, mein Schatz. Er war krank.
+Nach dem Abendessen deckt Oma den Tisch. Aber nicht für sie. Sie stellt ein Glas Wasser hin, ein Stück Brot und einen Teller mit „Totenknochen“, den harten weißen Keksen.
+Totò: Oma, für wen ist das?
+Oma: Für sie. Sie kommen von weit her. Sie werden Durst haben.
+Dann geht sie zur Haustür. Sie schließt sie nicht ab. Sie lässt sie einfach angelehnt.
+Giulia: Oma! Wir sind in Palermo! Schließ die Tür ab!
+Oma: Eine Nacht im Jahr darf sie offen bleiben.
+Oma: Denn wenn die Toten zurückkommen, klopfen sie nicht. Sie kommen ganz leise herein. Sie legen die Geschenke hin. Und sie gehen, bevor es hell wird. Aber die Kinder müssen schlafen. Wenn ein Kind wach bleibt, um sie zu sehen … dann kratzen ihm die Toten an den Füßen.
+Totò: Sie kratzen mich an den Füßen?
+Oma: Ja. Mit ihren kalten, kalten Fingern.
+Giulia: Oma, das sind Geschichten, um Kindern Angst zu machen.
+Oma: Kann sein. Dann erzähle ich euch eine andere. Meine Oma hat sie mir erzählt.
+Oma: Als ich klein war, lebte in einem Dorf bei Palermo eine alte Frau. In der Nacht der Toten konnte sie nicht schlafen. Da hat sie sich ans Fenster gesetzt. Gegen Mitternacht kam auf der leeren Straße eine Prozession. Viele Menschen, schweigend, jeder mit einer Kerze in der Hand. Sie gingen langsam, ohne ein Geräusch. Der Letzte in der Reihe blieb unter ihrem Fenster stehen. Er war weiß gekleidet. Er gab ihr seine Kerze.
+Toter: Behalte du sie. Bis morgen.
+Oma: Am Morgen schaute die alte Frau die Kerze an. Es war keine Kerze mehr. Es war ein Knochen. Ein langer, weißer Knochen.
+Totò: Und dann? Und dann?
+Oma: Und dann ging sie in der nächsten Nacht wieder ans Fenster. Und gab den Knochen zurück. Seit diesem Tag hat sie in der Nacht der Toten immer geschlafen. Mit geschlossenen Augen und dem Kopf unter der Decke.
+Um elf liegen Totò und Giulia im Bett, im alten Gästezimmer. Draußen bewegt der Wind die Fensterläden. Eine Eule ruft auf dem Dach.
+Totò schläft nicht. Er hält die Augen offen. Dann zu. Dann wieder offen.
+Totò: Giulia … schläfst du?
+Giulia: Ja. Ich schlafe. Schlaf du auch.
+Es ist fast ein Uhr. Das Haus ist still. Dann hört er ein Geräusch. Die Haustür geht auf. Ganz langsam. Schritte im Flur. Langsam. Leise.
+Ein kleines Licht zieht unter der Zimmertür vorbei. Gelb, wie das Licht einer Kerze. Dann ist es weg.
+Totò zieht die Decke bis zu den Augen. Aber die Füße … die Füße schauen heraus.
+Und dann berührt etwas seinen Fuß. Etwas Kaltes. Es kratzt. Einmal. Zweimal.
+Totò: Aaah! Giulia! Die Toten! Sie kratzen mich an den Füßen!
+Giulia macht das Licht an. Am Fußende des Bettes sitzt Minnie, Omas Katze. Sie hat kalte Pfoten und gelbe Augen. Sie schnurrt.
+Giulia: Da ist dein Toter. Er heißt Minnie. Und jetzt schlaf!
+Totò lacht. Aber das Licht unter der Tür … das war nicht die Katze. Das weiß Totò. Er steckt die Füße unter die Decke und macht die Augen zu. Diesmal schläft er wirklich.
+Als Totò aufwacht, scheint draußen die Sonne. Irgendwo kräht ein Hahn, obwohl sie in der Stadt sind.
+Totò rennt in die Küche. Das Glas ist leer. Das Brot ist weg. Auf dem Teller liegen nur noch zwei Kekse.
+Oma: Guten Morgen! Na? Sind sie gekommen? Sucht, sucht! Die Toten verstecken die Geschenke immer.
+Unter dem Bett findet Totò ein rotes Spielzeugauto. Im Schrank steht eine Zuckerpuppe: ein Paladin mit Schwert. Auf dem Balkon, im Geranientopf, liegt ein Säckchen mit Marzipanfrüchten.
+Giulia findet ein Buch und ein Paar Ohrringe. Sie tut so, als wäre nichts, aber sie lächelt.
+Dann findet Giulia noch etwas. Auf dem Küchenstuhl, neben dem Teller mit den Keksen, liegt ein Päckchen. Altes braunes Papier, mit einer Schnur zugebunden. Obendrauf liegt ein Zettel: „Für Totò“.
+Totò macht es auf. Darin ist ein Holzpferdchen. Klein, handgemacht, mit einer schwarz bemalten Mähne.
+Totò: Oma! Das Pferdchen! Das von Opa!
+Oma nimmt den Zettel. Sie schaut ihn lange an. Ihre Hände zittern ein bisschen.
+Giulia: Oma, das hast du hingelegt. Oder?
+Oma antwortet nicht gleich. Sie schaut auf den Zettel. Dann schaut sie zur Haustür, die immer noch angelehnt ist.
+Oma: Das habe ich nicht hingelegt, Giulia. Das ist Opas Handschrift.
+In der Küche sagt niemand etwas. Nur Minnie schnurrt unter dem Tisch. Giulia schaut das Pferdchen an. Dann schaut sie ihr Handy an. Zum ersten Mal nimmt sie es nicht.
+Totò: Danke, Opa.
+In Sizilien suchen die Kinder auch heute noch in der Nacht vom 1. auf den 2. November die Geschenke der Toten. Und viele Omas stellen ein Glas Wasser auf den Tisch. Nur so, zur Sicherheit.
+Das war „Brividi nella notte“. Schlaft heute Nacht mit den Füßen unter der Decke. Und wenn ihr morgen ein Geschenk findet … fragt nicht, wer es gebracht hat. Bis zur nächsten Legende …`,
+    fact:'In Sizilien ist der 2. November, „il giorno dei morti“, für Kinder fast wie Weihnachten: In der Nacht davor bringen die verstorbenen Verwandten Geschenke und verstecken sie im Haus. Die Kinder schreiben vorher Briefe an „i cari morti“. Typisch sind die „pupi di zucchero“ (bunte Zuckerfiguren, oft Ritter und Paladine), die „frutta martorana“ (Marzipanfrüchte, benannt nach der Kirche della Martorana in Palermo) und die harten Kekse „ossa di morto“. In Palermo gibt es dafür eigene Märkte, die „fiere dei morti“. Den Kindern sagt man, dass die Toten ihnen an den Füßen kratzen, wenn sie nicht schlafen. In vielen Gegenden Italiens deckt man in dieser Nacht den Tisch für die Verstorbenen mit Wasser und Brot und lässt die Tür offen. Die Sage von der Totenprozession und der Kerze, die sich in einen Knochen verwandelt, wird in vielen Regionen erzählt, von Sizilien bis in die Alpen.' }
 );
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
