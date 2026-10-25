@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 248;
+const APP_VERSION = 249;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -64480,6 +64480,15 @@ const SP_ALIAS2 = {'picture avrebbe':'piacerebbe', 'tipici avrebbero':'gli piace
 /* Hörprotokoll 21.10.2026 (43 Einträge, Brividi B2 Möglichkeitsform, Viaggio A1 Café) */
 [['fredo','vorrei due'],['zappi','sappia'],['kyung','chiunque'],['chi','ti'],['cera','succeda'],['today','ti segue'],['so','sia'],['nascondono','nasconda'],['scappa','le scarpe'],['muniz','monete'],['ci','ti|ce'],['hands','penso'],['anthony','entri'],['andrei','entri'],['fico','dica'],['walley','urlerei'],['wally','urlerei'],['elsa','tedesca'],['spezzare','spezzerei'],['salvare','salverei'],['cena','tela'],['avesse','respirasse'],['latino','la tela'],['sperasser','respirasse'],['ritrattorner','ritratto nel'],['insegna','se ne andassero da'],['avrebbe','avremmo'],['realta','verita'],['sarei','sarebbe'],['ove','ho'],['spostati','risposto'],['avessi','saresti'],['connettore','cornetto'],['pankook','banco'],['nacque','unacqua'],['affusolato','frizzante'],['certe','per'],['favole','favore'],['inizia','e per'],['aiuti','il te']].forEach(([k, v]) => { SP_ALIAS[k] = SP_ALIAS[k] ? SP_ALIAS[k] + '|' + v : v; });
 [['kyung to','chiunque tu'],['chi seguro','ti seguiro'],['hands up','penso che'],['hands king','penso che in'],['uccise anthony','ci entri'],['part ti','parte'],['al lotto','alle otto'],['segue goriet','seguirebbe'],['della realta','la verita'],['ove spostati','ho risposto'],['un nacque','unacqua'],['ci aiuti','ce il te']].forEach(([k, v]) => { SP_ALIAS2[k] = SP_ALIAS2[k] ? SP_ALIAS2[k] + '|' + v : v; });
+/* Hörprotokoll 25.10.2026 (78 Einträge, Brividi B1/B2, Viaggio/Cavalli A1) */
+[['pad','patto'],['foggia','ponte'],['chi','che'],['trono','turno'],['nozze','notte'],['potrai','portai'],['passa','possa'],['fermare','perdonare'],['posa','borsa'],['piercino','il treno'],['delfino','il treno'],['pane','bar'],['foglietto','puledro'],['magnesio','maneggio'],['insieno','e nel fieno'],['seno','fieno'],['biennale','dal binario'],
+ ['ore','euro'],['oro','euro'],['europeo','euro per'],['tatuaggi','guanti'],['itunes','i guanti neri'],['unopera','unombra'],['io','il'],['rispettare','riportare'],['lillo','glielho'],['yellow','glielho'],['riportavo','riportato'],['rensieur','ieri sera'],['ce','te'],['tammello','ridammelo'],
+ ['trovando','quando'],['center','sento'],['attraversare','far rizzare'],['muovo','tremavo'],['fermavo','tremavo'],['semaforo','tremavo'],['mago','tremavo'],['mavo','tremavo'],['furia','foglia'],['palo','ti parlo'],['criceto','cui tetto'],['sommero','sommerso'],['senza','sente'],['campanel','campane'],
+ ['negozio','tre gocce'],['possiede','bussi tre volte'],['rivolge','volte'],['possasse','bussasse'],['hollow','urlo'],['inquisizione','inquisitore'],['linquisizione','linquisitore'],['colpoball','colpevole'],['racconto','raccolto'],['close','perso'],['zone','donne'],['gira','veda'],['vida','veda'],['segnale','finale'],['beato','aperto'],
+ ['matuidi','martedi'],['fatimo','partimmo'],['rovina','rovine'],['rubina','rovine'],['pyssla','prese la'],['antar','andato dal'],['colore','controllore'],['laure','controllore']].forEach(([k, v]) => { SP_ALIAS[k] = SP_ALIAS[k] ? SP_ALIAS[k] + '|' + v : v; });
+[['pad that','patto'],['tu misse','dormisse'],['invia sms','linfermiera'],['per nar','perdonare'],['leggi ali','nei gialli'],['sia simone','testimone'],['di tammello','disse ridammelo|ridammelo'],['diesel blu','disse ridammelo|ridammelo'],['ti muovo','tremavo'],['film nuovo','tremavo'],['sul sommero','fu sommerso'],
+ ['su una','suonano'],['notte indiano','dinverno'],['no silvano','dinverno'],['sono noti','suonano'],['ne avevano','dinverno'],['possa si','bussi tre'],['si rivolge','tre volte'],['atri ora','a triora'],['colpo che','colpevole'],['chele turn','che il lettore'],['on vida','non veda'],['sino alla','finale'],['all sino','un finale'],
+ ['alla rovina','tra le rovine'],['sale rubina','tra le rovine'],['contro laure','controllore'],['antar contro','andato dal controllore']].forEach(([k, v]) => { SP_ALIAS2[k] = SP_ALIAS2[k] ? SP_ALIAS2[k] + '|' + v : v; });
 function spAlias(target, heard){
   const out = [];
   for (let i=0; i<heard.length; i++){
