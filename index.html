@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 251;
+const APP_VERSION = 252;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -65813,6 +65813,133 @@ Aber als sie in den Spiegel schaut, erstarrt sie. In ihren Haaren sind ganz viel
 Und auf dem Kopfkissen liegt ein Zettelchen, in einer ganz kleinen Schrift: „Unerzogene Kinder mag ich am liebsten. Hi hi hi.“
 Das war „Brividi nella notte“. Seid heute Nacht freundlich … aber nicht zu sehr. Bis zur nächsten Legende …`,
     fact:'Der „Linchetto“ (Mehrzahl „Linchetti“) ist ein Kobold aus der Toskana, vor allem aus der Lucchesia, der Garfagnana und der Lunigiana. Er ist klein, oft mit roter Mütze, und spielt nachts Streiche: Er verknotet Pferden und Eseln die Mähnen und reitet sie bis zum Morgen, sodass sie verschwitzt im Stall stehen, er versteckt Gegenstände oder setzt sich Schlafenden auf die Brust. Weil er ein sehr „anständiger“ Geist sein soll, vertreibt man ihn der Überlieferung nach mit Ekel und schlechten Manieren. Tatsächlich bilden sich in langen Pferdemähnen über Nacht leicht verfilzte Knoten – früher nannte man sie „Hexenzöpfe“ oder eben die Zöpfe des Linchetto.' }
+);
+/* Brividi-Podcast Folge 8 (v252, Wunsch der Nutzerin: Ideenliste „alles“ – nach Linchetto weiter mit Mazzamurello).
+   Wird nach leggende_brividi4.js geladen. Marken, ein Dorf bei Ascoli Piceno: Familie Ferri (Mamma Chiara, Architektin; Papa Luca;
+   Matteo, 15) zieht im November in ein altes Steinhaus. Jede Nacht klopft es in der Wand: toc … toc … toc. Papa sagt: die Rohre.
+   Der alte Nachbar Sor Peppe: der Mazzamurello, ein kleiner Geist, der mit einem Hämmerchen gegen die Mauern schlägt – nicht beleidigen,
+   ihm ein Stück Brot hinlegen. Eines Nachts klopft es wild an der Küchenwand, Matteo weckt alle, sie gehen hinaus – die alte Küchendecke
+   stürzt ein. Im Schutt: eine kleine Blechdose von 1891 mit einem Kinderschuh und einem Zettel „Grazie“. Seitdem: jeden Abend drei
+   leise Klopfer. Gute-Nacht-Gruß. Gruselig mit gutem Ende.
+   Stimmen: Erzählerin Isabella, Matteo Diego (jung), Chiara Elsa, Luca Giuseppe, Sor Peppe Giuseppe (alt, tief). */
+PODCASTS.brividi.push(
+  { id:'brividi-p8', show:'Brividi nella notte', ep:8, title:'Il Mazzamurello', de:'Der Klopfgeist',
+    place:'Un paese sulle colline delle Marche, vicino ad Ascoli Piceno', level:'ab A2', kind:'Legende · Spannend',
+    voices:{Matteo:'Diego', Chiara:'Elsa', Luca:'Giuseppe', Peppe:'Giuseppe'},
+    stil:{Matteo:['+4%','+22Hz'], Chiara:['-2%','+6Hz'], Luca:['-4%','+4Hz'], Peppe:['-16%','-30Hz']},
+    words:[['la casa di pietra','das Steinhaus'],['ristrutturare','renovieren'],['il muro / i muri','die Mauer, die Wand'],['bussare','klopfen'],['il colpo / i colpi','der Schlag'],['i tubi','die Rohre'],['il martelletto','das Hämmerchen'],['lo spirito','der Geist'],['offendere','beleidigen'],['la briciola','der Krümel'],['il soffitto','die Zimmerdecke'],['la trave','der Balken'],['crollare / è crollato','einstürzen / ist eingestürzt'],['la polvere','der Staub'],['le macerie','der Schutt'],['la scatola di latta','die Blechdose'],['la scarpina','das Kinderschühchen'],['avvisare','warnen'],['salvare','retten'],['ringraziare','danken']],
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Stasera andiamo nelle Marche':'atmo_aus pausa', 'A novembre la famiglia':'pausa', 'La prima notte':'pausa notte_an', 'Poi lo sente':'muro_dopo', 'Matteo: Papà':'pausa', 'Il colpo arriva':'muro_dopo', 'La mattina Matteo':'notte_aus gallo', 'La seconda notte':'pausa notte_an', 'Matteo si mette':'muro_dopo', 'Matteo: Toc':'pausa', 'Dal muro arriva':'muro', 'Il giorno dopo':'notte_aus pausa', 'Peppe: Il Mazzamurello':'pausa', 'Peppe: Qualcuno dice':'pausa', 'Quella sera Matteo':'pausa', 'Per una settimana':'pausa', 'Poi, una notte':'pausa vento_an', 'All’improvviso':'muro_forte', 'Matteo si sveglia':'muro_forte', 'Matteo corre':'passi porta', 'Sono tutti fuori':'pausa', 'E in quel momento':'crollo', 'Quando la polvere':'vento_aus pausa', 'La mattina dopo':'pausa gallo', 'Tra le macerie':'pausa', 'Dentro c’è':'pausa', 'Chiara apre':'pausa', 'Ancora oggi':'pausa atmo_an', 'Alle dieci e mezza':'muro_dopo', 'Questo era':'atmo_aus pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera vi faccio una domanda. Quando siete a letto, al buio… avete mai sentito qualcuno bussare? Non alla porta. Nel muro.
+Spegnete la luce. Mettete le cuffie. E ascoltate bene le vostre pareti.
+Stasera andiamo nelle Marche, sulle colline vicino ad Ascoli Piceno. Qui ci sono paesi piccoli, con case di pietra vecchie di trecento anni. E in queste case, si dice, abita qualcuno. Qualcuno che non paga l’affitto.
+A novembre la famiglia Ferri si trasferisce in una vecchia casa di pietra, in cima al paese. La mamma, Chiara, è architetta e vuole ristrutturarla. Il papà, Luca, lavora da casa con il computer. E poi c’è Matteo, quindici anni, che voleva restare in città con gli amici.
+Matteo: Qui non c’è niente. Niente cinema, niente pizzeria. E il Wi-Fi va solo in bagno.
+La prima notte Matteo non riesce a dormire. La casa è fredda e silenziosa. Fuori il vento passa tra i vicoli.
+Poi lo sente. Nel muro, vicino al letto. Un colpo. Poi un altro. Poi un altro ancora. Toc. Toc. Toc.
+Matteo: Papà? Sei tu?
+Nessuno risponde. Il papà dorme dall’altra parte della casa.
+Il colpo arriva di nuovo. Tre volte. Lento. Come qualcuno che bussa con un martelletto.
+La mattina Matteo lo racconta a colazione.
+Luca: Sono i tubi, Matteo. Le case vecchie fanno rumore. L’acqua calda, il legno che si muove…
+Chiara: In questa casa non ci sono tubi in quel muro. L’ho controllato io.
+Luca: Allora sono i topi.
+Matteo: I topi bussano tre volte?
+La seconda notte Matteo è pronto. Ha il telefono in mano e la registrazione accesa.
+Matteo si mette in ascolto. Mezzanotte. E puntuale arriva il suono. Toc. Toc. Toc.
+Matteo prova una cosa. Bussa anche lui sul muro, tre volte.
+Matteo: Toc, toc, toc.
+Dal muro arriva la risposta. Tre colpi. Esattamente come i suoi. Matteo lascia cadere il telefono.
+Il giorno dopo Matteo va dal vicino, Sor Peppe. Ha ottantotto anni, un cappello vecchio e un cane che si chiama Pippo. Sta seduto davanti a casa e guarda la valle.
+Peppe: Toc, toc, toc? Nel muro? Eh, ragazzo mio. Quello è il Mazzamurello.
+Matteo: Il… cosa?
+Peppe: Il Mazzamurello. Uno spiritello piccolo, piccolissimo. Abita dentro i muri delle case vecchie. Ha un martelletto e batte sui muri. Mazza e muro: per questo si chiama così.
+Matteo: Ed è cattivo?
+Peppe: Dipende. Se lo offendi, ti fa i dispetti. Ti nasconde le chiavi, ti spegne il fuoco, ti fa cadere i piatti. Ma se lo tratti bene… ti protegge la casa.
+Peppe: Qualcuno dice che è l’anima di un bambino. Un bambino che è vissuto in quella casa tanto tempo fa. Mia nonna gli lasciava sempre un pezzo di pane sul davanzale. Per gentilezza.
+Quella sera Matteo, senza dire niente ai genitori, mette un pezzo di pane sul davanzale della sua finestra.
+Matteo: Ecco. Per te. Io non ti offendo. Però tu fammi dormire, va bene?
+Per una settimana i colpi arrivano ogni notte. Ma sono diversi. Più leggeri. Più gentili. E ogni mattina il pane non c’è più. Il papà dice: gli uccelli. Matteo non dice niente.
+Poi, una notte di pioggia e di vento, tutto cambia.
+All’improvviso, alle tre di notte, i colpi diventano fortissimi. Non vengono più dal muro della camera. Vengono dalla cucina. Tanti, veloci, uno dopo l’altro, come qualcuno che batte i pugni.
+Matteo si sveglia di colpo. I colpi continuano. Più forti. Più veloci. Come un allarme.
+Matteo corre nella camera dei genitori.
+Matteo: Mamma! Papà! Svegliatevi! Dobbiamo uscire! Subito!
+Luca: Matteo, ma che dici? Sono le tre!
+Matteo: Ti prego, papà. Fidati. Usciamo!
+Chiara guarda il figlio. Ha la faccia bianca. Non lo ha mai visto così. Prende le giacche e il papà la segue, brontolando.
+Sono tutti fuori, sotto la pioggia, in pigiama. Il papà è arrabbiato.
+Luca: Bene. E adesso? Aspettiamo il Mazzamurello sotto la pioggia?
+E in quel momento si sente un rumore enorme. Il soffitto della cucina crolla. La vecchia trave cade sul tavolo. Pietre, legno, polvere. Tutto.
+Quando la polvere si ferma, nessuno parla. Il papà guarda la casa. Poi guarda Matteo.
+Luca: Se eravamo in cucina… Se tu non ci svegliavi…
+Chiara: La trave era marcia. Dentro. Non si vedeva.
+La mattina dopo arrivano i vigili del fuoco. Per fortuna la casa è ancora in piedi, solo la cucina è distrutta. Anche Sor Peppe arriva, con il suo cane.
+Peppe: Te l’avevo detto, ragazzo. Se lo tratti bene, ti protegge la casa.
+Tra le macerie Matteo vede qualcosa. Una piccola scatola di latta, vecchia e arrugginita. Era nascosta dentro il muro della cucina.
+Dentro c’è una scarpina. Una scarpina di bambino, di cuoio, piccolissima. E un biglietto di carta, giallo, con una data: 1891.
+Chiara apre il biglietto. Sopra c’è una sola parola, scritta da una mano di bambino: «Grazie».
+Matteo: Grazie? Grazie per cosa?
+Peppe: Per il pane, forse. O forse per la compagnia. Più di cento anni da solo in un muro sono tanti, ragazzo.
+Ancora oggi la famiglia Ferri vive nella casa di pietra. La cucina è nuova. Il papà non parla più di tubi. E ogni sera Matteo mette un pezzo di pane sul davanzale.
+Alle dieci e mezza, quando Matteo spegne la luce, dal muro arrivano tre colpi leggeri. Toc. Toc. Toc. Matteo sorride.
+Matteo: Buonanotte anche a te.
+Questo era «Brividi nella notte». Stanotte, se qualcuno bussa nel vostro muro… rispondete con gentilezza. Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend stelle ich euch eine Frage. Wenn ihr im Bett liegt, im Dunkeln … habt ihr schon einmal jemanden klopfen hören? Nicht an der Tür. In der Wand.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und hört gut auf eure Wände.
+Heute Abend fahren wir in die Marken, in die Hügel bei Ascoli Piceno. Hier gibt es kleine Dörfer mit Steinhäusern, die dreihundert Jahre alt sind. Und in diesen Häusern, so sagt man, wohnt jemand. Jemand, der keine Miete zahlt.
+Im November zieht die Familie Ferri in ein altes Steinhaus, ganz oben im Dorf. Die Mutter, Chiara, ist Architektin und will es renovieren. Der Vater, Luca, arbeitet von zu Hause am Computer. Und dann ist da noch Matteo, fünfzehn, der mit seinen Freunden in der Stadt bleiben wollte.
+Matteo: Hier gibt es nichts. Kein Kino, keine Pizzeria. Und das WLAN geht nur im Bad.
+In der ersten Nacht kann Matteo nicht schlafen. Das Haus ist kalt und still. Draußen zieht der Wind durch die Gassen.
+Dann hört er es. In der Wand, neben dem Bett. Ein Schlag. Dann noch einer. Dann noch einer. Tock. Tock. Tock.
+Matteo: Papa? Bist du das?
+Niemand antwortet. Der Vater schläft am anderen Ende des Hauses.
+Der Schlag kommt wieder. Dreimal. Langsam. Als würde jemand mit einem Hämmerchen klopfen.
+Am Morgen erzählt Matteo es beim Frühstück.
+Luca: Das sind die Rohre, Matteo. Alte Häuser machen Geräusche. Das warme Wasser, das Holz, das arbeitet …
+Chiara: In dieser Wand gibt es keine Rohre. Das habe ich selbst geprüft.
+Luca: Dann sind es Mäuse.
+Matteo: Klopfen Mäuse dreimal?
+In der zweiten Nacht ist Matteo bereit. Er hat das Handy in der Hand und die Aufnahme läuft.
+Matteo lauscht. Mitternacht. Und pünktlich kommt das Geräusch. Tock. Tock. Tock.
+Matteo probiert etwas aus. Er klopft auch an die Wand, dreimal.
+Matteo: Tock, tock, tock.
+Aus der Wand kommt die Antwort. Drei Schläge. Genau wie seine. Matteo lässt das Handy fallen.
+Am nächsten Tag geht Matteo zum Nachbarn, Sor Peppe. Er ist achtundachtzig, hat einen alten Hut und einen Hund, der Pippo heißt. Er sitzt vor dem Haus und schaut ins Tal.
+Peppe: Tock, tock, tock? In der Wand? Tja, mein Junge. Das ist der Mazzamurello.
+Matteo: Der … was?
+Peppe: Der Mazzamurello. Ein kleiner, winziger Geist. Er wohnt in den Mauern alter Häuser. Er hat ein Hämmerchen und schlägt gegen die Wände. Hammer und Mauer: Deshalb heißt er so.
+Matteo: Und ist er böse?
+Peppe: Kommt darauf an. Wenn du ihn beleidigst, spielt er dir Streiche. Er versteckt dir die Schlüssel, er löscht dir das Feuer, er lässt dir die Teller herunterfallen. Aber wenn du ihn gut behandelst … beschützt er dir das Haus.
+Peppe: Manche sagen, er ist die Seele eines Kindes. Eines Kindes, das vor langer Zeit in diesem Haus gelebt hat. Meine Oma hat ihm immer ein Stück Brot aufs Fensterbrett gelegt. Aus Freundlichkeit.
+An diesem Abend legt Matteo, ohne den Eltern etwas zu sagen, ein Stück Brot auf das Fensterbrett seines Zimmers.
+Matteo: Hier. Für dich. Ich beleidige dich nicht. Aber lass du mich schlafen, okay?
+Eine Woche lang kommen die Schläge jede Nacht. Aber sie sind anders. Leichter. Freundlicher. Und jeden Morgen ist das Brot weg. Der Vater sagt: die Vögel. Matteo sagt nichts.
+Dann, in einer Nacht mit Regen und Wind, ändert sich alles.
+Plötzlich, um drei Uhr nachts, werden die Schläge ganz laut. Sie kommen nicht mehr aus der Wand im Zimmer. Sie kommen aus der Küche. Viele, schnell, einer nach dem anderen, als würde jemand mit den Fäusten hämmern.
+Matteo schreckt hoch. Die Schläge gehen weiter. Lauter. Schneller. Wie ein Alarm.
+Matteo rennt ins Zimmer der Eltern.
+Matteo: Mama! Papa! Wacht auf! Wir müssen raus! Sofort!
+Luca: Matteo, was redest du denn? Es ist drei Uhr!
+Matteo: Bitte, Papa. Vertrau mir. Lasst uns rausgehen!
+Chiara sieht ihren Sohn an. Sein Gesicht ist weiß. So hat sie ihn noch nie gesehen. Sie nimmt die Jacken, und der Vater folgt ihr murrend.
+Alle stehen draußen, im Regen, im Schlafanzug. Der Vater ist sauer.
+Luca: Schön. Und jetzt? Warten wir im Regen auf den Mazzamurello?
+Und in diesem Moment hört man ein riesiges Getöse. Die Küchendecke stürzt ein. Der alte Balken fällt auf den Tisch. Steine, Holz, Staub. Alles.
+Als sich der Staub legt, sagt niemand etwas. Der Vater schaut das Haus an. Dann schaut er Matteo an.
+Luca: Wenn wir in der Küche gewesen wären … Wenn du uns nicht geweckt hättest …
+Chiara: Der Balken war morsch. Innen. Man hat es nicht gesehen.
+Am nächsten Morgen kommt die Feuerwehr. Zum Glück steht das Haus noch, nur die Küche ist zerstört. Auch Sor Peppe kommt, mit seinem Hund.
+Peppe: Ich hab’s dir gesagt, Junge. Wenn du ihn gut behandelst, beschützt er dir das Haus.
+Im Schutt sieht Matteo etwas. Eine kleine Blechdose, alt und verrostet. Sie war in der Küchenwand versteckt.
+Darin ist ein Schühchen. Ein Kinderschuh aus Leder, winzig klein. Und ein gelber Zettel mit einem Datum: 1891.
+Chiara faltet den Zettel auf. Darauf steht nur ein einziges Wort, in Kinderschrift: „Danke“.
+Matteo: Danke? Danke wofür?
+Peppe: Für das Brot, vielleicht. Oder für die Gesellschaft. Mehr als hundert Jahre allein in einer Mauer sind lang, Junge.
+Bis heute wohnt die Familie Ferri in dem Steinhaus. Die Küche ist neu. Der Vater redet nicht mehr von Rohren. Und jeden Abend legt Matteo ein Stück Brot aufs Fensterbrett.
+Um halb elf, wenn Matteo das Licht ausmacht, kommen aus der Wand drei leise Schläge. Tock. Tock. Tock. Matteo lächelt.
+Matteo: Gute Nacht, dir auch.
+Das war „Brividi nella notte“. Wenn heute Nacht jemand in eurer Wand klopft … antwortet freundlich. Bis zur nächsten Legende …`,
+    fact:'Der „Mazzamurello“ (auch „mazzamurelli“, „mazzemarelle“) ist ein Hausgeist aus Mittelitalien, vor allem aus den Marken, Latium, Umbrien und den Abruzzen. Der Name kommt wohl von „mazza“ (Keule, Hammer) und „muro“ (Mauer): Man hört ihn nachts in Wänden und Böden klopfen. Er gilt als launisch – beleidigt man ihn, versteckt er Dinge oder macht Lärm, behandelt man ihn gut, schützt er das Haus, warnt vor Gefahren oder zeigt sogar einen Schatz. Oft heißt es, er sei die Seele eines Kindes, das in dem Haus gelebt hat. Tatsächlich klopfen in alten Häusern nachts oft Holzbalken, die sich bei Kälte zusammenziehen – oder eben morsche Balken, die nachgeben.' }
 );
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
