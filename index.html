@@ -570,7 +570,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 252;
+const APP_VERSION = 253;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -65940,6 +65940,109 @@ Um halb elf, wenn Matteo das Licht ausmacht, kommen aus der Wand drei leise Schl
 Matteo: Gute Nacht, dir auch.
 Das war „Brividi nella notte“. Wenn heute Nacht jemand in eurer Wand klopft … antwortet freundlich. Bis zur nächsten Legende …`,
     fact:'Der „Mazzamurello“ (auch „mazzamurelli“, „mazzemarelle“) ist ein Hausgeist aus Mittelitalien, vor allem aus den Marken, Latium, Umbrien und den Abruzzen. Der Name kommt wohl von „mazza“ (Keule, Hammer) und „muro“ (Mauer): Man hört ihn nachts in Wänden und Böden klopfen. Er gilt als launisch – beleidigt man ihn, versteckt er Dinge oder macht Lärm, behandelt man ihn gut, schützt er das Haus, warnt vor Gefahren oder zeigt sogar einen Schatz. Oft heißt es, er sei die Seele eines Kindes, das in dem Haus gelebt hat. Tatsächlich klopfen in alten Häusern nachts oft Holzbalken, die sich bei Kälte zusammenziehen – oder eben morsche Balken, die nachgeben.' }
+);
+/* Brividi-Podcast Folge 9 (v253, Wunsch der Nutzerin: Ideenliste „alles“ – nach Mazzamurello weiter mit Villa Ada).
+   Wird nach leggende_brividi5.js geladen. Rom, Villa Ada: Bea und Leo (16) machen mit der Schulklasse eine Abendführung durch den Park
+   und den königlichen Bunker. Führerin Ornella erzählt die echte Geschichte (Ada, Frau des Grafen Telfener; Sitz von König Vittorio
+   Emanuele III.; Verhaftung Mussolinis am 25. Juli 1943; Bunker für die Königsfamilie) und die Sage von der Dame in Weiß am See, die
+   Spaziergänger nach der Uhrzeit fragt, weil sie auf ihren Mann wartet. Im Bunker geht das Licht aus, eine Frauenstimme fragt
+   „Che ore sono?“, Bea antwortet. Danach liegt eine alte Taschenuhr auf dem Boden. Am Ende: Auf dem Gruppenfoto sind es dreizehn, gezählt
+   wurden zwölf – ganz hinten eine Frau in Weiß, die auf die Uhr schaut. Gruselig.
+   Stimmen: Erzählerin Isabella, Bea Elsa, Leo Diego, Ornella Isabella (tiefer, schneller), Dama Elsa (tief, Echo), Prof Giuseppe. */
+PODCASTS.brividi.push(
+  { id:'brividi-p9', show:'Brividi nella notte', ep:9, title:'Il fantasma di Villa Ada', de:'Das Gespenst der Villa Ada',
+    place:'Roma, il parco di Villa Ada e il bunker del re', level:'ab A2', kind:'Legende · Gruselig',
+    voices:{Bea:'Elsa', Leo:'Diego', Ornella:'Isabella', Dama:'Elsa', Prof:'Giuseppe'},
+    stil:{Bea:['+2%','+24Hz'], Leo:['+4%','+20Hz'], Ornella:['-4%','-10Hz'], Dama:['-22%','-30Hz'], Prof:['-2%','+0Hz']},
+    words:[['il parco','der Park'],['la visita guidata','die Führung'],['la guida','die Führerin'],['il conte / la contessa','der Graf / die Gräfin'],['il re / la regina','der König / die Königin'],['arrestare / arrestato','verhaften / verhaftet'],['il bunker','der Bunker'],['la galleria','der Tunnel, der Gang'],['la porta di ferro','die Eisentür'],['il laghetto','der kleine See'],['vestita di bianco','weiß gekleidet'],['Che ore sono?','Wie spät ist es?'],['aspettare','warten'],['il marito','der Ehemann'],['l’orologio da tasca','die Taschenuhr'],['fermo / ferma','stehen geblieben, still'],['la torcia','die Taschenlampe'],['contare','zählen'],['la foto di gruppo','das Gruppenfoto'],['in fondo','ganz hinten']],
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Stasera restiamo a Roma':'atmo_aus traffico_an', 'È una sera di fine ottobre':'pausa', 'Il cancello del parco':'traffico_aus cancello notte_an', 'Ornella: Benvenuti':'pausa', 'Ornella: Questo parco':'pausa', 'Il gruppo cammina':'passi', 'Ornella: E adesso':'pausa', 'Arrivano al laghetto':'pausa', 'Ornella: Ma la gente':'pausa', 'Ornella: Si dice che':'pausa', 'Leo: Bea, ma tu':'civetta', 'Dopo il laghetto':'notte_aus pausa porta', 'Dentro fa freddo':'gocce_tief_an', 'Ornella: Questo è il bunker':'pausa', 'Ornella: Qui sotto':'pausa', 'All’improvviso':'spegnimento pausa', 'Nel buio':'pausa', 'Dama: Che ore':'eco', 'Bea risponde':'pausa', 'Dama: Grazie':'eco', 'Poi la luce':'accensione', 'Leo punta':'pausa', 'Ornella guarda':'pausa', 'Fuori dal bunker':'gocce_tief_aus porta notte_an', 'Il prof alza':'pausa', 'A casa':'notte_aus pausa', 'Bea ingrandisce':'pausa', 'In fondo':'pausa', 'Ancora oggi':'pausa atmo_an', 'Questo era':'atmo_aus pausa carillon_ende'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera una domanda semplice. Una domanda che fate ogni giorno, senza pensarci. Ma stasera, prima di rispondere… guardate bene chi ve la fa.
+Spegnete la luce. Mettete le cuffie. E controllate l’orologio.
+Stasera restiamo a Roma. Non al Colosseo, non a San Pietro. Andiamo a nord della città, in uno dei parchi più grandi di Roma: Villa Ada.
+È una sera di fine ottobre. Bea e Leo hanno sedici anni e sono in classe insieme. Con la loro scuola fanno una visita guidata speciale: una passeggiata di sera nel parco, e poi dentro il vecchio bunker del re.
+Il cancello del parco si apre. Dentro è già buio. Ci sono pini altissimi, sentieri stretti e lampioni gialli.
+Ornella: Benvenuti a Villa Ada! Io sono Ornella, la vostra guida. State vicini, per favore. Siete dodici, più il professore. Vi conto spesso, va bene?
+Leo: Professore, perché dodici? Non eravamo in tredici?
+Prof: Marco è a casa con l’influenza, Leo. Siete dodici.
+Ornella: Questo parco ha una storia lunga. Il nome viene da una donna: Ada. Era la moglie di un conte, il conte Telfener. Lui comprò la villa più di cento anni fa e le diede il nome di sua moglie. Ada amava questo posto più di tutto.
+Il gruppo cammina tra gli alberi. Le foglie fanno rumore sotto le scarpe.
+Ornella: E adesso un po’ di storia vera. Più tardi qui abitò il re d’Italia, Vittorio Emanuele terzo, con la sua famiglia. E proprio qui, il 25 luglio del 1943, fu arrestato Benito Mussolini. Era venuto a parlare con il re. Quando uscì dalla villa, i carabinieri lo aspettavano.
+Bea: Proprio qui? In questo parco?
+Ornella: Proprio qui. A pochi metri da voi.
+Arrivano al laghetto. L’acqua è nera e ferma. Una nebbia leggera sale dall’erba.
+Ornella: Questa è la storia dei libri. Ma la gente di quartiere ne racconta un’altra.
+Ornella: Ma la gente dice che Ada non è mai andata via. Il marito partiva spesso per lavoro. E lei lo aspettava qui, vicino al laghetto, ogni sera. Una sera lui non tornò. E lei continuò ad aspettare. Per sempre.
+Ornella: Si dice che di notte, vicino all’acqua, appaia una signora vestita di bianco. Si avvicina alle persone. E chiede sempre la stessa cosa: «Che ore sono?» Perché aspetta ancora il marito. E non sa che è tardi. Tardissimo.
+Leo: Bea, ma tu ci credi?
+Bea: No. Però non guardo verso il lago.
+Dopo il laghetto il gruppo arriva davanti a una porta di ferro, nella collina. Ornella la apre con una chiave grande.
+Dentro fa freddo. Una galleria lunga scende sotto terra. L’acqua gocciola dal soffitto. Le luci sono deboli e verdi.
+Ornella: Questo è il bunker del re. Fu costruito durante la guerra, per proteggere la famiglia reale dalle bombe. Le pareti sono spesse più di due metri.
+Ornella: Qui sotto non arriva nessun rumore. Né la città, né il vento. Niente. Adesso facciamo una cosa: un minuto di silenzio. Ascoltate.
+All’improvviso le luci si spengono. Tutte. Il buio è totale. Qualcuno grida. Qualcuno ride per la paura.
+Nel buio, vicinissima all’orecchio di Bea, una voce di donna parla piano.
+Dama: Che ore sono?
+Bea risponde senza pensare. Così, come si risponde a chiunque.
+Bea: Sono… le nove e mezza.
+Dama: Grazie. È tardi. Lui non viene più.
+Poi la luce torna. Tutti si guardano. Il professore ha la faccia bianca. Ornella ride, ma non è una risata vera.
+Ornella: Succede. È un impianto vecchio.
+Leo punta la torcia sul pavimento, ai piedi di Bea. Lì c’è qualcosa che prima non c’era. Un orologio da tasca, d’argento, vecchio. Il vetro è rotto. Le lancette sono ferme.
+Bea: Leo… che ore segna?
+Leo: Le nove e mezza.
+Ornella guarda l’orologio. Non lo tocca. Dice solo: Usciamo. Adesso.
+Fuori dal bunker l’aria è più calda. Ornella conta i ragazzi, una volta, due volte. Dodici. Tutti.
+Il prof alza il telefono.
+Prof: Foto di gruppo! Davanti alla porta del bunker. Sorridete!
+A casa, a mezzanotte, Bea non riesce a dormire. Guarda la foto di gruppo sul telefono. Dodici ragazzi, il professore, Ornella. Tutti sorridono.
+Bea ingrandisce la foto. Conta. Uno, due, tre… dodici ragazzi. E poi… tredici.
+In fondo, dietro tutti, tra gli alberi, c’è una signora. Vestita di bianco. Non sorride. Guarda in basso, verso le sue mani. In mano ha qualcosa che brilla. Un orologio da tasca.
+Ancora oggi, a Villa Ada, c’è chi racconta di una signora in bianco vicino al laghetto. E se di sera qualcuno vi chiede l’ora, gentilmente, con una voce dolce… prima di rispondere, guardate se ha le scarpe bagnate.
+Questo era «Brividi nella notte». E adesso… sapete che ore sono? Alla prossima leggenda…`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend eine einfache Frage. Eine Frage, die ihr jeden Tag stellt, ohne nachzudenken. Aber heute Abend, bevor ihr antwortet … schaut genau hin, wer sie euch stellt.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und schaut auf die Uhr.
+Heute Abend bleiben wir in Rom. Nicht am Kolosseum, nicht am Petersdom. Wir gehen in den Norden der Stadt, in einen der größten Parks Roms: Villa Ada.
+Es ist ein Abend Ende Oktober. Bea und Leo sind sechzehn und gehen in dieselbe Klasse. Mit ihrer Schule machen sie eine besondere Führung: einen Abendspaziergang durch den Park und dann hinein in den alten Bunker des Königs.
+Das Parktor geht auf. Drinnen ist es schon dunkel. Es gibt riesige Pinien, schmale Wege und gelbe Laternen.
+Ornella: Willkommen in der Villa Ada! Ich bin Ornella, eure Führerin. Bleibt bitte zusammen. Ihr seid zwölf, plus der Lehrer. Ich zähle euch oft, okay?
+Leo: Herr Lehrer, wieso zwölf? Waren wir nicht dreizehn?
+Lehrer: Marco ist mit Grippe zu Hause, Leo. Ihr seid zwölf.
+Ornella: Dieser Park hat eine lange Geschichte. Der Name kommt von einer Frau: Ada. Sie war die Frau eines Grafen, des Grafen Telfener. Er kaufte die Villa vor mehr als hundert Jahren und gab ihr den Namen seiner Frau. Ada liebte diesen Ort über alles.
+Die Gruppe geht zwischen den Bäumen. Die Blätter rascheln unter den Schuhen.
+Ornella: Und jetzt ein bisschen echte Geschichte. Später wohnte hier der König von Italien, Viktor Emanuel III., mit seiner Familie. Und genau hier wurde am 25. Juli 1943 Benito Mussolini verhaftet. Er war gekommen, um mit dem König zu sprechen. Als er die Villa verließ, warteten die Carabinieri auf ihn.
+Bea: Genau hier? In diesem Park?
+Ornella: Genau hier. Ein paar Meter von euch entfernt.
+Sie kommen an den kleinen See. Das Wasser ist schwarz und still. Leichter Nebel steigt aus dem Gras.
+Ornella: Das ist die Geschichte aus den Büchern. Aber die Leute im Viertel erzählen eine andere.
+Ornella: Die Leute sagen nämlich, dass Ada nie gegangen ist. Ihr Mann war oft beruflich unterwegs. Und sie wartete jeden Abend hier auf ihn, am See. Eines Abends kam er nicht zurück. Und sie wartete weiter. Für immer.
+Ornella: Man sagt, dass nachts am Wasser eine weiß gekleidete Dame erscheint. Sie geht auf die Leute zu. Und sie fragt immer dasselbe: „Wie spät ist es?“ Weil sie immer noch auf ihren Mann wartet. Und sie weiß nicht, dass es spät ist. Viel zu spät.
+Leo: Bea, glaubst du daran?
+Bea: Nein. Aber ich schaue nicht zum See.
+Nach dem See kommt die Gruppe zu einer Eisentür im Hügel. Ornella schließt sie mit einem großen Schlüssel auf.
+Drinnen ist es kalt. Ein langer Gang führt unter die Erde. Von der Decke tropft Wasser. Die Lichter sind schwach und grün.
+Ornella: Das ist der Bunker des Königs. Er wurde im Krieg gebaut, um die Königsfamilie vor den Bomben zu schützen. Die Wände sind mehr als zwei Meter dick.
+Ornella: Hier unten kommt kein Geräusch an. Weder die Stadt noch der Wind. Nichts. Jetzt machen wir etwas: eine Minute Stille. Hört zu.
+Plötzlich gehen die Lichter aus. Alle. Es ist stockdunkel. Jemand schreit. Jemand lacht vor Angst.
+Im Dunkeln, ganz nah an Beas Ohr, spricht leise eine Frauenstimme.
+Dame: Wie spät ist es?
+Bea antwortet, ohne nachzudenken. Einfach so, wie man jedem antwortet.
+Bea: Es ist … halb zehn.
+Dame: Danke. Es ist spät. Er kommt nicht mehr.
+Dann geht das Licht wieder an. Alle schauen sich an. Der Lehrer ist kreidebleich. Ornella lacht, aber es ist kein echtes Lachen.
+Ornella: Das passiert. Die Anlage ist alt.
+Leo richtet die Taschenlampe auf den Boden, vor Beas Füße. Da liegt etwas, das vorher nicht da war. Eine Taschenuhr, aus Silber, alt. Das Glas ist gesprungen. Die Zeiger stehen still.
+Bea: Leo … welche Uhrzeit zeigt sie?
+Leo: Halb zehn.
+Ornella schaut die Uhr an. Sie fasst sie nicht an. Sie sagt nur: Wir gehen raus. Jetzt.
+Draußen vor dem Bunker ist die Luft wärmer. Ornella zählt die Jugendlichen, einmal, zweimal. Zwölf. Alle.
+Der Lehrer hebt das Handy.
+Lehrer: Gruppenfoto! Vor der Bunkertür. Lächeln!
+Zu Hause, um Mitternacht, kann Bea nicht schlafen. Sie schaut sich das Gruppenfoto auf dem Handy an. Zwölf Jugendliche, der Lehrer, Ornella. Alle lächeln.
+Bea vergrößert das Foto. Sie zählt. Eins, zwei, drei … zwölf Jugendliche. Und dann … dreizehn.
+Ganz hinten, hinter allen, zwischen den Bäumen, steht eine Dame. Weiß gekleidet. Sie lächelt nicht. Sie schaut nach unten, auf ihre Hände. In der Hand hat sie etwas, das glänzt. Eine Taschenuhr.
+Bis heute erzählen manche in der Villa Ada von einer Dame in Weiß am kleinen See. Und wenn euch abends jemand nach der Uhrzeit fragt, freundlich, mit sanfter Stimme … dann schaut nach, bevor ihr antwortet, ob die Person nasse Schuhe hat.
+Das war „Brividi nella notte“. Und jetzt … wisst ihr, wie spät es ist? Bis zur nächsten Legende …`,
+    fact:'Villa Ada im Norden Roms ist mit rund 160 Hektar einer der größten Parks der Stadt. Ihren Namen hat sie von Ada, der Frau des Grafen Giuseppe Telfener, dem das Gelände im 19. Jahrhundert gehörte. Danach war sie unter dem Namen „Villa Savoia“ Wohnsitz von König Viktor Emanuel III. Hier wurde Benito Mussolini am 25. Juli 1943 nach einem Gespräch mit dem König verhaftet. Im Park liegt ein Luftschutzbunker, der im Zweiten Weltkrieg für die Königsfamilie gebaut wurde und heute bei Führungen besichtigt werden kann. Die Geschichte von der Dame in Weiß am See, die nach der Uhrzeit fragt, ist eine Gruselsage, wie sie über viele alte Parks und Villen erzählt wird.' }
 );
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
