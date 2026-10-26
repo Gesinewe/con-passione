@@ -266,6 +266,18 @@ body.muted .aplay{opacity:.35}
 .kind{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--t);border:1px solid var(--t);border-radius:99px;padding:1px 8px;margin:4px 6px 0 0}
 .tip{background:color-mix(in srgb,var(--t) 10%,var(--surface));border:1px solid color-mix(in srgb,var(--t) 30%,var(--line));border-radius:14px;padding:14px 16px;font-size:15px}
 .tip b{color:var(--t)}
+/* Mitentscheide-Folgen (v255) */
+.cyoa{margin-top:14px;border:2px solid var(--t);border-radius:16px;padding:14px 16px;background:color-mix(in srgb,var(--t) 7%,var(--surface))}
+.cyoa.ready{box-shadow:0 0 0 4px color-mix(in srgb,var(--t) 35%,transparent)}
+.cyoa .cq{font-size:20px;font-weight:800;margin:4px 0 0}
+.cyoa .cde{margin:2px 0 12px;opacity:.8}
+.copts{display:flex;flex-direction:column;gap:10px}
+.copt{text-align:left;padding:12px 14px;border-radius:14px;border:2px solid var(--t);background:var(--surface);color:var(--ink);font-weight:700;font-size:16px}
+.copt small{display:block;font-weight:500;font-size:13px;opacity:.75;margin-top:2px}
+.cends{margin:6px 0 14px;padding-left:4px;list-style:none}
+.cends li{margin:4px 0}
+.cfound{font-weight:700;margin:0}
+.cpath{font-size:14px;opacity:.85;margin:0 0 10px}
 
 /* Footer feedback */
 .player:has(#typein:focus){padding-bottom:calc(var(--kb,0px) + 40vh)}
@@ -570,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 254;
+const APP_VERSION = 255;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -62513,12 +62525,13 @@ function podcastsHtml(t){
       <p class="gp">${info.lead}</p>
       <div class="tiles">${list.map((p, i) => `<button class="tile story${S.done[p.id] ? ' done' : ''}" data-podcast="${t.id}:${i}">
         <span class="tn">${S.done[p.id] ? '✓' : '🎧'}</span><span class="ti">${p.title}</span>
-        <span class="sub">${p.de} · ${byLang('Folge', 'Episodio', 'Folge')} ${p.ep} · ${p.level}</span>
+        <span class="sub">${p.de} · ${byLang('Folge', 'Episodio', 'Folge')} ${p.ep} · ${p.level}${p.parts ? ' · ' + cyoaFound(p).length + ' von ' + cyoaEnds(p).length + ' Enden gefunden' : ''}</span>
         <span>${p.kind.split(' · ').map(k => `<span class="kind">${k}</span>`).join('')}</span></button>`).join('')}</div>`;
 }
 let podcastOpen = null;
 function renderPodcast(tid, i){
   const t = topicById(tid), p = PODCASTS[tid][i];
+  if (p.parts) return renderChoose(tid, i);
   curTopic = 'leggende-' + tid; podcastOpen = p;
   app.innerHTML = `<div class="topicpage" style="--t:${t.color}">
       <button class="back" data-topic="${t.id}">← ${t.name}</button>
@@ -62540,6 +62553,62 @@ function renderPodcast(tid, i){
 }
 /* Bis zum Ende angehört = erledigt (Häkchen auf der Themenseite) */
 if (player.addEventListener) player.addEventListener('ended', () => { if (podcastOpen && player._key === skey(podcastOpen.text) && !S.done[podcastOpen.id]){ S.done[podcastOpen.id] = true; save(); } });
+/* ---------- Mitentscheide-Folgen (ab v255): Folge mit parts, an jeder Entscheidung wählst du, wie es weitergeht ----------
+   Teil mit ask = Entscheidung (opts: [italienisch, deutsch, Ziel-Teil]), Teil mit end = ein Ende. Jeder Teil ist eine eigene Aufnahme.
+   S.cyoa[folge] = bisheriger Weg (Teil-IDs), gefundene Enden in S.done['<folge>-<teil>'], die Folge ist erledigt, wenn ein Ende bis zum Schluss gehört ist. */
+const cyoaEnds = p => p.parts.filter(q => q.end);
+const cyoaFound = p => cyoaEnds(p).filter(q => S.done[p.id + '-' + q.id]);
+let cyoaOpen = null;
+function renderChoose(tid, i, pid){
+  const t = topicById(tid), p = PODCASTS[tid][i];
+  S.cyoa = S.cyoa || {};
+  let path = S.cyoa[p.id] || [];
+  if (!pid) pid = path.length && !(p.parts.find(q => q.id === path[path.length - 1]) || {}).end ? path[path.length - 1] : p.parts[0].id;   // angefangen → dort weiter
+  const part = p.parts.find(q => q.id === pid) || p.parts[0];
+  const k = path.indexOf(part.id);
+  path = part === p.parts[0] ? [part.id] : k >= 0 ? path.slice(0, k + 1) : [...path, part.id];
+  S.cyoa[p.id] = path;
+  if (part.end) S.done[p.id + '-' + part.id] = true;
+  save();
+  curTopic = 'leggende-' + tid; podcastOpen = part.end ? {id: p.id, text: part.text} : null; cyoaOpen = part;
+  const first = part === p.parts[0], ends = cyoaEnds(p), found = cyoaFound(p);
+  /* bisherige Entscheidungen: Text der gewählten Antwort je Schritt */
+  const steps = path.slice(1).map((id, n) => ((p.parts.find(q => q.id === path[n]) || {}).ask || {opts: []}).opts.find(o => o[2] === id)).filter(Boolean);
+  const back = path.length > 1 ? path[path.length - 2] : null;
+  const box = part.ask ? `<div class="cyoa"><p class="eyebrow">Du entscheidest</p>
+        <p class="it cq">${esc(part.ask.q)}</p><p class="cde">${esc(part.ask.de)}</p>
+        <div class="copts">${part.ask.opts.map(([it, de, to]) => `<button class="copt" data-cyoa="${tid}:${i}:${to}"><span class="it">${esc(it)}</span><small>${esc(de)}</small></button>`).join('')}</div>
+        <p class="hint">Hör den Abschnitt erst bis zum Ende. Dann wähle, wie es weitergeht.</p></div>`
+    : `<div class="cyoa end"><p class="eyebrow">Ende ${ends.indexOf(part) + 1} von ${ends.length}</p>
+        <p class="it cq">${esc(part.end)}</p><p class="cde">${esc(part.endDe)}</p>
+        <p class="cfound">${found.length === ends.length ? 'Du hast alle Enden gefunden – bravissimo! ✓' : `Du hast ${found.length} von ${ends.length} Enden gefunden.`}</p>
+        <ul class="cends">${ends.map(q => `<li>${S.done[p.id + '-' + q.id] ? '✓ <span class="it">' + esc(q.end) + '</span> · ' + esc(q.endDe) : '? Noch nicht gefunden'}</li>`).join('')}</ul>
+        <div class="copts">${back ? `<button class="copt" data-cyoa="${tid}:${i}:${back}"><span>↩ Zurück zur letzten Entscheidung</span><small>und den anderen Weg wählen</small></button>` : ''}
+          <button class="copt" data-cyoa="${tid}:${i}:${p.parts[0].id}"><span>⟲ Von vorn beginnen</span><small>ganz neu entscheiden</small></button></div></div>`;
+  app.innerHTML = `<div class="topicpage" style="--t:${t.color}">
+      <button class="back" data-topic="${t.id}">← ${t.name}</button>
+      <div class="thead"><p class="eyebrow">Podcast · ${esc(p.show)} · Folge ${p.ep} · Du entscheidest</p><h1 class="it">${p.title}</h1><p>${p.de} · ${p.place}</p></div>
+      ${steps.length ? `<p class="cpath">Dein Weg: ${steps.map(o => `<span class="it">${esc(o[0])}</span>`).join(' → ')}${back ? ` · <button class="linkbtn" data-cyoa="${tid}:${i}:${back}">↩ Zurück</button>` : ''}</p>` : ''}
+      ${audioBox(part.text)}
+      ${first ? `<div class="tip">In dieser Folge bist du die Hauptfigur. An spannenden Stellen hält die Geschichte an, und du entscheidest, wie es weitergeht. Es gibt <b>${ends.length} verschiedene Enden</b>.<br><b>Es sprechen:</b> eine Erzählerin, ${Object.keys(p.voices).join(', ')}.</div>` : ''}
+      ${box}
+      <details class="vfold" style="margin-top:14px"><summary><span class="ti">Wörter zum Verstehen</span><span class="sub">${p.words.length} Wörter · antippen zum Aufklappen</span></summary>
+        <div class="vocab">${p.words.map(([it,de]) => `<div class="vrow"><span class="v-it">${it}</span><span class="v-de">${de}</span></div>`).join('')}</div></details>
+      <details class="vfold" style="margin-top:10px"><summary><span class="ti">Italienischer Text</span><span class="sub">Nur dieser Abschnitt · Tipp auf ein Wort für die Übersetzung</span></summary>
+        <p class="it" style="line-height:1.6">${storyHtml({text: part.text, voices: p.voices})}</p></details>
+      <details class="vfold" style="margin-top:10px"><summary><span class="ti">Deutsche Übersetzung</span><span class="sub">Nur dieser Abschnitt · antippen zum Aufklappen</span></summary>
+        <p style="line-height:1.6">${esc(part.tr).replace(/\n/g, '<br>')}</p></details>
+      ${part.end && p.fact ? `<p class="gp" style="margin-top:14px">ℹ️ ${esc(p.fact)}</p>` : ''}
+    </div>`;
+  window.scrollTo(0,0);
+  if (player._key !== skey(part.text)) setTimeout(() => playLong(part.text), 250);
+}
+/* Abschnitt zu Ende gehört → Entscheidung hervorheben und ins Bild holen */
+if (player.addEventListener) player.addEventListener('ended', () => {
+  if (!cyoaOpen || !cyoaOpen.ask || player._key !== skey(cyoaOpen.text)) return;
+  const c = document.querySelector('.cyoa'); if (!c) return;
+  c.classList.add('ready'); if (c.scrollIntoView) c.scrollIntoView({behavior: 'smooth', block: 'center'});
+});
 
 function renderTopic(id){
   const t = topicById(id); lastTopic = id;
@@ -65041,7 +65110,7 @@ const GRAMMAR = [
    Zeilen ohne „Name: “ liest die Erzählerin (Isabella). Ton-Bündel: leggende-<thema> (zweiter Speicher, EXT_THEMEN). */
 /* Überschrift und Einleitung des Abschnitts auf der Themenseite, pro Thema */
 const PODCAST_INFO = {
-  brividi:{h:'Legenden zum Zuhören', nav:'Legenden', lead:'Wie ein kleiner Podcast: gruselige italienische Legenden, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'},
+  brividi:{h:'Legenden zum Zuhören', nav:'Legenden', lead:'Wie ein kleiner Podcast: gruselige italienische Legenden, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen. Neu: In Folge 11 entscheidest du selbst, wie die Geschichte ausgeht.'},
   roma:{h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: spannende Geschichten aus dem alten Rom, mit Geräuschen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'}
 };
 const PODCASTS = {
@@ -66137,6 +66206,265 @@ Bis heute sagen die Fischer von Messina, wenn die Erde bebt, dass Colapesce die 
 Das war „Brividi nella notte“. Wenn heute Nacht euer Bett ein bisschen wackelt … habt keine Angst. Das ist nur ein müder Junge. Bis zur nächsten Legende …`,
     fact:'Die Sage von Colapesce („Fisch-Cola“) ist eine der bekanntesten Siziliens und wird seit dem Mittelalter erzählt; schon im 12. und 13. Jahrhundert schrieben Chronisten über einen Taucher namens Nicola aus Messina. Der König in der Geschichte ist meist Friedrich II. von Hohenstaufen, König von Sizilien und Kaiser. Sizilien heißt in der Antike „Trinacria“, Land der drei Spitzen – daher die drei Säulen. Die Meerenge von Messina ist bis zu 250 Meter tief und für ihre starken Strömungen berüchtigt (die Sage von Skylla und Charybdis spielt hier). Messina wurde 1908 von einem schweren Erdbeben fast völlig zerstört. Die astronomische Uhr am Domturm (1933) ist eine der größten der Welt: Um zwölf Uhr brüllt der Löwe und kräht der Hahn.' }
 );
+/* Brividi-Podcast Folge 11 (v255, Wunsch der Nutzerin: Ideenliste Nr. 3 „Eine Gruselgeschichte, in der du entscheidest“).
+   Erste Mitentscheide-Folge: Feld parts statt eines einzigen Textes. Jeder Teil ist eine eigene Aufnahme (Schlüssel aus seinem Text).
+   Teil mit ask = Entscheidung (opts: [italienisch, deutsch, Ziel-Teil]), Teil mit end = eines der Enden. text/tr der Folge = erster Teil.
+   Dolomiten über Cortina, Januar, Schneesturm: Du und Marta im Winterraum einer Hütte. Hüttenwirt Bepi warnt über Funk:
+   „Wenn es dreimal klopft, macht nicht auf.“ Um Mitternacht klopft es – ein Alpino von 1916 (Angelo De Zanna, Guerra bianca).
+   Vier Enden: La lettera (Brief ans Grab der Mutter), Cent'anni (Wahrheit, er geht, Gletscher gibt ihn frei),
+   La lanterna (ihr folgt dem Licht und rettet den Skifahrer Luca), Grazie lo stesso (ihr bleibt drinnen, Klopfen die ganze Nacht).
+   Das „tu“ der Geschichte bleibt ohne männliche/weibliche Endungen (keine Adjektive auf -o/-a für „tu“).
+   Stimmen: Erzählerin Isabella, Marta Elsa, Bepi Giuseppe (über Funk), Soldato Diego (jung, müde), Luca Diego (tiefer), Radio Diego (über Funk). */
+{
+const parts = [
+  { id:'start',
+    fx:{'Buonasera… e benvenuti':'carillon atmo_an', 'Sei in montagna':'pausa', 'Per fortuna':'pausa', 'Accendi la stufa':'falo_an', 'Marta: Pronto':'radio_sintonia',
+        'Bepi: Qui Bepi':'radio', 'Bepi: Aspettate':'radio pausa', 'Bepi: Lassù':'radio', 'La radio fa':'radio_sintonia', 'Mangiate':'pausa',
+        'E poi lo senti':'pausa muro', 'Soldato:':'eco', 'È una voce':'pausa', 'Che cosa fai?':'pausa'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera la storia è diversa. Stasera il protagonista sei tu. E sei tu a decidere che cosa succede.
+Spegnete la luce. Mettete le cuffie. E ascoltate bene: a un certo punto dovrete scegliere.
+Sei in montagna, nelle Dolomiti, sopra Cortina. È gennaio. Tu e la tua amica Marta siete partiti stamattina con le ciaspole, le racchette da neve. Volevate solo fare un giro. Ma nel pomeriggio il cielo è diventato grigio, poi bianco. È arrivata una tempesta di neve.
+Per fortuna avete trovato un rifugio. Un piccolo rifugio di legno e di pietra, vicino alle vecchie trincee della Prima guerra mondiale. D’inverno il rifugio è chiuso, ma una stanza è sempre aperta: il locale invernale, per chi è in pericolo. Dentro ci sono quattro letti, qualche coperta, una stufa e una radio.
+Accendi la stufa. Marta prende la radio.
+Marta: Pronto? Pronto, c’è qualcuno? Siamo al rifugio. Siamo in due. Stiamo bene.
+Bepi: Qui Bepi, il gestore del rifugio. Vi sento. Siete stati fortunati, ragazzi. Stanotte la tempesta è forte, nessuno può salire. Domani mattina vengo a prendervi con la motoslitta.
+Marta: Grazie, Bepi. A domani.
+Bepi: Aspettate. Ancora una cosa. Se stanotte qualcuno bussa alla porta… tre volte… non aprite.
+Marta: Come, non aprite? E se è qualcuno che ha bisogno di aiuto?
+Bepi: Lassù, d’inverno, di notte, non c’è nessuno. Solo loro. I soldati. Cento anni fa lassù c’era la guerra. La guerra bianca, nella neve. Tanti ragazzi sono morti di freddo e non sono mai tornati a casa. Nelle notti di tempesta qualcuno cerca ancora la strada. Io non ci credo, eh. Però non aprite.
+La radio fa un rumore. Poi silenzio.
+Marta ride. Ma ride piano.
+Marta: Che storia! Bepi vuole solo farci paura.
+Mangiate un po’ di pane e formaggio. Marta si addormenta subito. Tu no. Fuori il vento urla. La stufa fa piccoli rumori. Guardi l’orologio: è mezzanotte.
+E poi lo senti. Qualcuno bussa alla porta. Una volta. Due volte. Tre volte.
+Soldato: Aprite… per favore… ho freddo.
+È una voce giovane. Una voce stanca, molto stanca.
+Che cosa fai? Apri la porta? Oppure non apri e guardi prima dalla finestra?`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend ist die Geschichte anders. Heute Abend bist du die Hauptfigur. Und du entscheidest, was passiert.
+Macht das Licht aus. Setzt die Kopfhörer auf. Und hört gut zu: An einer bestimmten Stelle müsst ihr wählen.
+Du bist in den Bergen, in den Dolomiten, oberhalb von Cortina. Es ist Januar. Du und deine Freundin Marta seid heute Morgen mit Schneeschuhen losgegangen. Ihr wolltet nur eine kleine Runde drehen. Aber am Nachmittag ist der Himmel grau geworden, dann weiß. Ein Schneesturm ist gekommen.
+Zum Glück habt ihr eine Hütte gefunden. Eine kleine Hütte aus Holz und Stein, in der Nähe der alten Schützengräben aus dem Ersten Weltkrieg. Im Winter ist die Hütte geschlossen, aber ein Raum ist immer offen: der Winterraum, für Leute in Not. Drinnen gibt es vier Betten, ein paar Decken, einen Ofen und ein Funkgerät.
+Du machst den Ofen an. Marta nimmt das Funkgerät.
+Marta: Hallo? Hallo, ist da jemand? Wir sind in der Hütte. Wir sind zu zweit. Es geht uns gut.
+Bepi: Hier ist Bepi, der Hüttenwirt. Ich höre euch. Ihr habt Glück gehabt, Kinder. Heute Nacht ist der Sturm stark, niemand kann hinaufsteigen. Morgen früh hole ich euch mit dem Motorschlitten ab.
+Marta: Danke, Bepi. Bis morgen.
+Bepi: Wartet. Noch etwas. Wenn heute Nacht jemand an die Tür klopft … dreimal … macht nicht auf.
+Marta: Wie, macht nicht auf? Und wenn es jemand ist, der Hilfe braucht?
+Bepi: Da oben ist im Winter nachts niemand. Nur sie. Die Soldaten. Vor hundert Jahren war da oben Krieg. Der weiße Krieg, im Schnee. Viele junge Männer sind erfroren und nie nach Hause gekommen. In Sturmnächten sucht noch immer einer den Weg. Ich glaube nicht daran, hm. Aber macht nicht auf.
+Das Funkgerät macht ein Geräusch. Dann Stille.
+Marta lacht. Aber sie lacht leise.
+Marta: Was für eine Geschichte! Bepi will uns nur Angst machen.
+Ihr esst ein bisschen Brot und Käse. Marta schläft sofort ein. Du nicht. Draußen heult der Wind. Der Ofen macht kleine Geräusche. Du schaust auf die Uhr: Es ist Mitternacht.
+Und dann hörst du es. Jemand klopft an die Tür. Einmal. Zweimal. Dreimal.
+Soldat: Macht auf … bitte … mir ist kalt.
+Es ist eine junge Stimme. Eine müde Stimme, sehr müde.
+Was tust du? Machst du die Tür auf? Oder machst du nicht auf und schaust zuerst aus dem Fenster?`,
+    ask:{q:'Che cosa fai?', de:'Was tust du?', opts:[['Apri la porta.', 'Du machst die Tür auf.', 'a'], ['Non apri. Guardi dalla finestra.', 'Du machst nicht auf und schaust aus dem Fenster.', 'b']]} },
+
+  { id:'a',
+    fx:{'Ti alzi':'atmo_an falo_an', 'Il vento entra':'porta', 'Guardi per terra':'pausa', 'Chiudi la porta':'porta pausa', 'Vicino alla stufa':'pausa',
+        'Soldato: Grazie':'pausa', 'Il ragazzo prende':'pausa', 'Guardi la lettera':'pausa', 'Che cosa fai?':'pausa'},
+    text:`Ti alzi. Il cuore batte forte. Apri la porta.
+Il vento entra nella stanza, freddo come un coltello. La neve vola dappertutto. Ma fuori… non c’è nessuno.
+Guardi per terra. Nella neve, davanti alla porta, ci sono delle impronte. Impronte di vecchi scarponi, con i chiodi. Arrivano fino alla porta. Ma non vengono da nessuna parte. Prima delle impronte la neve è liscia, bianca, perfetta.
+Chiudi la porta. Ti giri.
+Vicino alla stufa c’è un ragazzo. È seduto per terra, con le mani verso il fuoco. Porta una vecchia divisa grigioverde e un cappello con una penna nera. Ha la faccia bianca, bianchissima. Avrà diciannove anni, non di più.
+Soldato: Grazie. Grazie… Non sentivo più le mani.
+Gli chiedi chi è.
+Soldato: Mi chiamo Angelo. Angelo De Zanna. Alpino. Mi sono perso nella tormenta. I miei compagni sono andati avanti… Che giorno è oggi?
+Gli dici che è il quindici gennaio.
+Soldato: Il quindici gennaio… Allora domani è il compleanno della mia mamma. Abita giù, a Cortina. Le ho scritto una lettera, ma non ho potuto spedirla.
+Il ragazzo prende dalla giacca una busta. È vecchia, gialla, un po’ bagnata. Marta dorme ancora. Non si sveglia.
+Soldato: La porti tu alla mia mamma? Domani, quando scendi a Cortina? Si chiama Maria. A Cortina tutti la conoscono.
+Guardi la lettera. Sopra c’è una data, scritta a mano: quindici gennaio millenovecentosedici.
+Che cosa fai? Prendi la lettera e dici di sì? Oppure gli dici la verità: che non siamo nel millenovecentosedici, ma nel duemilaventisei?`,
+    tr:`Du stehst auf. Dein Herz schlägt laut. Du machst die Tür auf.
+Der Wind kommt ins Zimmer, kalt wie ein Messer. Der Schnee fliegt überallhin. Aber draußen … ist niemand.
+Du schaust auf den Boden. Im Schnee vor der Tür sind Fußspuren. Spuren von alten Bergschuhen, mit Nägeln. Sie führen bis zur Tür. Aber sie kommen von nirgendwo. Vor den Spuren ist der Schnee glatt, weiß, perfekt.
+Du machst die Tür zu. Du drehst dich um.
+Neben dem Ofen sitzt ein junger Mann. Er sitzt auf dem Boden, die Hände zum Feuer gestreckt. Er trägt eine alte graugrüne Uniform und einen Hut mit einer schwarzen Feder. Sein Gesicht ist weiß, schneeweiß. Er ist wohl neunzehn, nicht älter.
+Soldat: Danke. Danke … Ich habe meine Hände nicht mehr gespürt.
+Du fragst ihn, wer er ist.
+Soldat: Ich heiße Angelo. Angelo De Zanna. Alpino, Gebirgsjäger. Ich habe mich im Schneesturm verirrt. Meine Kameraden sind weitergegangen … Welcher Tag ist heute?
+Du sagst ihm, dass heute der fünfzehnte Januar ist.
+Soldat: Der fünfzehnte Januar … Dann hat morgen meine Mama Geburtstag. Sie wohnt unten, in Cortina. Ich habe ihr einen Brief geschrieben, aber ich konnte ihn nicht abschicken.
+Der junge Mann holt einen Umschlag aus der Jacke. Er ist alt, gelb, ein bisschen nass. Marta schläft noch. Sie wacht nicht auf.
+Soldat: Bringst du ihn meiner Mama? Morgen, wenn du nach Cortina hinuntergehst? Sie heißt Maria. In Cortina kennen sie alle.
+Du schaust den Brief an. Darauf steht ein Datum, mit der Hand geschrieben: fünfzehnter Januar neunzehnhundertsechzehn.
+Was tust du? Nimmst du den Brief und sagst Ja? Oder sagst du ihm die Wahrheit: dass wir nicht im Jahr neunzehnhundertsechzehn sind, sondern im Jahr zweitausendsechsundzwanzig?`,
+    ask:{q:'Che cosa fai?', de:'Was tust du?', opts:[['Prendi la lettera.', 'Du nimmst den Brief.', 'a1'], ['Gli dici la verità.', 'Du sagst ihm die Wahrheit.', 'a2']]} },
+
+  { id:'a1', end:'La lettera', endDe:'Der Brief',
+    fx:{'Prendi la lettera':'atmo_an falo_an', 'Si sdraia':'pausa', 'La mattina dopo ti sveglia':'atmo_aus falo_aus pausa motore_kart', 'Vicino alla stufa non':'pausa',
+        'Racconti tutto':'pausa', 'Nel pomeriggio':'pausa campane', 'Metti la lettera':'pausa', 'Quando vi girate':'pausa', 'Fine.':'pausa carillon_ende'},
+    text:`Prendi la lettera. Le mani di Angelo sono fredde come il ghiaccio.
+Soldato: Grazie. Adesso posso riposare.
+Si sdraia vicino alla stufa e chiude gli occhi. Vuoi guardarlo ancora un po’, ma i tuoi occhi si chiudono da soli.
+La mattina dopo ti sveglia il rumore di un motore. È Bepi, con la motoslitta. Il sole splende, il cielo è blu. La tempesta è finita.
+Vicino alla stufa non c’è nessuno. Per terra c’è solo un po’ d’acqua, come neve sciolta. Ma la lettera è ancora nella tua mano.
+Marta: Buongiorno! Ho dormito benissimo. E tu? Che cos’è quella busta?
+Racconti tutto. Marta non ride più. Bepi legge il nome sulla busta e diventa pallido.
+Bepi: Maria De Zanna… Era la nonna di mia nonna. Suo figlio Angelo è morto quassù, nel gennaio del millenovecentosedici. Non l’hanno mai trovato.
+Nel pomeriggio scendete a Cortina, al piccolo cimitero. Bepi vi porta davanti a una tomba antica. Sopra c’è scritto: Maria De Zanna. E sotto, più piccolo: «Aspetto ancora il mio Angelo».
+Metti la lettera sulla tomba, sotto un sasso. Nessuno la apre. Non è per voi.
+Quando vi girate per andare via, sentite una cosa. Nel silenzio del cimitero, piano piano… qualcuno ride. Una donna. E un ragazzo. Sono felici.
+Fine. Questo era uno dei quattro finali della storia. Se vuoi conoscere gli altri, torna indietro e scegli un’altra strada. Questo era «Brividi nella notte». Alla prossima leggenda…`,
+    tr:`Du nimmst den Brief. Angelos Hände sind kalt wie Eis.
+Soldat: Danke. Jetzt kann ich mich ausruhen.
+Er legt sich neben den Ofen und macht die Augen zu. Du willst ihn noch ein bisschen anschauen, aber deine Augen fallen von selbst zu.
+Am nächsten Morgen weckt dich das Geräusch eines Motors. Es ist Bepi mit dem Motorschlitten. Die Sonne scheint, der Himmel ist blau. Der Sturm ist vorbei.
+Neben dem Ofen ist niemand. Auf dem Boden ist nur ein bisschen Wasser, wie geschmolzener Schnee. Aber der Brief ist noch in deiner Hand.
+Marta: Guten Morgen! Ich habe wunderbar geschlafen. Und du? Was ist das für ein Umschlag?
+Du erzählst alles. Marta lacht nicht mehr. Bepi liest den Namen auf dem Umschlag und wird blass.
+Bepi: Maria De Zanna … Das war die Großmutter meiner Großmutter. Ihr Sohn Angelo ist hier oben gestorben, im Januar neunzehnhundertsechzehn. Man hat ihn nie gefunden.
+Am Nachmittag geht ihr hinunter nach Cortina, zum kleinen Friedhof. Bepi führt euch vor ein altes Grab. Darauf steht: Maria De Zanna. Und darunter, kleiner: „Ich warte noch immer auf meinen Angelo.“
+Du legst den Brief auf das Grab, unter einen Stein. Niemand macht ihn auf. Er ist nicht für euch.
+Als ihr euch umdreht, um zu gehen, hört ihr etwas. In der Stille des Friedhofs lacht ganz leise … jemand. Eine Frau. Und ein junger Mann. Sie sind glücklich.
+Ende. Das war eines der vier Enden der Geschichte. Wenn du die anderen kennenlernen willst, geh zurück und wähle einen anderen Weg. Das war „Brividi nella notte“. Bis zur nächsten Legende …` },
+
+  { id:'a2', end:'Cent’anni', endDe:'Hundert Jahre',
+    fx:{'Guardi Angelo':'atmo_an falo_an', 'Il ragazzo non dice':'pausa', 'Soldato: Ho camminato':'pausa', 'Si alza':'pausa porta', 'Esce nella tempesta':'porta',
+        'In quel momento':'falo_aus pausa', 'Marta: Ma…':'pausa', 'La mattina dopo arriva':'atmo_aus pausa motore_kart', 'Un anno dopo':'pausa', 'Fine.':'pausa carillon_ende'},
+    text:`Guardi Angelo negli occhi. E gli dici la verità. Non siamo nel millenovecentosedici. Siamo nel duemilaventisei. La guerra è finita da più di cent’anni.
+Il ragazzo non dice niente per un lungo momento. Guarda il fuoco. Poi guarda le sue mani. Sono bianche, quasi trasparenti.
+Soldato: Cent’anni… Allora la mia mamma…
+Non finisce la frase. Abbassa la testa.
+Soldato: Ho camminato tanto. Ho bussato a tante porte. In cent’anni nessuno mi ha mai aperto. Tu mi hai aperto. E mi hai detto la verità. Grazie.
+Si alza. Va alla porta. La apre. Fuori il vento urla ancora.
+Soldato: Allora non devo più cercare la strada di casa. Devo solo andare.
+Esce nella tempesta. La porta si chiude da sola. Corri alla finestra. Nella neve vedi una piccola luce che sale verso la montagna, sempre più in alto, sempre più piccola. Poi sparisce.
+In quel momento la stufa si spegne. Fa freddo, un freddo terribile. Sul vetro della finestra il ghiaccio disegna dei fiori bianchi.
+Marta: Ma… che succede? Perché fa così freddo? Hai aperto la porta?
+Non sai che cosa rispondere. Riaccendi la stufa. Vi sedete vicini, sotto le coperte, fino alla mattina.
+La mattina dopo arriva Bepi. Gli racconti tutto. Lui non ride.
+Bepi: Angelo De Zanna. Sì. Mia nonna parlava di lui. Sai, lo cercano ancora. Ogni tanto il ghiacciaio restituisce qualcuno.
+Un anno dopo leggi una notizia sul giornale. Sul ghiacciaio, sopra il rifugio, hanno trovato un giovane alpino della Prima guerra mondiale. In tasca aveva una lettera per sua madre. Adesso è sepolto a Cortina, vicino a lei.
+Fine. Questo era uno dei quattro finali della storia. Se vuoi conoscere gli altri, torna indietro e scegli un’altra strada. Questo era «Brividi nella notte». Alla prossima leggenda…`,
+    tr:`Du schaust Angelo in die Augen. Und du sagst ihm die Wahrheit. Wir sind nicht im Jahr neunzehnhundertsechzehn. Wir sind im Jahr zweitausendsechsundzwanzig. Der Krieg ist seit mehr als hundert Jahren vorbei.
+Der junge Mann sagt einen langen Moment nichts. Er schaut ins Feuer. Dann schaut er seine Hände an. Sie sind weiß, fast durchsichtig.
+Soldat: Hundert Jahre … Dann ist meine Mama …
+Er spricht den Satz nicht zu Ende. Er senkt den Kopf.
+Soldat: Ich bin so viel gelaufen. Ich habe an so viele Türen geklopft. In hundert Jahren hat mir nie jemand aufgemacht. Du hast mir aufgemacht. Und du hast mir die Wahrheit gesagt. Danke.
+Er steht auf. Er geht zur Tür. Er macht sie auf. Draußen heult noch immer der Wind.
+Soldat: Dann muss ich nicht mehr den Weg nach Hause suchen. Ich muss nur gehen.
+Er geht hinaus in den Sturm. Die Tür fällt von selbst zu. Du rennst zum Fenster. Im Schnee siehst du ein kleines Licht, das zum Berg hinaufsteigt, immer höher, immer kleiner. Dann verschwindet es.
+In diesem Moment geht der Ofen aus. Es ist kalt, schrecklich kalt. Auf der Fensterscheibe malt das Eis weiße Blumen.
+Marta: Aber … was ist los? Warum ist es so kalt? Hast du die Tür aufgemacht?
+Du weißt nicht, was du antworten sollst. Du machst den Ofen wieder an. Ihr setzt euch eng zusammen unter die Decken, bis zum Morgen.
+Am nächsten Morgen kommt Bepi. Du erzählst ihm alles. Er lacht nicht.
+Bepi: Angelo De Zanna. Ja. Meine Großmutter hat von ihm erzählt. Weißt du, man sucht ihn noch immer. Ab und zu gibt der Gletscher jemanden zurück.
+Ein Jahr später liest du eine Nachricht in der Zeitung. Auf dem Gletscher oberhalb der Hütte hat man einen jungen Alpino aus dem Ersten Weltkrieg gefunden. In der Tasche hatte er einen Brief an seine Mutter. Jetzt liegt er in Cortina begraben, neben ihr.
+Ende. Das war eines der vier Enden der Geschichte. Wenn du die anderen kennenlernen willst, geh zurück und wähle einen anderen Weg. Das war „Brividi nella notte“. Bis zur nächsten Legende …` },
+
+  { id:'b',
+    fx:{'Non apri':'atmo_an falo_an', 'La neve vola':'pausa', 'Poi senti di nuovo':'pausa muro', 'Marta si sveglia':'pausa', 'Le racconti':'pausa',
+        'Marta: Bepi è':'pausa', 'La lanterna, lontano':'pausa', 'Che cosa fai?':'pausa'},
+    text:`Non apri. Ti avvicini piano alla finestra e guardi fuori.
+La neve vola dappertutto. Davanti alla porta non c’è nessuno. Ma lontano, tra gli alberi, c’è una piccola luce. Una lanterna. Si muove piano, a destra e a sinistra. Qualcuno la tiene in mano?
+Poi senti di nuovo: toc. Toc. Toc. Ma adesso non bussano alla porta. Bussano alla finestra dietro di te. La finestra vicino al letto di Marta.
+Marta si sveglia.
+Marta: Che cos’è? Chi bussa?
+Le racconti tutto: la voce, la luce, la lanterna.
+Marta: E non hai aperto? C’è qualcuno là fuori, con questo freddo! Morirà! Dobbiamo aiutarlo!
+Le ricordi le parole di Bepi: non aprite.
+Marta: Bepi è un vecchio che racconta storie. Io esco. Vieni con me?
+La lanterna, lontano, si ferma. E aspetta.
+Che cosa fai? Esci con Marta e segui la luce? Oppure resti dentro, chiudi tutto e chiami Bepi alla radio?`,
+    tr:`Du machst nicht auf. Du gehst leise zum Fenster und schaust hinaus.
+Der Schnee fliegt überallhin. Vor der Tür ist niemand. Aber in der Ferne, zwischen den Bäumen, ist ein kleines Licht. Eine Laterne. Sie bewegt sich langsam, nach rechts und nach links. Hält sie jemand in der Hand?
+Dann hörst du es wieder: tock. Tock. Tock. Aber jetzt klopft es nicht an der Tür. Es klopft an das Fenster hinter dir. Das Fenster neben Martas Bett.
+Marta wacht auf.
+Marta: Was ist das? Wer klopft da?
+Du erzählst ihr alles: die Stimme, das Licht, die Laterne.
+Marta: Und du hast nicht aufgemacht? Da draußen ist jemand, bei dieser Kälte! Er wird sterben! Wir müssen ihm helfen!
+Du erinnerst sie an Bepis Worte: Macht nicht auf.
+Marta: Bepi ist ein alter Mann, der Geschichten erzählt. Ich gehe raus. Kommst du mit?
+Die Laterne in der Ferne bleibt stehen. Und wartet.
+Was tust du? Gehst du mit Marta hinaus und folgst dem Licht? Oder bleibst du drinnen, machst alles zu und rufst Bepi über Funk?`,
+    ask:{q:'Che cosa fai?', de:'Was tust du?', opts:[['Esci con Marta e segui la luce.', 'Du gehst mit Marta hinaus und folgst dem Licht.', 'b1'], ['Resti dentro e chiami Bepi alla radio.', 'Du bleibst drinnen und rufst Bepi über Funk.', 'b2']]} },
+
+  { id:'b1', end:'La lanterna', endDe:'Die Laterne',
+    fx:{'Vi mettete':'atmo_an falo_an cerniera', 'Il vento è fortissimo':'porta falo_aus pausa', 'Marta: Ehi':'pausa', 'Sotto la roccia':'pausa', 'Lo prendete':'pausa',
+        'Dopo un’ora':'atmo_aus falo_an pausa', 'Vi guardate':'pausa', 'La mattina dopo arriva':'falo_aus pausa motore_kart', 'Davanti alla porta':'pausa', 'Fine.':'pausa carillon_ende'},
+    text:`Vi mettete le giacche, i guanti e le ciaspole. Prendete la torcia. Aprite la porta e uscite nella tempesta.
+Il vento è fortissimo. La neve vi arriva alle ginocchia. Non si vede quasi niente. Solo quella piccola luce, davanti a voi. Ogni volta che vi avvicinate, la luce va un po’ più avanti.
+Marta: Ehi! Aspetta! Chi sei?
+Nessuno risponde. Camminate per dieci minuti. Poi la luce si ferma vicino a una grande roccia. E sparisce.
+Sotto la roccia, mezzo coperto dalla neve, c’è un uomo. Uno sciatore. Ha la faccia bianca e le labbra blu. Non si muove.
+Marta: Respira! Respira ancora! Presto, aiutami!
+Lo prendete per le braccia e lo portate al rifugio. È pesante, la strada è lunga, ma ce la fate. Lo mettete vicino alla stufa, sotto tutte le coperte. Marta chiama Bepi alla radio.
+Dopo un’ora l’uomo apre gli occhi.
+Luca: Dove… dove sono?
+Marta: Al rifugio. Sei al sicuro. Come ti chiami?
+Luca: Luca. Mi sono perso nella tempesta. Sono caduto e non riuscivo più ad alzarmi. Pensavo di morire. Ma poi è arrivato un ragazzo. Un soldato, con un cappello con la penna nera e una lanterna. Si è seduto vicino a me e mi ha detto: «Non dormire. Adesso vado a chiamare qualcuno.»
+Vi guardate. Nessuno dice niente.
+La mattina dopo arriva Bepi con la motoslitta, e con lui il soccorso alpino. Luca sta bene. Bepi vi ascolta in silenzio. Poi guarda la montagna.
+Bepi: Allora è vero quello che diceva mia nonna. Gli alpini non bussano per sé. Bussano per gli altri.
+Davanti alla porta del rifugio, nella neve fresca, ci sono delle impronte. Impronte di vecchi scarponi, con i chiodi. Vanno verso la montagna. E a un certo punto finiscono. Nel nulla.
+Fine. Questo era uno dei quattro finali della storia. Se vuoi conoscere gli altri, torna indietro e scegli un’altra strada. Questo era «Brividi nella notte». Alla prossima leggenda…`,
+    tr:`Ihr zieht die Jacken, die Handschuhe und die Schneeschuhe an. Ihr nehmt die Taschenlampe. Ihr macht die Tür auf und geht hinaus in den Sturm.
+Der Wind ist sehr stark. Der Schnee geht euch bis zu den Knien. Man sieht fast nichts. Nur dieses kleine Licht vor euch. Jedes Mal, wenn ihr näher kommt, geht das Licht ein Stück weiter.
+Marta: He! Warte! Wer bist du?
+Niemand antwortet. Ihr geht zehn Minuten. Dann bleibt das Licht bei einem großen Felsen stehen. Und verschwindet.
+Unter dem Felsen, halb vom Schnee bedeckt, liegt ein Mann. Ein Skifahrer. Sein Gesicht ist weiß und seine Lippen sind blau. Er bewegt sich nicht.
+Marta: Er atmet! Er atmet noch! Schnell, hilf mir!
+Ihr packt ihn an den Armen und bringt ihn zur Hütte. Er ist schwer, der Weg ist lang, aber ihr schafft es. Ihr legt ihn neben den Ofen, unter alle Decken. Marta ruft Bepi über Funk.
+Nach einer Stunde macht der Mann die Augen auf.
+Luca: Wo … wo bin ich?
+Marta: In der Hütte. Du bist in Sicherheit. Wie heißt du?
+Luca: Luca. Ich habe mich im Sturm verirrt. Ich bin gestürzt und konnte nicht mehr aufstehen. Ich dachte, ich sterbe. Aber dann ist ein junger Mann gekommen. Ein Soldat, mit einem Hut mit schwarzer Feder und einer Laterne. Er hat sich neben mich gesetzt und gesagt: „Schlaf nicht ein. Ich hole jetzt jemanden.“
+Ihr schaut euch an. Niemand sagt etwas.
+Am nächsten Morgen kommt Bepi mit dem Motorschlitten, und mit ihm die Bergwacht. Luca geht es gut. Bepi hört euch schweigend zu. Dann schaut er zum Berg.
+Bepi: Dann stimmt es also, was meine Großmutter gesagt hat. Die Alpini klopfen nicht für sich selbst. Sie klopfen für die anderen.
+Vor der Tür der Hütte, im frischen Schnee, sind Fußspuren. Spuren von alten Bergschuhen, mit Nägeln. Sie gehen zum Berg hinauf. Und irgendwann hören sie auf. Im Nichts.
+Ende. Das war eines der vier Enden der Geschichte. Wenn du die anderen kennenlernen willst, geh zurück und wähle einen anderen Weg. Das war „Brividi nella notte“. Bis zur nächsten Legende …` },
+
+  { id:'b2', end:'Grazie lo stesso', endDe:'Trotzdem danke',
+    fx:{'Non esci':'atmo_an falo_an', 'Marta: Bepi?':'radio_sintonia', 'La radio fa solo':'pausa', 'Radio:':'radio eco', 'Marta: Chi parla':'pausa', 'Poi la voce':'radio_sintonia',
+        'E ricominciano':'pausa muro', 'Voi non dormite':'muro_forte pausa', 'Alle quattro':'pausa', 'La mattina arriva':'atmo_aus falo_aus pausa motore_kart',
+        'Bepi vi mostra':'pausa', 'Uscite dal rifugio':'porta pausa', 'E sulla porta':'pausa', 'Fine.':'pausa carillon_ende'},
+    text:`Non esci. Chiudi la porta a chiave, chiudi le finestre e accendi la radio. Marta ti guarda arrabbiata, ma resta con te.
+Marta: Bepi? Bepi, ci senti? Rispondi!
+La radio fa solo rumore. Un rumore lungo e bianco, come il vento. E poi, nel rumore, una voce. Lontana. Non è la voce di Bepi.
+Radio: … qui… posto avanzato… siamo in tre… uno è ferito… mandate aiuto… per favore…
+Marta: Chi parla? Dove siete?
+Radio: … sotto la roccia grande… fa freddo… tanto freddo…
+Poi la voce sparisce. Solo rumore.
+E ricominciano i colpi. Toc. Toc. Toc. Alla porta. Poi alla finestra. Poi al muro, dietro i letti. Poi di nuovo alla porta. Qualcuno cammina intorno al rifugio, piano piano, e bussa. Tutta la notte.
+Voi non dormite. Restate seduti vicino alla stufa, mano nella mano. E non aprite.
+Alle quattro i colpi finiscono. Silenzio.
+La mattina arriva Bepi, e con lui il soccorso alpino. Hanno trovato uno sciatore, a trecento metri dal rifugio, sotto una grande roccia. È vivo. Per miracolo.
+Bepi: Non capisco. Ha passato tutta la notte nella neve. Ma qualcuno ha costruito un piccolo muro di neve intorno a lui, contro il vento. E vicino a lui c’era questa.
+Bepi vi mostra una lanterna. Una vecchia lanterna di ferro, arrugginita. Una lanterna di cento anni fa.
+Uscite dal rifugio. Intorno ai muri, nella neve, ci sono delle impronte di vecchi scarponi. Fanno il giro del rifugio. Una volta, dieci volte, cento volte.
+E sulla porta, nel ghiaccio, qualcuno ha scritto con un dito tre parole: «Grazie lo stesso».
+Fine. Questo era uno dei quattro finali della storia. Se vuoi conoscere gli altri, torna indietro e scegli un’altra strada. Questo era «Brividi nella notte». Alla prossima leggenda…`,
+    tr:`Du gehst nicht hinaus. Du schließt die Tür ab, machst die Fenster zu und schaltest das Funkgerät ein. Marta schaut dich wütend an, aber sie bleibt bei dir.
+Marta: Bepi? Bepi, hörst du uns? Antworte!
+Das Funkgerät macht nur Rauschen. Ein langes, weißes Rauschen, wie der Wind. Und dann, im Rauschen, eine Stimme. Weit weg. Es ist nicht Bepis Stimme.
+Funk: … hier … vorgeschobener Posten … wir sind zu dritt … einer ist verletzt … schickt Hilfe … bitte …
+Marta: Wer spricht da? Wo seid ihr?
+Funk: … unter dem großen Felsen … es ist kalt … so kalt …
+Dann verschwindet die Stimme. Nur Rauschen.
+Und das Klopfen fängt wieder an. Tock. Tock. Tock. An der Tür. Dann am Fenster. Dann an der Wand, hinter den Betten. Dann wieder an der Tür. Jemand geht langsam um die Hütte herum und klopft. Die ganze Nacht.
+Ihr schlaft nicht. Ihr bleibt am Ofen sitzen, Hand in Hand. Und ihr macht nicht auf.
+Um vier Uhr hört das Klopfen auf. Stille.
+Am Morgen kommt Bepi, und mit ihm die Bergwacht. Sie haben einen Skifahrer gefunden, dreihundert Meter von der Hütte entfernt, unter einem großen Felsen. Er lebt. Wie durch ein Wunder.
+Bepi: Ich verstehe das nicht. Er hat die ganze Nacht im Schnee verbracht. Aber jemand hat eine kleine Mauer aus Schnee um ihn herum gebaut, gegen den Wind. Und neben ihm lag die hier.
+Bepi zeigt euch eine Laterne. Eine alte Laterne aus Eisen, verrostet. Eine Laterne von vor hundert Jahren.
+Ihr geht aus der Hütte. Rund um die Mauern sind im Schnee Fußspuren von alten Bergschuhen. Sie gehen um die Hütte herum. Einmal, zehnmal, hundertmal.
+Und auf der Tür hat jemand mit dem Finger drei Wörter ins Eis geschrieben: „Trotzdem danke“.
+Ende. Das war eines der vier Enden der Geschichte. Wenn du die anderen kennenlernen willst, geh zurück und wähle einen anderen Weg. Das war „Brividi nella notte“. Bis zur nächsten Legende …` },
+];
+PODCASTS.brividi.push(
+  { id:'brividi-s1', show:'Brividi nella notte', ep:11, title:'Bussano tre volte', de:'Es klopft dreimal',
+    place:'Un rifugio nelle Dolomiti, sopra Cortina', level:'ab A2', kind:'Du entscheidest · Berge',
+    voices:{Marta:'Elsa', Bepi:'Giuseppe', Soldato:'Diego', Luca:'Diego', Radio:'Diego'},
+    stil:{Marta:['+0%','+12Hz'], Bepi:['-12%','-26Hz'], Soldato:['-14%','+22Hz'], Luca:['-8%','-14Hz'], Radio:['-16%','+4Hz']},
+    words:[['il rifugio','die Berghütte'],['il gestore','der Hüttenwirt'],['la tempesta di neve / la tormenta','der Schneesturm'],['le ciaspole','die Schneeschuhe'],['la stufa','der Ofen'],['la radio','das Funkgerät, das Radio'],['la motoslitta','der Motorschlitten'],['bussare','klopfen'],['aprire / non aprite','aufmachen / macht nicht auf'],['la trincea','der Schützengraben'],['l’alpino','der Alpino (italienischer Gebirgsjäger)'],['la divisa','die Uniform'],['la penna nera','die schwarze Feder (am Alpini-Hut)'],['le impronte','die Fußspuren'],['gli scarponi','die Bergschuhe'],['la busta / la lettera','der Umschlag / der Brief'],['la tomba','das Grab'],['il ghiacciaio','der Gletscher'],['la lanterna','die Laterne'],['la roccia','der Fels'],['il soccorso alpino','die Bergwacht'],['la verità','die Wahrheit'],['scegliere','wählen'],['il finale','das Ende (einer Geschichte)']],
+    fact:'Im Ersten Weltkrieg verlief die Front zwischen Italien und Österreich-Ungarn quer durch die Dolomiten und die Gletscher der Alpen. Man nennt ihn „la guerra bianca“, den weißen Krieg. Mehr Soldaten starben durch Kälte und Lawinen als durch Kämpfe. Bis heute gibt das schmelzende Eis manchmal Soldaten von damals frei, zum Beispiel 2004 an der Punta San Matteo. Die Alpini mit der schwarzen Feder am Hut gibt es noch heute.',
+    text:parts[0].text, tr:parts[0].tr, parts });
+}
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
 PODCAST_INFO.calcio = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Sonntag im Stadion von Neapel, mit Fangesängen, Trommeln, Pfiffen und Radiokommentar, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.calcio = [
@@ -69300,7 +69628,7 @@ function regSound(text, bundle, voices, voice){
   }));
   TOPICS.forEach(t => Object.entries((MORE[t.id] || {}).practice || {}).forEach(([st, list]) => list.forEach(([it]) => regSound(it, t.id + '-' + st + 'x'))));
   /* Hörgeschichten (ab v214 in jeder Lernrichtung): nur die der Themen dieser Lernrichtung */
-  Object.entries(PODCASTS).forEach(([tid, list]) => { if (TOPICS.some(t => t.id === tid)) list.forEach(p => regSound(p.text, 'leggende-' + tid, p.voices)); });
+  Object.entries(PODCASTS).forEach(([tid, list]) => { if (TOPICS.some(t => t.id === tid)) list.forEach(p => (p.parts || [p]).forEach(q => regSound(q.text, 'leggende-' + tid, p.voices))); });
   if (LANG !== 'it') return;
   VERBS.forEach(v => TENSE_KEYS.forEach(tn => PERS.forEach((_,p) => regSound(vform(v,tn,p), 'verbi-' + tn))));
   GRAMMAR.forEach(g => g.blocks.forEach(b => (b.ex||[]).forEach(([it]) => regSound(it, 'grammatica'))));
@@ -69748,6 +70076,7 @@ app.addEventListener('click', e => {
   if (b.dataset.go) return go(b.dataset.go);
   if (b.dataset.story){ const [tid, i, h] = b.dataset.story.split(':'); return startStory(tid, +i, h === 'h'); }
   if (b.dataset.podcast){ const [tid, i] = b.dataset.podcast.split(':'); return renderPodcast(tid, +i); }
+  if (b.dataset.cyoa){ const [tid, i, pid] = b.dataset.cyoa.split(':'); return renderChoose(tid, +i, pid); }
   if (b.dataset.aplay){ playLong(b.dataset.aplay); return; }
   if (b.hasAttribute('data-aback')){ player.currentTime = Math.max(0, player.currentTime - 5); return; }
   if (b.hasAttribute('data-arate')){ S.arate = S.arate === FAST ? 0.8 : S.arate === 0.8 ? 1 : FAST; save(); player.playbackRate = S.arate; document.querySelectorAll('[data-arate]').forEach(x => x.textContent = rateLabel()); return; }
