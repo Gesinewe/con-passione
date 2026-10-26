@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 257;
+const APP_VERSION = 258;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -65688,12 +65688,25 @@ function speakDone(ok){
 function setReady(v){ document.getElementById('main').disabled = !v; }
 
 /* Schreibaufgaben mit zwei Formen („stanco / stanca“): Leerzeichen um den Schrägstrich und Reihenfolge egal,
-   eine der Formen allein reicht auch. Nur „ / “ mit Leerzeichen trennt, damit „andato/a“ im Verben-Trainer ganz bleibt. */
+   eine der Formen allein reicht auch. Nur „ / “ mit Leerzeichen trennt, damit „andato/a“ im Verben-Trainer ganz bleibt.
+   Ab v258 (Wunsch der Nutzerin): Die Formen dürfen auch nur mit Leerzeichen, Komma, Strichpunkt, Bindestrich oder „+“ getrennt sein
+   („prega preghiamo“, „prega, preghiamo“), solange die Formen selbst stimmen; Artikel dürfen wie bisher fehlen. */
 function slashHit(targets, pa){
   const forms = new Set(targets.flatMap(tg => tg.split(/\s+\/\s+/)).map(f => plain(f)));
   const parts = pa.split(/\s*\/\s*/).filter(Boolean);
-  return parts.length > 0 && new Set(parts).size === parts.length
-    && parts.every(p => forms.has(p) || [...forms].some(f => stripArt(f) === stripArt(p)));
+  if (parts.length > 0 && new Set(parts).size === parts.length
+    && parts.every(p => forms.has(p) || [...forms].some(f => stripArt(f) === stripArt(p)))) return true;
+  /* ohne Schrägstrich: die Antwort Stück für Stück in verschiedene Formen zerlegen (jede höchstens einmal) */
+  const sep = x => x.replace(/[\/|+;,–—-]/g, ' ').replace(/\s+/g, ' ').trim();
+  const rest0 = sep(pa);
+  if (!rest0) return false;
+  const all = [...new Set([...forms].map(sep))];
+  const take = (rest, used) => {
+    if (!rest) return used.length > 0;
+    return all.some(f => !used.includes(f) && [...new Set([f, stripArt(f)])].some(v => v
+      && (rest === v || rest.startsWith(v + ' ')) && take(rest.slice(v.length).trim(), [...used, f])));
+  };
+  return take(rest0, []);
 }
 /* Ein Tippfehler (ein Buchstabe falsch, zu viel oder zu wenig) wird verziehen, ab 20 Buchstaben zwei.
    Nicht bei kurzen Wörtern und nie am Wortende: Die Endung zeigt im Italienischen Person und Geschlecht (guardo/guarda, stanco/stanca). */
