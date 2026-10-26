@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 255;
+const APP_VERSION = 256;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -62525,7 +62525,7 @@ function podcastsHtml(t){
       <p class="gp">${info.lead}</p>
       <div class="tiles">${list.map((p, i) => `<button class="tile story${S.done[p.id] ? ' done' : ''}" data-podcast="${t.id}:${i}">
         <span class="tn">${S.done[p.id] ? '✓' : '🎧'}</span><span class="ti">${p.title}</span>
-        <span class="sub">${p.de} · ${byLang('Folge', 'Episodio', 'Folge')} ${p.ep} · ${p.level}${p.parts ? ' · ' + cyoaFound(p).length + ' von ' + cyoaEnds(p).length + ' Enden gefunden' : ''}</span>
+        <span class="sub">${p.de} · ${byLang('Folge', 'Episodio', 'Folge')} ${p.ep} · ${p.level}${p.quiz ? (cyoaFound(p).length ? ' · Fall gelöst ✓' : ' · Fall noch offen') : p.parts ? ' · ' + cyoaFound(p).length + ' von ' + cyoaEnds(p).length + ' Enden gefunden' : ''}</span>
         <span>${p.kind.split(' · ').map(k => `<span class="kind">${k}</span>`).join('')}</span></button>`).join('')}</div>`;
 }
 let podcastOpen = null;
@@ -62575,10 +62575,15 @@ function renderChoose(tid, i, pid){
   /* bisherige Entscheidungen: Text der gewählten Antwort je Schritt */
   const steps = path.slice(1).map((id, n) => ((p.parts.find(q => q.id === path[n]) || {}).ask || {opts: []}).opts.find(o => o[2] === id)).filter(Boolean);
   const back = path.length > 1 ? path[path.length - 2] : null;
-  const box = part.ask ? `<div class="cyoa"><p class="eyebrow">Du entscheidest</p>
+  const tries = path.length - 1;   // Rätsel-Folgen (quiz): so viele Tipps/Versuche bis hierher
+  const box = part.ask ? `<div class="cyoa"><p class="eyebrow">${p.quiz ? (first ? 'Wer war es?' : 'Noch nicht richtig – rate nochmal') : 'Du entscheidest'}</p>
         <p class="it cq">${esc(part.ask.q)}</p><p class="cde">${esc(part.ask.de)}</p>
-        <div class="copts">${part.ask.opts.map(([it, de, to]) => `<button class="copt" data-cyoa="${tid}:${i}:${to}"><span class="it">${esc(it)}</span><small>${esc(de)}</small></button>`).join('')}</div>
-        <p class="hint">Hör den Abschnitt erst bis zum Ende. Dann wähle, wie es weitergeht.</p></div>`
+        <div class="copts">${part.ask.opts.filter(o => !p.quiz || !path.includes(o[2])).map(([it, de, to]) => `<button class="copt" data-cyoa="${tid}:${i}:${to}"><span class="it">${esc(it)}</span><small>${esc(de)}</small></button>`).join('')}</div>
+        <p class="hint">${p.quiz ? 'Hör erst bis zum Ende. Du kannst die Geschichte auch nochmal hören oder den Text aufklappen.' : 'Hör den Abschnitt erst bis zum Ende. Dann wähle, wie es weitergeht.'}</p></div>`
+    : p.quiz ? `<div class="cyoa end"><p class="eyebrow">Fall gelöst</p>
+        <p class="it cq">${esc(part.end)}</p><p class="cde">${esc(part.endDe)}</p>
+        <p class="cfound">${tries <= 1 ? 'Beim ersten Versuch gelöst – complimenti! ✓' : 'Gelöst beim ' + tries + '. Versuch ✓'}</p>
+        <div class="copts"><button class="copt" data-cyoa="${tid}:${i}:${p.parts[0].id}"><span>⟲ Von vorn beginnen</span><small>die Geschichte nochmal hören</small></button></div></div>`
     : `<div class="cyoa end"><p class="eyebrow">Ende ${ends.indexOf(part) + 1} von ${ends.length}</p>
         <p class="it cq">${esc(part.end)}</p><p class="cde">${esc(part.endDe)}</p>
         <p class="cfound">${found.length === ends.length ? 'Du hast alle Enden gefunden – bravissimo! ✓' : `Du hast ${found.length} von ${ends.length} Enden gefunden.`}</p>
@@ -62587,10 +62592,10 @@ function renderChoose(tid, i, pid){
           <button class="copt" data-cyoa="${tid}:${i}:${p.parts[0].id}"><span>⟲ Von vorn beginnen</span><small>ganz neu entscheiden</small></button></div></div>`;
   app.innerHTML = `<div class="topicpage" style="--t:${t.color}">
       <button class="back" data-topic="${t.id}">← ${t.name}</button>
-      <div class="thead"><p class="eyebrow">Podcast · ${esc(p.show)} · Folge ${p.ep} · Du entscheidest</p><h1 class="it">${p.title}</h1><p>${p.de} · ${p.place}</p></div>
+      <div class="thead"><p class="eyebrow">Podcast · ${esc(p.show)} · Folge ${p.ep} · ${p.quiz ? 'Du ermittelst' : 'Du entscheidest'}</p><h1 class="it">${p.title}</h1><p>${p.de} · ${p.place}</p></div>
       ${steps.length ? `<p class="cpath">Dein Weg: ${steps.map(o => `<span class="it">${esc(o[0])}</span>`).join(' → ')}${back ? ` · <button class="linkbtn" data-cyoa="${tid}:${i}:${back}">↩ Zurück</button>` : ''}</p>` : ''}
       ${audioBox(part.text)}
-      ${first ? `<div class="tip">In dieser Folge bist du die Hauptfigur. An spannenden Stellen hält die Geschichte an, und du entscheidest, wie es weitergeht. Es gibt <b>${ends.length} verschiedene Enden</b>.<br><b>Es sprechen:</b> eine Erzählerin, ${Object.keys(p.voices).join(', ')}.</div>` : ''}
+      ${first && p.quiz ? `<div class="tip">In dieser Folge ermittelst du. Hör gut zu: <b>Alle Hinweise stecken in der Geschichte</b>, auch in den Geräuschen. Am Ende wählst du, wer es war. Rätst du falsch, bekommst du einen Tipp und darfst nochmal raten.<br><b>Es sprechen:</b> eine Erzählerin, ${Object.keys(p.voices).join(', ')}.</div>` : first ? `<div class="tip">In dieser Folge bist du die Hauptfigur. An spannenden Stellen hält die Geschichte an, und du entscheidest, wie es weitergeht. Es gibt <b>${ends.length} verschiedene Enden</b>.<br><b>Es sprechen:</b> eine Erzählerin, ${Object.keys(p.voices).join(', ')}.</div>` : ''}
       ${box}
       <details class="vfold" style="margin-top:14px"><summary><span class="ti">Wörter zum Verstehen</span><span class="sub">${p.words.length} Wörter · antippen zum Aufklappen</span></summary>
         <div class="vocab">${p.words.map(([it,de]) => `<div class="vrow"><span class="v-it">${it}</span><span class="v-de">${de}</span></div>`).join('')}</div></details>
@@ -65110,7 +65115,7 @@ const GRAMMAR = [
    Zeilen ohne „Name: “ liest die Erzählerin (Isabella). Ton-Bündel: leggende-<thema> (zweiter Speicher, EXT_THEMEN). */
 /* Überschrift und Einleitung des Abschnitts auf der Themenseite, pro Thema */
 const PODCAST_INFO = {
-  brividi:{h:'Legenden zum Zuhören', nav:'Legenden', lead:'Wie ein kleiner Podcast: gruselige italienische Legenden, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen. Neu: In Folge 11 entscheidest du selbst, wie die Geschichte ausgeht.'},
+  brividi:{h:'Legenden zum Zuhören', nav:'Legenden', lead:'Wie ein kleiner Podcast: gruselige italienische Legenden, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen. Neu: In Folge 11 entscheidest du selbst, wie die Geschichte ausgeht, in Folge 12 löst du einen Kriminalfall.'},
   roma:{h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: spannende Geschichten aus dem alten Rom, mit Geräuschen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'}
 };
 const PODCASTS = {
@@ -66463,6 +66468,158 @@ PODCASTS.brividi.push(
     stil:{Marta:['+0%','+12Hz'], Bepi:['-12%','-26Hz'], Soldato:['-14%','+22Hz'], Luca:['-8%','-14Hz'], Radio:['-16%','+4Hz']},
     words:[['il rifugio','die Berghütte'],['il gestore','der Hüttenwirt'],['la tempesta di neve / la tormenta','der Schneesturm'],['le ciaspole','die Schneeschuhe'],['la stufa','der Ofen'],['la radio','das Funkgerät, das Radio'],['la motoslitta','der Motorschlitten'],['bussare','klopfen'],['aprire / non aprite','aufmachen / macht nicht auf'],['la trincea','der Schützengraben'],['l’alpino','der Alpino (italienischer Gebirgsjäger)'],['la divisa','die Uniform'],['la penna nera','die schwarze Feder (am Alpini-Hut)'],['le impronte','die Fußspuren'],['gli scarponi','die Bergschuhe'],['la busta / la lettera','der Umschlag / der Brief'],['la tomba','das Grab'],['il ghiacciaio','der Gletscher'],['la lanterna','die Laterne'],['la roccia','der Fels'],['il soccorso alpino','die Bergwacht'],['la verità','die Wahrheit'],['scegliere','wählen'],['il finale','das Ende (einer Geschichte)']],
     fact:'Im Ersten Weltkrieg verlief die Front zwischen Italien und Österreich-Ungarn quer durch die Dolomiten und die Gletscher der Alpen. Man nennt ihn „la guerra bianca“, den weißen Krieg. Mehr Soldaten starben durch Kälte und Lawinen als durch Kämpfe. Bis heute gibt das schmelzende Eis manchmal Soldaten von damals frei, zum Beispiel 2004 an der Punta San Matteo. Die Alpini mit der schwarzen Feder am Hut gibt es noch heute.',
+    text:parts[0].text, tr:parts[0].tr, parts });
+}
+/* Brividi-Podcast Folge 12 (v256, Wunsch der Nutzerin: Ideenliste Nr. 4 „Ein Krimi-Rätsel zum Zuhören: Chi è stato?“).
+   Mitentscheide-Technik aus v255 (parts) mit quiz:true: Geschichte mit Hinweisen, dann „Chi è stato?“ mit drei Verdächtigen.
+   Falsch geraten → kurzer Tipp-Teil und neue Wahl unter den übrigen, richtig → Auflösung (einziges Ende).
+   Cremona, Stradivari von 1715, Stromausfall in der Pause, das Theatergespenst „il Maestro“. Täterin: Direktorin Carla.
+   Hinweise: schnelle Schritte (Ottavio geht am Stock), Schlüsselklirren (Ottavios Schlüssel hingen im Keller, Carlas Anhänger klirren immer),
+   weiße lange Gestalt (Carlas langer weißer Mantel), Carla will aus dem Foyer das Gespenst auf der Bühne gesehen haben (vom Foyer sieht man die Bühne nicht),
+   Marco pfeift, wenn er nervös ist – Gino hört im Dunkeln jemanden im Bad pfeifen. Geige im Blumenkarton für Sofia.
+   Stimmen: Erzählerin Isabella, Sofia Elsa (hell), Rinaldi Elsa (ruhig, tiefer), Carla Isabella (tiefer), Ottavio Giuseppe (alt), Marco Diego, Gino Giuseppe (heller). */
+{
+const parts = [
+  { id:'start',
+    fx:{'Buonasera… e benvenuti':'carillon', 'Siamo a Cremona':'pausa', 'Stasera, in un vecchio':'pausa', 'Dietro le quinte':'pausa', 'Carla, la direttrice':'chiavi',
+        'Carla: Sofia, sei pronta':'pausa', 'Il concerto comincia':'pausa sala_an', 'Durante l’intervallo':'applausi', 'E in quel momento':'pausa spegnimento sala_aus',
+        'Nel buio Sofia sente':'pausa', 'Poi un rumore':'chiavi', 'Dopo un minuto':'accensione', 'Mezz’ora dopo':'pausa', 'Rinaldi: E le sue chiavi':'pausa',
+        'Rinaldi: Marco':'pausa', 'Rinaldi: Signora Carla':'pausa', 'Rinaldi: Grazie a tutti':'pausa', 'E tu?':'pausa'},
+    text:`Buonasera… e benvenuti a «Brividi nella notte». Stasera c’è un fantasma. O forse no? Stasera c’è un mistero. E il detective sei tu.
+Ascolta bene. Tutti gli indizi sono nella storia. Alla fine dovrai dire chi è stato.
+Siamo a Cremona, la città dei violini. Qui, trecento anni fa, lavorava il grande Antonio Stradivari. Ancora oggi i suoi violini sono i più famosi del mondo. E i più cari.
+Stasera, in un vecchio teatro del centro, c’è un concerto speciale. Sofia, una giovane violinista di ventidue anni, suona un violino di Stradivari del millesettecentoquindici. Il violino vale dieci milioni di euro. Di solito sta in una vetrina, al museo.
+Dietro le quinte ci sono quattro persone.
+Ottavio, il vecchio custode del teatro. Ha settant’anni e cammina piano, con il bastone. Alla cintura porta sempre un grande mazzo di chiavi.
+Carla, la direttrice del teatro. È elegante e porta un lungo cappotto bianco. Anche lei ha tante chiavi: il suo portachiavi è pieno di piccoli ciondoli d’oro. Quando cammina, fanno sempre rumore.
+Marco, il pianista. Suona il pianoforte con Sofia. È nervoso: fino all’anno scorso il solista era lui. Adesso tutti parlano solo di Sofia. E Marco ha un’abitudine: quando è nervoso, fischia.
+E Gino, l’uomo delle pulizie.
+Il teatro ha un bel foyer, dove il pubblico beve qualcosa durante l’intervallo. Il foyer è al piano di sotto, lontano dal palco. Da lì il palco non si vede.
+Carla: Sofia, sei pronta? Dopo il concerto ti porto un regalo sul palco. È una tradizione del teatro.
+Sofia: Sono pronta. Ma… è vero quello che dice Ottavio? Che in questo teatro c’è un fantasma?
+Ottavio: È vero, signorina. Il Maestro. Un violinista morto qui, sul palco, cento anni fa. Dicono che cerca ancora il suo violino. Quando vede un violino bello… lo vuole.
+Carla: Ottavio, basta con queste storie! Sofia, non ascoltarlo.
+Il concerto comincia. Il teatro è pieno. Sofia suona, e il pubblico non respira.
+Durante l’intervallo Sofia mette il violino nella sua custodia, aperta, su un tavolino dietro le quinte. Va a bere un bicchiere d’acqua. Due minuti, non di più.
+E in quel momento… la luce va via. In tutto il teatro. Buio completo. Restano accese solo le piccole luci verdi delle uscite di sicurezza.
+Nel buio Sofia sente dei passi veloci, vicino al tavolino.
+Poi un rumore di chiavi.
+E qualcuno vede una figura bianca, lunga, che passa dietro il sipario. Il pubblico grida: «Il fantasma! Il Maestro!»
+Dopo un minuto la luce torna. Sofia corre al tavolino. La custodia è aperta. È vuota. Il violino non c’è più.
+Mezz’ora dopo arriva la commissaria Rinaldi. Nessuno è uscito dal teatro: fuori c’è la polizia. Il violino deve essere ancora qui, da qualche parte. La commissaria parla con tutti.
+Rinaldi: Signor Ottavio, dov’era lei quando è andata via la luce?
+Ottavio: Ero vicino alle scale, commissaria. Sono sceso subito in cantina, al quadro elettrico, e ho rimesso a posto la luce.
+Rinaldi: E le sue chiavi? Non le vedo.
+Ottavio: Le mie chiavi… Oh, è vero. Le ho lasciate in cantina oggi pomeriggio, quando ho controllato il quadro elettrico. Sono ancora lì.
+Un poliziotto scende in cantina. Torna dopo cinque minuti con un grande mazzo di chiavi, pieno di polvere.
+Rinaldi: Signor Marco, e lei?
+Marco: Io? Ero in bagno. Al buio! Non vedevo niente.
+Rinaldi: Qualcuno l’ha visto?
+Marco: No… Ma io non ho preso niente! Quel violino è bellissimo, sì. Ma io non sono un ladro.
+Gino: Commissaria, scusi. Io ero nel corridoio, davanti al bagno, quando è andata via la luce. E nel bagno qualcuno fischiava. Una canzone. Ha fischiato per tutto il minuto, al buio.
+Rinaldi: Signora Carla, e lei dov’era?
+Carla: Io ero nel foyer, al telefono con Milano. Per tutto l’intervallo. E quando è andata via la luce, l’ho visto, commissaria! Il fantasma! Una figura bianca, sul palco! È stato il Maestro, glielo dico io!
+Rinaldi: Interessante. E quella grande scatola, signora?
+Carla: Sono fiori per Sofia. Un grande mazzo di rose. È il regalo per la fine del concerto.
+Rinaldi: Grazie a tutti. Adesso so chi è stato.
+E tu? Lo sai? Pensa bene: i passi veloci, il rumore di chiavi, la figura bianca… e quello che ha detto ognuno. Chi ha preso il violino?`,
+    tr:`Guten Abend … und willkommen bei „Brividi nella notte“. Heute Abend gibt es ein Gespenst. Oder vielleicht doch nicht? Heute Abend gibt es ein Rätsel. Und der Detektiv bist du.
+Hör gut zu. Alle Hinweise stecken in der Geschichte. Am Ende musst du sagen, wer es war.
+Wir sind in Cremona, der Stadt der Geigen. Hier hat vor dreihundert Jahren der große Antonio Stradivari gearbeitet. Bis heute sind seine Geigen die berühmtesten der Welt. Und die teuersten.
+Heute Abend gibt es in einem alten Theater in der Innenstadt ein besonderes Konzert. Sofia, eine junge Geigerin von zweiundzwanzig Jahren, spielt eine Stradivari-Geige aus dem Jahr siebzehnhundertfünfzehn. Die Geige ist zehn Millionen Euro wert. Normalerweise liegt sie in einer Vitrine im Museum.
+Hinter der Bühne sind vier Personen.
+Ottavio, der alte Hausmeister des Theaters. Er ist siebzig und geht langsam, am Stock. Am Gürtel trägt er immer einen großen Schlüsselbund.
+Carla, die Direktorin des Theaters. Sie ist elegant und trägt einen langen weißen Mantel. Auch sie hat viele Schlüssel: Ihr Schlüsselanhänger ist voller kleiner goldener Anhänger. Wenn sie geht, klimpern sie immer.
+Marco, der Pianist. Er spielt mit Sofia Klavier. Er ist nervös: Bis letztes Jahr war er der Solist. Jetzt reden alle nur noch von Sofia. Und Marco hat eine Angewohnheit: Wenn er nervös ist, pfeift er.
+Und Gino, der Mann für die Reinigung.
+Das Theater hat ein schönes Foyer, wo das Publikum in der Pause etwas trinkt. Das Foyer liegt ein Stockwerk tiefer, weit weg von der Bühne. Von dort sieht man die Bühne nicht.
+Carla: Sofia, bist du bereit? Nach dem Konzert bringe ich dir ein Geschenk auf die Bühne. Das ist eine Tradition des Theaters.
+Sofia: Ich bin bereit. Aber … stimmt das, was Ottavio sagt? Dass es in diesem Theater ein Gespenst gibt?
+Ottavio: Das stimmt, Signorina. Der Maestro. Ein Geiger, der vor hundert Jahren hier auf der Bühne gestorben ist. Man sagt, er sucht noch immer seine Geige. Wenn er eine schöne Geige sieht … will er sie haben.
+Carla: Ottavio, Schluss mit diesen Geschichten! Sofia, hör nicht auf ihn.
+Das Konzert beginnt. Das Theater ist voll. Sofia spielt, und das Publikum hält den Atem an.
+In der Pause legt Sofia die Geige in ihren Kasten, offen, auf ein Tischchen hinter der Bühne. Sie geht ein Glas Wasser trinken. Zwei Minuten, nicht länger.
+Und in diesem Moment … geht das Licht aus. Im ganzen Theater. Völlige Dunkelheit. Es leuchten nur noch die kleinen grünen Lichter der Notausgänge.
+Im Dunkeln hört Sofia schnelle Schritte, nah beim Tischchen.
+Dann ein Klirren von Schlüsseln.
+Und jemand sieht eine weiße, lange Gestalt, die hinter dem Vorhang vorbeigeht. Das Publikum schreit: „Das Gespenst! Der Maestro!“
+Nach einer Minute kommt das Licht zurück. Sofia rennt zum Tischchen. Der Kasten ist offen. Er ist leer. Die Geige ist weg.
+Eine halbe Stunde später kommt Kommissarin Rinaldi. Niemand hat das Theater verlassen: Draußen steht die Polizei. Die Geige muss noch hier sein, irgendwo. Die Kommissarin spricht mit allen.
+Rinaldi: Signor Ottavio, wo waren Sie, als das Licht ausging?
+Ottavio: Ich war bei der Treppe, Frau Kommissarin. Ich bin sofort in den Keller gegangen, zum Sicherungskasten, und habe das Licht wieder in Ordnung gebracht.
+Rinaldi: Und Ihre Schlüssel? Ich sehe sie nicht.
+Ottavio: Meine Schlüssel … Oh, das stimmt. Die habe ich heute Nachmittag im Keller gelassen, als ich den Sicherungskasten kontrolliert habe. Sie sind noch dort.
+Ein Polizist geht in den Keller. Nach fünf Minuten kommt er mit einem großen Schlüsselbund zurück, voller Staub.
+Rinaldi: Signor Marco, und Sie?
+Marco: Ich? Ich war auf der Toilette. Im Dunkeln! Ich habe nichts gesehen.
+Rinaldi: Hat Sie jemand gesehen?
+Marco: Nein … Aber ich habe nichts genommen! Die Geige ist wunderschön, ja. Aber ich bin kein Dieb.
+Gino: Frau Kommissarin, entschuldigen Sie. Ich war im Flur, vor der Toilette, als das Licht ausging. Und in der Toilette hat jemand gepfiffen. Ein Lied. Er hat die ganze Minute gepfiffen, im Dunkeln.
+Rinaldi: Signora Carla, und wo waren Sie?
+Carla: Ich war im Foyer und habe mit Mailand telefoniert. Die ganze Pause lang. Und als das Licht ausging, habe ich es gesehen, Frau Kommissarin! Das Gespenst! Eine weiße Gestalt, auf der Bühne! Das war der Maestro, das sage ich Ihnen!
+Rinaldi: Interessant. Und dieser große Karton, Signora?
+Carla: Das sind Blumen für Sofia. Ein großer Strauß Rosen. Das ist das Geschenk für das Ende des Konzerts.
+Rinaldi: Danke an alle. Jetzt weiß ich, wer es war.
+Und du? Weißt du es? Denk gut nach: die schnellen Schritte, das Klirren der Schlüssel, die weiße Gestalt … und was jeder gesagt hat. Wer hat die Geige genommen?`,
+    ask:{q:'Chi è stato?', de:'Wer war es?', opts:[['Ottavio, il custode.', 'Ottavio, der Hausmeister.', 'ottavio'], ['Carla, la direttrice.', 'Carla, die Direktorin.', 'carla'], ['Marco, il pianista.', 'Marco, der Pianist.', 'marco']]} },
+
+  { id:'ottavio',
+    fx:{'No. Non è stato Ottavio':'pausa', 'Prova ancora':'pausa'},
+    text:`No. Non è stato Ottavio.
+Pensa ai passi nel buio. Erano veloci. Ottavio, invece, cammina piano, con il bastone. E le sue chiavi, dov’erano mentre la luce era spenta?
+Prova ancora. Chi è stato?`,
+    tr:`Nein. Ottavio war es nicht.
+Denk an die Schritte im Dunkeln. Sie waren schnell. Ottavio dagegen geht langsam, am Stock. Und seine Schlüssel – wo waren die, während das Licht aus war?
+Versuch es noch einmal. Wer war es?`,
+    ask:{q:'Chi è stato, allora?', de:'Wer war es dann?', opts:[['Carla, la direttrice.', 'Carla, die Direktorin.', 'carla'], ['Marco, il pianista.', 'Marco, der Pianist.', 'marco']]} },
+
+  { id:'marco',
+    fx:{'No. Non è stato Marco':'pausa', 'Prova ancora':'pausa'},
+    text:`No. Non è stato Marco.
+Ricordi che cosa ha sentito Gino nel corridoio? Mentre la luce era spenta, nel bagno qualcuno fischiava. Per tutto il minuto. E chi fischia, quando è nervoso?
+Prova ancora. Chi è stato?`,
+    tr:`Nein. Marco war es nicht.
+Erinnerst du dich, was Gino im Flur gehört hat? Während das Licht aus war, hat in der Toilette jemand gepfiffen. Die ganze Minute lang. Und wer pfeift, wenn er nervös ist?
+Versuch es noch einmal. Wer war es?`,
+    ask:{q:'Chi è stato, allora?', de:'Wer war es dann?', opts:[['Ottavio, il custode.', 'Ottavio, der Hausmeister.', 'ottavio'], ['Carla, la direttrice.', 'Carla, die Direktorin.', 'carla']]} },
+
+  { id:'carla', end:'Il caso è risolto', endDe:'Der Fall ist gelöst',
+    fx:{'Esatto':'pausa', 'Rinaldi: Signora Carla, lei':'pausa', 'Rinaldi: Nel buio':'pausa', 'Rinaldi: E il violino':'pausa', 'La commissaria apre':'pausa',
+        'Carla piange':'pausa', 'Rinaldi: Il fantasma':'pausa', 'Il secondo tempo':'pausa sala_an', 'E quando finisce':'sala_aus applausi pausa', 'Ottavio: Il Maestro':'violino pausa', 'Fine.':'pausa carillon_ende'},
+    text:`Esatto! È stata Carla. Complimenti, detective!
+Rinaldi: Signora Carla, lei ha detto che era nel foyer. Ma dal foyer il palco non si vede. Allora come ha visto il fantasma sul palco?
+Carla: Io… ecco… me l’hanno detto…
+Rinaldi: Nel buio Sofia ha sentito un rumore di chiavi. Ma le chiavi di Ottavio erano in cantina, piene di polvere. Le sue chiavi, invece, signora, con tutti quei ciondoli, fanno sempre rumore. E la figura bianca, lunga, dietro il sipario… era il suo cappotto bianco.
+Rinaldi: E il violino? Il violino è ancora qui. In un posto dove nessuno guarda. Per esempio… in una scatola di fiori. Un regalo da portare sul palco, davanti a tutti. E poi via, fuori dal teatro.
+La commissaria apre la scatola. Sotto le rose rosse c’è il violino di Stradivari.
+Carla piange.
+Carla: Il teatro non ha più soldi. Fra un mese lo chiudono. Volevo vendere il violino all’estero… e salvare il teatro. Il fantasma era perfetto. Qui tutti credono al Maestro.
+Rinaldi: Il fantasma era perfetto, signora. Ma i fantasmi non hanno le chiavi.
+Il secondo tempo del concerto comincia con un’ora di ritardo. Sofia suona meglio che mai.
+E quando finisce, il pubblico va a casa e il teatro resta vuoto. Ottavio spegne le luci, una dopo l’altra. Ma prima di uscire sente una cosa. Dal palco buio arriva un’ultima nota di violino. Lunga, dolce. Nessuno sta suonando.
+Ottavio: Il Maestro è contento.
+Fine. Hai risolto il caso! Questo era «Brividi nella notte». Alla prossima leggenda…`,
+    tr:`Genau! Carla war es. Glückwunsch, Detektiv!
+Rinaldi: Signora Carla, Sie haben gesagt, Sie waren im Foyer. Aber vom Foyer aus sieht man die Bühne nicht. Wie haben Sie dann das Gespenst auf der Bühne gesehen?
+Carla: Ich … also … man hat es mir erzählt …
+Rinaldi: Im Dunkeln hat Sofia ein Klirren von Schlüsseln gehört. Aber Ottavios Schlüssel waren im Keller, voller Staub. Ihre Schlüssel dagegen, Signora, mit all den Anhängern, klimpern immer. Und die weiße, lange Gestalt hinter dem Vorhang … war Ihr weißer Mantel.
+Rinaldi: Und die Geige? Die Geige ist noch hier. An einem Ort, wo niemand nachschaut. Zum Beispiel … in einem Blumenkarton. Ein Geschenk, das man vor allen Leuten auf die Bühne bringt. Und dann weg damit, hinaus aus dem Theater.
+Die Kommissarin macht den Karton auf. Unter den roten Rosen liegt die Stradivari.
+Carla weint.
+Carla: Das Theater hat kein Geld mehr. In einem Monat wird es geschlossen. Ich wollte die Geige ins Ausland verkaufen … und das Theater retten. Das Gespenst war perfekt. Hier glauben alle an den Maestro.
+Rinaldi: Das Gespenst war perfekt, Signora. Aber Gespenster haben keine Schlüssel.
+Der zweite Teil des Konzerts beginnt mit einer Stunde Verspätung. Sofia spielt besser als je zuvor.
+Und als es zu Ende ist, geht das Publikum nach Hause, und das Theater bleibt leer. Ottavio macht die Lichter aus, eins nach dem anderen. Aber bevor er hinausgeht, hört er etwas. Von der dunklen Bühne kommt ein letzter Geigenton. Lang, sanft. Niemand spielt.
+Ottavio: Der Maestro ist zufrieden.
+Ende. Du hast den Fall gelöst! Das war „Brividi nella notte“. Bis zur nächsten Legende …` },
+];
+PODCASTS.brividi.push(
+  { id:'brividi-k1', quiz:true, show:'Brividi nella notte', ep:12, title:'Chi è stato?', de:'Wer war es? Die verschwundene Geige',
+    place:'Un vecchio teatro a Cremona, la città dei violini', level:'ab A2', kind:'Krimi-Rätsel · Du ermittelst',
+    voices:{Sofia:'Elsa', Rinaldi:'Elsa', Carla:'Isabella', Ottavio:'Giuseppe', Marco:'Diego', Gino:'Giuseppe'},
+    stil:{Sofia:['+2%','+34Hz'], Rinaldi:['-8%','-10Hz'], Carla:['-6%','-18Hz'], Ottavio:['-14%','-28Hz'], Marco:['+0%','+0Hz'], Gino:['+4%','+14Hz']},
+    words:[['il violino / la violinista','die Geige / die Geigerin'],['il custode','der Hausmeister'],['la direttrice','die Direktorin'],['il pianista','der Pianist'],['dietro le quinte','hinter der Bühne'],['il palco','die Bühne'],['il sipario','der Vorhang'],['il foyer','das Foyer'],['l’intervallo','die Pause'],['la custodia','der Geigenkasten'],['il mazzo di chiavi','der Schlüsselbund'],['il portachiavi / i ciondoli','der Schlüsselanhänger / die Anhänger'],['il bastone','der Stock'],['il cappotto','der Mantel'],['fischiare','pfeifen'],['il buio','die Dunkelheit'],['il quadro elettrico','der Sicherungskasten'],['la cantina','der Keller'],['la polvere','der Staub'],['la commissaria','die Kommissarin'],['l’indizio','der Hinweis'],['il ladro','der Dieb'],['la scatola','der Karton, die Schachtel'],['Chi è stato?','Wer war es?']],
+    fact:'Cremona ist wirklich die Stadt der Geigen: Hier arbeiteten Antonio Stradivari, die Familien Amati und Guarneri, und bis heute gibt es dort über 150 Geigenbauwerkstätten. Im Museo del Violino werden die alten Instrumente regelmäßig gespielt, damit sie „lebendig“ bleiben. Eine echte Stradivari kann heute mehr als zehn Millionen Euro kosten.',
     text:parts[0].text, tr:parts[0].tr, parts });
 }
 /* Hörgeschichten Calcio (Podcast „Voci dallo stadio“). Figuren aus dem Thema: Sofia, Bruder Pietro, Opa Gennaro (Napoli-Fan), Papa Enzo (Juve-Fan), Mama. */
