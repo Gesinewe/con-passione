@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 261;
+const APP_VERSION = 262;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -72188,6 +72188,178 @@ Anna: Es ist wie ein Traum. Ein Traum auf dem Wasser.
 Luca: Dann … suchst du die nächste Reise aus.
 Das war „Voci in viaggio“. Gute Reise euch allen, und denkt daran: Entwertet immer eure Fahrkarte!`,
     fact:'Regionalzug-Fahrkarten auf Papier muss man in Italien vor dem Einsteigen in einem kleinen Automaten am Bahnsteig entwerten („convalidare“) – sonst droht eine Strafe. In Venedig gibt es keine Autos: Man fährt mit dem Vaporetto (Wasserbus) oder geht zu Fuß.' }
+];
+/* Hörgeschichte „¡Buen viaje!“ (Deutsche lernen lateinamerikanisches Spanisch, v262; Wunsch der Nutzerin: Hörgeschichte für Spanisch).
+   Podcast „Historias del camino“, Folge 1: Ende Oktober, kurz vor dem Día de Muertos (passt zu Stufe 1, Lektion „Xochimilco“).
+   Jonas, Emiliano und Doña Lupita fahren nachts zur Llorona-Aufführung auf den Kanälen von Xochimilco; auf dem Rückweg weint jemand
+   an der Puppeninsel – die Schauspielerin Ximena, die dort festsitzt. Lupitas Erinnerung an Don Rafael, seine Jacke (Stufe 1).
+   Stimmen: Erzählerin Dalia, Jonas de-DE-FlorianMultilingual, Lupita Paloma (tiefer, langsamer), Emiliano Jorge,
+   Don Chuy (alter Bootsmann) Alonso tief, Ximena/Llorona Lorena (dieselbe Stimme – ein Hinweis für aufmerksame Hörer). Niveau ab A2. */
+PODCAST_INFO.viaje = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: eine Nacht auf den Kanälen von Xochimilco mit Jonas, Emiliano und Doña Lupita – mit Wasser, Nebel, einer Spieluhr, einem bellenden Hund und der Llorona, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.viaje = [
+  { id:'viaje-p1', lang:'es', erzaehler:'Dalia', show:'Historias del camino', ep:1, title:'La Llorona de Xochimilco', de:'Die Weinende Frau von Xochimilco',
+    place:'Auf den Kanälen von Xochimilco, Mexiko-Stadt, eine Nacht Ende Oktober', level:'ab A2', kind:'Legende · Grusel · Humor',
+    voices:{Jonas:'de-DE-FlorianMultilingualNeural', Lupita:'es-US-PalomaNeural', Emiliano:'Jorge', 'Don Chuy':'es-US-AlonsoNeural', Llorona:'es-SV-LorenaNeural', Ximena:'es-SV-LorenaNeural'},
+    stil:{'':['-8%','-2Hz'], Jonas:['-6%','+0Hz'], Lupita:['-12%','-12Hz'], Emiliano:['+0%','+2Hz'], 'Don Chuy':['-14%','-14Hz'], Ximena:['-2%','+6Hz']},
+    words:[['la leyenda','die Legende'],['llorar / llora','weinen / sie weint'],['la Llorona','die Weinende (Gestalt aus der Legende)'],['el embarcadero','die Anlegestelle'],['el remero / la remera','der Ruderer / die Ruderin'],['empujar','schieben, stoßen'],['el palo','die Stange'],['la niebla','der Nebel'],['vestida de blanco','weiß gekleidet'],['el alma','die Seele'],['agarrar la mano','die Hand nehmen'],['apagarse / se apagan','ausgehen / sie gehen aus'],['el espectáculo','die Aufführung, die Show'],['el atajo','die Abkürzung'],['la muñeca / las muñecas','die Puppe / die Puppen'],['ladrar','bellen'],['la función','die Vorstellung'],['el termo','die Thermoskanne'],['la chamarra','die Jacke (Mexiko)'],['la garza','der Reiher']],
+    fx:{'Hola y bienvenidos':'pausa', 'En la cocina de Doña Lupita':'cucina_an', 'Chocolate abre un ojo':'cucina_aus pausa', 'A las ocho suben':'traffico_an', 'A las nueve llegan':'traffico_aus acqua_an notte_an', 'La trajinera sale despacio':'pausa', 'La trajinera llega a una laguna':'pausa', 'De repente, se apagan':'pausa', 'Llorona: ¡Aaay, mis hijos!':'eco', 'Llorona: ¿Dónde están':'eco', 'El espectáculo dura':'applausi_dopo', 'Para volver, Don Chuy':'pausa', 'En los árboles cuelgan':'carillon', 'Entonces lo oyen':'gemito_ximena', 'Chocolate se levanta':'abbaio', 'Antes de que alguien':'tuffo', 'Jonas camina entre':'foglie', 'A las once menos cinco':'pausa', 'Ya en el embarcadero':'pausa', 'Muy lejos, al final':'carillon', 'Eso fue «Historias':'acqua_aus notte_aus pausa'},
+    text:`Hola y bienvenidos a «Historias del camino». Esta noche estamos en la Ciudad de México, a finales de octubre. En las calles ya hay flores naranjas, el cempasúchil. Pronto es el Día de Muertos.
+En la cocina de Doña Lupita huele a chocolate caliente. Jonas, Emiliano y Doña Lupita están en la mesa. Chocolate, el perro, duerme debajo.
+Emiliano: Jonas, esta noche vamos a Xochimilco.
+Jonas: ¿Otra vez? Ya conozco Xochimilco. Las trajineras, los mariachis, los elotes…
+Emiliano: De día, sí. Pero de noche es otro lugar. Esta noche hay un espectáculo en el agua. La leyenda de la Llorona.
+Jonas: ¿La Llorona? ¿Quién es?
+Doña Lupita deja su taza en la mesa y mira a Jonas.
+Lupita: ¿No conoces a la Llorona? Ay, mijo. Entonces yo voy también.
+Emiliano: ¿Tú, abuela? Pero a ti te da miedo la Llorona.
+Lupita: A mí no me da miedo nada. Voy por el termo de chocolate. Y Chocolate viene con nosotros.
+Chocolate abre un ojo. No parece muy contento.
+A las ocho suben al coche de Emiliano. El tráfico de la ciudad es lento, como siempre.
+A las nueve llegan al embarcadero. Hace frío. Sobre el agua hay niebla. Las trajineras esperan en fila, con velas y pequeñas lámparas.
+El remero es un señor muy viejo, con sombrero y un palo largo. Se llama Don Chuy.
+Don Chuy: Buenas noches. Suban con cuidado. Y por favor, nada de gritos. La Llorona no está sorda.
+Lupita: Muy chistoso, Don Chuy.
+La trajinera sale despacio. Don Chuy empuja con el palo. Solo se oye el agua.
+Jonas: Doña Lupita, ¿quién es la Llorona?
+Lupita: Hace muchos años, aquí vivía una mujer muy bonita. Se llamaba María. Tenía dos hijos.
+Lupita: Un día, su esposo se fue con otra mujer. María estaba muy triste y muy enojada. Fue con sus hijos al río, y el agua se llevó a los niños.
+Lupita: María gritó y lloró toda la noche. Al final, el río se la llevó a ella también.
+Lupita: Desde entonces, su alma camina por los ríos y los canales. Vestida de blanco. Y llora: ¡Ay, mis hijos!
+Emiliano: Y si un niño la escucha, ella se lo lleva.
+Jonas: Pero yo no soy un niño.
+Lupita: Para la Llorona, todos somos niños.
+Doña Lupita mira el agua. Después sonríe un poco.
+Lupita: Tu abuelo, Emiliano… Rafael siempre me contaba esta historia. Aquí, en una trajinera. Así tenía una excusa para agarrarme la mano.
+Emiliano: ¿El abuelo hacía eso?
+Lupita: Cada vez. Cuarenta años.
+La trajinera llega a una laguna grande. Allí hay muchas otras trajineras, llenas de gente. Todos esperan en silencio.
+De repente, se apagan todas las luces. Está muy oscuro. Sobre el agua aparece una mujer vestida de blanco. Su vestido brilla en la niebla.
+Llorona: ¡Aaay, mis hijos!
+Jonas: Uf. Es muy buena.
+Llorona: ¿Dónde están mis hijos?
+Alguien grita en otra trajinera. Unos niños se esconden detrás de sus papás. Chocolate se esconde detrás de Doña Lupita.
+El espectáculo dura media hora. Hay música, hay danza, hay fuego sobre el agua. Al final todos aplauden.
+Lupita: Bueno. Muy bonito. Ya nos podemos ir a casa.
+Para volver, Don Chuy toma un atajo por un canal pequeño. Aquí no hay otras trajineras. No hay luces. Solo la niebla y la vela.
+Emiliano: Jonas, mira. Esa es la Isla de las Muñecas.
+En los árboles cuelgan muñecas viejas. Cientos de muñecas. Sin ojos, sin brazos, sucias de lluvia y de sol. Todas miran al canal.
+Emiliano: Un señor vivía aquí solo. Encontró a una niña muerta en el agua. Después colgó muñecas en los árboles, para tranquilizar su alma. Durante cincuenta años.
+Jonas: Gracias, Emiliano. Ahora estoy mucho más tranquilo.
+Entonces lo oyen. Alguien llora. Muy cerca. Entre los árboles.
+Don Chuy deja de empujar. La trajinera se para.
+Don Chuy: Eso no es parte del espectáculo.
+Lupita: ¿Cómo que no?
+Don Chuy: El espectáculo está allá, en la laguna. Aquí no trabaja nadie.
+Chocolate se levanta y ladra. Doña Lupita agarra la mano de Jonas.
+Jonas: Doña Lupita, ¿tiene miedo?
+Lupita: No, mijo. Es para que tú no tengas miedo.
+Otra vez el llanto. Y entre los árboles se mueve algo blanco.
+Antes de que alguien pueda decir algo, Chocolate salta de la trajinera a la isla.
+Lupita: ¡Chocolate! ¡Ven aquí! ¡Jonas, haz algo!
+Jonas es profesor de deporte. Salta también.
+Jonas camina entre los árboles. Las muñecas cuelgan sobre su cabeza. Algo toca su pelo. Es solo una muñeca. Bueno, eso espera.
+Detrás de un árbol, Chocolate mueve la cola. Junto a él, sentada en el suelo, hay una mujer joven. Lleva un vestido blanco largo. Llora.
+Ximena: ¡No me lleve! Digo… ¡ayúdeme, por favor!
+Jonas: ¿Usted es… la Llorona?
+Ximena: Sí. Bueno, no. Me llamo Ximena. Soy la Llorona de la función de las nueve. Y de la función de las once.
+Ximena: Una lancha me trajo aquí para descansar entre las dos funciones. Pero el motor no arrancó, y el chico de la lancha fue a buscar ayuda. Hace una hora. Y mi teléfono no tiene batería.
+Ximena: Y estas muñecas… me miran. Me miran todo el tiempo.
+Desde la trajinera, Emiliano se ríe muy fuerte.
+Emiliano: ¡La Llorona tiene miedo!
+Ximena: ¡Claro que tengo miedo! ¡Esta isla da mucho miedo!
+Lupita: Ven, mija. Sube. Aquí hay chocolate caliente.
+Ximena sube a la trajinera. Tiene mucho frío. Jonas le da su chamarra. Doña Lupita la mira un momento.
+Lupita: Esa chamarra era de Rafael. Él también le daba su chamarra a todo el mundo.
+Ximena toma el chocolate con las dos manos. Poco a poco deja de temblar.
+A las once menos cinco llegan a la laguna. La gente ya espera. Ximena se quita la chamarra.
+Ximena: Gracias. Muchas gracias. Esta noche la Llorona va a llorar de verdad. Pero de felicidad.
+Ya en el embarcadero, Don Chuy ata la trajinera. Emiliano busca las llaves del coche. Doña Lupita guarda el termo.
+Muy lejos, al final del canal oscuro, Jonas ve algo. Una figura blanca, de pie sobre el agua.
+Jonas: Don Chuy… ¿cuántas Lloronas trabajan aquí esta noche?
+Don Chuy: Solo una, joven. Solo una.
+Emiliano: Es una garza. Seguro es una garza.
+Don Chuy: Las garzas duermen de noche, joven.
+Lupita: Vámonos a casa. Ahora.
+Eso fue «Historias del camino». La próxima vez: un mercado en Oaxaca, un mole con treinta ingredientes y una receta secreta. ¡Hasta pronto, y cuidado con el agua de noche!`,
+    tr:`Hallo und willkommen bei „Geschichten von unterwegs“. Heute Abend sind wir in Mexiko-Stadt, Ende Oktober. Auf den Straßen gibt es schon orange Blumen, die Studentenblumen. Bald ist der Tag der Toten.
+In Doña Lupitas Küche riecht es nach heißer Schokolade. Jonas, Emiliano und Doña Lupita sitzen am Tisch. Chocolate, der Hund, schläft darunter.
+Emiliano: Jonas, heute Abend fahren wir nach Xochimilco.
+Jonas: Schon wieder? Ich kenne Xochimilco schon. Die bunten Boote, die Mariachis, die Maiskolben …
+Emiliano: Bei Tag, ja. Aber nachts ist es ein anderer Ort. Heute Abend gibt es eine Aufführung auf dem Wasser. Die Legende der Llorona.
+Jonas: Die Llorona? Wer ist das?
+Doña Lupita stellt ihre Tasse auf den Tisch und sieht Jonas an.
+Lupita: Du kennst die Llorona nicht? Ach, Junge. Dann komme ich auch mit.
+Emiliano: Du, Oma? Aber du hast doch Angst vor der Llorona.
+Lupita: Ich habe vor gar nichts Angst. Ich hole die Thermoskanne mit Schokolade. Und Chocolate kommt mit.
+Chocolate öffnet ein Auge. Er sieht nicht sehr glücklich aus.
+Um acht steigen sie in Emilianos Auto. Der Verkehr in der Stadt ist langsam, wie immer.
+Um neun kommen sie an der Anlegestelle an. Es ist kalt. Über dem Wasser liegt Nebel. Die bunten Boote warten in einer Reihe, mit Kerzen und kleinen Lampen.
+Der Bootsmann ist ein sehr alter Herr mit Sombrero und einer langen Stange. Er heißt Don Chuy.
+Don Chuy: Guten Abend. Steigen Sie vorsichtig ein. Und bitte keine Schreie. Die Llorona ist nicht taub.
+Lupita: Sehr witzig, Don Chuy.
+Das Boot fährt langsam los. Don Chuy schiebt mit der Stange. Man hört nur das Wasser.
+Jonas: Doña Lupita, wer ist die Llorona?
+Lupita: Vor vielen Jahren lebte hier eine sehr schöne Frau. Sie hieß María. Sie hatte zwei Kinder.
+Lupita: Eines Tages ging ihr Mann mit einer anderen Frau fort. María war sehr traurig und sehr wütend. Sie ging mit ihren Kindern zum Fluss, und das Wasser nahm die Kinder mit.
+Lupita: María schrie und weinte die ganze Nacht. Am Ende nahm der Fluss auch sie mit.
+Lupita: Seitdem wandert ihre Seele durch die Flüsse und Kanäle. Weiß gekleidet. Und sie weint: Ach, meine Kinder!
+Emiliano: Und wenn ein Kind sie hört, nimmt sie es mit.
+Jonas: Aber ich bin kein Kind.
+Lupita: Für die Llorona sind wir alle Kinder.
+Doña Lupita sieht aufs Wasser. Dann lächelt sie ein bisschen.
+Lupita: Dein Großvater, Emiliano … Rafael hat mir diese Geschichte immer erzählt. Hier, auf einem dieser Boote. So hatte er einen Vorwand, meine Hand zu nehmen.
+Emiliano: Das hat Opa gemacht?
+Lupita: Jedes Mal. Vierzig Jahre lang.
+Das Boot kommt zu einer großen Lagune. Dort sind viele andere Boote voller Leute. Alle warten still.
+Plötzlich gehen alle Lichter aus. Es ist sehr dunkel. Über dem Wasser erscheint eine weiß gekleidete Frau. Ihr Kleid leuchtet im Nebel.
+Llorona: Aaach, meine Kinder!
+Jonas: Puh. Sie ist sehr gut.
+Llorona: Wo sind meine Kinder?
+Jemand schreit auf einem anderen Boot. Ein paar Kinder verstecken sich hinter ihren Eltern. Chocolate versteckt sich hinter Doña Lupita.
+Die Aufführung dauert eine halbe Stunde. Es gibt Musik, Tanz und Feuer auf dem Wasser. Am Ende klatschen alle.
+Lupita: Gut. Sehr schön. Jetzt können wir nach Hause fahren.
+Für den Rückweg nimmt Don Chuy eine Abkürzung durch einen kleinen Kanal. Hier gibt es keine anderen Boote. Keine Lichter. Nur den Nebel und die Kerze.
+Emiliano: Jonas, schau. Das ist die Puppeninsel.
+In den Bäumen hängen alte Puppen. Hunderte Puppen. Ohne Augen, ohne Arme, schmutzig von Regen und Sonne. Alle schauen auf den Kanal.
+Emiliano: Ein Mann hat hier allein gelebt. Er hat ein totes Mädchen im Wasser gefunden. Danach hat er Puppen in die Bäume gehängt, um ihre Seele zu beruhigen. Fünfzig Jahre lang.
+Jonas: Danke, Emiliano. Jetzt bin ich viel ruhiger.
+Da hören sie es. Jemand weint. Ganz nah. Zwischen den Bäumen.
+Don Chuy hört auf zu schieben. Das Boot bleibt stehen.
+Don Chuy: Das gehört nicht zur Aufführung.
+Lupita: Wie, nicht?
+Don Chuy: Die Aufführung ist dort drüben, in der Lagune. Hier arbeitet niemand.
+Chocolate steht auf und bellt. Doña Lupita nimmt Jonas’ Hand.
+Jonas: Doña Lupita, haben Sie Angst?
+Lupita: Nein, Junge. Das ist, damit du keine Angst hast.
+Wieder das Weinen. Und zwischen den Bäumen bewegt sich etwas Weißes.
+Bevor jemand etwas sagen kann, springt Chocolate vom Boot auf die Insel.
+Lupita: Chocolate! Komm her! Jonas, tu etwas!
+Jonas ist Sportlehrer. Er springt auch.
+Jonas geht zwischen den Bäumen hindurch. Die Puppen hängen über seinem Kopf. Etwas berührt seine Haare. Es ist nur eine Puppe. Na ja, das hofft er.
+Hinter einem Baum wedelt Chocolate mit dem Schwanz. Neben ihm sitzt eine junge Frau auf dem Boden. Sie trägt ein langes weißes Kleid. Sie weint.
+Ximena: Nehmen Sie mich nicht mit! Ich meine … helfen Sie mir, bitte!
+Jonas: Sind Sie … die Llorona?
+Ximena: Ja. Also, nein. Ich heiße Ximena. Ich bin die Llorona der Vorstellung um neun. Und der Vorstellung um elf.
+Ximena: Ein kleines Boot hat mich hergebracht, damit ich mich zwischen den zwei Vorstellungen ausruhe. Aber der Motor ist nicht angesprungen, und der Junge vom Boot ist Hilfe holen gegangen. Vor einer Stunde. Und mein Handy hat keinen Akku.
+Ximena: Und diese Puppen … sie schauen mich an. Sie schauen mich die ganze Zeit an.
+Vom Boot aus lacht Emiliano sehr laut.
+Emiliano: Die Llorona hat Angst!
+Ximena: Natürlich habe ich Angst! Diese Insel ist zum Fürchten!
+Lupita: Komm, Mädchen. Steig ein. Hier gibt es heiße Schokolade.
+Ximena steigt ins Boot. Ihr ist sehr kalt. Jonas gibt ihr seine Jacke. Doña Lupita sieht sie einen Moment an.
+Lupita: Diese Jacke war von Rafael. Er hat seine Jacke auch immer allen gegeben.
+Ximena hält die Schokolade mit beiden Händen. Langsam hört sie auf zu zittern.
+Um fünf vor elf kommen sie in der Lagune an. Die Leute warten schon. Ximena zieht die Jacke aus.
+Ximena: Danke. Vielen Dank. Heute Abend weint die Llorona wirklich. Aber vor Glück.
+An der Anlegestelle bindet Don Chuy das Boot fest. Emiliano sucht die Autoschlüssel. Doña Lupita packt die Thermoskanne ein.
+Ganz weit weg, am Ende des dunklen Kanals, sieht Jonas etwas. Eine weiße Gestalt, die auf dem Wasser steht.
+Jonas: Don Chuy … wie viele Lloronas arbeiten heute Abend hier?
+Don Chuy: Nur eine, junger Mann. Nur eine.
+Emiliano: Das ist ein Reiher. Sicher ist das ein Reiher.
+Don Chuy: Reiher schlafen nachts, junger Mann.
+Lupita: Lasst uns nach Hause fahren. Sofort.
+Das war „Geschichten von unterwegs“. Nächstes Mal: ein Markt in Oaxaca, eine Mole mit dreißig Zutaten und ein geheimes Rezept. Bis bald – und Vorsicht mit dem Wasser bei Nacht!`,
+    fact:'Die Llorona ist die bekannteste Gespenstergeschichte Mexikos und wird in ganz Lateinamerika erzählt, in vielen Fassungen. Manche verbinden sie mit der aztekischen Göttin Cihuacóatl, die nachts weinend um ihre Kinder geklagt haben soll. In Xochimilco wird die Legende seit Jahrzehnten jeden Herbst rund um den Día de Muertos als Aufführung auf dem Wasser gespielt; die Zuschauer sitzen in Trajineras auf der Lagune. Die Isla de las Muñecas gibt es wirklich: Don Julián Santana hängte dort jahrzehntelang alte Puppen in die Bäume, angeblich für die Seele eines ertrunkenen Mädchens. Und das Lied „La Llorona“ ist eines der bekanntesten mexikanischen Volkslieder.' }
 ];
 /*LEGG-END*/
 /* ---------- Tonindex: welcher Text liegt in welcher Sammeldatei ---------- */
