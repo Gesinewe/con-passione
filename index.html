@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 284;
+const APP_VERSION = 285;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -78216,6 +78216,356 @@ Draußen hört es auf zu regnen. Die Glocken schlagen sieben. Die Stadt wacht au
 Das war „Voci della pasticceria“. Guten Appetit beim Frühstück, euch allen!`,
     fact:'In Italien frühstückt man meist in der Bar: ein Cappuccino oder Espresso und ein Cornetto, im Stehen an der Theke. Die Konditoreien backen dafür schon mitten in der Nacht – oft ab drei oder vier Uhr.' }
 ];
+/* „Voci della pasticceria“ Folge 2 (v285, 28.10.2026: „nächstes thema bis auf 5 folgen“) – wird nach leggende_dolci.js geladen.
+   Dezember: drei Tage Panettone mit dem Sauerteig Ercole (wie in den Lektionen: Nonnas lievito madre, seit 50 Jahren). Teig füttern, gehen lassen, backen,
+   kopfüber an Spießen abkühlen. Leo stolpert gegen das Gestell, drei Panettoni fallen. Nonna Rosa erzählt die Legende von Toni (Mailand, Hof von Ludovico il Moro):
+   ein Fehler wird zum berühmtesten Kuchen. Aus den kaputten Panettoni macht Sofia Panettone-Tiramisù – ausverkauft. Angekündigt Folge 3: Carnevale, Chiacchiere.
+   Stimmen wie Folge 1 (Sofia Elsa, Leo Diego hoch, Marco Giuseppe, Rosa Isabella tief), Hund Babà (abbaio). Niveau ab A2. */
+PODCAST_INFO.dolci.lead = 'Wie ein kleiner Podcast: Nächte in der Konditorei, Feste, Familie und die Geschichten hinter den Süßigkeiten, mit Rührmaschine, Ofen und Kaffeemaschine, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.dolci.push(
+  { id:'dolci-p2', show:'Voci della pasticceria', ep:2, title:'Il panettone di Natale', de:'Der Weihnachts-Panettone',
+    place:'La pasticceria della nonna, nei giorni prima di Natale', level:'ab A2', kind:'Weihnachten · Familie · Legende',
+    voices:{Sofia:'Elsa', Leo:'Diego', Marco:'Giuseppe', Rosa:'Isabella'},
+    stil:{'':['-8%','+0Hz'], Sofia:['-2%','+24Hz'], Leo:['+4%','+45Hz'], Marco:['-4%','-6Hz'], Rosa:['-8%','-14Hz']},
+    words:[['il panettone','der Panettone (Mailänder Weihnachtskuchen)'],['il lievito madre','der Sauerteig'],['nutrire','füttern'],['l’impasto','der Teig'],['lievitare','gehen (Teig)'],['l’uvetta','die Rosinen'],['i canditi','das kandierte Obst, Zitronat'],['il burro','die Butter'],['lo stampo','die Backform'],['a testa in giù','kopfüber'],['infilzare','aufspießen'],['inciampare','stolpern'],['cadere / è caduto','fallen / ist gefallen'],['schiacciato','zerdrückt'],['lo sbaglio','der Fehler'],['il garzone','der Küchenjunge'],['il tiramisù','das Tiramisù'],['esaurito','ausverkauft']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È il diciotto dicembre':'cucina_an', 'La nonna apre':'pausa', 'Il primo giorno':'impastatrice', 'Il secondo giorno':'pausa', 'Il terzo giorno':'forno', 'Quando escono':'pausa', 'In quel momento entra':'abbaio', 'Leo inciampa':'piatti', 'Silenzio':'pausa', 'Rosa: Sedetevi':'pausa', 'Sofia guarda':'pausa', 'Sofia prende':'frusta', 'Il giorno dopo':'cucina_aus campanello_porta bar_an', 'Questo era':'bar_aus pausa'},
+    text:`Buonasera e benvenuti a «Voci della pasticceria». Oggi vi raccontiamo come nasce il dolce più famoso del Natale italiano. Ci vogliono tre giorni, tanta pazienza… e un pizzico di fortuna.
+È il diciotto dicembre. Fuori fa freddo. Nella pasticceria della nonna Rosa fa caldo e c’è odore di burro e di arancia. Sofia e Leo hanno il grembiule.
+La nonna apre il frigorifero e prende un barattolo di vetro. Dentro c’è una pasta bianca e morbida.
+Rosa: Ecco Ercole. Il nostro lievito madre. Ha cinquant’anni. È più vecchio di vostro padre.
+Leo: Ciao, Ercole! Hai fame?
+Rosa: Sì, ha sempre fame. Ogni giorno gli diamo farina e acqua. Se lo nutriamo bene, il panettone diventa alto e leggero.
+Il primo giorno fanno il primo impasto: Ercole, farina, zucchero, acqua e tanto burro. Poi l’impasto dorme. Dodici ore.
+Il secondo giorno fanno il secondo impasto. Aggiungono i tuorli d’uovo, il miele, la vaniglia, la buccia d’arancia. Alla fine, l’uvetta e i canditi.
+Leo: Io non mangio i canditi.
+Sofia: Allora li togli dopo. Come ogni anno.
+Mettono l’impasto negli stampi di carta. E di nuovo aspettano. Sei ore. L’impasto cresce piano piano, fino al bordo dello stampo.
+Il terzo giorno, finalmente, i panettoni vanno in forno. Quaranta panettoni. Dopo un’ora sono alti, dorati e profumati.
+Quando escono dal forno, Marco fa una cosa strana. Infilza ogni panettone con due lunghi ferri e lo gira. A testa in giù. Poi li appende su un grande carrello.
+Leo: Papà, perché li metti a testa in giù?
+Marco: Perché sono troppo morbidi. Se restano dritti, si abbassano. Così restano alti. Devono stare così tutta la notte.
+In quel momento entra Babà, il cane, che corre verso Leo.
+Leo si gira, fa un passo indietro… e inciampa. Cade contro il carrello. Il carrello si muove. E tre panettoni cadono per terra.
+Silenzio. Tre panettoni schiacciati sul pavimento. Leo ha le lacrime agli occhi.
+Leo: Scusa, nonna. Scusa, papà. Ho rovinato tutto.
+Rosa: Sedetevi un momento. Vi racconto una storia.
+Rosa: Tanto tempo fa, a Milano, c’era un duca. Si chiamava Ludovico il Moro. A Natale fa una grande festa. Ma il cuoco brucia il dolce. Che disastro! Allora un ragazzo della cucina, un garzone, si chiama Toni, prende un po’ di pasta, burro, uova, uvetta… e fa un pane dolce. Gli ospiti lo assaggiano. È buonissimo! Tutti chiedono: «Che cos’è?» E il duca risponde: «È il pan del Toni.»
+Sofia: Il pan del Toni… panettone!
+Rosa: Esatto. È solo una leggenda. Ma dice una cosa vera: tanti dolci famosi sono nati da uno sbaglio.
+Sofia guarda i tre panettoni schiacciati. Poi guarda il frigorifero. Dentro c’è il mascarpone. Ci sono le uova. C’è il caffè.
+Sofia: Nonna… e se facciamo il tiramisù? Con il panettone al posto dei savoiardi?
+Sofia prende la frusta. Monta le uova con lo zucchero e il mascarpone. Bagna le fette di panettone nel caffè. Uno strato di panettone, uno strato di crema, uno strato di panettone. Sopra, il cacao.
+Il giorno dopo, nella vetrina, c’è un cartello nuovo: «Tiramisù di panettone. Ricetta di Leo e Sofia.»
+Alle undici è tutto esaurito. Una signora ne vuole ancora.
+Leo: Nonna, domani posso far cadere altri tre panettoni?
+Rosa: No, Leo. Ma puoi mangiare i canditi che tutti tolgono. Sono tanti.
+Leo: Bleah!
+Questo era «Voci della pasticceria». Nella prossima puntata è Carnevale: tanto olio, tanto zucchero a velo e le chiacchiere più leggere di Napoli. Buona merenda a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci della pasticceria“. Heute erzählen wir euch, wie der berühmteste Kuchen der italienischen Weihnacht entsteht. Man braucht drei Tage, viel Geduld … und eine Prise Glück.
+Es ist der achtzehnte Dezember. Draußen ist es kalt. In Oma Rosas Konditorei ist es warm, und es riecht nach Butter und Orange. Sofia und Leo tragen Schürzen.
+Oma öffnet den Kühlschrank und nimmt ein Glas heraus. Darin ist ein weißer, weicher Teig.
+Rosa: Das ist Ercole. Unser Sauerteig. Er ist fünfzig Jahre alt. Älter als euer Vater.
+Leo: Hallo, Ercole! Hast du Hunger?
+Rosa: Ja, er hat immer Hunger. Jeden Tag geben wir ihm Mehl und Wasser. Wenn wir ihn gut füttern, wird der Panettone hoch und leicht.
+Am ersten Tag machen sie den ersten Teig: Ercole, Mehl, Zucker, Wasser und viel Butter. Dann schläft der Teig. Zwölf Stunden.
+Am zweiten Tag machen sie den zweiten Teig. Sie geben Eigelb, Honig, Vanille und Orangenschale dazu. Zum Schluss die Rosinen und das kandierte Obst.
+Leo: Ich esse kein kandiertes Obst.
+Sofia: Dann pulst du es danach heraus. Wie jedes Jahr.
+Sie füllen den Teig in die Papierformen. Und wieder warten sie. Sechs Stunden. Der Teig wächst ganz langsam, bis zum Rand der Form.
+Am dritten Tag kommen die Panettoni endlich in den Ofen. Vierzig Panettoni. Nach einer Stunde sind sie hoch, goldbraun und duften.
+Als sie aus dem Ofen kommen, macht Marco etwas Seltsames. Er spießt jeden Panettone mit zwei langen Stäben auf und dreht ihn um. Kopfüber. Dann hängt er sie an einen großen Wagen.
+Leo: Papa, warum hängst du sie kopfüber?
+Marco: Weil sie zu weich sind. Wenn sie aufrecht stehen, fallen sie zusammen. So bleiben sie hoch. Sie müssen die ganze Nacht so hängen.
+In diesem Moment kommt Babà herein, der Hund, und rennt auf Leo zu.
+Leo dreht sich um, macht einen Schritt zurück … und stolpert. Er fällt gegen den Wagen. Der Wagen bewegt sich. Und drei Panettoni fallen auf den Boden.
+Stille. Drei zerdrückte Panettoni auf dem Boden. Leo hat Tränen in den Augen.
+Leo: Entschuldigung, Oma. Entschuldigung, Papa. Ich habe alles kaputt gemacht.
+Rosa: Setzt euch einen Moment. Ich erzähle euch eine Geschichte.
+Rosa: Vor langer Zeit gab es in Mailand einen Herzog. Er hieß Ludovico il Moro. An Weihnachten gibt er ein großes Fest. Aber der Koch verbrennt den Kuchen. Was für eine Katastrophe! Da nimmt ein Küchenjunge, er heißt Toni, ein bisschen Teig, Butter, Eier, Rosinen … und macht ein süßes Brot. Die Gäste probieren es. Es ist köstlich! Alle fragen: „Was ist das?“ Und der Herzog antwortet: „Das ist das Brot von Toni.“
+Sofia: „Pan del Toni“ … Panettone!
+Rosa: Genau. Es ist nur eine Legende. Aber sie sagt etwas Wahres: Viele berühmte Süßigkeiten sind aus einem Fehler entstanden.
+Sofia schaut die drei zerdrückten Panettoni an. Dann schaut sie zum Kühlschrank. Darin ist Mascarpone. Es gibt Eier. Es gibt Kaffee.
+Sofia: Oma … und wenn wir Tiramisù machen? Mit Panettone statt Löffelbiskuits?
+Sofia nimmt den Schneebesen. Sie schlägt die Eier mit Zucker und Mascarpone auf. Sie tränkt die Panettone-Scheiben in Kaffee. Eine Schicht Panettone, eine Schicht Creme, eine Schicht Panettone. Oben drauf Kakao.
+Am nächsten Tag steht im Schaufenster ein neues Schild: „Panettone-Tiramisù. Rezept von Leo und Sofia.“
+Um elf ist alles ausverkauft. Eine Frau will noch mehr.
+Leo: Oma, darf ich morgen noch drei Panettoni runterwerfen?
+Rosa: Nein, Leo. Aber du darfst das kandierte Obst essen, das alle herauspulen. Das ist viel.
+Leo: Bäh!
+Das war „Voci della pasticceria“. In der nächsten Folge ist Karneval: viel Öl, viel Puderzucker und die leichtesten Chiacchiere von Neapel. Guten Appetit beim Nachmittagssnack!`,
+    fact:'Ein echter Panettone braucht etwa drei Tage: Der Teig wird mit Sauerteig (lievito madre) mehrmals angesetzt und muss lange gehen. Nach dem Backen hängt man ihn wirklich kopfüber auf, an zwei Spießen durch den Boden – sonst fällt der weiche, luftige Teig in sich zusammen. Die Legende vom Küchenjungen Toni am Hof von Ludovico il Moro in Mailand (15. Jahrhundert) ist berühmt, aber nicht belegt. Wer den Sauerteig gut pflegt, kann ihn jahrzehntelang „am Leben“ halten.' }
+);
+/* „Voci della pasticceria“ Folge 3 (v285, 28.10.2026) – wird nach leggende_dolci2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Carnevale, Martedì grasso: In der Konditorei werden Chiacchiere frittiert, Sofia rollt den Teig hauchdünn mit der Nudelmaschine aus, Leo als Pulcinella.
+   Kunden aus ganz Italien nennen das Gebäck anders (frappe, bugie, cenci, galani). Nonna erzählt die Legende: Königin Margherita wollte etwas zum „Plaudern“
+   (chiacchierare), Raffaele Esposito erfand die Chiacchiere. Leo will den Sanguinaccio (Schokocreme). Konfetti-Schlacht, eine ganze Schachtel Puderzucker fliegt
+   auf Leo – „Pulcinella bianco“. Angekündigt Folge 4: Hochzeitstorte an der Amalfiküste. Signora Bianchi (Kundin aus Rom) = Isabella hoch, Turista (Venedig) = Diego. Niveau ab A2. */
+PODCASTS.dolci.push(
+  { id:'dolci-p3', show:'Voci della pasticceria', ep:3, title:'Le chiacchiere di Carnevale', de:'Die Chiacchiere zum Karneval',
+    place:'La pasticceria della nonna, a Martedì grasso', level:'ab A2', kind:'Fest · Lustig · Legende',
+    voices:{Sofia:'Elsa', Leo:'Diego', Marco:'Giuseppe', Rosa:'Isabella', Signora:'Isabella', Turista:'Diego'},
+    stil:{'':['-8%','+0Hz'], Sofia:['-2%','+24Hz'], Leo:['+4%','+45Hz'], Marco:['-4%','-6Hz'], Rosa:['-8%','-14Hz'], Signora:['+4%','+12Hz'], Turista:['-2%','-10Hz']},
+    words:[['il Carnevale','der Karneval, Fasching'],['Martedì grasso','Faschingsdienstag'],['la maschera / il costume','die Maske / das Kostüm'],['Pulcinella','Pulcinella (neapolitanische Maskenfigur)'],['le chiacchiere','frittiertes Karnevalsgebäck; auch: Geplauder'],['chiacchierare','plaudern, quatschen'],['la sfoglia','der dünn ausgerollte Teig'],['sottile','dünn'],['la rotella','das Teigrädchen'],['friggere','frittieren'],['l’olio bollente','das heiße Öl'],['gonfiarsi','aufgehen, sich aufblähen'],['croccante','knusprig'],['lo zucchero a velo','der Puderzucker'],['i coriandoli','das Konfetti'],['la regina','die Königin'],['il sanguinaccio','neapolitanische Schokoladencreme zum Karneval'],['A Carnevale ogni scherzo vale','An Fasching ist jeder Scherz erlaubt']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È Martedì grasso':'cucina_an', 'Sofia mette':'pausa', 'Marco mette':'soffritto', 'La prima chiacchiera':'soffritto', 'Alle dieci':'campanello_porta', 'Signora: Buongiorno':'pausa', 'Poi entra un ragazzo':'campanello_porta', 'Più tardi':'pausa', 'Rosa: Allora':'pausa', 'Leo: Nonna, e il':'pausa', 'Nel pomeriggio':'cucina_aus folla_an', 'Leo corre':'pausa', 'La scatola':'risate_adulti', 'Questo era':'folla_aus pausa'},
+    text:`Buonasera e benvenuti a «Voci della pasticceria». Oggi è un giorno speciale. Oggi tutti si mettono una maschera, tutti ridono, tutti mangiano troppo. Perché? Perché è Carnevale!
+È Martedì grasso, l’ultimo giorno di Carnevale. Nella pasticceria c’è un odore buonissimo: olio caldo, zucchero e un po’ di limone. Leo è già vestito da Pulcinella: tutto bianco, con il cappello alto e la maschera nera.
+Leo: Guardate! Sono Pulcinella! Il più furbo di Napoli!
+Rosa: Il più furbo di Napoli, adesso lava le mani. Oggi facciamo le chiacchiere. Mille chiacchiere.
+Sofia mette l’impasto nella macchina per la pasta. Lo gira una volta, due volte, tre volte. L’impasto diventa sempre più sottile. Alla fine è così sottile che si vede attraverso.
+Rosa: Brava, Sofia. Una buona chiacchiera deve essere sottile come un foglio di carta. Se è spessa, è pesante. E nessuno la vuole.
+Con la rotella Sofia taglia tanti rettangoli. Al centro di ogni rettangolo fa un piccolo taglio.
+Marco mette l’olio sul fuoco. Quando è bollente, ci mette dentro i rettangoli.
+La prima chiacchiera si gonfia subito. Fa tante bolle. In pochi secondi diventa dorata e croccante. Marco la toglie e la mette sulla carta.
+Leo: Posso assaggiare?
+Marco: Prima lo zucchero a velo. Una chiacchiera senza zucchero a velo è come Carnevale senza maschere.
+Alle dieci la pasticceria è piena. Entra una signora con un accento di Roma.
+Signora: Buongiorno! Vorrei un chilo di frappe, per favore.
+Leo: Di che cosa?
+Rosa: Di chiacchiere, Leo. A Roma si chiamano frappe.
+Poi entra un ragazzo con lo zaino. Un turista di Venezia.
+Turista: Scusate, avete i galani?
+Sofia: I galani… sono le chiacchiere?
+Turista: Sì! A Firenze si chiamano cenci, a Torino bugie e a Venezia galani.
+Leo: Ma allora come si chiamano davvero?
+Rosa: In ogni città hanno un nome diverso. Ma il sapore è sempre lo stesso: di festa.
+Più tardi, quando i clienti escono, la nonna si siede un momento. Leo si siede vicino a lei, con il cappello di Pulcinella storto.
+Leo: Nonna, perché si chiamano chiacchiere? Non parlano!
+Rosa: Allora, c’è una leggenda. Una volta, la regina Margherita era qui a Napoli. Le piaceva tanto chiacchierare con i suoi amici. Parlavano, parlavano, parlavano. Per ore. E a un certo punto la regina ha detto al suo cuoco: «Ho fame. Fammi un dolce. Un dolce leggero, per chiacchierare.» Il cuoco si chiamava Raffaele Esposito. Ha fatto questi dolci sottili e croccanti. E la regina li ha chiamati… chiacchiere.
+Sofia: Raffaele Esposito? Non è quello della pizza Margherita?
+Rosa: Proprio lui. Era un uomo molto impegnato.
+Leo: Nonna, e il sanguinaccio? A Carnevale c’è sempre il sanguinaccio!
+Rosa: C’è. Nel frigorifero. Cioccolato fondente, latte, zucchero e cannella. Ma solo dopo pranzo.
+Nel pomeriggio, davanti alla pasticceria, passa la sfilata dei bambini. Ci sono principesse, supereroi, tanti piccoli Pulcinella. Tutti lanciano coriandoli.
+Leo corre fuori con un grande sacchetto di coriandoli. Ma un bambino vestito da pirata ha una scatola. Una scatola di zucchero a velo. Della pasticceria.
+La scatola si apre sopra la testa di Leo. Una nuvola bianca. Leo è bianco dalla testa ai piedi. Ancora più bianco di prima.
+Sofia: Leo! Sembri un fantasma!
+Leo: No. Sono Pulcinella. Pulcinella con lo zucchero.
+Marco ride così tanto che deve sedersi.
+Marco: Lo sai cosa si dice? A Carnevale ogni scherzo vale.
+Leo si lecca le dita. Sono dolcissime.
+Leo: Questo scherzo vale. Vale tantissimo.
+Questo era «Voci della pasticceria». Nella prossima puntata andiamo sulla costiera amalfitana: un matrimonio, una torta di cinque piani e una giornata molto, molto calda. Buona merenda a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci della pasticceria“. Heute ist ein besonderer Tag. Heute setzen alle eine Maske auf, alle lachen, alle essen zu viel. Warum? Weil Karneval ist!
+Es ist Faschingsdienstag, der letzte Tag des Karnevals. In der Konditorei riecht es herrlich: heißes Öl, Zucker und ein bisschen Zitrone. Leo ist schon als Pulcinella verkleidet: ganz in Weiß, mit dem hohen Hut und der schwarzen Maske.
+Leo: Schaut mal! Ich bin Pulcinella! Der Schlauste von Neapel!
+Rosa: Der Schlauste von Neapel wäscht sich jetzt die Hände. Heute machen wir Chiacchiere. Tausend Chiacchiere.
+Sofia gibt den Teig in die Nudelmaschine. Sie dreht ihn einmal durch, zweimal, dreimal. Der Teig wird immer dünner. Am Ende ist er so dünn, dass man hindurchsehen kann.
+Rosa: Gut, Sofia. Eine gute Chiacchiera muss dünn sein wie ein Blatt Papier. Wenn sie dick ist, ist sie schwer. Und niemand will sie.
+Mit dem Teigrädchen schneidet Sofia viele Rechtecke. In die Mitte jedes Rechtecks macht sie einen kleinen Schnitt.
+Marco stellt das Öl auf den Herd. Als es kocht, legt er die Rechtecke hinein.
+Die erste Chiacchiera bläht sich sofort auf. Sie wirft viele Blasen. In wenigen Sekunden wird sie goldbraun und knusprig. Marco holt sie heraus und legt sie auf Papier.
+Leo: Darf ich probieren?
+Marco: Erst der Puderzucker. Eine Chiacchiera ohne Puderzucker ist wie Karneval ohne Masken.
+Um zehn ist die Konditorei voll. Eine Frau mit römischem Akzent kommt herein.
+Kundin: Guten Morgen! Ich hätte gern ein Kilo Frappe, bitte.
+Leo: Ein Kilo was?
+Rosa: Chiacchiere, Leo. In Rom heißen sie Frappe.
+Dann kommt ein junger Mann mit Rucksack herein. Ein Tourist aus Venedig.
+Tourist: Entschuldigung, habt ihr Galani?
+Sofia: Galani … sind das die Chiacchiere?
+Tourist: Ja! In Florenz heißen sie Cenci, in Turin Bugie und in Venedig Galani.
+Leo: Aber wie heißen sie denn wirklich?
+Rosa: In jeder Stadt haben sie einen anderen Namen. Aber der Geschmack ist immer derselbe: nach Fest.
+Später, als die Kunden gegangen sind, setzt sich Oma einen Moment hin. Leo setzt sich neben sie, mit schiefem Pulcinella-Hut.
+Leo: Oma, warum heißen sie „Chiacchiere“, also Geplauder? Die reden doch gar nicht!
+Rosa: Also, es gibt eine Legende. Einmal war Königin Margherita hier in Neapel. Sie plauderte sehr gern mit ihren Freunden. Sie redeten und redeten und redeten. Stundenlang. Und irgendwann sagte die Königin zu ihrem Koch: „Ich habe Hunger. Mach mir eine Süßigkeit. Etwas Leichtes, zum Plaudern.“ Der Koch hieß Raffaele Esposito. Er machte diese dünnen, knusprigen Teilchen. Und die Königin nannte sie … Chiacchiere.
+Sofia: Raffaele Esposito? Ist das nicht der von der Pizza Margherita?
+Rosa: Genau der. Er war ein sehr beschäftigter Mann.
+Leo: Oma, und der Sanguinaccio? An Karneval gibt es immer Sanguinaccio!
+Rosa: Gibt es. Im Kühlschrank. Zartbitterschokolade, Milch, Zucker und Zimt. Aber erst nach dem Mittagessen.
+Am Nachmittag zieht vor der Konditorei der Kinderumzug vorbei. Es gibt Prinzessinnen, Superhelden, viele kleine Pulcinellas. Alle werfen Konfetti.
+Leo rennt mit einer großen Tüte Konfetti hinaus. Aber ein Junge, als Pirat verkleidet, hat eine Schachtel. Eine Schachtel Puderzucker. Aus der Konditorei.
+Die Schachtel geht über Leos Kopf auf. Eine weiße Wolke. Leo ist von Kopf bis Fuß weiß. Noch weißer als vorher.
+Sofia: Leo! Du siehst aus wie ein Gespenst!
+Leo: Nein. Ich bin Pulcinella. Pulcinella mit Zucker.
+Marco lacht so sehr, dass er sich hinsetzen muss.
+Marco: Weißt du, was man sagt? An Fasching ist jeder Scherz erlaubt.
+Leo leckt sich die Finger ab. Sie sind sehr süß.
+Leo: Dieser Scherz ist erlaubt. Sehr sogar.
+Das war „Voci della pasticceria“. In der nächsten Folge fahren wir an die Amalfiküste: eine Hochzeit, eine Torte mit fünf Stockwerken und ein sehr, sehr heißer Tag. Guten Appetit beim Nachmittagssnack!`,
+    fact:'Chiacchiere sind hauchdünn ausgerollter, frittierter Teig mit Puderzucker – das typische Gebäck zum Karneval in ganz Italien. Sie haben in fast jeder Region einen anderen Namen: frappe (Rom), cenci (Florenz), bugie (Turin, Genua), galani (Venedig), crostoli (Trentino) und viele mehr. Die Legende, dass der neapolitanische Koch Raffaele Esposito sie für Königin Margherita von Savoyen erfand, wird gern erzählt, ist aber nicht belegt. In Neapel isst man dazu den „sanguinaccio“, eine dicke Schokoladencreme. Und das Sprichwort „A Carnevale ogni scherzo vale“ erlaubt an Karneval jeden Streich.' }
+);
+/* „Voci della pasticceria“ Folge 4 (v285, 28.10.2026) – wird nach leggende_dolci3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Juni: Hochzeit an der Amalfiküste (Ravello). Die Konditorei liefert eine Torte mit fünf Stockwerken, Zitronencreme (delizia al limone), Lena aus Deutschland hilft.
+   35 Grad, der Lieferwagen bleibt in der Kurvenstraße stecken (Bus kommt entgegen), die Creme beginnt zu schmelzen. Sofia und Lena bringen die Kühlbox mit dem
+   oberen Stockwerk auf der Vespa eines Kellners hinauf, Marco folgt zu Fuß. Ein Stockwerk ist schief – Nonna steckt Zitronenblätter und Blüten in den Riss.
+   Braut: „È la torta più bella del mondo.“ Confetti: immer eine ungerade Zahl, fünf Wünsche. Angekündigt Folge 5: 50 Jahre Konditorei und ein Geheimnis aus der Kaffeemaschine.
+   Lena = de-DE-SeraphinaMultilingual (Italienisch mit Akzent), Sposa = Isabella hoch, Autista = Diego tief. Niveau ab A2. */
+PODCASTS.dolci.push(
+  { id:'dolci-p4', show:'Voci della pasticceria', ep:4, title:'La torta degli sposi', de:'Die Torte für das Brautpaar',
+    place:'La costiera amalfitana, Ravello, in una giornata di giugno', level:'ab A2', kind:'Abenteuer · Lustig · Hochzeit',
+    voices:{Sofia:'Elsa', Leo:'Diego', Marco:'Giuseppe', Rosa:'Isabella', Lena:'de-DE-SeraphinaMultilingualNeural', Sposa:'Isabella', Autista:'Diego', Cameriere:'Diego'},
+    stil:{'':['-8%','+0Hz'], Sofia:['-2%','+24Hz'], Leo:['+4%','+45Hz'], Marco:['-4%','-6Hz'], Rosa:['-8%','-14Hz'], Lena:['-6%','+4Hz'], Sposa:['+2%','+14Hz'], Autista:['+0%','-18Hz'], Cameriere:['+6%','+4Hz']},
+    words:[['il matrimonio','die Hochzeit'],['gli sposi / la sposa / lo sposo','das Brautpaar / die Braut / der Bräutigam'],['la torta nuziale','die Hochzeitstorte'],['il piano','das Stockwerk'],['la crema al limone','die Zitronencreme'],['il furgone','der Lieferwagen'],['la curva','die Kurve'],['il traffico','der Verkehr'],['sciogliersi / si scioglie','schmelzen / schmilzt'],['la borsa frigo','die Kühltasche, Kühlbox'],['storto / storta','schief'],['la crepa','der Riss'],['nascondere','verstecken, verdecken'],['le foglie di limone','die Zitronenblätter'],['i confetti','die Zuckermandeln'],['un numero dispari','eine ungerade Zahl'],['la salute','die Gesundheit'],['la felicità','das Glück']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È giugno':'motore500_an', 'Marco guida':'pausa', 'Dopo un’ora':'cicale_an', 'Davanti a loro':'motore500_aus clacson', 'Autista: Indietro':'clacson', 'Sofia apre':'pausa', 'Un cameriere':'vespa', 'Sofia e Lena salgono':'traffico_an', 'Alla villa':'traffico_aus campane', 'Marco arriva':'ansimare', 'Rosa: Nessun':'pausa', 'Alle sei':'applausi', 'La sposa taglia':'pausa', 'Alla fine della festa':'cicale_aus gabbiani', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci della pasticceria». Oggi lasciamo la città. Oggi andiamo in uno dei posti più belli del mondo: la costiera amalfitana. Con una torta. Una torta molto grande.
+È giugno. Fa caldo, tanto caldo. Trentacinque gradi. Il furgone della pasticceria corre sulla strada lungo il mare. Dentro ci sono Marco, la nonna Rosa, Sofia e Lena, l’amica tedesca di Sofia. E dietro, nella parte fredda del furgone, c’è la torta.
+Lena: Cinque piani! In Germania non ho mai visto una torta così grande.
+Sofia: È per un matrimonio a Ravello. Con la crema al limone di Amalfi. La sposa la vuole così.
+Marco guida piano. La strada è stretta e piena di curve. A destra la montagna, a sinistra il mare, blu e profondo. Lena guarda giù e diventa bianca.
+Lena: Sofia, perché le strade qui non hanno… più spazio?
+Sofia: Perché qui lo spazio è tutto per il panorama.
+Dopo un’ora sono quasi arrivati. Mancano solo cinque chilometri. Ma Ravello è in alto, sopra il mare. E la strada sale, sale, sale.
+Davanti a loro, in una curva, si ferma un autobus blu. Un autobus enorme. Il furgone non può passare. L’autobus non può passare.
+Autista: Indietro! Deve andare indietro!
+Marco: Indietro? Dietro di me ci sono venti macchine!
+Tutti suonano il clacson. Nessuno si muove. Passano dieci minuti. Venti minuti.
+Sofia apre la porta dietro e tocca la torta. È ancora fredda, ma il furgone è fermo al sole.
+Sofia: Papà, la crema… comincia a sciogliersi. Tra mezz’ora la torta crolla.
+Rosa: Calma. Pensiamo.
+Un cameriere arriva su una vecchia Vespa rossa. Va verso la villa del matrimonio. Si ferma vicino al furgone.
+Cameriere: È la torta per Ravello? Vi aspettano tutti!
+Sofia ha un’idea. La torta ha cinque piani. Il piano più alto, quello con i due sposi di zucchero, è piccolo. Ci sta in una borsa frigo.
+Sofia: Lena, vieni con me! Papà, voi portate il resto quando l’autobus si muove!
+Sofia e Lena salgono sulla Vespa, dietro il cameriere. Sofia tiene la borsa frigo come un bambino. La Vespa passa tra l’autobus e la montagna. Per un centimetro.
+Lena: Sofia, io ho paura!
+Sofia: Anch’io! Ma non lasciare la borsa!
+Alla villa la sposa è già pronta, con il vestito bianco. Sofia mette subito la borsa frigo in cucina, nel frigorifero grande.
+Marco arriva a piedi, venti minuti dopo, con la nonna e due camerieri. Portano gli altri quattro piani. Sono rossi in faccia e sudano. Ma la torta è salva.
+Quasi salva. Il terzo piano è un po’ storto. E c’è una crepa nella crema.
+Sofia: Nonna, si vede! La sposa lo vede subito!
+Rosa: Nessun problema. Lena, vai in giardino. Portami foglie di limone. E qualche fiore bianco.
+In cinque minuti la nonna mette foglie verdi e fiori bianchi sulla crepa. Adesso la torta sembra un piccolo giardino di Amalfi. Ancora più bella di prima.
+Alle sei gli sposi entrano nella terrazza. Tutti applaudono. Sotto, il mare brilla. In mezzo alla terrazza c’è la torta.
+La sposa taglia la torta e assaggia la crema. Poi chiude gli occhi.
+Sposa: È la torta più bella del mondo. E questi fiori… che idea meravigliosa!
+Rosa: Grazie. È stata un’idea… dell’ultimo minuto.
+Alla fine della festa la sposa dà a Lena un piccolo sacchetto di tulle. Dentro ci sono cinque confetti bianchi.
+Lena: Perché cinque?
+Rosa: In Italia i confetti sono sempre dispari. Cinque è il numero perfetto. Uno per la salute, uno per i soldi, uno per la felicità, uno per i figli e uno per una vita lunga.
+Lena: Allora ne mangio uno subito. Per la salute. Dopo questa Vespa ne ho bisogno.
+Questo era «Voci della pasticceria». Nella prossima puntata la pasticceria della nonna compie cinquant’anni. E dalla vecchia macchina del caffè esce un segreto. Buona merenda a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci della pasticceria“. Heute verlassen wir die Stadt. Heute fahren wir an einen der schönsten Orte der Welt: die Amalfiküste. Mit einer Torte. Einer sehr großen Torte.
+Es ist Juni. Es ist heiß, sehr heiß. Fünfunddreißig Grad. Der Lieferwagen der Konditorei fährt auf der Straße am Meer entlang. Drinnen sitzen Marco, Oma Rosa, Sofia und Lena, Sofias deutsche Freundin. Und hinten, im gekühlten Teil des Wagens, steht die Torte.
+Lena: Fünf Stockwerke! In Deutschland habe ich noch nie so eine große Torte gesehen.
+Sofia: Sie ist für eine Hochzeit in Ravello. Mit der Zitronencreme von Amalfi. Die Braut will es so.
+Marco fährt langsam. Die Straße ist eng und voller Kurven. Rechts der Berg, links das Meer, blau und tief. Lena schaut hinunter und wird blass.
+Lena: Sofia, warum haben die Straßen hier nicht … mehr Platz?
+Sofia: Weil der ganze Platz hier für die Aussicht ist.
+Nach einer Stunde sind sie fast da. Es fehlen nur noch fünf Kilometer. Aber Ravello liegt hoch oben über dem Meer. Und die Straße steigt und steigt und steigt.
+Vor ihnen, in einer Kurve, hält ein blauer Bus. Ein riesiger Bus. Der Lieferwagen kommt nicht vorbei. Der Bus kommt nicht vorbei.
+Busfahrer: Zurück! Sie müssen zurückfahren!
+Marco: Zurück? Hinter mir sind zwanzig Autos!
+Alle hupen. Niemand bewegt sich. Zehn Minuten vergehen. Zwanzig Minuten.
+Sofia öffnet die hintere Tür und berührt die Torte. Sie ist noch kalt, aber der Wagen steht in der Sonne.
+Sofia: Papa, die Creme … fängt an zu schmelzen. In einer halben Stunde bricht die Torte zusammen.
+Rosa: Ruhig. Wir denken nach.
+Ein Kellner kommt auf einer alten roten Vespa. Er fährt zur Villa der Hochzeit. Er hält neben dem Lieferwagen.
+Kellner: Ist das die Torte für Ravello? Alle warten auf euch!
+Sofia hat eine Idee. Die Torte hat fünf Stockwerke. Das oberste, das mit dem Brautpaar aus Zucker, ist klein. Es passt in eine Kühltasche.
+Sofia: Lena, komm mit! Papa, ihr bringt den Rest, wenn der Bus weiterfährt!
+Sofia und Lena steigen auf die Vespa, hinter den Kellner. Sofia hält die Kühltasche wie ein Baby. Die Vespa fährt zwischen dem Bus und dem Berg durch. Mit einem Zentimeter Platz.
+Lena: Sofia, ich habe Angst!
+Sofia: Ich auch! Aber lass die Tasche nicht los!
+In der Villa ist die Braut schon fertig, im weißen Kleid. Sofia stellt die Kühltasche sofort in der Küche in den großen Kühlschrank.
+Marco kommt zwanzig Minuten später zu Fuß, mit Oma und zwei Kellnern. Sie tragen die anderen vier Stockwerke. Sie haben rote Gesichter und schwitzen. Aber die Torte ist gerettet.
+Fast gerettet. Das dritte Stockwerk ist ein bisschen schief. Und in der Creme ist ein Riss.
+Sofia: Oma, das sieht man! Die Braut sieht das sofort!
+Rosa: Kein Problem. Lena, geh in den Garten. Bring mir Zitronenblätter. Und ein paar weiße Blüten.
+In fünf Minuten steckt Oma grüne Blätter und weiße Blüten auf den Riss. Jetzt sieht die Torte aus wie ein kleiner Garten von Amalfi. Noch schöner als vorher.
+Um sechs kommt das Brautpaar auf die Terrasse. Alle klatschen. Unten glitzert das Meer. Mitten auf der Terrasse steht die Torte.
+Die Braut schneidet die Torte an und probiert die Creme. Dann schließt sie die Augen.
+Braut: Das ist die schönste Torte der Welt. Und diese Blüten … was für eine wunderbare Idee!
+Rosa: Danke. Das war eine Idee … in letzter Minute.
+Am Ende des Festes gibt die Braut Lena ein kleines Tüllsäckchen. Darin sind fünf weiße Zuckermandeln.
+Lena: Warum fünf?
+Rosa: In Italien sind es immer ungerade viele Confetti. Fünf ist die perfekte Zahl. Eine für die Gesundheit, eine für das Geld, eine für das Glück, eine für die Kinder und eine für ein langes Leben.
+Lena: Dann esse ich gleich eine. Für die Gesundheit. Nach dieser Vespa brauche ich das.
+Das war „Voci della pasticceria“. In der nächsten Folge wird Omas Konditorei fünfzig Jahre alt. Und aus der alten Kaffeemaschine kommt ein Geheimnis. Guten Appetit beim Nachmittagssnack!`,
+    fact:'Die Amalfiküste (Costiera Amalfitana) ist UNESCO-Welterbe und berühmt für ihre engen Kurvenstraßen, auf denen Busse und Autos oft nur mit Mühe aneinander vorbeikommen. Die Zitronen von Amalfi („sfusato amalfitano“) sind groß und aromatisch; aus ihnen macht man Limoncello und die „delizia al limone“, ein Zitronentörtchen aus der Gegend. Bei italienischen Hochzeiten bekommen die Gäste „confetti“ – Zuckermandeln, immer in ungerader Zahl, meist fünf: für Gesundheit, Reichtum, Glück, Kinder und ein langes Leben.' }
+);
+/* „Voci della pasticceria“ Folge 5 (v285, 28.10.2026) – wird nach leggende_dolci4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Oktober: Die Konditorei wird 50 Jahre alt (wie Ercole, der Sauerteig). Die alte Hebel-Kaffeemaschine tropft, Marco repariert sie und findet darin ein kleines Heft:
+   Nonna Rosa hat seit Jahrzehnten heimlich „caffè sospesi“ selbst bezahlt, damit die Tafel nie leer ist. Bei der Feier kommt ein eleganter Fremder: Salvatore,
+   heute Konditor in Paris. Vor dreißig Jahren war er ein armer Student, bekam jeden Morgen einen caffè sospeso – und eine Sfogliatella, die nie jemand bezahlt hatte.
+   Er bezahlt tausend caffè sospesi. Nonna: „Un caffè sospeso non si restituisce. Si passa avanti.“ Salvatore = Diego tiefer und langsamer, Nonno Gino = Giuseppe tief. Niveau ab A2. */
+PODCASTS.dolci.push(
+  { id:'dolci-p5', show:'Voci della pasticceria', ep:5, title:'Mille caffè sospesi', de:'Tausend aufgeschobene Kaffees',
+    place:'La pasticceria della nonna, nel giorno del suo cinquantesimo compleanno', level:'ab A2', kind:'Herz · Familie · Tradition',
+    voices:{Sofia:'Elsa', Leo:'Diego', Marco:'Giuseppe', Rosa:'Isabella', Gino:'Giuseppe', Salvatore:'Diego'},
+    stil:{'':['-8%','+0Hz'], Sofia:['-2%','+24Hz'], Leo:['+4%','+45Hz'], Marco:['-4%','-6Hz'], Rosa:['-8%','-14Hz'], Gino:['-12%','-18Hz'], Salvatore:['-8%','-12Hz']},
+    words:[['il caffè sospeso','der „aufgeschobene“ Kaffee (im Voraus für einen Fremden bezahlt)'],['pagare in anticipo','im Voraus bezahlen'],['la lavagna','die Tafel'],['la macchina del caffè a leva','die Hebel-Kaffeemaschine'],['gocciolare','tropfen'],['riparare','reparieren'],['il quaderno','das Heft'],['segretamente','heimlich'],['il cinquantesimo compleanno','der fünfzigste Geburtstag'],['festeggiare','feiern'],['lo sconosciuto','der Fremde'],['elegante','elegant'],['lo studente','der Student'],['povero / povera','arm'],['la sfogliatella','neapolitanisches Blätterteiggebäck'],['restituire','zurückgeben'],['passare avanti','weitergeben'],['il brindisi','der Trinkspruch, das Anstoßen']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È ottobre':'bar_an', 'Ma oggi':'pausa', 'Marco apre':'bar_aus attrezzi', 'Dentro, dietro':'cassetto', 'Sofia lo apre':'pausa', 'Rosa entra':'pausa', 'Alle sei di sera':'folla_an', 'La porta si apre':'campanello_porta', 'Tutti si girano':'folla_aus pausa', 'Salvatore: Trent’anni':'pausa', 'Salvatore tira fuori':'pausa', 'Sofia scrive':'pausa', 'Rosa alza':'brindisi', 'Poi la nonna':'macchina_caffe', 'Questo era':'carillon_ende'},
+    text:`Buonasera e benvenuti a «Voci della pasticceria». Oggi è l’ultima puntata di questa stagione. E oggi c’è una festa. La pasticceria della nonna Rosa compie cinquant’anni.
+È ottobre. È mattina presto. Nella pasticceria c’è già profumo di caffè. Sulla parete, vicino alla cassa, c’è una piccola lavagna nera. Sopra c’è scritto con il gesso: «Caffè sospesi: 7».
+Leo: Nonna, che cosa vuol dire «caffè sospesi»?
+Rosa: È una vecchia tradizione di Napoli. Un cliente beve un caffè, ma ne paga due. Il secondo resta «sospeso». Poi arriva una persona che non ha soldi. E chiede: «C’è un sospeso?» E beve un caffè gratis.
+Leo: E chi è la persona che non ha soldi?
+Rosa: Non importa chi è. Non si chiede.
+Ma oggi la vecchia macchina del caffè fa un rumore strano. Gocciola dappertutto. È una macchina a leva, del millenovecentosettantasei. Ha cinquant’anni, come la pasticceria.
+Marco apre la macchina con il cacciavite. Leo gli passa gli attrezzi.
+Dentro, dietro un piccolo sportello, c’è una cosa che non c’entra niente con il caffè. Un quaderno. Un piccolo quaderno con la copertina rossa, tutto macchiato di caffè.
+Sofia lo apre. Ci sono tante pagine. Su ogni pagina ci sono date e numeri. «Tre marzo: tre sospesi. Dieci marzo: cinque sospesi.» E sotto ogni numero c’è una firma: «R.»
+Sofia: Papà… questa è la scrittura della nonna.
+Marco legge in silenzio. Poi capisce.
+Marco: La lavagna non è mai vuota. Mai. In trent’anni non l’ho mai vista vuota. Perché… li paga lei.
+Rosa entra in quel momento con un vassoio di sfogliatelle. Vede il quaderno. Si ferma.
+Rosa: Ah. Lo avete trovato.
+Leo: Nonna, hai pagato tutti questi caffè? Tu?
+Rosa: Quando i clienti dimenticano, li pago io. Un caffè non costa molto. Ma per chi non ha niente, vale tanto. Non ditelo a nessuno.
+Alle sei di sera la pasticceria è piena di gente. Ci sono la famiglia, i vicini, i vecchi clienti. Il nonno Gino ha la cravatta. Sul banco c’è una grande torta con un cinquanta d’oro.
+La porta si apre. Entra un uomo che nessuno conosce. È elegante, ha i capelli grigi e una borsa di pelle. Parla con un accento un po’ strano, un po’ francese.
+Salvatore: Buonasera. Cerco la signora Rosa. È ancora qui?
+Tutti si girano. La nonna lo guarda. Lo guarda a lungo. Poi si mette una mano sulla bocca.
+Rosa: Salvatore? Il ragazzo con lo zaino rotto?
+Salvatore: Sì, signora. Sono io.
+Salvatore: Trent’anni fa ero uno studente. Ero povero. Molto povero. Ogni mattina venivo qui e chiedevo: «C’è un sospeso?» E c’era sempre. Ogni mattina. E ogni mattina, con il caffè, lei mi dava anche una sfogliatella. Ma la sfogliatella sospesa non esiste. Nessuno l’aveva pagata.
+Rosa: Eri troppo magro.
+Salvatore: Adesso sono pasticciere. A Parigi. Ho tre pasticcerie. E in ognuna c’è una piccola lavagna nera. Con scritto: «Café suspendu».
+La gente applaude. Il nonno Gino si soffia il naso molto forte.
+Salvatore tira fuori una busta e la mette sul banco.
+Salvatore: Qui ci sono mille caffè sospesi. Mille. E mille sfogliatelle. È il mio regalo per i cinquant’anni.
+Rosa: Salvatore, non devi restituirmi niente.
+Salvatore: Lo so. Ma voglio.
+Rosa: Allora ascolta: un caffè sospeso non si restituisce. Si passa avanti. Tu l’hai già fatto. A Parigi. Questo è il regalo più bello.
+Sofia prende il gesso. Va alla lavagna. Cancella il sette. E scrive, grande: «Caffè sospesi: 1007».
+Sofia scrive anche, sotto, più piccolo: «e sfogliatelle sospese».
+Rosa alza il bicchiere.
+Rosa: Alla pasticceria! Agli amici! E a tutti quelli che entrano qui senza soldi, ma con fame.
+Poi la nonna va alla vecchia macchina del caffè, riparata da Marco. Abbassa la leva. Il primo caffè dei prossimi cinquant’anni.
+Rosa: Il primo è sospeso. Per chi arriva domani.
+Questo era «Voci della pasticceria». Grazie per averci ascoltato in questa stagione. E se un giorno siete a Napoli, entrate in un bar e chiedete: «C’è un sospeso?» Oppure, ancora meglio, lasciatene uno voi. Buona merenda a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci della pasticceria“. Heute ist die letzte Folge dieser Staffel. Und heute gibt es ein Fest. Oma Rosas Konditorei wird fünfzig Jahre alt.
+Es ist Oktober. Es ist früh am Morgen. In der Konditorei duftet es schon nach Kaffee. An der Wand, neben der Kasse, hängt eine kleine schwarze Tafel. Darauf steht mit Kreide: „Caffè sospesi: 7“.
+Leo: Oma, was heißt „caffè sospesi“?
+Rosa: Das ist eine alte Tradition aus Neapel. Ein Kunde trinkt einen Kaffee, aber er bezahlt zwei. Der zweite bleibt „aufgeschoben“. Dann kommt jemand, der kein Geld hat. Und fragt: „Gibt es einen Sospeso?“ Und trinkt einen Kaffee umsonst.
+Leo: Und wer ist der, der kein Geld hat?
+Rosa: Das ist egal. Das fragt man nicht.
+Aber heute macht die alte Kaffeemaschine ein seltsames Geräusch. Sie tropft überall. Es ist eine Hebelmaschine, von neunzehnhundertsechsundsiebzig. Sie ist fünfzig Jahre alt, wie die Konditorei.
+Marco öffnet die Maschine mit dem Schraubenzieher. Leo reicht ihm das Werkzeug.
+Drinnen, hinter einer kleinen Klappe, ist etwas, das gar nichts mit Kaffee zu tun hat. Ein Heft. Ein kleines Heft mit rotem Umschlag, voller Kaffeeflecken.
+Sofia schlägt es auf. Es hat viele Seiten. Auf jeder Seite stehen Daten und Zahlen. „Dritter März: drei Sospesi. Zehnter März: fünf Sospesi.“ Und unter jeder Zahl eine Unterschrift: „R.“
+Sofia: Papa … das ist Omas Handschrift.
+Marco liest schweigend. Dann versteht er.
+Marco: Die Tafel ist nie leer. Nie. In dreißig Jahren habe ich sie nie leer gesehen. Weil … sie sie bezahlt.
+In diesem Moment kommt Rosa mit einem Tablett Sfogliatelle herein. Sie sieht das Heft. Sie bleibt stehen.
+Rosa: Ah. Ihr habt es gefunden.
+Leo: Oma, hast du all diese Kaffees bezahlt? Du?
+Rosa: Wenn die Kunden es vergessen, bezahle ich sie. Ein Kaffee kostet nicht viel. Aber für jemanden, der nichts hat, ist er viel wert. Sagt es niemandem.
+Um sechs Uhr abends ist die Konditorei voller Leute. Da sind die Familie, die Nachbarn, die alten Kunden. Opa Gino trägt eine Krawatte. Auf der Theke steht eine große Torte mit einer goldenen Fünfzig.
+Die Tür geht auf. Ein Mann kommt herein, den niemand kennt. Er ist elegant, hat graue Haare und eine Ledertasche. Er spricht mit einem etwas seltsamen Akzent, ein bisschen französisch.
+Salvatore: Guten Abend. Ich suche Frau Rosa. Ist sie noch hier?
+Alle drehen sich um. Oma schaut ihn an. Sie schaut ihn lange an. Dann legt sie eine Hand auf den Mund.
+Rosa: Salvatore? Der Junge mit dem kaputten Rucksack?
+Salvatore: Ja, Signora. Das bin ich.
+Salvatore: Vor dreißig Jahren war ich Student. Ich war arm. Sehr arm. Jeden Morgen kam ich hierher und fragte: „Gibt es einen Sospeso?“ Und es gab immer einen. Jeden Morgen. Und jeden Morgen gaben Sie mir mit dem Kaffee auch eine Sfogliatella. Aber eine aufgeschobene Sfogliatella gibt es nicht. Niemand hatte sie bezahlt.
+Rosa: Du warst zu dünn.
+Salvatore: Jetzt bin ich Konditor. In Paris. Ich habe drei Konditoreien. Und in jeder hängt eine kleine schwarze Tafel. Darauf steht: „Café suspendu“.
+Die Leute klatschen. Opa Gino putzt sich sehr laut die Nase.
+Salvatore holt einen Umschlag heraus und legt ihn auf die Theke.
+Salvatore: Hier sind tausend Caffè sospesi. Tausend. Und tausend Sfogliatelle. Das ist mein Geschenk zum Fünfzigsten.
+Rosa: Salvatore, du musst mir nichts zurückgeben.
+Salvatore: Ich weiß. Aber ich will.
+Rosa: Dann hör zu: Einen Caffè sospeso gibt man nicht zurück. Man gibt ihn weiter. Das hast du schon getan. In Paris. Das ist das schönste Geschenk.
+Sofia nimmt die Kreide. Sie geht zur Tafel. Sie wischt die Sieben weg. Und schreibt groß: „Caffè sospesi: 1007“.
+Sofia schreibt darunter, kleiner: „und Sfogliatelle sospese“.
+Rosa hebt das Glas.
+Rosa: Auf die Konditorei! Auf die Freunde! Und auf alle, die ohne Geld hereinkommen, aber mit Hunger.
+Dann geht Oma zur alten Kaffeemaschine, die Marco repariert hat. Sie drückt den Hebel herunter. Der erste Kaffee der nächsten fünfzig Jahre.
+Rosa: Der erste ist aufgeschoben. Für den, der morgen kommt.
+Das war „Voci della pasticceria“. Danke, dass ihr uns in dieser Staffel zugehört habt. Und wenn ihr eines Tages in Neapel seid, geht in eine Bar und fragt: „Gibt es einen Sospeso?“ Oder, noch besser, lasst selbst einen da. Guten Appetit beim Nachmittagssnack!`,
+    fact:'Der „caffè sospeso“ ist eine alte neapolitanische Tradition: Wer es sich leisten kann, bezahlt in der Bar zwei Kaffees und trinkt nur einen – der zweite wartet auf jemanden, der kein Geld hat. Die Idee hat sich inzwischen in viele Länder verbreitet, auch nach Deutschland („aufgeschobener Kaffee“) und Frankreich („café suspendu“). Hebel-Kaffeemaschinen (macchine a leva), bei denen der Barista den Druck mit einem großen Hebel erzeugt, stehen in manchen alten Bars in Neapel bis heute. Die Sfogliatella ist das berühmteste Gebäck Neapels.' }
+);
 /* Hörgeschichten Formula (Podcast „Voci dalla pista“). Figuren aus dem Thema: Martina, Bruder Leo (Kartfahrer), Opa Ivo (40 Jahre Ferrari-Mechaniker). */
 PODCAST_INFO.formula = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Leos Kart-Finale, mit Startampel, heulenden Motoren, quietschenden Reifen und Zielflagge, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.formula = [
