@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 281;
+const APP_VERSION = 282;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -79251,6 +79251,109 @@ Maya looks at the seat opposite. There’s something on it. A black feather. And
 Lukas: All right. From today on I believe in witches.
 That was “Stories from the Train”. Do you believe in witches? Next time: an old letter from Milwaukee – and the ticket from 1923. See you soon – and have a good trip!`,
     fact:'Walpurgis Night (April 30) is celebrated in many towns of the Harz mountains, for example in Schierke, Thale and Wernigerode, with fires, music and thousands of people dressed as witches and devils. According to legend, the witches meet on the Brocken, the highest mountain in northern Germany (1,141 m). Goethe climbed the Brocken in 1777 and later set the “Walpurgisnacht” scene of his Faust there. Narrow-gauge steam trains of the Harzer Schmalspurbahnen still run up to the Brocken almost every day. From 1961 until December 1989 the summit lay in the East German border zone and was closed to the public; trains have been running to the top again since 1991.' }
+);
+/* Hörgeschichte „Deutschlandreise“, Folge 5 (v282, 28.10.2026: „mach bitte folge 5“) – wird nach leggende_reisen4.js geladen, löst die Ankündigung aus Folge 4 ein
+   und schließt den Bogen zu Folge 1. Staffelfinale, vor Stufe 5 (dort findet Maya im Herbst Lindenbach an der Weinstraße – hier nur der Hinweis darauf).
+   10. Mai, Frankfurt, Oma Ingrids Küche: ein Paket von Mayas Mama aus Milwaukee mit Sachen von Uroma Anna Vogel: ein Foto von 1923 (die junge Frau aus dem Nachtzug!)
+   und ein kleines Tagebuch. Eintrag vom 10. Mai 1923: neblig am Rhein, gegenüber eine junge Frau mit seltsamen Kleidern und Fahrkarte, Deutsch wie eine Amerikanerin,
+   Anna gab ihr ihren Apfel. Mama am Video-Telefon: „Eine Amerikanerin hat mir im Zug Mut gemacht“ – das hat Anna immer erzählt. Letzte Seite: „Vielleicht nicht ich. Aber jemand von uns.“
+   Lukas findet Lindenbach in keinem Fahrplan. Auf der Rückseite der alten Fahrkarte erscheint mit Bleistift: „Lindenbach an der Weinstraße.“
+   Stimmen: Erzählerin Katja, Maya Ava, Emma Amala, Lukas Conrad, Oma Ingrid de-AT-Ingrid, Mama en-US-EmmaMultilingual (Video, radio), Anna Seraphina (wie „Junge Frau“ in Folge 1). Niveau ab A2. */
+PODCAST_INFO.reisen.lead = 'Like a little podcast: strange and moving stories on German trains with Maya, Lukas and Emma – a foggy night train through the Rhine valley, a ticking suitcase on the ICE to Berlin, Christmas Eve in the snow, a steam train on Walpurgis Night and a letter from Milwaukee … with real train sounds. Just listen, no exercises. You can open the German text and the English translation.';
+PODCASTS.reisen.push(
+  { id:'reisen-p5', lang:'us', erzaehler:'Katja', show:'Geschichten aus dem Zug', ep:5, title:'Der Brief aus Milwaukee', de:'The letter from Milwaukee',
+    place:'In Grandma Ingrid’s kitchen in Frankfurt, on May 10 – exactly 103 years after the ticket from episode 1', level:'from A2', kind:'Mystery · Family · Season finale',
+    voices:{Maya:'en-US-AvaMultilingualNeural', Emma:'de-DE-AmalaNeural', Lukas:'de-DE-ConradNeural', 'Oma Ingrid':'de-AT-IngridNeural', Mama:'en-US-EmmaMultilingualNeural', Anna:'de-DE-SeraphinaMultilingualNeural'},
+    stil:{'':['-6%','+0Hz'], Maya:['-6%','+0Hz'], Emma:['+0%','+0Hz'], Lukas:['-2%','+0Hz'], 'Oma Ingrid':['-8%','+0Hz'], Mama:['-10%','+0Hz'], Anna:['-10%','+2Hz']},
+    words:[['das Paket','the package'],['der Absender','the sender'],['die Urgroßmutter / die Uroma','the great-grandmother / great-grandma'],['das Tagebuch','the diary'],['vorlesen / Lies vor!','to read aloud / Read it out!'],['die Seite','the page'],['seltsam','strange'],['Mut machen','to give courage'],['der Zufall','the coincidence'],['fallen lassen / Sie lässt die Tasse fallen.','to drop / She drops the cup.'],['zittern','to tremble'],['verstehen / Wir haben es nie verstanden.','to understand / We never understood it.'],['der Fahrplan','the timetable'],['die Rückseite','the back (of a paper)'],['der Bleistift','the pencil'],['suchen / finden','to look for / to find'],['zurückkommen','to come back'],['jemand von uns','one of us'],['die Weinstraße','the Wine Route (in the Palatinate)'],['die Staffel','the season (of a series)']],
+    fx:{'Hallo und willkommen':'pausa', 'Es klingelt':'campanello porta_dopo', 'Niemand sagt etwas':'ticken_dopo', 'Dann nimmt Maya':'pausa', 'Maya lässt die Tasse':'piatti', 'Lukas: Maya? Was ist':'pausa', 'Emma: Lies vor!':'treno_an', 'Anna: Zehnter Mai':'pausa', 'Maya hört auf zu lesen':'fischietto treno_aus pausa', 'Maya ruft ihre Mama':'notifiche', 'Mama: Hi, Schatz':'radio', 'Mama: Von einer Frau':'radio', 'Mama: Das hat sie':'radio', 'Mama: Uroma Anna hat':'radio', 'Oma Ingrid: Kind, das':'pausa', 'Maya blättert':'pausa', 'Es ist spät':'pausa', 'Maya lächelt. Goethe':'fusa_dopo', 'Das war „Geschichten':'carillon_ende'},
+    text:`Hallo und willkommen bei „Geschichten aus dem Zug“! Heute: ein Paket aus Amerika, ein altes Tagebuch – und die Antwort auf eine Frage von neunzehnhundertdreiundzwanzig.
+Es ist der zehnte Mai. Ein Sonntag. Maya, Emma und Lukas sitzen bei Oma Ingrid in der Küche in Frankfurt. Es gibt Kaffee und Apfelkuchen. Kater Goethe schläft auf dem Stuhl.
+Es klingelt an der Tür.
+Emma: Maya! Ein Paket für dich! Aus Milwaukee!
+Maya: Von meiner Mama! Sie hat gesagt, sie schickt mir ein paar alte Sachen. Von meiner Uroma.
+Oma Ingrid: Deine Uroma? War sie Deutsche?
+Maya: Ja. Sie hieß Anna. Anna Vogel. Sie ist als junge Frau nach Amerika gegangen. Mehr weiß ich nicht.
+Maya macht das Paket auf. Darin liegt eine alte Schachtel aus Holz. In der Schachtel: ein kleines Buch mit einem braunen Umschlag. Und ein Foto.
+Dann nimmt Maya das Foto in die Hand. Es ist schwarz-weiß und sehr alt. Eine junge Frau steht an einem Bahnhof. Sie trägt einen langen Mantel und einen Hut. Neben ihr steht ein alter Koffer.
+Maya lässt die Tasse fallen.
+Lukas: Maya? Was ist los? Du bist ganz blass.
+Maya: Das ist sie. Die junge Frau aus dem Nachtzug. Im Oktober. An der Loreley. Das ist meine Uroma.
+Niemand sagt etwas. Nur die Uhr in der Küche tickt.
+Emma nimmt das kleine Buch.
+Emma: Das ist ein Tagebuch. Maya, schau! Der erste Eintrag ist vom zehnten Mai neunzehnhundertdreiundzwanzig. Heute vor genau hundertdrei Jahren.
+Maya: Die Fahrkarte! Lindenbach – Bremen, zehnter Mai neunzehnhundertdreiundzwanzig.
+Emma: Lies vor!
+Maya liest. Ihre Stimme zittert. Und es ist, als ob Anna selbst spricht.
+Anna: Zehnter Mai. Heute bin ich aus Lindenbach weggefahren. Heinrich hat am Bahnhof geweint. Ich habe nicht geweint. Erst im Zug.
+Anna: Am Abend waren wir am Rhein. Es war sehr neblig. Mir gegenüber saß eine junge Frau. Sie hatte seltsame Kleider und eine seltsame Fahrkarte. Sie sprach Deutsch wie eine Amerikanerin.
+Anna: Sie war sehr nett. Sie hat mich gefragt, wie ich heiße. Ich habe nicht geantwortet. Ich weiß nicht, warum. Ich habe ihr meinen Apfel gegeben.
+Anna: Dann kam ein Pfiff, und die Lampen gingen aus. Und sie war weg. Vielleicht war es ein Traum. Aber seit heute Nacht habe ich keine Angst mehr vor Amerika.
+Maya hört auf zu lesen. Emma hat Tränen in den Augen. Oma Ingrid hält Mayas Hand.
+Maya ruft ihre Mama in Milwaukee an. Mit Video.
+Mama: Hi, Schatz! Hast du das Paket? Ich spreche Deutsch für deine Freunde. Meine Oma Anna hat immer Deutsch mit mir gesprochen.
+Maya: Mama, ich habe das Foto gesehen. Und das Tagebuch. Hat Uroma Anna einmal von einem Zug erzählt? Von einer Frau im Zug?
+Mama: Von einer Frau im Zug? … Das ist komisch, dass du das fragst.
+Mama: Das hat sie oft erzählt. Sie hat gesagt: Eine Amerikanerin hat mir im Zug Mut gemacht. Neunzehnhundertdreiundzwanzig! Wir haben das nie verstanden. Damals gab es doch keine Amerikanerin in dem Zug.
+Maya: Doch, Mama. Ich glaube, es gab eine.
+Mama: Uroma Anna hat auch immer gesagt: Wer die Loreley hört, kommt nach Hause zurück. Aber sie ist nie zurückgekommen.
+Oma Ingrid: Kind, das ist kein Zufall. Das ist eine Einladung.
+Maya blättert zur letzten Seite im Tagebuch. Dort steht nur ein Satz.
+Anna: Heinrich, ich komme zurück. Vielleicht nicht ich. Aber jemand von uns.
+Maya: Lukas, wo ist Lindenbach?
+Lukas sucht auf seinem Handy. Er sucht lange.
+Lukas: Ich finde es nicht. Kein Bahnhof Lindenbach. In keinem Fahrplan. Vielleicht ist das Dorf zu klein. Oder es heißt heute anders.
+Maya: Dann suche ich es. Und ich finde es.
+Es ist spät. Alle sind nach Hause gegangen. Maya sitzt allein in der Küche. Vor ihr liegen das Foto und die alte gelbe Fahrkarte.
+Sie dreht die Fahrkarte um. Die Rückseite war immer leer. Immer. Aber jetzt steht da etwas. Mit Bleistift, ganz klein, in einer alten Schrift.
+Anna: Lindenbach an der Weinstraße.
+Maya lächelt. Goethe springt auf den Tisch und schnurrt.
+Maya: Ich komme, Uroma Anna. Ich komme nach Lindenbach.
+Das war „Geschichten aus dem Zug“ – und das Ende unserer ersten Staffel. Was Maya in Lindenbach findet? Das erfahrt ihr in Stufe fünf. Danke fürs Zuhören – und gute Fahrt!`,
+    tr:`Hello and welcome to “Stories from the Train”! Today: a package from America, an old diary – and the answer to a question from 1923.
+It’s May tenth. A Sunday. Maya, Emma and Lukas are sitting in Grandma Ingrid’s kitchen in Frankfurt. There’s coffee and apple cake. Goethe the cat is asleep on a chair.
+The doorbell rings.
+Emma: Maya! A package for you! From Milwaukee!
+Maya: From my mom! She said she’s sending me some old things. From my great-grandma.
+Grandma Ingrid: Your great-grandma? Was she German?
+Maya: Yes. Her name was Anna. Anna Vogel. She went to America as a young woman. That’s all I know.
+Maya opens the package. Inside there’s an old wooden box. In the box: a small book with a brown cover. And a photo.
+Then Maya takes the photo in her hand. It’s black and white and very old. A young woman is standing at a station. She’s wearing a long coat and a hat. Next to her stands an old suitcase.
+Maya drops her cup.
+Lukas: Maya? What’s wrong? You’ve gone completely pale.
+Maya: That’s her. The young woman from the night train. In October. At the Loreley. That’s my great-grandma.
+Nobody says anything. Only the clock in the kitchen ticks.
+Emma takes the little book.
+Emma: It’s a diary. Maya, look! The first entry is from May 10, 1923. Exactly 103 years ago today.
+Maya: The ticket! Lindenbach – Bremen, May 10, 1923.
+Emma: Read it out!
+Maya reads. Her voice trembles. And it’s as if Anna herself is speaking.
+Anna: May tenth. Today I left Lindenbach. Heinrich cried at the station. I didn’t cry. Only on the train.
+Anna: In the evening we were on the Rhine. It was very foggy. Opposite me sat a young woman. She had strange clothes and a strange ticket. She spoke German like an American.
+Anna: She was very kind. She asked me my name. I didn’t answer. I don’t know why. I gave her my apple.
+Anna: Then came a whistle, and the lamps went out. And she was gone. Maybe it was a dream. But since tonight I am no longer afraid of America.
+Maya stops reading. Emma has tears in her eyes. Grandma Ingrid holds Maya’s hand.
+Maya calls her mom in Milwaukee. On video.
+Mom: Hi, sweetie! Did you get the package? I’m speaking German for your friends. My grandma Anna always spoke German with me.
+Maya: Mom, I saw the photo. And the diary. Did Great-grandma Anna ever tell you about a train? About a woman on a train?
+Mom: About a woman on a train? … That’s strange that you ask.
+Mom: She told that story often. She said: an American woman gave me courage on the train. In 1923! We never understood it. There couldn’t have been an American woman on that train back then.
+Maya: Yes, Mom. I think there was one.
+Mom: Great-grandma Anna also always said: whoever hears the Loreley comes back home. But she never came back.
+Grandma Ingrid: Child, this is no coincidence. This is an invitation.
+Maya turns to the last page of the diary. There is only one sentence.
+Anna: Heinrich, I will come back. Maybe not me. But one of us.
+Maya: Lukas, where is Lindenbach?
+Lukas searches on his phone. He searches for a long time.
+Lukas: I can’t find it. No Lindenbach station. In no timetable. Maybe the village is too small. Or it has a different name today.
+Maya: Then I’ll look for it. And I’ll find it.
+It’s late. Everyone has gone home. Maya sits alone in the kitchen. In front of her lie the photo and the old yellow ticket.
+She turns the ticket over. The back was always empty. Always. But now there’s something on it. In pencil, very small, in old handwriting.
+Anna: Lindenbach on the Wine Route.
+Maya smiles. Goethe jumps onto the table and purrs.
+Maya: I’m coming, Great-grandma Anna. I’m coming to Lindenbach.
+That was “Stories from the Train” – and the end of our first season. What will Maya find in Lindenbach? You’ll find out in level five. Thanks for listening – and have a good trip!`,
+    fact:'Between 1820 and 1920 more than five million Germans emigrated to the United States. Wisconsin was one of their favorite destinations, and Milwaukee was once called the “German Athens” of America, with German newspapers, theaters and beer gardens. Many emigrants kept diaries and wrote letters home; today archives in Germany and the USA help their descendants find the villages their families came from. The German Wine Route (Deutsche Weinstraße) in the Palatinate, opened in 1935, is one of the oldest tourist routes in Germany.' }
 );
 /* Hörgeschichte „Rennrad“ (Italiener lernen Deutsch, v230; Wunsch der Nutzerin: „mach für rennrad bitte eine hörgeschichte“).
    Podcast „Bergauf – der Radpodcast aus Freiburg“ von Martina und Nele, Folge 1: Papa Ferraro ist zu Besuch und fordert Felix
