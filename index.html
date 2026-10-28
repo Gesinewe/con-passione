@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 278;
+const APP_VERSION = 279;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -78844,6 +78844,130 @@ Maya: From a young woman. She said: whoever hears the Loreley comes back home.
 That was “Stories from the Train”. Have you ever experienced something strange on a train? Next time: a suitcase on the ICE to Berlin, and nobody knows whose it is. See you soon – and have a good trip!`,
     fact:'In 1923 Germany suffered hyperinflation: in November a loaf of bread cost about 200 billion marks, and people were paid twice a day so they could shop before prices rose again. That year more than 115,000 Germans emigrated, most of them to the United States – many through the port of Bremen/Bremerhaven. Night trains did run along the Rhine valley line past the Loreley, one of the oldest and most scenic railway lines in Germany (opened 1859).' }
 ];
+/* Hörgeschichte „Deutschlandreise“, Folge 2 (v279, 28.10.2026: „ja, mach mit 1 bitte weiter“) – wird nach leggende_reisen.js geladen, löst die Ankündigung aus Folge 1 ein.
+   Ende November, ICE Frankfurt – Berlin: Maya und Emma (besucht ihre Mutter), Lukas hat Dienst. Ein alter Lederkoffer ohne Namen, Durchsagen, niemand meldet sich –
+   dann tickt der Koffer. Halt in Erfurt, Bundespolizei. Um zwölf klingelt es: ein Wecker. Im Koffer: Anzug, Sekt, Foto „Karl und Margot, 1961“, ein Ring.
+   Herr Hoffmann (85) war in Frankfurt nur schnell Blumen kaufen. Mauer 1961, fünfundsechzig Jahre getrennt, Margots Enkelin hat ihn im Internet gefunden.
+   Treffen um acht am Brandenburger Tor: „Du bist pünktlich.“ Angekündigt Folge 3: Heiligabend, Schnee, ein Zug bleibt stehen.
+   Stimmen: Erzählerin Katja, Maya Ava, Emma Amala, Lukas Conrad (Durchsagen mit altoparlante), Polizistin Seraphina, Herr Hoffmann Florian (langsam, tief; am Telefon radio), Margot de-AT-Ingrid (langsam). Niveau ab A2. */
+PODCAST_INFO.reisen.lead = 'Like a little podcast: strange and moving stories on German trains with Maya, Lukas and Emma – a foggy night train through the Rhine valley, a ticking suitcase on the ICE to Berlin … with real train sounds. Just listen, no exercises. You can open the German text and the English translation.';
+PODCASTS.reisen.push(
+  { id:'reisen-p2', lang:'us', erzaehler:'Katja', show:'Geschichten aus dem Zug', ep:2, title:'Der Koffer ohne Namen', de:'The suitcase with no name',
+    place:'On the ICE from Frankfurt to Berlin and at the Brandenburg Gate, on a Saturday at the end of November', level:'from A2', kind:'Mystery · Love · Berlin',
+    voices:{Maya:'en-US-AvaMultilingualNeural', Emma:'de-DE-AmalaNeural', Lukas:'de-DE-ConradNeural', Polizistin:'de-DE-SeraphinaMultilingualNeural', 'Herr Hoffmann':'de-DE-FlorianMultilingualNeural', Margot:'de-AT-IngridNeural'},
+    stil:{'':['-6%','+0Hz'], Maya:['-6%','+0Hz'], Emma:['+0%','+0Hz'], Lukas:['-2%','+0Hz'], Polizistin:['-4%','-2Hz'], 'Herr Hoffmann':['-16%','-12Hz'], Margot:['-14%','-6Hz']},
+    words:[['der Koffer','the suitcase'],['das Leder','the leather'],['gehören / Wem gehört der Koffer?','to belong / Whose suitcase is it?'],['die Durchsage','the announcement (on a train)'],['sich melden / Bitte melden Sie sich!','to come forward / Please come forward!'],['ticken / Der Koffer tickt.','to tick / The suitcase is ticking.'],['gefährlich','dangerous'],['die Regel','the rule'],['der Aufenthalt','the stop, the stay'],['der Wecker','the alarm clock'],['klingeln','to ring'],['aufmachen / öffnen','to open'],['der Anzug','the suit'],['der Ring','the ring'],['verpassen / Er hat den Zug verpasst.','to miss / He missed the train.'],['aufpassen auf','to look after, to keep an eye on'],['die Mauer','the wall (the Berlin Wall)'],['getrennt','separated'],['pünktlich','on time'],['sich wiedersehen','to see each other again']],
+    fx:{'Hallo und willkommen':'pausa', 'Es ist Ende November':'treno_an', 'Lukas: Meine Damen und Herren':'altoparlante', 'Nach Fulda kommt':'pausa', 'Niemand kommt':'pausa', 'Emma: Psst!':'ticken', 'Lukas telefoniert':'treno_aus', 'Die Polizistin kommt':'porte', 'Polizistin: Hm.':'ticken', 'Plötzlich klingelt es':'sveglia', 'Lukas’ Telefon klingelt':'pausa', 'Herr Hoffmann: Mein Koffer! Gott':'radio', 'Herr Hoffmann: Margot …':'radio', 'Herr Hoffmann: Der Wecker':'radio', 'Der Zug fährt weiter':'treno_an pausa', 'Am Abend regnet es':'treno_aus pausa', 'Das war „Geschichten':'carillon_ende'},
+    text:`Hallo und willkommen bei „Geschichten aus dem Zug“! Heute: ein ICE nach Berlin, ein Koffer ohne Namen – und ein Geheimnis, das tickt.
+Es ist Ende November, ein Samstag. Maya und Emma sitzen im ICE von Frankfurt nach Berlin. Emma besucht ihre Mutter. Maya will Berlin sehen. Und Lukas hat heute Dienst in diesem Zug.
+Lukas: Meine Damen und Herren, willkommen im ICE nach Berlin. Unser nächster Halt ist Fulda.
+Emma: Vier Stunden! Ich habe Kekse, Kaffee und ein Buch. Und du?
+Maya: Ich habe einen Plan. Ich schlafe heute nicht im Zug. Nie wieder!
+Emma lacht. Sie kennt die Geschichte vom Nachtzug.
+Nach Fulda kommt Lukas in den Wagen. Er sieht nicht froh aus.
+Lukas: Hallo, ihr zwei. Sagt mal, gehört der Koffer da euch?
+Neben der Tür steht ein großer brauner Koffer. Er ist alt, aus Leder. Es gibt keinen Namen und keine Adresse.
+Maya: Nein. Der steht schon seit Frankfurt da.
+Lukas: Komisch. Niemand will ihn haben.
+Lukas: Meine Damen und Herren, in Wagen sieben steht ein brauner Lederkoffer. Wem gehört der Koffer? Bitte melden Sie sich beim Zugpersonal.
+Niemand kommt. Niemand ruft. Der Zug fährt durch den grauen Wald.
+Emma: Psst! Hört ihr das?
+Maya: Der Koffer … tickt.
+Lukas wird blass. Schon wieder.
+Maya: Ist das gefährlich?
+Lukas: Wahrscheinlich nicht. Aber ich muss die Polizei rufen. Das ist die Regel.
+Lukas telefoniert. Zehn Minuten später hält der Zug in Erfurt.
+Lukas: Meine Damen und Herren, wegen eines Polizeieinsatzes haben wir in Erfurt etwa zwanzig Minuten Aufenthalt. Wir bitten um Ihr Verständnis.
+Die Polizistin kommt in den Wagen. Sie ist jung und ganz ruhig. Sie hört lange zu.
+Polizistin: Hm. Ein alter Koffer, der tickt. Wer hat ihn zuerst gesehen?
+Maya: Ich. In Frankfurt. Ein alter Mann hat ihn hier hingestellt. Er hatte einen Hut. Dann ist er wieder ausgestiegen.
+Polizistin: Und wo ist der Mann jetzt?
+Niemand weiß es. Es ist zwölf Uhr.
+Plötzlich klingelt es! Laut und schrill. Emma schreit. Maya springt auf.
+Die Polizistin lacht.
+Polizistin: Das ist ein Wecker. Nur ein Wecker. So. Jetzt mache ich den Koffer auf.
+Sie öffnet den Koffer. Darin liegen ein alter Wecker, ein schwarzer Anzug und eine Flasche Sekt. Und ein Foto.
+Auf dem Foto: ein junger Mann und eine junge Frau vor dem Brandenburger Tor. Schwarz-weiß. Hinten steht: Karl und Margot, neunzehnhunderteinundsechzig. Ich warte auf dich.
+Emma: Und hier ist noch etwas. Eine kleine Schachtel. Oh! Ein Ring!
+Polizistin: Keine Bombe. Ein Ring. Das ist kein Fall für die Polizei. Das ist ein Fall für die Liebe.
+Lukas’ Telefon klingelt. Er hört zu. Dann lächelt er.
+Lukas: Das war der Bahnhof Frankfurt. Ein alter Herr sucht seinen Koffer. Er war nur schnell Blumen kaufen – und dann war der Zug weg. Er ist jetzt am Telefon.
+Herr Hoffmann: Mein Koffer! Gott sei Dank. Hier ist Karl Hoffmann. Bitte, passen Sie gut auf ihn auf. Ich nehme den nächsten Zug. Um sieben bin ich in Berlin.
+Maya: Herr Hoffmann, hier ist Maya. Wer ist Margot?
+Herr Hoffmann: Margot … Wir waren zwanzig. Wir waren verliebt. Dann kam die Mauer. Margot war im Osten, ich war im Westen. Fünfundsechzig Jahre waren wir getrennt. Letzte Woche hat sie mich gefunden. Im Internet! Ihre Enkelin hat geholfen. Heute Abend sehen wir uns wieder. Um acht. Am Brandenburger Tor.
+Lukas: Und der Wecker?
+Herr Hoffmann: Der Wecker ist von Margot. Neunzehnhunderteinundsechzig hat sie gesagt: Wenn er klingelt, denk an mich. Er klingelt jeden Tag um zwölf. Seit fünfundsechzig Jahren.
+Maya bekommt Gänsehaut. Emma weint ein bisschen.
+Der Zug fährt weiter. Die Polizistin steigt aus und winkt. Maya passt auf den Koffer auf. Sie schläft keine Minute.
+Am Abend regnet es in Berlin. Maya, Emma und Lukas stehen mit dem Koffer am Brandenburger Tor. Es ist fünf vor acht.
+Ein Taxi hält. Ein alter Mann steigt aus. Er hat einen Hut und einen Blumenstrauß. Die Blumen sind ein bisschen kaputt.
+Herr Hoffmann: Mein Koffer! Danke, danke! Wie sehe ich aus?
+Emma: Sehr gut. Aber vergessen Sie den Ring nicht!
+Unter dem Tor steht eine alte Frau mit einem roten Regenschirm. Sie dreht sich um.
+Margot: Karl?
+Herr Hoffmann: Margot. Es tut mir leid. Ich bin zu spät. Fünfundsechzig Jahre zu spät.
+Margot: Nein, Karl. Du bist pünktlich. Es ist acht Uhr.
+Maya, Emma und Lukas gehen leise weg. Niemand sagt etwas. Dann bleibt Maya stehen.
+Maya: Lukas, ich glaube, Züge sind magisch.
+Lukas: Nein. Züge sind pünktlich. Meistens.
+Emma: Meistens!
+Das war „Geschichten aus dem Zug“. Habt ihr schon einmal etwas im Zug vergessen? Nächstes Mal: Heiligabend, viel Schnee – und ein Zug, der nicht mehr weiterfährt. Bis bald – und gute Fahrt!`,
+    tr:`Hello and welcome to “Stories from the Train”! Today: an ICE to Berlin, a suitcase with no name – and a secret that ticks.
+It’s the end of November, a Saturday. Maya and Emma are sitting on the ICE from Frankfurt to Berlin. Emma is visiting her mother. Maya wants to see Berlin. And Lukas is on duty on this train today.
+Lukas: Ladies and gentlemen, welcome aboard the ICE to Berlin. Our next stop is Fulda.
+Emma: Four hours! I have cookies, coffee and a book. And you?
+Maya: I have a plan. I’m not sleeping on the train today. Never again!
+Emma laughs. She knows the story of the night train.
+After Fulda, Lukas comes into the car. He doesn’t look happy.
+Lukas: Hi, you two. Tell me, is that suitcase yours?
+Next to the door there’s a big brown suitcase. It’s old, made of leather. There’s no name and no address.
+Maya: No. It’s been there since Frankfurt.
+Lukas: Strange. Nobody wants it.
+Lukas: Ladies and gentlemen, there is a brown leather suitcase in car seven. Whose suitcase is it? Please contact the train staff.
+Nobody comes. Nobody calls. The train goes through the gray forest.
+Emma: Shh! Do you hear that?
+Maya: The suitcase … is ticking.
+Lukas turns pale. Again.
+Maya: Is it dangerous?
+Lukas: Probably not. But I have to call the police. That’s the rule.
+Lukas makes a phone call. Ten minutes later the train stops in Erfurt.
+Lukas: Ladies and gentlemen, due to a police operation we will have a stop of about twenty minutes in Erfurt. We ask for your understanding.
+The police officer comes into the car. She is young and very calm. She listens for a long time.
+Police officer: Hm. An old suitcase that ticks. Who saw it first?
+Maya: I did. In Frankfurt. An old man put it here. He had a hat. Then he got off again.
+Police officer: And where is the man now?
+Nobody knows. It’s twelve o’clock.
+Suddenly something rings! Loud and shrill. Emma screams. Maya jumps up.
+The police officer laughs.
+Police officer: That’s an alarm clock. Just an alarm clock. Right. Now I’m going to open the suitcase.
+She opens the suitcase. Inside there’s an old alarm clock, a black suit and a bottle of sparkling wine. And a photo.
+In the photo: a young man and a young woman in front of the Brandenburg Gate. Black and white. On the back it says: Karl and Margot, 1961. I’m waiting for you.
+Emma: And there’s something else here. A small box. Oh! A ring!
+Police officer: No bomb. A ring. This isn’t a case for the police. This is a case for love.
+Lukas’s phone rings. He listens. Then he smiles.
+Lukas: That was Frankfurt station. An old gentleman is looking for his suitcase. He just went to buy flowers quickly – and then the train was gone. He’s on the phone now.
+Mr. Hoffmann: My suitcase! Thank God. This is Karl Hoffmann. Please take good care of it. I’ll take the next train. I’ll be in Berlin at seven.
+Maya: Mr. Hoffmann, this is Maya. Who is Margot?
+Mr. Hoffmann: Margot … We were twenty. We were in love. Then the Wall came. Margot was in the East, I was in the West. We were separated for sixty-five years. Last week she found me. On the internet! Her granddaughter helped. Tonight we’re seeing each other again. At eight. At the Brandenburg Gate.
+Lukas: And the alarm clock?
+Mr. Hoffmann: The alarm clock is from Margot. In 1961 she said: when it rings, think of me. It rings every day at twelve. For sixty-five years.
+Maya gets goosebumps. Emma cries a little.
+The train continues. The police officer gets off and waves. Maya keeps an eye on the suitcase. She doesn’t sleep for a single minute.
+In the evening it’s raining in Berlin. Maya, Emma and Lukas are standing at the Brandenburg Gate with the suitcase. It’s five to eight.
+A taxi stops. An old man gets out. He has a hat and a bunch of flowers. The flowers are a bit broken.
+Mr. Hoffmann: My suitcase! Thank you, thank you! How do I look?
+Emma: Very good. But don’t forget the ring!
+Under the gate stands an old woman with a red umbrella. She turns around.
+Margot: Karl?
+Mr. Hoffmann: Margot. I’m sorry. I’m late. Sixty-five years late.
+Margot: No, Karl. You’re on time. It’s eight o’clock.
+Maya, Emma and Lukas quietly walk away. Nobody says anything. Then Maya stops.
+Maya: Lukas, I think trains are magical.
+Lukas: No. Trains are on time. Mostly.
+Emma: Mostly!
+That was “Stories from the Train”. Have you ever forgotten something on a train? Next time: Christmas Eve, lots of snow – and a train that can’t go any further. See you soon – and have a good trip!`,
+    fact:'The Berlin Wall was built almost overnight on August 13, 1961. Families, friends and couples on both sides were suddenly separated – for 28 years, until the Wall fell on November 9, 1989. Today the ICE (InterCityExpress) takes about four hours from Frankfurt to Berlin. If you see luggage that nobody claims on a German train, tell the train staff (das Zugpersonal): they contact the Bundespolizei, the federal police, which is responsible for safety on the railways.' }
+);
 /* Hörgeschichte „Rennrad“ (Italiener lernen Deutsch, v230; Wunsch der Nutzerin: „mach für rennrad bitte eine hörgeschichte“).
    Podcast „Bergauf – der Radpodcast aus Freiburg“ von Martina und Nele, Folge 1: Papa Ferraro ist zu Besuch und fordert Felix
    zum Duell auf den Schauinsland heraus (Hausberg von Freiburg, 1284 m). Passt nach Stufe 4, Niveau ab B1.
