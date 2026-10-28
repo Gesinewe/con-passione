@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 283;
+const APP_VERSION = 284;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -77658,6 +77658,406 @@ Sara: Heute habe ich etwas gelernt: Für zwei Minuten Film braucht man einen gan
 Das war „Voci dal cinema“. Bis zur nächsten Szene. Klappe!`,
     fact:'Regen im Film ist fast immer künstlich: Regenmaschinen lassen Wasser von Gerüsten oder Kränen fallen, oft mit etwas Milch vermischt, damit die Tropfen vor der Kamera besser sichtbar sind. „Ciak, si gira!“ ist der berühmteste Ausruf am italienischen Filmset.' }
 ];
+/* „Voci dal cinema“ Folge 2 (v284, 28.10.2026: „mach mit dem nächsten thema weiter, bis auf 5“) – wird nach leggende_cinema.js geladen.
+   Anfang September, Mostra del Cinema di Venezia: Giulias Kurzfilm „La pioggia di Roma“ (die Regenszene aus Folge 1) läuft in der Reihe der jungen Filme.
+   Mit dem Vaporetto zum Lido; Luca vergisst die Tasche mit der Festplatte (DCP) auf dem Boot. Verfolgungsjagd mit einem Wassertaxi, Sara findet die Tasche beim Kapitän.
+   Vorführung in letzter Minute, Marcello sitzt im Saal, sieben Minuten Applaus. Kein Löwe, aber ein Brief von einem Produzenten. Angekündigt Folge 3: Synchronstudio.
+   Stimmen wie Folge 1, Kapitän = Giuseppe heller, Giornalista = Isabella. Niveau ab A2. */
+PODCAST_INFO.cinema.lead = 'Wie ein kleiner Podcast: Drehtage, Festivals und Abende im alten Kino, mit Filmklappe, Regenmaschine und ratterndem Projektor, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.cinema.push(
+  { id:'cinema-p2', show:'Voci dal cinema', ep:2, title:'Leone d’oro', de:'Goldener Löwe',
+    place:'Venezia, la Mostra del Cinema al Lido, all’inizio di settembre', level:'ab A2', kind:'Lustig · Festival · Spannend',
+    voices:{Sara:'Elsa', Giulia:'Elsa', Luca:'Diego', Marcello:'Giuseppe', Capitano:'Giuseppe', Giornalista:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Sara:['-2%','+28Hz'], Giulia:['+2%','-8Hz'], Luca:['+2%','+6Hz'], Marcello:['-8%','-10Hz'], Capitano:['+2%','+4Hz'], Giornalista:['+6%','+8Hz']},
+    words:[['la Mostra del Cinema','das Filmfestival von Venedig'],['il cortometraggio','der Kurzfilm'],['il red carpet / il tappeto rosso','der rote Teppich'],['il vaporetto','das Linienboot in Venedig'],['il taxi d’acqua','das Wassertaxi'],['la borsa','die Tasche'],['il disco','die Festplatte'],['dimenticare / ho dimenticato','vergessen / ich habe vergessen'],['inseguire','verfolgen'],['il pontile','der Bootssteg'],['la proiezione','die Vorführung'],['in sala','im Kinosaal'],['l’applauso / gli applausi','der Applaus'],['il fotografo','der Fotograf'],['il premio','der Preis'],['il leone','der Löwe'],['il produttore','der Produzent'],['emozionato / emozionata','aufgeregt, gerührt']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È l’inizio di settembre':'acqua_an gabbiani', 'Sul vaporetto':'vaporetto', 'Al Lido scendono':'acqua_aus folla_an', 'Luca diventa bianco':'folla_aus pausa', 'Il vaporetto è già lontano':'vaporetto', 'Un taxi d’acqua':'motore_barca_an', 'Capitano: Tenetevi':'pausa', 'Al pontile':'motore_barca_aus gabbiani', 'Alle otto meno cinque':'folla_an', 'Nella sala Giulia':'folla_aus pausa', 'Il film finisce':'applausi', 'Uno, due':'applausi', 'Dopo la proiezione':'pausa', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dal cinema», il podcast che vi porta dietro lo schermo. Oggi andiamo al festival di cinema più antico del mondo: la Mostra del Cinema di Venezia.
+È l’inizio di settembre. Venezia è piena di sole, di turisti e di attori famosi. Giulia, Sara e Luca sono alla stazione. Giulia ha in mano una piccola borsa nera. Dentro c’è il disco con il suo film.
+Giulia: Ragazzi, non ci credo. Il mio cortometraggio, «La pioggia di Roma», alla Mostra di Venezia! Stasera alle otto. In una sala vera, con il pubblico vero.
+Sara: E con la pioggia finta!
+Luca: Dammi la borsa, Giulia. Sei troppo nervosa. La porto io.
+Sul vaporetto c’è tanta gente. Valigie, cappelli, macchine fotografiche. Il vaporetto passa davanti a San Marco e va verso il Lido. Il Lido è l’isola del festival.
+Sara: Guarda, Luca! Quella signora con gli occhiali neri… è un’attrice famosa!
+Luca: Dove? Dove?
+Al Lido scendono tutti. C’è un grande tappeto rosso, ci sono fotografi e giornalisti. Giulia si guarda intorno, felice. Poi si gira verso Luca.
+Giulia: Luca… dov’è la borsa?
+Luca diventa bianco. Guarda le sue mani. Sono vuote.
+Luca: La borsa… è sul vaporetto. L’ho messa sotto il sedile per guardare l’attrice.
+Il vaporetto è già lontano.
+Giulia: Il mio film! Il disco! Senza il disco non c’è proiezione!
+Sara: Calma. Calma. Il vaporetto torna a Venezia. Lo prendiamo.
+Un taxi d’acqua è fermo al pontile. Il capitano fuma una sigaretta. Sara corre da lui.
+Sara: Signore! Dobbiamo seguire quel vaporetto! È un’emergenza! È per il cinema!
+Capitano: Per il cinema? Allora salite. Ho sempre sognato di fare un film d’azione.
+Capitano: Tenetevi forte!
+Il taxi d’acqua parte veloce. Le onde saltano. Il vento soffia nei capelli. Luca è verde. Giulia non parla. Sara ride, un po’ per la paura.
+Al pontile di San Zaccaria il vaporetto si ferma. Sara salta giù dal taxi e corre a bordo. Il capitano del vaporetto ha in mano una piccola borsa nera.
+Sara: È nostra! È il film della mia amica!
+Capitano: Ah, è un film? Pensavo che era il pranzo di qualcuno.
+Alle otto meno cinque arrivano alla sala. Giulia dà il disco al tecnico. Le mani le tremano. Il tecnico sorride.
+Nella sala Giulia si siede in ultima fila. Sara le tiene la mano. Le luci si spengono. Sullo schermo comincia a piovere.
+Luca: Guarda, Giulia. In terza fila. È Marcello!
+Sì, è proprio lui, Marcello, l’attore del film. È venuto senza dire niente a nessuno.
+Il film dura quindici minuti. Nella sala nessuno parla. Quando Marcello starnutisce sotto la pioggia, tutti ridono. Nella scena finale, qualcuno piange.
+Il film finisce. Per un secondo c’è silenzio. Poi tutti applaudono.
+Uno, due, tre, quattro, cinque, sei, sette minuti di applausi. Giulia non riesce a parlare.
+Dopo la proiezione una giornalista corre da lei.
+Giornalista: Complimenti! Lei è la regista? Che cosa prova adesso?
+Giulia: Io… io sono felice. E stanca. E oggi ho imparato una cosa: un film non si fa mai da soli.
+Marcello arriva con un sorriso e un fazzoletto.
+Marcello: Brava, Giulia. E grazie per l’influenza. Il mio starnuto è la scena più famosa del festival.
+Il Leone d’oro quella sera va a un altro film, di un regista famoso. Ma nella borsa nera di Giulia ora c’è una lettera. È di un produttore di Roma. Vuole incontrarla.
+Luca: Giulia, posso portare io la borsa?
+«No!», gridano Giulia e Sara insieme.
+Questo era «Voci dal cinema». Nella prossima puntata entriamo in uno studio di doppiaggio, dove le voci cambiano faccia. Alla prossima scena. Ciak!`,
+    tr:`Guten Abend und willkommen bei „Voci dal cinema“, dem Podcast, der euch hinter die Leinwand führt. Heute fahren wir zum ältesten Filmfestival der Welt: der Mostra del Cinema in Venedig.
+Es ist Anfang September. Venedig ist voller Sonne, Touristen und berühmter Schauspieler. Giulia, Sara und Luca sind am Bahnhof. Giulia hat eine kleine schwarze Tasche in der Hand. Darin ist die Festplatte mit ihrem Film.
+Giulia: Leute, ich kann es nicht glauben. Mein Kurzfilm, „La pioggia di Roma“, bei der Mostra in Venedig! Heute Abend um acht. In einem echten Saal, mit echtem Publikum.
+Sara: Und mit falschem Regen!
+Luca: Gib mir die Tasche, Giulia. Du bist zu nervös. Ich trage sie.
+Auf dem Vaporetto sind viele Leute. Koffer, Hüte, Fotoapparate. Das Vaporetto fährt an San Marco vorbei zum Lido. Der Lido ist die Insel des Festivals.
+Sara: Schau mal, Luca! Die Frau mit der schwarzen Sonnenbrille … das ist eine berühmte Schauspielerin!
+Luca: Wo? Wo?
+Am Lido steigen alle aus. Es gibt einen großen roten Teppich, Fotografen und Journalisten. Giulia schaut sich glücklich um. Dann dreht sie sich zu Luca.
+Giulia: Luca … wo ist die Tasche?
+Luca wird blass. Er schaut auf seine Hände. Sie sind leer.
+Luca: Die Tasche … ist auf dem Vaporetto. Ich habe sie unter den Sitz gestellt, um die Schauspielerin anzuschauen.
+Das Vaporetto ist schon weit weg.
+Giulia: Mein Film! Die Festplatte! Ohne die Festplatte gibt es keine Vorführung!
+Sara: Ruhig. Ruhig. Das Vaporetto fährt nach Venedig zurück. Wir holen es ein.
+Ein Wassertaxi liegt am Steg. Der Kapitän raucht eine Zigarette. Sara rennt zu ihm.
+Sara: Herr Kapitän! Wir müssen dem Vaporetto folgen! Es ist ein Notfall! Es ist fürs Kino!
+Kapitän: Fürs Kino? Dann steigt ein. Ich habe immer davon geträumt, einen Actionfilm zu machen.
+Kapitän: Haltet euch gut fest!
+Das Wassertaxi rast los. Die Wellen springen. Der Wind bläst durch die Haare. Luca ist grün im Gesicht. Giulia sagt nichts. Sara lacht, ein bisschen vor Angst.
+Am Steg San Zaccaria hält das Vaporetto. Sara springt vom Taxi und rennt an Bord. Der Kapitän des Vaporetto hat eine kleine schwarze Tasche in der Hand.
+Sara: Die gehört uns! Das ist der Film meiner Freundin!
+Kapitän: Ah, das ist ein Film? Ich dachte, das ist jemandes Mittagessen.
+Um fünf vor acht kommen sie am Kinosaal an. Giulia gibt die Festplatte dem Techniker. Ihre Hände zittern. Der Techniker lächelt.
+Im Saal setzt sich Giulia in die letzte Reihe. Sara hält ihre Hand. Das Licht geht aus. Auf der Leinwand beginnt es zu regnen.
+Luca: Schau, Giulia. In der dritten Reihe. Das ist Marcello!
+Ja, er ist es wirklich, Marcello, der Schauspieler aus dem Film. Er ist gekommen, ohne jemandem etwas zu sagen.
+Der Film dauert fünfzehn Minuten. Im Saal spricht niemand. Als Marcello im Regen niest, lachen alle. In der letzten Szene weint jemand.
+Der Film ist zu Ende. Eine Sekunde lang ist es still. Dann klatschen alle.
+Eins, zwei, drei, vier, fünf, sechs, sieben Minuten Applaus. Giulia kann nicht sprechen.
+Nach der Vorführung rennt eine Journalistin zu ihr.
+Journalistin: Herzlichen Glückwunsch! Sind Sie die Regisseurin? Was fühlen Sie jetzt?
+Giulia: Ich … ich bin glücklich. Und müde. Und heute habe ich etwas gelernt: Einen Film macht man nie allein.
+Marcello kommt mit einem Lächeln und einem Taschentuch.
+Marcello: Brava, Giulia. Und danke für die Grippe. Mein Niesen ist die berühmteste Szene des Festivals.
+Der Goldene Löwe geht an diesem Abend an einen anderen Film, von einem berühmten Regisseur. Aber in Giulias schwarzer Tasche liegt jetzt ein Brief. Er ist von einem Produzenten aus Rom. Er will sie treffen.
+Luca: Giulia, darf ich die Tasche tragen?
+„Nein!“, rufen Giulia und Sara zusammen.
+Das war „Voci dal cinema“. In der nächsten Folge gehen wir in ein Synchronstudio, wo die Stimmen das Gesicht wechseln. Bis zur nächsten Szene. Klappe!`,
+    fact:'Die Mostra del Cinema di Venezia gibt es seit 1932 – sie ist das älteste Filmfestival der Welt. Sie findet jedes Jahr Ende August/Anfang September auf dem Lido statt, einer langen Insel vor Venedig, die man mit dem Vaporetto erreicht. Der Hauptpreis ist der Goldene Löwe (Leone d’oro), benannt nach dem Löwen von San Marco, dem Wappentier Venedigs. Lange Applause nach der Premiere – manchmal zehn Minuten und mehr – sind in Venedig fast eine Tradition und werden von Journalisten mit der Stoppuhr gemessen.' }
+);
+/* „Voci dal cinema“ Folge 3 (v284, 28.10.2026) – wird nach leggende_cinema2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Oktober, Rom: Der Produzent aus Venedig schickt Giulia, Sara und Luca in ein Synchronstudio. Direktorin Bice, Synchronsprecher Franco (die italienische Stimme eines
+   Hollywood-Stars, der Name bleibt geheim). Ein amerikanischer Zeichentrickfilm: Luca darf den Hund Biscotto sprechen – Bellen braucht elf Versuche.
+   Die Sprecherin des kleinen Mädchens ist krank, Sara springt ein: „Biscotto, torna a casa!“ – lippensynchron, mit den drei Pieptönen. Im Dezember im Kino Paradiso
+   stehen ihre Namen im Abspann, Nonno Pippo weint. Angekündigt Folge 4: Kino unter den Sternen. Bice = Isabella, Franco = Giuseppe sehr tief. Niveau ab A2. */
+PODCASTS.cinema.push(
+  { id:'cinema-p3', show:'Voci dal cinema', ep:3, title:'Le voci segrete', de:'Die geheimen Stimmen',
+    place:'Uno studio di doppiaggio a Roma e il cinema Paradiso', level:'ab A2', kind:'Lustig · Hinter den Kulissen',
+    voices:{Sara:'Elsa', Giulia:'Elsa', Luca:'Diego', Bice:'Isabella', Franco:'Giuseppe', Nonno:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Sara:['-2%','+28Hz'], Giulia:['+2%','-8Hz'], Luca:['+2%','+6Hz'], Bice:['+2%','-4Hz'], Franco:['-10%','-20Hz'], Nonno:['-12%','-16Hz']},
+    words:[['il doppiaggio','die Synchronisation'],['il doppiatore / la doppiatrice','der Synchronsprecher / die Synchronsprecherin'],['lo studio','das (Ton-)Studio'],['la cuffia','der Kopfhörer'],['il leggio','das Pult'],['il microfono','das Mikrofon'],['il cartone animato','der Zeichentrickfilm'],['abbaiare','bellen'],['la battuta','der Satz (im Drehbuch)'],['le labbra','die Lippen'],['in sincrono','synchron'],['il bip','der Piepton'],['Ancora una volta!','Noch einmal!'],['sostituire','ersetzen, einspringen für'],['malata / ha la febbre','krank / hat Fieber'],['i titoli di coda','der Abspann'],['il nome','der Name'],['fiero / fiera','stolz']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È ottobre':'traffico_an', 'Entrano in un palazzo':'traffico_aus porta', 'Dietro il vetro':'pausa', 'Franco: «':'pausa', 'Bice: Luca, tocca':'pausa', 'Luca: Bau!':'bip', 'Bice: Ancora una volta':'pausa', 'Luca: Bau bau':'bip', 'Tutti ridono':'risate_adulti', 'Poi il telefono':'telefono_fisso', 'Sara va al leggio':'pausa', 'Sara: Biscotto!':'bip', 'Bice: Buona!':'applausi', 'A dicembre':'folla_an', 'Il film finisce':'folla_aus proiettore_an pausa', 'Nonno: Avete sentito':'proiettore_aus', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dal cinema», il podcast che vi porta dietro lo schermo. Oggi entriamo in un posto segreto. Un posto dove gli attori americani imparano a parlare italiano. In un secondo.
+È ottobre, a Roma. Il produttore di Venezia ha chiamato Giulia. Le ha detto: «Se vuoi fare cinema, devi conoscere tutto. Anche le voci.» Così oggi Giulia, Sara e Luca vanno in uno studio di doppiaggio.
+Entrano in un palazzo vecchio, vicino a Cinecittà. Dentro tutto è buio e silenzioso. Ci sono porte pesanti e piccole luci rosse.
+Una signora con gli occhiali sulla testa li aspetta. È Bice, la direttrice del doppiaggio.
+Bice: Benvenuti! Parlate piano, per favore. Di là stanno registrando.
+Dietro il vetro c’è una piccola stanza. Un uomo con la cuffia sta davanti a un leggio e a un microfono. Davanti a lui, su uno schermo, c’è un attore americano, molto famoso.
+Sara: Ma quello è…
+Bice: Sì. E quello al microfono è Franco. È la voce italiana di quell’attore. Da trent’anni.
+Franco guarda lo schermo. L’attore americano apre la bocca. E nello stesso momento Franco parla.
+Franco: «Non ho paura di te. Ho paura di quello che sei diventato.»
+Luca: Incredibile! È la stessa voce del film! Io pensavo che lui parlava italiano!
+Bice: Tutti lo pensano. In Italia quasi tutti i film stranieri sono doppiati. Le facce sono americane, ma le voci sono di Roma.
+Franco esce dalla stanza e saluta. Ha una voce profonda, calda, come un caffè la mattina.
+Franco: Il segreto sono le labbra. Devi parlare quando l’attore apre la bocca. Né prima, né dopo. In sincrono.
+Bice: Luca, tocca a te. Oggi doppiamo un cartone animato americano. C’è un cane, Biscotto. Ha una sola battuta. Fa «bau».
+Luca: Solo «bau»? Facile!
+Luca mette la cuffia. Prima della battuta si sentono tre bip. Al quarto, deve parlare.
+Luca: Bau!
+Bice: No, troppo presto. E troppo… umano. Biscotto è un cane piccolo e felice. Ancora una volta!
+Bice: Ancora una volta. Ancora una volta. Più corto. Più felice. Più cane.
+Undicesima volta. Luca chiude gli occhi. Pensa al cane della vicina. Respira. Al quarto bip…
+Luca: Bau bau!
+Bice: Buona! Perfetto! Luca, sei nato per fare il cane.
+Tutti ridono. Anche Franco.
+Poi il telefono suona. Bice risponde, ascolta e diventa seria.
+Bice: Un problema. La doppiatrice della bambina è malata. Ha la febbre. E il film esce a dicembre. Dobbiamo finire oggi.
+Bice guarda Sara. La guarda a lungo.
+Bice: Tu. Quanti anni hai?
+Sara: Quindici.
+Bice: Hai la voce giusta. Vuoi provare? Solo una battuta. La bambina chiama il suo cane.
+Sara va al leggio. Le gambe le tremano. Sullo schermo c’è una bambina con le trecce rosse. Corre in un prato e chiama.
+Bice: Pronta? Tre bip, e al quarto parli.
+Sara: Biscotto! Biscotto, torna a casa!
+Silenzio. Bice guarda lo schermo. Poi guarda Franco. Franco alza il pollice.
+Bice: Buona! Buona la prima! Sara, hai mai fatto questo lavoro?
+Sara: Mai. Ma ho un fratello che fa il cane. Ho fatto pratica.
+A dicembre, al cinema Paradiso, c’è la prima del cartone animato. La sala è piena di bambini. In prima fila c’è nonno Pippo, con il cappello in mano.
+Il film finisce. Partono i titoli di coda. E lì, in piccolo, tra tanti nomi: «Biscotto: Luca». «Bambina, una battuta: Sara».
+Nonno Pippo si toglie gli occhiali e si asciuga gli occhi.
+Nonno: Avete sentito? I miei nipoti! I miei nipoti al cinema!
+Luca: Nonno, io ho detto solo «bau».
+Nonno: Sì. Ma l’hai detto benissimo.
+Questo era «Voci dal cinema». Nella prossima puntata andiamo al cinema sotto le stelle: una piazza, un vecchio proiettore e una notte d’estate. Alla prossima scena. Ciak!`,
+    tr:`Guten Abend und willkommen bei „Voci dal cinema“, dem Podcast, der euch hinter die Leinwand führt. Heute betreten wir einen geheimen Ort. Einen Ort, an dem amerikanische Schauspieler Italienisch lernen. In einer Sekunde.
+Es ist Oktober in Rom. Der Produzent aus Venedig hat Giulia angerufen. Er hat ihr gesagt: „Wenn du Filme machen willst, musst du alles kennen. Auch die Stimmen.“ Deshalb gehen Giulia, Sara und Luca heute in ein Synchronstudio.
+Sie betreten ein altes Gebäude in der Nähe von Cinecittà. Drinnen ist alles dunkel und still. Es gibt schwere Türen und kleine rote Lichter.
+Eine Frau mit der Brille auf dem Kopf erwartet sie. Das ist Bice, die Synchronregisseurin.
+Bice: Willkommen! Sprecht bitte leise. Nebenan wird aufgenommen.
+Hinter der Glasscheibe ist ein kleiner Raum. Ein Mann mit Kopfhörern steht vor einem Pult und einem Mikrofon. Vor ihm, auf einem Bildschirm, ist ein amerikanischer Schauspieler, sehr berühmt.
+Sara: Aber das ist doch …
+Bice: Ja. Und der am Mikrofon ist Franco. Er ist die italienische Stimme dieses Schauspielers. Seit dreißig Jahren.
+Franco schaut auf den Bildschirm. Der amerikanische Schauspieler öffnet den Mund. Und im selben Moment spricht Franco.
+Franco: „Ich habe keine Angst vor dir. Ich habe Angst vor dem, was aus dir geworden ist.“
+Luca: Unglaublich! Das ist dieselbe Stimme wie im Film! Ich dachte, der spricht Italienisch!
+Bice: Das denken alle. In Italien sind fast alle ausländischen Filme synchronisiert. Die Gesichter sind amerikanisch, aber die Stimmen sind aus Rom.
+Franco kommt aus dem Raum und grüßt. Er hat eine tiefe, warme Stimme, wie ein Kaffee am Morgen.
+Franco: Das Geheimnis sind die Lippen. Du musst sprechen, wenn der Schauspieler den Mund öffnet. Nicht vorher, nicht nachher. Synchron.
+Bice: Luca, du bist dran. Heute synchronisieren wir einen amerikanischen Zeichentrickfilm. Es gibt einen Hund, Biscotto. Er hat nur einen Satz. Er macht „wau“.
+Luca: Nur „wau“? Einfach!
+Luca setzt den Kopfhörer auf. Vor dem Satz hört man drei Pieptöne. Beim vierten muss er sprechen.
+Luca: Wau!
+Bice: Nein, zu früh. Und zu … menschlich. Biscotto ist ein kleiner, fröhlicher Hund. Noch einmal!
+Bice: Noch einmal. Noch einmal. Kürzer. Fröhlicher. Mehr Hund.
+Elfter Versuch. Luca schließt die Augen. Er denkt an den Hund der Nachbarin. Er atmet. Beim vierten Piepton …
+Luca: Wau wau!
+Bice: Gut! Perfekt! Luca, du bist als Hund geboren.
+Alle lachen. Auch Franco.
+Dann klingelt das Telefon. Bice geht ran, hört zu und wird ernst.
+Bice: Ein Problem. Die Sprecherin des kleinen Mädchens ist krank. Sie hat Fieber. Und der Film kommt im Dezember heraus. Wir müssen heute fertig werden.
+Bice schaut Sara an. Sie schaut sie lange an.
+Bice: Du. Wie alt bist du?
+Sara: Fünfzehn.
+Bice: Du hast die richtige Stimme. Willst du es versuchen? Nur ein Satz. Das Mädchen ruft seinen Hund.
+Sara geht ans Pult. Ihre Beine zittern. Auf dem Bildschirm ist ein Mädchen mit roten Zöpfen. Es rennt über eine Wiese und ruft.
+Bice: Bereit? Drei Pieptöne, und beim vierten sprichst du.
+Sara: Biscotto! Biscotto, komm nach Hause!
+Stille. Bice schaut auf den Bildschirm. Dann schaut sie Franco an. Franco hebt den Daumen.
+Bice: Gut! Gleich der erste Versuch! Sara, hast du diese Arbeit schon einmal gemacht?
+Sara: Nie. Aber ich habe einen Bruder, der den Hund macht. Ich habe geübt.
+Im Dezember ist im Kino Paradiso die Premiere des Zeichentrickfilms. Der Saal ist voller Kinder. In der ersten Reihe sitzt Nonno Pippo, den Hut in der Hand.
+Der Film ist zu Ende. Der Abspann läuft. Und dort, klein, zwischen vielen Namen: „Biscotto: Luca“. „Mädchen, ein Satz: Sara“.
+Nonno Pippo nimmt die Brille ab und wischt sich die Augen.
+Nonno: Habt ihr das gesehen? Meine Enkel! Meine Enkel im Kino!
+Luca: Opa, ich habe nur „wau“ gesagt.
+Nonno: Ja. Aber du hast es sehr gut gesagt.
+Das war „Voci dal cinema“. In der nächsten Folge gehen wir ins Kino unter den Sternen: eine Piazza, ein alter Projektor und eine Sommernacht. Bis zur nächsten Szene. Klappe!`,
+    fact:'Italien hat eine der berühmtesten Synchronisationstraditionen der Welt: Fast alle ausländischen Filme und Serien laufen auf Italienisch. Viele Synchronsprecher leihen einem Hollywood-Star jahrzehntelang ihre Stimme – Ferruccio Amendola zum Beispiel sprach Robert De Niro, Al Pacino und Dustin Hoffman. Im Studio wird Satz für Satz aufgenommen; Pieptöne zählen bis zum Einsatz herunter, und der Text muss genau auf die Lippenbewegungen passen („sincrono labiale“). Viele Studios liegen in Rom, nicht weit von Cinecittà.' }
+);
+/* „Voci dal cinema“ Folge 4 (v284, 28.10.2026) – wird nach leggende_cinema3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Juli, Freiluftkino auf einer Piazza in Trastevere, zweitausend Leute. Mitten im Film Stromausfall im ganzen Viertel („Ooooh!“). Nonno Pippo hat im Auto seinen alten
+   35-mm-Projektor und eine Kopie von „Ladri di biciclette“ (1948, in Rom gedreht). Strom kommt vom Generator des Eiswagens von Gino. Nonno legt den Film von Hand ein,
+   die Kinder hören zum ersten Mal einen Projektor rattern. Rollenwechsel, die Piazza singt. Der Strom kommt zurück – aber alle wollen den alten Projektor.
+   „Il cinema non è la macchina. È la gente che guarda insieme.“ Angekündigt Folge 5: eine alte Filmrolle mit Nonnos Geheimnis. Gino = Diego tief. Niveau ab A2. */
+PODCASTS.cinema.push(
+  { id:'cinema-p4', show:'Voci dal cinema', ep:4, title:'Cinema sotto le stelle', de:'Kino unter den Sternen',
+    place:'Una piazza di Trastevere, a Roma, in una notte di luglio', level:'ab A2', kind:'Sommer · Herz · Kinogeschichte',
+    voices:{Sara:'Elsa', Giulia:'Elsa', Luca:'Diego', Nonno:'Giuseppe', Gino:'Diego', Bambino:'Elsa'},
+    stil:{'':['-6%','+0Hz'], Sara:['-2%','+28Hz'], Giulia:['+2%','-8Hz'], Luca:['+2%','+6Hz'], Nonno:['-12%','-16Hz'], Gino:['+4%','-14Hz'], Bambino:['+8%','+45Hz']},
+    words:[['il cinema all’aperto','das Freiluftkino'],['lo schermo','die Leinwand'],['la sedia pieghevole','der Klappstuhl'],['la corrente','der Strom'],['il buio / è buio','die Dunkelheit / es ist dunkel'],['salta la corrente','der Strom fällt aus'],['il proiettore','der Projektor'],['la pellicola','der Film(streifen)'],['la bobina','die Filmrolle'],['il generatore','der Generator, das Stromaggregat'],['il furgone dei gelati','der Eiswagen'],['infilare','einfädeln, einlegen'],['a mano','von Hand'],['cambiare bobina','die Rolle wechseln'],['cantare','singen'],['tutti insieme','alle zusammen'],['la bicicletta','das Fahrrad'],['rubare / il ladro','stehlen / der Dieb']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È luglio':'notte_an', 'La piazza è piena':'folla_an', 'Alle dieci':'folla_aus', 'Sullo schermo':'pausa', 'A metà film':'spegnimento', 'Duemila persone':'oooh', 'Nonno Pippo si alza':'pausa', 'Gino arriva':'avviamento_breve', 'Nonno apre':'pausa', 'Nonno accende':'proiettore_an', 'Dopo quaranta minuti':'proiettore_aus pausa', 'E la piazza canta':'pausa', 'Nonno: Pronti':'proiettore_an', 'A mezzanotte meno un quarto':'pausa', 'Il film finisce':'proiettore_aus applausi', 'Gino: Gelati':'pausa', 'Questo era':'notte_aus pausa'},
+    text:`Buonasera e benvenuti a «Voci dal cinema», il podcast che vi porta dietro lo schermo. Stasera non siamo in una sala. Stasera il tetto del cinema è il cielo.
+È luglio, a Roma. Fa caldo anche di notte. In una piazza di Trastevere c’è un grande schermo bianco. Davanti ci sono centinaia di sedie pieghevoli. Ogni estate qui c’è il cinema all’aperto. Ed è gratis.
+La piazza è piena. Duemila persone: famiglie, studenti, nonni, bambini con il gelato. Giulia, Sara e Luca sono in terza fila. Accanto a loro c’è nonno Pippo, con un cuscino. Lui porta sempre il suo cuscino.
+Giulia: Nonno, sei contento? Stasera c’è il film nuovo di un regista giovane.
+Nonno: Contento? Io sono sempre contento quando si spengono le luci.
+Alle dieci il film comincia. Le luci della piazza si spengono. Un rondone passa davanti allo schermo. Tutti stanno zitti.
+Sullo schermo c’è una storia d’amore. È bella, ma un po’ lenta. Luca mangia il terzo gelato.
+A metà film succede una cosa: lo schermo diventa nero. Poi si spengono anche i lampioni. E le finestre delle case. Tutto il quartiere è al buio.
+Duemila persone dicono la stessa cosa nello stesso momento: «Ooooh!»
+Luca: È saltata la corrente!
+Sara: In tutto il quartiere! Guarda, non c’è luce da nessuna parte.
+Qualcuno accende il telefono. Poi cento persone accendono il telefono. Ma il film non riparte. Dopo dieci minuti la gente comincia ad alzarsi. Qualcuno se ne va.
+Nonno Pippo si alza dal cuscino. Prende le chiavi della macchina.
+Nonno: Ragazzi, venite con me. Ho un’idea.
+Luca: Nonno, dove andiamo?
+Nonno: Nella mia macchina c’è una cosa che non ho mai buttato via.
+Nel bagagliaio della vecchia macchina c’è una grande scatola di legno. Dentro c’è un proiettore. Un vecchio proiettore per la pellicola, del millenovecentosessanta. E accanto, in una scatola rotonda di metallo, una bobina.
+Giulia: Nonno… ma qual è il film?
+Nonno: «Ladri di biciclette». Girato qui, a Roma, nel millenovecentoquarantotto. Lo porto sempre con me. Non si sa mai.
+Sara: Ma nonno, non c’è corrente!
+Nonno guarda il furgone dei gelati in fondo alla piazza. Il furgone di Gino. Il frigorifero del furgone funziona ancora. Ha un generatore.
+Gino arriva con un lungo cavo arancione.
+Gino: Pippo, per te faccio tutto. Ma fai presto, sennò i gelati si sciolgono!
+Nonno apre la scatola. Con le mani lente e sicure infila la pellicola nel proiettore. Come quando aveva vent’anni. Giulia lo guarda con la bocca aperta.
+Nonno accende la macchina. Una luce bianca va sullo schermo. E poi, in bianco e nero, compare Roma. La Roma di tanti anni fa. Un uomo, una bicicletta, un bambino.
+Sulla piazza torna il silenzio. La gente si siede di nuovo. Chi stava andando via torna indietro.
+Un bambino tira la maglia di Luca.
+Bambino: Che cos’è questo rumore?
+Luca: È il proiettore. Così era il cinema una volta. Senti? Il film… respira.
+Dopo quaranta minuti la bobina finisce. Lo schermo diventa bianco. Il nonno deve cambiare bobina. Ci vogliono cinque minuti.
+Allora una signora in prima fila comincia a cantare una vecchia canzone romana. Poi canta il suo vicino. Poi tutta la piazza. Duemila persone, sotto le stelle, al buio.
+E la piazza canta. Nonno Pippo cambia la bobina e sorride. Ha gli occhi lucidi.
+Nonno: Pronti? Si riparte!
+A mezzanotte meno un quarto, proprio nella scena più triste, tornano le luci. I lampioni, le finestre, lo schermo grande. La corrente è tornata!
+Ma la gente grida: «No! Spegnete! Lasciate il film del nonno!»
+E così le luci si spengono di nuovo. E il vecchio proiettore continua fino alla fine.
+Il film finisce. La piazza applaude. Non applaude il film. Applaude nonno Pippo.
+Giulia: Nonno, hai salvato la serata.
+Nonno: No, Giulia. Io ho solo acceso una macchina. Ricordati: il cinema non è la macchina. È la gente che guarda insieme.
+Gino: Gelati per tutti! Offre la casa! Tanto si stanno sciogliendo!
+Questo era «Voci dal cinema». Nella prossima puntata, l’ultima di questa stagione, nella cabina del cinema Paradiso troviamo una vecchia bobina. E dentro c’è un segreto di nonno Pippo. Alla prossima scena. Ciak!`,
+    tr:`Guten Abend und willkommen bei „Voci dal cinema“, dem Podcast, der euch hinter die Leinwand führt. Heute Abend sind wir nicht in einem Kinosaal. Heute Abend ist das Dach des Kinos der Himmel.
+Es ist Juli in Rom. Es ist auch nachts heiß. Auf einer Piazza in Trastevere steht eine große weiße Leinwand. Davor stehen Hunderte Klappstühle. Jeden Sommer gibt es hier Freiluftkino. Und es ist kostenlos.
+Die Piazza ist voll. Zweitausend Menschen: Familien, Studenten, Großeltern, Kinder mit Eis. Giulia, Sara und Luca sitzen in der dritten Reihe. Neben ihnen sitzt Nonno Pippo, mit einem Kissen. Er bringt immer sein Kissen mit.
+Giulia: Opa, bist du zufrieden? Heute Abend läuft der neue Film eines jungen Regisseurs.
+Nonno: Zufrieden? Ich bin immer zufrieden, wenn die Lichter ausgehen.
+Um zehn beginnt der Film. Die Lichter auf der Piazza gehen aus. Ein Mauersegler fliegt vor der Leinwand vorbei. Alle sind still.
+Auf der Leinwand läuft eine Liebesgeschichte. Sie ist schön, aber ein bisschen langsam. Luca isst das dritte Eis.
+Mitten im Film passiert etwas: Die Leinwand wird schwarz. Dann gehen auch die Straßenlaternen aus. Und die Fenster der Häuser. Das ganze Viertel ist dunkel.
+Zweitausend Menschen sagen im selben Moment dasselbe: „Ooooh!“
+Luca: Der Strom ist ausgefallen!
+Sara: Im ganzen Viertel! Schau, nirgends ist Licht.
+Jemand macht sein Handy an. Dann machen hundert Leute ihr Handy an. Aber der Film läuft nicht weiter. Nach zehn Minuten fangen die Leute an aufzustehen. Manche gehen.
+Nonno Pippo steht von seinem Kissen auf. Er nimmt die Autoschlüssel.
+Nonno: Kinder, kommt mit. Ich habe eine Idee.
+Luca: Opa, wohin gehen wir?
+Nonno: In meinem Auto ist etwas, das ich nie weggeworfen habe.
+Im Kofferraum des alten Autos steht eine große Holzkiste. Darin ist ein Projektor. Ein alter Projektor für Filmrollen, von neunzehnhundertsechzig. Und daneben, in einer runden Metalldose, eine Filmrolle.
+Giulia: Opa … welcher Film ist das?
+Nonno: „Fahrraddiebe“. Hier in Rom gedreht, neunzehnhundertachtundvierzig. Ich habe ihn immer dabei. Man weiß ja nie.
+Sara: Aber Opa, es gibt keinen Strom!
+Nonno schaut auf den Eiswagen am Ende der Piazza. Ginos Eiswagen. Der Kühlschrank im Wagen läuft noch. Er hat einen Generator.
+Gino kommt mit einem langen orangefarbenen Kabel.
+Gino: Pippo, für dich mache ich alles. Aber beeil dich, sonst schmilzt das Eis!
+Nonno öffnet die Kiste. Mit langsamen, sicheren Händen legt er den Film in den Projektor ein. Wie damals, als er zwanzig war. Giulia schaut ihm mit offenem Mund zu.
+Nonno schaltet die Maschine ein. Ein weißes Licht fällt auf die Leinwand. Und dann erscheint, in Schwarz-Weiß, Rom. Das Rom von vor vielen Jahren. Ein Mann, ein Fahrrad, ein Junge.
+Auf der Piazza wird es wieder still. Die Leute setzen sich wieder. Wer gerade gehen wollte, kommt zurück.
+Ein kleiner Junge zupft Luca am T-Shirt.
+Junge: Was ist das für ein Geräusch?
+Luca: Das ist der Projektor. So war Kino früher. Hörst du? Der Film … atmet.
+Nach vierzig Minuten ist die Rolle zu Ende. Die Leinwand wird weiß. Opa muss die Rolle wechseln. Das dauert fünf Minuten.
+Da beginnt eine Frau in der ersten Reihe, ein altes römisches Lied zu singen. Dann singt ihr Nachbar. Dann die ganze Piazza. Zweitausend Menschen, unter den Sternen, im Dunkeln.
+Und die Piazza singt. Nonno Pippo wechselt die Rolle und lächelt. Seine Augen glänzen.
+Nonno: Bereit? Es geht weiter!
+Um Viertel vor Mitternacht, genau in der traurigsten Szene, kommt das Licht zurück. Die Laternen, die Fenster, die große Leinwand. Der Strom ist wieder da!
+Aber die Leute rufen: „Nein! Macht aus! Lasst Opas Film laufen!“
+Und so gehen die Lichter wieder aus. Und der alte Projektor läuft bis zum Ende.
+Der Film ist zu Ende. Die Piazza klatscht. Sie klatscht nicht für den Film. Sie klatscht für Nonno Pippo.
+Giulia: Opa, du hast den Abend gerettet.
+Nonno: Nein, Giulia. Ich habe nur eine Maschine eingeschaltet. Merk dir: Das Kino ist nicht die Maschine. Es sind die Menschen, die zusammen schauen.
+Gino: Eis für alle! Geht aufs Haus! Es schmilzt sowieso!
+Das war „Voci dal cinema“. In der nächsten Folge, der letzten dieser Staffel, finden wir im Vorführraum des Kino Paradiso eine alte Filmrolle. Und darin steckt ein Geheimnis von Nonno Pippo. Bis zur nächsten Szene. Klappe!`,
+    fact:'Im Sommer gibt es in ganz Italien Freiluftkinos (cinema all’aperto, arena estiva) – auf Piazze, in Parks, an Stränden und in antiken Theatern. In Rom zeigen Freiwillige seit einigen Jahren jeden Sommer kostenlos Filme auf Plätzen in Trastevere und anderen Vierteln, oft vor Tausenden Zuschauern. „Ladri di biciclette“ (Fahrraddiebe, 1948) von Vittorio De Sica ist einer der berühmtesten Filme des Neorealismus: Er wurde auf den Straßen Roms gedreht, mit Laien statt Schauspielern. Ein klassischer 35-mm-Film wird auf mehreren Rollen geliefert – früher musste der Vorführer sie während der Vorstellung wechseln.' }
+);
+/* „Voci dal cinema“ Folge 5 (v284, 28.10.2026) – wird nach leggende_cinema4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   November: Beim Aufräumen im Vorführraum des Kino Paradiso finden Giulia und Luca hinter einer losen Holzplatte eine rostige Dose „1976 – non aprire“. Nonno weicht aus.
+   Die Rolle riecht nach Essig (Essigsyndrom) – zu gefährlich zum Abspielen. Mit dem Zug nach Bologna zum Restaurierungslabor der Cineteca, Restauratorin Marta.
+   Zu Nonnos 80. Geburtstag Premiere im Paradiso: ein stummer Super-8-Film von 1976 – Pippo (30) hat im leeren Kino Rosa einen Antrag auf die Leinwand geschrieben,
+   sie lacht, tanzt und schreibt „Sì“ auf eine Tafel. Nonno erzählt live wie früher, Sara spielt Klavier (organetto). Nonna Rosa (lebt, wie in den Lektionen: arbeitete an der Kasse, Pippo kaufte einen Monat lang jeden Abend eine Karte) sitzt daneben – er hatte versprochen, den Film zu verbrennen.
+   Schluss: „Adesso è il film di tutti.“ Marta = Isabella, Rosa = Isabella tiefer. Niveau ab A2. */
+PODCASTS.cinema.push(
+  { id:'cinema-p5', show:'Voci dal cinema', ep:5, title:'La pellicola di nonno Pippo', de:'Opa Pippos Filmrolle',
+    place:'Il cinema Paradiso e un laboratorio a Bologna, in novembre', level:'ab A2', kind:'Geheimnis · Familie · Herz',
+    voices:{Sara:'Elsa', Giulia:'Elsa', Luca:'Diego', Nonno:'Giuseppe', Marta:'Isabella', Rosa:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Sara:['-2%','+28Hz'], Giulia:['+2%','-8Hz'], Luca:['+2%','+6Hz'], Nonno:['-12%','-16Hz'], Marta:['+0%','+4Hz'], Rosa:['-10%','-10Hz']},
+    words:[['la cabina di proiezione','der Vorführraum'],['il pannello','die Platte, die Verkleidung'],['la scatola di metallo','die Metalldose'],['arrugginito / arrugginita','verrostet'],['Non aprire','Nicht öffnen'],['puzza di aceto','riecht nach Essig'],['fragile','zerbrechlich'],['restaurare','restaurieren'],['il laboratorio','das Labor, die Werkstatt'],['il fotogramma','das Einzelbild (eines Films)'],['muto','stumm'],['il compleanno','der Geburtstag'],['ottant’anni','achtzig Jahre'],['la lavagna','die Tafel'],['la proposta di matrimonio','der Heiratsantrag'],['ballare','tanzen'],['vergognarsi','sich schämen'],['nascondere / ho nascosto','verstecken / ich habe versteckt'],['il ricordo','die Erinnerung']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È novembre':'pioggia_an', 'Luca tocca':'cassetto', 'Dentro c’è':'pausa', 'Il nonno arriva':'porta passi', 'Nonno: Dove':'pausa', 'Giulia apre':'pausa', 'Il giorno dopo':'pioggia_aus treno_an', 'A Bologna':'treno_aus porta', 'Marta mette':'pausa', 'Tre settimane dopo':'pausa folla_an', 'Le luci si spengono':'folla_aus proiettore_an organetto_an', 'Nonno: Questo ragazzo':'pausa', 'La ragazza ride':'pausa', 'Poi la ragazza':'pausa', 'Il film finisce':'proiettore_aus organetto_aus pausa', 'Poi qualcuno':'applausi', 'Questo era':'carillon_ende'},
+    text:`Buonasera e benvenuti a «Voci dal cinema», il podcast che vi porta dietro lo schermo. Oggi è l’ultima puntata di questa stagione. E oggi la storia non viene da Hollywood. Viene da una scatola di metallo.
+È novembre. Piove su Roma. Il cinema Paradiso è chiuso per una settimana, perché Giulia e Luca puliscono la cabina di proiezione. È piena di polvere, di vecchie riviste e di bobine.
+Luca: Giulia, guarda questo pannello di legno. Si muove.
+Luca tocca il pannello. Il pannello cade. Dietro c’è un buco nel muro.
+Dentro c’è una scatola rotonda di metallo, piccola e arrugginita. Sopra c’è un’etichetta, scritta a mano: «Millenovecentosettantasei. Non aprire.»
+Giulia: È la scrittura del nonno.
+Il nonno arriva con due caffè. Vede la scatola. Si ferma. Per un momento non dice niente.
+Nonno: Dove l’avete trovata?
+Luca: Dietro il pannello. Nonno, che cos’è?
+Nonno: Niente. Una cosa vecchia. Rimettetela a posto.
+Ma la sua voce trema un po’. E Giulia lo ha visto.
+Giulia apre la scatola, piano piano. Dentro c’è una piccola bobina. E c’è un odore strano. Forte. Come l’insalata.
+Luca: Puzza di aceto!
+Giulia: È la pellicola. Quando è molto vecchia, comincia a morire. E puzza di aceto. Non possiamo metterla nel proiettore. Si rompe.
+Il nonno guarda la bobina. Poi guarda Giulia.
+Nonno: Se si può salvare… salvala. Ma non guardatela senza di me.
+Il giorno dopo Giulia e Sara prendono il treno per Bologna. A Bologna c’è uno dei laboratori più famosi del mondo per restaurare i vecchi film.
+A Bologna le aspetta Marta, una restauratrice con i guanti bianchi.
+Marta: Fatemi vedere. Mmh. È un super otto. Un film fatto in casa, credo. È molto fragile. Ma è ancora viva.
+Marta mette la pellicola sotto una lampada. Guarda un fotogramma con la lente.
+Marta: C’è una ragazza. Bella, con i capelli lunghi. E dietro di lei… sembra un cinema.
+Sara: Il Paradiso!
+Marta: Lasciatela qui. Ci vogliono tre settimane. Pulisco ogni fotogramma, uno per uno.
+Tre settimane dopo è il compleanno di nonno Pippo. Ottant’anni. Il cinema Paradiso è pieno: la famiglia, gli amici, Marcello, Bice, Gino dei gelati. Il nonno è in prima fila, con il suo cuscino. Accanto a lui c’è nonna Rosa.
+Giulia: Nonno, il film è tornato da Bologna. Vuoi vederlo? Qui, con tutti?
+Il nonno guarda la sala piena. Poi guarda la nonna. La nonna diventa rossa. Poi il nonno dice di sì con la testa.
+Nonno: Ma è un film muto. Non c’è il sonoro. Allora… lo racconto io. Come si faceva una volta.
+Le luci si spengono. Sara suona piano un vecchio pianoforte. Sullo schermo, in bianco e nero, c’è la sala del Paradiso. Vuota. Di sera.
+Nonno: Quest’uomo magro con i baffi sono io. Ho trent’anni. Faccio il proiezionista. E una sera, dopo l’ultimo spettacolo, chiudo il cinema. Ma non vado a casa.
+Sullo schermo il giovane Pippo scrive qualcosa su un cartello. Poi lo mette davanti alla macchina da presa. C’è scritto: «Rosa, mi vuoi sposare?»
+Nella sala qualcuno dice: «Oooh!»
+Nonno: Rosa era la ragazza della cassa. Per un mese ho comprato un biglietto ogni sera, solo per vederla. Era la ragazza più bella di Roma. E io avevo paura. Allora ho pensato: le faccio vedere un film. Il mio film.
+Sullo schermo entra una ragazza con i capelli lunghi. Si siede in prima fila. Guarda lo schermo. Si copre la bocca con le mani.
+La ragazza ride. Poi piange. Poi ride ancora. Si alza e balla, da sola, davanti allo schermo.
+Poi la ragazza prende un gesso e scrive su una lavagna. Grande, con un cuore: «Sì.»
+Il film finisce. In sala nessuno parla. Il nonno ha le lacrime sulle guance. Poi parla la nonna.
+Rosa: Pippo! Mi avevi promesso di bruciarlo! Cinquant’anni fa!
+Nonno: Lo so. Ma non ci sono mai riuscito. Era troppo bello. Allora l’ho nascosto.
+Rosa: Ballavo malissimo.
+Nonno: Ballavi benissimo.
+Sara lascia il pianoforte e li abbraccia tutti e due.
+Sara: Nonno, perché non ce l’hai mai detto?
+Nonno: Perché pensavo che un ricordo, se lo dici, si rompe. Come una vecchia pellicola. Ma stasera ho capito una cosa. Un ricordo non si rompe se lo guardi insieme. Si restaura.
+La nonna gli dà un bacio. Poi qualcuno comincia ad applaudire. Poi tutti. Anche Marcello. Anche Gino. Anche Luca, che fa finta di avere qualcosa nell’occhio.
+Giulia: Nonno, posso fare una copia per la famiglia?
+Nonno: Chiedi alla nonna. È il suo film.
+Rosa: Fai tutte le copie che vuoi. Adesso non è più il nostro film. Adesso è il film di tutti.
+Questo era «Voci dal cinema». Grazie per averci ascoltato in questa stagione. E ricordate: le storie più belle non sono sempre sullo schermo. A volte sono nella cabina, dietro un pannello di legno. Ciak, fine!`,
+    tr:`Guten Abend und willkommen bei „Voci dal cinema“, dem Podcast, der euch hinter die Leinwand führt. Heute ist die letzte Folge dieser Staffel. Und heute kommt die Geschichte nicht aus Hollywood. Sie kommt aus einer Metalldose.
+Es ist November. Es regnet in Rom. Das Kino Paradiso ist eine Woche geschlossen, weil Giulia und Luca den Vorführraum aufräumen. Er ist voller Staub, alter Zeitschriften und Filmrollen.
+Luca: Giulia, schau dir diese Holzplatte an. Sie wackelt.
+Luca berührt die Platte. Die Platte fällt herunter. Dahinter ist ein Loch in der Wand.
+Darin steht eine runde Metalldose, klein und verrostet. Darauf ist ein Etikett, von Hand geschrieben: „Neunzehnhundertsechsundsiebzig. Nicht öffnen.“
+Giulia: Das ist Opas Handschrift.
+Opa kommt mit zwei Kaffees. Er sieht die Dose. Er bleibt stehen. Einen Moment lang sagt er nichts.
+Nonno: Wo habt ihr die gefunden?
+Luca: Hinter der Platte. Opa, was ist das?
+Nonno: Nichts. Etwas Altes. Stellt es zurück.
+Aber seine Stimme zittert ein bisschen. Und Giulia hat es gesehen.
+Giulia öffnet die Dose, ganz langsam. Darin ist eine kleine Filmrolle. Und es gibt einen seltsamen Geruch. Stark. Wie Salat.
+Luca: Das stinkt nach Essig!
+Giulia: Das ist der Film. Wenn er sehr alt ist, beginnt er zu sterben. Und er riecht nach Essig. Wir können ihn nicht in den Projektor legen. Er reißt.
+Opa schaut auf die Filmrolle. Dann schaut er Giulia an.
+Nonno: Wenn man ihn retten kann … rette ihn. Aber schaut ihn nicht ohne mich an.
+Am nächsten Tag nehmen Giulia und Sara den Zug nach Bologna. In Bologna gibt es eines der berühmtesten Labore der Welt, in dem alte Filme restauriert werden.
+In Bologna erwartet sie Marta, eine Restauratorin mit weißen Handschuhen.
+Marta: Lasst mal sehen. Hm. Das ist ein Super-8-Film. Ein selbst gedrehter Film, glaube ich. Er ist sehr zerbrechlich. Aber er lebt noch.
+Marta legt den Film unter eine Lampe. Sie schaut sich ein Einzelbild mit der Lupe an.
+Marta: Da ist ein Mädchen. Hübsch, mit langen Haaren. Und hinter ihr … das sieht aus wie ein Kino.
+Sara: Das Paradiso!
+Marta: Lasst ihn hier. Es dauert drei Wochen. Ich reinige jedes Einzelbild, eins nach dem anderen.
+Drei Wochen später hat Nonno Pippo Geburtstag. Achtzig Jahre. Das Kino Paradiso ist voll: die Familie, die Freunde, Marcello, Bice, Gino vom Eiswagen. Opa sitzt in der ersten Reihe, mit seinem Kissen. Neben ihm sitzt Oma Rosa.
+Giulia: Opa, der Film ist aus Bologna zurück. Willst du ihn sehen? Hier, mit allen?
+Opa schaut in den vollen Saal. Dann schaut er Oma an. Oma wird rot. Dann nickt Opa.
+Nonno: Aber es ist ein Stummfilm. Es gibt keinen Ton. Also … erzähle ich ihn. Wie man es früher gemacht hat.
+Die Lichter gehen aus. Sara spielt leise auf einem alten Klavier. Auf der Leinwand ist, in Schwarz-Weiß, der Saal des Paradiso zu sehen. Leer. Am Abend.
+Nonno: Dieser dünne Mann mit dem Schnurrbart bin ich. Ich bin dreißig. Ich bin Filmvorführer. Und eines Abends, nach der letzten Vorstellung, schließe ich das Kino ab. Aber ich gehe nicht nach Hause.
+Auf der Leinwand schreibt der junge Pippo etwas auf ein Schild. Dann hält er es vor die Kamera. Darauf steht: „Rosa, willst du mich heiraten?“
+Im Saal sagt jemand: „Oooh!“
+Nonno: Rosa war das Mädchen an der Kinokasse. Einen Monat lang habe ich jeden Abend eine Karte gekauft, nur um sie zu sehen. Sie war das schönste Mädchen von Rom. Und ich hatte Angst. Da dachte ich: Ich zeige ihr einen Film. Meinen Film.
+Auf der Leinwand kommt ein Mädchen mit langen Haaren herein. Sie setzt sich in die erste Reihe. Sie schaut auf die Leinwand. Sie hält sich die Hände vor den Mund.
+Das Mädchen lacht. Dann weint sie. Dann lacht sie wieder. Sie steht auf und tanzt, allein, vor der Leinwand.
+Dann nimmt das Mädchen eine Kreide und schreibt auf eine Tafel. Groß, mit einem Herz: „Ja.“
+Der Film ist zu Ende. Im Saal spricht niemand. Opa hat Tränen auf den Wangen. Dann spricht Oma.
+Rosa: Pippo! Du hattest mir versprochen, ihn zu verbrennen! Vor fünfzig Jahren!
+Nonno: Ich weiß. Aber ich habe es nie geschafft. Er war zu schön. Also habe ich ihn versteckt.
+Rosa: Ich habe ganz schlecht getanzt.
+Nonno: Du hast wunderbar getanzt.
+Sara lässt das Klavier und umarmt die beiden.
+Sara: Opa, warum hast du uns das nie erzählt?
+Nonno: Weil ich dachte, eine Erinnerung geht kaputt, wenn man sie erzählt. Wie ein alter Film. Aber heute Abend habe ich etwas verstanden. Eine Erinnerung geht nicht kaputt, wenn man sie zusammen anschaut. Sie wird restauriert.
+Oma gibt ihm einen Kuss. Dann fängt jemand an zu klatschen. Dann alle. Auch Marcello. Auch Gino. Auch Luca, der so tut, als hätte er etwas im Auge.
+Giulia: Opa, darf ich eine Kopie für die Familie machen?
+Nonno: Frag Oma. Es ist ihr Film.
+Rosa: Mach so viele Kopien, wie du willst. Jetzt ist es nicht mehr unser Film. Jetzt ist es der Film von allen.
+Das war „Voci dal cinema“. Danke, dass ihr uns in dieser Staffel zugehört habt. Und denkt daran: Die schönsten Geschichten sind nicht immer auf der Leinwand. Manchmal sind sie im Vorführraum, hinter einer Holzplatte. Klappe, Ende!`,
+    fact:'Alte Filme auf Acetat-Basis können am „Essigsyndrom“ (sindrome dell’aceto) leiden: Das Material zersetzt sich, riecht stark nach Essig, wird spröde und schrumpft. Restauratoren reinigen solche Filme Bild für Bild, scannen sie und reparieren sie digital. Eines der bekanntesten Restaurierungslabore der Welt ist „L’Immagine Ritrovata“ der Cineteca di Bologna, das Filme von Chaplin bis Fellini gerettet hat. Ab 1965 gab es die Super-8-Kamera, und viele Familien drehten damit ihre eigenen Filme – meist ohne Ton.' }
+);
 /* Hörgeschichten Cucina (Podcast „Voci dalla cucina“). Figuren aus dem Thema: Köchin Elena, Nonna Pina, Bruder Matteo, Koch Rocco, Hund Polpetta, Restaurant „Da Pina“. */
 PODCAST_INFO.cucina = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein voller Samstagabend in der Restaurantküche, mit Messern, Pfannen, kochendem Wasser und der Glocke am Pass, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.cucina = [
