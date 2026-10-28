@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 282;
+const APP_VERSION = 283;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -77261,6 +77261,310 @@ Luca: Du hast mir Angst gemacht, weißt du?
 Tornado schnaubt leise. Dann legt er das Maul auf Lucas Schulter.
 Das war „In sella!“. Bis zur nächsten Folge. Und denkt daran: Ein Pferd kann nicht sagen „mir tut etwas weh“. Wir müssen es selbst anschauen und ihm zuhören.`,
     fact:'Kolik ist beim Pferd ein Notfall: Pferde können sich nicht übergeben, und der Darm ist sehr lang. Typische Zeichen sind Scharren, Hinlegen und Aufstehen, Blick zum Bauch und fehlende Darmgeräusche – dann sofort den Tierarzt rufen. Hufrehe (laminite) bekommen vor allem Ponys auf fettem Frühlingsgras, und Heustaub ist eine häufige Ursache für Husten im Stall.' }
+);
+/* „In sella!“ Folge 3 (v283, 28.10.2026: „baue bitte cavalli auf 5 folgen auf“) – wird nach leggende_cavalli2.js geladen.
+   2. Juli, Palio di Siena: Dottor Neri ist einer der Tierärzte des Palio und nimmt Carla, Sara und Luca mit. Morgens Probelauf, nachmittags die Segnung des Pferdes Zefiro
+   in der Kirche der Contrada della Selva („Va’ e torna vincitore!“ – Zefiro äpfelt in der Kirche = gutes Zeichen). Abends Piazza del Campo, Trommeln, Fahnen, Mossa,
+   drei Runden; der Fantino stürzt in der Kurve von San Martino, Zefiro läuft „scosso“ (ohne Reiter) weiter und gewinnt. Neri: „Il vero vincitore è sempre il cavallo.“
+   Angekündigt Folge 4: ein Gewitter, ein offenes Tor, eine Nacht im Regen. Stimmen wie Folge 1–2, Pfarrer = Giuseppe tief. Niveau ab A2. */
+PODCASTS.cavalli.push(
+  { id:'cavalli-p3', show:'In sella!', ep:3, title:'Il Palio di Siena', de:'Der Palio von Siena',
+    place:'Siena, Piazza del Campo, il 2 luglio', level:'ab A2', kind:'Fest · Rennen · Spannend',
+    voices:{Sara:'Elsa', Luca:'Diego', Carla:'Isabella', 'Dottor Neri':'Giuseppe', Parroco:'Giuseppe'},
+    stil:{'':['-8%','+0Hz'], Carla:['-3%','-12Hz'], Sara:['-4%','+25Hz'], Luca:['-2%','+0Hz'], 'Dottor Neri':['-6%','-6Hz'], Parroco:['-14%','-16Hz']},
+    coro:'Sel-va! Sel-va! Sel-va!',
+    words:[['il Palio','das berühmte Pferderennen von Siena'],['la contrada / le contrade','das Stadtviertel / die Stadtviertel (in Siena)'],['la piazza','der Platz'],['il fantino','der Jockey'],['a pelo','ohne Sattel'],['la prova','der Probelauf'],['la benedizione','die Segnung'],['il parroco','der Pfarrer'],['benedire / benedice','segnen / segnet'],['porta fortuna','bringt Glück'],['la bandiera / le bandiere','die Fahne / die Fahnen'],['il tamburo','die Trommel'],['la folla','die Menschenmenge'],['la corda','das Seil'],['la partenza','der Start'],['il giro / tre giri','die Runde / drei Runden'],['la curva','die Kurve'],['cade','fällt (hin)'],['scosso','ohne Reiter (beim Palio)'],['vince / il vincitore','gewinnt / der Sieger'],['il drappellone','das bemalte Seidenbanner (Siegespreis)'],['piange di gioia','weint vor Freude']],
+    fx:{'Ciao a tutti':'pausa', 'È il due luglio':'motore500_an', 'Arrivano a Siena':'motore500_aus folla_an', 'Dottor Neri: Benvenuti':'tamburo', 'Alle nove c’è la prova':'galoppo_an', 'Dottor Neri: Sta benissimo':'galoppo_aus', 'Nel pomeriggio':'folla_aus campane', 'Zefiro entra':'nitrito', 'Parroco: Va’':'pausa', 'E proprio in quel momento':'pausa', 'Alle sette di sera':'folla_an tromba', 'In piazza c’è silenzio':'pausa', 'La corda cade':'cannone galoppo_an', 'Secondo giro':'urlo', 'Terzo giro':'pausa', 'Zefiro passa':'galoppo_aus cannone', 'La piazza esplode':'coro applausi_dopo', 'Più tardi':'folla_aus pausa', 'Questo era':'pausa'},
+    text:`Ciao a tutti e bentornati a «In sella!», il podcast per chi ama i cavalli. Oggi non andiamo in un maneggio. Oggi andiamo alla corsa più famosa d’Italia: il Palio di Siena.
+È il due luglio. Fa caldo, molto caldo. Carla, Sara e Luca sono in macchina. Vanno a Siena. Il dottor Neri li ha invitati, perché oggi lavora al Palio. È uno dei veterinari dei cavalli.
+Luca: Ho dormito solo due ore. Sono troppo emozionato!
+Sara: Anch’io. Carla, quanti cavalli corrono?
+Carla: Dieci. Siena ha diciassette contrade, ma ogni volta corrono solo dieci. E i fantini corrono a pelo, senza sella.
+Luca: Senza sella? Sono matti!
+Arrivano a Siena. Le strade sono piene di gente. Tutti hanno al collo un fazzoletto colorato: giallo, verde, rosso, blu. Il colore della loro contrada.
+Il dottor Neri li aspetta davanti a una piccola chiesa.
+Dottor Neri: Benvenuti! Questa è la contrada della Selva. Il simbolo è un albero, con un rinoceronte. E questo è il loro cavallo: Zefiro.
+Zefiro è un cavallo baio, magro e forte. Ha gli occhi vivi. Sara lo guarda e ha subito una sensazione: questo cavallo è speciale.
+Alle nove c’è la prova in piazza. Zefiro corre veloce. Il dottor Neri controlla le gambe, il cuore, il respiro.
+Dottor Neri: Sta benissimo. È pronto.
+Nel pomeriggio succede una cosa incredibile. Il cavallo entra in chiesa.
+Zefiro entra in chiesa. Sì, proprio dentro, davanti all’altare. La chiesa è piena di gente. Il parroco alza la mano.
+Parroco: Va’ e torna vincitore!
+E proprio in quel momento Zefiro alza la coda e… fa la cacca. Lì, in chiesa.
+Luca: Oh no!
+Ma tutti applaudono. Tutti ridono e gridano di gioia.
+Carla: Tranquillo, Luca. A Siena è un buon segno. Porta fortuna!
+Alle sette di sera la piazza del Campo è piena. Quarantamila persone. Prima passa il corteo, con i tamburi e le bandiere. Le bandiere volano in alto, sopra le teste. Poi i dieci cavalli entrano in piazza.
+Sara ha il cuore in gola. Luca le tiene il braccio.
+In piazza c’è silenzio. I cavalli sono dietro una lunga corda. Si muovono, si girano, non stanno fermi. Passano cinque minuti. Dieci minuti. Venti minuti.
+Luca: Ma quando parte?
+Dottor Neri: La partenza al Palio è sempre lunga. È una cosa nervosa.
+La corda cade. Partono!
+Primo giro. I cavalli corrono come il vento. La terra vola dappertutto. Zefiro è terzo.
+Secondo giro. La curva di San Martino. È la curva più pericolosa. Un cavallo scivola. Un fantino cade. È il fantino della Selva!
+Sara: No! Zefiro!
+Terzo giro. Ma Zefiro non si ferma. Corre da solo, senza fantino. Corre più veloce di prima. Supera un cavallo. Poi un altro. Poi l’ultimo.
+Zefiro passa per primo. Senza fantino.
+La piazza esplode.
+Luca: Ha vinto? Può vincere senza fantino?
+Carla: Sì! Al Palio vince il cavallo, non il fantino. Un cavallo senza fantino si chiama «scosso». E può vincere!
+I ragazzi della Selva corrono da Zefiro. Lo abbracciano, lo baciano, piangono di gioia. Qualcuno porta il drappellone, il grande premio di seta dipinta.
+Più tardi, nella stalla della contrada, è tutto tranquillo. Il dottor Neri controlla Zefiro. Le gambe sono fresche. Il cuore va piano.
+Dottor Neri: E il fantino?
+Carla: Sta bene. Solo un po’ di male alla schiena. E tanta vergogna.
+Dottor Neri: Allora è una bella giornata. Sapete, la gente parla sempre dei fantini. Ma il vero vincitore, al Palio, è sempre il cavallo.
+Sara accarezza Zefiro. Il cavallo appoggia la testa sulla sua spalla.
+Sara: Carla, Fulmine non correrà mai il Palio, vero?
+Carla: No, Sara. Fulmine corre solo per te.
+Questo era «In sella!». Nella prossima puntata: un temporale, un cancello aperto e una lunga notte sotto la pioggia. A presto!`,
+    tr:`Hallo zusammen und willkommen zurück bei „In sella!“, dem Podcast für alle, die Pferde lieben. Heute gehen wir nicht in einen Reitstall. Heute gehen wir zum berühmtesten Rennen Italiens: dem Palio von Siena.
+Es ist der zweite Juli. Es ist heiß, sehr heiß. Carla, Sara und Luca sitzen im Auto. Sie fahren nach Siena. Doktor Neri hat sie eingeladen, weil er heute beim Palio arbeitet. Er ist einer der Tierärzte der Pferde.
+Luca: Ich habe nur zwei Stunden geschlafen. Ich bin zu aufgeregt!
+Sara: Ich auch. Carla, wie viele Pferde laufen mit?
+Carla: Zehn. Siena hat siebzehn Contrade, aber jedes Mal laufen nur zehn. Und die Jockeys reiten ohne Sattel.
+Luca: Ohne Sattel? Die sind verrückt!
+Sie kommen in Siena an. Die Straßen sind voller Menschen. Alle tragen ein buntes Tuch um den Hals: gelb, grün, rot, blau. Die Farbe ihrer Contrada.
+Doktor Neri wartet vor einer kleinen Kirche auf sie.
+Doktor Neri: Willkommen! Das ist die Contrada della Selva. Ihr Zeichen ist ein Baum mit einem Nashorn. Und das ist ihr Pferd: Zefiro.
+Zefiro ist ein Brauner, schlank und stark. Er hat wache Augen. Sara schaut ihn an und hat sofort ein Gefühl: Dieses Pferd ist besonders.
+Um neun ist der Probelauf auf dem Platz. Zefiro rennt schnell. Doktor Neri kontrolliert die Beine, das Herz, den Atem.
+Doktor Neri: Er ist topfit. Er ist bereit.
+Am Nachmittag passiert etwas Unglaubliches. Das Pferd geht in die Kirche.
+Zefiro geht in die Kirche. Ja, wirklich hinein, vor den Altar. Die Kirche ist voller Menschen. Der Pfarrer hebt die Hand.
+Pfarrer: Geh und komm als Sieger zurück!
+Und genau in diesem Moment hebt Zefiro den Schweif und … äpfelt. Dort, in der Kirche.
+Luca: Oh nein!
+Aber alle klatschen. Alle lachen und jubeln.
+Carla: Keine Sorge, Luca. In Siena ist das ein gutes Zeichen. Es bringt Glück!
+Um sieben Uhr abends ist die Piazza del Campo voll. Vierzigtausend Menschen. Zuerst zieht der Festzug vorbei, mit Trommeln und Fahnen. Die Fahnen fliegen hoch über die Köpfe. Dann kommen die zehn Pferde auf den Platz.
+Saras Herz klopft bis zum Hals. Luca hält ihren Arm.
+Auf dem Platz ist es still. Die Pferde stehen hinter einem langen Seil. Sie bewegen sich, drehen sich, stehen nicht still. Fünf Minuten vergehen. Zehn Minuten. Zwanzig Minuten.
+Luca: Wann geht es denn los?
+Doktor Neri: Der Start beim Palio dauert immer lange. Es ist eine nervöse Sache.
+Das Seil fällt. Sie laufen los!
+Erste Runde. Die Pferde rennen wie der Wind. Überall fliegt Erde. Zefiro ist Dritter.
+Zweite Runde. Die Kurve von San Martino. Das ist die gefährlichste Kurve. Ein Pferd rutscht. Ein Jockey stürzt. Es ist der Jockey der Selva!
+Sara: Nein! Zefiro!
+Dritte Runde. Aber Zefiro bleibt nicht stehen. Er rennt allein weiter, ohne Jockey. Er rennt schneller als vorher. Er überholt ein Pferd. Dann noch eins. Dann das letzte.
+Zefiro kommt als Erster ins Ziel. Ohne Jockey.
+Der Platz explodiert.
+Luca: Hat er gewonnen? Kann er ohne Jockey gewinnen?
+Carla: Ja! Beim Palio gewinnt das Pferd, nicht der Jockey. Ein Pferd ohne Jockey heißt „scosso“. Und es kann gewinnen!
+Die jungen Leute der Selva rennen zu Zefiro. Sie umarmen ihn, küssen ihn, weinen vor Freude. Jemand bringt den Drappellone, den großen Preis aus bemalter Seide.
+Später, im Stall der Contrada, ist alles ruhig. Doktor Neri untersucht Zefiro. Die Beine sind kühl. Das Herz schlägt ruhig.
+Doktor Neri: Und der Jockey?
+Carla: Dem geht es gut. Nur ein bisschen Rückenschmerzen. Und viel Scham.
+Doktor Neri: Dann ist es ein schöner Tag. Wisst ihr, die Leute reden immer über die Jockeys. Aber der wahre Sieger beim Palio ist immer das Pferd.
+Sara streichelt Zefiro. Das Pferd legt den Kopf auf ihre Schulter.
+Sara: Carla, Fulmine wird nie beim Palio laufen, oder?
+Carla: Nein, Sara. Fulmine läuft nur für dich.
+Das war „In sella!“. In der nächsten Folge: ein Gewitter, ein offenes Tor und eine lange Nacht im Regen. Bis bald!`,
+    fact:'Der Palio di Siena findet jedes Jahr am 2. Juli und am 16. August auf der Piazza del Campo statt. Von den 17 Contrade (Stadtvierteln) laufen jeweils 10; die Pferde werden ausgelost, die Jockeys reiten ohne Sattel. Drei Runden dauern nur etwa 75 bis 90 Sekunden. Vorher wird jedes Pferd in der Kirche seiner Contrada gesegnet („Va’ e torna vincitore!“) – äpfelt es dabei, gilt das als gutes Zeichen. Es gewinnt wirklich das Pferd: Auch ein „cavallo scosso“ ohne Reiter kann siegen. Der Preis ist der „drappellone“, ein jedes Mal neu bemaltes Seidenbanner. Heute gibt es strenge Tierarzt-Kontrollen, und die gefährliche Kurve von San Martino ist mit dicken Matten gepolstert.' }
+);
+/* „In sella!“ Folge 4 (v283, 28.10.2026: „baue bitte cavalli auf 5 folgen auf“) – wird nach leggende_cavalli3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Ende August: Sara, Luca und Nina (aus München) schlafen im Heuboden von Carlas Reitstall. Um Mitternacht Gewitter, eine alte Eiche stürzt auf den Zaun der Koppel,
+   die Pferde fliehen in die Nacht. Carla: nicht hinterherrennen, ruhig bleiben. Mit Taschenlampen: Stella und Barone am Bach, Tornado frisst Trauben im Weinberg des Nachbarn.
+   Pepe fehlt – Sara holt Fulmine, Fulmine wiehert, aus der Dunkelheit antwortet Pepe: er steht im Schuppen bei den Karottensäcken. Morgens Regenbogen.
+   Angekündigt Folge 5: Maremma, Butteri, Kühe mit langen Hörnern. Nina = de-DE-SeraphinaMultilingual (Italienisch mit deutschem Akzent). Neues Geräusch nitrito. Niveau ab A2. */
+PODCASTS.cavalli.push(
+  { id:'cavalli-p4', show:'In sella!', ep:4, title:'La notte del temporale', de:'Die Nacht des Gewitters',
+    place:'Il maneggio di Carla e la campagna intorno, una notte di fine agosto', level:'ab A2', kind:'Abenteuer · Nacht · Spannend',
+    voices:{Sara:'Elsa', Luca:'Diego', Carla:'Isabella', Nina:'de-DE-SeraphinaMultilingualNeural'},
+    stil:{'':['-8%','+0Hz'], Carla:['-3%','-12Hz'], Sara:['-4%','+25Hz'], Luca:['-2%','+0Hz'], Nina:['-6%','+4Hz']},
+    words:[['il fienile','der Heuboden'],['il sacco a pelo','der Schlafsack'],['il temporale','das Gewitter'],['il tuono','der Donner'],['il lampo','der Blitz'],['il recinto','der Zaun, die Koppel'],['cade / è caduto','fällt / ist gefallen'],['scappano','sie laufen weg'],['la torcia','die Taschenlampe'],['spaventato / spaventata','erschrocken, verängstigt'],['restare calmi','ruhig bleiben'],['il branco','die Herde'],['nitrisce','wiehert'],['risponde','antwortet'],['bagnato fradicio','klatschnass'],['l’uva','die Weintrauben'],['il vicino','der Nachbar'],['la capanna','die Hütte, der Schuppen'],['l’arcobaleno','der Regenbogen'],['contare','zählen']],
+    fx:{'Ciao a tutti':'pausa', 'È la fine di agosto':'cicale_an', 'Carla sale':'pausa', 'A mezzanotte':'cicale_aus tuono', 'Il vento':'vento_an pioggia_an', 'Poi un rumore':'crollo', 'I cavalli scappano':'galoppo_an', 'Carla: Svegli':'galoppo_aus pausa', 'Fuori è buio':'pausa', 'Vicino al ruscello':'ruscello_an sbuffo', 'Poi salgono':'ruscello_aus pausa', 'Tornado alza':'sbuffo', 'Ma Pepe':'pausa', 'Sara: Ho un’idea':'pausa', 'Fulmine alza':'nitrito', 'Silenzio. Solo la pioggia':'pausa', 'Poi, da lontano':'nitrito', 'Alle cinque':'pioggia_aus vento_aus uccelli_an', 'Questo era':'pausa'},
+    text:`Ciao a tutti e bentornati a «In sella!», il podcast per chi ama i cavalli. Oggi vi raccontiamo una notte che al maneggio nessuno dimenticherà. Una notte di pioggia, di paura… e di un pony molto furbo.
+È la fine di agosto. Fa ancora caldo. Sara, Luca e Nina dormono al maneggio, nel fienile, nei sacchi a pelo. Nina è la ragazza di Monaco. Parla già bene l’italiano, ma con un accento tedesco.
+Nina: Che bello! In Germania non ho mai dormito nel fieno.
+Luca: Il fieno punge. E ci sono i ragni.
+Nina: Ragni? Dove?
+Sara ride. Dalla finestra del fienile si vede il recinto grande. D’estate i cavalli dormono fuori: Stella, Tornado, Barone e il piccolo Pepe. Solo Fulmine è nel suo box, perché domani va dal maniscalco.
+Carla sale la scala con una torcia.
+Carla: Ragazzi, stanotte arriva un temporale. Se avete paura, venite in casa.
+Luca: Paura? Noi? Mai!
+A mezzanotte un tuono sveglia tutti. Un tuono fortissimo. Nina si siede nel sacco a pelo.
+Il vento soffia forte. La pioggia batte sul tetto. I lampi illuminano il cielo. Bianco, poi nero. Bianco, poi nero.
+Poi un rumore terribile. Un albero. Un grande albero cade.
+Sara corre alla finestra.
+Sara: La vecchia quercia! È caduta sul recinto! Il recinto è rotto!
+I cavalli scappano. Si sentono gli zoccoli nel buio. Poi niente. Solo la pioggia.
+Carla: Svegli tutti? Bene. Prendete le torce e gli stivali. Ma ascoltatemi bene: non correte dietro ai cavalli. Un cavallo spaventato scappa ancora di più. Restiamo calmi. Parliamo piano.
+Fuori è buio e freddo. In un minuto sono bagnati fradici. Le torce fanno piccoli cerchi di luce sull’erba.
+Nina: Dove sono andati?
+Carla: I cavalli non scappano da soli. Restano insieme. Sono un branco. Cerchiamo vicino all’acqua. Quando hanno paura, vanno dove si sentono sicuri.
+Vicino al ruscello trovano Stella e Barone. Sono fermi sotto un albero, con la testa bassa. Stella sbuffa quando vede Carla.
+Carla: Brava, Stella. Brava la mia vecchia. Vieni, vieni.
+Carla mette la capezza a Stella. Barone la segue da solo.
+Poi salgono nella vigna del vicino. Lì trovano Tornado. È in mezzo alle viti. E mangia l’uva. Tutta l’uva.
+Luca: Tornado! Quella non è tua!
+Tornado alza la testa. Ha la bocca piena. Sembra dire: e allora?
+Ma Pepe non c’è. Cercano dappertutto. Nel bosco, nel campo, vicino alla strada. Niente. Sono le tre di notte. Sara ha le lacrime negli occhi.
+Sara: Pepe è così piccolo. E se è caduto nel ruscello? E se è sulla strada?
+Sara: Ho un’idea. Fulmine! Fulmine è il migliore amico di Pepe.
+Sara corre alla stalla e porta fuori Fulmine. Nel cortile, sotto la pioggia, Fulmine si ferma e ascolta.
+Fulmine alza la testa e nitrisce. Forte. Una volta. Due volte.
+Silenzio. Solo la pioggia.
+Poi, da lontano, una piccola voce risponde. Un nitrito piccolo e acuto.
+Nina: Viene dalla capanna! Dietro la casa!
+Corrono tutti alla vecchia capanna. La porta è aperta. Dentro, all’asciutto, c’è Pepe. È tranquillo. Ha aperto un sacco di carote. E le mangia. Una dopo l’altra.
+Luca: Incredibile. Tutti noi sotto la pioggia, e lui fa la cena!
+Carla: Pepe non è stupido. Lui è l’unico che ha trovato un posto asciutto.
+Alle cinque la pioggia si ferma. Il cielo diventa rosa. Gli uccelli cantano. E sopra le colline c’è un arcobaleno.
+I cavalli sono tutti nella stalla. Carla li conta. Uno, due, tre, quattro, cinque. Tutti.
+Carla: Grazie, ragazzi. Stanotte siete stati bravissimi. Calmi, coraggiosi e intelligenti.
+Nina: Carla, posso dormire di nuovo qui la prossima settimana?
+Carla: Sì, Nina. Ma la prossima volta speriamo in una notte tranquilla.
+Questo era «In sella!». Nella prossima puntata andiamo in Maremma: cowboy italiani, mucche con le corna lunghe e una vecchia storia su Buffalo Bill. A presto!`,
+    tr:`Hallo zusammen und willkommen zurück bei „In sella!“, dem Podcast für alle, die Pferde lieben. Heute erzählen wir euch von einer Nacht, die im Reitstall niemand vergessen wird. Eine Nacht mit Regen, mit Angst … und mit einem sehr schlauen Pony.
+Es ist Ende August. Es ist noch warm. Sara, Luca und Nina schlafen im Reitstall, auf dem Heuboden, in Schlafsäcken. Nina ist das Mädchen aus München. Sie spricht schon gut Italienisch, aber mit deutschem Akzent.
+Nina: Wie schön! In Deutschland habe ich noch nie im Heu geschlafen.
+Luca: Das Heu piekst. Und es gibt Spinnen.
+Nina: Spinnen? Wo?
+Sara lacht. Vom Fenster des Heubodens sieht man die große Koppel. Im Sommer schlafen die Pferde draußen: Stella, Tornado, Barone und der kleine Pepe. Nur Fulmine ist in seiner Box, weil er morgen zum Hufschmied geht.
+Carla steigt mit einer Taschenlampe die Leiter hinauf.
+Carla: Kinder, heute Nacht kommt ein Gewitter. Wenn ihr Angst habt, kommt ins Haus.
+Luca: Angst? Wir? Niemals!
+Um Mitternacht weckt ein Donner alle. Ein sehr lauter Donner. Nina setzt sich im Schlafsack auf.
+Der Wind bläst stark. Der Regen prasselt aufs Dach. Die Blitze erhellen den Himmel. Weiß, dann schwarz. Weiß, dann schwarz.
+Dann ein schreckliches Geräusch. Ein Baum. Ein großer Baum fällt um.
+Sara rennt zum Fenster.
+Sara: Die alte Eiche! Sie ist auf den Zaun gefallen! Der Zaun ist kaputt!
+Die Pferde laufen weg. Man hört die Hufe in der Dunkelheit. Dann nichts mehr. Nur der Regen.
+Carla: Alle wach? Gut. Nehmt die Taschenlampen und die Stiefel. Aber hört mir gut zu: Rennt den Pferden nicht hinterher. Ein erschrockenes Pferd läuft dann noch mehr weg. Wir bleiben ruhig. Wir sprechen leise.
+Draußen ist es dunkel und kalt. In einer Minute sind sie klatschnass. Die Taschenlampen machen kleine Lichtkreise auf dem Gras.
+Nina: Wo sind sie hingelaufen?
+Carla: Pferde laufen nicht allein weg. Sie bleiben zusammen. Sie sind eine Herde. Wir suchen in der Nähe vom Wasser. Wenn sie Angst haben, gehen sie dorthin, wo sie sich sicher fühlen.
+Am Bach finden sie Stella und Barone. Sie stehen ruhig unter einem Baum, mit gesenktem Kopf. Stella schnaubt, als sie Carla sieht.
+Carla: Brave Stella. Meine brave Alte. Komm, komm.
+Carla legt Stella das Halfter an. Barone folgt ihr von allein.
+Dann gehen sie hinauf in den Weinberg des Nachbarn. Dort finden sie Tornado. Er steht mitten zwischen den Reben. Und frisst die Trauben. Alle Trauben.
+Luca: Tornado! Die gehören nicht dir!
+Tornado hebt den Kopf. Er hat das Maul voll. Er scheint zu sagen: Na und?
+Aber Pepe ist nicht da. Sie suchen überall. Im Wald, auf dem Feld, an der Straße. Nichts. Es ist drei Uhr nachts. Sara hat Tränen in den Augen.
+Sara: Pepe ist so klein. Und wenn er in den Bach gefallen ist? Und wenn er auf der Straße ist?
+Sara: Ich habe eine Idee. Fulmine! Fulmine ist Pepes bester Freund.
+Sara rennt zum Stall und holt Fulmine heraus. Im Hof, im Regen, bleibt Fulmine stehen und horcht.
+Fulmine hebt den Kopf und wiehert. Laut. Einmal. Zweimal.
+Stille. Nur der Regen.
+Dann antwortet von weit weg eine kleine Stimme. Ein kleines, helles Wiehern.
+Nina: Es kommt aus dem Schuppen! Hinter dem Haus!
+Alle rennen zum alten Schuppen. Die Tür ist offen. Drinnen, im Trockenen, steht Pepe. Er ist ganz ruhig. Er hat einen Sack Karotten aufgemacht. Und frisst sie. Eine nach der anderen.
+Luca: Unglaublich. Wir alle im Regen, und er macht Abendessen!
+Carla: Pepe ist nicht dumm. Er ist der Einzige, der einen trockenen Platz gefunden hat.
+Um fünf hört der Regen auf. Der Himmel wird rosa. Die Vögel singen. Und über den Hügeln steht ein Regenbogen.
+Die Pferde sind alle im Stall. Carla zählt sie. Eins, zwei, drei, vier, fünf. Alle.
+Carla: Danke, Kinder. Heute Nacht wart ihr großartig. Ruhig, mutig und klug.
+Nina: Carla, darf ich nächste Woche wieder hier schlafen?
+Carla: Ja, Nina. Aber nächstes Mal hoffen wir auf eine ruhige Nacht.
+Das war „In sella!“. In der nächsten Folge fahren wir in die Maremma: italienische Cowboys, Kühe mit langen Hörnern und eine alte Geschichte über Buffalo Bill. Bis bald!`,
+    fact:'Pferde sind Fluchttiere und Herdentiere: Bei Gefahr rennen sie zuerst weg – aber fast immer zusammen. Wer ein entlaufenes Pferd sucht, sollte ruhig bleiben und nicht hinterherrennen. Am besten hilft oft ein Freund aus der Herde: Pferde rufen sich mit lautem Wiehern, und ein vertrautes Pferd lockt ein verängstigtes meist schneller zurück als jeder Mensch. Übrigens: Trauben sind für Pferde in kleinen Mengen nicht giftig – aber ein ganzer Weinberg ist auch für Tornado zu viel.' }
+);
+/* „In sella!“ Folge 5 (v283, 28.10.2026: „baue bitte cavalli auf 5 folgen auf“) – wird nach leggende_cavalli4.js geladen, löst die Ankündigung aus Folge 4 ein.
+   Oktober in der Maremma (Alberese): Carla, Sara, Luca und Nina reiten einen Tag mit den Butteri. Buttero Aldo (70) und seine Enkelin Giulia (Buttera, 22).
+   Maremmano-Pferde (Brigante, Bruna, Tempesta), Maremmana-Kühe mit langen Hörnern, das Uncino. Die Herde wird umgetrieben, ein Kalb fehlt – Sara hört es in der Macchia,
+   Aldo hält die Mutterkuh ruhig fern. Mittags am Feuer: Legende von 1890, Buffalo Bill in Rom, Augusto Imperiali („Gli americani raccontano un’altra storia“).
+   Zum Schluss Galopp am Strand in den Sonnenuntergang; Aldo schenkt Sara einen alten Butteri-Hut. Staffelende („per ora“).
+   Stimmen: Aldo = Giuseppe (langsam, tief), Giulia = Isabella heller, Nina = Seraphina Multilingual. Neues Geräusch muggito. Niveau ab A2. */
+PODCASTS.cavalli.push(
+  { id:'cavalli-p5', show:'In sella!', ep:5, title:'I butteri della Maremma', de:'Die Butteri der Maremma',
+    place:'La Maremma toscana, vicino ad Alberese, in ottobre', level:'ab A2', kind:'Abenteuer · Natur · Legende',
+    voices:{Sara:'Elsa', Luca:'Diego', Carla:'Isabella', Nina:'de-DE-SeraphinaMultilingualNeural', Aldo:'Giuseppe', Giulia:'Isabella'},
+    stil:{'':['-8%','+0Hz'], Carla:['-3%','-12Hz'], Sara:['-4%','+25Hz'], Luca:['-2%','+0Hz'], Nina:['-6%','+4Hz'], Aldo:['-14%','-16Hz'], Giulia:['+4%','+14Hz']},
+    words:[['il buttero / i butteri','der Viehhirte zu Pferd („italienischer Cowboy“)'],['la buttera','die Viehhirtin zu Pferd'],['la mandria','die Rinderherde'],['la mucca / le mucche','die Kuh / die Kühe'],['il vitello','das Kalb'],['le corna','die Hörner'],['il pascolo','die Weide'],['l’uncino','der lange Hirtenstab mit Haken'],['la macchia','das dichte Buschland'],['spostare','(an einen anderen Ort) bringen'],['muggisce','muht'],['pericoloso / pericolosa','gefährlich'],['difende','verteidigt'],['la sfida','die Herausforderung, der Wettkampf'],['domare','zähmen, zureiten'],['il fuoco','das Feuer'],['la spiaggia','der Strand'],['il tramonto','der Sonnenuntergang'],['il cappello','der Hut'],['per ora','vorerst']],
+    fx:{'Ciao a tutti':'uccelli_an', 'Sono le sei':'gallo', 'Davanti alla stalla':'sbuffo', 'Escono dal cancello':'passo_an', 'Dopo un’ora':'passo_aus campanacci_an muggito', 'Aldo: Adesso':'passo_an', 'Giulia conta':'passo_aus pausa', 'Sara ascolta':'campanacci_aus pausa', 'Da un cespuglio':'muggito', 'Ma dietro di loro':'muggito sbuffo', 'A mezzogiorno':'uccelli_aus falo_an', 'Aldo beve':'pausa', 'Il pomeriggio':'falo_aus passo_an', 'Arrivano al mare':'passo_aus acqua_an gabbiani', 'Giulia: Chi arriva':'galoppo_an', 'Si fermano':'galoppo_aus nitrito', 'Questo era':'pausa'},
+    text:`Ciao a tutti e bentornati a «In sella!», il podcast per chi ama i cavalli. Oggi andiamo nel selvaggio West. Ma non in America. In Italia! Andiamo in Maremma, dai butteri.
+Sono le sei di mattina. Siamo in una grande fattoria vicino ad Alberese, nel sud della Toscana. Carla, Sara, Luca e Nina scendono dalla macchina. Fa fresco. C’è odore di erba e di mare.
+Un uomo anziano viene verso di loro. Ha un grande cappello nero, la giacca di velluto e gli stivali. In mano ha un lungo bastone con un uncino.
+Aldo: Buongiorno! Io sono Aldo. Faccio il buttero da cinquant’anni. E questa è mia nipote Giulia.
+Giulia: Ciao a tutti! Io sono una buttera. Sì, ci sono anche le donne.
+Nina: Che cos’è un buttero, esattamente?
+Aldo: È un uomo, o una donna, che lavora con le mucche. A cavallo. Tutto il giorno. Come i cowboy americani. Ma noi siamo più vecchi.
+Davanti alla stalla ci sono i cavalli maremmani. Sono scuri, forti e tranquilli. Luca prende Brigante, Sara prende Bruna, Nina prende Tempesta.
+Nina: Tempesta? Ma è un nome pericoloso!
+Giulia: Tranquilla. Tempesta è la cavalla più buona della fattoria. Il nome è solo per i turisti.
+Escono dal cancello. Al passo. Le selle sono grandi e comode, diverse dalle selle di casa.
+Dopo un’ora arrivano a un grande pascolo. E lì ci sono le mucche. Sono grigie e hanno le corna lunghissime, a forma di lira.
+Luca: Mamma mia! Quelle corna sono più lunghe del mio braccio!
+Aldo: Sono mucche maremmane. Forti, intelligenti e un po’ testarde. Oggi le spostiamo nel pascolo vicino al fiume. Là l’erba è più buona.
+Aldo: Adesso piano, ragazzi. Voi state dietro. Noi davanti e ai lati. Le mucche devono camminare, non correre.
+Le mucche si muovono lentamente. Giulia e Aldo le guidano con la voce e con l’uncino. Sembra facile. Ma non lo è.
+Giulia conta le mucche al nuovo pascolo. Conta due volte. Poi diventa seria.
+Giulia: Nonno, manca un vitello. Il vitello della Bianca.
+Aldo guarda la macchia, il bosco basso e fitto. Lì non si vede niente.
+Sara ascolta. Chiude gli occhi. Tutti stanno zitti.
+Da un cespuglio arriva un muggito piccolo e triste.
+Sara: È lì! Dietro quei cespugli!
+Sara scende da Bruna ed entra nella macchia. Il vitello è lì, con una zampa impigliata nei rami. Sara lo libera piano piano.
+Ma dietro di loro arriva la madre, la Bianca. È grande. Abbassa la testa. Le corna sono vicinissime.
+Aldo: Sara, ferma. Non correre. Cammina indietro, piano.
+Aldo si mette con il cavallo tra Sara e la mucca. Parla piano alla Bianca. Con l’uncino tocca leggermente le corna. La mucca si ferma. Il vitello corre dalla madre. La madre lo lecca. Poi tornano insieme alla mandria.
+Aldo: Una madre difende sempre il suo piccolo. Brava, Sara. Hai buone orecchie e buoni nervi. Saresti una buona buttera.
+Sara diventa tutta rossa.
+A mezzogiorno mangiano vicino al fuoco: pane, salame, formaggio di pecora e acqua fresca. Aldo racconta una storia.
+Aldo: Sapete che nel milleottocentonovanta Buffalo Bill è venuto a Roma? Con il suo grande spettacolo, il Wild West Show. I cowboy, gli indiani, i cavalli selvaggi.
+Luca: Buffalo Bill? Quello vero?
+Aldo: Quello vero. E ha fatto una sfida: «Nessuno in Italia sa domare i miei cavalli.» Allora i butteri hanno accettato. Il più famoso si chiamava Augusto Imperiali. E secondo la storia, i butteri hanno vinto. Hanno domato i cavalli americani in pochi minuti.
+Nina: E i cowboy?
+Aldo beve un po’ d’acqua e sorride.
+Aldo: Eh… gli americani raccontano un’altra storia. Ma qui in Maremma raccontiamo la nostra.
+Il pomeriggio tornano verso la fattoria. Ma Giulia ha una sorpresa. Prende un’altra strada, attraverso la pineta.
+Arrivano al mare. La spiaggia è lunga e vuota. Il sole è basso. Il mare è d’oro.
+Giulia: Chi arriva per ultimo agli scogli, pulisce le selle!
+I cavalli galoppano sulla sabbia bagnata. L’acqua schizza. Il vento è salato. Sara ride, Nina grida, Luca è davanti a tutti. Carla per una volta non dice «piano».
+Si fermano agli scogli. I cavalli respirano forte. Il sole tocca il mare.
+Luca: Primo! Ho vinto!
+Giulia: Bravo. Ma Brigante ha vinto, non tu.
+Alla fattoria Aldo prende un vecchio cappello nero e lo mette in testa a Sara.
+Aldo: Questo era il mio primo cappello. Ora è tuo. Torna quando vuoi.
+Sara: Grazie, Aldo. Torno sicuramente.
+Questo era «In sella!». Per ora è l’ultima puntata. Grazie a tutti per averci ascoltato. E ricordate: il mondo più bello si vede tra le orecchie di un cavallo. A presto!`,
+    tr:`Hallo zusammen und willkommen zurück bei „In sella!“, dem Podcast für alle, die Pferde lieben. Heute reisen wir in den Wilden Westen. Aber nicht nach Amerika. Nach Italien! Wir fahren in die Maremma, zu den Butteri.
+Es ist sechs Uhr morgens. Wir sind auf einem großen Bauernhof bei Alberese, im Süden der Toskana. Carla, Sara, Luca und Nina steigen aus dem Auto. Es ist frisch. Es riecht nach Gras und nach Meer.
+Ein alter Mann kommt auf sie zu. Er trägt einen großen schwarzen Hut, eine Samtjacke und Stiefel. In der Hand hat er einen langen Stock mit einem Haken.
+Aldo: Guten Morgen! Ich bin Aldo. Ich bin seit fünfzig Jahren Buttero. Und das ist meine Enkelin Giulia.
+Giulia: Hallo zusammen! Ich bin eine Buttera. Ja, es gibt auch Frauen.
+Nina: Was ist ein Buttero genau?
+Aldo: Ein Mann oder eine Frau, die mit Kühen arbeitet. Zu Pferd. Den ganzen Tag. Wie die amerikanischen Cowboys. Aber wir sind älter.
+Vor dem Stall stehen die Maremmano-Pferde. Sie sind dunkel, kräftig und ruhig. Luca nimmt Brigante, Sara nimmt Bruna, Nina nimmt Tempesta.
+Nina: Tempesta? Das ist aber ein gefährlicher Name!
+Giulia: Keine Sorge. Tempesta ist die bravste Stute auf dem Hof. Der Name ist nur für die Touristen.
+Sie reiten durch das Tor hinaus. Im Schritt. Die Sättel sind groß und bequem, anders als die Sättel zu Hause.
+Nach einer Stunde kommen sie zu einer großen Weide. Und dort sind die Kühe. Sie sind grau und haben sehr lange Hörner, in der Form einer Lyra.
+Luca: Meine Güte! Die Hörner sind länger als mein Arm!
+Aldo: Das sind Maremmana-Kühe. Stark, klug und ein bisschen stur. Heute bringen wir sie auf die Weide am Fluss. Dort ist das Gras besser.
+Aldo: Jetzt langsam, Kinder. Ihr bleibt hinten. Wir vorne und an den Seiten. Die Kühe sollen gehen, nicht rennen.
+Die Kühe setzen sich langsam in Bewegung. Giulia und Aldo lenken sie mit der Stimme und mit dem Hirtenstab. Es sieht einfach aus. Aber das ist es nicht.
+Giulia zählt die Kühe auf der neuen Weide. Sie zählt zweimal. Dann wird sie ernst.
+Giulia: Opa, ein Kalb fehlt. Das Kalb von Bianca.
+Aldo schaut auf die Macchia, das niedrige, dichte Buschland. Dort sieht man nichts.
+Sara horcht. Sie schließt die Augen. Alle sind still.
+Aus einem Busch kommt ein kleines, trauriges Muhen.
+Sara: Da ist es! Hinter den Büschen!
+Sara steigt von Bruna und geht in die Macchia. Das Kalb ist dort, ein Bein hat sich in den Zweigen verfangen. Sara befreit es ganz vorsichtig.
+Aber hinter ihnen kommt die Mutter, Bianca. Sie ist groß. Sie senkt den Kopf. Die Hörner sind ganz nah.
+Aldo: Sara, stopp. Nicht rennen. Geh langsam rückwärts.
+Aldo stellt sich mit dem Pferd zwischen Sara und die Kuh. Er spricht leise mit Bianca. Mit dem Hirtenstab berührt er leicht die Hörner. Die Kuh bleibt stehen. Das Kalb läuft zur Mutter. Die Mutter leckt es. Dann gehen sie zusammen zurück zur Herde.
+Aldo: Eine Mutter verteidigt immer ihr Kleines. Gut gemacht, Sara. Du hast gute Ohren und gute Nerven. Du wärst eine gute Buttera.
+Sara wird ganz rot.
+Mittags essen sie am Feuer: Brot, Salami, Schafskäse und frisches Wasser. Aldo erzählt eine Geschichte.
+Aldo: Wisst ihr, dass Buffalo Bill achtzehnhundertneunzig nach Rom gekommen ist? Mit seiner großen Show, der Wild West Show. Die Cowboys, die Indianer, die wilden Pferde.
+Luca: Buffalo Bill? Der echte?
+Aldo: Der echte. Und er hat eine Herausforderung gemacht: „Niemand in Italien kann meine Pferde zähmen.“ Da haben die Butteri angenommen. Der berühmteste hieß Augusto Imperiali. Und laut der Geschichte haben die Butteri gewonnen. Sie haben die amerikanischen Pferde in wenigen Minuten gezähmt.
+Nina: Und die Cowboys?
+Aldo trinkt einen Schluck Wasser und lächelt.
+Aldo: Na ja … die Amerikaner erzählen eine andere Geschichte. Aber hier in der Maremma erzählen wir unsere.
+Am Nachmittag reiten sie zurück zum Hof. Aber Giulia hat eine Überraschung. Sie nimmt einen anderen Weg, durch den Pinienwald.
+Sie kommen ans Meer. Der Strand ist lang und leer. Die Sonne steht tief. Das Meer ist golden.
+Giulia: Wer als Letzter bei den Felsen ist, putzt die Sättel!
+Die Pferde galoppieren über den nassen Sand. Das Wasser spritzt. Der Wind ist salzig. Sara lacht, Nina schreit, Luca ist vor allen. Carla sagt ausnahmsweise nicht „langsam“.
+Sie halten bei den Felsen an. Die Pferde atmen schwer. Die Sonne berührt das Meer.
+Luca: Erster! Ich habe gewonnen!
+Giulia: Bravo. Aber Brigante hat gewonnen, nicht du.
+Auf dem Hof nimmt Aldo einen alten schwarzen Hut und setzt ihn Sara auf den Kopf.
+Aldo: Das war mein erster Hut. Jetzt gehört er dir. Komm wieder, wann du willst.
+Sara: Danke, Aldo. Ich komme bestimmt wieder.
+Das war „In sella!“. Vorerst ist das die letzte Folge. Danke an alle fürs Zuhören. Und denkt daran: Die schönste Welt sieht man zwischen den Ohren eines Pferdes. Bis bald!`,
+    fact:'Die Butteri sind die traditionellen berittenen Viehhirten der Maremma (Südtoskana und Nordlatium). Sie reiten kräftige Maremmano-Pferde auf einem besonderen Sattel und arbeiten mit dem „uncino“, einem langen Stock mit Haken. Die Maremmana-Rinder sind grau und haben bis zu einem Meter lange, lyraförmige Hörner. 1890 gastierte Buffalo Bills „Wild West Show“ in Rom; laut der Überlieferung der Butteri bezwang der Buttero Augusto Imperiali dabei die wilden Pferde der Show – amerikanische Quellen erzählen das anders, sicher belegt ist es nicht. Im Naturpark der Maremma bei Alberese kann man die Butteri heute noch bei der Arbeit erleben.' }
 );
 /* Hörgeschichten Cinema (Podcast „Voci dal cinema“). Figuren aus dem Thema: Sara, Luca, Giulia (Regisseurin), Opa Pippo (Kino Paradiso), Schauspieler Marcello. */
 PODCAST_INFO.cinema = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Drehtag am Filmset und ein Abend im alten Kino, mit Filmklappe, Regenmaschine und ratterndem Projektor, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
