@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 277;
+const APP_VERSION = 278;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -78745,6 +78745,104 @@ Um vier hört der Regen auf. Über den Hügeln des Chianti steht ein Regenbogen.
 Oma: Siehst du? Nach dem Regen kommt Sonnenschein.
 Das war „Voci dei proverbi“. Und denkt daran: Zu jedem Sprichwort gibt es ein gegenteiliges Sprichwort. Aber das Sonntagsessen macht alle wieder einig.`,
     fact:'„Chi dorme non piglia pesci“ entspricht unserem „Der frühe Vogel fängt den Wurm“: Wer früh aufsteht, hat Erfolg. „Ich verstehe nur Bahnhof“ gibt es auf Italienisch nicht – dort sagt man „Per me è arabo“ (Für mich ist das Arabisch) oder „Non ci capisco un’acca“ (Ich verstehe davon kein H). Pici sind dicke, handgerollte Nudeln aus der Gegend um Siena.' }
+];
+/* Hörgeschichte „Deutschlandreise“ (Amerikaner lernen Deutsch, Lernrichtung us, v278; Wunsch der Nutzerin am 28.10.2026: „mach bitte eine hörgeschichte dafür“).
+   Podcast „Geschichten aus dem Zug“, Folge 1 „Der Nachtzug von 1923“: Ende Oktober, letzter Zug durchs neblige Rheintal (passt zu Stufe 1–2).
+   Maya schläft ein und wacht in einem Holzwaggon von 1923 auf: ein alter Schaffner, eine junge Frau mit Koffer, die nach Amerika auswandert,
+   ihr kleiner Bruder Heinrich hat am Bahnhof geweint … An der Loreley ein Lied. Als Maya in Mainz aufwacht, hält sie einen Apfel in der Hand –
+   und in der Jackentasche steckt eine alte Fahrkarte: Lindenbach – Bremen, 10. Mai 1923.
+   Stimmen: Erzählerin Katja, Maya en-US-AvaMultilingual, Lukas Conrad, Schaffner Killian (langsam, tief), junge Frau SeraphinaMultilingual. Niveau ab A2. */
+PODCAST_INFO.reisen = {h:'Listening stories', nav:'Audio stories', lead:'Like a little podcast: a foggy night on the train through the Rhine valley with Maya and Lukas – with the rattling train, a whistle, an old conductor and a song from the Loreley rock. Just listen, no exercises. You can open the German text and the English translation.'};
+PODCASTS.reisen = [
+  { id:'reisen-p1', lang:'us', erzaehler:'Katja', show:'Geschichten aus dem Zug', ep:1, title:'Der Nachtzug von 1923', de:'The night train of 1923',
+    place:'On the last train through the Rhine valley, at the end of October', level:'from A2', kind:'Mystery · Family · Train',
+    voices:{Maya:'en-US-AvaMultilingualNeural', Lukas:'de-DE-ConradNeural', Schaffner:'de-DE-KillianNeural', 'Junge Frau':'de-DE-SeraphinaMultilingualNeural'},
+    stil:{'':['-6%','+0Hz'], Maya:['-6%','+0Hz'], Lukas:['-2%','+0Hz'], Schaffner:['-14%','-10Hz'], 'Junge Frau':['-10%','+2Hz']},
+    words:[['der Nachtzug','the night train'],['der Nebel','the fog'],['rattern / der Zug rattert','to rattle / the train rattles'],['einschlafen / Schlaf nicht ein!','to fall asleep / Don’t fall asleep!'],['die Augen werden schwer','your eyes get heavy'],['der Pfiff','the whistle'],['aufwachen / sie wacht auf','to wake up / she wakes up'],['die Sitze aus Holz','the wooden seats'],['flackern / die Lampen flackern','to flicker / the lamps flicker'],['der Schaffner','the conductor (old word)'],['der Bart','the beard'],['Fräulein','Miss (old-fashioned)'],['seltsam','strange'],['gegenüber','opposite'],['der Mantel','the coat'],['das Schiff','the ship'],['die Hoffnung','the hope'],['Gänsehaut bekommen','to get goosebumps'],['die Jackentasche','the jacket pocket'],['blass werden','to turn pale']],
+    fx:{'Hallo und willkommen':'pausa', 'Es ist Ende Oktober':'treno_an', 'Lukas geht weiter':'pausa', 'Plötzlich – ein Pfiff':'fischietto', 'Eine Tür geht auf':'porta passi', 'Maya bekommt Gänsehaut':'pausa', 'Maya kann nicht sprechen':'carillon', 'Wieder ein Pfiff':'fischietto spegnimento', 'Lukas: Maya? Maya!':'treno_aus porte', 'Maya steht auf':'pausa', 'Das war „Geschichten':'carillon_ende'},
+    text:`Hallo und willkommen bei „Geschichten aus dem Zug“! Heute: eine Nacht im Rheintal, ein alter Zug – und eine Fahrkarte von neunzehnhundertdreiundzwanzig.
+Es ist Ende Oktober. Es ist schon dunkel. Maya sitzt im letzten Zug von Koblenz nach Mainz. Der Zug fährt am Rhein entlang. Draußen ist Nebel.
+Lukas hat heute Dienst. Er kommt in den Wagen.
+Lukas: Die Fahrkarten, bitte! Ah, Maya. Du bist ja ganz allein hier.
+Maya: Ja. Niemand fährt so spät. Wie lange noch bis Mainz?
+Lukas: Eine Stunde. Gleich kommt die Loreley. Schlaf nicht ein!
+Lukas geht weiter. Der Zug rattert. Maya schaut in den Nebel. Ihre Augen werden schwer …
+Plötzlich – ein Pfiff. Laut und lang. Maya wacht auf.
+Der Wagen sieht anders aus. Die Sitze sind aus Holz. Die Lampen sind gelb und flackern. Es riecht nach Rauch.
+Eine Tür geht auf. Ein Schaffner kommt herein. Er ist alt, er hat einen grauen Bart und eine Uniform – eine sehr alte Uniform.
+Schaffner: Die Fahrkarten, bitte. Fräulein? Ihre Fahrkarte!
+Maya: Ich … ich habe einen Bahnpass. Hier.
+Schaffner: Was ist das? So etwas kenne ich nicht. Na gut. Heute Nacht ist alles ein bisschen seltsam.
+Er geht weiter. Maya schaut sich um. Gegenüber sitzt eine junge Frau. Sie trägt einen langen Mantel und einen Hut. Neben ihr steht ein alter Koffer.
+Maya: Guten Abend. Wohin fahren Sie?
+Junge Frau: Nach Bremen. Und dann mit dem Schiff nach Amerika.
+Maya: Nach Amerika?
+Junge Frau: Ja. Hier gibt es keine Arbeit. Das Geld ist nichts wert. Ein Brot kostet Millionen. Mein Vater sagt: In Amerika gibt es Hoffnung.
+Maya bekommt Gänsehaut.
+Maya: Haben Sie Angst?
+Junge Frau: Ein bisschen. Ich bin allein. Ich bin neunzehn. Mein kleiner Bruder hat heute Morgen am Bahnhof geweint.
+Maya: Wie heißt Ihr Bruder?
+Junge Frau: Heinrich. Er ist zwölf.
+Maya kann nicht sprechen. Draußen im Nebel sieht man den Felsen der Loreley. Von irgendwo kommt ein Lied.
+Junge Frau: Hören Sie das? Die Loreley singt. Meine Mutter sagt: Wer die Loreley hört, kommt nach Hause zurück.
+Maya: Wie heißen Sie?
+Die junge Frau lächelt. Sie nimmt einen Apfel aus der Tasche und gibt ihn Maya.
+Junge Frau: Für die Reise. Ein Apfel aus unserem Garten. In Amerika gibt es bestimmt keine so guten Äpfel.
+Wieder ein Pfiff. Die Lampen gehen aus. Es ist ganz dunkel.
+Lukas: Maya? Maya! Aufwachen! Wir sind in Mainz.
+Maya öffnet die Augen. Der Wagen ist modern. Die Sitze sind blau. Lukas steht vor ihr und lacht.
+Lukas: Du hast eine Stunde geschlafen. Hast du schön geträumt?
+Maya: Ich weiß nicht. War hier eine junge Frau? Mit einem Koffer?
+Lukas: Hier war niemand. Nur du.
+Maya steht auf. In ihrer Hand ist etwas. Ein Apfel. Ein roter Apfel.
+Und in ihrer Jackentasche: ein altes Stück Papier. Eine Fahrkarte, gelb und sehr alt. Darauf steht: Lindenbach – Bremen. Dritte Klasse. Zehnter Mai neunzehnhundertdreiundzwanzig.
+Lukas wird blass.
+Lukas: Woher hast du das?
+Maya schaut aus dem Fenster in den Nebel. Sie lächelt.
+Maya: Von einer jungen Frau. Sie hat gesagt: Wer die Loreley hört, kommt nach Hause zurück.
+Das war „Geschichten aus dem Zug“. Habt ihr auch schon einmal etwas Seltsames im Zug erlebt? Nächstes Mal: ein Koffer im ICE nach Berlin, und niemand weiß, wem er gehört. Bis bald – und gute Fahrt!`,
+    tr:`Hello and welcome to “Stories from the Train”! Today: a night in the Rhine valley, an old train – and a ticket from 1923.
+It’s the end of October. It’s already dark. Maya is sitting in the last train from Koblenz to Mainz. The train runs along the Rhine. Outside there’s fog.
+Lukas is on duty today. He comes into the car.
+Lukas: Tickets, please! Ah, Maya. You’re all alone here.
+Maya: Yes. Nobody travels this late. How much longer to Mainz?
+Lukas: An hour. The Loreley is coming up. Don’t fall asleep!
+Lukas moves on. The train rattles. Maya looks into the fog. Her eyes get heavy …
+Suddenly – a whistle. Loud and long. Maya wakes up.
+The car looks different. The seats are made of wood. The lamps are yellow and flicker. It smells of smoke.
+A door opens. A conductor comes in. He’s old, he has a gray beard and a uniform – a very old uniform.
+Conductor: Tickets, please. Miss? Your ticket!
+Maya: I … I have a rail pass. Here.
+Conductor: What’s that? I don’t know anything like that. Oh well. Tonight everything is a little strange.
+He moves on. Maya looks around. Opposite her sits a young woman. She’s wearing a long coat and a hat. Next to her stands an old suitcase.
+Maya: Good evening. Where are you going?
+Young woman: To Bremen. And then by ship to America.
+Maya: To America?
+Young woman: Yes. There’s no work here. Money is worth nothing. A loaf of bread costs millions. My father says: in America there is hope.
+Maya gets goosebumps.
+Maya: Are you afraid?
+Young woman: A little. I’m alone. I’m nineteen. My little brother cried at the station this morning.
+Maya: What’s your brother’s name?
+Young woman: Heinrich. He’s twelve.
+Maya can’t speak. Outside in the fog you can see the Loreley rock. From somewhere a song is coming.
+Young woman: Do you hear that? The Loreley is singing. My mother says: whoever hears the Loreley comes back home.
+Maya: What’s your name?
+The young woman smiles. She takes an apple out of her bag and gives it to Maya.
+Young woman: For the journey. An apple from our garden. I’m sure there are no apples this good in America.
+Another whistle. The lamps go out. It’s completely dark.
+Lukas: Maya? Maya! Wake up! We’re in Mainz.
+Maya opens her eyes. The car is modern. The seats are blue. Lukas is standing in front of her, laughing.
+Lukas: You slept for an hour. Did you have nice dreams?
+Maya: I don’t know. Was there a young woman here? With a suitcase?
+Lukas: Nobody was here. Only you.
+Maya stands up. There’s something in her hand. An apple. A red apple.
+And in her jacket pocket: an old piece of paper. A ticket, yellow and very old. It says: Lindenbach – Bremen. Third class. May 10, 1923.
+Lukas turns pale.
+Lukas: Where did you get that?
+Maya looks out of the window into the fog. She smiles.
+Maya: From a young woman. She said: whoever hears the Loreley comes back home.
+That was “Stories from the Train”. Have you ever experienced something strange on a train? Next time: a suitcase on the ICE to Berlin, and nobody knows whose it is. See you soon – and have a good trip!`,
+    fact:'In 1923 Germany suffered hyperinflation: in November a loaf of bread cost about 200 billion marks, and people were paid twice a day so they could shop before prices rose again. That year more than 115,000 Germans emigrated, most of them to the United States – many through the port of Bremen/Bremerhaven. Night trains did run along the Rhine valley line past the Loreley, one of the oldest and most scenic railway lines in Germany (opened 1859).' }
 ];
 /* Hörgeschichte „Rennrad“ (Italiener lernen Deutsch, v230; Wunsch der Nutzerin: „mach für rennrad bitte eine hörgeschichte“).
    Podcast „Bergauf – der Radpodcast aus Freiburg“ von Martina und Nele, Folge 1: Papa Ferraro ist zu Besuch und fordert Felix
