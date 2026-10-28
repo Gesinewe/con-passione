@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 280;
+const APP_VERSION = 281;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -79116,6 +79116,141 @@ Maya: Merry Christmas, Lukas.
 Lukas: Merry Christmas, Maya.
 That was “Stories from the Train”. How do you celebrate Christmas? Next time: an old steam train in the Harz mountains, up the Brocken – to the mountain of the witches. See you soon – and have a good trip!`,
     fact:'In Germany the big Christmas celebration is on the evening of December 24 (Heiligabend): families open their presents that evening, not on the morning of the 25th. In the south and west the Christkind brings the presents, and in many families a little bell rings when they are ready under the tree. “Stille Nacht” (Silent Night) was first sung on Christmas Eve 1818 in Oberndorf near Salzburg. And yes: in heavy snow, fallen trees on the tracks are one of the most common reasons why German trains stop in winter.' }
+);
+/* Hörgeschichte „Deutschlandreise“, Folge 4 (v281, 28.10.2026: „mach bitte folge 4“) – wird nach leggende_reisen3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Walpurgisnacht, 30. April: Maya, Emma (als Hexe) und Lukas (hat frei!) fahren mit der Dampflok von Wernigerode nach Schierke zum Hexenfest.
+   Im Abteil eine alte Frau in Schwarz mit Katze im Korb: weiß, dass Maya „über das große Wasser“ kam, der Schaffner kontrolliert sie nicht („Er kennt mich“),
+   „Goethe war ein netter junger Mann“. Hirsch auf dem Gleis; sie rät Lukas: „Sag es ihr heute. Vor Mitternacht.“ In Schierke Feuer, Trommeln, Emma stört mit Hexensuppe,
+   Lukas sagt es, Kuss um Mitternacht, ein Schatten mit Hut vor dem Mond. Rückfahrt: Schaffner – „Nur Sie drei“; auf dem Sitz eine schwarze Feder und ein Zettel „Na also.“
+   Angekündigt Folge 5: ein alter Brief aus Milwaukee und eine Fahrkarte von 1923 (Rückgriff auf Folge 1).
+   Stimmen: Erzählerin Katja, Maya Ava, Emma Amala, Lukas Conrad, Alte Frau Seraphina (sehr langsam, tief), Schaffner Killian. Neue Geräusche dampflok (Hintergrund) und dampfpfeife. Niveau ab A2. */
+PODCAST_INFO.reisen.lead = 'Like a little podcast: strange and moving stories on German trains with Maya, Lukas and Emma – a foggy night train through the Rhine valley, a ticking suitcase on the ICE to Berlin, Christmas Eve in the snow, a steam train on Walpurgis Night … with real train sounds. Just listen, no exercises. You can open the German text and the English translation.';
+PODCASTS.reisen.push(
+  { id:'reisen-p4', lang:'us', erzaehler:'Katja', show:'Geschichten aus dem Zug', ep:4, title:'Die Hexe im Abteil', de:'The witch in the compartment',
+    place:'On the steam train from Wernigerode to Schierke in the Harz mountains, on Walpurgis Night (April 30)', level:'from A2', kind:'Mystery · Witches · Love',
+    voices:{Maya:'en-US-AvaMultilingualNeural', Emma:'de-DE-AmalaNeural', Lukas:'de-DE-ConradNeural', 'Alte Frau':'de-DE-SeraphinaMultilingualNeural', Schaffner:'de-DE-KillianNeural'},
+    stil:{'':['-6%','+0Hz'], Maya:['-6%','+0Hz'], Emma:['+0%','+0Hz'], Lukas:['-2%','+0Hz'], 'Alte Frau':['-18%','-22Hz'], Schaffner:['-8%','-6Hz']},
+    words:[['die Walpurgisnacht','Walpurgis Night (April 30)'],['die Hexe','the witch'],['der Besen','the broom'],['die Dampflok','the steam locomotive'],['zischen / dampfen','to hiss / to steam'],['frei haben / Ich habe heute frei.','to have the day off / I’m off today.'],['das Kostüm','the costume'],['das Abteil','the compartment'],['der Korb','the basket'],['kontrollieren','to check (tickets)'],['die Eule','the owl'],['der Teufel','the devil'],['der Hirsch','the stag, the deer'],['rot werden','to blush'],['vor Mitternacht','before midnight'],['das Feuer','the fire'],['stören / Störe ich?','to disturb / Am I interrupting?'],['küssen','to kiss'],['der Schatten','the shadow'],['die Feder','the feather']],
+    fx:{'Hallo und willkommen':'pausa', 'Es ist der dreißigste':'dampfpfeife_dopo', 'Der Zug fährt los':'dampflok_an', 'Im Abteil sitzt':'miao_dopo', 'Draußen ist Nebel':'civetta_dopo', 'Maya bekommt Gänsehaut':'pausa', 'Plötzlich bremst':'dampflok_aus', 'Der Lokführer pfeift':'dampfpfeife', 'Der Zug fährt weiter':'dampflok_an', 'Auf dem Platz in Schierke':'dampflok_aus falo_an tamburo', 'Maya lächelt. Dann küsst':'campane_dopo', 'Im Dorf läuten':'vento_an', 'Um zwei Uhr nachts':'falo_aus vento_aus dampflok_an pausa', 'Das war „Geschichten':'dampflok_aus carillon_ende'},
+    text:`Hallo und willkommen bei „Geschichten aus dem Zug“! Heute: eine alte Dampflok im Harz, eine Nacht voller Hexen – und Lukas hat frei.
+Es ist der dreißigste April. Heute Nacht ist Walpurgisnacht. Maya, Emma und Lukas stehen am Bahnhof in Wernigerode. Vor ihnen steht eine schwarze Dampflok. Sie zischt und dampft.
+Emma trägt einen spitzen Hut und hat einen Besen dabei. Maya hat eine grüne Nase aus Plastik.
+Emma: Lukas! Wo ist dein Kostüm?
+Lukas: Ich habe heute frei. Mein Kostüm ist: kein Zugbegleiter.
+Maya: Wir fahren zum ersten Mal zusammen Zug, und du arbeitest nicht!
+Lukas: Ich weiß. Ich bin ganz nervös. Wer kontrolliert denn die Fahrkarten?
+Der Zug fährt los. Langsam, ganz langsam fährt er bergauf in den Wald. Es wird dunkel. Sie fahren nach Schierke, zum großen Hexenfest unter dem Brocken.
+Im Abteil sitzt schon jemand. Eine alte Frau. Sie trägt einen schwarzen Mantel und einen schwarzen Hut. Neben ihr steht ein Korb. Im Korb sitzt eine schwarze Katze.
+Alte Frau: Guten Abend. Fahrt ihr auch zum Tanzen?
+Emma: Ja! Sie auch?
+Alte Frau: Ich fahre jedes Jahr. Seit sehr, sehr langer Zeit.
+Sie schaut Maya lange an.
+Alte Frau: Du kommst von weit her. Über das große Wasser. Und du bist schon fast ein Jahr in Deutschland.
+Maya: Woher wissen Sie das?
+Alte Frau: Deine Schuhe sind amerikanisch. Und dein Deutsch ist sehr gut. Aber noch nicht perfekt.
+Emma lacht. Maya lacht nicht.
+Der Schaffner kommt in den Wagen.
+Schaffner: Die Fahrkarten, bitte!
+Lukas steht sofort auf. Dann setzt er sich schnell wieder hin. Emma kichert.
+Maya, Emma und Lukas zeigen ihre Fahrkarten. Die alte Frau zeigt nichts. Der Schaffner geht einfach weiter.
+Maya: Er hat Sie nicht kontrolliert!
+Alte Frau: Er kennt mich.
+Draußen ist Nebel. Eine Eule ruft.
+Alte Frau: Wisst ihr, was heute Nacht passiert? In der Walpurgisnacht fliegen die Hexen auf ihren Besen zum Brocken. Dort tanzen sie mit dem Teufel bis zum Morgen. Früher hatten die Leute Angst. Sie haben Glocken geläutet. Gegen die Hexen.
+Emma: Und Goethe hat darüber geschrieben. Im Faust! Unser Kater heißt Goethe.
+Alte Frau: Ich weiß. Goethe war ein netter junger Mann. Aber er hat zu viele Fragen gestellt.
+Maya bekommt Gänsehaut.
+Plötzlich bremst der Zug. Er steht mitten im Wald. Vor der Lok, auf dem Gleis, steht ein großer Hirsch. Er schaut in das Licht.
+Der Lokführer pfeift. Der Hirsch springt in den Wald. Maya und Emma schauen aus dem Fenster.
+Da beugt sich die alte Frau zu Lukas.
+Alte Frau: Und du, junger Mann. Du willst ihr etwas sagen. Schon seit Weihnachten.
+Lukas wird rot. Nicht blass – heute wird er rot.
+Lukas: Woher …?
+Alte Frau: Sag es ihr heute. Vor Mitternacht. In der Walpurgisnacht ist alles möglich. Danach wartest du wieder ein Jahr.
+Der Zug fährt weiter. In Schierke steigen alle aus. Maya dreht sich um. Die alte Frau ist weg. Der Korb auch.
+Auf dem Platz in Schierke brennt ein großes Feuer. Trommeln spielen. Überall sind Hexen und Teufel. Kinder mit Besen laufen herum. Es gibt Bratwurst und heißen Tee.
+Emma: Ich hole Hexensuppe! Wartet hier!
+Emma verschwindet. Maya und Lukas stehen allein am Feuer. Es ist zehn vor zwölf.
+Lukas: Maya, ich muss dir etwas sagen.
+Maya: Ja?
+Lukas: Seit dem Nachtzug … nein, seit dem ersten Tag … Ich …
+Emma: Hexensuppe! Mit Kürbis! Oh. Störe ich?
+Maya und Lukas rufen zusammen: Ja!
+Emma: Okay, okay. Ich gehe tanzen.
+Lukas: Maya, ich mag dich. Sehr. Nicht nur als Freundin.
+Maya: Ich weiß, Lukas. Sogar die Hexe im Zug hat es gewusst.
+Lukas: Und du?
+Maya lächelt. Dann küsst sie ihn. Genau um Mitternacht.
+Im Dorf läuten die Glocken. Der Wind wird stark. Alle schauen zum Brocken. Über dem Berg, vor dem Mond, fliegt ein Schatten. Ein Schatten auf einem Besen.
+Emma: Habt ihr das gesehen?
+Lukas: Das war eine Wolke.
+Maya: Eine Wolke mit Hut?
+Um zwei Uhr nachts fahren sie mit dem letzten Zug zurück. Der Schaffner kommt.
+Maya: Entschuldigung, wo ist die alte Frau mit der Katze? Sie war auf der Hinfahrt mit uns im Abteil.
+Schaffner: Eine alte Frau mit Katze? Nein. In diesem Abteil waren nur Sie drei. Drei Fahrkarten. Ich habe es doch gesehen.
+Maya schaut auf den Sitz gegenüber. Da liegt etwas. Eine schwarze Feder. Und ein kleiner Zettel. Darauf steht nur: Na also.
+Lukas: Gut. Ab heute glaube ich an Hexen.
+Das war „Geschichten aus dem Zug“. Glaubt ihr an Hexen? Nächstes Mal: ein alter Brief aus Milwaukee – und die Fahrkarte von neunzehnhundertdreiundzwanzig. Bis bald – und gute Fahrt!`,
+    tr:`Hello and welcome to “Stories from the Train”! Today: an old steam train in the Harz mountains, a night full of witches – and Lukas has the day off.
+It’s April thirtieth. Tonight is Walpurgis Night. Maya, Emma and Lukas are standing at the station in Wernigerode. In front of them stands a black steam locomotive. It hisses and steams.
+Emma is wearing a pointed hat and has brought a broom. Maya has a green plastic nose.
+Emma: Lukas! Where’s your costume?
+Lukas: I have the day off. My costume is: not a train attendant.
+Maya: We’re taking a train together for the first time, and you’re not working!
+Lukas: I know. I’m really nervous. Who’s going to check the tickets?
+The train departs. Slowly, very slowly it climbs up into the forest. It’s getting dark. They are going to Schierke, to the big witches’ festival below the Brocken.
+Someone is already sitting in the compartment. An old woman. She’s wearing a black coat and a black hat. Next to her is a basket. In the basket sits a black cat.
+Old woman: Good evening. Are you going dancing too?
+Emma: Yes! You too?
+Old woman: I go every year. For a very, very long time.
+She looks at Maya for a long time.
+Old woman: You come from far away. Across the big water. And you’ve been in Germany for almost a year.
+Maya: How do you know that?
+Old woman: Your shoes are American. And your German is very good. But not perfect yet.
+Emma laughs. Maya doesn’t laugh.
+The conductor comes into the car.
+Conductor: Tickets, please!
+Lukas immediately stands up. Then he quickly sits down again. Emma giggles.
+Maya, Emma and Lukas show their tickets. The old woman shows nothing. The conductor simply moves on.
+Maya: He didn’t check your ticket!
+Old woman: He knows me.
+Outside there’s fog. An owl calls.
+Old woman: Do you know what happens tonight? On Walpurgis Night the witches fly on their brooms to the Brocken. There they dance with the devil until morning. In the old days people were afraid. They rang bells. Against the witches.
+Emma: And Goethe wrote about it. In Faust! Our cat is called Goethe.
+Old woman: I know. Goethe was a nice young man. But he asked too many questions.
+Maya gets goosebumps.
+Suddenly the train brakes. It stops in the middle of the forest. In front of the locomotive, on the track, stands a big stag. It looks into the light.
+The driver blows the whistle. The stag jumps into the forest. Maya and Emma look out of the window.
+Then the old woman leans over to Lukas.
+Old woman: And you, young man. You want to tell her something. Since Christmas.
+Lukas blushes. Not pale – today he turns red.
+Lukas: How do you …?
+Old woman: Tell her today. Before midnight. On Walpurgis Night anything is possible. After that you’ll wait another year.
+The train continues. In Schierke everyone gets off. Maya turns around. The old woman is gone. The basket too.
+In the square in Schierke a big fire is burning. Drums are playing. Everywhere there are witches and devils. Children with brooms run around. There are bratwursts and hot tea.
+Emma: I’ll get witch soup! Wait here!
+Emma disappears. Maya and Lukas stand alone by the fire. It’s ten to twelve.
+Lukas: Maya, I have to tell you something.
+Maya: Yes?
+Lukas: Since the night train … no, since the first day … I …
+Emma: Witch soup! With pumpkin! Oh. Am I interrupting?
+Maya and Lukas shout together: Yes!
+Emma: Okay, okay. I’m going dancing.
+Lukas: Maya, I like you. A lot. Not just as a friend.
+Maya: I know, Lukas. Even the witch on the train knew it.
+Lukas: And you?
+Maya smiles. Then she kisses him. Exactly at midnight.
+In the village the bells ring. The wind gets stronger. Everyone looks at the Brocken. Above the mountain, in front of the moon, a shadow is flying. A shadow on a broom.
+Emma: Did you see that?
+Lukas: That was a cloud.
+Maya: A cloud with a hat?
+At two in the morning they take the last train back. The conductor comes.
+Maya: Excuse me, where is the old woman with the cat? She was in the compartment with us on the way here.
+Conductor: An old woman with a cat? No. There were only you three in this compartment. Three tickets. I saw it myself.
+Maya looks at the seat opposite. There’s something on it. A black feather. And a small note. It just says: There you go.
+Lukas: All right. From today on I believe in witches.
+That was “Stories from the Train”. Do you believe in witches? Next time: an old letter from Milwaukee – and the ticket from 1923. See you soon – and have a good trip!`,
+    fact:'Walpurgis Night (April 30) is celebrated in many towns of the Harz mountains, for example in Schierke, Thale and Wernigerode, with fires, music and thousands of people dressed as witches and devils. According to legend, the witches meet on the Brocken, the highest mountain in northern Germany (1,141 m). Goethe climbed the Brocken in 1777 and later set the “Walpurgisnacht” scene of his Faust there. Narrow-gauge steam trains of the Harzer Schmalspurbahnen still run up to the Brocken almost every day. From 1961 until December 1989 the summit lay in the East German border zone and was closed to the public; trains have been running to the top again since 1991.' }
 );
 /* Hörgeschichte „Rennrad“ (Italiener lernen Deutsch, v230; Wunsch der Nutzerin: „mach für rennrad bitte eine hörgeschichte“).
    Podcast „Bergauf – der Radpodcast aus Freiburg“ von Martina und Nele, Folge 1: Papa Ferraro ist zu Besuch und fordert Felix
