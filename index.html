@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 279;
+const APP_VERSION = 280;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -78967,6 +78967,155 @@ Lukas: No. Trains are on time. Mostly.
 Emma: Mostly!
 That was “Stories from the Train”. Have you ever forgotten something on a train? Next time: Christmas Eve, lots of snow – and a train that can’t go any further. See you soon – and have a good trip!`,
     fact:'The Berlin Wall was built almost overnight on August 13, 1961. Families, friends and couples on both sides were suddenly separated – for 28 years, until the Wall fell on November 9, 1989. Today the ICE (InterCityExpress) takes about four hours from Frankfurt to Berlin. If you see luggage that nobody claims on a German train, tell the train staff (das Zugpersonal): they contact the Bundespolizei, the federal police, which is responsible for safety on the railways.' }
+);
+/* Hörgeschichte „Deutschlandreise“, Folge 3 (v280, 28.10.2026: „mach bitte folge 3“) – wird nach leggende_reisen2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Heiligabend, Zug Dresden – Frankfurt im Thüringer Wald (passt zu Stufe 3: Maya war bei Opa Werner, Weihnachten in Frankfurt). Ein Baum liegt auf dem Gleis,
+   der Räumzug kommt erst um Mitternacht. Ben (7) fürchtet, das Christkind findet ihn nicht; sein Papa ist der Lokführer dieses Zugs.
+   Der alte Wilhelm kommt mit Laterne und Schlitten und holt alle 43 in den alten Bahnhof (Ofen, Tee, kleiner Baum). Er war 1962 hier Bahnwärter –
+   damals blieb auch ein Zug stecken, darin seine spätere Frau. Oma Ingrid am Telefon, Goethe miaut. „Stille Nacht“, ein Glöckchen im Schnee,
+   unter dem Baum ein Holzzug „Für Ben“; Wilhelm: „Ich bin zu alt für das Christkind.“ Angekündigt Folge 4: Dampflok im Harz, auf den Brocken, zu den Hexen.
+   Stimmen: Erzählerin Katja, Maya Ava, Lukas Conrad, Ben Amala (höher), Mutter Seraphina, Lokführer Florian, Wilhelm Killian (langsam, tief), Oma Ingrid de-AT-Ingrid (Telefon). Niveau ab A2. */
+PODCAST_INFO.reisen.lead = 'Like a little podcast: strange and moving stories on German trains with Maya, Lukas and Emma – a foggy night train through the Rhine valley, a ticking suitcase on the ICE to Berlin, Christmas Eve in the snow … with real train sounds. Just listen, no exercises. You can open the German text and the English translation.';
+PODCASTS.reisen.push(
+  { id:'reisen-p3', lang:'us', erzaehler:'Katja', show:'Geschichten aus dem Zug', ep:3, title:'Heiligabend im Schnee', de:'Christmas Eve in the snow',
+    place:'On a train from Dresden to Frankfurt and in an old station in the Thuringian Forest, on December 24', level:'from A2', kind:'Christmas · Family · Snow',
+    voices:{Maya:'en-US-AvaMultilingualNeural', Lukas:'de-DE-ConradNeural', Ben:'de-DE-AmalaNeural', Mutter:'de-DE-SeraphinaMultilingualNeural', 'Lokführer':'de-DE-FlorianMultilingualNeural', Wilhelm:'de-DE-KillianNeural', 'Oma Ingrid':'de-AT-IngridNeural'},
+    stil:{'':['-6%','+0Hz'], Maya:['-6%','+0Hz'], Lukas:['-2%','+0Hz'], Ben:['+4%','+28Hz'], Mutter:['-4%','+0Hz'], 'Lokführer':['-4%','-6Hz'], Wilhelm:['-16%','-12Hz'], 'Oma Ingrid':['-8%','+0Hz']},
+    words:[['Heiligabend','Christmas Eve (December 24)'],['schneien / Es schneit.','to snow / It’s snowing.'],['bremsen','to brake'],['das Gleis','the track'],['der Räumzug','the snowplow train'],['der Lokführer','the train driver'],['das Christkind','the Christ Child (brings presents in the south)'],['frieren','to be cold, to freeze'],['die Laterne','the lantern'],['der Schlitten','the sled'],['passen / Wie viele Leute passen rein?','to fit / How many people fit in?'],['der Ofen','the stove'],['der Zimt','the cinnamon'],['die Plätzchen','the Christmas cookies'],['der Bahnwärter','the railway keeper (old job)'],['stecken bleiben','to get stuck'],['das Glöckchen','the little bell'],['das Päckchen','the little package'],['läuten / Die Glocken läuten.','to ring / The bells are ringing.'],['der Dienst','the shift, the duty']],
+    fx:{'Hallo und willkommen':'pausa', 'Es ist der vierundzwanzigste':'treno_an', 'Plötzlich bremst':'stridio', 'Der Zug steht':'treno_aus', 'Lukas: Meine Damen und Herren':'altoparlante', 'Draußen wird es dunkel':'vento_an', 'Dann geht das Licht aus':'spegnimento', 'Dann – ein Licht':'pausa', 'Jemand klopft':'muro', 'Zehn Minuten später':'vento_aus falo_an passi', 'Oma Ingrid: Maya, Schatz':'radio', 'Oma Ingrid: Na, dann':'radio miao_dopo', 'Später sitzt Wilhelm':'pausa', 'Um zehn singen':'carillon', 'Dann – ganz leise':'campanello', 'Um Mitternacht pfeift':'falo_aus fischietto campane_dopo', 'Das war „Geschichten':'carillon_ende'},
+    text:`Hallo und willkommen bei „Geschichten aus dem Zug“! Heute ist Heiligabend. Es schneit und schneit – und ein Zug fährt nicht mehr weiter.
+Es ist der vierundzwanzigste Dezember, drei Uhr nachmittags. Maya sitzt im Zug von Dresden nach Frankfurt. Sie war eine Woche bei Opa Werner. Heute Abend feiert sie bei Oma Ingrid und Emma.
+Draußen ist alles weiß. Der Zug fährt durch den Thüringer Wald. Und wer hat Dienst? Natürlich Lukas.
+Lukas: Frohe Weihnachten, Maya! Du schläfst ja gar nicht.
+Maya: Nein. Nie wieder im Zug! Arbeitest du heute lange?
+Lukas: Bis zehn. Weihnachten ist bei der Bahn ein ganz normaler Tag.
+Gegenüber sitzt ein kleiner Junge mit seiner Mutter. Er drückt die Nase an das Fenster.
+Ben: Mama, kommt das Christkind auch in den Zug?
+Mutter: Nein, Ben. Das Christkind kommt heute Abend zu uns nach Hause. Und Papa auch. Um elf.
+Ben: Um elf! Das ist so spät!
+Mutter: Mein Mann ist Lokführer. Er fährt heute diesen Zug. Wir sehen ihn erst in Frankfurt.
+Plötzlich bremst der Zug. Er bremst lange.
+Der Zug steht. Es ist ganz still.
+Lukas: Meine Damen und Herren, vor uns liegt ein Baum auf dem Gleis. Wegen des Schnees können wir nicht weiterfahren. Ein Räumzug kommt. Aber das kann leider ein paar Stunden dauern.
+Im Wagen stöhnen alle. Ein Mann im Anzug schimpft laut. Ausgerechnet heute!
+Lukas kommt zu Maya. Er sieht müde aus.
+Lukas: Schlechte Nachricht. Der Räumzug kommt erst um Mitternacht. Vielleicht.
+Ben fängt an zu weinen.
+Ben: Dann findet uns das Christkind nicht!
+Draußen wird es dunkel. Der Wind heult. Der Schnee fliegt gegen das Fenster.
+Dann geht das Licht aus. Nur die Notlampen leuchten noch. Es wird kalt im Zug.
+Maya: Lukas, was machen wir jetzt?
+Lukas: Wir warten. Und wir frieren.
+Dann – ein Licht im Schnee. Eine Laterne. Jemand kommt langsam zum Zug.
+Jemand klopft an die Tür.
+Lukas öffnet. Draußen steht ein alter Mann mit Mütze und Schal. Er zieht einen Schlitten.
+Wilhelm: Guten Abend. Ich bin Wilhelm. Ich wohne da vorne, im alten Bahnhof. Da ist es warm. Kommen Sie! Alle!
+Lukas: Wie viele Leute passen in Ihr Haus?
+Wilhelm: Wie viele sind Sie denn?
+Lukas: Zweiundvierzig. Und der Lokführer.
+Wilhelm: Gut. Dann passen dreiundvierzig rein.
+Zehn Minuten später sitzen alle im alten Bahnhof. Ein Ofen brennt. Es riecht nach Tee und Zimt. In der Ecke steht ein kleiner Weihnachtsbaum mit Kerzen.
+Der Lokführer kommt als Letzter herein. Ben springt auf.
+Ben: Papa! Papa ist da!
+Lokführer: Hallo, mein Großer! Frohe Weihnachten! Siehst du? Heute haben wir doch Zeit zusammen.
+Ben: Das Christkind hat den Baum auf das Gleis gelegt. Für uns!
+Alle lachen. Jeder hat etwas in der Tasche: Stollen, Lebkuchen, Äpfel, Schokolade. Maya hat Plätzchen von Opa Werner. Wilhelm kocht Würstchen für alle.
+Maya ruft Oma Ingrid an.
+Oma Ingrid: Maya, Schatz! Wo bist du denn?
+Maya: In einem alten Bahnhof im Thüringer Wald. Wir feiern hier. Mit dreiundvierzig Leuten.
+Oma Ingrid: Na, dann feiert schön! Wir warten auf dich. Goethe hat übrigens schon dein Geschenk aufgemacht.
+Maya lacht.
+Später sitzt Wilhelm neben Maya am Ofen.
+Maya: Wohnen Sie schon lange hier?
+Wilhelm: Seit neunzehnhundertzweiundsechzig. Ich war hier Bahnwärter. Und an Heiligabend zweiundsechzig ist auch ein Zug stecken geblieben. Genau hier. Im Schnee.
+Maya: Wirklich?
+Wilhelm: Ja. In dem Zug war eine junge Frau aus Frankfurt. Sie hat die ganze Nacht hier am Ofen gesessen. Ein Jahr später haben wir geheiratet.
+Maya: Und heute?
+Wilhelm: Heute ist sie nicht mehr da. Seit drei Jahren. Aber ich koche jedes Jahr an Heiligabend Tee. Für alle Fälle. Man weiß ja nie.
+Maya schaut zu Lukas. Lukas schaut zu Maya. Dann schauen beide schnell weg.
+Um zehn singen alle zusammen „Stille Nacht“. Sogar der Mann im Anzug singt mit.
+Dann – ganz leise – ein Glöckchen. Draußen im Schnee.
+Ben: Hört ihr das? Das Christkind!
+Alle laufen zum Fenster. Draußen ist niemand. Nur Schnee. Aber unter dem kleinen Baum liegt jetzt ein Päckchen. Darauf steht: Für Ben.
+Ben macht es auf. Ein kleiner Zug aus Holz. Mit einer roten Lok – wie Papas Lok.
+Mutter: Das war ich nicht.
+Lokführer: Ich auch nicht.
+Alle schauen zu Wilhelm. Wilhelm trinkt seinen Tee und lächelt.
+Wilhelm: Was schaut ihr mich so an? Ich bin zu alt für das Christkind.
+Um Mitternacht pfeift draußen ein Zug. Der Räumzug ist da. Im Dorf läuten die Glocken.
+Lukas: Alle einsteigen, bitte! Wir fahren weiter!
+Maya: Lukas, du hast um zehn nicht Feierabend gemacht.
+Lukas: Nein. Aber das war mein schönster Dienst.
+Maya: Frohe Weihnachten, Lukas.
+Lukas: Frohe Weihnachten, Maya.
+Das war „Geschichten aus dem Zug“. Wie feiert ihr Weihnachten? Nächstes Mal: eine alte Dampflok im Harz, hoch auf den Brocken – zum Berg der Hexen. Bis bald – und gute Fahrt!`,
+    tr:`Hello and welcome to “Stories from the Train”! Today is Christmas Eve. It snows and snows – and a train can’t go any further.
+It’s December twenty-fourth, three o’clock in the afternoon. Maya is sitting on the train from Dresden to Frankfurt. She spent a week with Grandpa Werner. Tonight she’s celebrating with Grandma Ingrid and Emma.
+Outside, everything is white. The train is going through the Thuringian Forest. And who is on duty? Lukas, of course.
+Lukas: Merry Christmas, Maya! You’re not sleeping at all.
+Maya: No. Never again on a train! Are you working late today?
+Lukas: Until ten. At the railway, Christmas is a completely normal day.
+Opposite sits a little boy with his mother. He presses his nose against the window.
+Ben: Mom, does the Christ Child come on the train too?
+Mother: No, Ben. The Christ Child comes to our home tonight. And Dad too. At eleven.
+Ben: At eleven! That’s so late!
+Mother: My husband is a train driver. He’s driving this train today. We’ll only see him in Frankfurt.
+Suddenly the train brakes. It brakes for a long time.
+The train stops. It’s completely quiet.
+Lukas: Ladies and gentlemen, there is a tree on the track ahead of us. Because of the snow we can’t continue. A snowplow train is coming. But unfortunately that may take a few hours.
+Everyone in the car groans. A man in a suit complains loudly. Today of all days!
+Lukas comes over to Maya. He looks tired.
+Lukas: Bad news. The snowplow train won’t come until midnight. Maybe.
+Ben starts to cry.
+Ben: Then the Christ Child won’t find us!
+Outside it’s getting dark. The wind howls. The snow flies against the window.
+Then the light goes out. Only the emergency lamps are still on. It’s getting cold in the train.
+Maya: Lukas, what do we do now?
+Lukas: We wait. And we freeze.
+Then – a light in the snow. A lantern. Someone is slowly coming to the train.
+Someone knocks on the door.
+Lukas opens it. Outside stands an old man with a cap and a scarf. He’s pulling a sled.
+Wilhelm: Good evening. I’m Wilhelm. I live up ahead, in the old station. It’s warm there. Come! All of you!
+Lukas: How many people fit in your house?
+Wilhelm: Well, how many of you are there?
+Lukas: Forty-two. And the train driver.
+Wilhelm: Good. Then forty-three fit in.
+Ten minutes later everyone is sitting in the old station. A stove is burning. It smells of tea and cinnamon. In the corner stands a small Christmas tree with candles.
+The train driver is the last to come in. Ben jumps up.
+Ben: Dad! Dad is here!
+Train driver: Hello, big guy! Merry Christmas! You see? Today we have time together after all.
+Ben: The Christ Child put the tree on the track. For us!
+Everyone laughs. Everyone has something in their bag: stollen, gingerbread, apples, chocolate. Maya has Christmas cookies from Grandpa Werner. Wilhelm cooks sausages for everyone.
+Maya calls Grandma Ingrid.
+Grandma Ingrid: Maya, darling! Where are you?
+Maya: In an old station in the Thuringian Forest. We’re celebrating here. With forty-three people.
+Grandma Ingrid: Well, then have a lovely time! We’re waiting for you. By the way, Goethe has already opened your present.
+Maya laughs.
+Later Wilhelm sits next to Maya by the stove.
+Maya: Have you lived here for a long time?
+Wilhelm: Since 1962. I was the railway keeper here. And on Christmas Eve ’62 a train got stuck too. Right here. In the snow.
+Maya: Really?
+Wilhelm: Yes. On that train there was a young woman from Frankfurt. She sat here by the stove all night. A year later we got married.
+Maya: And today?
+Wilhelm: Today she’s not here anymore. For three years now. But every year on Christmas Eve I make tea. Just in case. You never know.
+Maya looks at Lukas. Lukas looks at Maya. Then they both quickly look away.
+At ten everyone sings “Silent Night” together. Even the man in the suit sings along.
+Then – very quietly – a little bell. Outside in the snow.
+Ben: Do you hear that? The Christ Child!
+Everyone runs to the window. Nobody is outside. Only snow. But under the little tree there’s now a little package. It says: For Ben.
+Ben opens it. A little wooden train. With a red locomotive – like Dad’s locomotive.
+Mother: That wasn’t me.
+Train driver: Not me either.
+Everyone looks at Wilhelm. Wilhelm drinks his tea and smiles.
+Wilhelm: Why are you looking at me like that? I’m too old for the Christ Child.
+At midnight a train whistles outside. The snowplow is here. In the village the bells are ringing.
+Lukas: All aboard, please! We’re moving on!
+Maya: Lukas, you didn’t finish work at ten.
+Lukas: No. But that was my best shift ever.
+Maya: Merry Christmas, Lukas.
+Lukas: Merry Christmas, Maya.
+That was “Stories from the Train”. How do you celebrate Christmas? Next time: an old steam train in the Harz mountains, up the Brocken – to the mountain of the witches. See you soon – and have a good trip!`,
+    fact:'In Germany the big Christmas celebration is on the evening of December 24 (Heiligabend): families open their presents that evening, not on the morning of the 25th. In the south and west the Christkind brings the presents, and in many families a little bell rings when they are ready under the tree. “Stille Nacht” (Silent Night) was first sung on Christmas Eve 1818 in Oberndorf near Salzburg. And yes: in heavy snow, fallen trees on the tracks are one of the most common reasons why German trains stop in winter.' }
 );
 /* Hörgeschichte „Rennrad“ (Italiener lernen Deutsch, v230; Wunsch der Nutzerin: „mach für rennrad bitte eine hörgeschichte“).
    Podcast „Bergauf – der Radpodcast aus Freiburg“ von Martina und Nele, Folge 1: Papa Ferraro ist zu Besuch und fordert Felix
