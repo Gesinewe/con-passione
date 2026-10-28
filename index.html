@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 270;
+const APP_VERSION = 271;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -76832,6 +76832,125 @@ Halvor: Drei. Ich will auch Brei.
 Das war „Sagen am Kamin“. Wenn du eine alte Mühle im Wald hast – stell ein bisschen Brei hin. Er darf nicht zu heiß sein. Macht’s gut, und gute Nacht!`,
     fact:'Fast jeder Hof in Norwegen hatte früher eine eigene kleine Bachmühle („bekkekvern“) mit einem waagrechten Wasserrad unter dem Boden. Gemahlen wurde vor allem im Herbst, wenn die Bäche viel Wasser führten – oft die ganze Nacht. Hunderte solcher Mühlen sind heute restauriert. Aus vielen Gegenden stammt die Sage vom „kvernknurr“ oder „kvernkall“, der das Mühlrad festhält: Ein mutiger Bursche schüttet ihm kochenden Brei oder heißen Teer ins aufgerissene Maul („Har du sett så stort et gap?“ – „Har du sett så varm en grøt?“), und der Unhold kommt nie wieder. Der Dachs („grevling“) lebt in ganz Südnorwegen, gräbt seine Baue gern unter Scheunen und alten Gebäuden und frisst fast alles – auch Süßes.' }
 );
+/* Hörgeschichte „¡Hola, España!“ (Spanisch aus Spanien, Lernrichtung sp, v271; Wunsch der Nutzerin am 28.10.2026: „mach bitte eine hörgeschichte dafür“).
+   Podcast „Historias del Hostal“, Folge 1: Nacht vom 31. Oktober auf den 1. November (Todos los Santos), passt zu Stufe 1 (Ende Oktober/November).
+   Gewitter, Stromausfall im Hostal Carmen; Doña Carmen erzählt bei Kerzenlicht die Legende der Casa de las Siete Chimeneas (die weiße Dame mit
+   der Fackel auf dem Dach). Dann Schritte oben, eine Tür, eine Stimme … – es ist Don Pepe, der aus dem Käfig entwischt ist und eine alte Schachtel
+   umgestoßen hat: darin ein Liebesbrief von Antonio an Carmen, von 1975. Gäste: das ängstliche Ehepaar Vogel aus Bremen.
+   Stimmen: Erzählerin Elvira, Hanna de-DE-SeraphinaMultilingual, Carmen Ximena (tiefer, langsam), Álvaro Alvaro, Herr Vogel de-DE-FlorianMultilingual,
+   Frau Vogel en-US-AvaMultilingual, Don Pepe Ximena sehr hoch. Niveau ab A2. */
+PODCAST_INFO.turismo = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: eine stürmische Nacht im Hostal Carmen mit Hanna, Álvaro, Doña Carmen und Don Pepe – mit Regen, Donner, Stromausfall, knarrenden Schritten und der weißen Dame von Madrid, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.turismo = [
+  { id:'turismo-p1', lang:'sp', erzaehler:'Elvira', show:'Historias del Hostal', ep:1, title:'La dama de las siete chimeneas', de:'Die Dame der sieben Schornsteine',
+    place:'Im Hostal Carmen in Lavapiés, Madrid, in der Nacht zu Allerheiligen', level:'ab A2', kind:'Legende · Grusel · Humor',
+    voices:{Hanna:'de-DE-SeraphinaMultilingualNeural', Carmen:'es-ES-XimenaNeural', Álvaro:'es-ES-AlvaroNeural', 'Señor Vogel':'de-DE-FlorianMultilingualNeural', 'Señora Vogel':'en-US-AvaMultilingualNeural', Pepe:'es-ES-XimenaNeural', Voz:'es-ES-XimenaNeural'},
+    stil:{'':['-8%','-2Hz'], Hanna:['-6%','+0Hz'], Carmen:['-12%','-10Hz'], Álvaro:['+0%','+0Hz'], 'Señor Vogel':['-4%','-4Hz'], 'Señora Vogel':['-6%','+2Hz'], Pepe:['+6%','+45Hz'], Voz:['-20%','+30Hz']},
+    words:[['la leyenda','die Legende'],['Todos los Santos','Allerheiligen'],['los huesos de santo','die „Heiligenknochen“ (Marzipanröllchen)'],['los buñuelos de viento','die luftigen Krapfen'],['la tormenta','das Gewitter'],['el trueno','der Donner'],['se va la luz','der Strom fällt aus'],['la vela','die Kerze'],['la chimenea / las chimeneas','der Schornstein / die Schornsteine'],['el tejado','das Dach'],['la antorcha','die Fackel'],['vestida de blanco','weiß gekleidet'],['el capitán','der Hauptmann'],['la guerra','der Krieg'],['los pasos','die Schritte'],['crujir / cruje','knarren / knarrt'],['la cortina','der Vorhang'],['el armario','der Schrank'],['escaparse / se ha escapado','entwischen / ist entwischt'],['la carta de amor','der Liebesbrief']],
+    fx:{'Hola y bienvenidos':'pausa', 'En la recepción del Hostal Carmen':'pioggia_an', 'De pronto, un trueno':'tuono', 'Y se va la luz':'spegnimento', 'Doña Carmen enciende':'pausa', 'Carmen: Hace muchos años':'carillon', 'Carmen: Dicen que, por la noche':'vento_an', 'Carmen: Y algunas noches':'pausa', 'Entonces lo oyen':'vento_aus passi', 'Señora Vogel: ¿Qué es eso?':'pausa', 'Arriba, una puerta':'porta', 'Voz: ¡Eleeena':'eco', 'Suben la escalera':'passi', 'Álvaro abre la puerta':'porta', 'Algo blanco se mueve':'pausa', 'Encima del armario':'pappagallo', 'En ese momento vuelve':'accensione', 'Carmen abre la carta':'pausa', 'Eso fue «Historias':'pioggia_aus pausa'},
+    text:`Hola y bienvenidos a «Historias del Hostal». Hoy es treinta y uno de octubre. Mañana es Todos los Santos, y en Madrid se comen huesos de santo y buñuelos de viento.
+En la recepción del Hostal Carmen hay un plato de buñuelos. Fuera llueve mucho. Hanna, Álvaro y doña Carmen están en la recepción. Hay dos huéspedes nuevos: el señor y la señora Vogel, de Bremen.
+Señora Vogel: ¡Qué tormenta! En Bremen llueve mucho, pero no así.
+Álvaro: Tranquila, señora. En Madrid las tormentas son cortas.
+De pronto, un trueno. Muy fuerte. Don Pepe grita en su jaula.
+Y se va la luz.
+Señor Vogel: ¡Uy! No veo nada.
+Hanna: ¿Álvaro? ¿Dónde estás?
+Álvaro: Aquí, a tu lado. Tranquila.
+Doña Carmen enciende una vela. La recepción está llena de sombras.
+Carmen: Bueno. Sin luz y en la noche de Todos los Santos … es la noche perfecta para una leyenda. ¿Queréis una?
+Señora Vogel: ¿Una leyenda? ¿De miedo?
+Carmen: Un poco. Es la leyenda más famosa de Madrid.
+Carmen: Hace muchos años, cerca de la Puerta del Sol, había una casa con siete chimeneas. En la casa vivía una chica joven y muy guapa, Elena.
+Carmen: Elena estaba enamorada de un capitán. Se casaron. Pero un día el capitán fue a la guerra … y no volvió nunca.
+Carmen: Elena estaba muy triste. Poco después, una mañana, la encontraron muerta en su casa. Nadie sabe por qué.
+Carmen: Dicen que, por la noche, una dama vestida de blanco camina por el tejado, entre las siete chimeneas. Lleva una antorcha en la mano. Busca a su capitán.
+Señor Vogel: ¿Y la casa todavía existe?
+Carmen: Todavía existe. Muchos vecinos dicen que la han visto.
+Carmen: Y algunas noches, cuando hay tormenta … la dama baja a la calle. Y llama a las puertas.
+Silencio. Solo se oye la lluvia.
+Entonces lo oyen: pasos. Arriba. En el tercer piso. Crac. Crac. Crac.
+Señora Vogel: ¿Qué es eso?
+Álvaro: Es … el viento.
+Hanna: Álvaro, el viento no camina.
+Arriba, una puerta se abre despacio.
+Voz: ¡Eleeena! ¡Eleeena!
+La señora Vogel agarra la mano de su marido. Hanna agarra la mano de Álvaro.
+Carmen: Bueno. Vamos a ver quién es.
+Señor Vogel: ¿Usted? ¿Arriba? ¿Con una vela?
+Carmen: Llevo cuarenta años en este hostal, señor Vogel. No me da miedo nada.
+Suben la escalera. Primero doña Carmen con la vela. Detrás, Álvaro y Hanna. Al final, los Vogel, muy despacio.
+La puerta de la habitación de Hanna está abierta. Dentro hace frío.
+Álvaro abre la puerta del todo.
+Algo blanco se mueve delante de la ventana. Hanna grita.
+Pero no es una dama. Es la cortina. La ventana está abierta, y el viento mueve la cortina blanca.
+Hanna: Uf. Es la cortina. Perdón, abrí la ventana esta tarde.
+Señora Vogel: ¿Y la voz? ¿Y los pasos?
+Encima del armario, dos ojos pequeños los miran. Verdes y amarillos.
+Pepe: ¡Hola, guapa!
+Carmen: ¡Don Pepe! ¿Cómo has salido de la jaula?
+Álvaro: Con el trueno se ha escapado. Y la voz … «¡Eleeena!» … es la palabra que le enseñó el abuelo Antonio.
+En el suelo hay una caja vieja. Don Pepe la ha tirado del armario. Hay papeles por todas partes.
+Hanna recoge una carta. Es muy vieja. En el sobre pone: «Para Carmen».
+En ese momento vuelve la luz. Todos se miran y ríen.
+Carmen abre la carta. La lee en silencio. Luego sonríe, con lágrimas en los ojos.
+Carmen: Es de Antonio. De 1975. Mi primera carta de amor. La perdí hace muchos años … y don Pepe la ha encontrado.
+Señor Vogel: Entonces su loro no es un fantasma. Es un detective.
+Pepe: ¡La cuenta, por favor!
+Todos ríen. Bajan a la recepción y se comen todos los buñuelos.
+Eso fue «Historias del Hostal». La próxima vez: una noche en el Rastro, una lámpara vieja y un secreto de 1975. ¡Hasta pronto … y cerrad bien las ventanas!`,
+    tr:`Hallo und willkommen bei „Geschichten aus dem Hostal“. Heute ist der einunddreißigste Oktober. Morgen ist Allerheiligen, und in Madrid isst man „Heiligenknochen“ und luftige Krapfen.
+In der Rezeption des Hostals Carmen steht ein Teller mit Krapfen. Draußen regnet es stark. Hanna, Álvaro und Doña Carmen sind in der Rezeption. Es gibt zwei neue Gäste: Herrn und Frau Vogel aus Bremen.
+Frau Vogel: Was für ein Gewitter! In Bremen regnet es viel, aber nicht so.
+Álvaro: Keine Sorge. In Madrid sind die Gewitter kurz.
+Plötzlich ein Donner. Sehr laut. Don Pepe schreit in seinem Käfig.
+Und der Strom fällt aus.
+Herr Vogel: Oh! Ich sehe nichts.
+Hanna: Álvaro? Wo bist du?
+Álvaro: Hier, neben dir. Keine Sorge.
+Doña Carmen zündet eine Kerze an. Die Rezeption ist voller Schatten.
+Carmen: Na gut. Ohne Strom und in der Nacht vor Allerheiligen … das ist die perfekte Nacht für eine Legende. Wollt ihr eine?
+Frau Vogel: Eine Legende? Eine gruselige?
+Carmen: Ein bisschen. Es ist die berühmteste Legende Madrids.
+Carmen: Vor vielen Jahren gab es nahe der Puerta del Sol ein Haus mit sieben Schornsteinen. In dem Haus wohnte eine junge, sehr schöne Frau, Elena.
+Carmen: Elena war in einen Hauptmann verliebt. Sie heirateten. Aber eines Tages zog der Hauptmann in den Krieg … und kam nie zurück.
+Carmen: Elena war sehr traurig. Kurz danach fand man sie eines Morgens tot in ihrem Haus. Niemand weiß, warum.
+Carmen: Man sagt, nachts gehe eine weiß gekleidete Dame über das Dach, zwischen den sieben Schornsteinen. Sie hat eine Fackel in der Hand. Sie sucht ihren Hauptmann.
+Herr Vogel: Und das Haus gibt es noch?
+Carmen: Es gibt es noch. Viele Nachbarn sagen, sie hätten sie gesehen.
+Carmen: Und in manchen Nächten, wenn ein Gewitter ist … kommt die Dame auf die Straße herunter. Und klopft an die Türen.
+Stille. Man hört nur den Regen.
+Da hören sie es: Schritte. Oben. Im dritten Stock. Knarr. Knarr. Knarr.
+Frau Vogel: Was ist das?
+Álvaro: Das ist … der Wind.
+Hanna: Álvaro, der Wind geht nicht.
+Oben öffnet sich langsam eine Tür.
+Stimme: Eleeena! Eleeena!
+Frau Vogel packt die Hand ihres Mannes. Hanna packt die Hand von Álvaro.
+Carmen: Gut. Schauen wir, wer das ist.
+Herr Vogel: Sie? Nach oben? Mit einer Kerze?
+Carmen: Ich bin seit vierzig Jahren in diesem Hostal, Herr Vogel. Ich habe vor nichts Angst.
+Sie gehen die Treppe hinauf. Zuerst Doña Carmen mit der Kerze. Dahinter Álvaro und Hanna. Zum Schluss die Vogels, ganz langsam.
+Die Tür von Hannas Zimmer steht offen. Drinnen ist es kalt.
+Álvaro öffnet die Tür ganz.
+Etwas Weißes bewegt sich vor dem Fenster. Hanna schreit.
+Aber es ist keine Dame. Es ist der Vorhang. Das Fenster ist offen, und der Wind bewegt den weißen Vorhang.
+Hanna: Puh. Es ist der Vorhang. Entschuldigung, ich habe heute Nachmittag das Fenster aufgemacht.
+Frau Vogel: Und die Stimme? Und die Schritte?
+Oben auf dem Schrank schauen sie zwei kleine Augen an. Grün und gelb.
+Pepe: Hallo, Hübsche!
+Carmen: Don Pepe! Wie bist du aus dem Käfig gekommen?
+Álvaro: Beim Donner ist er entwischt. Und die Stimme … „Eleeena!“ … das ist das Wort, das Opa Antonio ihm beigebracht hat.
+Auf dem Boden liegt eine alte Schachtel. Don Pepe hat sie vom Schrank gestoßen. Überall liegen Papiere.
+Hanna hebt einen Brief auf. Er ist sehr alt. Auf dem Umschlag steht: „Für Carmen“.
+In diesem Moment kommt der Strom zurück. Alle schauen sich an und lachen.
+Carmen öffnet den Brief. Sie liest ihn schweigend. Dann lächelt sie, mit Tränen in den Augen.
+Carmen: Er ist von Antonio. Von 1975. Mein erster Liebesbrief. Ich habe ihn vor vielen Jahren verloren … und Don Pepe hat ihn gefunden.
+Herr Vogel: Dann ist Ihr Papagei kein Gespenst. Er ist ein Detektiv.
+Pepe: Die Rechnung, bitte!
+Alle lachen. Sie gehen hinunter in die Rezeption und essen alle Krapfen auf.
+Das war „Geschichten aus dem Hostal“. Nächstes Mal: eine Nacht auf dem Rastro, eine alte Lampe und ein Geheimnis von 1975. Bis bald … und macht die Fenster gut zu!`,
+    fact:'Die Casa de las Siete Chimeneas (Haus der sieben Schornsteine) steht wirklich in Madrid, an der Plaza del Rey, und ist eines der ältesten Wohnhäuser der Stadt (16. Jahrhundert). Die Legende von Elena, der weißen Dame mit der Fackel auf dem Dach, wird seit Jahrhunderten erzählt – bei Umbauarbeiten fand man im 19. Jahrhundert angeblich ein Skelett einer Frau. Zu Allerheiligen isst man in Madrid traditionell huesos de santo (Marzipanröllchen mit Eigelbfüllung) und buñuelos de viento.' }
+];
 /* Hörgeschichte „Unterwegs“ (Italiener lernen Deutsch, v214; Wunsch der Nutzerin: „für alle 4 jeweils eine“).
    Figuren aus dem Thema: Elena (Belluno) im Eiscafé von Onkel Beppe in München, Frau Huber (Resi) mit Dackel Waldi, ihr Enkel Jonas.
    Zeit: Elenas erster Herbst (Oktober). Erzählerin Katja; Beppe spricht mit italienischem Akzent (Giuseppe Multilingual). Seiten-Texte auf Italienisch. */
