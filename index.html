@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 271;
+const APP_VERSION = 272;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -76951,6 +76951,128 @@ Alle lachen. Sie gehen hinunter in die Rezeption und essen alle Krapfen auf.
 Das war „Geschichten aus dem Hostal“. Nächstes Mal: eine Nacht auf dem Rastro, eine alte Lampe und ein Geheimnis von 1975. Bis bald … und macht die Fenster gut zu!`,
     fact:'Die Casa de las Siete Chimeneas (Haus der sieben Schornsteine) steht wirklich in Madrid, an der Plaza del Rey, und ist eines der ältesten Wohnhäuser der Stadt (16. Jahrhundert). Die Legende von Elena, der weißen Dame mit der Fackel auf dem Dach, wird seit Jahrhunderten erzählt – bei Umbauarbeiten fand man im 19. Jahrhundert angeblich ein Skelett einer Frau. Zu Allerheiligen isst man in Madrid traditionell huesos de santo (Marzipanröllchen mit Eigelbfüllung) und buñuelos de viento.' }
 ];
+/* Hörgeschichte „¡Hola, España!“, Folge 2 (v272, 28.10.2026: „ja, mach bitte mit der 2. folge weiter“) – wird nach leggende_turismo.js geladen.
+   Samstagabend in Manolos Bar erzählt der alte Händler Don Faustino von einer Lampe „aus einem Flamenco-Lokal“; Sonntag um sechs, noch dunkel,
+   bauen die Händler am Rastro auf. Hanna und Álvaro feilschen (Álvaro sehr schlecht), Hanna kauft die alte Öllampe. Rafael erkennt sie in La Luna:
+   die Lampe vom Ecktisch, Lottes Tisch. Im Fuß steckt ein gefalteter Zettel: Pacos erste Fassung von „Lotte, vuelve“. Hanna ruft Paco an.
+   Stimmen: Erzählerin Elvira, Hanna Seraphina, Männer Alvaro in verschiedenen Tonlagen, Verkäuferin Ximena. Niveau ab A2. */
+PODCASTS.turismo.push(
+  { id:'turismo-p2', lang:'sp', erzaehler:'Elvira', show:'Historias del Hostal', ep:2, title:'La lámpara del Rastro', de:'Die Lampe vom Rastro',
+    place:'In Manolos Bar, auf dem Rastro im Morgengrauen und in La Luna, Madrid, an einem Novemberwochenende', level:'ab A2', kind:'Rätsel · Humor · Herz',
+    voices:{Hanna:'de-DE-SeraphinaMultilingualNeural', Álvaro:'es-ES-AlvaroNeural', Manolo:'es-ES-AlvaroNeural', Faustino:'es-ES-AlvaroNeural', Rafael:'es-ES-AlvaroNeural', Paco:'es-ES-AlvaroNeural', Vendedora:'es-ES-XimenaNeural'},
+    stil:{'':['-8%','-2Hz'], Hanna:['-6%','+0Hz'], Álvaro:['+0%','+0Hz'], Manolo:['+4%','-8Hz'], Faustino:['-14%','-16Hz'], Rafael:['-10%','-12Hz'], Paco:['-12%','-18Hz'], Vendedora:['+6%','+4Hz']},
+    words:[['el Rastro','der Rastro (Flohmarkt in Madrid)'],['el mercadillo','der Flohmarkt'],['el puesto','der Stand'],['montar el puesto','den Stand aufbauen'],['el vendedor / la vendedora','der Verkäufer / die Verkäuferin'],['la lámpara de aceite','die Öllampe'],['regatear','handeln, feilschen'],['¿Me hace un descuento?','Machen Sie mir einen Rabatt?'],['la última oferta','das letzte Angebot'],['amanecer / amanece','dämmern / es dämmert'],['el pie de la lámpara','der Fuß der Lampe'],['doblado / doblada','gefaltet'],['la letra','die Handschrift; der Liedtext'],['la primera versión','die erste Fassung'],['tachado / tachada','durchgestrichen'],['el rincón','die Ecke']],
+    fx:{'Hola y bienvenidos':'pausa', 'Es sábado por la noche':'bar_an', 'Don Faustino se va':'bar_aus pausa', 'Son las seis de la mañana':'piccioni', 'Hay vendedores':'passi', 'A las siete, amanece':'campane', 'Hanna saca el dinero':'monete', 'Por la tarde van a La Luna':'pausa', 'Rafael gira el pie':'cassetto', 'Hanna lo desdobla':'pausa', 'Hanna llama a Paco':'telefono_fisso', 'Paco empieza a cantar':'carillon', 'Eso fue «Historias':'pausa'},
+    text:`Hola y bienvenidos a «Historias del Hostal». Hoy es noviembre en Madrid. Hace frío, pero en los bares siempre hace calor.
+Es sábado por la noche. El bar de Manolo está lleno. En la barra, un señor muy mayor toma un vermú. Se llama don Faustino. Tiene un puesto en el Rastro desde hace cincuenta años.
+Manolo: Faustino, ¿qué vendes mañana?
+Faustino: Lo de siempre. Discos, libros, cosas viejas … Y una lámpara.
+Manolo: ¿Una lámpara? Tienes cien lámparas.
+Faustino: Esta es diferente. Es una lámpara de aceite. Muy vieja. Viene de un tablao de flamenco que cerró en el año ochenta.
+Hanna deja su caña en la mesa.
+Hanna: ¿De un tablao? ¿Qué tablao?
+Faustino: No lo sé, guapa. Me la vendió un señor hace años. Dijo que tenía una historia. Pero no me la contó.
+Hanna mira a Álvaro. Álvaro ya sabe lo que va a decir.
+Álvaro: ¿A qué hora abres mañana, Faustino?
+Faustino: Monto el puesto a las seis. Pero los buenos clientes llegan a las siete.
+Don Faustino se va. Hanna no dice nada en toda la noche.
+Son las seis de la mañana. Todavía es de noche. En la Ribera de Curtidores, la calle del Rastro, hace mucho frío.
+Hay vendedores por todas partes. Montan sus puestos con linternas. Hay mesas con libros, cajas de discos, sillas viejas, abanicos, lámparas.
+Álvaro: Hanna, son las seis. Los domingos yo duermo hasta las once.
+Hanna: Hoy no.
+Una vendedora les ofrece un café en un vaso de papel.
+Vendedora: ¿Un café, chicos? Un euro. ¡Para el frío!
+Álvaro: Dos, por favor. Y grandes.
+A las siete, amanece. Las campanas de una iglesia suenan. Y allí, al final de la calle, está el puesto de don Faustino.
+Encima de una caja hay una lámpara pequeña de cobre. Es negra de lo vieja que es. Tiene un cristal rojo.
+Hanna la toma con las dos manos. Es más pesada de lo que parece.
+Hanna: ¿Cuánto cuesta?
+Faustino: Para ti, guapa … sesenta euros.
+Álvaro: ¿Sesenta? ¡Es carísima! ¿Me hace un descuento?
+Faustino: ¿A ti? No.
+Hanna ríe. Álvaro regatea muy mal.
+Álvaro: ¿Cincuenta y nueve?
+Faustino: Chico, así no se regatea. Mira, ella me cae bien. Cincuenta euros. Es mi última oferta.
+Hanna saca el dinero y paga. Don Faustino envuelve la lámpara en un periódico viejo.
+Faustino: Que te traiga suerte, guapa. Y si descubres su historia … me la cuentas.
+Por la tarde van a La Luna. Rafael está detrás de la barra, como siempre.
+Hanna: Rafael, ¿conoces esta lámpara?
+Rafael la mira mucho tiempo. Luego se pone las gafas.
+Rafael: Madre mía … Esta lámpara es de aquí. Teníamos lámparas así en todas las mesas, hasta el ochenta. Luego vendí todo.
+Rafael: Mira el cristal rojo. Solo una lámpara tenía el cristal rojo. La de la mesa del rincón.
+Hanna: ¿La mesa del rincón? ¿La mesa de … la abuela?
+Rafael: La mesa de Lotte. Ella siempre pedía esa lámpara. Decía que la luz roja era bonita para escuchar a Paco.
+Rafael gira el pie de la lámpara. Hay un ruido pequeño. El pie se abre. Dentro hay un papel doblado, muy pequeño.
+Hanna lo desdobla. Es una hoja amarilla. La letra es pequeña, con muchas palabras tachadas.
+Hanna: «Lotte, vuelve … vuelve en primavera …» Rafael, ¡es la canción de Paco!
+Rafael: La primera versión. Paco la escribía aquí, en la mesa del rincón, mientras ella lo escuchaba. Y la escondió en la lámpara.
+Álvaro: Cincuenta años dentro de una lámpara.
+Hanna llama a Paco. Suena el teléfono en Granada.
+Paco: ¿Diga?
+Hanna: Paco, soy Hanna. ¿Te acuerdas de una lámpara roja en La Luna?
+Silencio. Luego Paco ríe despacio.
+Paco: La lámpara de Lotte. Escondí allí la primera letra de la canción. Para ella. Nunca la encontró.
+Hanna: La he encontrado yo. Por cincuenta euros, en el Rastro.
+Paco: Cincuenta euros … Faustino siempre fue un ladrón.
+Paco empieza a cantar, despacio, la primera versión. Hanna pone el móvil al lado de la lámpara. La luz roja ilumina la mesa del rincón.
+Rafael: Ahora sí. Ahora esta lámpara ha vuelto a casa.
+Eso fue «Historias del Hostal». La próxima vez: Navidad en el hostal, una lotería y un loro que canta números. ¡Hasta pronto … y regatead mejor que Álvaro!`,
+    tr:`Hallo und willkommen bei „Geschichten aus dem Hostal“. Es ist November in Madrid. Es ist kalt, aber in den Bars ist es immer warm.
+Es ist Samstagabend. Manolos Bar ist voll. An der Theke trinkt ein sehr alter Herr einen Wermut. Er heißt Don Faustino. Er hat seit fünfzig Jahren einen Stand auf dem Rastro.
+Manolo: Faustino, was verkaufst du morgen?
+Faustino: Das Übliche. Schallplatten, Bücher, alte Sachen … Und eine Lampe.
+Manolo: Eine Lampe? Du hast hundert Lampen.
+Faustino: Diese ist anders. Es ist eine Öllampe. Sehr alt. Sie kommt aus einem Flamenco-Lokal, das im Jahr achtzig zugemacht hat.
+Hanna stellt ihr Bier auf den Tisch.
+Hanna: Aus einem Flamenco-Lokal? Aus welchem?
+Faustino: Das weiß ich nicht, Hübsche. Ein Herr hat sie mir vor Jahren verkauft. Er sagte, sie habe eine Geschichte. Aber er hat sie mir nicht erzählt.
+Hanna schaut Álvaro an. Álvaro weiß schon, was sie sagen wird.
+Álvaro: Um wie viel Uhr machst du morgen auf, Faustino?
+Faustino: Um sechs baue ich den Stand auf. Aber die guten Kunden kommen um sieben.
+Don Faustino geht. Hanna sagt den ganzen Abend nichts mehr.
+Es ist sechs Uhr morgens. Es ist noch Nacht. In der Ribera de Curtidores, der Straße des Rastro, ist es sehr kalt.
+Überall sind Verkäufer. Sie bauen ihre Stände mit Taschenlampen auf. Es gibt Tische mit Büchern, Kisten mit Schallplatten, alte Stühle, Fächer, Lampen.
+Álvaro: Hanna, es ist sechs. Sonntags schlafe ich bis elf.
+Hanna: Heute nicht.
+Eine Verkäuferin bietet ihnen einen Kaffee im Pappbecher an.
+Verkäuferin: Einen Kaffee, ihr zwei? Ein Euro. Gegen die Kälte!
+Álvaro: Zwei, bitte. Und große.
+Um sieben dämmert es. Die Glocken einer Kirche läuten. Und dort, am Ende der Straße, ist Don Faustinos Stand.
+Auf einer Kiste steht eine kleine Kupferlampe. Sie ist schwarz vor Alter. Sie hat ein rotes Glas.
+Hanna nimmt sie mit beiden Händen. Sie ist schwerer, als sie aussieht.
+Hanna: Was kostet sie?
+Faustino: Für dich, Hübsche … sechzig Euro.
+Álvaro: Sechzig? Das ist sündhaft teuer! Machen Sie mir einen Rabatt?
+Faustino: Dir? Nein.
+Hanna lacht. Álvaro feilscht sehr schlecht.
+Álvaro: Neunundfünfzig?
+Faustino: Junge, so feilscht man nicht. Schau, sie gefällt mir. Fünfzig Euro. Das ist mein letztes Angebot.
+Hanna holt das Geld heraus und bezahlt. Don Faustino wickelt die Lampe in eine alte Zeitung.
+Faustino: Möge sie dir Glück bringen, Hübsche. Und wenn du ihre Geschichte herausfindest … erzählst du sie mir.
+Am Nachmittag gehen sie ins La Luna. Rafael steht wie immer hinter der Theke.
+Hanna: Rafael, kennst du diese Lampe?
+Rafael schaut sie lange an. Dann setzt er die Brille auf.
+Rafael: Meine Güte … Diese Lampe ist von hier. Wir hatten solche Lampen auf allen Tischen, bis achtzig. Dann habe ich alles verkauft.
+Rafael: Schau das rote Glas an. Nur eine Lampe hatte das rote Glas. Die vom Ecktisch.
+Hanna: Der Ecktisch? Der Tisch von … Oma?
+Rafael: Lottes Tisch. Sie wollte immer diese Lampe. Sie sagte, das rote Licht sei schön, um Paco zuzuhören.
+Rafael dreht den Fuß der Lampe. Es gibt ein kleines Geräusch. Der Fuß geht auf. Darin ist ein ganz kleiner, gefalteter Zettel.
+Hanna faltet ihn auf. Es ist ein vergilbtes Blatt. Die Schrift ist klein, mit vielen durchgestrichenen Wörtern.
+Hanna: „Lotte, komm zurück … komm im Frühling zurück …“ Rafael, das ist Pacos Lied!
+Rafael: Die erste Fassung. Paco hat es hier geschrieben, am Ecktisch, während sie ihm zuhörte. Und er hat es in der Lampe versteckt.
+Álvaro: Fünfzig Jahre in einer Lampe.
+Hanna ruft Paco an. In Granada klingelt das Telefon.
+Paco: Hallo?
+Hanna: Paco, hier ist Hanna. Erinnerst du dich an eine rote Lampe in La Luna?
+Stille. Dann lacht Paco leise.
+Paco: Lottes Lampe. Ich habe dort den ersten Text des Liedes versteckt. Für sie. Sie hat ihn nie gefunden.
+Hanna: Ich habe ihn gefunden. Für fünfzig Euro, auf dem Rastro.
+Paco: Fünfzig Euro … Faustino war schon immer ein Gauner.
+Paco beginnt langsam zu singen, die erste Fassung. Hanna legt das Handy neben die Lampe. Das rote Licht beleuchtet den Ecktisch.
+Rafael: Jetzt aber. Jetzt ist diese Lampe nach Hause gekommen.
+Das war „Geschichten aus dem Hostal“. Nächstes Mal: Weihnachten im Hostal, eine Lotterie und ein Papagei, der Zahlen singt. Bis bald … und feilscht besser als Álvaro!`,
+    fact:'Der Rastro ist Madrids berühmtester Flohmarkt: Seit dem 18. Jahrhundert findet er jeden Sonntag- und Feiertagvormittag in La Latina statt, rund um die steile Straße Ribera de Curtidores („Ufer der Gerber“). Früher lagen hier Schlachthöfe und Gerbereien – der Name Rastro (Spur) erinnert angeblich an die Blutspur der Tiere. Heute gibt es über tausend Stände, und Handeln gehört dazu.' }
+);
 /* Hörgeschichte „Unterwegs“ (Italiener lernen Deutsch, v214; Wunsch der Nutzerin: „für alle 4 jeweils eine“).
    Figuren aus dem Thema: Elena (Belluno) im Eiscafé von Onkel Beppe in München, Frau Huber (Resi) mit Dackel Waldi, ihr Enkel Jonas.
    Zeit: Elenas erster Herbst (Oktober). Erzählerin Katja; Beppe spricht mit italienischem Akzent (Giuseppe Multilingual). Seiten-Texte auf Italienisch. */
