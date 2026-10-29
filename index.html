@@ -581,8 +581,17 @@ body{margin-block:0}
 <div class="wrap" id="app"></div>
 
 <script>
+/* Notausgang (ab v296): bricht die App beim Start ab und bleibt der Bildschirm leer, Knopf zur Sprachauswahl zeigen
+   (löscht nur die gewählte Lernrichtung, der Lernstand bleibt). Anlass: v295 – britische Variante schwarz, kein Weg zurück. */
+if (typeof window !== 'undefined' && window.addEventListener && typeof document !== 'undefined') window.addEventListener('error', () => { setTimeout(() => {
+  const a = document.getElementById('app'); if (!a || a.children.length) return;
+  a.innerHTML = '<div style="padding:40px 16px;text-align:center;font-family:sans-serif;color:#fff;background:#222;border-radius:12px;margin:24px 0">'
+    + '<p style="font-size:18px">Da ist beim Laden etwas schiefgegangen. 😕</p><p>Dein Lernstand bleibt erhalten.</p>'
+    + '<button id="notaus" style="font-size:17px;padding:12px 20px;border-radius:10px;border:0;margin-top:12px">Zur Sprachauswahl</button></div>';
+  document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
+}, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 295;
+const APP_VERSION = 296;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -75898,8 +75907,6 @@ const GRAMMAR = [
       {link:['go','tenses','Zeiten üben']} ] }
 ];
 
-/* UK-Schalter (ab v294): auch die englischen Texte der Hörgeschichten umstellen */
-if (US_UK) US.topics.forEach(t => (PODCASTS[t.id] || []).forEach(ukObj));
 /*LEGG-START*/
 /* Gruselige Legenden zum Zuhören (Podcast „Brividi nella notte“) – Thema Brividi. Nur hören, keine Aufgaben.
    Zeilen ohne „Name: “ liest die Erzählerin (Isabella). Ton-Bündel: leggende-<thema> (zweiter Speicher, EXT_THEMEN). */
@@ -85465,6 +85472,8 @@ Das war „Geschichten von unterwegs“. Nächstes Mal: ein Markt in Oaxaca, ein
     fact:'Die Llorona ist die bekannteste Gespenstergeschichte Mexikos und wird in ganz Lateinamerika erzählt, in vielen Fassungen. Manche verbinden sie mit der aztekischen Göttin Cihuacóatl, die nachts weinend um ihre Kinder geklagt haben soll. In Xochimilco wird die Legende seit Jahrzehnten jeden Herbst rund um den Día de Muertos als Aufführung auf dem Wasser gespielt; die Zuschauer sitzen in Trajineras auf der Lagune. Die Isla de las Muñecas gibt es wirklich: Don Julián Santana hängte dort jahrzehntelang alte Puppen in die Bäume, angeblich für die Seele eines ertrunkenen Mädchens. Und das Lied „La Llorona“ ist eines der bekanntesten mexikanischen Volkslieder.' }
 ];
 /*LEGG-END*/
+/* UK-Schalter (ab v294): auch die englischen Texte der Hörgeschichten umstellen */
+if (US_UK) US.topics.forEach(t => (PODCASTS[t.id] || []).forEach(ukObj));
 /* ---------- Tonindex: welcher Text liegt in welcher Sammeldatei ---------- */
 const SOUND_SRC = {};
 /* voices: Stimme pro Sprecher bei Dialogen; voice: Stimme für einen einzelnen Satz (sonst Isabella) */
