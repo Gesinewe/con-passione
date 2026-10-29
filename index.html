@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 290;
+const APP_VERSION = 291;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -79341,6 +79341,337 @@ Opa: Ich? Nein. Das ist Motoröl. Das ist mir in die Augen gekommen.
 Das war „Voci dalla pista“. Schnallt euch an, und bis zum nächsten Rennen!`,
     fact:'Viele Formel-1-Fahrer haben als Kinder im Kart angefangen. Italien hat eine große Kart-Tradition: Am Gardasee liegt eine der bekanntesten Kartbahnen Europas. In Italien gilt die 17 als Unglückszahl.' }
 ];
+/* „Voci dalla pista“ Folge 2 (v291, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_formula.js geladen.
+   Großer Preis von Monza (erfunden) im Fernsehen in Mamas Bar „Il Box“ in Maranello (Lektionen: Mama Paola führt die Bar für Tifosi, Papa Davide arbeitet bei Lamborghini,
+   Aisha ist Mercedes-Fan, Katze Pit, Opa Ivo 40 Jahre Ferrari-Mechaniker). Opa hört am Fernseher am Motorklang, dass bei Ferrari etwas nicht stimmt, bevor es der Kommentator sagt.
+   Regen in der Schlussphase, Reifenwechsel-Entscheidung; Aisha und die Tifosi streiten, am Ende jubeln alle zusammen (Ferrari 1., Mercedes 2.). Katze Pit schläft auf der Kasse.
+   Angekündigt Folge 3: Opa und Martina bei der Mille Miglia. Stimmen: Paola Isabella, Davide Diego tief, Aisha Elsa tiefer, Radio Diego mit Effekt radio. Niveau ab A2. */
+PODCAST_INFO.formula.lead = 'Wie ein kleiner Podcast: Martina, Leo und Opa Ivo zwischen Bar, Rennstrecke und Oldtimer – ein Großer Preis im Fernsehen, die Mille Miglia, eine Nacht in Le Mans und Leos erste Runde in einem Formel-1-Auto, mit Motoren, Reifen und Boxenfunk. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.formula.push(
+  { id:'formula-p2', show:'Voci dalla pista', ep:2, title:'Il Gran Premio al bar Il Box', de:'Der Große Preis in der Bar „Il Box“',
+    place:'Il bar «Il Box» a Maranello, una domenica di settembre', level:'ab A2', kind:'Lustig · Rennen im Fernsehen',
+    voices:{Martina:'Elsa', Leo:'Diego', Nonno:'Giuseppe', Paola:'Isabella', Davide:'Diego', Aisha:'Elsa', Radio:'Diego'},
+    stil:{'':['-4%','+0Hz'], Martina:['+0%','+20Hz'], Leo:['+6%','+36Hz'], Nonno:['-8%','-14Hz'], Paola:['+2%','+6Hz'], Davide:['-2%','-14Hz'], Aisha:['+0%','+6Hz'], Radio:['+14%','+6Hz']},
+    mormorio:['Forza Ferrari!','Dai, Charles!','Un caffè, Paola!','Che sorpasso!','Box, box!','Guarda le gomme!','Che pioggia a Monza!','Vai, vai!','Siediti, non vedo!','Ancora tre giri!'],
+    words:[['il Gran Premio','der Große Preis'],['il tifoso / i tifosi','der Fan / die Fans'],['il cavallino','das Pferdchen (Ferrari-Wappen)'],['la gara','das Rennen'],['il giro','die Runde'],['il motore','der Motor'],['il rumore','das Geräusch'],['ascoltare','zuhören'],['qualcosa non va','etwas stimmt nicht'],['la gomma da bagnato','der Regenreifen'],['il pit stop','der Boxenstopp'],['il sorpasso','das Überholmanöver'],['il podio','das Podium'],['il traguardo','die Ziellinie'],['la cassa','die Kasse']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È domenica':'bar_an', 'Alle due e mezza':'macchina_caffe', 'Radio: E si spengono':'radio', 'Al giro venti':'pausa', 'Nonno: Sentite':'pausa', 'Radio: Attenzione':'radio', 'Al giro quaranta':'tuono', 'Radio: Comincia a piovere':'radio', 'Nonno: Adesso':'pausa', 'Radio: Box!':'radio', 'Radio: Ultimo giro':'radio', 'Radio: Bandiera a scacchi':'radio', 'Il bar esplode':'urlo', 'La sera':'bar_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dalla pista», il podcast per chi ama la velocità. Oggi non siamo in pista. Siamo in un bar. Ma non un bar qualunque: il bar «Il Box» di Maranello, il paese della Ferrari. E oggi c’è il Gran Premio di Monza.
+È domenica. Nel bar della mamma Paola non c’è un posto libero. Ci sono bandiere rosse sui muri, foto di piloti vecchi e nuovi, e un televisore enorme. Il nonno Ivo è seduto davanti, come sempre. Ha lavorato quarant’anni come meccanico alla Ferrari.
+Vicino a lui ci sono Martina, Leo e papà Davide. Papà lavora alla Lamborghini, ma oggi tifa Ferrari. Al bancone c’è Aisha, l’amica di Martina. Ha una maglia grigia e argento: Mercedes.
+Paola: Aisha, cara, sei coraggiosa. Una maglia Mercedes, al Box, il giorno di Monza?
+Aisha: Io sono milanese. Monza è casa mia. E vince la Mercedes.
+Tutto il bar: «Buuuuh!» Ma ridono tutti. Aisha è simpatica.
+Alle due e mezza la mamma fa trenta caffè in dieci minuti. La gatta Pit dorme sulla cassa.
+Radio: E si spengono i semafori! Parte il Gran Premio d’Italia! La Ferrari parte bene, è seconda dietro la Mercedes!
+Il bar urla. Il nonno non urla. Il nonno ascolta. Ha gli occhi chiusi.
+Al giro venti la Ferrari è sempre seconda. Il pilota è veloce, ma non riesce a sorpassare. Poi il nonno apre gli occhi.
+Nonno: Sentite? Il motore della Ferrari. Non suona bene. A ogni curva fa un piccolo «tac». Qualcosa non va.
+Leo: Nonno, è la televisione. Non puoi sentire il motore dalla televisione!
+Nonno: Io ho sentito questi motori per quarant’anni. Li sento anche dalla radio.
+Due giri dopo…
+Radio: Attenzione, la Ferrari perde un po’ di velocità in uscita dalle curve. Forse un piccolo problema al cambio…
+Tutto il bar si gira verso il nonno. Il nonno beve il caffè, tranquillo.
+Nonno: Ve l’avevo detto.
+Al giro quaranta il cielo di Monza diventa nero. Si sente un tuono anche in televisione.
+Radio: Comincia a piovere su Monza! Le macchine scivolano! Chi si ferma ai box per le gomme da bagnato?
+Leo: Devono fermarsi! Subito! Box, box!
+Martina: No, aspetta. Tra cinque minuti smette. Guardate il radar sul telefono. Se si fermano adesso, perdono venti secondi.
+Davide: E se non smette?
+Martina: Allora ho sbagliato. E domani non vengo al bar.
+Nonno: Adesso decide la squadra. Non tu, Martina. Ma secondo me hai ragione.
+La Mercedes si ferma ai box e mette le gomme da bagnato. La Ferrari resta fuori, con le gomme da asciutto. Scivola, ma resta in pista. E dopo cinque minuti… la pioggia smette.
+Radio: Box! La Mercedes deve rientrare ancora per le gomme da asciutto! La Ferrari è in testa! La Ferrari è prima!
+Il bar salta. I bicchieri tremano. La gatta Pit scappa sotto un tavolo. Martina abbraccia il nonno.
+Radio: Ultimo giro! La Mercedes recupera, è a un secondo… ma la Ferrari tiene! Ultima curva, la Parabolica…
+Radio: Bandiera a scacchi! Vince la Ferrari! Ferrari prima, Mercedes seconda! Monza è rossa!
+Il bar esplode. Tutti cantano, tutti si abbracciano. E Aisha? Aisha sale su una sedia, toglie la maglia Mercedes… sotto ne ha un’altra. Rossa. Con il cavallino.
+Aisha: Oggi a Maranello sono rossa anch’io! Ma solo oggi!
+Paola: Caffè gratis per tutti! E un cornetto per il nonno, il nostro radar umano!
+La sera il bar è vuoto. Il nonno è ancora seduto davanti al televisore spento. Martina si siede vicino a lui.
+Martina: Nonno, come hai fatto a sentire quel «tac»?
+Nonno: Non lo so spiegare. Una macchina è come una persona. Se la ascolti tanti anni, capisci quando sta male. Tu hai capito la pioggia. Io capisco i motori. Insieme siamo una squadra.
+Questo era «Voci dalla pista». E ricordate: in una gara non vince solo chi è veloce, ma chi ascolta. Nella prossima puntata il nonno Ivo guida una macchina di settant’anni fa nella Mille Miglia. E la navigatrice è Martina. Buona velocità a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci dalla pista“ (Stimmen von der Rennstrecke), dem Podcast für alle, die Geschwindigkeit lieben. Heute sind wir nicht an der Strecke. Wir sind in einer Bar. Aber nicht irgendeiner Bar: der Bar „Il Box“ in Maranello, dem Ort von Ferrari. Und heute ist der Große Preis von Monza.
+Es ist Sonntag. In Mama Paolas Bar ist kein Platz mehr frei. An den Wänden hängen rote Fahnen, Fotos von alten und neuen Fahrern und ein riesiger Fernseher. Opa Ivo sitzt ganz vorne, wie immer. Er hat vierzig Jahre als Mechaniker bei Ferrari gearbeitet.
+Neben ihm sitzen Martina, Leo und Papa Davide. Papa arbeitet bei Lamborghini, aber heute ist er für Ferrari. An der Theke steht Aisha, Martinas Freundin. Sie trägt ein grau-silbernes Trikot: Mercedes.
+Paola: Aisha, meine Liebe, du bist mutig. Ein Mercedes-Trikot, im „Box“, am Tag von Monza?
+Aisha: Ich bin aus Mailand. Monza ist mein Zuhause. Und Mercedes gewinnt.
+Die ganze Bar: „Buuuuh!“ Aber alle lachen. Aisha ist sympathisch.
+Um halb drei macht die Mama dreißig Espressi in zehn Minuten. Die Katze Pit schläft auf der Kasse.
+Radio: Und die Ampeln gehen aus! Der Große Preis von Italien beginnt! Ferrari startet gut, liegt auf Platz zwei hinter Mercedes!
+Die Bar schreit. Der Opa schreit nicht. Der Opa hört zu. Er hat die Augen geschlossen.
+In Runde zwanzig liegt Ferrari immer noch auf Platz zwei. Der Fahrer ist schnell, aber er schafft das Überholen nicht. Dann öffnet der Opa die Augen.
+Opa: Hört ihr das? Der Motor von Ferrari. Er klingt nicht gut. In jeder Kurve macht er ein kleines „Tack“. Etwas stimmt nicht.
+Leo: Opa, das ist der Fernseher. Du kannst den Motor nicht durch den Fernseher hören!
+Opa: Ich habe diese Motoren vierzig Jahre lang gehört. Ich höre sie sogar im Radio.
+Zwei Runden später …
+Radio: Achtung, Ferrari verliert beim Herausbeschleunigen aus den Kurven etwas Tempo. Vielleicht ein kleines Problem mit dem Getriebe …
+Die ganze Bar dreht sich zum Opa um. Der Opa trinkt in Ruhe seinen Kaffee.
+Opa: Hab ich’s euch nicht gesagt.
+In Runde vierzig wird der Himmel über Monza schwarz. Man hört sogar im Fernsehen einen Donner.
+Radio: Es beginnt zu regnen in Monza! Die Autos rutschen! Wer kommt für Regenreifen an die Box?
+Leo: Sie müssen reinkommen! Sofort! Box, Box!
+Martina: Nein, warte. In fünf Minuten hört es auf. Schaut auf das Regenradar im Handy. Wenn sie jetzt reinkommen, verlieren sie zwanzig Sekunden.
+Davide: Und wenn es nicht aufhört?
+Martina: Dann habe ich mich geirrt. Und morgen komme ich nicht in die Bar.
+Opa: Jetzt entscheidet das Team. Nicht du, Martina. Aber ich glaube, du hast recht.
+Mercedes kommt an die Box und zieht Regenreifen auf. Ferrari bleibt draußen, mit Trockenreifen. Das Auto rutscht, aber es bleibt auf der Strecke. Und nach fünf Minuten … hört der Regen auf.
+Radio: Box! Mercedes muss noch einmal für Trockenreifen rein! Ferrari führt! Ferrari ist Erster!
+Die Bar springt auf. Die Gläser zittern. Die Katze Pit flüchtet unter einen Tisch. Martina umarmt den Opa.
+Radio: Letzte Runde! Mercedes holt auf, liegt eine Sekunde dahinter … aber Ferrari hält stand! Letzte Kurve, die Parabolica …
+Radio: Zielflagge! Ferrari gewinnt! Ferrari Erster, Mercedes Zweiter! Monza ist rot!
+Die Bar explodiert. Alle singen, alle umarmen sich. Und Aisha? Aisha steigt auf einen Stuhl, zieht das Mercedes-Trikot aus … darunter trägt sie noch eins. Rot. Mit dem Pferdchen.
+Aisha: Heute bin ich in Maranello auch rot! Aber nur heute!
+Paola: Kaffee umsonst für alle! Und ein Hörnchen für den Opa, unser menschliches Radar!
+Am Abend ist die Bar leer. Der Opa sitzt immer noch vor dem ausgeschalteten Fernseher. Martina setzt sich neben ihn.
+Martina: Opa, wie hast du dieses „Tack“ gehört?
+Opa: Das kann ich nicht erklären. Ein Auto ist wie ein Mensch. Wenn du ihm viele Jahre zuhörst, verstehst du, wenn es ihm schlecht geht. Du hast den Regen verstanden. Ich verstehe die Motoren. Zusammen sind wir ein Team.
+Das war „Voci dalla pista“. Und denkt daran: Bei einem Rennen gewinnt nicht nur, wer schnell ist, sondern wer zuhört. In der nächsten Folge fährt Opa Ivo bei der Mille Miglia ein Auto von vor siebzig Jahren. Und die Beifahrerin, die navigiert, ist Martina. Gute Fahrt euch allen!`,
+    fact:'Der Große Preis von Italien in Monza ist eines der ältesten Formel-1-Rennen: Seit 1950 gehört er zur Weltmeisterschaft, und fast jedes Jahr wird er in Monza gefahren. Die schnelle Rechtskurve vor der Zielgeraden heißt „Parabolica“ (seit 2021 offiziell „Curva Alboreto“). In Maranello, wo Ferrari seit 1943 sitzt, erzählt jede Bar Rennsportgeschichten. Das Rennen in dieser Folge ist erfunden.' }
+);
+/* „Voci dalla pista“ Folge 3 (v291, 29.10.2026) – wird nach leggende_formula2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Opa Ivo fährt mit Martina als Beifahrerin die historische Mille Miglia (Gleichmäßigkeitsfahrt für Autos von 1927–1957, Brescia–Rom–Brescia) in einer selbst restaurierten roten Fiat von 1955.
+   Zeitprüfungen: Martina zählt die Sekunden („tre, due, uno, via!“). Panne am Futa-Pass (Benzinpumpe), Opa repariert mit Martinas Haarklammer. Menschen winken in jedem Ort, Rom bei Nacht.
+   Opas Erinnerung: 1957 hat er als Sechsjähriger mit seinem Vater am Straßenrand die letzte echte Mille Miglia gesehen – da begann sein Traum. Platz 87, aber angekommen.
+   Angekündigt Folge 4: Martina als Praktikantin bei den 24 Stunden von Le Mans. Niveau ab A2. */
+PODCASTS.formula.push(
+  { id:'formula-p3', show:'Voci dalla pista', ep:3, title:'Mille miglia con il nonno', de:'Tausend Meilen mit Opa',
+    place:'Da Brescia a Roma e ritorno, a giugno', level:'ab A2', kind:'Abenteuer · Oldtimer · Familie',
+    voices:{Martina:'Elsa', Nonno:'Giuseppe', Speaker:'Isabella', Bambino:'Diego'},
+    stil:{'':['-4%','+0Hz'], Martina:['+0%','+20Hz'], Nonno:['-8%','-14Hz'], Speaker:['+4%','+0Hz'], Bambino:['+10%','+50Hz']},
+    mormorio:['Bravi!','Che bella macchina!','Forza!','Guarda, una Fiat!','Ciao!','Che spettacolo!','Vai, nonno!','Evviva!'],
+    words:[['la Mille Miglia','die Mille Miglia (Oldtimer-Rennen)'],['l’auto d’epoca','der Oldtimer'],['restaurare','restaurieren'],['la navigatrice','die Beifahrerin (die navigiert)'],['il cronometro','die Stoppuhr'],['la prova a tempo','die Zeitprüfung'],['il passo','der (Berg-)Pass'],['il guasto','die Panne'],['la pompa della benzina','die Benzinpumpe'],['la molletta','die Haarklammer'],['salutare','grüßen, winken'],['il traguardo','das Ziel'],['la classifica','die Rangliste'],['il sogno','der Traum'],['a bordo strada','am Straßenrand']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Brescia, un giovedì':'folla_an', 'Speaker: Numero':'altoparlante', 'Il nonno gira la chiave. Il motore tossisce':'avviamento motore500_an', 'Si parte':'folla_aus', 'La prima prova':'pausa', 'In ogni paese':'campane clacson', 'Il pomeriggio':'pausa', 'Sul passo della Futa':'motore500_aus vento_an', 'Il nonno apre':'attrezzi', 'Martina si toglie':'pausa', 'Il nonno gira la chiave. Il motore…':'vento_aus avviamento motore500_an', 'La notte arrivano':'pausa', 'Il terzo giorno':'pausa', 'Davanti al traguardo':'motore500_aus folla_an applausi', 'Speaker: E adesso':'altoparlante', 'Più tardi':'folla_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dalla pista», il podcast per chi ama la velocità. Oggi niente Formula Uno. Oggi andiamo piano. Beh… quasi piano. Oggi il nonno Ivo corre la Mille Miglia.
+La Mille Miglia è una corsa famosa: da Brescia a Roma e ritorno. Una volta era una gara di velocità. Oggi è una gara per macchine d’epoca, costruite prima del millenovecentocinquantotto. Non vince il più veloce. Vince il più preciso.
+Il nonno ha restaurato la sua macchina per tre anni, in garage: una piccola Fiat rossa del millenovecentocinquantacinque. E ha scelto una navigatrice: Martina.
+Brescia, un giovedì di giugno. In viale Venezia ci sono centinaia di macchine antiche e migliaia di persone. Il nonno ha un casco di pelle e gli occhiali da pilota. Martina ha un cronometro, una mappa e un quaderno.
+Speaker: Numero trecentododici! Fiat del millenovecentocinquantacinque! Equipaggio di Maranello: Ivo e Martina Righi!
+Il nonno gira la chiave. Il motore tossisce una volta… poi parte. La gente applaude.
+Si parte. Le strade sono piene di gente che saluta. I bambini corrono vicino alla macchina.
+La prima prova a tempo è dopo cinquanta chilometri. Bisogna fare cento metri in dodici secondi esatti. Non undici, non tredici. Dodici.
+Martina: Pronto, nonno? Tre, due, uno… via! Uno… due… tre… piano, nonno… otto, nove… adesso! Dodici!
+Nonno: Com’è andata?
+Martina: Dodici secondi e quattro centesimi. Benissimo!
+In ogni paese suonano le campane. La gente è in strada con le bandiere. In un piccolo paese dell’Emilia un bambino corre vicino alla macchina.
+Bambino: Signore! Signore! Che bella macchina! Quanti anni ha?
+Nonno: Settant’anni! Quasi come me!
+Il pomeriggio arrivano sull’Appennino. La strada sale, curva dopo curva. Il motore lavora tanto.
+Sul passo della Futa la piccola Fiat tossisce. Tossisce ancora. Poi si ferma. Silenzio. Solo il vento tra gli alberi.
+Martina: Nonno… che cosa succede?
+Il nonno apre il cofano. Ascolta. Tocca. Guarda.
+Nonno: La pompa della benzina. Un pezzo piccolo si è rotto. Mi serve una cosa sottile, di metallo. Molto sottile.
+Martina si toglie dai capelli una molletta. La dà al nonno.
+Martina: Questa va bene?
+Nonno: Perfetta. Quarant’anni alla Ferrari, e alla fine la Mille Miglia la salva una molletta.
+Il nonno lavora cinque minuti. Le mani nere di olio. Poi chiude il cofano.
+Il nonno gira la chiave. Il motore… parte! Martina urla di gioia. Due macchine passano e suonano il clacson per salutarli.
+La notte arrivano a Roma. Passano davanti al Colosseo illuminato, a mezzanotte. Martina non ha mai visto Roma così: silenziosa, d’oro, piena di gente che applaude le macchine vecchie.
+Il terzo giorno, sulla strada del ritorno, il nonno è stanco. Ma sorride sempre. A un certo punto ferma la macchina vicino a un campo, in una strada di campagna.
+Nonno: Martina, lo vedi quel muretto? Nel millenovecentocinquantasette io avevo sei anni. Ero seduto lì, con mio padre. Era l’ultima vera Mille Miglia. Sono passate le Ferrari, rosse, velocissime. Il rumore mi entrava nella pancia. Quel giorno ho deciso: io farò il meccanico. Io lavorerò alla Ferrari.
+Martina: E l’hai fatto.
+Nonno: E oggi sono passato di qui io. Con mia nipote. Il cerchio è chiuso.
+Davanti al traguardo di Brescia c’è una folla enorme. La piccola Fiat rossa arriva piano, con un rumore strano ma felice.
+Speaker: E adesso arriva il numero trecentododici! Ivo e Martina Righi, da Maranello! Hanno riparato la macchina sul passo della Futa!
+Più tardi esce la classifica. Martina la legge sul telefono.
+Martina: Nonno, siamo ottantasettesimi.
+Nonno: Ottantasettesimi? Benissimo. Siamo arrivati. Alla Mille Miglia vince chi arriva.
+Martina rimette nei capelli la molletta. Un po’ nera, un po’ storta. Non la laverà mai più.
+Questo era «Voci dalla pista». E ricordate: a volte non conta la velocità. Conta con chi viaggi. Nella prossima puntata Martina va in Francia, a Le Mans: ventiquattro ore di gara, giorno e notte. E questa volta è lei a parlare alla radio con il pilota. Buona velocità a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci dalla pista“, dem Podcast für alle, die Geschwindigkeit lieben. Heute keine Formel 1. Heute fahren wir langsam. Na ja … fast langsam. Heute fährt Opa Ivo die Mille Miglia.
+Die Mille Miglia ist ein berühmtes Rennen: von Brescia nach Rom und zurück. Früher war es ein Geschwindigkeitsrennen. Heute ist es eine Fahrt für Oldtimer, die vor 1958 gebaut wurden. Es gewinnt nicht der Schnellste. Es gewinnt der Genaueste.
+Der Opa hat sein Auto drei Jahre lang in der Garage restauriert: einen kleinen roten Fiat von 1955. Und er hat eine Beifahrerin ausgewählt: Martina.
+Brescia, an einem Donnerstag im Juni. In der Viale Venezia stehen Hunderte alte Autos und Tausende Menschen. Der Opa trägt einen Lederhelm und eine Fliegerbrille. Martina hat eine Stoppuhr, eine Karte und ein Heft.
+Sprecherin: Nummer dreihundertzwölf! Fiat von 1955! Das Team aus Maranello: Ivo und Martina Righi!
+Der Opa dreht den Schlüssel. Der Motor hustet einmal … dann springt er an. Die Leute klatschen.
+Es geht los. Die Straßen sind voller Menschen, die winken. Die Kinder rennen neben dem Auto her.
+Die erste Zeitprüfung kommt nach fünfzig Kilometern. Man muss hundert Meter in genau zwölf Sekunden fahren. Nicht elf, nicht dreizehn. Zwölf.
+Martina: Bereit, Opa? Drei, zwei, eins … los! Eins … zwei … drei … langsam, Opa … acht, neun … jetzt! Zwölf!
+Opa: Wie war’s?
+Martina: Zwölf Sekunden und vier Hundertstel. Super!
+In jedem Ort läuten die Glocken. Die Leute stehen mit Fahnen auf der Straße. In einem kleinen Dorf in der Emilia rennt ein Junge neben dem Auto her.
+Junge: Hallo! Hallo! Was für ein schönes Auto! Wie alt ist es?
+Opa: Siebzig Jahre! Fast so alt wie ich!
+Am Nachmittag kommen sie in den Apennin. Die Straße steigt, Kurve um Kurve. Der Motor arbeitet schwer.
+Auf dem Futa-Pass hustet der kleine Fiat. Er hustet noch einmal. Dann bleibt er stehen. Stille. Nur der Wind in den Bäumen.
+Martina: Opa … was ist los?
+Der Opa öffnet die Motorhaube. Er horcht. Er tastet. Er schaut.
+Opa: Die Benzinpumpe. Ein kleines Teil ist kaputt. Ich brauche etwas Dünnes aus Metall. Sehr dünn.
+Martina nimmt eine Haarklammer aus ihren Haaren. Sie gibt sie dem Opa.
+Martina: Geht die?
+Opa: Perfekt. Vierzig Jahre bei Ferrari, und am Ende rettet eine Haarklammer die Mille Miglia.
+Der Opa arbeitet fünf Minuten. Die Hände schwarz vom Öl. Dann schließt er die Haube.
+Der Opa dreht den Schlüssel. Der Motor … springt an! Martina jubelt. Zwei Autos fahren vorbei und hupen zum Gruß.
+In der Nacht kommen sie in Rom an. Sie fahren um Mitternacht am beleuchteten Kolosseum vorbei. So hat Martina Rom noch nie gesehen: still, golden, voller Menschen, die den alten Autos applaudieren.
+Am dritten Tag, auf dem Rückweg, ist der Opa müde. Aber er lächelt die ganze Zeit. Irgendwann hält er das Auto neben einem Feld an, auf einer Landstraße.
+Opa: Martina, siehst du die kleine Mauer da? 1957 war ich sechs Jahre alt. Ich saß da, mit meinem Vater. Es war die letzte echte Mille Miglia. Die Ferraris sind vorbeigefahren, rot, unglaublich schnell. Der Lärm ging mir in den Bauch. An diesem Tag habe ich beschlossen: Ich werde Mechaniker. Ich werde bei Ferrari arbeiten.
+Martina: Und das hast du gemacht.
+Opa: Und heute bin ich selbst hier vorbeigefahren. Mit meiner Enkelin. Der Kreis hat sich geschlossen.
+Vor dem Ziel in Brescia steht eine riesige Menschenmenge. Der kleine rote Fiat kommt langsam an, mit einem seltsamen, aber glücklichen Geräusch.
+Sprecherin: Und jetzt kommt die Nummer dreihundertzwölf! Ivo und Martina Righi aus Maranello! Sie haben das Auto auf dem Futa-Pass repariert!
+Später kommt die Rangliste heraus. Martina liest sie auf dem Handy.
+Martina: Opa, wir sind Siebenundachtzigste.
+Opa: Siebenundachtzigste? Wunderbar. Wir sind angekommen. Bei der Mille Miglia gewinnt, wer ankommt.
+Martina steckt die Haarklammer wieder in die Haare. Ein bisschen schwarz, ein bisschen verbogen. Sie wird sie nie mehr waschen.
+Das war „Voci dalla pista“. Und denkt daran: Manchmal zählt nicht die Geschwindigkeit. Es zählt, mit wem du unterwegs bist. In der nächsten Folge fährt Martina nach Frankreich, nach Le Mans: vierundzwanzig Stunden Rennen, Tag und Nacht. Und diesmal spricht sie selbst über Funk mit dem Fahrer. Gute Fahrt euch allen!`,
+    fact:'Die Mille Miglia war von 1927 bis 1957 eines der berühmtesten Straßenrennen der Welt, rund 1.600 Kilometer von Brescia nach Rom und zurück. Seit 1977 gibt es sie als historische Gleichmäßigkeitsfahrt: Teilnehmen dürfen nur Autos, die bei der echten Mille Miglia fahren konnten. Gewertet werden Zeitprüfungen, bei denen man eine Strecke auf die Hundertstelsekunde genau in einer vorgegebenen Zeit fahren muss.' }
+);
+/* „Voci dalla pista“ Folge 4 (v291, 29.10.2026) – wird nach leggende_formula3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Martina (Studentin der Fahrzeugtechnik) als Praktikantin bei einem (erfundenen) italienischen Team bei den 24 Stunden von Le Mans. Drei Fahrer teilen sich ein Auto,
+   Fahrerin Giulia Bassi fährt die Nacht. Um drei Uhr Regen auf der Hunaudières-Geraden, Martina sieht in den Daten einen schleichenden Plattfuß hinten links, der Chefingenieur Sandro lässt sie
+   über Funk sprechen. Boxenstopp, Platz 3 gehalten, Sonnenaufgang, Podium. Opa am Telefon aus Maranello. Angekündigt Folge 5 (Finale): Leo testet in Fiorano zum ersten Mal ein Formel-1-Auto.
+   Stimmen: Sandro Giuseppe, Giulia Isabella hoch mit Effekt radio, Nonno Giuseppe tief. Niveau ab A2. */
+PODCASTS.formula.push(
+  { id:'formula-p4', show:'Voci dalla pista', ep:4, title:'Una notte a Le Mans', de:'Eine Nacht in Le Mans',
+    place:'Circuito de la Sarthe, Le Mans, Francia, a giugno', level:'ab A2', kind:'Spannend · Langstreckenrennen',
+    voices:{Martina:'Elsa', Sandro:'Giuseppe', Giulia:'Isabella', Nonno:'Giuseppe', Speaker:'Isabella'},
+    stil:{'':['-4%','+0Hz'], Martina:['+0%','+20Hz'], Sandro:['-2%','-4Hz'], Giulia:['+4%','+16Hz'], Nonno:['-8%','-14Hz'], Speaker:['+4%','+0Hz']},
+    words:[['la gara di durata','das Langstreckenrennen'],['ventiquattro ore','vierundzwanzig Stunden'],['il pilota / la pilota','der Fahrer / die Fahrerin'],['il cambio pilota','der Fahrerwechsel'],['l’ingegnere / l’ingegnera','der Ingenieur / die Ingenieurin'],['la stagista','die Praktikantin'],['i dati','die Daten'],['lo schermo','der Bildschirm'],['la gomma','der Reifen'],['la foratura lenta','der schleichende Plattfuß'],['la pressione','der Druck'],['il rettilineo','die Gerade'],['rientrare ai box','an die Box kommen'],['l’alba','die Morgendämmerung'],['il podio','das Podium']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È sabato':'pista_an', 'Speaker: Mesdames':'altoparlante', 'Alle quattro del pomeriggio parte':'partenza', 'Le ore passano':'passaggio', 'Alle tre di notte':'pioggia_an', 'Giulia: Qui piove':'radio', 'Martina guarda':'pausa', 'Sandro: Che cosa':'pausa', 'Sandro le dà':'pausa', 'Martina: Giulia':'pausa', 'Giulia: Ricevuto':'radio', 'Un giro dopo':'pneumatico', 'Giulia: Grazie':'radio', 'Alle sei':'pioggia_aus uccelli_an', 'Al telefono':'telefono_fisso', 'Alle quattro del pomeriggio finisce':'uccelli_aus applausi', 'Questo era':'pista_aus pausa'},
+    text:`Buonasera e benvenuti a «Voci dalla pista», il podcast per chi ama la velocità. Stasera andiamo in Francia, a Le Mans. Qui si corre la gara più lunga e più dura del mondo: ventiquattro ore. Giorno e notte, sole e pioggia. Tre piloti si alternano sulla stessa macchina. E una squadra intera non dorme.
+È sabato. Martina è a Le Mans da una settimana. È stagista in una squadra italiana. Ha una maglia rossa con il suo nome e le cuffie sulle orecchie. Davanti a lei ci sono sei schermi pieni di numeri.
+Speaker: Mesdames et messieurs, signore e signori, mancano dieci minuti alla partenza della ventiquattro ore di Le Mans!
+Vicino a lei c’è Sandro, l’ingegnere capo. Ha cinquant’anni e ha fatto venti volte Le Mans.
+Sandro: Martina, ascolta bene. Qui non vince la macchina più veloce. Vince la macchina che non si rompe. E la squadra che non sbaglia.
+Alle quattro del pomeriggio parte la gara. Sessanta macchine, un rumore enorme.
+Le ore passano. Il sole va giù. Le macchine accendono i fari. I piloti si cambiano ogni tre ore: un pit stop, gomme nuove, benzina, e un altro pilota sale in macchina. La squadra di Martina è terza.
+Alle tre di notte tocca a Giulia Bassi, la pilota più giovane della squadra. Fa freddo. E comincia a piovere.
+Giulia: Qui piove forte sul rettilineo. Non vedo quasi niente. Ma la macchina va bene.
+Martina guarda gli schermi. Le temperature. La velocità. La pressione delle gomme. E vede una cosa piccola. Molto piccola. La gomma posteriore sinistra perde pressione. Piano piano. Un po’ a ogni giro.
+Martina: Sandro… guarda qui. La posteriore sinistra. Ha perso zero virgola tre in dieci giri.
+Sandro: Che cosa pensi?
+Martina: Secondo me è una foratura lenta. Tra cinque giri, forse sei, la gomma esplode. A trecento all’ora.
+Sandro guarda lo schermo. Poi guarda Martina. Per cinque secondi non parla.
+Sandro le dà il microfono della radio.
+Sandro: L’hai visto tu. Parla tu con Giulia.
+Martina prende il microfono. Le mani tremano. Respira.
+Martina: Giulia, qui è Martina. Abbiamo un problema alla gomma posteriore sinistra. Foratura lenta. Rientra ai box. Questo giro. Box, box.
+Giulia: Ricevuto. Box questo giro. Grazie, Martina.
+Un giro dopo, la macchina rossa entra ai box. I meccanici sono pronti. Quattro gomme nuove in pochi secondi. Il meccanico guarda la gomma vecchia: c’è un piccolo pezzo di metallo dentro.
+Giulia riparte. Perdono trenta secondi. Ma restano terzi.
+Giulia: Grazie, ragazzi. La macchina adesso è perfetta. Martina… ti devo una pizza.
+Sandro mette una mano sulla spalla di Martina.
+Sandro: Ventidue anni e già salvi una macchina a Le Mans. Brava.
+Alle sei di mattina smette di piovere. Arriva l’alba. Il cielo diventa rosa. Gli uccelli cantano, anche con il rumore dei motori. Martina non ha dormito un minuto. Ma non è stanca.
+Al telefono c’è il nonno Ivo, da Maranello. Ha visto tutta la notte in televisione.
+Nonno: Martina! Ho visto il pit stop. Hanno detto alla televisione: «Una giovane ingegnera ha visto il problema.» Eri tu?
+Martina: Ero io, nonno. Ho ascoltato la macchina. Come mi hai insegnato tu. Solo che io la ascolto con i numeri.
+Nonno: E io con le orecchie. È la stessa cosa.
+Alle quattro del pomeriggio finisce la gara. Ventiquattro ore, quasi cinquemila chilometri. La macchina di Martina finisce terza. Sul podio salgono i tre piloti. Giulia vede Martina sotto il podio e le tira il cappellino.
+Questo era «Voci dalla pista». E ricordate: in una gara di ventiquattro ore anche un numero piccolo può essere un eroe. Nella prossima puntata, l’ultima di questa stagione, torniamo in Italia, a Fiorano. Leo sale per la prima volta su una vera Formula Uno. E alla radio c’è sua sorella. Buona velocità a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci dalla pista“, dem Podcast für alle, die Geschwindigkeit lieben. Heute Abend fahren wir nach Frankreich, nach Le Mans. Hier wird das längste und härteste Rennen der Welt gefahren: vierundzwanzig Stunden. Tag und Nacht, Sonne und Regen. Drei Fahrer wechseln sich am selben Auto ab. Und ein ganzes Team schläft nicht.
+Es ist Samstag. Martina ist seit einer Woche in Le Mans. Sie ist Praktikantin bei einem italienischen Team. Sie trägt ein rotes Shirt mit ihrem Namen und Kopfhörer auf den Ohren. Vor ihr sind sechs Bildschirme voller Zahlen.
+Sprecherin: Mesdames et messieurs, meine Damen und Herren, noch zehn Minuten bis zum Start der 24 Stunden von Le Mans!
+Neben ihr sitzt Sandro, der Chefingenieur. Er ist fünfzig und war zwanzigmal in Le Mans.
+Sandro: Martina, hör gut zu. Hier gewinnt nicht das schnellste Auto. Es gewinnt das Auto, das nicht kaputtgeht. Und das Team, das keinen Fehler macht.
+Um vier Uhr nachmittags beginnt das Rennen. Sechzig Autos, ein riesiger Lärm.
+Die Stunden vergehen. Die Sonne geht unter. Die Autos schalten die Scheinwerfer ein. Die Fahrer wechseln sich alle drei Stunden ab: ein Boxenstopp, neue Reifen, Benzin, und ein anderer Fahrer steigt ein. Martinas Team liegt auf Platz drei.
+Um drei Uhr nachts ist Giulia Bassi dran, die jüngste Fahrerin im Team. Es ist kalt. Und es beginnt zu regnen.
+Giulia: Hier regnet es stark auf der Geraden. Ich sehe fast nichts. Aber das Auto läuft gut.
+Martina schaut auf die Bildschirme. Die Temperaturen. Die Geschwindigkeit. Den Reifendruck. Und sie sieht etwas Kleines. Etwas sehr Kleines. Der linke Hinterreifen verliert Druck. Ganz langsam. Ein bisschen in jeder Runde.
+Martina: Sandro … schau hier. Hinten links. Er hat in zehn Runden null Komma drei verloren.
+Sandro: Was denkst du?
+Martina: Ich denke, das ist ein schleichender Plattfuß. In fünf Runden, vielleicht sechs, platzt der Reifen. Bei dreihundert Stundenkilometern.
+Sandro schaut auf den Bildschirm. Dann schaut er Martina an. Fünf Sekunden lang sagt er nichts.
+Sandro gibt ihr das Funkmikrofon.
+Sandro: Du hast es gesehen. Du sprichst mit Giulia.
+Martina nimmt das Mikrofon. Ihre Hände zittern. Sie atmet durch.
+Martina: Giulia, hier ist Martina. Wir haben ein Problem mit dem linken Hinterreifen. Schleichender Plattfuß. Komm an die Box. Diese Runde. Box, Box.
+Giulia: Verstanden. Box diese Runde. Danke, Martina.
+Eine Runde später fährt das rote Auto an die Box. Die Mechaniker sind bereit. Vier neue Reifen in wenigen Sekunden. Der Mechaniker schaut sich den alten Reifen an: Darin steckt ein kleines Stück Metall.
+Giulia fährt wieder los. Sie verlieren dreißig Sekunden. Aber sie bleiben Dritte.
+Giulia: Danke, Leute. Das Auto ist jetzt perfekt. Martina … ich schulde dir eine Pizza.
+Sandro legt Martina eine Hand auf die Schulter.
+Sandro: Zweiundzwanzig Jahre alt und rettest schon ein Auto in Le Mans. Gut gemacht.
+Um sechs Uhr morgens hört der Regen auf. Die Morgendämmerung kommt. Der Himmel wird rosa. Die Vögel singen, sogar beim Lärm der Motoren. Martina hat keine Minute geschlafen. Aber sie ist nicht müde.
+Am Telefon ist Opa Ivo, aus Maranello. Er hat die ganze Nacht im Fernsehen geschaut.
+Opa: Martina! Ich habe den Boxenstopp gesehen. Im Fernsehen haben sie gesagt: „Eine junge Ingenieurin hat das Problem erkannt.“ Warst du das?
+Martina: Das war ich, Opa. Ich habe dem Auto zugehört. Wie du es mir beigebracht hast. Nur höre ich mit Zahlen zu.
+Opa: Und ich mit den Ohren. Das ist dasselbe.
+Um vier Uhr nachmittags endet das Rennen. Vierundzwanzig Stunden, fast fünftausend Kilometer. Martinas Auto wird Dritter. Die drei Fahrer steigen aufs Podium. Giulia sieht Martina unter dem Podium und wirft ihr ihre Mütze zu.
+Das war „Voci dalla pista“. Und denkt daran: Bei einem 24-Stunden-Rennen kann auch eine kleine Zahl ein Held sein. In der nächsten Folge, der letzten dieser Staffel, kehren wir nach Italien zurück, nach Fiorano. Leo sitzt zum ersten Mal in einem echten Formel-1-Auto. Und am Funk ist seine Schwester. Gute Fahrt euch allen!`,
+    fact:'Die 24 Stunden von Le Mans werden seit 1923 auf dem Circuit de la Sarthe gefahren, zum Teil auf normalen Landstraßen; die berühmte lange Gerade heißt Hunaudières. Drei Fahrer teilen sich ein Auto, die Siegerautos legen über 5.000 Kilometer zurück. Ferrari gewann das Rennen in den 1950er- und 1960er-Jahren neunmal und nach einer langen Pause wieder ab 2023. Das Team in dieser Folge ist erfunden.' }
+);
+/* „Voci dalla pista“ Folge 5 (v291, 29.10.2026) – wird nach leggende_formula4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Nach den Lektionen („La proposta di Maranello“, „Vorrei che fossi la mia ingegnera“, „La busta con il cavallino“): Leo darf auf der Teststrecke Fiorano zum ersten Mal
+   ein (älteres) Formel-1-Auto fahren. Martina ist am Funk seine Ingenieurin. Opa Ivo steht am Zaun, die ganze Familie dabei (Mama Paola, Papa Davide, Aisha, Katze Pit bleibt zu Hause).
+   Erste Runde zu vorsichtig, Martina beruhigt ihn („respira, ascolta la macchina“), Opa hört: „Adesso canta.“ Zehnte Runde: Leos beste Zeit. Am Ende legt der Opa die Hand auf das Auto.
+   Stimmen wie Folge 1–4. Niveau ab A2. */
+PODCASTS.formula.push(
+  { id:'formula-p5', show:'Voci dalla pista', ep:5, title:'Il primo giro', de:'Die erste Runde',
+    place:'La pista di Fiorano, Maranello, una mattina di novembre', level:'ab A2', kind:'Herz · Formel 1 · Staffelfinale',
+    voices:{Martina:'Elsa', Leo:'Diego', Nonno:'Giuseppe', Paola:'Isabella', Davide:'Diego', Aisha:'Elsa', Sandro:'Giuseppe'},
+    stil:{'':['-4%','+0Hz'], Martina:['+0%','+20Hz'], Leo:['+4%','+24Hz'], Nonno:['-8%','-14Hz'], Paola:['+2%','+6Hz'], Davide:['-2%','-14Hz'], Aisha:['+0%','+6Hz'], Sandro:['-2%','-4Hz']},
+    words:[['la pista di prova','die Teststrecke'],['la monoposto','der Einsitzer, das Formel-Auto'],['la tuta','der Rennanzug'],['il volante','das Lenkrad'],['scaldare le gomme','die Reifen aufwärmen'],['il tempo sul giro','die Rundenzeit'],['prudente','vorsichtig'],['respirare','atmen'],['fidarsi','vertrauen'],['la rete','der Zaun, das Netz'],['il cancello','das Tor'],['emozionato / emozionata','aufgeregt, bewegt'],['il cerchio','der Kreis'],['l’orgoglio','der Stolz'],['il sogno','der Traum']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È novembre':'vento_an', 'Il nonno è':'pausa', 'Nel box':'attrezzi', 'Leo sale':'cerniera', 'I meccanici':'pneumatico avviamento', 'Il motore si accende':'vento_aus griglia_an', 'Leo esce dal box':'griglia_aus pista_an', 'Leo: Martina':'radio', 'Martina: Leo, respira':'radio', 'Martina: No.':'radio', 'Leo: Ricevuto':'radio', 'Il primo giro':'passaggio', 'Nonno: Adesso':'pausa', 'Al decimo giro':'passaggio', 'Martina: Leo, ultimo':'radio', 'Leo: Davvero':'radio', 'Leo rientra':'pista_aus pausa', 'Il nonno si avvicina':'pausa', 'Davide abbraccia':'applausi', 'Questo era':'carillon_ende'},
+    text:`Buongiorno e benvenuti a «Voci dalla pista», il podcast per chi ama la velocità. È l’ultima puntata di questa stagione. E oggi c’è un giorno che la famiglia Righi aspetta da tanti anni. Leo guida per la prima volta una vera Formula Uno.
+È novembre. A Fiorano, la pista di prova vicino a Maranello, c’è nebbia. Fa freddo. Dietro la rete ci sono la mamma Paola, papà Davide, Aisha e il nonno Ivo. Il nonno ha il cappotto e la vecchia sciarpa rossa della Ferrari.
+Il nonno è venuto qui migliaia di volte. Per quarant’anni ha lavorato su queste macchine. Ma oggi è diverso. Oggi in macchina c’è suo nipote.
+Nel box Leo si mette la tuta. È pallido. Martina è vicino a lui, con le cuffie e il computer. Oggi è lei l’ingegnera di Leo. Lui l’ha chiesto: «Voglio te alla radio. Solo te.»
+Martina: Leo, ascoltami. Non devi fare il record. Devi solo guidare. Primi giri piano, per scaldare le gomme. Poi, quando ti senti bene, vai.
+Leo: E se sbaglio?
+Martina: Allora sbagli. E poi riprovi. Come al kart, quando avevi dieci anni.
+Leo sale nella monoposto. È strettissima. Si siede quasi sdraiato. Mette il casco, i guanti. Le mani sul volante.
+I meccanici tolgono le coperte dalle gomme. Uno di loro avvia il motore.
+Il motore si accende. Un rumore enorme. La terra trema. Dietro la rete, la mamma si mette le mani sulle orecchie. Il nonno chiude gli occhi.
+Leo esce dal box. Piano. Molto piano.
+Leo: Martina… la macchina è velocissima anche quando vado piano. È come guidare un razzo.
+Martina: Leo, respira. Ascolta la macchina. Lei ti parla. Gomme a posto, freni a posto. Va tutto bene.
+Leo: Ricevuto.
+Il primo giro è lento. Il secondo un po’ meno. Il terzo giro passa davanti al box veloce come un lampo.
+Il nonno apre gli occhi. Ascolta. Sorride.
+Nonno: Adesso canta. Sentite? Prima la macchina aveva paura. Adesso canta.
+Aisha: Come fa una macchina ad avere paura?
+Nonno: Non era la macchina. Era Leo. Adesso non ha più paura.
+La nebbia va via. Esce il sole. Leo gira, giro dopo giro. Ogni volta un po’ più veloce. Martina guarda i tempi sullo schermo. Non dice niente. Non vuole disturbarlo.
+Al decimo giro la macchina passa come un tuono. Sandro, l’ingegnere capo, guarda lo schermo e alza le sopracciglia.
+Martina: Leo, ultimo giro. È il tuo giro migliore. Un secondo più veloce del giro prima. Rientra ai box. Bravo. Bravissimo.
+Leo: Davvero? Martina… lo posso fare ancora? Solo un giro!
+Martina: No. Il nonno dice sempre: si torna a casa quando la macchina è ancora intera.
+Leo rientra ai box. Il motore si spegne. Silenzio. Si sentono solo gli uccelli e il vento.
+Leo esce dalla macchina. Si toglie il casco. Ha i capelli bagnati e un sorriso enorme. Corre verso la rete.
+Il nonno si avvicina al cancello. Un meccanico lo riconosce. «Ivo! Vieni, vieni dentro!» Il nonno entra nel box. Cammina piano verso la macchina rossa. Mette una mano sopra la carrozzeria, calda.
+Nonno: Ho costruito queste macchine per quarant’anni. Le ho smontate, pulite, riparate. Non le ho mai guidate. Oggi la guida mio nipote. E alla radio c’è mia nipote.
+Martina: Nonno, il cerchio è chiuso.
+Nonno: No, Martina. Il cerchio comincia adesso.
+Davide abbraccia la moglie. Paola piange. Aisha fa le foto. Sandro stringe la mano a Leo.
+Sandro: Bravo, ragazzo. Ma ricordati: è il primo giro, non l’ultimo.
+Questo era «Voci dalla pista». Grazie per aver corso con noi in questa stagione: dal bar «Il Box» alla Mille Miglia, dalla notte di Le Mans fino al primo giro di Leo. E ricordate: ogni grande pilota ha cominciato con un piccolo kart. E con qualcuno che lo ascoltava. Buona velocità a tutti, e arrivederci!`,
+    tr:`Guten Tag und willkommen bei „Voci dalla pista“, dem Podcast für alle, die Geschwindigkeit lieben. Das ist die letzte Folge dieser Staffel. Und heute ist ein Tag, auf den die Familie Righi seit vielen Jahren wartet. Leo fährt zum ersten Mal ein echtes Formel-1-Auto.
+Es ist November. In Fiorano, der Teststrecke bei Maranello, ist Nebel. Es ist kalt. Hinter dem Zaun stehen Mama Paola, Papa Davide, Aisha und Opa Ivo. Der Opa trägt seinen Mantel und den alten roten Ferrari-Schal.
+Der Opa war schon tausendmal hier. Vierzig Jahre lang hat er an diesen Autos gearbeitet. Aber heute ist es anders. Heute sitzt sein Enkel im Auto.
+In der Box zieht Leo den Rennanzug an. Er ist blass. Martina steht neben ihm, mit Kopfhörern und Computer. Heute ist sie Leos Ingenieurin. Er hat darum gebeten: „Ich will dich am Funk. Nur dich.“
+Martina: Leo, hör mir zu. Du musst keinen Rekord fahren. Du musst nur fahren. Die ersten Runden langsam, um die Reifen aufzuwärmen. Dann, wenn du dich gut fühlst, gibst du Gas.
+Leo: Und wenn ich einen Fehler mache?
+Martina: Dann machst du einen Fehler. Und dann versuchst du es nochmal. Wie beim Kart, als du zehn warst.
+Leo steigt in das Formel-Auto. Es ist unglaublich eng. Er sitzt fast liegend. Er setzt den Helm auf, zieht die Handschuhe an. Die Hände am Lenkrad.
+Die Mechaniker nehmen die Heizdecken von den Reifen. Einer von ihnen startet den Motor.
+Der Motor geht an. Ein riesiger Lärm. Die Erde bebt. Hinter dem Zaun hält sich die Mama die Ohren zu. Der Opa schließt die Augen.
+Leo fährt aus der Box. Langsam. Sehr langsam.
+Leo: Martina … das Auto ist superschnell, sogar wenn ich langsam fahre. Das ist, als würde man eine Rakete fahren.
+Martina: Leo, atme. Hör auf das Auto. Es spricht mit dir. Reifen in Ordnung, Bremsen in Ordnung. Alles ist gut.
+Leo: Verstanden.
+Die erste Runde ist langsam. Die zweite etwas weniger. Die dritte Runde rast an der Box vorbei wie ein Blitz.
+Der Opa öffnet die Augen. Er hört zu. Er lächelt.
+Opa: Jetzt singt es. Hört ihr? Vorher hatte das Auto Angst. Jetzt singt es.
+Aisha: Wie kann ein Auto Angst haben?
+Opa: Es war nicht das Auto. Es war Leo. Jetzt hat er keine Angst mehr.
+Der Nebel löst sich auf. Die Sonne kommt heraus. Leo fährt Runde um Runde. Jedes Mal ein bisschen schneller. Martina schaut auf die Zeiten am Bildschirm. Sie sagt nichts. Sie will ihn nicht stören.
+In der zehnten Runde fährt das Auto vorbei wie ein Donner. Sandro, der Chefingenieur, schaut auf den Bildschirm und zieht die Augenbrauen hoch.
+Martina: Leo, letzte Runde. Das ist deine beste Runde. Eine Sekunde schneller als die vorige. Komm an die Box. Gut gemacht. Großartig.
+Leo: Wirklich? Martina … darf ich noch mal? Nur eine Runde!
+Martina: Nein. Der Opa sagt immer: Man fährt nach Hause, solange das Auto noch ganz ist.
+Leo kommt an die Box. Der Motor geht aus. Stille. Man hört nur die Vögel und den Wind.
+Leo steigt aus dem Auto. Er nimmt den Helm ab. Er hat nasse Haare und ein riesiges Lächeln. Er rennt zum Zaun.
+Der Opa geht zum Tor. Ein Mechaniker erkennt ihn. „Ivo! Komm, komm rein!“ Der Opa betritt die Box. Er geht langsam auf das rote Auto zu. Er legt eine Hand auf die warme Karosserie.
+Opa: Vierzig Jahre lang habe ich diese Autos gebaut. Ich habe sie auseinandergenommen, geputzt, repariert. Ich bin nie eins gefahren. Heute fährt mein Enkel eins. Und am Funk ist meine Enkelin.
+Martina: Opa, der Kreis hat sich geschlossen.
+Opa: Nein, Martina. Der Kreis fängt jetzt erst an.
+Davide umarmt seine Frau. Paola weint. Aisha macht Fotos. Sandro schüttelt Leo die Hand.
+Sandro: Gut gemacht, Junge. Aber denk daran: Das ist die erste Runde, nicht die letzte.
+Das war „Voci dalla pista“. Danke, dass ihr in dieser Staffel mit uns gefahren seid: von der Bar „Il Box“ zur Mille Miglia, von der Nacht in Le Mans bis zu Leos erster Runde. Und denkt daran: Jeder große Fahrer hat mit einem kleinen Kart angefangen. Und mit jemandem, der ihm zugehört hat. Gute Fahrt euch allen, und auf Wiederhören!`,
+    fact:'Fiorano ist Ferraris eigene Teststrecke direkt neben dem Werk in Maranello; Enzo Ferrari ließ sie 1972 bauen. Junge Nachwuchsfahrer dürfen dort mit älteren Formel-1-Autos üben. Vor dem Start werden die Reifen mit Heizdecken auf etwa 70 Grad vorgewärmt, weil kalte Reifen kaum Halt geben. In einem Formel-1-Auto sitzt man fast liegend, die Füße liegen höher als das Becken.' }
+);
 /* Hörgeschichte „Fußball“ (Italiener lernen Deutsch, v221; Wunsch der Nutzerin: „mach bitte weiter mit Stufe 4 und einer hörgeschichte danach“).
    Podcast „Stimmen aus dem Stadion“, Folge 1: der Tag des Champions-League-Spiels Napoli–Dortmund (passt zu Stufe 4, fussball-v4-10/11).
    Jonas mit Papa Enzo (it-IT-GiuseppeMultilingualNeural, Deutsch mit italienischem Akzent) auf der Vespa, in der Bar, im Stadion; Opa Willi am Telefon.
