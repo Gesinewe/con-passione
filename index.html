@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 291;
+const APP_VERSION = 292;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -75512,6 +75512,324 @@ Oma lächelt und legt ihre Hand auf Ninas Hand am Lenkrad.
 Das war „Voci della strada“. Fahrt vorsichtig, und behandelt eure alten Autos gut.`,
     fact:'Der Fiat 500 („Cinquecento“) wurde ab 1957 in Turin gebaut und hatte einen kleinen Zweizylindermotor im Heck – deshalb sein typisches knatterndes Geräusch. Die Basilika von Superga liegt auf einem Hügel über Turin und bietet einen berühmten Blick auf die Alpen.' }
 ];
+/* „Voci della strada“ Folge 2 (v292, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_auto.js geladen.
+   Ninas Führerscheinprüfung in Turin (Lektionen: Nina 18, Fahrlehrer Bruno ganz ruhig, Mama Laura Verkehrspolizistin, Papa Marco Taxifahrer, Matteo 9, Hund Clacson).
+   Prüfer Ingegner Rossetti streng. Kreisverkehr, Straßenbahn, Fußgängerüberweg, Einparken zwischen zwei Autos. An einer Kreuzung regelt ausgerechnet Mama Laura den Verkehr – und tut so, als kenne sie Nina nicht.
+   Nina würgt einmal ab, bleibt ruhig, parkt perfekt ein. Bestanden. Abends hupt Papas Taxi vor der Fahrschule. Angekündigt Folge 3: Silvesternacht in Papas Taxi.
+   Stimmen: Bruno Giuseppe sehr ruhig, Esaminatore Diego tief, Laura Isabella. Niveau ab A2. */
+PODCAST_INFO.auto.lead = 'Wie ein kleiner Podcast: Nina, Oma Teresa und der alte Fiat 500 „Gina“ – Führerscheinprüfung, eine Silvesternacht im Taxi, Schneeketten am Berg und ein Schlüssel, der den Besitzer wechselt, mit Motor, Hupe, Blinker und Straßenbahn. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.auto.push(
+  { id:'auto-p2', show:'Voci della strada', ep:2, title:'L’esame di guida', de:'Die Führerscheinprüfung',
+    place:'Torino, un martedì mattina di marzo', level:'ab A2', kind:'Spannend · Lustig · Fahrschule',
+    voices:{Nina:'Elsa', Matteo:'Diego', Bruno:'Giuseppe', Esaminatore:'Diego', Laura:'Isabella', Marco:'Diego'},
+    stil:{'':['-6%','+0Hz'], Nina:['+0%','+20Hz'], Matteo:['+6%','+42Hz'], Bruno:['-14%','-10Hz'], Esaminatore:['-4%','-18Hz'], Laura:['+2%','+4Hz'], Marco:['-2%','-8Hz']},
+    words:[['l’esame di guida','die Fahrprüfung'],['la patente','der Führerschein'],['l’esaminatore','der Prüfer'],['l’istruttore','der Fahrlehrer'],['allacciare la cintura','sich anschnallen'],['lo specchietto','der Spiegel (am Auto)'],['la rotonda','der Kreisverkehr'],['dare la precedenza','Vorfahrt gewähren'],['le strisce pedonali','der Zebrastreifen'],['il tram','die Straßenbahn'],['spegnere il motore','den Motor abwürgen'],['parcheggiare','einparken'],['la retromarcia','der Rückwärtsgang'],['il vigile / la vigile','der Verkehrspolizist / die Verkehrspolizistin'],['promosso / promossa','bestanden']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È martedì':'traffico_an', 'Alle nove':'pausa', 'Nina allaccia':'avviamento_breve', 'Esaminatore: Partiamo':'freccia', 'La prima rotonda':'clacson', 'Poi arriva':'tram', 'Al semaforo':'pausa', 'Nina mette la prima':'avviamento_breve', 'All’incrocio':'fischietto', 'Laura alza':'pausa', 'Esaminatore: Adesso':'pausa', 'Nina mette la retromarcia':'cambio', 'Esaminatore: Spenga':'traffico_aus pausa', 'L’esaminatore scrive':'pausa', 'Davanti alla scuola':'clacson', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci della strada», il podcast per chi ama le macchine. Oggi è un giorno importante. Nina ha diciotto anni. Ha studiato i cartelli, le regole, i segnali. Ha fatto trenta lezioni con l’istruttore. E oggi c’è l’esame di guida.
+È martedì mattina. Torino è piena di traffico. Nina è davanti alla scuola guida con le mani fredde. Con lei c’è Bruno, l’istruttore. Bruno parla sempre piano, molto piano.
+Bruno: Nina. Respira. Sei pronta. Guidi bene. Ascolta l’esaminatore. E ricordati: lo specchietto. Sempre lo specchietto.
+Nina: E se sbaglio?
+Bruno: Se sbagli, sorridi. E continui.
+Alle nove arriva l’esaminatore, l’ingegner Rossetti. È alto, serio, con un cappotto grigio e una cartellina. Non sorride.
+Esaminatore: Buongiorno. Documenti, prego. Bene. Signorina Ferraris, salga in macchina.
+Nina allaccia la cintura. Controlla gli specchietti. Accende il motore.
+Esaminatore: Partiamo. Al primo incrocio giri a destra. Poi dritto fino alla rotonda.
+Nina mette la freccia e parte. Piano. Bene.
+La prima rotonda è grande. Ci sono macchine da tutte le parti. Un camion suona il clacson. Nina dà la precedenza, aspetta, entra, esce alla seconda uscita.
+Poi arriva il tram. È lungo, arancione, e passa vicinissimo. Nina si ferma. Aspetta. Il tram passa.
+Esaminatore: Bene. Adesso in corso Vittorio. Attenzione alle strisce pedonali.
+Al semaforo rosso Nina si ferma. Una signora con un cane attraversa la strada. Il semaforo diventa verde.
+Nina mette la prima e… il motore si spegne. La macchina fa un salto. Silenzio. Dietro, una macchina suona.
+Nina diventa rossa. Ma si ricorda di Bruno: sorridi e continua. Riaccende il motore. Parte. Tutto bene.
+All’incrocio successivo c’è una vigile in divisa che dirige il traffico, con il fischietto e i guanti bianchi. Nina la guarda… ed è la mamma! La mamma Laura, al lavoro.
+Laura alza la mano. Ferma le macchine dall’altra parte. Poi fa segno a Nina: avanti, prego. Serissima. Come se non la conoscesse.
+Nina passa davanti alla mamma. La mamma non sorride. Ma, quando la macchina è passata, fa un piccolo pugno in aria. Nina lo vede nello specchietto.
+Esaminatore: Adesso un parcheggio. Lì, tra la macchina blu e il furgone bianco.
+Lo spazio è piccolo. Molto piccolo. Nina guarda lo spazio, poi lo specchietto, poi ancora lo spazio.
+Nina mette la retromarcia. Gira il volante. Piano, piano. Controlla lo specchietto destro. Poi il sinistro. Un po’ avanti. Un po’ indietro. Ferma. La macchina è perfetta, dritta, a venti centimetri dal marciapiede.
+Esaminatore: Spenga il motore, prego.
+L’esaminatore scrive qualcosa sulla cartellina. Per un minuto lungo come un’ora non dice niente.
+Esaminatore: Signorina Ferraris. Il motore si è spento al semaforo. Ma lei è rimasta calma. E il parcheggio… il parcheggio è il migliore della settimana. Promossa.
+Nina: Promossa? Davvero? Grazie! Grazie mille!
+Per la prima volta l’ingegner Rossetti sorride. Solo un po’.
+Davanti alla scuola guida Bruno aspetta. Vede la faccia di Nina e capisce subito. Poi si sente un clacson. Un taxi bianco si ferma. È papà Marco, con Matteo e il cane Clacson sul sedile dietro.
+Matteo: Nina! Hai la patente? Allora mi porti a scuola tu!
+Marco: Brava, Nina. Benvenuta sulla strada. E adesso… la nonna ti aspetta. Dice che vuole farti guidare Gina.
+Nina: Gina? La Cinquecento della nonna? Quella che non parte mai?
+Marco: Proprio lei.
+Questo era «Voci della strada». E ricordate: un errore non è la fine dell’esame. È come reagisci dopo. Nella prossima puntata è la notte di Capodanno. Nina passa la notte nel taxi del papà. E tra i passeggeri c’è una signora che ha molta, molta fretta. Buona strada a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci della strada“ (Stimmen der Straße), dem Podcast für alle, die Autos lieben. Heute ist ein wichtiger Tag. Nina ist achtzehn. Sie hat die Schilder gelernt, die Regeln, die Zeichen. Sie hatte dreißig Fahrstunden. Und heute ist die Fahrprüfung.
+Es ist Dienstagmorgen. Turin ist voller Verkehr. Nina steht mit kalten Händen vor der Fahrschule. Bei ihr ist Bruno, der Fahrlehrer. Bruno spricht immer leise, ganz leise.
+Bruno: Nina. Atme. Du bist bereit. Du fährst gut. Hör auf den Prüfer. Und denk daran: der Spiegel. Immer der Spiegel.
+Nina: Und wenn ich einen Fehler mache?
+Bruno: Wenn du einen Fehler machst, lächelst du. Und fährst weiter.
+Um neun kommt der Prüfer, Ingenieur Rossetti. Er ist groß, ernst, trägt einen grauen Mantel und hat eine Mappe. Er lächelt nicht.
+Prüfer: Guten Tag. Die Papiere, bitte. Gut. Fräulein Ferraris, steigen Sie ein.
+Nina schnallt sich an. Sie kontrolliert die Spiegel. Sie startet den Motor.
+Prüfer: Fahren wir. An der ersten Kreuzung biegen Sie rechts ab. Dann geradeaus bis zum Kreisverkehr.
+Nina setzt den Blinker und fährt los. Langsam. Gut.
+Der erste Kreisverkehr ist groß. Von allen Seiten kommen Autos. Ein Lastwagen hupt. Nina lässt Vorfahrt, wartet, fährt hinein und nimmt die zweite Ausfahrt.
+Dann kommt die Straßenbahn. Sie ist lang, orange und fährt ganz nah vorbei. Nina hält an. Sie wartet. Die Straßenbahn fährt vorbei.
+Prüfer: Gut. Jetzt in den Corso Vittorio. Achten Sie auf die Zebrastreifen.
+An der roten Ampel hält Nina an. Eine Frau mit Hund geht über die Straße. Die Ampel wird grün.
+Nina legt den ersten Gang ein und … der Motor geht aus. Das Auto macht einen Satz. Stille. Hinten hupt ein Auto.
+Nina wird rot. Aber sie erinnert sich an Bruno: lächeln und weiterfahren. Sie startet den Motor neu. Sie fährt los. Alles gut.
+An der nächsten Kreuzung steht eine Verkehrspolizistin in Uniform, die den Verkehr regelt, mit Trillerpfeife und weißen Handschuhen. Nina schaut sie an … und es ist die Mama! Mama Laura, bei der Arbeit.
+Laura hebt die Hand. Sie hält die Autos auf der anderen Seite an. Dann gibt sie Nina ein Zeichen: Bitte, fahren Sie. Todernst. Als würde sie sie nicht kennen.
+Nina fährt an der Mama vorbei. Die Mama lächelt nicht. Aber als das Auto vorbei ist, macht sie eine kleine Siegerfaust. Nina sieht es im Spiegel.
+Prüfer: Jetzt einparken. Dort, zwischen dem blauen Auto und dem weißen Lieferwagen.
+Die Lücke ist klein. Sehr klein. Nina schaut auf die Lücke, dann in den Spiegel, dann wieder auf die Lücke.
+Nina legt den Rückwärtsgang ein. Sie dreht das Lenkrad. Langsam, langsam. Sie kontrolliert den rechten Spiegel. Dann den linken. Ein bisschen vor. Ein bisschen zurück. Stopp. Das Auto steht perfekt, gerade, zwanzig Zentimeter vom Bordstein.
+Prüfer: Stellen Sie den Motor ab, bitte.
+Der Prüfer schreibt etwas in seine Mappe. Eine Minute, lang wie eine Stunde, sagt er nichts.
+Prüfer: Fräulein Ferraris. An der Ampel ist Ihnen der Motor ausgegangen. Aber Sie sind ruhig geblieben. Und das Einparken … das Einparken ist das beste der Woche. Bestanden.
+Nina: Bestanden? Wirklich? Danke! Tausend Dank!
+Zum ersten Mal lächelt Ingenieur Rossetti. Nur ein bisschen.
+Vor der Fahrschule wartet Bruno. Er sieht Ninas Gesicht und versteht sofort. Dann hört man eine Hupe. Ein weißes Taxi hält an. Es ist Papa Marco, mit Matteo und dem Hund Clacson auf dem Rücksitz.
+Matteo: Nina! Hast du den Führerschein? Dann bringst du mich zur Schule!
+Marco: Gut gemacht, Nina. Willkommen auf der Straße. Und jetzt … wartet die Oma auf dich. Sie sagt, sie will dich Gina fahren lassen.
+Nina: Gina? Omas Cinquecento? Der, der nie anspringt?
+Marco: Genau der.
+Das war „Voci della strada“. Und denkt daran: Ein Fehler ist nicht das Ende der Prüfung. Es kommt darauf an, wie du danach reagierst. In der nächsten Folge ist Silvesternacht. Nina verbringt die Nacht in Papas Taxi. Und unter den Fahrgästen ist eine Frau, die es sehr, sehr eilig hat. Gute Fahrt euch allen!`,
+    fact:'In Italien macht man den Führerschein („patente B“) ab 18 Jahren: zuerst eine Theorieprüfung am Computer, danach die praktische Prüfung mit einem Prüfer der „Motorizzazione“. Turin hat eines der größten Straßenbahnnetze Italiens. Die „vigili“ (Verkehrspolizisten der Stadt) regeln an manchen Kreuzungen bis heute mit Pfeife und weißen Handschuhen den Verkehr.' }
+);
+/* „Voci della strada“ Folge 3 (v292, 29.10.2026) – wird nach leggende_auto2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Silvesternacht: Nina fährt als Beifahrerin in Papa Marcos Taxi mit (Lektionen: Papa Taxifahrer, Mama Laura Verkehrspolizistin). Fahrgäste: ein altes Ehepaar zum Tanzen,
+   ein verirrter Tourist aus Stuttgart (wie Jonas, Nina übersetzt), dann Signora Elisa, hochschwanger, Wehen – zum Krankenhaus Sant’Anna. Straße wegen Fest gesperrt, Mama Laura öffnet die Absperrung.
+   Um Mitternacht, mit Feuerwerk, wird das Baby geboren; die Mutter nennt es Nina. Angekündigt Folge 4: Mit Gina und Schneeketten nach Sestriere.
+   Stimmen: Centrale (Funkzentrale) Isabella mit Effekt radio, Signore anziano Giuseppe tief, Signora anziana Isabella, Turista Diego, Elisa Elsa tiefer. Niveau ab A2. */
+PODCASTS.auto.push(
+  { id:'auto-p3', show:'Voci della strada', ep:3, title:'Il taxi di Capodanno', de:'Das Silvester-Taxi',
+    place:'Torino, la notte del trentuno dicembre', level:'ab A2', kind:'Spannend · Herz · Nachtfahrt',
+    voices:{Nina:'Elsa', Marco:'Diego', Laura:'Isabella', Centrale:'Isabella', Signore:'Giuseppe', Signora:'Isabella', Turista:'Diego', Elisa:'Elsa'},
+    stil:{'':['-6%','+0Hz'], Nina:['+0%','+20Hz'], Marco:['-2%','-8Hz'], Laura:['+2%','+4Hz'], Centrale:['+6%','+0Hz'], Signore:['-10%','-16Hz'], Signora:['-10%','+0Hz'], Turista:['-10%','+8Hz'], Elisa:['+2%','+4Hz']},
+    words:[['Capodanno','Neujahr, Silvester'],['il tassista','der Taxifahrer'],['il passeggero / i passeggeri','der Fahrgast / die Fahrgäste'],['la corsa','die Fahrt (im Taxi)'],['il tassametro','das Taxameter'],['la centrale','die Funkzentrale'],['incinta','schwanger'],['le doglie','die Wehen'],['l’ospedale','das Krankenhaus'],['la strada chiusa','die gesperrte Straße'],['la transenna','die Absperrung'],['nascere / è nata','geboren werden / sie ist geboren'],['il conto alla rovescia','der Countdown'],['mezzanotte','Mitternacht'],['gratis','umsonst']],
+    fx:{'Buonasera e benvenuti':'pausa', 'Sono le nove':'traffico_an', 'Centrale:':'radio', 'Il primo passeggero':'porta', 'Alle dieci':'pausa', 'Turista:':'pausa', 'Alle undici e mezza':'porta', 'Elisa: Mi scusi':'pausa', 'Marco accende':'freccia', 'In via':'clacson', 'Davanti a loro':'pausa', 'Una vigile':'fischietto', 'Laura apre':'pausa', 'Alle undici e cinquantadue':'traffico_aus pausa', 'Marco e Nina aspettano':'pausa', 'Dieci, nove':'pausa', 'Il cielo':'fuochi campane', 'Venti minuti dopo':'notifiche', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci della strada», il podcast per chi ama le macchine. Stasera è l’ultima notte dell’anno. Tutti vanno alle feste. Ma qualcuno lavora. Per esempio papà Marco, il tassista. E stasera, per la prima volta, con lui c’è Nina.
+Sono le nove di sera del trentuno dicembre. Torino è piena di luci. Il taxi bianco di papà è pulito, profumato, con una piccola stella di Natale sullo specchietto.
+Marco: La notte di Capodanno è la notte più lunga per un tassista. Tutti hanno fretta. Tutti sono felici. E qualcuno ha bevuto un po’ troppo.
+Centrale: Taxi ventitré, una corsa in via Po, numero dieci. Due persone.
+Il primo passeggero è una coppia di anziani. Lui ha il cappello, lei una pelliccia vecchia e le scarpe da ballo.
+Signore: Buonasera! In piazza San Carlo, per favore. C’è il ballo. Sessant’anni fa ci siamo conosciuti lì. La notte di Capodanno.
+Signora: E ogni anno torniamo a ballare. Lui balla male, ma non glielo dica.
+Alle dieci sale un ragazzo con uno zaino grande. Parla un italiano molto lento.
+Turista: Buona… sera. Io… cerco… albergo… «Hotel Stella». Io sono di Stoccarda.
+Nina: Ah, Stoccarda! Kein Problem. Wir bringen Sie hin.
+Il ragazzo è felicissimo di sentire il tedesco. Nina parla con lui per tutta la corsa. Papà Marco la guarda nello specchietto, orgoglioso.
+Alle undici e mezza il taxi si ferma in corso Francia. Sale una giovane donna. Ha una mano sulla pancia. Una pancia molto grande.
+Elisa: Mi scusi… all’ospedale Sant’Anna, per favore. Presto. Il bambino… il bambino arriva. Adesso.
+Marco: Adesso? Stanotte?
+Elisa: Le doglie sono ogni cinque minuti. Mio marito è in Sicilia, il suo aereo arriva domani. Io sono sola.
+Nina: Non è sola. Ci siamo noi.
+Marco accende le quattro frecce e parte. Veloce, ma attento.
+In via Nizza c’è tanto traffico. Le macchine suonano il clacson. Le persone camminano in mezzo alla strada con le bottiglie e i cappelli di carta.
+Davanti a loro c’è una transenna. Strada chiusa per la festa. Marco si ferma. Elisa stringe la mano di Nina. Ha dolore.
+Una vigile si avvicina alla macchina con il fischietto. Nina la guarda… è la mamma! Stanotte la mamma lavora qui.
+Laura: Marco? Nina? Che cosa fate qui?
+Nina: Mamma! La signora sta per partorire! Dobbiamo andare al Sant’Anna!
+Laura apre subito la transenna. Parla alla radio. Poi sale sulla sua moto e va davanti al taxi.
+Laura: Seguitemi! Vi apro la strada!
+Così il taxi attraversa la città dietro alla moto della mamma. Le persone si spostano. Qualcuno applaude.
+Alle undici e cinquantadue il taxi si ferma davanti all’ospedale. Due infermiere arrivano con una sedia a rotelle. Elisa entra. Prima di sparire dietro la porta, si gira.
+Elisa: Grazie! Come ti chiami?
+Nina: Nina!
+Marco e Nina aspettano in macchina, davanti all’ospedale. Fuori la città conta.
+Dieci, nove, otto, sette, sei, cinque, quattro, tre, due, uno… Buon anno!
+Il cielo di Torino esplode di colori. Sopra la Mole Antonelliana ci sono fuochi d’artificio rossi, verdi e d’oro. Le campane suonano. Nina abbraccia il papà.
+Venti minuti dopo il telefono di Marco suona. È un messaggio di Elisa, con una foto: una bambina piccolissima, con gli occhi chiusi e un cappellino rosa. Sotto c’è scritto: «È nata a mezzanotte e un minuto. Si chiama Nina. Grazie al taxi più bello di Torino.»
+Nina guarda la foto per tanto tempo. Non dice niente. Poi ride e piange insieme.
+Marco: E il tassametro? Quanto ha pagato la signora?
+Nina: Papà!
+Marco: Lo so, lo so. Gratis. La prima corsa dell’anno è sempre gratis.
+Questo era «Voci della strada». E ricordate: a volte una strada chiusa si apre, se qualcuno ti aiuta. Nella prossima puntata Nina guida Gina, la vecchia Cinquecento della nonna, fino in montagna. Con la neve. E con le catene. Buona strada a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci della strada“, dem Podcast für alle, die Autos lieben. Heute ist die letzte Nacht des Jahres. Alle gehen auf Partys. Aber manche arbeiten. Zum Beispiel Papa Marco, der Taxifahrer. Und heute Abend ist zum ersten Mal Nina dabei.
+Es ist neun Uhr abends am einunddreißigsten Dezember. Turin ist voller Lichter. Papas weißes Taxi ist sauber, duftet gut und hat einen kleinen Weihnachtsstern am Spiegel.
+Marco: Die Silvesternacht ist die längste Nacht für einen Taxifahrer. Alle haben es eilig. Alle sind glücklich. Und manche haben ein bisschen zu viel getrunken.
+Zentrale: Taxi dreiundzwanzig, eine Fahrt in der Via Po, Nummer zehn. Zwei Personen.
+Die ersten Fahrgäste sind ein altes Ehepaar. Er trägt einen Hut, sie einen alten Pelz und Tanzschuhe.
+Herr: Guten Abend! Zur Piazza San Carlo, bitte. Dort ist der Ball. Vor sechzig Jahren haben wir uns dort kennengelernt. In der Silvesternacht.
+Dame: Und jedes Jahr gehen wir wieder tanzen. Er tanzt schlecht, aber sagen Sie es ihm nicht.
+Um zehn steigt ein junger Mann mit einem großen Rucksack ein. Er spricht ein sehr langsames Italienisch.
+Tourist: Guten … Abend. Ich … suche … Hotel … „Hotel Stella“. Ich bin aus Stuttgart.
+Nina: Ah, Stuttgart! Kein Problem. Wir bringen Sie hin.
+Der junge Mann ist überglücklich, Deutsch zu hören. Nina redet die ganze Fahrt mit ihm. Papa Marco schaut sie im Spiegel an, stolz.
+Um halb zwölf hält das Taxi im Corso Francia. Eine junge Frau steigt ein. Sie hat eine Hand auf dem Bauch. Einem sehr großen Bauch.
+Elisa: Entschuldigung … zum Krankenhaus Sant’Anna, bitte. Schnell. Das Baby … das Baby kommt. Jetzt.
+Marco: Jetzt? Heute Nacht?
+Elisa: Die Wehen kommen alle fünf Minuten. Mein Mann ist in Sizilien, sein Flugzeug landet morgen. Ich bin allein.
+Nina: Sie sind nicht allein. Wir sind ja da.
+Marco schaltet die Warnblinker ein und fährt los. Schnell, aber vorsichtig.
+In der Via Nizza ist viel Verkehr. Die Autos hupen. Die Leute laufen mit Flaschen und Papierhüten mitten auf der Straße.
+Vor ihnen steht eine Absperrung. Straße gesperrt wegen des Festes. Marco hält an. Elisa drückt Ninas Hand. Sie hat Schmerzen.
+Eine Verkehrspolizistin kommt mit der Pfeife zum Auto. Nina schaut sie an … das ist die Mama! Heute Nacht arbeitet die Mama hier.
+Laura: Marco? Nina? Was macht ihr denn hier?
+Nina: Mama! Die Frau bekommt gleich ihr Baby! Wir müssen ins Sant’Anna!
+Laura öffnet sofort die Absperrung. Sie spricht ins Funkgerät. Dann steigt sie auf ihr Motorrad und fährt vor dem Taxi her.
+Laura: Folgt mir! Ich mache euch den Weg frei!
+So fährt das Taxi hinter Mamas Motorrad durch die Stadt. Die Leute machen Platz. Manche klatschen.
+Um acht vor zwölf hält das Taxi vor dem Krankenhaus. Zwei Krankenschwestern kommen mit einem Rollstuhl. Elisa geht hinein. Bevor sie hinter der Tür verschwindet, dreht sie sich um.
+Elisa: Danke! Wie heißt du?
+Nina: Nina!
+Marco und Nina warten im Auto vor dem Krankenhaus. Draußen zählt die Stadt.
+Zehn, neun, acht, sieben, sechs, fünf, vier, drei, zwei, eins … Frohes neues Jahr!
+Der Himmel über Turin explodiert in Farben. Über der Mole Antonelliana ist Feuerwerk, rot, grün und golden. Die Glocken läuten. Nina umarmt den Papa.
+Zwanzig Minuten später klingelt Marcos Handy. Es ist eine Nachricht von Elisa, mit einem Foto: ein winziges Mädchen mit geschlossenen Augen und einem rosa Mützchen. Darunter steht: „Sie ist um eine Minute nach Mitternacht geboren. Sie heißt Nina. Danke an das schönste Taxi von Turin.“
+Nina schaut lange auf das Foto. Sie sagt nichts. Dann lacht und weint sie gleichzeitig.
+Marco: Und das Taxameter? Wie viel hat die Frau bezahlt?
+Nina: Papa!
+Marco: Ich weiß, ich weiß. Umsonst. Die erste Fahrt des Jahres ist immer umsonst.
+Das war „Voci della strada“. Und denkt daran: Manchmal öffnet sich eine gesperrte Straße, wenn dir jemand hilft. In der nächsten Folge fährt Nina mit Gina, Omas altem Cinquecento, in die Berge. Im Schnee. Und mit Schneeketten. Gute Fahrt euch allen!`,
+    fact:'Das Krankenhaus Sant’Anna in Turin ist eine der größten Geburtskliniken Italiens. Das Wahrzeichen der Stadt ist die Mole Antonelliana mit ihrer fast 170 Meter hohen Spitze; heute ist darin das Nationale Filmmuseum. In Italien hupt man um Mitternacht an Silvester, knallt Korken und isst Linsen – sie sollen im neuen Jahr Geld bringen.' }
+);
+/* „Voci della strada“ Folge 4 (v292, 29.10.2026) – wird nach leggende_auto3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Nina fährt mit Gina (hellblauer Fiat 500 von 1968), Oma Teresa, Jonas (Austauschstudent aus Stuttgart), Matteo und Hund Clacson nach Sestriere. Schnee, Kettenpflicht.
+   Nina hat nie Ketten montiert, Oma erklärt es Schritt für Schritt (sie hat bei Fiat in Mirafiori gearbeitet). Ein großer Geländewagen, dessen Fahrer über Gina gelacht hat, steckt fest;
+   Gina mit Heckmotor kommt den Berg hoch. Jonas und Nina schieben den Geländewagen an, der Fahrer entschuldigt sich. Oben Bicerin (Turiner Kaffee-Schokolade).
+   Angekündigt Folge 5 (Finale): Omas Geburtstag und Ginas Schlüssel. Stimmen: Teresa Isabella tief, Jonas Diego mit deutschem Tonfall (langsam), Signore Giuseppe, Carabiniere Giuseppe tief. Niveau ab A2. */
+PODCASTS.auto.push(
+  { id:'auto-p4', show:'Voci della strada', ep:4, title:'Gina e la neve', de:'Gina und der Schnee',
+    place:'La strada da Torino al Sestriere, un sabato di gennaio', level:'ab A2', kind:'Abenteuer · Winter · Lustig',
+    voices:{Nina:'Elsa', Matteo:'Diego', Nonna:'Isabella', Jonas:'Diego', Signore:'Giuseppe', Carabiniere:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Nina:['+0%','+20Hz'], Matteo:['+6%','+42Hz'], Nonna:['-8%','-12Hz'], Jonas:['-12%','+2Hz'], Signore:['+2%','-2Hz'], Carabiniere:['-6%','-18Hz']},
+    words:[['la neve','der Schnee'],['nevicare','schneien'],['le catene da neve','die Schneeketten'],['l’obbligo','die Pflicht'],['montare','montieren'],['la ruota','das Rad'],['il motore posteriore','der Heckmotor'],['il fuoristrada','der Geländewagen'],['bloccato / bloccata','festgefahren'],['spingere','schieben'],['scivolare','rutschen'],['la salita','die Steigung'],['il riscaldamento','die Heizung'],['chiedere scusa','sich entschuldigen'],['il bicerin','der Bicerin (Turiner Getränk)']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Sabato mattina':'avviamento motore500_an', 'Dopo un’ora':'vento_an', 'Un grande fuoristrada':'clacson', 'Signore: Ehi':'pausa', 'A Cesana':'motore500_aus pausa', 'Carabiniere:':'pausa', 'Nina apre':'pausa', 'La nonna scende':'catene', 'Nina prova':'catene', 'Dopo venti minuti':'avviamento motore500_an', 'Gina sale':'pausa', 'Dopo una curva':'motore500_aus pausa', 'Jonas e Nina':'spinta', 'Al terzo tentativo':'avviamento', 'Il signore scende':'pausa', 'Al Sestriere':'vento_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci della strada», il podcast per chi ama le macchine. Oggi andiamo in montagna. Con la neve. E con una macchina di quasi sessant’anni: Gina, la Cinquecento azzurra della nonna Teresa.
+Sabato mattina, alle sette. Nina ha la patente da due mesi. La nonna è seduta vicino a lei. Dietro, stretti stretti, ci sono Jonas, Matteo e il cane Clacson. Sul tetto ci sono gli sci. Gina parte al secondo tentativo.
+Nonna: Brava, Nina. Gina è vecchia, ma ha il cuore giovane. Come me.
+Jonas: Signora Teresa… scusi. In Germania si dice: per la neve servono le gomme invernali. Gina ha le gomme invernali?
+Nonna: Gina ha di meglio. Gina ha me.
+Dopo un’ora la strada comincia a salire. Ci sono alberi bianchi, montagne bianche, cielo bianco. Comincia a nevicare. Il riscaldamento di Gina fa un piccolo rumore, ma scalda poco. Matteo ha i guanti anche in macchina.
+Un grande fuoristrada nero suona il clacson e sorpassa. Si ferma vicino a loro al semaforo. Il signore al volante apre il finestrino e ride.
+Signore: Ehi! Con quella scatoletta andate al Sestriere? Non arrivate neanche alla prossima curva!
+Il fuoristrada riparte veloce. La nonna non dice niente. Sorride soltanto.
+A Cesana i carabinieri fermano tutte le macchine. C’è un cartello: «Obbligo di catene».
+Carabiniere: Buongiorno. Da qui in poi servono le catene. Le avete?
+Nina: Le catene? Sì… credo. Nonna?
+Nina apre il cofano davanti. Nella Cinquecento il motore è dietro, e davanti c’è il bagagliaio. Dentro c’è una vecchia scatola di ferro. Dentro ci sono due catene, un po’ arrugginite.
+La nonna scende dalla macchina con il cappotto e il cappello di lana.
+Nonna: Nina, vieni qui. Ti insegno. Nel millenovecentosettanta le montavo in tre minuti. Allora: le catene vanno sulle ruote dietro. Perché Gina spinge da dietro.
+Nina prova. La catena cade nella neve. Nina riprova. Le dita sono fredde. Jonas aiuta. Matteo tiene la torcia. Clacson abbaia alla neve.
+Nonna: Passa sotto la ruota. Chiudi il gancio dentro. Poi tira forte. Poi avanti un metro. E chiudi ancora. Brava. L’altra ruota.
+Dopo venti minuti le catene sono montate. Nina ha le mani rosse, ma è fiera.
+Gina sale. Piano. Curva dopo curva. Le catene fanno un rumore allegro sulla neve. Le altre macchine scivolano. Gina no. Gina sale come una capra.
+Jonas: Incredibile! Perché Gina non scivola?
+Nonna: Il motore è dietro. Il peso è sopra le ruote che spingono. E Gina è leggera. Una macchina leggera non affonda.
+Dopo una curva, sulla salita, c’è un fuoristrada nero fermo in mezzo alla strada. Le ruote girano, girano, ma non si muove. È il signore di prima. È bloccato nella neve.
+Nina ferma Gina. Si guardano tutti. Poi Nina scende.
+Nina: Jonas, vieni. Spingiamo.
+Jonas e Nina spingono il fuoristrada. Una volta. Niente. Due volte. Niente. Anche Matteo spinge, con le sue mani piccole.
+Al terzo tentativo il fuoristrada si muove. Esce dalla neve. Riparte.
+Il signore scende dal fuoristrada. È rosso. Non per il freddo.
+Signore: Grazie, ragazzi. Davvero. E… chiedo scusa per la scatoletta.
+Nonna: Si figuri. La scatoletta si chiama Gina. E Gina perdona tutti.
+Al Sestriere c’è il sole. La neve brilla. Matteo e Jonas sciano tutto il giorno. Nina fa la sua prima discesa e cade sei volte. La nonna li aspetta al bar, con un bicerin caldo: caffè, cioccolato e panna.
+La sera, quando ripartono, il fuoristrada nero è nel parcheggio. Sul parabrezza di Gina c’è un biglietto: «Per la signora Gina. Con rispetto. Il signore della scatoletta.» E vicino, una scatola di cioccolatini.
+Questo era «Voci della strada». E ricordate: non conta quanto è grande la macchina. Conta chi c’è dentro. Nella prossima puntata, l’ultima di questa stagione, la nonna Teresa compie ottantacinque anni. E ha un regalo per Nina. Un regalo con quattro ruote. Buona strada a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci della strada“, dem Podcast für alle, die Autos lieben. Heute fahren wir in die Berge. Mit Schnee. Und mit einem Auto, das fast sechzig Jahre alt ist: Gina, Oma Teresas hellblauer Cinquecento.
+Samstagmorgen, sieben Uhr. Nina hat den Führerschein seit zwei Monaten. Die Oma sitzt neben ihr. Hinten, eng zusammengedrückt, sitzen Jonas, Matteo und der Hund Clacson. Auf dem Dach sind die Skier. Gina springt beim zweiten Versuch an.
+Oma: Gut so, Nina. Gina ist alt, aber sie hat ein junges Herz. Wie ich.
+Jonas: Frau Teresa … Entschuldigung. In Deutschland sagt man: Für Schnee braucht man Winterreifen. Hat Gina Winterreifen?
+Oma: Gina hat etwas Besseres. Gina hat mich.
+Nach einer Stunde beginnt die Straße zu steigen. Es gibt weiße Bäume, weiße Berge, weißen Himmel. Es fängt an zu schneien. Ginas Heizung macht ein kleines Geräusch, aber sie heizt kaum. Matteo hat sogar im Auto Handschuhe an.
+Ein großer schwarzer Geländewagen hupt und überholt. An der Ampel hält er neben ihnen. Der Mann am Steuer öffnet das Fenster und lacht.
+Herr: He! Mit dieser Sardinenbüchse wollt ihr nach Sestriere? Ihr schafft nicht mal die nächste Kurve!
+Der Geländewagen fährt schnell weiter. Die Oma sagt nichts. Sie lächelt nur.
+In Cesana halten die Carabinieri alle Autos an. Da steht ein Schild: „Schneekettenpflicht“.
+Carabiniere: Guten Tag. Ab hier braucht man Schneeketten. Haben Sie welche?
+Nina: Schneeketten? Ja … ich glaube. Oma?
+Nina öffnet vorne die Haube. Beim Cinquecento ist der Motor hinten, und vorne ist der Kofferraum. Darin steht eine alte Eisenkiste. Darin sind zwei Ketten, ein bisschen verrostet.
+Die Oma steigt mit Mantel und Wollmütze aus dem Auto.
+Oma: Nina, komm her. Ich zeige es dir. 1970 habe ich sie in drei Minuten montiert. Also: Die Ketten kommen auf die Hinterräder. Weil Gina von hinten schiebt.
+Nina versucht es. Die Kette fällt in den Schnee. Nina versucht es noch einmal. Die Finger sind kalt. Jonas hilft. Matteo hält die Taschenlampe. Clacson bellt den Schnee an.
+Oma: Unter dem Rad durch. Den Haken innen schließen. Dann fest ziehen. Dann einen Meter vor. Und noch einmal schließen. Gut so. Das andere Rad.
+Nach zwanzig Minuten sind die Ketten montiert. Nina hat rote Hände, aber sie ist stolz.
+Gina fährt bergauf. Langsam. Kurve um Kurve. Die Ketten klingen fröhlich auf dem Schnee. Die anderen Autos rutschen. Gina nicht. Gina klettert hinauf wie eine Ziege.
+Jonas: Unglaublich! Warum rutscht Gina nicht?
+Oma: Der Motor ist hinten. Das Gewicht liegt auf den Rädern, die schieben. Und Gina ist leicht. Ein leichtes Auto sinkt nicht ein.
+Nach einer Kurve, an der Steigung, steht ein schwarzer Geländewagen mitten auf der Straße. Die Räder drehen und drehen, aber er bewegt sich nicht. Es ist der Herr von vorhin. Er steckt im Schnee fest.
+Nina hält Gina an. Alle schauen sich an. Dann steigt Nina aus.
+Nina: Jonas, komm. Wir schieben.
+Jonas und Nina schieben den Geländewagen. Einmal. Nichts. Zweimal. Nichts. Auch Matteo schiebt, mit seinen kleinen Händen.
+Beim dritten Versuch bewegt sich der Geländewagen. Er kommt aus dem Schnee. Er fährt wieder.
+Der Herr steigt aus dem Geländewagen. Er ist rot. Nicht von der Kälte.
+Herr: Danke, ihr zwei. Wirklich. Und … entschuldigt das mit der Sardinenbüchse.
+Oma: Keine Ursache. Die Sardinenbüchse heißt Gina. Und Gina verzeiht allen.
+In Sestriere scheint die Sonne. Der Schnee glitzert. Matteo und Jonas fahren den ganzen Tag Ski. Nina macht ihre erste Abfahrt und fällt sechsmal hin. Die Oma wartet in der Bar auf sie, mit einem heißen Bicerin: Kaffee, Schokolade und Sahne.
+Am Abend, als sie losfahren, steht der schwarze Geländewagen auf dem Parkplatz. Unter Ginas Scheibenwischer steckt ein Zettel: „Für Frau Gina. Mit Respekt. Der Herr mit der Sardinenbüchse.“ Und daneben eine Schachtel Pralinen.
+Das war „Voci della strada“. Und denkt daran: Es zählt nicht, wie groß das Auto ist. Es zählt, wer drinsitzt. In der nächsten Folge, der letzten dieser Staffel, wird Oma Teresa fünfundachtzig. Und sie hat ein Geschenk für Nina. Ein Geschenk mit vier Rädern. Gute Fahrt euch allen!`,
+    fact:'Der Fiat 500 (1957–1975) hat den Motor hinten und den Kofferraum vorne. Weil das Gewicht des Motors auf den angetriebenen Hinterrädern liegt, kommt er im Schnee erstaunlich gut voran. In den italienischen Alpen gilt im Winter auf vielen Straßen Winterreifen- oder Kettenpflicht. Der „bicerin“ ist ein Turiner Getränk aus Espresso, heißer Schokolade und Sahne, in einem kleinen Glas serviert.' }
+);
+/* „Voci della strada“ Folge 5 (v292, 29.10.2026) – wird nach leggende_auto4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Oma Teresa wird 85 (Lektionen: 84 bei der ärztlichen Kommission, hat bei Fiat in Mirafiori am Band gearbeitet, kaufte Gina 1968). Sie bittet Nina um eine Geburtstagsfahrt durch Turin:
+   vor das Tor von Mirafiori (ihr erster Arbeitstag 1961), zum Lingotto mit der Teststrecke auf dem Dach (heute Garten „La Pista 500“), zum Po. Auf dem Dach zeigt sie Nina den Kilometerzähler-Zettel:
+   Gina hat 412.000 km. Dann gibt sie Nina die Schlüssel: „Gina adesso è tua.“ Fest in Onkel Francos Werkstatt, alle hupen. Niveau ab A2. */
+PODCASTS.auto.push(
+  { id:'auto-p5', show:'Voci della strada', ep:5, title:'Le chiavi di Gina', de:'Ginas Schlüssel',
+    place:'Torino: Mirafiori, il Lingotto e l’officina «Da Franco», a maggio', level:'ab A2', kind:'Herz · Familie · Staffelfinale',
+    voices:{Nina:'Elsa', Matteo:'Diego', Nonna:'Isabella', Franco:'Giuseppe', Marco:'Diego', Laura:'Isabella', Jonas:'Diego'},
+    stil:{'':['-6%','+0Hz'], Nina:['+0%','+20Hz'], Matteo:['+6%','+42Hz'], Nonna:['-8%','-12Hz'], Franco:['-4%','-12Hz'], Marco:['-2%','-8Hz'], Laura:['+2%','+4Hz'], Jonas:['-12%','+2Hz']},
+    words:[['il compleanno','der Geburtstag'],['la fabbrica','die Fabrik'],['la catena di montaggio','das Fließband'],['il cancello','das Tor'],['il turno','die Schicht'],['il tetto','das Dach'],['la pista','die Strecke'],['il contachilometri','der Kilometerzähler'],['i chilometri','die Kilometer'],['le chiavi','die Schlüssel'],['regalare','schenken'],['prendersi cura di','sich kümmern um'],['il ricordo','die Erinnerung'],['l’officina','die Werkstatt'],['suonare il clacson','hupen']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È domenica':'avviamento motore500_an', 'La prima fermata':'motore500_aus traffico_an', 'Nonna: Il primo':'pausa', 'La seconda fermata':'traffico_aus pausa', 'Salgono sul tetto':'vento_an', 'La nonna tira fuori':'pausa', 'Nonna: Quattrocentododicimila':'pausa', 'Poi la nonna':'chiavi', 'Nina non riesce':'pausa', 'La sera':'vento_aus officina_an', 'Quando Gina entra':'clacson applausi', 'Franco alza':'brindisi', 'Questo era':'officina_aus carillon_ende'},
+    text:`Buongiorno e benvenuti a «Voci della strada», il podcast per chi ama le macchine. È l’ultima puntata di questa stagione. Oggi la nonna Teresa compie ottantacinque anni. E ha chiesto un regalo strano: un giro per Torino con Gina. Ma non guida lei. Guida Nina.
+È domenica mattina. Gina è lucida, appena lavata. La nonna ha il vestito della festa e gli occhiali da sole. Nina gira la chiave. Gina parte al primo colpo. Un miracolo.
+Nonna: Hai visto? Anche Gina sa che è il mio compleanno.
+La prima fermata è Mirafiori. Davanti c’è un grande cancello e un muro lunghissimo. È la fabbrica della Fiat. La nonna scende dalla macchina e guarda il cancello per tanto tempo.
+Nonna: Il primo turno della mia vita è cominciato qui. Era il millenovecentosessantuno. Avevo diciannove anni. Entravo alle sei di mattina. Eravamo migliaia. Io montavo le portiere. Tutto il giorno, portiere, portiere, portiere.
+Nina: E Gina?
+Nonna: Gina è nata in questa fabbrica, nel millenovecentosessantotto. Per tre anni avevo risparmiato: niente cinema, niente vestiti nuovi. Poi ho visto sulla catena di montaggio una Cinquecento azzurra. Mi sono detta: questa è mia. E l’ho pagata in contanti.
+La seconda fermata è il Lingotto. È un edificio enorme e vecchio. Una volta era una fabbrica. Sul tetto c’è una cosa incredibile: una pista. Una vera pista per le macchine, in cima a un palazzo.
+Salgono sul tetto con l’ascensore. Oggi la pista è un giardino, con piante e fiori. Il vento muove i capelli bianchi della nonna. Da qui si vedono tutta Torino e le Alpi con la neve.
+Nonna: Qui provavano le macchine nuove. Giravano sul tetto, sopra la città. Da bambina pensavo che le macchine volassero.
+La nonna tira fuori dalla borsa un piccolo quaderno. È vecchio, con la copertina azzurra. Dentro ci sono date e numeri, scritti a mano.
+Nonna: In questo quaderno ho scritto tutti i viaggi di Gina. Il mare in Liguria. Il viaggio di nozze. La prima volta in Sicilia. L’ospedale, quando è nato tuo padre. Ieri ho guardato il contachilometri.
+Nina: Quanti chilometri ha Gina?
+Nonna: Quattrocentododicimila. Dieci volte il giro del mondo. Quasi.
+Poi la nonna prende le chiavi di Gina. Un mazzo piccolo, con un portachiavi di plastica a forma di cuore, vecchissimo. Le mette nella mano di Nina e le chiude le dita.
+Nonna: Nina, ascolta. Io ho ottantacinque anni. I medici dicono che posso ancora guidare. Ma io ho deciso. I prossimi chilometri sono tuoi. Gina adesso è tua.
+Nina non riesce a parlare. Guarda le chiavi. Guarda la nonna.
+Nina: Nonna… ma Gina è la tua vita.
+Nonna: Appunto. Per questo la do a te. Promettimi tre cose. Uno: cambia l’olio ogni anno. Due: quando non parte, non arrabbiarti, parlale. Tre: portami ogni tanto al mare.
+Nina: Te lo prometto. Tutte e tre.
+La sera c’è una festa nell’officina di zio Franco. Ci sono tutti: papà Marco, la mamma Laura, Matteo, Jonas, il cane Clacson, e anche Bruno, l’istruttore di guida. Sul muro c’è uno striscione: «Auguri nonna Teresa! Ottantacinque anni e quattrocentododicimila chilometri!»
+Quando Gina entra nell’officina, con Nina al volante e la nonna seduta accanto, tutti suonano il clacson delle loro macchine. Clacson, il cane, abbaia insieme. Matteo salta.
+Matteo: Nina! Adesso Gina è tua? Allora quando avrò diciotto anni Gina sarà mia!
+Nina: Ne parliamo fra nove anni.
+Franco alza il bicchiere.
+Franco: Alla nonna Teresa, che ha costruito le macchine di questa città. E a Gina, che non ha mai smesso di partire… quasi mai.
+Tutti ridono. La nonna soffia sulle candeline, a forma di piccole ruote. Poi va verso Gina, apre la portiera e si siede. Sul sedile del passeggero.
+Nonna: Allora, Nina? Dove andiamo domani?
+Questo era «Voci della strada». Grazie per aver viaggiato con noi in questa stagione: dalla prima volta che Gina non è partita all’esame di Nina, dal taxi di Capodanno alla neve, fino alle chiavi di Gina. E ricordate: una macchina non porta solo le persone. Porta anche i ricordi. Buona strada a tutti, e arrivederci!`,
+    tr:`Guten Tag und willkommen bei „Voci della strada“, dem Podcast für alle, die Autos lieben. Das ist die letzte Folge dieser Staffel. Heute wird Oma Teresa fünfundachtzig. Und sie hat sich ein seltsames Geschenk gewünscht: eine Fahrt durch Turin mit Gina. Aber sie fährt nicht selbst. Nina fährt.
+Es ist Sonntagmorgen. Gina glänzt, frisch gewaschen. Die Oma trägt ihr Festtagskleid und eine Sonnenbrille. Nina dreht den Schlüssel. Gina springt beim ersten Mal an. Ein Wunder.
+Oma: Siehst du? Auch Gina weiß, dass ich Geburtstag habe.
+Der erste Halt ist Mirafiori. Davor ist ein großes Tor und eine unendlich lange Mauer. Das ist die Fiat-Fabrik. Die Oma steigt aus dem Auto und schaut das Tor lange an.
+Oma: Die erste Schicht meines Lebens hat hier angefangen. Das war 1961. Ich war neunzehn. Ich ging um sechs Uhr morgens hinein. Wir waren Tausende. Ich habe Türen montiert. Den ganzen Tag, Türen, Türen, Türen.
+Nina: Und Gina?
+Oma: Gina ist 1968 in dieser Fabrik geboren. Drei Jahre lang hatte ich gespart: kein Kino, keine neuen Kleider. Dann habe ich am Fließband einen hellblauen Cinquecento gesehen. Ich habe mir gesagt: Der gehört mir. Und ich habe ihn bar bezahlt.
+Der zweite Halt ist der Lingotto. Das ist ein riesiges, altes Gebäude. Früher war es eine Fabrik. Auf dem Dach gibt es etwas Unglaubliches: eine Strecke. Eine echte Teststrecke für Autos, oben auf einem Gebäude.
+Sie fahren mit dem Aufzug aufs Dach. Heute ist die Strecke ein Garten, mit Pflanzen und Blumen. Der Wind bewegt Omas weiße Haare. Von hier sieht man ganz Turin und die Alpen mit Schnee.
+Oma: Hier haben sie die neuen Autos getestet. Sie fuhren auf dem Dach im Kreis, über der Stadt. Als Kind dachte ich, die Autos könnten fliegen.
+Die Oma holt ein kleines Heft aus der Tasche. Es ist alt, mit hellblauem Umschlag. Darin stehen Daten und Zahlen, von Hand geschrieben.
+Oma: In dieses Heft habe ich alle Reisen von Gina geschrieben. Das Meer in Ligurien. Die Hochzeitsreise. Das erste Mal in Sizilien. Das Krankenhaus, als dein Papa geboren wurde. Gestern habe ich auf den Kilometerzähler geschaut.
+Nina: Wie viele Kilometer hat Gina?
+Oma: Vierhundertzwölftausend. Zehnmal um die Welt. Fast.
+Dann nimmt die Oma Ginas Schlüssel. Ein kleiner Bund mit einem uralten Plastikanhänger in Herzform. Sie legt ihn Nina in die Hand und schließt ihre Finger darum.
+Oma: Nina, hör zu. Ich bin fünfundachtzig. Die Ärzte sagen, ich darf noch fahren. Aber ich habe entschieden. Die nächsten Kilometer gehören dir. Gina gehört jetzt dir.
+Nina kann nicht sprechen. Sie schaut die Schlüssel an. Sie schaut die Oma an.
+Nina: Oma … aber Gina ist dein Leben.
+Oma: Eben. Deshalb gebe ich sie dir. Versprich mir drei Dinge. Erstens: Wechsle jedes Jahr das Öl. Zweitens: Wenn sie nicht anspringt, ärgere dich nicht, sprich mit ihr. Drittens: Bring mich ab und zu ans Meer.
+Nina: Ich verspreche es dir. Alle drei.
+Am Abend gibt es ein Fest in Onkel Francos Werkstatt. Alle sind da: Papa Marco, Mama Laura, Matteo, Jonas, der Hund Clacson und sogar Bruno, der Fahrlehrer. An der Wand hängt ein Transparent: „Alles Gute, Oma Teresa! Fünfundachtzig Jahre und vierhundertzwölftausend Kilometer!“
+Als Gina in die Werkstatt fährt, mit Nina am Steuer und der Oma daneben, hupen alle mit ihren Autos. Clacson, der Hund, bellt mit. Matteo springt.
+Matteo: Nina! Gehört Gina jetzt dir? Dann gehört sie mir, wenn ich achtzehn bin!
+Nina: Darüber reden wir in neun Jahren.
+Franco hebt das Glas.
+Franco: Auf Oma Teresa, die die Autos dieser Stadt gebaut hat. Und auf Gina, die nie aufgehört hat anzuspringen … fast nie.
+Alle lachen. Die Oma bläst die Kerzen aus, die wie kleine Räder aussehen. Dann geht sie zu Gina, öffnet die Tür und setzt sich. Auf den Beifahrersitz.
+Oma: Also, Nina? Wohin fahren wir morgen?
+Das war „Voci della strada“. Danke, dass ihr in dieser Staffel mit uns gefahren seid: vom ersten Mal, als Gina nicht ansprang, über Ninas Prüfung, das Silvester-Taxi und den Schnee bis zu Ginas Schlüsseln. Und denkt daran: Ein Auto trägt nicht nur Menschen. Es trägt auch Erinnerungen. Gute Fahrt euch allen, und auf Wiederhören!`,
+    fact:'Das Fiat-Werk Lingotto in Turin (1923 eröffnet) hatte auf dem Dach eine über einen Kilometer lange Teststrecke mit Steilkurven; die Autos wurden unten gebaut und fuhren über eine Rampe nach oben. Heute ist der Lingotto ein Einkaufs- und Kulturzentrum, und auf der alten Strecke liegt ein Dachgarten („La Pista 500“). Ab 1939 baute Fiat das riesige Werk Mirafiori, in dem auch der Cinquecento vom Band lief.' }
+);
 /* Weitere Legenden für „Brividi nella notte“ (Folgen 2–5, v187, Wunsch der Nutzerin: „mach bitte alle“).
    Wird nach leggende_brividi.js geladen und hängt die Folgen an PODCASTS.brividi an. Stil wie Azzurrina: Erzählerin langsam und tief. */
 PODCASTS.brividi.push(
