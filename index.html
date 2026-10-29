@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 292;
+const APP_VERSION = 293;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -80220,6 +80220,326 @@ Bei Oma zu Hause schläft Temporale in einer neuen, trockenen Schachtel mit eine
 Das war „Voci dai tetti“. Und denkt daran: In Rom gehören die Katzen niemandem. Sie gehören allen.`,
     fact:'In Rom sind Straßenkatzen seit 1988 gesetzlich geschützt und gelten als „Teil des lebenden Erbes“ der Stadt. Die „gattare“, meist ältere Frauen, füttern die Kolonien. Im Katzenasyl am Largo di Torre Argentina, wo Julius Cäsar ermordet wurde, leben über hundert Katzen zwischen den antiken Tempeln.' }
 ];
+/* „Voci dai tetti“ Folge 2 (v293, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_gatti.js geladen.
+   Gewitter über Trastevere: Pepe (schwarzer Kater) sitzt auf der Antenne über Papa Sandros Bäckerei und traut sich nicht herunter. Bianca weint, Chiara ruft die Feuerwehr –
+   die hat wegen des Sturms keine Zeit. Der grantige Nachbar Herr Remo (mag keine Katzen) holt seine alte Leiter, steigt selbst aufs Dach. Pepe springt im letzten Moment allein herunter,
+   direkt in Remos Arme. Remo trocknet ihn mit seinem Schal. Angekündigt Folge 3: Freitag, der 17., und schwarze Katzen.
+   Stimmen: Chiara Isabella hoch (Erzählerin der Figur), Bianca Elsa hoch, Nonna Isabella tief, Sandro Giuseppe, Remo Giuseppe tief, Pompiere Diego mit Effekt radio (Telefon). Niveau ab A2. */
+PODCAST_INFO.gatti.lead = 'Wie ein kleiner Podcast: Bianca, Chiara, Oma Lia und die Katzen von Trastevere – ein Kater auf dem Dach im Gewitter, Freitag der 17., eine Katzenschau und ein Kätzchen im Mehlsack, mit Miauen, Schnurren, Regen und Glocken. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.gatti.push(
+  { id:'gatti-p2', show:'Voci dai tetti', ep:2, title:'Pepe sul tetto', de:'Pepe auf dem Dach',
+    place:'Trastevere, Roma, una sera di temporale', level:'ab A2', kind:'Spannend · Katzen · Nachbarn',
+    voices:{Bianca:'Elsa', Chiara:'Isabella', Nonna:'Isabella', Sandro:'Giuseppe', Remo:'Giuseppe', Pompiere:'Diego'},
+    stil:{'':['-6%','+0Hz'], Bianca:['+4%','+40Hz'], Chiara:['+0%','+12Hz'], Nonna:['-10%','-16Hz'], Sandro:['+0%','-4Hz'], Remo:['-8%','-18Hz'], Pompiere:['+8%','-6Hz']},
+    words:[['il temporale','das Gewitter'],['il tuono','der Donner'],['il fulmine','der Blitz'],['il tetto','das Dach'],['l’antenna','die Antenne'],['avere paura','Angst haben'],['scendere','heruntersteigen'],['i vigili del fuoco','die Feuerwehr'],['la scala','die Leiter'],['salire','hinaufsteigen'],['scivoloso','rutschig'],['saltare','springen'],['bagnato fradicio','klatschnass'],['la sciarpa','der Schal'],['il vicino','der Nachbar']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È venerdì':'vento_an', 'Alle sette':'tuono pioggia_an', 'Bianca: Pepe':'miao', 'Il papà Sandro esce':'pausa', 'Chiara prende':'telefono_fisso', 'Pompiere:':'radio', 'In quel momento':'porta', 'Remo: Che cos':'pausa', 'Remo porta':'pausa', 'Remo sale':'passi', 'Un altro tuono':'tuono', 'Pepe guarda':'miao', 'Pepe salta':'pausa', 'Tutti applaudono':'applausi', 'Remo scende':'pausa', 'Dentro il forno':'pioggia_aus vento_aus pausa', 'Pepe fa':'fusa', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dai tetti», il podcast dei gatti di Roma. A Roma i gatti vivono dappertutto: nelle rovine, nei giardini, sui tetti. Ma a volte un tetto è troppo alto. Anche per un gatto.
+È venerdì sera. A Trastevere tira un vento forte. Le nuvole sono nere. Nella panetteria di papà Sandro c’è profumo di pane caldo. Bianca fa i compiti sul bancone. Pepe, il gatto nero, è uscito a fare un giro.
+Alle sette arriva il temporale. Un tuono enorme. Poi la pioggia, fortissima. Bianca corre alla porta.
+Bianca: Pepe! Pepe! Dove sei?
+Dall’alto arriva un miagolio. Un miagolio piccolo e triste. Tutti guardano su. Sopra la panetteria, in cima al tetto, sull’antenna della televisione, c’è un gatto nero, bagnato, che trema.
+Il papà Sandro esce con l’ombrello.
+Sandro: Pepe! Scendi! Vieni giù!
+Ma Pepe non si muove. Il tetto è scivoloso, l’antenna è alta. Pepe ha paura.
+Bianca: Papà, fai qualcosa! Pepe cade! Pepe cade!
+Chiara prende il telefono e chiama i vigili del fuoco.
+Pompiere: Vigili del fuoco, buonasera. Un gatto sul tetto? Signorina, mi dispiace. Stasera con questo temporale abbiamo alberi caduti in tutta Roma. Per un gatto… forse fra tre ore.
+Chiara: Tre ore? Ma è bagnato, ha freddo!
+Pompiere: Lo so. Ma ricordi: un gatto scende sempre. Prima o poi.
+Bianca piange. La nonna Lia le mette la mano sulla spalla.
+Nonna: Non piangere, tesoro. I gatti hanno sette vite.
+Bianca: Ma Pepe ne ha già usate quattro!
+In quel momento si apre la porta del palazzo di fronte. Esce il signor Remo. Il vicino brontolone. Quello che dice sempre: «I gatti sporcano, i gatti fanno rumore, i gatti sono un disastro.»
+Remo: Che cos’è tutto questo rumore? Ah. Il gatto nero. Naturalmente.
+Bianca lo guarda con gli occhi rossi. Il signor Remo guarda Bianca. Poi guarda il tetto. Sospira. Rientra in casa.
+Remo porta fuori una vecchia scala di legno, lunghissima. La appoggia al muro della panetteria.
+Sandro: Signor Remo, ma cosa fa? Ha settantotto anni!
+Remo: Ho fatto il muratore per cinquant’anni. Sono salito su tutti i tetti di Trastevere. Tenete la scala. E zitti.
+Remo sale. Piano, un gradino dopo l’altro. La pioggia gli bagna il cappello. Arriva sul bordo del tetto. Allunga la mano.
+Remo: Vieni qui, demonio nero. Vieni, che ti porto giù.
+Un altro tuono. Pepe salta giù dall’antenna. Corre sul tetto. Si ferma vicino a Remo.
+Pepe guarda Remo. Remo guarda Pepe. Pepe miagola una volta.
+Pepe salta. Non sulla scala. Direttamente tra le braccia del signor Remo. E si attacca alla sua giacca con tutte le unghie.
+Remo: Ahi! Va bene, va bene. Ti tengo. Non scappare.
+Tutti applaudono sotto la pioggia. Anche la signora del terzo piano, dalla finestra.
+Remo scende con Pepe dentro la giacca. Ha il cappello storto e la faccia seria. Si toglie la sciarpa di lana e ci avvolge il gatto.
+Remo: Ecco. Bagnato fradicio. Asciugatelo bene. E chiudete la finestra, stasera.
+Bianca: Grazie, signor Remo! Grazie! Lei è un eroe!
+Remo: Io non sono un eroe. Io non sopporto il rumore. E questo gatto miagolava troppo.
+Dentro il forno è caldo. Papà Sandro mette Pepe vicino al forno, sopra un sacco di farina. Dà al signor Remo una pagnotta calda e una bottiglia di vino.
+Pepe fa le fusa, forte, come un piccolo motore. E sopra la sciarpa del signor Remo si addormenta.
+Il giorno dopo la sciarpa è ancora in panetteria. Bianca la porta al signor Remo. Lui apre la porta.
+Remo: Tienila. Il gatto ci dorme meglio di me.
+Questo era «Voci dai tetti». E ricordate: a volte chi dice di non amare i gatti è quello che li salva. Nella prossima puntata è venerdì diciassette. A scuola di Bianca tutti hanno paura dei gatti neri. E Bianca ha un’idea. Miao a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci dai tetti“ (Stimmen von den Dächern), dem Podcast der Katzen Roms. In Rom leben die Katzen überall: in den Ruinen, in den Gärten, auf den Dächern. Aber manchmal ist ein Dach zu hoch. Sogar für eine Katze.
+Es ist Freitagabend. In Trastevere weht ein starker Wind. Die Wolken sind schwarz. In Papa Sandros Bäckerei duftet es nach warmem Brot. Bianca macht auf der Theke Hausaufgaben. Pepe, der schwarze Kater, ist zu einer Runde hinausgegangen.
+Um sieben kommt das Gewitter. Ein riesiger Donner. Dann der Regen, sehr stark. Bianca rennt zur Tür.
+Bianca: Pepe! Pepe! Wo bist du?
+Von oben kommt ein Miauen. Ein kleines, trauriges Miauen. Alle schauen hinauf. Über der Bäckerei, oben auf dem Dach, auf der Fernsehantenne, sitzt ein schwarzer Kater, nass und zitternd.
+Papa Sandro kommt mit dem Regenschirm heraus.
+Sandro: Pepe! Komm runter! Komm herunter!
+Aber Pepe bewegt sich nicht. Das Dach ist rutschig, die Antenne ist hoch. Pepe hat Angst.
+Bianca: Papa, mach was! Pepe fällt! Pepe fällt!
+Chiara nimmt das Telefon und ruft die Feuerwehr an.
+Feuerwehrmann: Feuerwehr, guten Abend. Eine Katze auf dem Dach? Signorina, es tut mir leid. Heute Abend haben wir bei diesem Gewitter in ganz Rom umgestürzte Bäume. Für eine Katze … vielleicht in drei Stunden.
+Chiara: Drei Stunden? Aber er ist nass, ihm ist kalt!
+Feuerwehrmann: Ich weiß. Aber denken Sie daran: Eine Katze kommt immer herunter. Früher oder später.
+Bianca weint. Oma Lia legt ihr die Hand auf die Schulter.
+Oma: Wein nicht, Schätzchen. Katzen haben sieben Leben.
+Bianca: Aber Pepe hat schon vier verbraucht!
+In diesem Moment öffnet sich die Tür des Hauses gegenüber. Herr Remo kommt heraus. Der grantige Nachbar. Der, der immer sagt: „Katzen machen Dreck, Katzen machen Lärm, Katzen sind eine Katastrophe.“
+Remo: Was ist das für ein Lärm? Ach. Der schwarze Kater. Natürlich.
+Bianca schaut ihn mit roten Augen an. Herr Remo schaut Bianca an. Dann schaut er aufs Dach. Er seufzt. Er geht wieder ins Haus.
+Remo bringt eine alte, sehr lange Holzleiter heraus. Er lehnt sie an die Wand der Bäckerei.
+Sandro: Herr Remo, was machen Sie denn? Sie sind achtundsiebzig!
+Remo: Ich war fünfzig Jahre Maurer. Ich war auf allen Dächern von Trastevere. Haltet die Leiter. Und seid still.
+Remo steigt hinauf. Langsam, eine Sprosse nach der anderen. Der Regen macht seinen Hut nass. Er kommt an die Dachkante. Er streckt die Hand aus.
+Remo: Komm her, du schwarzer Teufel. Komm, ich bringe dich runter.
+Noch ein Donner. Pepe springt von der Antenne. Er läuft übers Dach. Er bleibt neben Remo stehen.
+Pepe schaut Remo an. Remo schaut Pepe an. Pepe miaut einmal.
+Pepe springt. Nicht auf die Leiter. Direkt in die Arme von Herrn Remo. Und er krallt sich mit allen Krallen an seiner Jacke fest.
+Remo: Au! Schon gut, schon gut. Ich halte dich. Lauf nicht weg.
+Alle klatschen im Regen. Sogar die Frau aus dem dritten Stock, am Fenster.
+Remo steigt mit Pepe in der Jacke herunter. Sein Hut sitzt schief, sein Gesicht ist ernst. Er nimmt seinen Wollschal ab und wickelt den Kater darin ein.
+Remo: Da. Klatschnass. Trocknet ihn gut ab. Und macht heute Abend das Fenster zu.
+Bianca: Danke, Herr Remo! Danke! Sie sind ein Held!
+Remo: Ich bin kein Held. Ich kann Lärm nicht leiden. Und dieser Kater hat zu viel miaut.
+Drinnen ist der Ofen warm. Papa Sandro setzt Pepe neben den Ofen, auf einen Mehlsack. Er gibt Herrn Remo einen warmen Brotlaib und eine Flasche Wein.
+Pepe schnurrt laut, wie ein kleiner Motor. Und auf dem Schal von Herrn Remo schläft er ein.
+Am nächsten Tag ist der Schal immer noch in der Bäckerei. Bianca bringt ihn Herrn Remo. Er öffnet die Tür.
+Remo: Behalt ihn. Der Kater schläft darauf besser als ich.
+Das war „Voci dai tetti“. Und denkt daran: Manchmal ist gerade der, der sagt, er mag keine Katzen, der, der sie rettet. In der nächsten Folge ist Freitag, der Siebzehnte. In Biancas Schule haben alle Angst vor schwarzen Katzen. Und Bianca hat eine Idee. Miau euch allen!`,
+    fact:'Rom hat sehr viele Straßenkatzen: Seit 2001 zählen die Katzenkolonien am Kolosseum, am Forum und in Torre Argentina offiziell zum „bio-kulturellen Erbe“ der Stadt, und ein Gesetz von 1991 schützt Straßenkatzen in ganz Italien. Katzen klettern leicht hinauf, aber das Hinunterklettern fällt ihnen schwerer, weil ihre Krallen nach hinten gebogen sind – darum sitzen sie oft fest. Die Feuerwehr heißt in Italien „Vigili del fuoco“ und hat die Notrufnummer 115 (heute meist über die 112).' }
+);
+/* „Voci dai tetti“ Folge 3 (v293, 29.10.2026) – wird nach leggende_gatti2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Freitag, der 17. November (in Italien Unglückstag; zugleich „Giornata del gatto nero“). Biancas Lehrerin, Maestra Fiorella, ist sehr abergläubisch (Salz, Leiter, Horn).
+   Bianca hält ein Referat: XVII = VIXI („ich habe gelebt“), schwarze Katzen im Mittelalter, Glückskatzen in England und Japan. Pepe ist ihr heimlich bis in die Schule gefolgt,
+   springt ins Klassenzimmer – die Lehrerin schreit – und findet unter dem Heizkörper ihren verlorenen Ehering. Angekündigt Folge 4: Katzenschau, Nuvola gegen Tigre.
+   Stimmen: Maestra Isabella hoch, Luca (Mitschüler) Diego hoch, Bidello Giuseppe. Niveau ab A2. */
+PODCASTS.gatti.push(
+  { id:'gatti-p3', show:'Voci dai tetti', ep:3, title:'Venerdì diciassette', de:'Freitag, der Siebzehnte',
+    place:'Una scuola elementare di Trastevere, il diciassette novembre', level:'ab A2', kind:'Lustig · Schule · Aberglaube',
+    voices:{Bianca:'Elsa', Chiara:'Isabella', Maestra:'Isabella', Luca:'Diego', Bidello:'Giuseppe', Nonna:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Bianca:['+4%','+40Hz'], Chiara:['+0%','+12Hz'], Maestra:['+4%','+20Hz'], Luca:['+8%','+50Hz'], Bidello:['-4%','-10Hz'], Nonna:['-10%','-16Hz']},
+    mormorio:['Che paura!','Un gatto in classe!','Maestra!','Che carino!','È nero!','Porta sfortuna!','Non è vero!','Ciao, micio!','Silenzio!','Che bello!'],
+    words:[['la superstizione','der Aberglaube'],['superstizioso / superstiziosa','abergläubisch'],['portare sfortuna','Unglück bringen'],['portare fortuna','Glück bringen'],['il gatto nero','die schwarze Katze'],['attraversare la strada','über die Straße laufen'],['il sale','das Salz'],['la scala','die Leiter'],['il numero romano','die römische Zahl'],['l’anagramma','das Anagramm'],['la ricerca','das Referat, die Recherche'],['la classe','die Klasse'],['il termosifone','der Heizkörper'],['la fede','der Ehering; der Glaube'],['ritrovare','wiederfinden']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È venerdì':'campane', 'La sera prima':'pausa', 'Nonna: Il diciassette':'pausa', 'La mattina':'passi', 'Alle nove':'gelateria_an', 'Bianca va alla lavagna':'gelateria_aus pausa', 'A un tratto':'miao', 'Maestra: Aaah':'pausa', 'Pepe non scappa':'pausa', 'Sotto il termosifone':'pausa', 'Pepe torna':'miao', 'La maestra si china':'pausa', 'Tutta la classe':'applausi', 'Il bidello':'pausa', 'Il pomeriggio':'fusa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dai tetti», il podcast dei gatti di Roma. In Italia c’è un giorno che molti temono: venerdì diciassette. E c’è un animale che molti evitano: il gatto nero. Oggi li abbiamo tutti e due insieme.
+È venerdì diciassette novembre. Ma è anche un giorno speciale per i gatti: la giornata del gatto nero. Bianca ha dieci anni e deve fare una ricerca per la scuola. Il titolo è: «Il gatto nero porta sfortuna?»
+La sera prima Bianca chiede aiuto alla nonna Lia e a Chiara.
+Bianca: Nonna, perché il diciassette porta sfortuna?
+Nonna: Il diciassette, in numeri romani, si scrive X, V, I, I. Se cambi l’ordine delle lettere, diventa «VIXI». In latino vuol dire: «Ho vissuto.» Cioè… sono morto.
+Bianca: Che brutto! E i gatti neri?
+Chiara: Nel Medioevo la gente pensava che i gatti neri fossero amici delle streghe. Ma è solo una storia. In Inghilterra e in Giappone il gatto nero porta fortuna! I marinai inglesi lo volevano sulla nave.
+La mattina Bianca va a scuola con il quaderno e un disegno di Pepe. Ma non sa una cosa: dietro di lei, a dieci metri, cammina un gatto nero. Pepe. L’ha seguita.
+Alle nove comincia la lezione. La maestra Fiorella è molto brava, ma è anche molto superstiziosa. Ha un cornetto rosso sulla scrivania. Non passa mai sotto una scala. E oggi ha messo il sale vicino alla porta.
+Maestra: Bambini, oggi è venerdì diciassette. Stiamo attenti. Niente ombrelli aperti in classe. E non rompete specchi, per favore.
+Luca: Maestra, è vero che se un gatto nero attraversa la strada, succede una disgrazia?
+Maestra: Beh… si dice così. Io, quando vedo un gatto nero, cambio strada.
+Bianca va alla lavagna. Mostra il disegno. Racconta del numero romano, delle streghe, dei marinai inglesi, del Giappone.
+Bianca: Quindi il gatto nero non porta sfortuna. È un gatto. Solo con il pelo nero.
+A un tratto si sente un miagolio. Dalla finestra aperta salta dentro un gatto nero. Salta sul banco di Luca, poi sulla scrivania della maestra.
+Maestra: Aaah! Un gatto nero! In classe! Venerdì diciassette! Aiuto!
+La maestra sale sulla sedia. I bambini ridono e gridano. Il cornetto rosso cade per terra.
+Bianca: Pepe! Che cosa ci fai qui?
+Pepe non scappa. Scende dalla scrivania. Va dritto verso il termosifone, sotto la finestra. Si mette giù, con la zampa sotto il termosifone. Gratta, gratta, gratta.
+Sotto il termosifone c’è qualcosa che brilla. Pepe lo spinge fuori con la zampa. Rotola sul pavimento. È un anello d’oro. Un anello piccolo e semplice.
+Pepe torna da Bianca. Miagola una volta. Come per dire: ecco fatto.
+La maestra si china. Prende l’anello. Ha le mani che tremano.
+Maestra: La mia fede! La fede di mio marito! L’ho persa tre settimane fa. Ho cercato dappertutto. Pensavo che fosse finita nel lavandino. Era qui… sotto il termosifone…
+La maestra guarda Pepe. Pepe guarda la maestra. Pepe fa le fusa.
+Maestra: Allora… allora il gatto nero porta fortuna.
+Tutta la classe applaude. Luca accarezza Pepe. Anche la maestra, piano piano, gli accarezza la testa. Per la prima volta nella sua vita accarezza un gatto nero.
+Il bidello arriva per portare Pepe fuori. Ma la maestra dice:
+Maestra: No, aspetti. Può restare fino alla fine della lezione. Oggi è il nostro ospite d’onore.
+Il pomeriggio Bianca torna a casa con Pepe in braccio e un «ottimo» sulla ricerca. Sotto il giudizio la maestra ha scritto: «Ricerca perfetta. E dimostrazione pratica eccellente.»
+Chiara: Allora, Bianca? Il gatto nero porta sfortuna?
+Bianca: No. Il gatto nero porta fortuna. E anelli.
+Questo era «Voci dai tetti». E ricordate: la sfortuna non ha il pelo nero. Ha solo bisogno di una bella storia per sparire. Nella prossima puntata la nonna porta la sua gatta Nuvola a una mostra di gatti. Ma Tigre, il gatto di strada, non vuole restare a casa. Miao a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci dai tetti“, dem Podcast der Katzen Roms. In Italien gibt es einen Tag, vor dem viele Angst haben: Freitag, der Siebzehnte. Und es gibt ein Tier, dem viele aus dem Weg gehen: die schwarze Katze. Heute haben wir beides zusammen.
+Es ist Freitag, der siebzehnte November. Aber es ist auch ein besonderer Tag für Katzen: der Tag der schwarzen Katze. Bianca ist zehn und muss ein Referat für die Schule machen. Der Titel lautet: „Bringt die schwarze Katze Unglück?“
+Am Abend vorher bittet Bianca Oma Lia und Chiara um Hilfe.
+Bianca: Oma, warum bringt die Siebzehn Unglück?
+Oma: Die Siebzehn schreibt man in römischen Zahlen X, V, I, I. Wenn man die Buchstaben umstellt, wird daraus „VIXI“. Auf Lateinisch heißt das: „Ich habe gelebt.“ Also … ich bin tot.
+Bianca: Wie schrecklich! Und die schwarzen Katzen?
+Chiara: Im Mittelalter dachten die Leute, schwarze Katzen seien Freunde der Hexen. Aber das ist nur eine Geschichte. In England und in Japan bringt die schwarze Katze Glück! Die englischen Seeleute wollten sie auf dem Schiff haben.
+Am Morgen geht Bianca mit dem Heft und einer Zeichnung von Pepe zur Schule. Aber eins weiß sie nicht: Hinter ihr, zehn Meter entfernt, läuft eine schwarze Katze. Pepe. Er ist ihr gefolgt.
+Um neun beginnt der Unterricht. Lehrerin Fiorella ist sehr gut, aber auch sehr abergläubisch. Auf dem Pult hat sie ein rotes Hörnchen. Sie geht nie unter einer Leiter durch. Und heute hat sie Salz neben die Tür gestreut.
+Lehrerin: Kinder, heute ist Freitag, der Siebzehnte. Passen wir auf. Keine offenen Regenschirme im Klassenzimmer. Und zerbrecht bitte keine Spiegel.
+Luca: Frau Lehrerin, stimmt es, dass ein Unglück passiert, wenn eine schwarze Katze über die Straße läuft?
+Lehrerin: Na ja … so sagt man. Wenn ich eine schwarze Katze sehe, gehe ich einen anderen Weg.
+Bianca geht an die Tafel. Sie zeigt die Zeichnung. Sie erzählt von der römischen Zahl, von den Hexen, von den englischen Seeleuten, von Japan.
+Bianca: Also bringt die schwarze Katze kein Unglück. Sie ist eine Katze. Nur mit schwarzem Fell.
+Plötzlich hört man ein Miauen. Durch das offene Fenster springt eine schwarze Katze herein. Sie springt auf Lucas Bank, dann auf das Pult der Lehrerin.
+Lehrerin: Aaah! Eine schwarze Katze! Im Klassenzimmer! Freitag, der Siebzehnte! Hilfe!
+Die Lehrerin steigt auf den Stuhl. Die Kinder lachen und schreien. Das rote Hörnchen fällt auf den Boden.
+Bianca: Pepe! Was machst du denn hier?
+Pepe läuft nicht weg. Er springt vom Pult. Er geht direkt zum Heizkörper unter dem Fenster. Er legt sich hin, die Pfote unter dem Heizkörper. Kratz, kratz, kratz.
+Unter dem Heizkörper glänzt etwas. Pepe schiebt es mit der Pfote heraus. Es rollt über den Boden. Es ist ein goldener Ring. Ein kleiner, schlichter Ring.
+Pepe kommt zu Bianca zurück. Er miaut einmal. Als wollte er sagen: Erledigt.
+Die Lehrerin bückt sich. Sie hebt den Ring auf. Ihre Hände zittern.
+Lehrerin: Mein Ehering! Der Ring von meinem Mann! Ich habe ihn vor drei Wochen verloren. Ich habe überall gesucht. Ich dachte, er ist ins Waschbecken gefallen. Er war hier … unter dem Heizkörper …
+Die Lehrerin schaut Pepe an. Pepe schaut die Lehrerin an. Pepe schnurrt.
+Lehrerin: Dann … dann bringt die schwarze Katze ja Glück.
+Die ganze Klasse klatscht. Luca streichelt Pepe. Auch die Lehrerin streichelt ihm ganz langsam über den Kopf. Zum ersten Mal in ihrem Leben streichelt sie eine schwarze Katze.
+Der Hausmeister kommt, um Pepe hinauszubringen. Aber die Lehrerin sagt:
+Lehrerin: Nein, warten Sie. Er darf bis zum Ende der Stunde bleiben. Heute ist er unser Ehrengast.
+Am Nachmittag kommt Bianca mit Pepe auf dem Arm und einem „Ausgezeichnet“ für das Referat nach Hause. Darunter hat die Lehrerin geschrieben: „Perfektes Referat. Und ausgezeichnete praktische Vorführung.“
+Chiara: Na, Bianca? Bringt die schwarze Katze Unglück?
+Bianca: Nein. Die schwarze Katze bringt Glück. Und Ringe.
+Das war „Voci dai tetti“. Und denkt daran: Das Unglück hat kein schwarzes Fell. Es braucht nur eine schöne Geschichte, um zu verschwinden. In der nächsten Folge bringt Oma ihre Katze Nuvola zu einer Katzenausstellung. Aber Tigre, der Straßenkater, will nicht zu Hause bleiben. Miau euch allen!`,
+    fact:'In Italien gilt nicht Freitag, der 13., sondern Freitag, der 17., als Unglückstag: Die römische Zahl XVII lässt sich zu „VIXI“ („ich habe gelebt“, also „ich bin tot“) umstellen. Am 17. November feiert Italien seit 2007 die „Giornata del gatto nero“, um schwarze Katzen vor Aberglauben zu schützen. In Großbritannien und Japan gelten schwarze Katzen dagegen als Glücksbringer.' }
+);
+/* „Voci dai tetti“ Folge 4 (v293, 29.10.2026) – wird nach leggende_gatti3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Katzenausstellung in Rom (EUR): Oma Lia meldet ihre weiße Perserkatze Nuvola an. Tigre, der alte getigerte Straßenkater mit eingerissenem Ohr (Lektionen: war krank, „Il re è tornato“),
+   schleicht sich in den Kofferraum, taucht in der Halle auf, faucht einen Maine-Coon an, läuft dem Richter über den Tisch. Es gibt eine Kategorie „Gatti di casa“ (ohne Rasse):
+   Tierärztin Dottoressa Marchetti ist Richterin, Tigre gewinnt die Rosette „Il più coraggioso“; Nuvola wird Zweite bei den Persern. Herr Remo kommt mit (nach Folge 2 freundlicher).
+   Angekündigt Folge 5 (Finale): ein Kätzchen im Mehlsack der Bäckerei. Stimmen: Marchetti Isabella hoch, Giudice Giuseppe, Speaker Isabella. Niveau ab A2. */
+PODCASTS.gatti.push(
+  { id:'gatti-p4', show:'Voci dai tetti', ep:4, title:'La mostra dei gatti', de:'Die Katzenausstellung',
+    place:'Una grande mostra felina all’EUR, Roma, una domenica di marzo', level:'ab A2', kind:'Lustig · Katzen · Wettbewerb',
+    voices:{Bianca:'Elsa', Chiara:'Isabella', Nonna:'Isabella', Remo:'Giuseppe', Giudice:'Giuseppe', Marchetti:'Isabella', Speaker:'Isabella', Signora:'Elsa'},
+    stil:{'':['-6%','+0Hz'], Bianca:['+4%','+40Hz'], Chiara:['+0%','+12Hz'], Nonna:['-10%','-16Hz'], Remo:['-8%','-18Hz'], Giudice:['-8%','+4Hz'], Marchetti:['+2%','+16Hz'], Speaker:['+4%','+0Hz'], Signora:['-6%','+2Hz']},
+    mormorio:['Che bel gatto!','Guarda che pelo!','È un persiano?','Che occhi!','Quanto pesa?','Che carino!','Silenzio, prego.','Il numero dodici!','Brava, micia!','Che eleganza!'],
+    words:[['la mostra felina','die Katzenausstellung'],['la razza','die Rasse'],['di razza','reinrassig'],['il persiano','die Perserkatze'],['il soriano','der getigerte Kater'],['il giudice','der Richter, die Richterin'],['la gabbia','der Käfig'],['il trasportino','die Transportbox'],['spazzolare','bürsten'],['il pelo','das Fell'],['l’orecchio','das Ohr'],['soffiare','fauchen'],['la coccarda','die Rosette, das Abzeichen'],['coraggioso','mutig'],['il primo premio','der erste Preis']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Domenica mattina':'pausa', 'Il signor Remo':'avviamento motore500_an', 'Alla mostra':'motore500_aus gelateria_an gatti_coro', 'Nonna: Nuvola':'pausa', 'Speaker:':'altoparlante', 'In quel momento':'pausa', 'Dal bagagliaio':'miao', 'Tigre cammina':'soffio', 'Poi salta':'pausa', 'Giudice: Ma':'pausa', 'Dottoressa Marchetti':'pausa', 'Marchetti: Signora':'pausa', 'Alle quattro':'pausa', 'Marchetti: Il premio':'applausi', 'Tigre guarda':'fusa', 'La sera':'gelateria_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dai tetti», il podcast dei gatti di Roma. Oggi andiamo a una mostra di gatti. Ci sono gatti persiani, siamesi, gatti enormi e gatti senza pelo. Tutti spazzolati, profumati, perfetti. E poi… c’è Tigre.
+Domenica mattina. La nonna Lia ha spazzolato Nuvola, la sua gatta persiana bianca, per un’ora intera. Nuvola sembra davvero una nuvola: morbida, bianca, con gli occhi azzurri. Oggi va alla mostra felina dell’EUR.
+Il signor Remo ha la macchina. Da quando ha salvato Pepe dal tetto, è un po’ meno brontolone. Ha detto: «Vi porto io. Ma il gatto sta dietro. E non mi tocca i sedili.»
+Alla mostra c’è un rumore incredibile: centinaia di persone e centinaia di gatti che miagolano. Ci sono gabbie dorate, cuscini di velluto, coppe e coccarde.
+Nonna: Nuvola, tesoro, oggi stai tranquilla. Sei la più bella.
+Speaker: Gatti persiani, al tavolo numero tre, prego! Numero dodici, Nuvola, della signora Lia Bellini!
+In quel momento il signor Remo torna dalla macchina. Ha una faccia strana.
+Remo: Signora Lia… c’è un problema. Ho aperto il bagagliaio per prendere l’ombrello. E…
+Dal bagagliaio della macchina, nella borsa dei biscotti, è uscito un gatto. Un gatto grande, a righe, con un orecchio rotto e una coda lunghissima. Tigre. Il re dei gatti di strada di Trastevere. È salito di nascosto in macchina, questa mattina.
+Tigre cammina nella sala della mostra come se fosse casa sua. Passa vicino a un gatto enorme, un Maine Coon. Il Maine Coon gli soffia. Tigre gli soffia più forte. Il Maine Coon scappa dietro la sua padrona.
+Poi salta sul tavolo dei giudici. Cammina sopra i fogli, sopra le penne, sopra il cappello di un giudice. E si siede. Proprio in mezzo.
+Giudice: Ma… di chi è questo gatto? Che razza è? Non ha nemmeno il numero!
+Bianca: È Tigre! Non è di nessuno! Cioè… è di tutti. È un gatto di Trastevere.
+Dottoressa Marchetti, la veterinaria del quartiere, è qui oggi come giudice. Si avvicina sorridendo.
+Marchetti: Tigre! Ti conosco bene. L’anno scorso eri malato. Ti abbiamo curato per tre mesi. E adesso guardati: sei in forma.
+Una signora elegante con un gatto siamese guarda Tigre con disgusto.
+Signora: Un gatto di strada a una mostra? Che vergogna. Non ha neanche un pedigree.
+Marchetti: Signora, il pedigree di Tigre è Trastevere. Dodici anni sui tetti, due inverni senza casa, una malattia grave. E oggi è qui. Ma c’è una buona notizia: oggi alla mostra c’è anche la categoria «gatti di casa». Per i gatti senza razza. E io sono la giudice.
+Alle quattro del pomeriggio ci sono le premiazioni. Nuvola vince il secondo premio tra i gatti persiani. La nonna è felicissima. Poi tocca alla categoria «gatti di casa».
+Marchetti: Il premio per il gatto più coraggioso della mostra va a… Tigre, di Trastevere!
+Tutti applaudono. Anche il signor Remo, che dice: «Bah», ma applaude più forte di tutti. La dottoressa mette al collo di Tigre una coccarda rossa.
+Tigre guarda la coccarda. Poi guarda Bianca. Poi si sdraia sul tavolo dei giudici e fa le fusa. Come un re sul trono.
+La sera, a Trastevere, Tigre torna sul suo muretto vicino alla fontana. Con la coccarda rossa al collo. Tutti i gatti del quartiere lo guardano. Lui non dice niente. Ma alza la testa un po’ più del solito.
+Nonna: Hai visto, Bianca? Nuvola ha vinto per la bellezza. Tigre ha vinto per la vita.
+Questo era «Voci dai tetti». E ricordate: non serve un pedigree per essere un campione. Nella prossima puntata, l’ultima di questa stagione, papà Sandro trova qualcosa di piccolo e bianco in un sacco di farina. E Bianca forse finalmente… Miao a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci dai tetti“, dem Podcast der Katzen Roms. Heute gehen wir zu einer Katzenausstellung. Es gibt Perserkatzen, Siamkatzen, riesige Katzen und Katzen ohne Fell. Alle gebürstet, duftend, perfekt. Und dann … gibt es Tigre.
+Sonntagmorgen. Oma Lia hat Nuvola, ihre weiße Perserkatze, eine ganze Stunde lang gebürstet. Nuvola sieht wirklich aus wie eine Wolke: weich, weiß, mit blauen Augen. Heute geht sie zur Katzenausstellung im EUR-Viertel.
+Herr Remo hat das Auto. Seit er Pepe vom Dach gerettet hat, ist er etwas weniger grantig. Er hat gesagt: „Ich fahre euch. Aber die Katze kommt nach hinten. Und sie fasst meine Sitze nicht an.“
+In der Ausstellung ist ein unglaublicher Lärm: Hunderte Menschen und Hunderte miauende Katzen. Es gibt goldene Käfige, Samtkissen, Pokale und Rosetten.
+Oma: Nuvola, Schätzchen, heute bleibst du ruhig. Du bist die Schönste.
+Sprecherin: Perserkatzen an Tisch Nummer drei, bitte! Nummer zwölf, Nuvola, von Frau Lia Bellini!
+In diesem Moment kommt Herr Remo vom Auto zurück. Er macht ein komisches Gesicht.
+Remo: Frau Lia … es gibt ein Problem. Ich habe den Kofferraum aufgemacht, um den Regenschirm zu holen. Und …
+Aus dem Kofferraum, aus der Kekstüte, ist eine Katze gekommen. Ein großer, gestreifter Kater mit einem eingerissenen Ohr und einem sehr langen Schwanz. Tigre. Der König der Straßenkatzen von Trastevere. Er ist heute Morgen heimlich ins Auto gestiegen.
+Tigre geht durch die Ausstellungshalle, als wäre er zu Hause. Er geht an einem riesigen Kater vorbei, einem Maine Coon. Der Maine Coon faucht ihn an. Tigre faucht lauter. Der Maine Coon flüchtet hinter seine Besitzerin.
+Dann springt er auf den Tisch der Richter. Er läuft über die Blätter, über die Stifte, über den Hut eines Richters. Und setzt sich. Genau in die Mitte.
+Richter: Aber … wem gehört diese Katze? Was für eine Rasse ist das? Sie hat nicht mal eine Nummer!
+Bianca: Das ist Tigre! Er gehört niemandem! Also … er gehört allen. Er ist eine Katze aus Trastevere.
+Dottoressa Marchetti, die Tierärztin aus dem Viertel, ist heute als Richterin hier. Sie kommt lächelnd näher.
+Marchetti: Tigre! Dich kenne ich gut. Letztes Jahr warst du krank. Wir haben dich drei Monate lang behandelt. Und jetzt schau dich an: Du bist in Form.
+Eine elegante Dame mit einer Siamkatze schaut Tigre angewidert an.
+Dame: Eine Straßenkatze auf einer Ausstellung? Was für eine Schande. Er hat nicht mal einen Stammbaum.
+Marchetti: Signora, Tigres Stammbaum ist Trastevere. Zwölf Jahre auf den Dächern, zwei Winter ohne Zuhause, eine schwere Krankheit. Und heute ist er hier. Aber es gibt eine gute Nachricht: Heute gibt es auf der Ausstellung auch die Kategorie „Hauskatzen“. Für Katzen ohne Rasse. Und ich bin die Richterin.
+Um vier Uhr nachmittags sind die Preisverleihungen. Nuvola gewinnt den zweiten Preis bei den Perserkatzen. Die Oma ist überglücklich. Dann ist die Kategorie „Hauskatzen“ dran.
+Marchetti: Der Preis für die mutigste Katze der Ausstellung geht an … Tigre aus Trastevere!
+Alle klatschen. Auch Herr Remo, der „Pah“ sagt, aber lauter klatscht als alle anderen. Die Tierärztin hängt Tigre eine rote Rosette um den Hals.
+Tigre schaut die Rosette an. Dann schaut er Bianca an. Dann legt er sich auf den Richtertisch und schnurrt. Wie ein König auf dem Thron.
+Am Abend, in Trastevere, kehrt Tigre auf seine kleine Mauer beim Brunnen zurück. Mit der roten Rosette am Hals. Alle Katzen des Viertels schauen ihn an. Er sagt nichts. Aber er hebt den Kopf ein bisschen höher als sonst.
+Oma: Hast du gesehen, Bianca? Nuvola hat für die Schönheit gewonnen. Tigre hat für das Leben gewonnen.
+Das war „Voci dai tetti“. Und denkt daran: Man braucht keinen Stammbaum, um ein Champion zu sein. In der nächsten Folge, der letzten dieser Staffel, findet Papa Sandro etwas Kleines und Weißes in einem Mehlsack. Und Bianca vielleicht endlich … Miau euch allen!`,
+    fact:'Auf vielen Katzenausstellungen gibt es neben den Rassekatzen auch eine Kategorie für Hauskatzen ohne Stammbaum – dort zählen Gesundheit, Pflege und Charakter statt Rassestandard. Die Perserkatze ist eine der ältesten Rassen, der Maine Coon eine der größten (manche Kater wiegen über zehn Kilo). Getigerte Katzen heißen auf Italienisch „soriani“ – angeblich, weil man glaubte, sie kämen aus Syrien („Soria“).' }
+);
+/* „Voci dai tetti“ Folge 5 (v293, 29.10.2026) – wird nach leggende_gatti4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Früh um vier findet Papa Sandro in der Bäckerei in einem Mehlsack ein winziges Kätzchen, weiß vor Mehl (darunter grau-getigert). Bianca will seit Jahren eine eigene Katze,
+   aber Mama Rita sagt immer Nein („allergisch?“ in den Lektionen offen). Chiara bringt das Kätzchen zu Dottoressa Marchetti. Mama gesteht: Sie ist nicht allergisch – als Kind wurde sie gekratzt
+   und hat seitdem Angst. Das Kätzchen schläft auf ihrem Schoß ein. Es heißt „Farina“. Tigre kommt ans Fenster und schaut zu. Herr Remo bringt seinen Schal zurück. Niveau ab A2. */
+PODCASTS.gatti.push(
+  { id:'gatti-p5', show:'Voci dai tetti', ep:5, title:'Un gatto nella farina', de:'Eine Katze im Mehl',
+    place:'La panetteria di papà Sandro e la casa dei Bellini, Trastevere, ad aprile', level:'ab A2', kind:'Herz · Familie · Staffelfinale',
+    voices:{Bianca:'Elsa', Chiara:'Isabella', Nonna:'Isabella', Sandro:'Giuseppe', Rita:'Isabella', Marchetti:'Isabella', Remo:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Bianca:['+4%','+40Hz'], Chiara:['+0%','+12Hz'], Nonna:['-10%','-16Hz'], Sandro:['+0%','-4Hz'], Rita:['-2%','+6Hz'], Marchetti:['+2%','+16Hz'], Remo:['-8%','-18Hz']},
+    words:[['la panetteria','die Bäckerei'],['il fornaio','der Bäcker'],['il sacco di farina','der Mehlsack'],['il gattino / la gattina','das Kätzchen'],['minuscolo','winzig'],['abbandonare','aussetzen, verlassen'],['il biberon','das Fläschchen'],['il latte per gattini','die Katzenmilch'],['allergico / allergica','allergisch'],['graffiare','kratzen'],['avere paura di','Angst haben vor'],['il segreto','das Geheimnis'],['adottare','adoptieren'],['il grembo','der Schoß'],['finalmente','endlich']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Sono le quattro':'forno', 'Sandro apre':'pausa', 'Dentro il sacco':'gattino', 'Sandro prende':'pausa', 'Alle sette':'campanello_porta', 'Bianca scende':'passi', 'Chiara la porta':'pausa', 'Marchetti:':'pausa', 'A casa':'pausa', 'Rita guarda':'pausa', 'Rita: Ho una cosa':'pausa', 'Bianca mette':'gattino', 'Farina si muove':'fusa', 'Alla finestra':'miao', 'Il pomeriggio':'campanello_porta', 'La sera':'campane', 'Questo era':'carillon_ende'},
+    text:`Buongiorno e benvenuti a «Voci dai tetti», il podcast dei gatti di Roma. È l’ultima puntata di questa stagione. E oggi la storia comincia molto presto. Alle quattro di mattina. Quando tutta Roma dorme, tranne i fornai.
+Sono le quattro. Nella panetteria di papà Sandro il forno è già caldo. Sandro prepara l’impasto per il pane. Va nel magazzino a prendere un sacco nuovo di farina. Ma il sacco vicino alla porta è aperto. E si muove.
+Sandro apre il sacco piano piano. Dentro c’è qualcosa di piccolo e bianco. Molto piccolo. Ha due occhi blu e una bocca rosa che si apre.
+Dentro il sacco c’è un gattino. Minuscolo. Tutto bianco di farina, dalla testa alla coda. Qualcuno l’ha lasciato lì, vicino alla porta del retro.
+Sandro prende il gattino in una mano. È leggero come un panino. Trema. Sandro lo mette vicino al forno, in una scatola, sopra uno strofinaccio caldo.
+Sandro: Povero piccolo. Chi ti ha lasciato qui? Aspetta. Chiamo qualcuno che se ne intende.
+Alle sette il telefono di Chiara suona. Bianca si sveglia subito.
+Bianca scende di corsa le scale in pigiama. Entra in panetteria. Vede la scatola. Vede il gattino. Si mette le mani sulla bocca.
+Bianca: Papà… è bellissimo. Possiamo tenerlo? Ti prego, ti prego, ti prego!
+Sandro: Bianca, lo sai. La mamma dice sempre di no. Dice che è allergica.
+Chiara la porta dalla dottoressa Marchetti, con il gattino nella sciarpa del signor Remo. La dottoressa lo pulisce dalla farina. Sotto la farina il gattino non è bianco. È grigio, a righe.
+Marchetti: È una gattina. Ha più o meno cinque settimane. È sana, ma ha fame. Ha bisogno di latte per gattini, ogni tre ore. E di una famiglia.
+A casa la mamma Rita guarda la gattina dalla porta della cucina. Da lontano. Molto da lontano.
+Bianca: Mamma, ti prego. Solo per qualche giorno. Io le do il latte di notte. Io pulisco tutto. Io faccio tutto.
+Rita guarda Bianca. Poi guarda la gattina, che beve il latte dal biberon con gli occhi chiusi. Poi si siede. Sospira.
+Rita: Ho una cosa da dirvi. Un segreto. Io… non sono allergica.
+Chiara: Cosa? Mamma! Ma l’hai detto per vent’anni!
+Rita: Lo so. Quando avevo sei anni, un gatto mi ha graffiato la faccia. Qui, vedete? Una piccola riga bianca. Da allora ho paura dei gatti. Ma avevo vergogna di dirlo. Allora dicevo: sono allergica.
+La nonna Lia ride piano. Lei lo sapeva. Le nonne sanno sempre tutto.
+Nonna: Rita, la paura si cura come la tosse. Piano piano. Con un po’ di miele.
+Bianca mette la gattina nelle mani della mamma. La mamma è rigida come una statua. La gattina miagola. Poi si gira, si accoccola nel suo grembo e chiude gli occhi.
+Farina si muove appena. Poi fa le fusa. Piccole, piccolissime, come un motore giocattolo.
+Rita: Fa… fa le fusa. Su di me.
+Bianca: Ti ha scelto, mamma.
+La mamma non dice niente. Ma non la mette giù. Resta seduta così per un’ora intera.
+Alla finestra della cucina appare una testa grande, a righe, con un orecchio rotto. È Tigre. Guarda dentro. Guarda la gattina. Miagola una volta, basso. Poi si siede sul davanzale, come una guardia.
+Chiara: Anche Tigre è d’accordo.
+Bianca: Allora come la chiamiamo?
+Sandro: Come l’ho trovata, no? Farina.
+Il pomeriggio suona il campanello. È il signor Remo. Ha una scatola in mano.
+Remo: Ho saputo. Tutta Trastevere lo sa. Ecco. Una cuccia. L’ho fatta io, con il legno. Non è per la gatta. È perché… il legno avanzava.
+Bianca abbraccia il signor Remo. Lui diventa rosso fino alle orecchie.
+La sera, quando le campane di Santa Maria in Trastevere suonano, Farina dorme nella cuccia di legno. Sopra la sciarpa del signor Remo. Bianca la guarda, seduta sul pavimento.
+Bianca: Chiara… per anni ho chiesto un gatto. E alla fine il gatto è venuto da solo. Dentro un sacco di farina.
+Chiara: A Roma è così. Non sei tu che scegli un gatto. È il gatto che sceglie te.
+Questo era «Voci dai tetti». Grazie per essere salite e saliti sui tetti di Roma con noi in questa stagione: con Pepe sull’antenna, con il gatto nero a scuola, con Tigre alla mostra e con la piccola Farina. E ricordate: se un gatto vi sceglie, dite di sì. Miao a tutti, e arrivederci!`,
+    tr:`Guten Tag und willkommen bei „Voci dai tetti“, dem Podcast der Katzen Roms. Das ist die letzte Folge dieser Staffel. Und heute beginnt die Geschichte sehr früh. Um vier Uhr morgens. Wenn ganz Rom schläft, außer den Bäckern.
+Es ist vier Uhr. In Papa Sandros Bäckerei ist der Ofen schon heiß. Sandro bereitet den Brotteig vor. Er geht ins Lager, um einen neuen Sack Mehl zu holen. Aber der Sack neben der Tür ist offen. Und er bewegt sich.
+Sandro öffnet den Sack ganz langsam. Darin ist etwas Kleines und Weißes. Etwas sehr Kleines. Es hat zwei blaue Augen und ein rosa Mäulchen, das sich öffnet.
+Im Sack ist ein Kätzchen. Winzig. Ganz weiß vor Mehl, vom Kopf bis zum Schwanz. Jemand hat es dort liegen lassen, neben der Hintertür.
+Sandro nimmt das Kätzchen in eine Hand. Es ist leicht wie ein Brötchen. Es zittert. Sandro legt es neben den Ofen, in eine Schachtel, auf ein warmes Geschirrtuch.
+Sandro: Du armes Kleines. Wer hat dich hier gelassen? Warte. Ich rufe jemanden an, der sich auskennt.
+Um sieben klingelt Chiaras Telefon. Bianca wacht sofort auf.
+Bianca rennt im Schlafanzug die Treppe hinunter. Sie kommt in die Bäckerei. Sie sieht die Schachtel. Sie sieht das Kätzchen. Sie hält sich die Hände vor den Mund.
+Bianca: Papa … das ist wunderschön. Dürfen wir es behalten? Bitte, bitte, bitte!
+Sandro: Bianca, du weißt es doch. Die Mama sagt immer Nein. Sie sagt, sie ist allergisch.
+Chiara bringt es zu Dottoressa Marchetti, das Kätzchen eingewickelt in den Schal von Herrn Remo. Die Tierärztin putzt ihm das Mehl ab. Unter dem Mehl ist das Kätzchen nicht weiß. Es ist grau getigert.
+Marchetti: Es ist ein kleines Weibchen. Ungefähr fünf Wochen alt. Es ist gesund, aber hungrig. Es braucht alle drei Stunden Katzenmilch. Und eine Familie.
+Zu Hause schaut Mama Rita das Kätzchen von der Küchentür aus an. Von Weitem. Von sehr weit weg.
+Bianca: Mama, bitte. Nur für ein paar Tage. Ich gebe ihr nachts die Milch. Ich mache alles sauber. Ich mache alles.
+Rita schaut Bianca an. Dann schaut sie das Kätzchen an, das mit geschlossenen Augen aus dem Fläschchen trinkt. Dann setzt sie sich. Sie seufzt.
+Rita: Ich muss euch etwas sagen. Ein Geheimnis. Ich … bin nicht allergisch.
+Chiara: Was? Mama! Das hast du zwanzig Jahre lang gesagt!
+Rita: Ich weiß. Als ich sechs war, hat mir eine Katze das Gesicht zerkratzt. Hier, seht ihr? Ein kleiner weißer Strich. Seitdem habe ich Angst vor Katzen. Aber ich habe mich geschämt, es zu sagen. Also habe ich gesagt: Ich bin allergisch.
+Oma Lia lacht leise. Sie hat es gewusst. Omas wissen immer alles.
+Oma: Rita, Angst heilt man wie Husten. Ganz langsam. Mit ein bisschen Honig.
+Bianca legt das Kätzchen in Mamas Hände. Die Mama ist steif wie eine Statue. Das Kätzchen miaut. Dann dreht es sich, kuschelt sich in ihren Schoß und schließt die Augen.
+Farina bewegt sich kaum. Dann schnurrt sie. Klein, ganz klein, wie ein Spielzeugmotor.
+Rita: Sie … sie schnurrt. Auf mir.
+Bianca: Sie hat dich ausgesucht, Mama.
+Die Mama sagt nichts. Aber sie legt sie nicht weg. Sie bleibt eine ganze Stunde so sitzen.
+Am Küchenfenster erscheint ein großer, gestreifter Kopf mit einem eingerissenen Ohr. Es ist Tigre. Er schaut hinein. Er schaut das Kätzchen an. Er miaut einmal, tief. Dann setzt er sich aufs Fensterbrett, wie ein Wächter.
+Chiara: Auch Tigre ist einverstanden.
+Bianca: Und wie nennen wir sie?
+Sandro: So, wie ich sie gefunden habe, oder? Farina. Mehl.
+Am Nachmittag klingelt es. Es ist Herr Remo. Er hat eine Kiste in der Hand.
+Remo: Ich habe es gehört. Ganz Trastevere weiß es. Hier. Ein Körbchen. Ich habe es selbst gemacht, aus Holz. Es ist nicht für die Katze. Es ist, weil … das Holz übrig war.
+Bianca umarmt Herrn Remo. Er wird rot bis zu den Ohren.
+Am Abend, als die Glocken von Santa Maria in Trastevere läuten, schläft Farina im Holzkörbchen. Auf dem Schal von Herrn Remo. Bianca sitzt auf dem Boden und schaut sie an.
+Bianca: Chiara … jahrelang habe ich mir eine Katze gewünscht. Und am Ende ist die Katze von selbst gekommen. In einem Mehlsack.
+Chiara: So ist das in Rom. Nicht du suchst dir eine Katze aus. Die Katze sucht dich aus.
+Das war „Voci dai tetti“. Danke, dass ihr in dieser Staffel mit uns auf die Dächer Roms gestiegen seid: mit Pepe auf der Antenne, mit der schwarzen Katze in der Schule, mit Tigre auf der Ausstellung und mit der kleinen Farina. Und denkt daran: Wenn eine Katze euch aussucht, sagt Ja. Miau euch allen, und auf Wiederhören!`,
+    fact:'Sehr junge Kätzchen ohne Mutter brauchen spezielle Katzenmilch aus dem Fläschchen – Kuhmilch vertragen sie nicht – und müssen anfangs alle zwei bis drei Stunden gefüttert werden. In Italien ist es verboten, Tiere auszusetzen; wer ein Kätzchen findet, kann sich an die Tierärztin oder an eine „gattile“ (Katzenauffangstation) wenden. Viele Menschen, die Angst vor Katzen haben, verlieren sie langsam durch ruhigen Kontakt mit einem jungen, sanften Tier.' }
+);
 /* Hörgeschichten Luna park (Podcast „Voci del luna park“). Nina führt über den Jahrmarkt in Rimini. */
 PODCAST_INFO.lunapark = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: ein Abend auf dem Jahrmarkt mit Orgelmusik, Autoscooter, Achterbahn und Feuerwerk, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.lunapark = [
