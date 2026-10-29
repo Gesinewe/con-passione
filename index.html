@@ -591,7 +591,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 300;
+const APP_VERSION = 301;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -84398,6 +84398,117 @@ Tommaso: Für die Bank nichts. Für uns … eine Reise nach Capri, ein Versprech
 Das war „Voci dei soldi“. Danke, dass ihr in dieser Staffel mit uns gerechnet habt. Und denkt daran: Jedes große Geschäft hat mit einem kaputten Sparschwein angefangen. Und jede große Geschichte … mit einem kleinen Ersparten. Auf Wiederhören!`,
     fact:'Als 2002 der Euro kam, galt ein fester Kurs: 1 Euro = 1.936,27 Lire – eine Million Lire waren also gut 516 Euro. Alte Lire-Scheine konnte man noch zehn Jahre lang bei der Banca d’Italia umtauschen; die Frist wurde im Dezember 2011 vorzeitig beendet. Seitdem sind die meisten Scheine nur noch Erinnerungsstücke – Sammler zahlen für häufige Scheine meist nur wenige Euro. Der Roman „I promessi sposi“ („Die Verlobten“) von Alessandro Manzoni ist der bekannteste Roman Italiens und in jeder Schule Pflichtlektüre.' }
 );
+/* Hörgeschichten „Go Team!“ (Deutsche lernen amerikanisches Englisch über Sport, ab v301) – Podcast „Stories from the Bleachers“.
+   Figuren aus dem Thema (alles erfunden, keine geschützten Namen): Nina Hoffmann (22, Köln, Handball), Familie Carter in Maple Falls, Indiana –
+   Mike (Coach der Maple Falls Foxes), Denise (Krankenschwester), Tyler (17, Quarterback), Kayla (12), Hund Touchdown; Gegner Riverside Herons.
+   Folge 1 (nach Stufe 1, ab A2): Freitagabend gegen die Herons – Gewitter, Spielunterbrechung, Stromausfall, die Blaskapelle spielt im Dunkeln.
+   Stimmen wie in den Geschichten (US_SP): Nina Seraphina (Englisch mit deutschem Klang), Kayla Ana, Denise Michelle, Mike Andrew, Tyler Brian; Erzählerin Ava. */
+PODCAST_INFO.sport = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Freitagabende auf der Tribüne in Maple Falls – mit Stadionlärm, Pfiff, Trommeln, Donner, Regen und Touchdown, dem Hund. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
+PODCASTS.sport = [
+  { id:'sport-p1', lang:'en', erzaehler:'Ava', show:'Stories from the Bleachers', ep:1, title:'The Lights Go Out', de:'Das Licht geht aus',
+    place:'Maple Falls, Indiana, das Footballfeld der Highschool an einem Freitagabend', level:'ab A2', kind:'Spannung · Football',
+    voices:{Nina:'de-DE-SeraphinaMultilingualNeural', Kayla:'Ana', Denise:'Michelle', Mike:'Andrew', Tyler:'Brian', 'A man':'Roger'},
+    stil:{'':['-10%','-2Hz'], Nina:['-6%','+0Hz'], Kayla:['+4%','+20Hz'], Denise:['-6%','-2Hz'], Mike:['-4%','-4Hz'], Tyler:['-4%','+0Hz'], 'A man':['-8%','-8Hz']},
+    words:[['the bleachers','die Sitzbänke der Tribüne'],['the kickoff','der Anstoß (Spielbeginn)'],['the lightning','der Blitz'],['the thunder','der Donner'],['the delay','die Unterbrechung'],['the power','der Strom'],['the flashlight','die Taschenlampe (auch am Handy)'],['dark','dunkel'],['the marching band','die Blaskapelle'],['to wait','warten'],['the generator','der Stromgenerator'],['to cheer','jubeln, anfeuern'],['wet','nass'],['the last play','der letzte Spielzug']],
+    fx:{'Hello and welcome':'pausa', 'Tonight is Friday':'stadio_an', 'Kayla: Nina, look':'pausa', 'The referee blows':'fischio_arbitro', 'The Foxes kick':'palla', 'Kayla: Go, Foxes':'urlo', 'Then, far away':'tuono', 'Denise: Uh-oh':'pausa', 'A man: Lightning':'pausa', 'Everybody stands up':'pioggia_an', 'In the car':'stadio_aus pausa', 'Mike runs':'pausa', 'Thirty minutes later':'pausa', 'Then the lights':'pausa', 'Kayla: Mom! The lights':'oooh', 'For a moment':'silenzio', 'Then somebody':'pausa', 'Then the drums':'tamburo', 'Nina: In Germany':'pausa', 'Tyler: Dad':'pausa', 'The man from the school':'pausa', 'At ten o’clock':'stadio_an', 'It is the last play':'pausa', 'Tyler throws':'pausa', 'Touchdown! The crowd':'gol', 'Kayla: We won':'trombetta', 'On the way home':'stadio_aus pioggia_aus pausa', 'That was':'pausa'},
+    text:`Hello and welcome to “Stories from the Bleachers.” I’m sitting on a cold metal bench in Maple Falls, Indiana. Nina is from Germany. She lives with the Carter family this year.
+Tonight is Friday. Friday night is football night. The Maple Falls Foxes play against the Riverside Herons. The stands are full. The lights are on. Everybody wears orange and black.
+Kayla: Nina, look! There’s Tyler! Number fourteen!
+Nina: I see him. He looks nervous.
+Denise: He’s always nervous before the kickoff. Like his dad.
+The referee blows the whistle. The game starts.
+The Foxes kick the ball far down the field. A Herons player catches it and runs. Ten yards, twenty yards … then three Foxes tackle him.
+Kayla: Go, Foxes! De-fense! De-fense!
+Nina: Kayla, you’re very loud.
+Kayla: It’s football, Nina. You have to be loud.
+The game is good. At halftime the score is fourteen to fourteen. The marching band plays on the field. The cheerleaders dance. Nina eats a hot dog.
+Then, far away, there is thunder.
+Denise: Uh-oh.
+Nina: What’s “uh-oh”?
+Denise: Look at the sky.
+The sky is dark. Very dark. And then – lightning! A man speaks through the speakers.
+A man: Lightning in the area! Everybody, please go to your cars. The game is in a weather delay.
+Everybody stands up. Two thousand people run down the bleachers to the parking lot. The rain comes. It is very heavy.
+In the car the windows are wet. Kayla eats candy. Touchdown, the dog, is in the back. He doesn’t like thunder.
+Nina: How long do we wait?
+Denise: Thirty minutes after the last lightning. That’s the rule.
+Kayla: Last year we waited two hours!
+Mike runs to the car. He is very wet.
+Mike: The team is in the locker room. Everybody is okay. Tyler is … very nervous.
+Thirty minutes later the rain stops. Everybody goes back to the stands. The bleachers are wet. Nobody cares.
+Then the lights go out. All of them. The whole field is black.
+Kayla: Mom! The lights!
+Denise: Oh no. The storm. No power.
+For a moment there is no sound. Two thousand people in the dark.
+Then somebody has an idea. One phone flashlight goes on. Then ten. Then a hundred. Then two thousand. The stands are full of little white lights.
+Nina: Oh … that’s beautiful.
+Then the drums of the marching band start. Boom, boom, boom. In the dark the band plays the school song. Everybody sings.
+Nina: In Germany, we go home now.
+Kayla: In Maple Falls, we never go home.
+Tyler: Dad! The kids from the band are amazing!
+Mike: Yes, son. Now focus. The lights come back soon.
+The man from the school finds the generator. At ten o’clock the lights come back on. Everybody cheers. The game goes on.
+At ten o’clock the score is twenty-one to twenty-one. Only one minute left.
+It is the last play. Tyler has the ball. He looks. He waits. Kayla holds Nina’s hand.
+Tyler throws. The ball flies through the night. A receiver jumps … and catches it in the end zone.
+Touchdown! The crowd goes crazy.
+Kayla: We won! We won! Twenty-seven to twenty-one!
+Nina: Kayla, my hand!
+Kayla: Sorry! Go, Foxes!
+On the way home everybody is wet, tired and happy. Touchdown sleeps on Nina’s feet.
+Nina: Is every Friday like this?
+Mike: No, Nina. Usually there is no storm. But football? Yes. Every Friday.
+That was “Stories from the Bleachers.” Good night, and see you next Friday.`,
+    tr:`Hallo und willkommen bei „Stories from the Bleachers“ (Geschichten von der Tribüne). Ich sitze auf einer kalten Metallbank in Maple Falls, Indiana. Nina kommt aus Deutschland. Sie wohnt dieses Jahr bei Familie Carter.
+Heute ist Freitag. Freitagabend ist Football-Abend. Die Maple Falls Foxes spielen gegen die Riverside Herons. Die Tribüne ist voll. Das Flutlicht ist an. Alle tragen Orange und Schwarz.
+Kayla: Nina, schau! Da ist Tyler! Nummer vierzehn!
+Nina: Ich sehe ihn. Er sieht nervös aus.
+Denise: Vor dem Anstoß ist er immer nervös. Wie sein Vater.
+Der Schiedsrichter pfeift. Das Spiel beginnt.
+Die Foxes kicken den Ball weit übers Feld. Ein Spieler der Herons fängt ihn und rennt. Zehn Yards, zwanzig Yards … dann reißen ihn drei Foxes um.
+Kayla: Los, Foxes! Ver-tei-di-gung! Ver-tei-di-gung!
+Nina: Kayla, du bist sehr laut.
+Kayla: Das ist Football, Nina. Da muss man laut sein.
+Das Spiel ist gut. In der Halbzeit steht es vierzehn zu vierzehn. Die Blaskapelle spielt auf dem Feld. Die Cheerleader tanzen. Nina isst einen Hotdog.
+Dann, weit weg, donnert es.
+Denise: Oje.
+Nina: Was heißt „oje“?
+Denise: Schau mal zum Himmel.
+Der Himmel ist dunkel. Sehr dunkel. Und dann – ein Blitz! Ein Mann spricht durch die Lautsprecher.
+Ein Mann: Blitze in der Gegend! Bitte gehen Sie alle zu Ihren Autos. Das Spiel ist wegen des Wetters unterbrochen.
+Alle stehen auf. Zweitausend Leute rennen die Tribüne hinunter zum Parkplatz. Der Regen kommt. Er ist sehr heftig.
+Im Auto sind die Scheiben nass. Kayla isst Süßigkeiten. Touchdown, der Hund, ist hinten. Er mag keinen Donner.
+Nina: Wie lange warten wir?
+Denise: Dreißig Minuten nach dem letzten Blitz. Das ist die Regel.
+Kayla: Letztes Jahr haben wir zwei Stunden gewartet!
+Mike rennt zum Auto. Er ist klatschnass.
+Mike: Die Mannschaft ist in der Umkleide. Allen geht es gut. Tyler ist … sehr nervös.
+Dreißig Minuten später hört der Regen auf. Alle gehen zurück auf die Tribüne. Die Bänke sind nass. Das stört niemanden.
+Dann geht das Licht aus. Alles. Das ganze Feld ist schwarz.
+Kayla: Mama! Das Licht!
+Denise: O nein. Das Gewitter. Kein Strom.
+Einen Moment lang ist es ganz still. Zweitausend Menschen im Dunkeln.
+Dann hat jemand eine Idee. Eine Handy-Taschenlampe geht an. Dann zehn. Dann hundert. Dann zweitausend. Die Tribüne ist voller kleiner weißer Lichter.
+Nina: Oh … ist das schön.
+Dann fangen die Trommeln der Blaskapelle an. Bum, bum, bum. Im Dunkeln spielt die Kapelle das Schullied. Alle singen.
+Nina: In Deutschland gehen wir jetzt nach Hause.
+Kayla: In Maple Falls gehen wir nie nach Hause.
+Tyler: Papa! Die Kids von der Kapelle sind unglaublich!
+Mike: Ja, mein Junge. Jetzt konzentrier dich. Das Licht kommt bald wieder.
+Der Mann von der Schule findet den Generator. Um zehn Uhr geht das Flutlicht wieder an. Alle jubeln. Das Spiel geht weiter.
+Um zehn steht es einundzwanzig zu einundzwanzig. Nur noch eine Minute.
+Es ist der letzte Spielzug. Tyler hat den Ball. Er schaut. Er wartet. Kayla hält Ninas Hand.
+Tyler wirft. Der Ball fliegt durch die Nacht. Ein Receiver springt … und fängt ihn in der Endzone.
+Touchdown! Die Menge rastet aus.
+Kayla: Wir haben gewonnen! Wir haben gewonnen! Siebenundzwanzig zu einundzwanzig!
+Nina: Kayla, meine Hand!
+Kayla: Sorry! Los, Foxes!
+Auf dem Heimweg sind alle nass, müde und glücklich. Touchdown schläft auf Ninas Füßen.
+Nina: Ist jeder Freitag so?
+Mike: Nein, Nina. Normalerweise gibt es kein Gewitter. Aber Football? Ja. Jeden Freitag.
+Das war „Stories from the Bleachers“. Gute Nacht und bis nächsten Freitag.`,
+    fact:'Bei Blitz in der Nähe wird in den USA fast jedes Sportspiel unterbrochen: Spieler und Zuschauer müssen vom Feld und von der Tribüne. Weitergespielt wird meist erst 30 Minuten nach dem letzten Blitz – die Uhr beginnt bei jedem neuen Blitz wieder von vorn. Highschool-Football am Freitagabend ist in vielen Kleinstädten das wichtigste Ereignis der Woche; oft kommt fast der ganze Ort.' }
+];
 /* Hörgeschichten Storia (Elias Podcast „La storia in tasca“). Figuren aus dem Thema: Elia (16, macht den Podcast), Schwester Marta (12), Opa Tullio (85, früher Geschichtslehrer), Luca (Technik, schneidet den Podcast), Kater Polo. Historisch: Besuch Heinrichs III. im Arsenal, Juli 1574. */
 PODCAST_INFO.storia = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Elia nimmt eine Folge von „La storia in tasca“ auf, und Opa Tullio erzählt, wie das Arsenal von Venedig 1574 eine ganze Galeere baute – während der König von Frankreich beim Mittagessen saß. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.storia = [
