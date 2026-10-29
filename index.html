@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 294;
+const APP_VERSION = 295;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -75898,6 +75898,8 @@ const GRAMMAR = [
       {link:['go','tenses','Zeiten üben']} ] }
 ];
 
+/* UK-Schalter (ab v294): auch die englischen Texte der Hörgeschichten umstellen */
+if (US_UK) US.topics.forEach(t => (PODCASTS[t.id] || []).forEach(ukObj));
 /*LEGG-START*/
 /* Gruselige Legenden zum Zuhören (Podcast „Brividi nella notte“) – Thema Brividi. Nur hören, keine Aufgaben.
    Zeilen ohne „Name: “ liest die Erzählerin (Isabella). Ton-Bündel: leggende-<thema> (zweiter Speicher, EXT_THEMEN). */
@@ -78246,6 +78248,83 @@ Opa: Natürlich. Jetzt habe ich drei Hunde. Und zwei neue Hirten.
 Das war „Voci a quattro zampe“. Und denkt daran: Jeder Hund hat ein Talent. Man muss ihm nur einen Berg geben.`,
     fact:'Die „transumanza“, der jahreszeitliche Herdenwechsel zwischen Tal und Bergweide, ist seit 2019 UNESCO-Kulturerbe. In den Abruzzen schützen große weiße Maremmano-Abruzzese-Hirtenhunde die Schafe vor Wölfen – sie bellen wenig und arbeiten sehr selbstständig.' }
 ];
+/* „Voci a quattro zampe“ Folge 2 (v294, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_cani.js geladen.
+   Emma, Austauschschülerin aus Hamburg (Lektionen: hat Angst vor Hunden), kommt zu Familie Rinaldi nach Mailand. Briciola (Mischlingshündin aus dem Tierheim) will sie begrüßen,
+   Emma erstarrt. Trainerin Valentina erklärt: nicht in die Augen starren, seitlich stehen, Hand tief halten, Hund kommen lassen. Emma liest Briciola auf Deutsch vor (Lesehund).
+   Nachts Gewitter: Briciola hat Angst vor Donner, zittert unter dem Bett – Emma legt sich zu ihr auf den Boden und beruhigt sie. Rollentausch. Angekündigt Folge 3: Hochzeit von Chihuahua Principessa und Dackel Salame.
+   Stimmen: Giulia Isabella hoch (wie Folge 1), Tommaso Elsa hoch, Emma de-DE-SeraphinaMultilingual (Italienisch mit deutschem Klang, deutsche Sätze echt), Valentina Isabella, Elisa Isabella, Paolo Giuseppe. Niveau ab A2. */
+PODCAST_INFO.cani.lead = 'Wie ein kleiner Podcast: Giulia und Briciola zwischen Mailand und den Abruzzen – eine Austauschschülerin mit Angst vor Hunden, eine Hundehochzeit, eine Suche im Schnee und ein alter Hund aus dem Tierheim, mit Bellen, Hecheln, Schafglocken und Wind. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.cani.push(
+  { id:'cani-p2', show:'Voci a quattro zampe', ep:2, title:'Emma ha paura', de:'Emma hat Angst',
+    place:'Milano, a casa dei Rinaldi, a settembre', level:'ab A2', kind:'Herz · Freundschaft · Angst',
+    voices:{Giulia:'Isabella', Tommaso:'Elsa', Emma:'de-DE-SeraphinaMultilingualNeural', Valentina:'Isabella', Elisa:'Isabella', Paolo:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Giulia:['+0%','+14Hz'], Tommaso:['+6%','+44Hz'], Emma:['-6%','+0Hz'], Valentina:['-2%','+4Hz'], Elisa:['-4%','-4Hz'], Paolo:['-4%','-8Hz']},
+    words:[['l’ospite','der Gast'],['lo scambio','der Austausch'],['avere paura di','Angst haben vor'],['il canile','das Tierheim'],['annusare','schnüffeln'],['scodinzolare','mit dem Schwanz wedeln'],['guardare negli occhi','in die Augen schauen'],['di lato','seitlich'],['la mano bassa','die Hand unten'],['l’addestratrice','die Hundetrainerin'],['leggere ad alta voce','vorlesen'],['il temporale','das Gewitter'],['tremare','zittern'],['nascondersi','sich verstecken'],['calmare','beruhigen']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È domenica':'campanello_porta', 'In quel momento':'abbaio', 'Emma diventa':'pausa', 'Per tre giorni':'pausa', 'Il mercoledì':'campanello_porta', 'Valentina si siede':'pausa', 'Emma prova':'pausa', 'Briciola si avvicina':'ansimare', 'Il venerdì':'pausa', 'Quella notte':'tuono pioggia_an', 'Emma sente':'pausa', 'Un altro tuono':'tuono', 'Emma scende':'pausa', 'Emma: Ruhig':'pausa', 'Pian piano':'pioggia_aus pausa', 'La mattina':'pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci a quattro zampe», il podcast per chi ama i cani. Molte persone amano i cani. Ma alcune hanno paura. Oggi vi raccontiamo di una ragazza che ha paura. E di un cane che, a volte, ha paura anche lui.
+È domenica. A Milano, a casa della famiglia Rinaldi, arriva un’ospite. Si chiama Emma, ha sedici anni e viene da Amburgo, in Germania. Starà con loro tre mesi, per lo scambio. Giulia apre la porta, felicissima.
+Giulia: Ciao Emma! Benvenuta! Vieni, entra!
+In quel momento Briciola corre verso la porta. È contenta. Scodinzola, salta, abbaia una volta per salutare.
+Emma diventa bianca. Fa due passi indietro. Si attacca alla valigia.
+Emma: No… no, bitte… scusa. Io… ho paura dei cani. Molta paura.
+Giulia prende subito Briciola per il collare. Briciola non capisce. Si siede e guarda Emma con la testa piegata.
+Per tre giorni Emma e Briciola non stanno mai nella stessa stanza. Quando Briciola entra in cucina, Emma esce. Quando Emma fa i compiti in salotto, Briciola resta in camera di Giulia. Briciola è triste. Anche Emma è triste.
+Il mercoledì arriva Valentina, l’addestratrice di cani. È una donna calma, con la voce bassa.
+Valentina: Emma, la paura è normale. Non devi vergognarti. Ma ti spiego una cosa: per un cane, guardare negli occhi vuol dire «ti sfido». Stare davanti, dritta, vuol dire «attenzione». Proviamo diversamente.
+Valentina si siede per terra, di lato. Non guarda Briciola. Mette la mano bassa, aperta, vicino al pavimento.
+Valentina: Il cane deve venire da te. Non tu dal cane. Lei annusa, decide. E tu respiri.
+Emma prova. Si siede per terra, lontano. Il cuore batte forte. Guarda il pavimento. Mette la mano bassa.
+Briciola si avvicina. Piano piano. Annusa la mano di Emma. Poi si siede vicino a lei. Non la tocca. Aspetta.
+Valentina: Brava. Tutte e due. Per oggi basta così.
+Il venerdì Valentina ha un’altra idea. Emma deve leggere un libro per la scuola, in tedesco. Valentina dice: «Leggilo ad alta voce. A Briciola.» Emma ride. Ma lo fa. Si siede sul divano, apre il libro e legge. Briciola si sdraia sul tappeto e ascolta. Non capisce niente, ma ascolta tutto.
+Emma: Sie hört mir zu. Giulia, lei mi ascolta!
+Quella notte arriva un temporale. Un tuono fortissimo. La pioggia batte sulle finestre.
+Emma sente un rumore sotto il suo letto. Un rumore piccolo. Come un respiro veloce. Accende la luce. Sotto il letto c’è Briciola. Trema dalla testa alla coda.
+Un altro tuono. Briciola si stringe ancora di più contro il muro.
+Emma: Briciola? Anche tu hai paura?
+Emma scende dal letto. Si sdraia sul pavimento, di lato, come le ha insegnato Valentina. Non guarda Briciola. Mette la mano bassa, aperta. E parla piano.
+Emma: Ruhig, Briciola. Ganz ruhig. È solo un tuono. Io sono qui.
+Pian piano Briciola smette di tremare. Esce un po’ da sotto il letto. Mette il muso sulla mano di Emma. Respira più piano. Poi si addormenta. Con la testa sul braccio di Emma.
+La mattina dopo, la mamma Elisa apre la porta della camera. Vede Emma che dorme sul pavimento, con la coperta. E vicino a lei, tutta raggomitolata, Briciola.
+Elisa: Giulia… vieni a vedere. Piano.
+Giulia guarda. Sorride. Poi prende il telefono e fa una foto.
+A colazione Emma accarezza Briciola per la prima volta. Con tutta la mano. Briciola scodinzola come un elicottero.
+Emma: Stanotte ho capito una cosa. Anche i cani hanno paura. E allora… non siamo così diversi.
+Paolo: Benvenuta in famiglia, Emma. Adesso sei ufficialmente l’amica di Briciola.
+Questo era «Voci a quattro zampe». E ricordate: con un cane che ha paura, e con una persona che ha paura, funziona lo stesso: calma, pazienza, e una mano aperta. Nella prossima puntata la signora Pina ha un’idea pazza: vuole sposare la sua chihuahua Principessa con Salame, il bassotto di Luca. Bau a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci a quattro zampe“ (Stimmen auf vier Pfoten), dem Podcast für alle, die Hunde lieben. Viele Menschen lieben Hunde. Aber manche haben Angst. Heute erzählen wir euch von einem Mädchen, das Angst hat. Und von einem Hund, der manchmal auch Angst hat.
+Es ist Sonntag. In Mailand, bei Familie Rinaldi, kommt ein Gast an. Sie heißt Emma, ist sechzehn und kommt aus Hamburg in Deutschland. Sie bleibt drei Monate bei ihnen, für den Austausch. Giulia macht überglücklich die Tür auf.
+Giulia: Hallo Emma! Willkommen! Komm, komm rein!
+In diesem Moment rennt Briciola zur Tür. Sie freut sich. Sie wedelt, springt, bellt einmal zur Begrüßung.
+Emma wird blass. Sie geht zwei Schritte zurück. Sie klammert sich an den Koffer.
+Emma: Nein … nein, bitte … Entschuldigung. Ich … habe Angst vor Hunden. Große Angst.
+Giulia nimmt Briciola sofort am Halsband. Briciola versteht nicht. Sie setzt sich und schaut Emma mit schief gelegtem Kopf an.
+Drei Tage lang sind Emma und Briciola nie im selben Zimmer. Wenn Briciola in die Küche kommt, geht Emma hinaus. Wenn Emma im Wohnzimmer Hausaufgaben macht, bleibt Briciola in Giulias Zimmer. Briciola ist traurig. Emma ist auch traurig.
+Am Mittwoch kommt Valentina, die Hundetrainerin. Sie ist eine ruhige Frau mit tiefer Stimme.
+Valentina: Emma, Angst ist normal. Du musst dich nicht schämen. Aber ich erkläre dir etwas: Für einen Hund heißt in die Augen schauen „Ich fordere dich heraus“. Gerade davor stehen heißt „Achtung“. Versuchen wir es anders.
+Valentina setzt sich seitlich auf den Boden. Sie schaut Briciola nicht an. Sie hält die Hand tief, offen, nah am Boden.
+Valentina: Der Hund muss zu dir kommen. Nicht du zum Hund. Sie schnüffelt, sie entscheidet. Und du atmest.
+Emma versucht es. Sie setzt sich auf den Boden, weit weg. Ihr Herz schlägt laut. Sie schaut auf den Boden. Sie hält die Hand tief.
+Briciola kommt näher. Ganz langsam. Sie schnüffelt an Emmas Hand. Dann setzt sie sich neben sie. Sie berührt sie nicht. Sie wartet.
+Valentina: Gut so. Ihr beide. Für heute reicht das.
+Am Freitag hat Valentina noch eine Idee. Emma muss für die Schule ein Buch lesen, auf Deutsch. Valentina sagt: „Lies es laut vor. Für Briciola.“ Emma lacht. Aber sie macht es. Sie setzt sich aufs Sofa, schlägt das Buch auf und liest. Briciola legt sich auf den Teppich und hört zu. Sie versteht nichts, aber sie hört alles.
+Emma: Sie hört mir zu. Giulia, sie hört mir zu!
+In dieser Nacht kommt ein Gewitter. Ein sehr lauter Donner. Der Regen prasselt gegen die Fenster.
+Emma hört ein Geräusch unter ihrem Bett. Ein kleines Geräusch. Wie ein schneller Atem. Sie macht das Licht an. Unter dem Bett liegt Briciola. Sie zittert vom Kopf bis zum Schwanz.
+Noch ein Donner. Briciola drückt sich noch fester an die Wand.
+Emma: Briciola? Hast du auch Angst?
+Emma steigt aus dem Bett. Sie legt sich seitlich auf den Boden, wie Valentina es ihr gezeigt hat. Sie schaut Briciola nicht an. Sie hält die Hand tief und offen. Und sie spricht leise.
+Emma: Ruhig, Briciola. Ganz ruhig. Das ist nur ein Donner. Ich bin da.
+Langsam hört Briciola auf zu zittern. Sie kommt ein bisschen unter dem Bett hervor. Sie legt die Schnauze auf Emmas Hand. Sie atmet ruhiger. Dann schläft sie ein. Mit dem Kopf auf Emmas Arm.
+Am nächsten Morgen öffnet Mama Elisa die Zimmertür. Sie sieht Emma, die mit der Decke auf dem Boden schläft. Und neben ihr, ganz zusammengerollt, Briciola.
+Elisa: Giulia … komm schauen. Leise.
+Giulia schaut. Sie lächelt. Dann nimmt sie das Handy und macht ein Foto.
+Beim Frühstück streichelt Emma Briciola zum ersten Mal. Mit der ganzen Hand. Briciola wedelt wie ein Hubschrauber.
+Emma: Heute Nacht habe ich etwas verstanden. Auch Hunde haben Angst. Und dann … sind wir gar nicht so verschieden.
+Paolo: Willkommen in der Familie, Emma. Jetzt bist du offiziell Briciolas Freundin.
+Das war „Voci a quattro zampe“. Und denkt daran: Bei einem Hund, der Angst hat, und bei einem Menschen, der Angst hat, hilft dasselbe: Ruhe, Geduld und eine offene Hand. In der nächsten Folge hat Frau Pina eine verrückte Idee: Sie will ihre Chihuahua-Hündin Principessa mit Salame verheiraten, dem Dackel von Luca. Wau euch allen!`,
+    fact:'Hundetrainer raten Menschen mit Angst vor Hunden: nicht in die Augen starren, sich seitlich hinstellen oder hinsetzen, die Hand tief halten und den Hund kommen lassen – so wirkt man für den Hund nicht bedrohlich. Viele Hunde haben selbst Angst vor Gewitter und Feuerwerk. In Lese-Programmen lesen Kinder Hunden laut vor: Der Hund hört geduldig zu und korrigiert nie.' }
+);
 /* Hörgeschichten Cavalli (Podcast „In sella!“). Figuren aus dem Thema: Sara (Fulmine), Luca (Tornado), Carla (Reitstall, Stute Stella), Pony Pepe. */
 PODCAST_INFO.cavalli = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Ausritte und Geschichten mit Pferden, mit Geräuschen aus der Natur, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.cavalli = [
@@ -85386,8 +85465,6 @@ Das war „Geschichten von unterwegs“. Nächstes Mal: ein Markt in Oaxaca, ein
     fact:'Die Llorona ist die bekannteste Gespenstergeschichte Mexikos und wird in ganz Lateinamerika erzählt, in vielen Fassungen. Manche verbinden sie mit der aztekischen Göttin Cihuacóatl, die nachts weinend um ihre Kinder geklagt haben soll. In Xochimilco wird die Legende seit Jahrzehnten jeden Herbst rund um den Día de Muertos als Aufführung auf dem Wasser gespielt; die Zuschauer sitzen in Trajineras auf der Lagune. Die Isla de las Muñecas gibt es wirklich: Don Julián Santana hängte dort jahrzehntelang alte Puppen in die Bäume, angeblich für die Seele eines ertrunkenen Mädchens. Und das Lied „La Llorona“ ist eines der bekanntesten mexikanischen Volkslieder.' }
 ];
 /*LEGG-END*/
-/* UK-Schalter (ab v294): auch die englischen Texte der Hörgeschichten umstellen */
-if (US_UK) US.topics.forEach(t => (PODCASTS[t.id] || []).forEach(ukObj));
 /* ---------- Tonindex: welcher Text liegt in welcher Sammeldatei ---------- */
 const SOUND_SRC = {};
 /* voices: Stimme pro Sprecher bei Dialogen; voice: Stimme für einen einzelnen Satz (sonst Isabella) */
