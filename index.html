@@ -591,7 +591,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 296;
+const APP_VERSION = 297;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -72755,6 +72755,23 @@ function ring(t){
     <circle class="fg" cx="24" cy="24" r="${r}" stroke-dasharray="${c}" stroke-dashoffset="${c*(1-d/n)}"/>
     <text x="24" y="24">${d}/${n}</text></svg>`;
 }
+/* Thementitel auf den Kacheln der Startseite (v297, Wunsch der Nutzerin: „Deutschlandreis“ + „e“ in der zweiten Zeile):
+   (auch die große Überschrift der Themenseite) nie mitten im Wort umbrechen. TILE_SHY setzt sinnvolle Trennstellen (weicher Trennstrich \u00AD) in zusammengesetzten Wörtern;
+   passt ein Teil dann immer noch nicht, macht fitTileNames die Schrift dieses Titels kleiner (min. 16 px). Prüfwerkzeug: werkzeuge/titel_umbruch.js */
+const TILE_SHY = {Deutschlandreise:'Deutschland\u00ADreise', Unterwegs:'Unter\u00ADwegs', Tecnologia:'Tecno\u00ADlogia'};
+const tileName = n => n.replace(/[\p{L}]+/gu, w => TILE_SHY[w] || w);
+function fitTileNames(){
+  const fit = () => document.querySelectorAll('.topics .topic .name, .thead h1.it').forEach(el => {
+    el.style.fontSize = ''; const cs = getComputedStyle(el), frei = el.clientWidth; if (!frei) return;
+    const m = document.createElement('span'); m.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;font:' + cs.font;
+    document.body.appendChild(m);
+    const breit = Math.max(...el.textContent.split(/\s+/).flatMap(w => { const p = w.split('\u00AD'); return p.map((x, i) => i < p.length - 1 ? x + '-' : x); })
+      .filter(Boolean).map(w => { m.textContent = w; return m.getBoundingClientRect().width; }));
+    m.remove();
+    if (breit > frei) el.style.fontSize = Math.max(16, Math.floor(parseFloat(cs.fontSize) * frei / breit * 0.98)) + 'px';
+  });
+  fit(); try{ document.fonts.ready.then(fit); }catch(e){}
+}
 function renderHome(){
   if (PICK_FIRST){ PICK_FIRST = false; return renderLangPick(); }
   const lessonsDone = TOPICS.flatMap(t => t.lessons).filter(l => S.done[l.id]).length;
@@ -72773,7 +72790,7 @@ function renderHome(){
     <div class="topics">
       ${myTopics().map(t => `
         <button class="topic" style="--t:${t.color}" data-topic="${t.id}">
-          <span class="name">${t.name}</span>
+          <span class="name">${tileName(t.name)}</span>
           <span class="de">${t.de}</span>
           ${ring(t)}
           <span class="blurb">${t.blurb}</span>
@@ -72782,7 +72799,7 @@ function renderHome(){
       ${TOPICS.length > myTopics().length ? `<h2 class="eyebrow section-h">${myTopics().length ? 'Weitere Themen' : 'Themen zum Herunterladen'}</h2>
       ${TOPICS.filter(t => !S.topics.includes(t.id)).map(t => `
         <div class="topic get" style="--t:${t.color}">
-          <span class="name">${t.name}</span>
+          <span class="name">${tileName(t.name)}</span>
           <span class="de">${t.de} · ${t.lessons.length} Lektionen</span>
           <span class="blurb">${t.blurb}</span>
           <button class="main getbtn" data-get="${t.id}">Herunterladen<span class="tsize" data-tsize="${t.id}"></span></button>
@@ -72805,7 +72822,7 @@ function renderHome(){
       <p class="hint" id="hoermsg">Wörter, die das Mikrofon beim Nachsprechen nicht erkannt hat. Kopieren und bei Claude einfügen, dann wird die Erkennung gezielt besser.</p></div>` : ''}
     <p class="foot">Prototyp · Version ${APP_VERSION} · Dein Fortschritt wird nur in diesem Browser gespeichert</p>`;
   window.scrollTo(0,0);
-  fillSizes(); loadWishes();
+  fillSizes(); loadWishes(); fitTileNames();
 }
 
 /* ---------- Themen-Wunschliste (gemeinsam für alle, gespeichert bei Supabase) ----------
@@ -73027,7 +73044,7 @@ function renderTopic(id){
   app.innerHTML = `
     <div class="topicpage" style="--t:${t.color}">
       <button class="back" data-home>← Alle Themen</button>
-      <div class="thead"><p class="eyebrow">${t.de}</p><h1 class="it">${t.name}</h1><p>${t.blurb}</p></div>
+      <div class="thead"><p class="eyebrow">${t.de}</p><h1 class="it">${tileName(t.name)}</h1><p>${t.blurb}</p></div>
       <div class="jump">
         ${nx ? `<button class="main" data-next="${t.id}">Weiter mit der nächsten offenen Aufgabe<small>${nxLabel}</small></button>` : '<p class="alldone">Alles erledigt – bravissimo! ✓</p>'}
         <div class="jrow">
@@ -73060,7 +73077,7 @@ function renderTopic(id){
       </details>
       <p class="foot">Die Grammatik folgt in jedem Thema demselben Aufbau. Das Thema bestimmt nur die Wörter und Geschichten.</p>
     </div>`;
-  window.scrollTo(0,0);
+  window.scrollTo(0,0); fitTileNames();
 }
 
 /* ---------- build lesson steps ---------- */
