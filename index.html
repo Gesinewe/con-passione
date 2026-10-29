@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 288;
+const APP_VERSION = 289;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -78138,6 +78138,351 @@ Alle setzen sich todmüde an den Küchentisch. Polpetta schläft mit seinem Flei
 Das war „Voci dalla cucina“. Guten Appetit, und danke an alle, die für uns kochen.`,
     fact:'In italienischen Restaurantküchen ruft man „Comanda!“, wenn eine neue Bestellung kommt, und „Servizio!“ oder „Pronto!“, wenn ein Teller fertig ist – oft begleitet von einer kleinen Glocke am Pass. Orecchiette („Öhrchen“) sind die typische Pasta Apuliens und werden traditionell von Hand geformt.' }
 ];
+/* „Voci dalla cucina“ Folge 2 (v289, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_cucina.js geladen.
+   Gerücht: Heute kommt inkognito die Kritikerin der (erfundenen) Guida „La Forchetta d’Oro“. Alle halten einen eleganten Herrn mit Notizbuch für den Kritiker und verwöhnen ihn.
+   Die wirkliche Kritikerin ist die stille alte Dame mit dem kleinen Hund am Fenstertisch: Matteo bringt dem Hund Wasser, Kwame kocht ihr Brühe außerhalb der Karte.
+   Der elegante Herr ist ein Versicherungsvertreter. Zwei Wochen später: „Qui ti trattano come una nonna.“ Figuren wie in den Lektionen (Elena führt „Da Pina“ in Bologna, Kwame aus Ghana, Lucio, Rocco).
+   Angekündigt Folge 3: Nonna Pina kommt nach Bologna, Ragù-Duell Bari gegen Bologna. Stimmen: Elena Elsa, Rocco Giuseppe, Matteo Diego, Kwame Diego tief, Signora Isabella, Signore Giuseppe hoch. Niveau ab A2. */
+PODCAST_INFO.cucina.lead = 'Wie ein kleiner Podcast: Abende in Elenas Restaurant „Da Pina“, eine geheimnisvolle Kritikerin, ein Ragù-Duell, ein Hund auf der Flucht und ein Festessen für Nonna Pina – mit Messern, Pfannen und der Glocke am Pass, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.cucina.push(
+  { id:'cucina-p2', show:'Voci dalla cucina', ep:2, title:'La critica misteriosa', de:'Die geheimnisvolle Kritikerin',
+    place:'Il ristorante «Da Pina», un martedì sera', level:'ab A2', kind:'Lustig · Restaurant · Überraschung',
+    voices:{Elena:'Elsa', Rocco:'Giuseppe', Matteo:'Diego', Kwame:'Diego', Signora:'Isabella', Signore:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Elena:['+0%','+18Hz'], Rocco:['+2%','-10Hz'], Matteo:['+4%','+10Hz'], Kwame:['-6%','-18Hz'], Signora:['-12%','+4Hz'], Signore:['-2%','+10Hz']},
+    mormorio:['Che profumo!','Un tavolo per due?','Avete il menù?','Un bicchiere di vino rosso.','Buonissimo!','Mi passi il pane?','Salute!','Il conto, per favore.','Prendo le tagliatelle.','Complimenti!'],
+    words:[['il critico / la critica','der Kritiker / die Kritikerin'],['la guida','der (Restaurant-)Führer'],['in incognito','unerkannt'],['la voce','das Gerücht; die Stimme'],['il taccuino','das Notizbuch'],['elegante','elegant'],['servire','servieren, bedienen'],['il tavolo vicino alla finestra','der Tisch am Fenster'],['la ciotola d’acqua','der Wassernapf'],['il brodo','die Brühe'],['fuori menù','nicht auf der Karte'],['gentile','freundlich'],['la recensione','die Kritik, die Bewertung'],['l’assicurazione','die Versicherung'],['trattare','behandeln']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È martedì':'cucina_an', 'Alle cinque':'telefono_fisso', 'Elena mette giù':'pausa', 'Alle otto il':'cucina_aus sala_an campanello_porta', 'Alle otto e un quarto':'campanello_porta', 'Il piccolo cane':'abbaio', 'In cucina tutti':'padelle', 'Rocco prepara':'fiammata', 'Intanto, al tavolo':'pausa', 'Kwame non dice niente':'coltello', 'Alle undici':'pausa', 'Due settimane dopo':'sala_aus pausa', 'Elena legge':'pausa', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dalla cucina», il podcast che vi porta dietro la porta della cucina. Oggi c’è un ospite molto importante. Ma nessuno sa chi è.
+È martedì. Al ristorante «Da Pina», a Bologna, è una giornata tranquilla. Elena controlla le verdure, Kwame prepara il brodo, Matteo pulisce i tavoli. Rocco, il vecchio cuoco, beve un caffè.
+Alle cinque suona il telefono. È un’amica di Elena, che lavora in un altro ristorante.
+Elena: Pronto? … Davvero? Stasera? … Grazie, grazie mille!
+Elena mette giù il telefono. È bianca come la farina.
+Elena: Ragazzi, una notizia. Stasera arriva il critico della «Forchetta d’Oro». La guida più famosa d’Italia. Viene in incognito. Nessuno sa com’è.
+Rocco: Mamma mia. Ho lavorato quarant’anni in cucina e non ho mai visto un critico. Allora mettiamo la tovaglia bella!
+Matteo: Ma come lo riconosciamo?
+Rocco: Facile. Un critico è sempre elegante. Ha un taccuino. Mangia poco e guarda tutto.
+Alle otto il ristorante è pieno. Coppie, famiglie, un gruppo di studenti.
+Alle otto e un quarto entra un signore con una giacca blu, una cravatta rossa e un taccuino nero. Si siede da solo. Guarda il menù per dieci minuti. Scrive qualcosa.
+Matteo: È lui! Elena, è il critico!
+Elena: Matteo, tu servi quel tavolo. Sorridi. E non far cadere niente.
+Pochi minuti dopo entra una signora anziana, piccola, con un cappotto vecchio e un cagnolino bianco. Si siede al tavolo vicino alla finestra.
+Il piccolo cane abbaia una volta. Poi si mette sotto la sedia e guarda Matteo con gli occhi tristi.
+Signora: Scusi, ragazzo. Posso avere un po’ d’acqua per lui? Fa caldo e abbiamo camminato tanto.
+Matteo porta subito una ciotola d’acqua. Il cagnolino beve tutto.
+In cucina tutti lavorano per il signore elegante. Antipasto speciale. Tagliatelle con il tartufo. Vino buono.
+Rocco prepara il suo piatto migliore: il filetto con l’aceto balsamico. La padella fa una fiamma alta.
+Rocco: Questo è per il critico. Diciotto anni di aceto. Lo porti tu, Matteo. Piano, piano!
+Intanto, al tavolo vicino alla finestra, la signora chiede una cosa.
+Signora: Scusate. Io non posso mangiare tanto. Avete solo… un po’ di brodo caldo? Non c’è sul menù, lo so.
+Elena guarda in cucina. Tutti sono occupati. Ma Kwame la sente.
+Kwame non dice niente. Prende un po’ del suo brodo, aggiunge dei tortellini fatti a mano e un po’ di parmigiano. Porta lui la ciotola alla signora.
+Kwame: Ecco, signora. Fuori menù. Come lo fa mia nonna in Ghana… e come lo fa la nonna di Elena a Bari.
+La signora assaggia. Chiude gli occhi. Sorride.
+Signora: Ragazzo, questo brodo ha un’anima.
+Alle undici il signore elegante chiede il conto. Elena va al tavolo, nervosa.
+Elena: Tutto bene? Le è piaciuto?
+Signore: Benissimo, grazie. Ah, signorina… Lei ha già un’assicurazione per il ristorante? Io vendo assicurazioni. Ecco il mio biglietto da visita.
+Elena: Un’assicurazione?
+Signore: Sì! Contro gli incendi, i furti, i clienti che scivolano… Ho preso appunti tutta la sera!
+Dalla cucina si sente Rocco che ride. Ride così forte che deve sedersi su una cassa di pomodori.
+Due settimane dopo, Matteo entra di corsa nel ristorante con una rivista in mano.
+Matteo: Elena! Elena! Guarda! «La Forchetta d’Oro»! C’è il nostro ristorante!
+Elena legge ad alta voce. C’è una foto: una signora anziana con un cagnolino bianco.
+Elena: «Sono entrata da “Da Pina” con il cappotto vecchio e il mio cane. Nessuno sapeva chi ero. Un ragazzo ha portato l’acqua al mio cane senza che io dicessi niente. Un cuoco mi ha fatto un brodo che non c’era sul menù. Molti ristoranti trattano bene i critici. Qui trattano tutti come una nonna. Tre forchette d’oro.»
+Matteo: Era lei! La signora del brodo!
+Kwame sorride e continua a tagliare le cipolle.
+Rocco: Quarant’anni in cucina… e il critico l’ha trovato il ragazzo più silenzioso.
+Questo era «Voci dalla cucina». E ricordate: il cliente più importante è sempre quello che non sembra importante. Nella prossima puntata arriva a Bologna la nonna Pina. E sfida Rocco: il ragù di Bari contro il ragù di Bologna. Buon appetito!`,
+    tr:`Guten Abend und willkommen bei „Voci dalla cucina“ (Stimmen aus der Küche), dem Podcast, der euch hinter die Küchentür bringt. Heute kommt ein sehr wichtiger Gast. Aber niemand weiß, wer es ist.
+Es ist Dienstag. Im Restaurant „Da Pina“ in Bologna ist ein ruhiger Tag. Elena kontrolliert das Gemüse, Kwame macht die Brühe, Matteo putzt die Tische. Rocco, der alte Koch, trinkt einen Kaffee.
+Um fünf klingelt das Telefon. Es ist eine Freundin von Elena, die in einem anderen Restaurant arbeitet.
+Elena: Hallo? … Wirklich? Heute Abend? … Danke, tausend Dank!
+Elena legt auf. Sie ist weiß wie Mehl.
+Elena: Leute, eine Neuigkeit. Heute Abend kommt der Kritiker der „Forchetta d’Oro“. Der berühmteste Restaurantführer Italiens. Er kommt unerkannt. Niemand weiß, wie er aussieht.
+Rocco: Meine Güte. Ich habe vierzig Jahre in der Küche gearbeitet und nie einen Kritiker gesehen. Dann legen wir die schöne Tischdecke auf!
+Matteo: Aber wie erkennen wir ihn?
+Rocco: Ganz einfach. Ein Kritiker ist immer elegant. Er hat ein Notizbuch. Er isst wenig und beobachtet alles.
+Um acht ist das Restaurant voll. Paare, Familien, eine Gruppe Studenten.
+Um Viertel nach acht kommt ein Herr herein, mit blauem Sakko, roter Krawatte und einem schwarzen Notizbuch. Er setzt sich allein hin. Er schaut zehn Minuten in die Speisekarte. Er schreibt etwas auf.
+Matteo: Das ist er! Elena, das ist der Kritiker!
+Elena: Matteo, du bedienst diesen Tisch. Lächle. Und lass nichts fallen.
+Ein paar Minuten später kommt eine alte Dame herein, klein, in einem alten Mantel, mit einem kleinen weißen Hund. Sie setzt sich an den Tisch am Fenster.
+Der kleine Hund bellt einmal. Dann legt er sich unter den Stuhl und schaut Matteo mit traurigen Augen an.
+Dame: Entschuldigung, junger Mann. Kann ich etwas Wasser für ihn haben? Es ist warm, und wir sind viel gelaufen.
+Matteo bringt sofort einen Wassernapf. Der kleine Hund trinkt alles aus.
+In der Küche arbeiten alle für den eleganten Herrn. Eine besondere Vorspeise. Tagliatelle mit Trüffel. Guter Wein.
+Rocco macht sein bestes Gericht: Filet mit Balsamico-Essig. Die Pfanne macht eine hohe Stichflamme.
+Rocco: Das ist für den Kritiker. Achtzehn Jahre alter Essig. Du bringst es, Matteo. Langsam, langsam!
+Inzwischen bittet die Dame am Fenstertisch um etwas.
+Dame: Entschuldigen Sie. Ich kann nicht viel essen. Haben Sie nur … ein bisschen heiße Brühe? Sie steht nicht auf der Karte, ich weiß.
+Elena schaut in die Küche. Alle sind beschäftigt. Aber Kwame hört sie.
+Kwame sagt nichts. Er nimmt etwas von seiner Brühe, gibt handgemachte Tortellini und ein bisschen Parmesan dazu. Er bringt die Schale selbst zu der Dame.
+Kwame: Bitte sehr, Signora. Nicht von der Karte. So wie meine Oma sie in Ghana macht … und wie Elenas Oma sie in Bari macht.
+Die Dame probiert. Sie schließt die Augen. Sie lächelt.
+Dame: Junger Mann, diese Brühe hat eine Seele.
+Um elf bittet der elegante Herr um die Rechnung. Elena geht nervös an den Tisch.
+Elena: Alles in Ordnung? Hat es Ihnen geschmeckt?
+Herr: Ausgezeichnet, danke. Ach, Signorina … Haben Sie schon eine Versicherung für das Restaurant? Ich verkaufe Versicherungen. Hier ist meine Visitenkarte.
+Elena: Eine Versicherung?
+Herr: Ja! Gegen Brände, Diebstahl, Gäste, die ausrutschen … Ich habe mir den ganzen Abend Notizen gemacht!
+Aus der Küche hört man Rocco lachen. Er lacht so laut, dass er sich auf eine Tomatenkiste setzen muss.
+Zwei Wochen später kommt Matteo mit einer Zeitschrift in der Hand ins Restaurant gerannt.
+Matteo: Elena! Elena! Schau! Die „Forchetta d’Oro“! Unser Restaurant ist drin!
+Elena liest laut vor. Da ist ein Foto: eine alte Dame mit einem kleinen weißen Hund.
+Elena: „Ich bin mit meinem alten Mantel und meinem Hund ins ‚Da Pina‘ gegangen. Niemand wusste, wer ich war. Ein junger Mann hat meinem Hund Wasser gebracht, ohne dass ich etwas gesagt habe. Ein Koch hat mir eine Brühe gemacht, die nicht auf der Karte stand. Viele Restaurants behandeln Kritiker gut. Hier behandelt man alle wie eine Oma. Drei goldene Gabeln.“
+Matteo: Sie war es! Die Dame mit der Brühe!
+Kwame lächelt und schneidet weiter Zwiebeln.
+Rocco: Vierzig Jahre in der Küche … und den Kritiker hat der stillste Junge gefunden.
+Das war „Voci dalla cucina“. Und denkt daran: Der wichtigste Gast ist immer der, der nicht wichtig aussieht. In der nächsten Folge kommt Nonna Pina nach Bologna. Und sie fordert Rocco heraus: das Ragù aus Bari gegen das Ragù aus Bologna. Guten Appetit!`,
+    fact:'Restaurantkritiker großer Gastronomieführer essen meist unerkannt („in incognito“), zahlen ihre Rechnung selbst und kommen oft mehrmals, bevor sie urteilen. Bei den Tortellini in brodo, dem klassischen Festessen Bolognas, schwimmen die kleinen gefüllten Nudeln in einer kräftigen Fleischbrühe. Die „Forchetta d’Oro“ in dieser Folge ist erfunden.' }
+);
+/* „Voci dalla cucina“ Folge 3 (v289, 29.10.2026) – wird nach leggende_cucina2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Nonna Pina kommt aus Bari nach Bologna (Lektionen: sie will nicht nach Bologna ziehen, aber Kwame das Ragù beibringen). Sonntags-Duell mit Rocco:
+   Ragù barese (Braciole mit Pecorino, Knoblauch, Petersilie, Rotwein, stundenlang, zu Orecchiette) gegen Ragù bolognese (Soffritto, Rind, Pancetta, wenig Tomate,
+   Weißwein, Milch, zu Tagliatelle – nie Spaghetti). Die Gäste stimmen blind mit Bohnen in zwei Gläsern ab: Gleichstand. Hund Polpetta frisst aus beiden Schalen. Kwame darf entscheiden.
+   Angekündigt Folge 4: Polpetta läuft mit einer ganzen Mortadella weg. Stimmen: Pina Isabella tief, Rocco Giuseppe, Elena Elsa, Matteo Diego, Kwame Diego tief. Niveau ab A2. */
+PODCASTS.cucina.push(
+  { id:'cucina-p3', show:'Voci dalla cucina', ep:3, title:'La sfida del ragù', de:'Das Ragù-Duell',
+    place:'Il ristorante «Da Pina», una domenica di febbraio', level:'ab A2', kind:'Lustig · Wettkampf · Familie',
+    voices:{Elena:'Elsa', Rocco:'Giuseppe', Matteo:'Diego', Kwame:'Diego', Pina:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Elena:['+0%','+18Hz'], Rocco:['+2%','-10Hz'], Matteo:['+4%','+10Hz'], Kwame:['-6%','-18Hz'], Pina:['-10%','-14Hz']},
+    mormorio:['Che profumo!','Io voto per questo!','Buonissimo!','Mi passi il pane?','Salute!','Ancora un po’, per favore.','È più buono questo.','No, quell’altro!','Complimenti!','Che sfida!'],
+    words:[['la sfida','die Herausforderung, das Duell'],['il ragù','das Ragù (lange gekochte Fleischsoße)'],['le braciole','die Rouladen'],['il pecorino','der Schafskäse'],['l’aglio','der Knoblauch'],['il prezzemolo','die Petersilie'],['il soffritto','das angebratene Gemüse'],['la pancetta','der Bauchspeck'],['il latte','die Milch'],['cuocere piano','langsam kochen'],['mescolare','umrühren'],['il voto / votare','die Stimme / abstimmen'],['il fagiolo','die Bohne'],['il barattolo','das Glas (Behälter)'],['il pareggio','das Unentschieden'],['il giudice','der Richter, der Schiedsrichter']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È sabato sera':'campanello_porta', 'Pina: Elena':'pausa', 'La domenica mattina':'cucina_an', 'La nonna taglia':'coltello', 'Rocco prepara':'soffritto', 'Alle dieci':'bollore_an', 'Passano le ore':'pausa', 'Alle due':'bollore_aus cucina_aus sala_an', 'I clienti assaggiano':'pausa', 'Alla fine Matteo':'pausa', 'In quel momento':'abbaio', 'Tutti ridono':'risate_adulti', 'Kwame assaggia':'pausa', 'Tutti applaudono':'applausi', 'La sera':'sala_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dalla cucina», il podcast che vi porta dietro la porta della cucina. Oggi c’è una guerra. Una guerra di pentole. In Italia ogni città ha il suo ragù. E per ogni nonna il suo è il migliore.
+È sabato sera. Al ristorante «Da Pina» arriva una signora piccola con una valigia enorme. È la nonna Pina, da Bari. Nella valigia ci sono pochi vestiti… e tanto pecorino, olio e vino rosso.
+Pina: Elena, figlia mia! Sono venuta per insegnare il ragù a Kwame. Quello vero. Quello di Bari.
+Rocco esce dalla cucina con il grembiule.
+Rocco: Il ragù vero? Signora Pina, mi dispiace. Qui siamo a Bologna. Il ragù vero è il ragù bolognese.
+Pina: Ah sì? Allora domani facciamo una sfida. Il mio ragù contro il tuo. Decidono i clienti.
+Rocco: Accetto!
+Elena guarda Kwame. Kwame guarda Elena. Domenica sarà una giornata lunga.
+La domenica mattina, alle sette, la cucina è già calda. Da una parte c’è la nonna Pina. Dall’altra c’è Rocco. In mezzo c’è Kwame, con un quaderno.
+La nonna taglia la carne in fette sottili. Sopra mette pecorino, aglio e prezzemolo. Poi arrotola ogni fetta e la chiude con uno stecchino.
+Pina: Queste sono le braciole. Il segreto di Bari. Le cuocio nel pomodoro con il vino rosso. Tante ore. E con il sugo condiamo le orecchiette.
+Rocco prepara il soffritto: cipolla, carota e sedano, tagliati piccolissimi. Poi aggiunge la carne macinata e la pancetta.
+Rocco: Il ragù bolognese ha poco pomodoro. Un po’ di vino bianco. E poi il segreto: il latte.
+Pina: Il latte? Nel ragù? Madonna santa!
+Rocco: E si mangia con le tagliatelle. Mai con gli spaghetti! Mai!
+Alle dieci le due pentole sono sul fuoco. Piano, piano. Il ragù non ha fretta.
+Passano le ore. La nonna mescola. Rocco mescola. Ogni tanto la nonna assaggia il ragù di Rocco, quando lui non guarda. Ogni tanto Rocco assaggia il ragù della nonna, quando lei non guarda. Kwame vede tutto e scrive tutto nel quaderno.
+Alle due il ristorante è pieno. Ogni cliente riceve due piatti piccoli, senza nome: il piatto A e il piatto B. Sul tavolo ci sono due barattoli di vetro e un sacchetto di fagioli secchi.
+Elena: Signore e signori, assaggiate tutti e due. Poi mettete un fagiolo nel barattolo del ragù che preferite!
+I clienti assaggiano. Parlano, discutono, ridono. Un signore assaggia tre volte e non riesce a decidere.
+Alla fine Matteo conta i fagioli. Tutti aspettano in silenzio.
+Matteo: Barattolo A: quarantuno fagioli. Barattolo B… quarantuno fagioli. Pareggio!
+Pina: Pareggio? Impossibile!
+Rocco: Ricontiamo!
+In quel momento si sente un rumore dalla cucina. È Polpetta, il cane di famiglia. Ha trovato le due ciotole con il ragù avanzato. Mangia un po’ da una, un po’ dall’altra. Poi lecca tutte e due, perfettamente pulite.
+Tutti ridono. Anche la nonna e Rocco.
+Elena: Anche Polpetta dice pareggio. Allora decide Kwame. Lui ha visto tutto.
+Kwame assaggia ancora una volta il ragù A. Poi il ragù B. Chiude il quaderno.
+Kwame: Io non posso scegliere. Il ragù di Bari è il sole. Il ragù di Bologna è la nebbia d’inverno. Tutti e due sono casa. Io voglio imparare tutti e due. Se volete, domenica prossima vi insegno il mio. Si chiama jollof. Viene dal Ghana.
+La nonna guarda Rocco. Rocco guarda la nonna.
+Pina: Questo ragazzo parla bene come un prete.
+Rocco: E cucina meglio di noi due. Ma non dirglielo.
+Tutti applaudono. La nonna dà a Rocco un pezzo di pecorino di Bari. Rocco dà alla nonna un barattolo del suo ragù.
+La sera, nel ristorante vuoto, Elena trova il quaderno di Kwame sul tavolo. Sull’ultima pagina c’è scritto: «Ragù: pazienza, amore, e una nonna che ti guarda.»
+Questo era «Voci dalla cucina». E ricordate: il ragù migliore è quello della vostra nonna. Nella prossima puntata Polpetta scappa. E non scappa da solo: scappa con una mortadella intera. Buon appetito!`,
+    tr:`Guten Tag und willkommen bei „Voci dalla cucina“, dem Podcast, der euch hinter die Küchentür bringt. Heute gibt es Krieg. Einen Krieg der Töpfe. In Italien hat jede Stadt ihr eigenes Ragù. Und jede Oma glaubt, ihres ist das beste.
+Es ist Samstagabend. Ins Restaurant „Da Pina“ kommt eine kleine Frau mit einem riesigen Koffer. Es ist Nonna Pina, aus Bari. Im Koffer sind wenige Kleider … und viel Pecorino, Öl und Rotwein.
+Pina: Elena, mein Kind! Ich bin gekommen, um Kwame das Ragù beizubringen. Das echte. Das aus Bari.
+Rocco kommt mit der Schürze aus der Küche.
+Rocco: Das echte Ragù? Signora Pina, es tut mir leid. Wir sind hier in Bologna. Das echte Ragù ist das Ragù bolognese.
+Pina: Ach ja? Dann machen wir morgen ein Duell. Mein Ragù gegen deins. Die Gäste entscheiden.
+Rocco: Angenommen!
+Elena schaut Kwame an. Kwame schaut Elena an. Der Sonntag wird ein langer Tag.
+Am Sonntagmorgen um sieben ist die Küche schon warm. Auf der einen Seite steht Nonna Pina. Auf der anderen Seite steht Rocco. In der Mitte steht Kwame mit einem Heft.
+Die Oma schneidet das Fleisch in dünne Scheiben. Darauf legt sie Pecorino, Knoblauch und Petersilie. Dann rollt sie jede Scheibe auf und schließt sie mit einem Zahnstocher.
+Pina: Das sind die Braciole, die Rouladen. Das Geheimnis von Bari. Ich koche sie in Tomaten mit Rotwein. Viele Stunden. Und mit der Soße mache ich die Orecchiette an.
+Rocco macht das Soffritto: Zwiebel, Karotte und Sellerie, ganz klein geschnitten. Dann gibt er Hackfleisch und Bauchspeck dazu.
+Rocco: Das Ragù bolognese hat wenig Tomate. Ein bisschen Weißwein. Und dann das Geheimnis: die Milch.
+Pina: Milch? Im Ragù? Heilige Mutter Gottes!
+Rocco: Und man isst es mit Tagliatelle. Nie mit Spaghetti! Niemals!
+Um zehn stehen beide Töpfe auf dem Herd. Langsam, langsam. Ein Ragù hat es nicht eilig.
+Die Stunden vergehen. Die Oma rührt. Rocco rührt. Ab und zu probiert die Oma Roccos Ragù, wenn er nicht hinschaut. Ab und zu probiert Rocco das Ragù der Oma, wenn sie nicht hinschaut. Kwame sieht alles und schreibt alles ins Heft.
+Um zwei ist das Restaurant voll. Jeder Gast bekommt zwei kleine Teller ohne Namen: Teller A und Teller B. Auf dem Tisch stehen zwei Gläser und ein Säckchen mit getrockneten Bohnen.
+Elena: Meine Damen und Herren, probieren Sie beide. Dann legen Sie eine Bohne in das Glas des Ragùs, das Ihnen besser schmeckt!
+Die Gäste probieren. Sie reden, diskutieren, lachen. Ein Herr probiert dreimal und kann sich nicht entscheiden.
+Am Ende zählt Matteo die Bohnen. Alle warten still.
+Matteo: Glas A: einundvierzig Bohnen. Glas B … einundvierzig Bohnen. Unentschieden!
+Pina: Unentschieden? Unmöglich!
+Rocco: Nochmal zählen!
+In diesem Moment hört man ein Geräusch aus der Küche. Es ist Polpetta, der Familienhund. Er hat die zwei Schüsseln mit dem übrigen Ragù gefunden. Er frisst ein bisschen aus der einen, ein bisschen aus der anderen. Dann leckt er beide perfekt sauber.
+Alle lachen. Auch die Oma und Rocco.
+Elena: Auch Polpetta sagt unentschieden. Dann entscheidet Kwame. Er hat alles gesehen.
+Kwame probiert noch einmal das Ragù A. Dann das Ragù B. Er klappt das Heft zu.
+Kwame: Ich kann nicht wählen. Das Ragù aus Bari ist die Sonne. Das Ragù aus Bologna ist der Winternebel. Beide sind Zuhause. Ich will beide lernen. Wenn ihr wollt, bringe ich euch nächsten Sonntag meins bei. Es heißt Jollof. Es kommt aus Ghana.
+Die Oma schaut Rocco an. Rocco schaut die Oma an.
+Pina: Dieser Junge redet so schön wie ein Pfarrer.
+Rocco: Und er kocht besser als wir beide. Aber sag es ihm nicht.
+Alle klatschen. Die Oma gibt Rocco ein Stück Pecorino aus Bari. Rocco gibt der Oma ein Glas von seinem Ragù.
+Am Abend findet Elena im leeren Restaurant Kwames Heft auf dem Tisch. Auf der letzten Seite steht: „Ragù: Geduld, Liebe und eine Oma, die dir zuschaut.“
+Das war „Voci dalla cucina“. Und denkt daran: Das beste Ragù ist das eurer Oma. In der nächsten Folge haut Polpetta ab. Und er haut nicht allein ab: Er haut mit einer ganzen Mortadella ab. Guten Appetit!`,
+    fact:'Das „Ragù alla bolognese“ hat sogar ein offizielles Rezept: 1982 hinterlegte die Accademia Italiana della Cucina es bei der Handelskammer von Bologna – mit Rindfleisch, Pancetta, Soffritto, wenig Tomate, trockenem Wein und Milch. In Bologna isst man es mit Tagliatelle, nicht mit Spaghetti. In Bari und ganz Apulien gehört zum Sonntagsragù dagegen „braciole“: kleine Fleischrouladen mit Pecorino, Knoblauch und Petersilie, die stundenlang in Tomatensoße schmoren.' }
+);
+/* „Voci dalla cucina“ Folge 4 (v289, 29.10.2026) – wird nach leggende_cucina3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Markt im Quadrilatero in Bologna: Polpetta schnappt beim Wurstverkäufer Gianni eine kleine Mortadella (2 kg) und rennt davon – durch die Via Pescherie Vecchie,
+   unter den Arkaden, an den Zwei Türmen vorbei, über die Piazza Maggiore am Neptunbrunnen. Verfolgung: Matteo, Elena, Kwame, Gianni. Im Hinterhof: eine Straßenhündin mit vier Welpen –
+   Polpetta füttert sie seit Tagen. Gianni verzeiht („Pagate con un pranzo“). Die Kritikerin aus Folge 2 adoptiert einen Welpen. Angekündigt Folge 5 (Finale): Fest für Nonna Pina.
+   Stimmen: Elena Elsa, Matteo Diego, Kwame Diego tief, Gianni Giuseppe, Signora (Kritikerin) Isabella. Niveau ab A2. */
+PODCASTS.cucina.push(
+  { id:'cucina-p4', show:'Voci dalla cucina', ep:4, title:'Polpetta e la mortadella', de:'Polpetta und die Mortadella',
+    place:'Il mercato del Quadrilatero e le strade di Bologna, un sabato mattina', level:'ab A2', kind:'Lustig · Verfolgung · Herz',
+    voices:{Elena:'Elsa', Matteo:'Diego', Kwame:'Diego', Gianni:'Giuseppe', Signora:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Elena:['+0%','+18Hz'], Matteo:['+4%','+10Hz'], Kwame:['-6%','-18Hz'], Gianni:['+4%','-4Hz'], Signora:['-12%','+4Hz']},
+    mormorio:['Pesce fresco!','Due etti di prosciutto, per favore.','Quanto costano le pere?','Assaggi, signora!','Buongiorno!','Un chilo di pomodori.','Che bella mortadella!','Arrivederci!','Permesso!','Ancora qualcosa?'],
+    words:[['il mercato','der Markt'],['il salumiere','der Wurstverkäufer'],['la mortadella','die Mortadella'],['l’etto / due etti','100 Gramm / 200 Gramm'],['affettare','in Scheiben schneiden'],['rubare','stehlen'],['scappare','weglaufen'],['inseguire','verfolgen'],['i portici','die Arkaden'],['le Due Torri','die Zwei Türme (Bologna)'],['la fontana','der Brunnen'],['il cortile','der Hinterhof'],['la cagna','die Hündin'],['il cucciolo / i cuccioli','der Welpe / die Welpen'],['adottare','adoptieren'],['perdonare','verzeihen']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È sabato mattina':'gelateria_an', 'Gianni affetta':'coltello', 'Gianni si gira':'pausa', 'In quel momento':'abbaio', 'Gianni: Al ladro':'gelateria_aus passi', 'Polpetta corre':'traffico_an', 'Passano davanti':'campane', 'Kwame corre':'vespa', 'Sulla Piazza Maggiore':'pausa', 'Poi Polpetta':'traffico_aus passi', 'Dentro il cortile':'pausa', 'Polpetta mette':'abbaio', 'Gianni arriva':'pausa', 'Una settimana dopo':'sala_an campanello_porta', 'Questo era':'sala_aus pausa'},
+    text:`Buongiorno e benvenuti a «Voci dalla cucina», il podcast che vi porta dietro la porta della cucina. Oggi usciamo dalla cucina. Anzi, corriamo. Perché qualcuno ha rubato una mortadella.
+È sabato mattina. Elena, Matteo e Kwame fanno la spesa al mercato del Quadrilatero, nel centro di Bologna. Ci sono banchi di frutta, pesce, formaggi e salumi. Con loro c’è anche Polpetta, il cane di famiglia.
+Dal salumiere Gianni c’è la fila. Sul banco ci sono prosciutti, salami e mortadelle: grandi, medie e piccole.
+Gianni affetta la mortadella. Le fette sono sottili, rosa, profumate.
+Gianni: Ecco, signora Elena. Quattro etti per le tagliatelle di domani. E una fetta per il cane, come sempre.
+Polpetta mangia la fetta in un secondo. Poi guarda il banco. Guarda una piccola mortadella intera, da due chili.
+Gianni si gira per prendere la carta. Un secondo. Solo un secondo.
+In quel momento Polpetta salta. Prende la mortadella con la bocca. E scappa.
+Gianni: Al ladro! Al ladro! La mia mortadella!
+Elena: Polpetta! Torna qui! Subito!
+Polpetta corre tra le gambe della gente, tra le casse di frutta e i cesti di pane. Matteo corre dietro di lui. Elena corre dietro di Matteo. Gianni corre dietro di tutti, con il grembiule e il coltello in mano.
+Elena: Gianni! Il coltello! Lascia il coltello!
+Passano davanti alle Due Torri. Le campane suonano le dieci. I turisti fanno le foto: un cane con una mortadella in bocca, inseguito da un cuoco, una ragazza e un salumiere.
+Kwame corre per una scorciatoia, sotto i portici. Un motorino passa vicinissimo.
+Sulla Piazza Maggiore Polpetta si ferma vicino alla fontana del Nettuno. Si gira. Guarda Matteo. Sembra quasi ridere.
+Matteo: Polpetta… buono… vieni qui… da bravo…
+Poi Polpetta scappa di nuovo. Entra in una strada piccola, poi in un portone aperto, poi in un vecchio cortile.
+Dentro il cortile è tutto silenzioso. Matteo, Elena, Kwame e Gianni arrivano senza fiato.
+Sotto una vecchia scala c’è una cagna magra, marrone. E vicino a lei, in una scatola di cartone, ci sono quattro cuccioli piccolissimi.
+Polpetta mette la mortadella davanti alla cagna. Poi si siede e muove la coda.
+Elena: Oh… Polpetta…
+Kwame: Ecco perché la sera scappa sempre per un’ora. E perché torna senza fame. Porta il cibo a lei.
+Matteo: Polpetta non è un ladro. È un papà.
+Gianni arriva per ultimo. Guarda la cagna. Guarda i cuccioli. Guarda la sua mortadella, già un po’ morsicata. Poi si toglie il cappello.
+Gianni: Va bene. La mortadella è un regalo. Ma voi, a «Da Pina», mi pagate con un pranzo. Tagliatelle al ragù. Doppia porzione.
+Elena: Affare fatto, Gianni.
+Portano la cagna e i cuccioli dal veterinario. Stanno tutti bene. La cagna si chiama adesso Mortadella. Naturalmente.
+Una settimana dopo, al ristorante, c’è un cartello sulla porta: «Quattro cuccioli cercano casa.» Entra una signora anziana con un cappotto vecchio e un cagnolino bianco. È la critica della «Forchetta d’Oro».
+Signora: Ho letto il cartello. Il mio cane è vecchio. Forse ha bisogno di un amico. Posso vedere i cuccioli?
+In un giorno trovano casa tutti e quattro: uno va dalla signora, uno da Gianni, uno da Kwame e uno da una famiglia di clienti. E Mortadella? Mortadella resta con Polpetta. Adesso dorme in cucina, sotto il tavolo della pasta.
+Questo era «Voci dalla cucina». E ricordate: a volte un ladro è solo qualcuno che pensa agli altri. Nella prossima puntata, l’ultima di questa stagione, la nonna Pina compie novant’anni. Ed Elena prepara una cena speciale. Una cena con tutta la sua vita dentro. Buon appetito!`,
+    tr:`Guten Tag und willkommen bei „Voci dalla cucina“, dem Podcast, der euch hinter die Küchentür bringt. Heute gehen wir aus der Küche hinaus. Besser gesagt: Wir rennen. Denn jemand hat eine Mortadella gestohlen.
+Es ist Samstagmorgen. Elena, Matteo und Kwame kaufen auf dem Markt im Quadrilatero ein, im Zentrum von Bologna. Es gibt Stände mit Obst, Fisch, Käse und Wurst. Polpetta, der Familienhund, ist auch dabei.
+Beim Wurstverkäufer Gianni gibt es eine Schlange. Auf der Theke liegen Schinken, Salami und Mortadellas: große, mittlere und kleine.
+Gianni schneidet die Mortadella auf. Die Scheiben sind dünn, rosa, duftend.
+Gianni: Bitte, Signora Elena. Vierhundert Gramm für die Tagliatelle von morgen. Und eine Scheibe für den Hund, wie immer.
+Polpetta frisst die Scheibe in einer Sekunde. Dann schaut er auf die Theke. Er schaut eine kleine ganze Mortadella an, zwei Kilo schwer.
+Gianni dreht sich um, um das Papier zu holen. Eine Sekunde. Nur eine Sekunde.
+In diesem Moment springt Polpetta. Er schnappt die Mortadella mit dem Maul. Und rennt weg.
+Gianni: Haltet den Dieb! Haltet den Dieb! Meine Mortadella!
+Elena: Polpetta! Komm her! Sofort!
+Polpetta rennt zwischen den Beinen der Leute hindurch, zwischen Obstkisten und Brotkörben. Matteo rennt hinter ihm her. Elena rennt hinter Matteo her. Gianni rennt hinter allen her, mit Schürze und Messer in der Hand.
+Elena: Gianni! Das Messer! Lass das Messer da!
+Sie kommen an den Zwei Türmen vorbei. Die Glocken schlagen zehn. Die Touristen machen Fotos: ein Hund mit einer Mortadella im Maul, verfolgt von einem Koch, einer jungen Frau und einem Wurstverkäufer.
+Kwame nimmt eine Abkürzung unter den Arkaden. Ein Motorroller fährt ganz knapp vorbei.
+Auf der Piazza Maggiore bleibt Polpetta neben dem Neptunbrunnen stehen. Er dreht sich um. Er schaut Matteo an. Es sieht aus, als würde er lachen.
+Matteo: Polpetta … braver Hund … komm her … sei lieb …
+Dann rennt Polpetta wieder los. Er biegt in eine kleine Straße ein, dann durch ein offenes Tor, dann in einen alten Hinterhof.
+Im Hof ist alles still. Matteo, Elena, Kwame und Gianni kommen außer Atem an.
+Unter einer alten Treppe liegt eine magere braune Hündin. Und neben ihr, in einem Pappkarton, sind vier winzige Welpen.
+Polpetta legt die Mortadella vor die Hündin. Dann setzt er sich hin und wedelt mit dem Schwanz.
+Elena: Oh … Polpetta …
+Kwame: Deshalb läuft er abends immer eine Stunde weg. Und deshalb kommt er ohne Hunger zurück. Er bringt ihr das Futter.
+Matteo: Polpetta ist kein Dieb. Er ist ein Papa.
+Gianni kommt als Letzter. Er schaut die Hündin an. Er schaut die Welpen an. Er schaut seine Mortadella an, schon ein bisschen angeknabbert. Dann nimmt er den Hut ab.
+Gianni: Na gut. Die Mortadella ist ein Geschenk. Aber ihr bezahlt mich im „Da Pina“ mit einem Mittagessen. Tagliatelle al ragù. Doppelte Portion.
+Elena: Abgemacht, Gianni.
+Sie bringen die Hündin und die Welpen zum Tierarzt. Allen geht es gut. Die Hündin heißt jetzt Mortadella. Natürlich.
+Eine Woche später hängt im Restaurant ein Schild an der Tür: „Vier Welpen suchen ein Zuhause.“ Eine alte Dame mit einem alten Mantel und einem kleinen weißen Hund kommt herein. Es ist die Kritikerin der „Forchetta d’Oro“.
+Dame: Ich habe das Schild gelesen. Mein Hund ist alt. Vielleicht braucht er einen Freund. Darf ich die Welpen sehen?
+An einem einzigen Tag finden alle vier ein Zuhause: einer kommt zu der Dame, einer zu Gianni, einer zu Kwame und einer zu einer Familie aus dem Restaurant. Und Mortadella? Mortadella bleibt bei Polpetta. Jetzt schläft sie in der Küche, unter dem Nudeltisch.
+Das war „Voci dalla cucina“. Und denkt daran: Manchmal ist ein Dieb nur jemand, der an andere denkt. In der nächsten Folge, der letzten dieser Staffel, wird Nonna Pina neunzig. Und Elena kocht ein besonderes Abendessen. Ein Abendessen, in dem ihr ganzes Leben steckt. Guten Appetit!`,
+    fact:'Das Quadrilatero ist das alte Marktviertel Bolognas mit engen Gassen voller Lebensmittelläden, gleich neben der Piazza Maggiore. Die Mortadella Bologna ist eine geschützte Spezialität (IGP) aus fein gehacktem Schweinefleisch mit Speckwürfeln; manche wiegen über 100 Kilo. Wegen seiner guten Küche hat Bologna den Spitznamen „la Grassa“ (die Fette). In Italien kauft man Aufschnitt in „etti“: Ein etto sind 100 Gramm.' }
+);
+/* „Voci dalla cucina“ Folge 5 (v289, 29.10.2026) – wird nach leggende_cucina4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Nonna Pina wird 90 (Lektionen: am 3. Mai 1961 wollte sie nach Argentinien, Vito, der schüchterne Fischer, brachte ihr am Kai seine ersten, schiefen Orecchiette – das Schiff fuhr ohne sie).
+   Elena kocht ein Menü aus Pinas Leben: Oktopus wie bei Vitos Vater, absichtlich schiefe Orecchiette von Kwame und Matteo, Ragù barese von Rocco (Frieden nach Folge 3),
+   Torte in Form eines Schiffs mit Fähnchen „3 maggio 1961“. Gäste: Gianni, die Kritikerin, Hündin Mortadella. Pina: „La ricetta non si scrive. Si passa di mano in mano.“
+   Stimmen: Pina Isabella tief, Elena Elsa, Matteo Diego, Kwame Diego tief, Rocco Giuseppe. Niveau ab A2. */
+PODCASTS.cucina.push(
+  { id:'cucina-p5', show:'Voci dalla cucina', ep:5, title:'Novant’anni in un menù', de:'Neunzig Jahre in einem Menü',
+    place:'Il ristorante «Da Pina», il tre maggio', level:'ab A2', kind:'Herz · Familie · Staffelfinale',
+    voices:{Elena:'Elsa', Rocco:'Giuseppe', Matteo:'Diego', Kwame:'Diego', Pina:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Elena:['+0%','+18Hz'], Rocco:['+2%','-10Hz'], Matteo:['+4%','+10Hz'], Kwame:['-6%','-18Hz'], Pina:['-10%','-14Hz']},
+    mormorio:['Auguri, nonna Pina!','Che bella festa!','Buonissimo!','Mi passi il pane?','Salute!','Novant’anni!','Che profumo!','Ancora un po’ di vino?','Complimenti alla cuoca!','Viva la nonna!'],
+    words:[['il compleanno','der Geburtstag'],['novant’anni','neunzig Jahre'],['il menù','das Menü'],['la portata','der Gang (beim Essen)'],['il polpo','der Oktopus'],['arricciare','kräuseln (Oktopus weich klopfen)'],['storto / storte','schief, krumm'],['apposta','absichtlich'],['la nave','das Schiff'],['il molo','der Kai, die Mole'],['la dichiarazione d’amore','die Liebeserklärung'],['il ricordo','die Erinnerung'],['commosso / commossa','gerührt'],['passare di mano in mano','von Hand zu Hand weitergeben'],['l’eredità','das Erbe']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È il tre maggio':'sala_an', 'Alle otto':'campanello_porta', 'Elena batte':'pausa', 'La prima portata':'piatti', 'La seconda portata':'pausa', 'Pina guarda':'pausa', 'La terza portata':'pausa', 'Rocco porta':'piatti', 'Alla fine':'pausa', 'Sopra la torta':'acqua_an vaporetto', 'La nonna resta':'acqua_aus pausa', 'Pina si alza':'pausa', 'Tutti alzano':'brindisi', 'Tutti applaudono':'applausi', 'Questo era':'sala_aus carillon_ende'},
+    text:`Buonasera e benvenuti a «Voci dalla cucina», il podcast che vi porta dietro la porta della cucina. È l’ultima puntata di questa stagione. E stasera la cucina è piena d’amore. Perché la nonna Pina compie novant’anni.
+È il tre maggio. Una data importante per la nonna. Il tre maggio millenovecentosessantuno stava per partire per l’Argentina. Ma non è partita. Per colpa di un pescatore timido, Vito, e di un piatto di orecchiette storte.
+Elena ha chiuso il ristorante per una sera. Sui tavoli ci sono fiori bianchi e candele. Ci sono tutti: la famiglia, Rocco, Kwame, Lucio, Gianni il salumiere, la signora critica con il suo cagnolino. Sotto il tavolo della pasta dorme Mortadella.
+Alle otto la nonna arriva con Matteo, vestita di blu. Tutti si alzano.
+Pina: Ma che cosa avete fatto? Io volevo solo una pizza!
+Elena batte un cucchiaio sul bicchiere.
+Elena: Nonna, stasera non c’è un menù normale. Stasera c’è un menù della tua vita. Ogni piatto è un ricordo. Siediti e ascolta.
+La prima portata arriva su un piatto bianco: polpo, morbidissimo, con olio e limone.
+Elena: Il primo ricordo è il molo di Bari. Il padre di Vito vendeva i polpi. Ogni mattina li arricciava sugli scogli per farli morbidi. Questo polpo l’ho arricciato io. Con le mie mani.
+Pina assaggia. Sorride.
+Pina: È morbido come quello di allora. Brava.
+La seconda portata la portano Kwame e Matteo insieme. Sono orecchiette con le cime di rapa. Ma sono strane. Tutte diverse. Tutte storte.
+Pina: Elena… le orecchiette sono storte.
+Matteo: Lo sappiamo, nonna. Le abbiamo fatte storte apposta. Tutto il pomeriggio.
+Kwame: Come le orecchiette di Vito. Le prime della sua vita. Quelle del molo.
+Pina guarda il piatto per molto tempo. Non dice niente. Poi prende la forchetta. La mano le trema un po’.
+Pina: Il tre maggio Vito correva sul molo con un piatto in mano. Stava per cadere. Mi ha dato il piatto e ha detto solo: «Le ho fatte io.» Erano orrende. Storte, dure, troppo grandi. E io… io non sono salita sulla nave.
+Nella sala c’è silenzio. La signora critica si asciuga gli occhi.
+Pina: Queste sono buonissime. Ma sono storte proprio come le sue. Grazie, ragazzi.
+La terza portata è una sorpresa. Rocco esce dalla cucina con una pentola grande.
+Rocco: Signora Pina, a febbraio abbiamo fatto la guerra. Stasera facciamo la pace. Questo è un ragù barese. Con le braciole, il pecorino e il vino rosso. L’ho fatto io. Con la sua ricetta.
+Rocco porta i piatti. La nonna assaggia.
+Pina: Rocco… manca un po’ di sale. Ma per un bolognese è un miracolo.
+Tutti ridono. Anche Rocco.
+Alla fine si spengono le luci. Dalla cucina arriva Elena con una torta grande. Ha la forma di una nave bianca, con il mare blu di zucchero.
+Sopra la torta c’è una piccola bandiera. C’è scritto: «Tre maggio millenovecentosessantuno. La nave è partita senza di me.»
+La nonna resta ferma. Guarda la piccola nave. Poi guarda Elena, Matteo, Kwame, Rocco, tutti.
+Pina: Se fossi salita su quella nave, adesso sarei in Argentina. Forse avrei avuto un ristorante a Buenos Aires. Ma non avrei avuto voi.
+Pina si alza. Prende il bicchiere.
+Pina: Tutti mi chiedono: nonna, scrivi le tue ricette. Ma la ricetta non si scrive. Si passa di mano in mano. Da Vito a me. Da me a Elena. Da Elena a Kwame, a Matteo, ai bambini della scuola. Finché qualcuno cucina, nessuno se ne va davvero.
+Tutti alzano i bicchieri.
+Elena: Alla nonna Pina!
+Pina: Alle orecchiette storte!
+Tutti applaudono. Mortadella si sveglia e abbaia. La nonna soffia sulle novanta candeline. Ce ne vogliono tre volte.
+Questo era «Voci dalla cucina». Grazie per essere entrati con noi in cucina in questa stagione. E ricordate: le ricette più buone non sono nei libri. Sono nelle mani di chi vi vuole bene. Buon appetito, e arrivederci!`,
+    tr:`Guten Abend und willkommen bei „Voci dalla cucina“, dem Podcast, der euch hinter die Küchentür bringt. Das ist die letzte Folge dieser Staffel. Und heute Abend ist die Küche voller Liebe. Denn Nonna Pina wird neunzig.
+Es ist der dritte Mai. Ein wichtiges Datum für die Oma. Am dritten Mai 1961 wollte sie nach Argentinien abreisen. Aber sie ist nicht gefahren. Schuld war ein schüchterner Fischer, Vito, und ein Teller schiefer Orecchiette.
+Elena hat das Restaurant für einen Abend geschlossen. Auf den Tischen stehen weiße Blumen und Kerzen. Alle sind da: die Familie, Rocco, Kwame, Lucio, Gianni der Wurstverkäufer, die Kritikerin mit ihrem kleinen Hund. Unter dem Nudeltisch schläft Mortadella.
+Um acht kommt die Oma mit Matteo, in Blau gekleidet. Alle stehen auf.
+Pina: Was habt ihr denn gemacht? Ich wollte doch nur eine Pizza!
+Elena klopft mit einem Löffel ans Glas.
+Elena: Oma, heute Abend gibt es kein normales Menü. Heute gibt es ein Menü deines Lebens. Jedes Gericht ist eine Erinnerung. Setz dich und hör zu.
+Der erste Gang kommt auf einem weißen Teller: Oktopus, ganz zart, mit Öl und Zitrone.
+Elena: Die erste Erinnerung ist der Kai von Bari. Vitos Vater hat Oktopusse verkauft. Jeden Morgen hat er sie auf den Felsen gekräuselt, damit sie zart werden. Diesen Oktopus habe ich gekräuselt. Mit meinen eigenen Händen.
+Pina probiert. Sie lächelt.
+Pina: Er ist so zart wie damals. Gut gemacht.
+Den zweiten Gang bringen Kwame und Matteo zusammen. Es sind Orecchiette mit Stängelkohl. Aber sie sind seltsam. Alle verschieden. Alle schief.
+Pina: Elena … die Orecchiette sind schief.
+Matteo: Das wissen wir, Oma. Wir haben sie absichtlich schief gemacht. Den ganzen Nachmittag.
+Kwame: Wie Vitos Orecchiette. Die ersten seines Lebens. Die vom Kai.
+Pina schaut lange auf den Teller. Sie sagt nichts. Dann nimmt sie die Gabel. Ihre Hand zittert ein bisschen.
+Pina: Am dritten Mai ist Vito mit einem Teller in der Hand über den Kai gerannt. Er wäre fast hingefallen. Er hat mir den Teller gegeben und nur gesagt: „Die habe ich gemacht.“ Sie waren scheußlich. Schief, hart, viel zu groß. Und ich … ich bin nicht auf das Schiff gestiegen.
+Im Saal ist es still. Die Kritikerin wischt sich die Augen.
+Pina: Die hier sind köstlich. Aber sie sind genauso schief wie seine. Danke, ihr zwei.
+Der dritte Gang ist eine Überraschung. Rocco kommt mit einem großen Topf aus der Küche.
+Rocco: Signora Pina, im Februar haben wir Krieg geführt. Heute Abend schließen wir Frieden. Das ist ein Ragù barese. Mit Braciole, Pecorino und Rotwein. Ich habe es gemacht. Nach Ihrem Rezept.
+Rocco bringt die Teller. Die Oma probiert.
+Pina: Rocco … es fehlt ein bisschen Salz. Aber für einen Bologneser ist es ein Wunder.
+Alle lachen. Auch Rocco.
+Am Ende gehen die Lichter aus. Aus der Küche kommt Elena mit einer großen Torte. Sie hat die Form eines weißen Schiffs, mit einem blauen Meer aus Zucker.
+Auf der Torte steckt ein kleines Fähnchen. Darauf steht: „Dritter Mai 1961. Das Schiff ist ohne mich abgefahren.“
+Die Oma bleibt ganz still. Sie schaut das kleine Schiff an. Dann schaut sie Elena an, Matteo, Kwame, Rocco, alle.
+Pina: Wenn ich auf dieses Schiff gestiegen wäre, wäre ich jetzt in Argentinien. Vielleicht hätte ich ein Restaurant in Buenos Aires gehabt. Aber ich hätte euch nicht gehabt.
+Pina steht auf. Sie nimmt das Glas.
+Pina: Alle sagen zu mir: Oma, schreib deine Rezepte auf. Aber ein Rezept schreibt man nicht auf. Man gibt es von Hand zu Hand weiter. Von Vito an mich. Von mir an Elena. Von Elena an Kwame, an Matteo, an die Kinder aus der Kochschule. Solange jemand kocht, geht niemand wirklich fort.
+Alle heben die Gläser.
+Elena: Auf Nonna Pina!
+Pina: Auf die schiefen Orecchiette!
+Alle klatschen. Mortadella wacht auf und bellt. Die Oma pustet die neunzig Kerzen aus. Sie braucht drei Anläufe.
+Das war „Voci dalla cucina“. Danke, dass ihr in dieser Staffel mit uns in die Küche gekommen seid. Und denkt daran: Die besten Rezepte stehen nicht in Büchern. Sie stecken in den Händen der Menschen, die euch lieb haben. Guten Appetit und auf Wiederhören!`,
+    fact:'Orecchiette („Öhrchen“) sind die typische Nudelsorte Apuliens. In der Altstadt von Bari formen Frauen sie bis heute in der Gasse Arco Basso von Hand – mit einem Messer und dem Daumen – und verkaufen sie vor ihren Haustüren. Klassisch isst man sie mit „cime di rapa“ (Stängelkohl). Nach dem Zweiten Weltkrieg wanderten Hunderttausende Italiener nach Argentinien aus – auch aus Apulien.' }
+);
 /* Hörgeschichten Dolci (Podcast „Voci della pasticceria“). Figuren aus dem Thema: Sofia, Bruder Leo, Papa Marco (Konditorei), Oma Rosa, Kater Ercole. */
 PODCAST_INFO.dolci = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: eine Nacht in der Konditorei und der erste Kaffee am Morgen, mit Rührmaschine, Ofen und Kaffeemaschine, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.dolci = [
