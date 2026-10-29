@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 286;
+const APP_VERSION = 287;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -80783,6 +80783,389 @@ Alle lachen.
 Das war „Voci dei soldi“. Und denkt daran: Jeder große Laden hat mit einem kaputten Sparschwein angefangen.`,
     fact:'Der Euro wurde in Italien am 1. Januar 2002 eingeführt; 1936,27 Lire waren ein Euro. Lire-Münzen konnte man nur noch bis Anfang 2002 benutzen – heute sind sie Sammlerstücke.' }
 ];
+/* „Voci dei soldi“ Folge 2 (v287, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_soldi.js geladen.
+   Zia Marta (liebt Risiko, Kater Bitcoin) besucht Chiara und Tommaso. Ihr Laptop ist im Online-Shop offen, Bitcoin läuft über die Tastatur → Bestellung mit einem Klick:
+   40 Säcke Katzenfutter und ein rosa Plastik-Flamingo. Am nächsten Tag Paketbote mit Stapeln. Chiara (Bank) erklärt Widerruf (14 Tage), Rückgabe, Erstattung.
+   Lösung: Futter ins Tierheim (gattile), Erstattung für den Rest; der Flamingo bleibt und kommt vor Tommasos Eisdiele. Angekündigt Folge 3: Nonno Aldos Geburtstag, Restaurant, wer bezahlt?
+   Stimmen wie Folge 1 (Tommaso Diego, Chiara Elsa), Marta = Isabella hoch, Corriere = Giuseppe, Volontaria = Isabella. Niveau ab A2. */
+PODCAST_INFO.soldi.lead = 'Wie ein kleiner Podcast: Tommasos Eisdiele, ein Kater, der online einkauft, ein Familienessen mit Streit um die Rechnung und ein altes Geheimnis aus Lire – mit Münzen, Kasse und Geldautomat, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.soldi.push(
+  { id:'soldi-p2', show:'Voci dei soldi', ep:2, title:'Bitcoin fa la spesa', de:'Bitcoin geht einkaufen',
+    place:'A casa di Chiara e Tommaso, un martedì sera', level:'ab A2', kind:'Lustig · Online-Shopping',
+    voices:{Tommaso:'Diego', Chiara:'Elsa', Marta:'Isabella', Corriere:'Giuseppe', Volontaria:'Isabella'},
+    stil:{'':['-6%','+0Hz'], Tommaso:['+4%','+30Hz'], Chiara:['-2%','+20Hz'], Marta:['+6%','+22Hz'], Corriere:['+4%','-6Hz'], Volontaria:['-2%','+8Hz']},
+    words:[['il negozio online','der Onlineshop'],['il carrello','der Warenkorb'],['ordinare / l’ordine','bestellen / die Bestellung'],['con un clic','mit einem Klick'],['la carta di credito','die Kreditkarte'],['confermare','bestätigen'],['il corriere','der Paketbote'],['il pacco / i pacchi','das Paket / die Pakete'],['il sacco di crocchette','der Sack Trockenfutter'],['il fenicottero','der Flamingo'],['il diritto di recesso','das Widerrufsrecht'],['il reso','die Rücksendung'],['il rimborso','die Erstattung'],['restituire','zurückgeben'],['il gattile','das Katzenheim'],['regalare','schenken'],['spendere','ausgeben']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È martedì sera':'campanello_porta miao', 'La zia apre':'pausa', 'Mentre la zia':'tastiera', 'Sullo schermo':'notifiche', 'Il giorno dopo':'pausa campanello_porta', 'Corriere: Buongiorno':'pausa', 'Uno, due, tre':'pausa', 'Bitcoin salta':'miao', 'Chiara prende':'pausa', 'Il sabato':'gatti_coro', 'La volontaria apre':'crocchette', 'La domenica':'pausa', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dei soldi», il podcast che fa i conti con la vita. Oggi parliamo di una cosa molto moderna: fare la spesa online. È facile, è veloce… forse troppo veloce.
+È martedì sera. Suona il campanello. È la zia Marta, con una borsa grande e un gatto grigio in braccio. È Bitcoin, il suo gatto.
+Marta: Ciao, ragazzi! Posso restare qui stasera? Da me c’è un tecnico che ripara la caldaia.
+Chiara: Certo, zia. Entra.
+La zia apre il computer sul divano. Vuole comprare un regalo per un’amica.
+Marta: Guardate! Con questo negozio online compri tutto con un clic. La mia carta di credito è già salvata. Comodissimo!
+Chiara: Zia, «comodissimo» per il negozio. Non per il tuo conto in banca.
+Marta: Uffa, Chiara. Tu lavori troppo in banca.
+Mentre la zia è in cucina con Tommaso, Bitcoin salta sul divano. Cammina sul computer. Avanti e indietro. Poi si siede sulla tastiera, caldo e contento.
+Sullo schermo appare un messaggio. Chiara lo legge ad alta voce.
+Chiara: «Grazie per il suo ordine! Quaranta sacchi di crocchette per gatti. Un fenicottero rosa gonfiabile. Totale: quattrocentotrentadue euro.»
+Marta: Cosa? Io non ho ordinato niente!
+Tommaso: No, zia. Ha ordinato Bitcoin. Con un clic.
+Marta: Bitcoin! Tu sei un gatto molto, molto costoso.
+Bitcoin guarda la zia e chiude gli occhi. È innocente.
+Il giorno dopo, alle nove di mattina, suona di nuovo il campanello. Davanti alla porta c’è un corriere stanco con un carrello.
+Corriere: Buongiorno. Ho dei pacchi per la signora Marta. Tanti pacchi.
+Uno, due, tre… venti… quaranta sacchi. Il corridoio è pieno. In cima c’è una scatola rosa: il fenicottero.
+Tommaso: Zia, adesso abbiamo crocchette per dieci anni.
+Bitcoin salta sui sacchi, felice. È il re della montagna.
+Marta: Chiara, aiuto! Posso restituire tutto?
+Chiara prende il computer e legge le condizioni del negozio.
+Chiara: Sì. Si chiama «diritto di recesso». Hai quattordici giorni per restituire le cose. Poi il negozio ti dà il rimborso sulla carta.
+Marta: Meno male!
+Chiara: Ma c’è un problema. Il reso costa. Per quaranta sacchi paghi la spedizione: quasi cento euro.
+Marta: Cento euro per mandare indietro il cibo per gatti? Mai!
+Tommaso: Io ho un’idea. In via Zamboni c’è un gattile. Ci sono sessanta gatti senza casa. E le crocchette costano tanto.
+La zia pensa un momento. Poi sorride.
+Marta: Allora le regaliamo! Non è un errore. È un investimento… in gatti.
+Il sabato Tommaso, Chiara e la zia portano i sacchi al gattile con la macchina di papà Sergio. Fanno quattro viaggi. Dentro il gattile ci sono gatti dappertutto.
+La volontaria apre un sacco. In un secondo arrivano venti gatti.
+Volontaria: Grazie mille! Con queste crocchette mangiamo fino a primavera. Chi è il donatore?
+Marta: Il donatore è lui. Si chiama Bitcoin.
+Bitcoin, nella borsa della zia, non dice niente.
+La domenica la zia restituisce solo una cosa: il caricabatterie sbagliato del suo regalo. Il rimborso arriva dopo cinque giorni. E il fenicottero rosa? Non torna al negozio. Adesso è davanti alla gelateria di Tommaso. I bambini lo amano.
+Tommaso: Zia, da quando c’è il fenicottero vendo dieci gelati in più al giorno!
+Marta: Vedi, Chiara? Te l’ho detto: io so investire.
+Chiara: E adesso, zia, togli la carta dal computer. Per favore.
+Questo era «Voci dei soldi». E ricordate: prima di cliccare, contate fino a dieci. E chiudete il computer, se avete un gatto. Nella prossima puntata il nonno Aldo compie ottantacinque anni. Tutta la famiglia va al ristorante. Ma alla fine… chi paga il conto?`,
+    tr:`Guten Abend und willkommen bei „Voci dei soldi“ (Stimmen des Geldes), dem Podcast, der mit dem Leben abrechnet. Heute sprechen wir über etwas sehr Modernes: online einkaufen. Es ist einfach, es ist schnell … vielleicht zu schnell.
+Es ist Dienstagabend. Es klingelt. Es ist Tante Marta, mit einer großen Tasche und einem grauen Kater auf dem Arm. Das ist Bitcoin, ihr Kater.
+Marta: Hallo, ihr zwei! Kann ich heute Abend hierbleiben? Bei mir ist ein Techniker, der die Heizung repariert.
+Chiara: Klar, Tante. Komm rein.
+Die Tante klappt den Computer auf dem Sofa auf. Sie will ein Geschenk für eine Freundin kaufen.
+Marta: Schaut mal! In diesem Onlineshop kauft man alles mit einem Klick. Meine Kreditkarte ist schon gespeichert. Superbequem!
+Chiara: Tante, „superbequem“ für den Laden. Nicht für dein Bankkonto.
+Marta: Ach, Chiara. Du arbeitest zu viel in der Bank.
+Während die Tante mit Tommaso in der Küche ist, springt Bitcoin aufs Sofa. Er läuft über den Computer. Hin und her. Dann setzt er sich auf die Tastatur, warm und zufrieden.
+Auf dem Bildschirm erscheint eine Nachricht. Chiara liest sie laut vor.
+Chiara: „Danke für Ihre Bestellung! Vierzig Säcke Katzenfutter. Ein aufblasbarer rosa Flamingo. Gesamt: vierhundertzweiunddreißig Euro.“
+Marta: Was? Ich habe nichts bestellt!
+Tommaso: Nein, Tante. Bitcoin hat bestellt. Mit einem Klick.
+Marta: Bitcoin! Du bist ein sehr, sehr teurer Kater.
+Bitcoin schaut die Tante an und schließt die Augen. Er ist unschuldig.
+Am nächsten Tag um neun Uhr morgens klingelt es wieder. Vor der Tür steht ein müder Paketbote mit einer Sackkarre.
+Paketbote: Guten Morgen. Ich habe Pakete für Frau Marta. Viele Pakete.
+Eins, zwei, drei … zwanzig … vierzig Säcke. Der Flur ist voll. Ganz oben liegt eine rosa Schachtel: der Flamingo.
+Tommaso: Tante, jetzt haben wir Katzenfutter für zehn Jahre.
+Bitcoin springt glücklich auf die Säcke. Er ist der König des Berges.
+Marta: Chiara, Hilfe! Kann ich alles zurückgeben?
+Chiara nimmt den Computer und liest die Bedingungen des Shops.
+Chiara: Ja. Das heißt „Widerrufsrecht“. Du hast vierzehn Tage, um die Sachen zurückzugeben. Dann bekommst du das Geld auf die Karte zurück.
+Marta: Zum Glück!
+Chiara: Aber es gibt ein Problem. Die Rücksendung kostet. Für vierzig Säcke zahlst du den Versand: fast hundert Euro.
+Marta: Hundert Euro, um Katzenfutter zurückzuschicken? Niemals!
+Tommaso: Ich habe eine Idee. In der Via Zamboni gibt es ein Katzenheim. Da sind sechzig Katzen ohne Zuhause. Und Trockenfutter ist teuer.
+Die Tante denkt einen Moment nach. Dann lächelt sie.
+Marta: Dann schenken wir es ihnen! Das ist kein Fehler. Das ist eine Investition … in Katzen.
+Am Samstag bringen Tommaso, Chiara und die Tante die Säcke mit Papa Sergios Auto ins Katzenheim. Sie fahren viermal. Im Katzenheim sind überall Katzen.
+Die Helferin öffnet einen Sack. In einer Sekunde kommen zwanzig Katzen.
+Helferin: Tausend Dank! Mit diesem Futter kommen wir bis zum Frühling. Wer ist der Spender?
+Marta: Der Spender ist er. Er heißt Bitcoin.
+Bitcoin sagt in der Tasche der Tante gar nichts.
+Am Sonntag schickt die Tante nur eine Sache zurück: das falsche Ladegerät von ihrem Geschenk. Die Erstattung kommt nach fünf Tagen. Und der rosa Flamingo? Er geht nicht zurück in den Laden. Jetzt steht er vor Tommasos Eisdiele. Die Kinder lieben ihn.
+Tommaso: Tante, seit der Flamingo da ist, verkaufe ich zehn Eis mehr am Tag!
+Marta: Siehst du, Chiara? Ich hab’s dir gesagt: Ich kann investieren.
+Chiara: Und jetzt, Tante, lösch bitte die Karte aus dem Computer.
+Das war „Voci dei soldi“. Und denkt daran: Bevor ihr klickt, zählt bis zehn. Und klappt den Computer zu, wenn ihr eine Katze habt. In der nächsten Folge wird Opa Aldo fünfundachtzig. Die ganze Familie geht ins Restaurant. Aber am Ende … wer bezahlt die Rechnung?`,
+    fact:'Beim Online-Kauf hat man in der EU ein Widerrufsrecht („diritto di recesso“): 14 Tage lang kann man die Ware ohne Grund zurückschicken und bekommt den Kaufpreis erstattet. Die Kosten für die Rücksendung muss man aber oft selbst zahlen, wenn der Shop das vorher angegeben hat. Gespeicherte Karten und „Kauf mit einem Klick“ sind bequem – Banken raten trotzdem, Einkäufe zusätzlich zu bestätigen.' }
+);
+/* „Voci dei soldi“ Folge 3 (v287, 29.10.2026) – wird nach leggende_soldi2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Opa Aldo wird 85, die ganze Familie in der Trattoria. Coperto erklärt. Am Ende will jeder heimlich zahlen („Pago io!“): Papa Sergio geht „zur Toilette“, Tante Marta
+   tippt die PIN dreimal falsch, Tommaso mit Münzen aus der Eisdiele, Chiara schlägt „alla romana“ vor. Kellner: „Il conto è già pagato.“ – der Opa zahlt immer vorher, bar.
+   Erzählt von 1962: erstes Essen mit der Oma, zu wenig Geld, zwei Stunden Teller gespült. Angekündigt Folge 4: Lotteria Italia, Los verschwunden.
+   Stimmen: Nonno Giuseppe tief, Sergio Giuseppe, Cameriere Diego tief, Paola Isabella, Marta Isabella hoch, Nonna Isabella tief. Niveau ab A2. */
+PODCASTS.soldi.push(
+  { id:'soldi-p3', show:'Voci dei soldi', ep:3, title:'Pago io!', de:'Ich zahle!',
+    place:'La trattoria «Da Nello», una domenica di novembre', level:'ab A2', kind:'Familie · Restaurant · Lustig',
+    voices:{Tommaso:'Diego', Chiara:'Elsa', Nonno:'Giuseppe', Nonna:'Isabella', Sergio:'Giuseppe', Paola:'Isabella', Marta:'Isabella', Cameriere:'Diego'},
+    stil:{'':['-6%','+0Hz'], Tommaso:['+4%','+30Hz'], Chiara:['-2%','+20Hz'], Nonno:['-10%','-14Hz'], Nonna:['-8%','-12Hz'], Sergio:['-2%','+2Hz'], Paola:['-2%','+4Hz'], Marta:['+6%','+22Hz'], Cameriere:['+2%','-14Hz']},
+    words:[['la trattoria','das einfache Gasthaus'],['prenotare','reservieren'],['il coperto','das Gedeck (Brot, Besteck – kostet extra)'],['il conto','die Rechnung'],['Pago io!','Ich zahle!'],['offrire','einladen, ausgeben'],['dividere','teilen'],['pagare alla romana','die Rechnung gleichmäßig teilen'],['il bancomat / la carta','die Bankkarte / die Karte'],['il codice PIN','die PIN'],['sbagliare','sich vertun'],['in contanti','bar'],['già pagato','schon bezahlt'],['la mancia','das Trinkgeld'],['lavare i piatti','Geschirr spülen'],['il portafoglio','der Geldbeutel']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È domenica':'sala_an', 'Il cameriere porta il vino':'tappo', 'Arrivano le tagliatelle':'piatti', 'Alla fine arriva':'pausa', 'Tutti alzano':'brindisi', 'Sergio si alza':'pausa', 'Sergio torna':'pausa', 'La zia Marta prende':'pos', 'Marta: Uno, due':'pos', 'Tommaso mette':'monete', 'Cameriere: Il conto':'pausa', 'Nonno: Nel millenovecentosessantadue':'pausa', 'Tutti ridono':'risate_adulti', 'Escono dalla trattoria':'sala_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dei soldi», il podcast che fa i conti con la vita. In Italia, al ristorante, c’è una guerra. Non si combatte con le spade. Si combatte con il portafoglio. La frase più pericolosa è: «Pago io!»
+È domenica. Il nonno Aldo compie ottantacinque anni. Tutta la famiglia è alla trattoria «Da Nello»: il nonno e la nonna, mamma Paola, papà Sergio, la zia Marta, Chiara e Tommaso.
+Il cameriere porta il vino e il pane. Sul menù c’è scritto: «Coperto: due euro e cinquanta.»
+Tommaso: Coperto? Che cos’è? Paghiamo la tovaglia?
+Chiara: Più o meno. Paghi il pane, il tavolo, le posate. In Italia è normale.
+Nonno: Ai miei tempi il pane era gratis. E il vino quasi.
+Arrivano le tagliatelle al ragù, poi l’arrosto con le patate, poi la torta con le candeline. Il nonno soffia: otto candeline grandi e cinque piccole.
+Marta: Ottantacinque anni e soffi come un ragazzo!
+Tutti alzano i bicchieri.
+E tutti insieme: «Tanti auguri, nonno!»
+Alla fine arriva il momento più difficile della giornata. Non è la torta. È il conto.
+Sergio si alza piano dalla sedia.
+Sergio: Scusate, vado un attimo in bagno.
+Ma Sergio non va in bagno. Va dritto alla cassa. Chiara lo guarda e capisce tutto.
+Sergio torna dopo un minuto. Ha la faccia strana.
+Paola: Allora? Tutto bene?
+Sergio: Sì, sì. Benissimo. Il bagno è… molto bello.
+La zia Marta prende la carta di credito e chiama il cameriere.
+Marta: Cameriere! Il conto, per favore. Pago io, con la carta!
+Il cameriere porta la macchinetta. La zia scrive il codice.
+Marta: Uno, due, tre, quattro… Codice sbagliato? Ancora: uno, nove, sette, due… Sbagliato? Ma qual è il mio codice?
+Chiara: Zia, ti prego. Non provare una terza volta. La banca blocca la carta.
+Tommaso mette sul tavolo un sacchetto di monete.
+Tommaso: Tranquilli! Pago io! Sono gli incassi della gelateria. Ci sono… diciotto euro e quaranta centesimi.
+Paola: Tommaso, sono tutte monete da dieci centesimi!
+Chiara: Basta, basta! Facciamo così: paghiamo alla romana. Dividiamo il conto in parti uguali. Siamo sette. È facile.
+Ma il cameriere sorride e scuote la testa.
+Cameriere: Il conto? Signori, il conto è già pagato.
+«Già pagato?», chiedono tutti. «Da chi?»
+Il cameriere guarda il nonno. Il nonno sorride e prende il suo vecchio portafoglio di pelle.
+Nonno: Da me. Io pago sempre prima. Appena arrivo, vado alla cassa. In contanti. Così non si litiga.
+Paola: Papà! Ma è il tuo compleanno!
+Nonno: Appunto. Il compleanno è mio. E decido io. E poi… voglio raccontarvi una storia.
+Il nonno guarda la nonna. La nonna ride già.
+Nonno: Nel millenovecentosessantadue ho invitato la nonna a cena. Era la prima volta. Un ristorante elegante, con le tovaglie bianche. Alla fine arriva il conto. Io apro il portafoglio… e non ho abbastanza soldi.
+Tommaso: E allora?
+Nonno: Allora sono andato in cucina. E per due ore ho lavato i piatti.
+Nonna: E io l’ho aspettato al tavolo. Due ore! Con un caffè. Lì ho capito che era un uomo onesto. Per questo l’ho sposato.
+Tutti ridono. Il nonno lascia due monete sul tavolo, per la mancia.
+Nonno: Da quel giorno ho imparato due cose. Prima: conta i soldi prima di ordinare. Seconda: il conto più bello è quello che paghi per le persone che ami.
+Escono dalla trattoria sotto la pioggia leggera. La zia ha ancora la carta in mano.
+Marta: Uno, nove, sette, tre! Ecco il mio codice! Me lo ricordo!
+Chiara: Zia… non si dice ad alta voce!
+Questo era «Voci dei soldi». E ricordate: chi paga prima, mangia tranquillo. Nella prossima puntata è il sei gennaio, il giorno della Befana. La famiglia aspetta l’estrazione della Lotteria. Ma c’è un problema: il biglietto non c’è più…`,
+    tr:`Guten Tag und willkommen bei „Voci dei soldi“, dem Podcast, der mit dem Leben abrechnet. In Italien herrscht im Restaurant Krieg. Man kämpft nicht mit Schwertern. Man kämpft mit dem Geldbeutel. Der gefährlichste Satz lautet: „Ich zahle!“
+Es ist Sonntag. Opa Aldo wird fünfundachtzig. Die ganze Familie ist in der Trattoria „Da Nello“: Opa und Oma, Mama Paola, Papa Sergio, Tante Marta, Chiara und Tommaso.
+Der Kellner bringt Wein und Brot. Auf der Speisekarte steht: „Gedeck: zwei Euro fünfzig.“
+Tommaso: Gedeck? Was ist das? Bezahlen wir die Tischdecke?
+Chiara: So ungefähr. Du zahlst das Brot, den Tisch, das Besteck. In Italien ist das normal.
+Opa: Zu meiner Zeit war das Brot gratis. Und der Wein fast auch.
+Es kommen Tagliatelle mit Ragù, dann Braten mit Kartoffeln, dann die Torte mit Kerzen. Der Opa pustet: acht große Kerzen und fünf kleine.
+Marta: Fünfundachtzig Jahre, und du pustest wie ein Junge!
+Alle heben die Gläser.
+Und alle zusammen: „Alles Gute, Opa!“
+Am Ende kommt der schwierigste Moment des Tages. Es ist nicht die Torte. Es ist die Rechnung.
+Sergio steht leise vom Stuhl auf.
+Sergio: Entschuldigt, ich gehe kurz auf die Toilette.
+Aber Sergio geht nicht auf die Toilette. Er geht direkt zur Kasse. Chiara schaut ihm nach und versteht alles.
+Sergio kommt nach einer Minute zurück. Er macht ein komisches Gesicht.
+Paola: Und? Alles gut?
+Sergio: Ja, ja. Bestens. Die Toilette ist … sehr schön.
+Tante Marta nimmt die Kreditkarte und ruft den Kellner.
+Marta: Herr Ober! Die Rechnung, bitte. Ich zahle, mit Karte!
+Der Kellner bringt das Kartengerät. Die Tante tippt die PIN.
+Marta: Eins, zwei, drei, vier … Falsche PIN? Nochmal: eins, neun, sieben, zwei … Falsch? Was ist denn meine PIN?
+Chiara: Tante, bitte. Versuch es nicht ein drittes Mal. Dann sperrt die Bank die Karte.
+Tommaso legt ein Säckchen mit Münzen auf den Tisch.
+Tommaso: Keine Sorge! Ich zahle! Das sind die Einnahmen der Eisdiele. Das sind … achtzehn Euro und vierzig Cent.
+Paola: Tommaso, das sind alles Zehn-Cent-Münzen!
+Chiara: Schluss, Schluss! Wir machen es so: Wir zahlen „alla romana“. Wir teilen die Rechnung in gleiche Teile. Wir sind sieben. Das ist einfach.
+Aber der Kellner lächelt und schüttelt den Kopf.
+Kellner: Die Rechnung? Meine Herrschaften, die Rechnung ist schon bezahlt.
+„Schon bezahlt?“, fragen alle. „Von wem?“
+Der Kellner schaut den Opa an. Der Opa lächelt und holt seinen alten Ledergeldbeutel heraus.
+Opa: Von mir. Ich zahle immer vorher. Sobald ich ankomme, gehe ich zur Kasse. Bar. So gibt es keinen Streit.
+Paola: Papa! Aber es ist doch dein Geburtstag!
+Opa: Eben. Der Geburtstag gehört mir. Und ich entscheide. Und außerdem … will ich euch eine Geschichte erzählen.
+Der Opa schaut die Oma an. Die Oma lacht schon.
+Opa: 1962 habe ich die Oma zum Abendessen eingeladen. Es war das erste Mal. Ein elegantes Restaurant mit weißen Tischdecken. Am Ende kommt die Rechnung. Ich öffne den Geldbeutel … und ich habe nicht genug Geld.
+Tommaso: Und dann?
+Opa: Dann bin ich in die Küche gegangen. Und zwei Stunden lang habe ich Teller gespült.
+Oma: Und ich habe am Tisch auf ihn gewartet. Zwei Stunden! Mit einem Kaffee. Da habe ich verstanden, dass er ein ehrlicher Mann ist. Deshalb habe ich ihn geheiratet.
+Alle lachen. Der Opa legt zwei Münzen als Trinkgeld auf den Tisch.
+Opa: Seit diesem Tag habe ich zwei Dinge gelernt. Erstens: Zähl dein Geld, bevor du bestellst. Zweitens: Die schönste Rechnung ist die, die du für die Menschen bezahlst, die du liebst.
+Sie verlassen die Trattoria im leichten Regen. Die Tante hat die Karte noch in der Hand.
+Marta: Eins, neun, sieben, drei! Das ist meine PIN! Jetzt weiß ich sie wieder!
+Chiara: Tante … das sagt man nicht laut!
+Das war „Voci dei soldi“. Und denkt daran: Wer vorher zahlt, isst in Ruhe. In der nächsten Folge ist der sechste Januar, der Tag der Befana. Die Familie wartet auf die Ziehung der Lotterie. Aber es gibt ein Problem: Das Los ist weg …`,
+    fact:'In italienischen Restaurants steht oft ein „coperto“ (Gedeck) auf der Rechnung, ein fester Betrag pro Person für Brot und Tischwäsche. Trinkgeld ist nicht Pflicht; man rundet auf oder lässt ein paar Münzen liegen. „Pagare alla romana“ heißt, die Rechnung zu gleichen Teilen zu teilen. Und der Streit „Pago io!“ ist ein echtes Ritual: Wer einlädt, geht oft heimlich schon vor dem Ende zur Kasse.' }
+);
+/* „Voci dei soldi“ Folge 4 (v287, 29.10.2026) – wird nach leggende_soldi3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   6. Januar, Befana: Kohle aus Zucker im Strumpf für Tommaso. Opa kauft jedes Jahr ein Los der Lotteria Italia; abends ist die Ziehung im Fernsehen – aber das Los ist weg.
+   Suche: Mantel, Handtasche der Tante, Schubladen, Opas altes Buch „I promessi sposi“ – darin ein Umschlag mit zehn 100.000-Lire-Scheinen (eine Million Lire).
+   Das Los liegt in Bitcoins Korb, der Kater schläft darauf. Es gewinnt nichts. „Non abbiamo vinto niente. Ma abbiamo trovato un milione.“ Angekündigt Folge 5: Was ist eine Million Lire heute wert?
+   Stimmen wie Folge 3, Televisione = Diego mit Effekt radio. Niveau ab A2. */
+PODCASTS.soldi.push(
+  { id:'soldi-p4', show:'Voci dei soldi', ep:4, title:'Il biglietto della Befana', de:'Das Los der Befana',
+    place:'A casa dei nonni, il sei gennaio', level:'ab A2', kind:'Suche · Familie · Lotterie',
+    voices:{Tommaso:'Diego', Chiara:'Elsa', Nonno:'Giuseppe', Nonna:'Isabella', Marta:'Isabella', Televisione:'Diego'},
+    stil:{'':['-6%','+0Hz'], Tommaso:['+4%','+30Hz'], Chiara:['-2%','+20Hz'], Nonno:['-10%','-14Hz'], Nonna:['-8%','-12Hz'], Marta:['+6%','+22Hz'], Televisione:['+10%','-4Hz']},
+    words:[['la Befana','die Befana (Hexe, die am 6. Januar Geschenke bringt)'],['la calza','der Strumpf'],['il carbone','die Kohle'],['la lotteria','die Lotterie'],['il biglietto','das Los, die Fahrkarte'],['l’estrazione','die Ziehung'],['il premio','der Preis, der Gewinn'],['cercare / trovare','suchen / finden'],['sparito','verschwunden'],['la tasca','die Tasche (am Mantel)'],['la borsa','die Handtasche'],['il cassetto','die Schublade'],['la busta','der Umschlag'],['la banconota','der Geldschein'],['le lire','die Lire (altes Geld in Italien)'],['un milione','eine Million'],['la cesta','der Korb']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È il sei gennaio':'campanello_porta', 'Tommaso prende':'zucchero', 'Nonno: Ma sì':'pausa', 'Alle sette':'pausa', 'Il nonno apre':'cassetto', 'Cominciano a cercare':'passi', 'La zia rovescia':'chiavi', 'Chiara apre':'cassetto', 'Il nonno prende':'pausa', 'Dentro ci sono':'banconote', 'Tutti guardano':'pausa', 'Televisione: Buonasera':'radio', 'In quel momento':'miao', 'Sotto la pancia':'fusa', 'Televisione: E il primo':'radio', 'Il nonno guarda':'pausa', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci dei soldi», il podcast che fa i conti con la vita. In Italia si dice: «L’Epifania tutte le feste porta via.» Il sei gennaio finiscono le vacanze di Natale. Arriva la Befana. E la sera c’è l’estrazione della Lotteria Italia.
+È il sei gennaio. Tutta la famiglia è a casa dei nonni. Sul camino ci sono le calze della Befana. Quella di Chiara è piena di cioccolatini. Quella di Tommaso è piena di carbone nero.
+Tommaso: Carbone? Ma io sono stato bravissimo quest’anno!
+Nonna: E il fenicottero rosa? E le monete da dieci centesimi al ristorante?
+Tommaso prende un pezzo di carbone e lo morde. È dolce. È carbone di zucchero.
+Tommaso: Ah! Meno male. La Befana mi vuole bene.
+Il nonno ha un’abitudine. Ogni anno, a novembre, compra un biglietto della Lotteria Italia. Solo uno.
+Marta: Papà, con un biglietto solo non vinci mai.
+Nonno: Ma sì. Con zero biglietti non vinci sicuro. Con uno, forse.
+Alle sette di sera la televisione è accesa. L’estrazione comincia alle nove. La nonna prepara la cena, Chiara apparecchia la tavola.
+Nonno: Allora, il biglietto. Dove l’ho messo?
+Il nonno apre il cassetto del mobile. Niente. Guarda nel portafoglio. Niente. Guarda nella tasca del cappotto. Niente.
+Nonno: È sparito! Il biglietto è sparito!
+Cominciano a cercare. Tutti. In cucina, in salotto, in camera da letto. Sotto il divano, dietro i quadri, dentro le scarpe.
+Marta: Forse è nella mia borsa. Io prendo sempre tutto!
+La zia rovescia la borsa sul tavolo: chiavi, rossetti, tre scontrini, una caramella del duemiladiciannove… ma nessun biglietto.
+Chiara apre la vecchia libreria del nonno. Ci sono libri vecchi, polverosi. Uno è grosso e pesante: «I promessi sposi».
+Chiara: Nonno, forse l’hai messo in un libro? Come segnalibro?
+Il nonno prende il libro. Lo apre. Dentro non c’è il biglietto. Ma c’è una busta gialla, vecchia.
+Nonno: E questa?
+Dentro ci sono dieci banconote grandi e colorate. Su ogni banconota c’è un uomo con la barba e una scritta: «centomila lire».
+Tommaso: Centomila lire per dieci… è un milione! Nonno, sei milionario!
+Tutti guardano il nonno. Il nonno guarda la busta. Non dice niente. Si siede piano sulla poltrona.
+Nonno: Un milione di lire. Me l’ero dimenticato. Da trent’anni.
+Ma non c’è tempo. Sono le nove. In televisione comincia l’estrazione.
+Televisione: Buonasera e buona Epifania! Ecco l’estrazione della Lotteria Italia!
+Nonna: Il biglietto! Dov’è il biglietto?
+In quel momento si sente un miagolio. Dalla cucina arriva la zia Marta con Bitcoin in braccio. Il gatto è stato tutto il giorno nella sua cesta, vicino al calorifero.
+Marta: Guardate dove dormiva Bitcoin!
+Sotto la pancia del gatto, caldo e un po’ stropicciato, c’è un piccolo biglietto colorato. Il biglietto della Lotteria.
+E tutti gridano: «Bitcoin!»
+Chiara legge il numero ad alta voce. Tutti ascoltano la televisione.
+Televisione: E il primo premio va al biglietto… serie P, numero quattro, uno, sette…
+Chiara: Il nostro è serie M. Numero tre, otto, due…
+Televisione: …nove, nove, cinque!
+Silenzio. Il nonno ride piano.
+Nonno: Niente. Non abbiamo vinto niente. Come ogni anno.
+Il nonno guarda il biglietto. Poi guarda la busta gialla con le lire.
+Nonno: Non abbiamo vinto niente. Ma abbiamo trovato un milione.
+Tommaso: E adesso? Che cosa possiamo comprare con un milione di lire?
+Chiara: Tommaso… le lire non esistono più da tanti anni.
+Il nonno stringe la busta e sorride. Ma è un sorriso un po’ triste.
+Questo era «Voci dei soldi». Buona Befana a tutti! Nella prossima puntata andiamo in banca con il nonno e con il suo milione. Che cosa vale oggi? E perché il nonno l’ha nascosto in un libro, trent’anni fa?`,
+    tr:`Guten Abend und willkommen bei „Voci dei soldi“, dem Podcast, der mit dem Leben abrechnet. In Italien sagt man: „Die Epiphanie nimmt alle Feste mit.“ Am sechsten Januar enden die Weihnachtsferien. Die Befana kommt. Und am Abend ist die Ziehung der Lotteria Italia.
+Es ist der sechste Januar. Die ganze Familie ist bei Opa und Oma. Am Kamin hängen die Befana-Strümpfe. Der von Chiara ist voller Pralinen. Der von Tommaso ist voller schwarzer Kohle.
+Tommaso: Kohle? Aber ich war dieses Jahr superbrav!
+Oma: Und der rosa Flamingo? Und die Zehn-Cent-Münzen im Restaurant?
+Tommaso nimmt ein Stück Kohle und beißt hinein. Es ist süß. Es ist Kohle aus Zucker.
+Tommaso: Ah! Zum Glück. Die Befana hat mich lieb.
+Der Opa hat eine Gewohnheit. Jedes Jahr im November kauft er ein Los der Lotteria Italia. Nur eins.
+Marta: Papa, mit nur einem Los gewinnst du nie.
+Opa: Na und. Mit null Losen gewinnst du sicher nicht. Mit einem vielleicht.
+Um sieben Uhr abends läuft der Fernseher. Die Ziehung beginnt um neun. Die Oma macht das Abendessen, Chiara deckt den Tisch.
+Opa: So, das Los. Wo habe ich es hingelegt?
+Der Opa öffnet die Schublade der Kommode. Nichts. Er schaut in den Geldbeutel. Nichts. Er schaut in die Manteltasche. Nichts.
+Opa: Es ist weg! Das Los ist verschwunden!
+Sie fangen an zu suchen. Alle. In der Küche, im Wohnzimmer, im Schlafzimmer. Unter dem Sofa, hinter den Bildern, in den Schuhen.
+Marta: Vielleicht ist es in meiner Handtasche. Ich nehme immer alles mit!
+Die Tante kippt die Tasche auf dem Tisch aus: Schlüssel, Lippenstifte, drei Kassenzettel, ein Bonbon von 2019 … aber kein Los.
+Chiara öffnet Opas altes Bücherregal. Da stehen alte, staubige Bücher. Eins ist dick und schwer: „Die Verlobten“.
+Chiara: Opa, hast du es vielleicht in ein Buch gelegt? Als Lesezeichen?
+Der Opa nimmt das Buch. Er öffnet es. Darin ist kein Los. Aber ein alter gelber Umschlag.
+Opa: Und was ist das?
+Darin sind zehn große, bunte Geldscheine. Auf jedem Schein ist ein Mann mit Bart und die Aufschrift „hunderttausend Lire“.
+Tommaso: Hunderttausend Lire mal zehn … das ist eine Million! Opa, du bist Millionär!
+Alle schauen den Opa an. Der Opa schaut den Umschlag an. Er sagt nichts. Er setzt sich langsam in den Sessel.
+Opa: Eine Million Lire. Die hatte ich vergessen. Seit dreißig Jahren.
+Aber es ist keine Zeit. Es ist neun. Im Fernsehen beginnt die Ziehung.
+Fernsehen: Guten Abend und frohe Epiphanie! Hier ist die Ziehung der Lotteria Italia!
+Oma: Das Los! Wo ist das Los?
+In diesem Moment hört man ein Miauen. Aus der Küche kommt Tante Marta mit Bitcoin auf dem Arm. Der Kater war den ganzen Tag in seinem Korb neben der Heizung.
+Marta: Schaut mal, worauf Bitcoin geschlafen hat!
+Unter dem Bauch des Katers, warm und ein bisschen zerknittert, liegt ein kleines buntes Los. Das Los der Lotterie.
+Und alle rufen: „Bitcoin!“
+Chiara liest die Nummer laut vor. Alle hören auf den Fernseher.
+Fernsehen: Und der erste Preis geht an das Los … Serie P, Nummer vier, eins, sieben …
+Chiara: Unseres ist Serie M. Nummer drei, acht, zwei …
+Fernsehen: … neun, neun, fünf!
+Stille. Der Opa lacht leise.
+Opa: Nichts. Wir haben nichts gewonnen. Wie jedes Jahr.
+Der Opa schaut das Los an. Dann schaut er den gelben Umschlag mit den Lire an.
+Opa: Wir haben nichts gewonnen. Aber wir haben eine Million gefunden.
+Tommaso: Und jetzt? Was können wir mit einer Million Lire kaufen?
+Chiara: Tommaso … die Lire gibt es schon seit vielen Jahren nicht mehr.
+Der Opa drückt den Umschlag an sich und lächelt. Aber es ist ein etwas trauriges Lächeln.
+Das war „Voci dei soldi“. Frohe Befana euch allen! In der nächsten Folge gehen wir mit dem Opa und seiner Million zur Bank. Was ist sie heute wert? Und warum hat der Opa sie vor dreißig Jahren in einem Buch versteckt?`,
+    fact:'Am 6. Januar (Epifania) bringt in Italien die Befana, eine gutmütige alte Hexe auf dem Besen, den Kindern Süßigkeiten in den Strumpf – den unartigen „Kohle“, die heute aus schwarz gefärbtem Zucker ist. Am selben Abend wird seit Jahrzehnten im Fernsehen der Hauptgewinn der „Lotteria Italia“ gezogen, der bekanntesten Lotterie des Landes. Der 100.000-Lire-Schein, der ab 1983 im Umlauf war, zeigte den Maler Caravaggio.' }
+);
+/* „Voci dei soldi“ Folge 5 (v287, 29.10.2026) – wird nach leggende_soldi4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Mit Opa und der Million Lire zum Bankberater signor Conti: Lire konnte man bis Dezember 2011 bei der Banca d’Italia umtauschen, heute nicht mehr; Sammler zahlen wenig.
+   Warum im Buch „I promessi sposi“? 1996 hat der Opa heimlich gespart: für die Hochzeitsreise nach Capri, die er der Oma 1963 versprochen hatte (damals kein Geld, siehe Folge 3).
+   Dann kam die Hochwasser-Reparatur am Laden (Papa Sergios Eisenwarenladen), er hat das Geld vergessen. Die Familie legt zusammen („alla romana“) und schenkt den Großeltern die Reise.
+   Die Lire hängen gerahmt in Tommasos Eisdiele: „Il primo milione“. Schluss wie Folge 1 (Sparschwein). Niveau ab A2. */
+PODCASTS.soldi.push(
+  { id:'soldi-p5', show:'Voci dei soldi', ep:5, title:'Il milione del nonno', de:'Opas Million',
+    place:'In banca, a casa dei nonni e in gelateria, a gennaio', level:'ab A2', kind:'Herz · Familie · Staffelfinale',
+    voices:{Tommaso:'Diego', Chiara:'Elsa', Nonno:'Giuseppe', Nonna:'Isabella', Marta:'Isabella', Sergio:'Giuseppe', Conti:'Diego'},
+    stil:{'':['-6%','+0Hz'], Tommaso:['+4%','+30Hz'], Chiara:['-2%','+20Hz'], Nonno:['-10%','-14Hz'], Nonna:['-8%','-12Hz'], Marta:['+6%','+22Hz'], Sergio:['-2%','+2Hz'], Conti:['-4%','-10Hz']},
+    words:[['il consulente','der Berater'],['cambiare','umtauschen, wechseln'],['valere / vale','wert sein / ist wert'],['la scadenza','die Frist'],['il collezionista','der Sammler'],['nascondere / nascosto','verstecken / versteckt'],['il viaggio di nozze','die Hochzeitsreise'],['promettere / ho promesso','versprechen / ich habe versprochen'],['mettere da parte','zur Seite legen, sparen'],['dimenticare','vergessen'],['fare una colletta','zusammenlegen (Geld sammeln)'],['la busta','der Umschlag'],['la cornice','der Bilderrahmen'],['il valore','der Wert'],['ricco / ricca','reich']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È lunedì mattina':'bancomat', 'Il signor Conti':'pausa', 'Conti: Signor Aldo':'pausa', 'Il nonno annuisce':'pausa', 'Quella sera':'pausa', 'Nonno: Nel millenovecentonovantasei':'pausa', 'La nonna ha':'pausa', 'Il giorno dopo':'pausa', 'Marta apre':'banconote', 'Tommaso rompe':'salvadanaio', 'Chiara mette':'pos', 'La domenica':'campanello_porta', 'La nonna apre':'pausa', 'Nonna: Capri':'pausa', 'Una settimana dopo':'gelateria_an cassa', 'Questo era':'gelateria_aus carillon_ende'},
+    text:`Buongiorno e benvenuti a «Voci dei soldi», il podcast che fa i conti con la vita. È l’ultima puntata di questa stagione. E oggi c’è una domanda grande: quanto vale un milione?
+È lunedì mattina. Il nonno Aldo entra in banca con Chiara. Ha il cappotto della domenica e la busta gialla in mano. Il milione di lire.
+Il signor Conti, il consulente della banca, guarda le banconote con gli occhiali.
+Conti: Caravaggio! Centomila lire. Che ricordi! Io ho cominciato a lavorare con queste.
+Nonno: Allora? Quanti euro sono?
+Chiara: Un milione di lire… sono circa cinquecento euro, nonno.
+Conti: Signor Aldo, mi dispiace molto. Le lire si potevano cambiare alla Banca d’Italia fino al duemilaundici. Adesso non si può più. La scadenza è passata.
+Nonno: Allora non valgono niente?
+Conti: Per la banca, no. Un collezionista forse le compra. Ma paga pochi euro. Ne hanno stampate tantissime.
+Il nonno annuisce piano. Mette la busta nella tasca del cappotto. Ringrazia ed esce. Chiara lo prende sottobraccio.
+Quella sera, a casa dei nonni, Chiara e Tommaso chiedono al nonno la cosa più importante.
+Tommaso: Nonno, perché hai nascosto un milione in un libro?
+Il nonno guarda in cucina. La nonna lava i piatti e canta. Lui parla piano.
+Nonno: Nel millenovecentonovantasei. Ti ricordi la storia del ristorante? Quando ho lavato i piatti per due ore? L’anno dopo ci siamo sposati. Non avevamo soldi. Niente viaggio di nozze. Io ho promesso alla nonna: «Un giorno ti porto a Capri.» La nonna ha sempre sognato Capri.
+Chiara: E non ci siete mai andati?
+Nonno: Mai. Nel novantasei ho cominciato a mettere da parte un po’ di soldi ogni mese. Di nascosto. Nel libro dei «Promessi sposi», perché era una promessa. Ma poi è arrivata l’alluvione. Il negozio di vostro padre era pieno d’acqua. Servivano soldi per tutto. E io… mi sono dimenticato del libro.
+La nonna ha finito di lavare i piatti. Canta ancora.
+Tommaso guarda Chiara. Chiara guarda Tommaso. Non dicono niente. Ma hanno la stessa idea.
+Il giorno dopo c’è una riunione segreta nella gelateria di Tommaso. C’è tutta la famiglia, tranne i nonni.
+Chiara: Allora. Il nonno ha promesso Capri alla nonna. Sessant’anni fa. Facciamo una colletta. Alla romana: tutti mettono qualcosa.
+Marta apre il portafoglio e mette sul tavolo tre banconote da cinquanta.
+Marta: Ecco. E questa volta mi ricordo anche il codice.
+Sergio: Io metto il resto per il traghetto e l’albergo. Mio suocero ha salvato il mio negozio. È il minimo.
+Tommaso rompe il suo nuovo salvadanaio. Monete, tante monete.
+Tommaso: E io pago la cena sul mare. Sono quasi tutte monete da dieci centesimi. Ma sono tante!
+Chiara mette tutto insieme e prenota con il telefono: due biglietti del treno per Napoli, il traghetto per Capri, tre notti in un piccolo albergo con vista sul mare.
+La domenica arrivano tutti a casa dei nonni. Chiara dà alla nonna una busta gialla. Uguale a quella del libro.
+La nonna apre la busta. Dentro ci sono i biglietti. E un foglio scritto a mano: «Una promessa è una promessa.»
+Nonna: Capri? Io e te? A Capri?
+Il nonno non riesce a parlare. Ha gli occhi lucidi. Prende la mano della nonna.
+Nonno: Scusa il ritardo. Solo sessant’anni.
+Nonna: Aldo… ti avrei aspettato anche cento.
+Una settimana dopo, nella gelateria di Tommaso, c’è una cosa nuova. Sopra la cassa c’è una cornice di legno. Dentro ci sono dieci banconote da centomila lire. E sotto c’è scritto: «Il primo milione».
+Tommaso: Così ogni cliente lo chiede. E io racconto la storia del nonno.
+Chiara: E quanto vale adesso il milione, Tommaso?
+Tommaso: Per la banca niente. Per noi… un viaggio a Capri, una promessa e una storia. Secondo me è il milione più ricco del mondo.
+Questo era «Voci dei soldi». Grazie per aver fatto i conti con noi in questa stagione. E ricordate: ogni grande negozio è cominciato con un salvadanaio rotto. E ogni grande storia… con un piccolo risparmio. Arrivederci!`,
+    tr:`Guten Tag und willkommen bei „Voci dei soldi“, dem Podcast, der mit dem Leben abrechnet. Es ist die letzte Folge dieser Staffel. Und heute gibt es eine große Frage: Wie viel ist eine Million wert?
+Es ist Montagmorgen. Opa Aldo geht mit Chiara in die Bank. Er trägt den Sonntagsmantel und hat den gelben Umschlag in der Hand. Die Million Lire.
+Herr Conti, der Bankberater, schaut sich die Scheine mit der Brille an.
+Conti: Caravaggio! Hunderttausend Lire. Was für Erinnerungen! Ich habe mit diesen Scheinen angefangen zu arbeiten.
+Opa: Und? Wie viel Euro sind das?
+Chiara: Eine Million Lire … das sind ungefähr fünfhundert Euro, Opa.
+Conti: Herr Aldo, es tut mir sehr leid. Lire konnte man bis 2011 bei der Banca d’Italia umtauschen. Jetzt geht das nicht mehr. Die Frist ist vorbei.
+Opa: Dann sind sie nichts wert?
+Conti: Für die Bank nicht. Vielleicht kauft sie ein Sammler. Aber er zahlt nur ein paar Euro. Davon wurden sehr viele gedruckt.
+Der Opa nickt langsam. Er steckt den Umschlag in die Manteltasche. Er bedankt sich und geht hinaus. Chiara hakt sich bei ihm unter.
+An diesem Abend, bei Opa und Oma, stellen Chiara und Tommaso dem Opa die wichtigste Frage.
+Tommaso: Opa, warum hast du eine Million in einem Buch versteckt?
+Der Opa schaut in die Küche. Die Oma spült und singt. Er spricht leise.
+Opa: Im Jahr 1996. Erinnert ihr euch an die Geschichte vom Restaurant? Als ich zwei Stunden Teller gespült habe? Ein Jahr später haben wir geheiratet. Wir hatten kein Geld. Keine Hochzeitsreise. Ich habe der Oma versprochen: „Eines Tages bringe ich dich nach Capri.“ Die Oma hat immer von Capri geträumt.
+Chiara: Und ihr wart nie dort?
+Opa: Nie. 1996 habe ich angefangen, jeden Monat ein bisschen Geld zur Seite zu legen. Heimlich. In dem Buch „Die Verlobten“, weil es ein Versprechen war. Aber dann kam das Hochwasser. Der Laden eures Vaters stand voller Wasser. Man brauchte Geld für alles. Und ich … habe das Buch vergessen.
+Die Oma ist mit dem Spülen fertig. Sie singt immer noch.
+Tommaso schaut Chiara an. Chiara schaut Tommaso an. Sie sagen nichts. Aber sie haben dieselbe Idee.
+Am nächsten Tag gibt es ein geheimes Treffen in Tommasos Eisdiele. Die ganze Familie ist da, außer Opa und Oma.
+Chiara: Also. Der Opa hat der Oma Capri versprochen. Vor sechzig Jahren. Wir legen zusammen. „Alla romana“: Alle geben etwas.
+Marta öffnet ihren Geldbeutel und legt drei Fünfzig-Euro-Scheine auf den Tisch.
+Marta: Bitte. Und diesmal weiß ich sogar meine PIN.
+Sergio: Ich zahle den Rest für die Fähre und das Hotel. Mein Schwiegervater hat meinen Laden gerettet. Das ist das Mindeste.
+Tommaso schlägt sein neues Sparschwein kaputt. Münzen, viele Münzen.
+Tommaso: Und ich bezahle das Abendessen am Meer. Es sind fast alles Zehn-Cent-Münzen. Aber es sind viele!
+Chiara legt alles zusammen und bucht mit dem Handy: zwei Zugfahrkarten nach Neapel, die Fähre nach Capri, drei Nächte in einem kleinen Hotel mit Meerblick.
+Am Sonntag kommen alle zu Opa und Oma. Chiara gibt der Oma einen gelben Umschlag. Genau wie der aus dem Buch.
+Die Oma öffnet den Umschlag. Darin sind die Fahrkarten. Und ein handgeschriebener Zettel: „Ein Versprechen ist ein Versprechen.“
+Oma: Capri? Du und ich? Nach Capri?
+Der Opa kann nicht sprechen. Er hat feuchte Augen. Er nimmt die Hand der Oma.
+Opa: Entschuldige die Verspätung. Nur sechzig Jahre.
+Oma: Aldo … ich hätte auch hundert auf dich gewartet.
+Eine Woche später gibt es in Tommasos Eisdiele etwas Neues. Über der Kasse hängt ein Holzrahmen. Darin sind zehn Hunderttausend-Lire-Scheine. Und darunter steht: „Die erste Million“.
+Tommaso: So fragt jeder Kunde danach. Und ich erzähle Opas Geschichte.
+Chiara: Und wie viel ist die Million jetzt wert, Tommaso?
+Tommaso: Für die Bank nichts. Für uns … eine Reise nach Capri, ein Versprechen und eine Geschichte. Ich finde, das ist die reichste Million der Welt.
+Das war „Voci dei soldi“. Danke, dass ihr in dieser Staffel mit uns gerechnet habt. Und denkt daran: Jedes große Geschäft hat mit einem kaputten Sparschwein angefangen. Und jede große Geschichte … mit einem kleinen Ersparten. Auf Wiederhören!`,
+    fact:'Als 2002 der Euro kam, galt ein fester Kurs: 1 Euro = 1.936,27 Lire – eine Million Lire waren also gut 516 Euro. Alte Lire-Scheine konnte man noch zehn Jahre lang bei der Banca d’Italia umtauschen; die Frist wurde im Dezember 2011 vorzeitig beendet. Seitdem sind die meisten Scheine nur noch Erinnerungsstücke – Sammler zahlen für häufige Scheine meist nur wenige Euro. Der Roman „I promessi sposi“ („Die Verlobten“) von Alessandro Manzoni ist der bekannteste Roman Italiens und in jeder Schule Pflichtlektüre.' }
+);
 /* Hörgeschichten Storia (Elias Podcast „La storia in tasca“). Figuren aus dem Thema: Elia (16, macht den Podcast), Schwester Marta (12), Opa Tullio (85, früher Geschichtslehrer), Luca (Technik, schneidet den Podcast), Kater Polo. Historisch: Besuch Heinrichs III. im Arsenal, Juli 1574. */
 PODCAST_INFO.storia = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Elia nimmt eine Folge von „La storia in tasca“ auf, und Opa Tullio erzählt, wie das Arsenal von Venedig 1574 eine ganze Galeere baute – während der König von Frankreich beim Mittagessen saß. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.storia = [
