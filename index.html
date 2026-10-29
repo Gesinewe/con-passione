@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 285;
+const APP_VERSION = 286;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -81893,6 +81893,442 @@ Luca: Dann … suchst du die nächste Reise aus.
 Das war „Voci in viaggio“. Gute Reise euch allen, und denkt daran: Entwertet immer eure Fahrkarte!`,
     fact:'Regionalzug-Fahrkarten auf Papier muss man in Italien vor dem Einsteigen in einem kleinen Automaten am Bahnsteig entwerten („convalidare“) – sonst droht eine Strafe. In Venedig gibt es keine Autos: Man fährt mit dem Vaporetto (Wasserbus) oder geht zu Fuß.' }
 ];
+/* „Voci in viaggio“ Folge 2 (v286, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_viaggio.js geladen, löst Lucas Satz aus Folge 1 ein („il prossimo viaggio lo scegli tu“).
+   Anna wählt Sizilien: Fischmarkt in Catania (Marktschreier, „abbanniare“), Granita mit Brioche zum Frühstück, mit Turi im alten Jeep auf den Ätna („a Muntagna“),
+   Lava von 2001, schwarzer Sand, Grollen, Rauchwolke, Lavastein als Glücksbringer; abends arancino/arancina-Streit, rotes Leuchten am Gipfel. Angekündigt Folge 3: Weihnachten bei Lucas Oma in Neapel, Spiel mit 90 Zahlen.
+   Stimmen wie Folge 1 (Anna Elsa, Luca Diego), Venditore Diego tief, Turi Giuseppe tief. Niveau ab A2. */
+PODCAST_INFO.viaggio.lead = 'Wie ein kleiner Podcast: Anna und Luca reisen durch Italien – Zug, Vulkan, Weihnachten in Neapel, Stau an Ferragosto – mit Durchsagen, Wasser, Möwen und Motoren, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.viaggio.push(
+  { id:'viaggio-p2', show:'Voci in viaggio', ep:2, title:'Sulla Muntagna', de:'Auf dem Berg',
+    place:'Catania e l’Etna, in autunno', level:'ab A2', kind:'Abenteuer · Vulkan · Sizilien',
+    voices:{Anna:'Elsa', Luca:'Diego', Venditore:'Diego', Turi:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Anna:['-2%','+22Hz'], Luca:['+0%','+4Hz'], Venditore:['+8%','-16Hz'], Turi:['-8%','-14Hz']},
+    mormorio:['Pesce spada! Pesce fresco!','Alici, alici!','Signora, assaggi!','Quanto costa?','Un chilo, per favore.','Guardi che bello!','Arance rosse!','Dieci euro, dieci!','Grazie, arrivederci!','Fresco, freschissimo!'],
+    words:[['la pescheria','der Fischmarkt'],['il venditore','der Verkäufer'],['gridare','rufen, schreien'],['il pesce spada','der Schwertfisch'],['la granita alla mandorla','die Mandel-Granita'],['la brioche','die Brioche (süßes Brötchen)'],['il vulcano','der Vulkan'],['la lava','die Lava'],['la pietra','der Stein'],['la sabbia','der Sand'],['affondare','einsinken'],['la cima','der Gipfel'],['la nuvola','die Wolke'],['respirare','atmen'],['pericoloso','gefährlich'],['portare fortuna','Glück bringen'],['l’arancino / l’arancina','das Arancino (Reisbällchen)'],['litigare','streiten']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Sono le sette':'gelateria_an', 'Anna ride e mette':'gelateria_aus pausa', 'Poi fanno colazione':'bar_an', 'Alle dieci':'bar_aus avviamento', 'La jeep sale':'motore500_an', 'In alto fa freddo':'motore500_aus vento_an', 'All’improvviso':'tuono', 'Dalla cima':'pausa', 'La sera sono':'vento_aus pausa traffico_an', 'Tutti ridono':'traffico_aus pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci in viaggio», il podcast per chi ama partire. Vi ricordate? A Venezia Luca ha detto ad Anna: «Il prossimo viaggio lo scegli tu.» E Anna ha scelto: la Sicilia. Un vulcano, il mare e tanti dolci.
+Sono le sette di mattina a Catania. Anna e Luca camminano nella pescheria, il grande mercato del pesce. È rumoroso e allegro. I venditori gridano, cantano e ridono.
+Venditore: Pesce spada! Pesce fresco! Signorina, guardi che bello!
+Anna: Luca, perché gridano così?
+Luca: In Sicilia si dice «abbanniare». Ogni venditore ha la sua canzone.
+Venditore: Signorina, da dove viene?
+Anna: Da Monaco, in Germania.
+Venditore: Monaco! Allora per lei c’è un regalo. Un limone dell’Etna. Il più buono del mondo!
+Anna ride e mette il limone nello zaino.
+Poi fanno colazione in un bar. Ma non con il cappuccino.
+Luca: Due granite alla mandorla e due brioche, per favore.
+Anna: Una granita a colazione? Ma è un gelato!
+Luca: Non è un gelato. È una granita. E in Sicilia si mangia con la brioche, anche alle otto di mattina. Prova!
+Anna mette un pezzo di brioche nella granita. È fredda, dolce e morbida.
+Anna: Mmm… Luca, io resto qui per sempre.
+Alle dieci arriva una jeep vecchia e rossa. Il motore non parte subito. Al volante c’è un uomo con i capelli bianchi e un grande sorriso.
+Turi: Buongiorno! Io sono Turi. Oggi vi porto sulla Muntagna.
+Anna: Sulla montagna?
+Turi: Noi di Catania non diciamo «l’Etna». Diciamo «la Muntagna». Perché è la montagna di tutti. Andiamo!
+La jeep sale piano, curva dopo curva. Prima ci sono aranci e limoni, poi boschi di castagni. Poi niente: solo pietre nere.
+Turi: Questa è lava. È del duemila e uno.
+Luca: E le case lì sotto?
+Turi: La lava è arrivata vicino al paese. Poi si è fermata. Mia madre dice: per miracolo.
+In alto fa freddo e c’è vento. Anna mette la giacca. Camminano su una sabbia nera e morbida. I piedi affondano a ogni passo.
+Anna: È come camminare sulla luna!
+All’improvviso si sente un rumore. Lontano, profondo, sotto i piedi.
+Anna: Che cos’è? Un temporale?
+Turi: No, signorina. È lei. È la Muntagna che respira.
+Dalla cima esce una nuvola grigia. Lenta e alta, nel cielo azzurro.
+Luca: È pericoloso?
+Turi: Oggi no. Oggi la Muntagna è di buon umore. Ma noi la rispettiamo sempre.
+Turi prende una piccola pietra nera e la dà ad Anna.
+Turi: Per lei. Una pietra di lava. Porta fortuna. Ma solo se un giorno torna in Sicilia.
+Anna: Allora torno sicuramente.
+La sera sono di nuovo a Catania, in una piccola piazza. Turi mangia con loro.
+Luca: Due arancine, per favore.
+Turi: Arancine? No, no, no! Qui siamo a Catania. Qui si dice «arancino»!
+Anna: Perché?
+Turi: A Palermo dicono «arancina». A Catania diciamo «arancino». E guai a sbagliare!
+Anna: E io? Come devo dire?
+Turi: Lei dice: «Uno, per favore.» E indica con il dito. Così non litiga con nessuno.
+Tutti ridono. Poi Anna guarda verso nord. Nel buio si vede la Muntagna. In cima c’è una piccola luce rossa.
+Anna: Luca, guarda! Lassù c’è una luce rossa.
+Luca: È la lava. La Muntagna ci saluta.
+Anna tiene la pietra nera nella mano. Ha già un po’ di nostalgia.
+Questo era «Voci in viaggio». Nella prossima puntata è Natale. Anna e Luca vanno a Napoli, dalla nonna di Luca. E la nonna ha un gioco con novanta numeri… Buon viaggio a tutti!`,
+    tr:`Guten Morgen und willkommen bei „Voci in viaggio“, dem Podcast für alle, die gern verreisen. Erinnert ihr euch? In Venedig hat Luca zu Anna gesagt: „Die nächste Reise suchst du aus.“ Und Anna hat ausgesucht: Sizilien. Ein Vulkan, das Meer und viele Süßigkeiten.
+Es ist sieben Uhr morgens in Catania. Anna und Luca gehen über die Pescheria, den großen Fischmarkt. Es ist laut und fröhlich. Die Verkäufer rufen, singen und lachen.
+Verkäufer: Schwertfisch! Frischer Fisch! Fräulein, schauen Sie, wie schön!
+Anna: Luca, warum rufen sie so?
+Luca: Auf Sizilien sagt man „abbanniare“. Jeder Verkäufer hat sein eigenes Lied.
+Verkäufer: Fräulein, woher kommen Sie?
+Anna: Aus München, in Deutschland.
+Verkäufer: München! Dann gibt es ein Geschenk für Sie. Eine Zitrone vom Ätna. Die beste der Welt!
+Anna lacht und steckt die Zitrone in den Rucksack.
+Dann frühstücken sie in einer Bar. Aber nicht mit Cappuccino.
+Luca: Zwei Mandel-Granite und zwei Brioches, bitte.
+Anna: Eine Granita zum Frühstück? Das ist doch ein Eis!
+Luca: Das ist kein Eis. Das ist eine Granita. Und auf Sizilien isst man sie mit Brioche, auch um acht Uhr morgens. Probier mal!
+Anna tunkt ein Stück Brioche in die Granita. Sie ist kalt, süß und weich.
+Anna: Mmm … Luca, ich bleibe für immer hier.
+Um zehn kommt ein alter, roter Jeep. Der Motor springt nicht sofort an. Am Steuer sitzt ein Mann mit weißen Haaren und einem breiten Lächeln.
+Turi: Guten Morgen! Ich bin Turi. Heute bringe ich euch auf die „Muntagna“.
+Anna: Auf den Berg?
+Turi: Wir in Catania sagen nicht „der Ätna“. Wir sagen „die Muntagna“. Weil es der Berg von allen ist. Los geht’s!
+Der Jeep fährt langsam hinauf, Kurve um Kurve. Zuerst gibt es Orangen- und Zitronenbäume, dann Kastanienwälder. Dann nichts mehr: nur schwarze Steine.
+Turi: Das ist Lava. Sie ist von 2001.
+Luca: Und die Häuser da unten?
+Turi: Die Lava ist bis in die Nähe des Dorfes gekommen. Dann ist sie stehen geblieben. Meine Mutter sagt: durch ein Wunder.
+Oben ist es kalt und windig. Anna zieht die Jacke an. Sie laufen über schwarzen, weichen Sand. Die Füße sinken bei jedem Schritt ein.
+Anna: Das ist, als würde man auf dem Mond laufen!
+Plötzlich hört man ein Geräusch. Weit weg, tief, unter den Füßen.
+Anna: Was ist das? Ein Gewitter?
+Turi: Nein, Fräulein. Das ist sie. Das ist die Muntagna, die atmet.
+Aus dem Gipfel steigt eine graue Wolke. Langsam und hoch, in den blauen Himmel.
+Luca: Ist das gefährlich?
+Turi: Heute nicht. Heute ist die Muntagna gut gelaunt. Aber wir haben immer Respekt vor ihr.
+Turi nimmt einen kleinen schwarzen Stein und gibt ihn Anna.
+Turi: Für Sie. Ein Lavastein. Er bringt Glück. Aber nur, wenn Sie eines Tages nach Sizilien zurückkommen.
+Anna: Dann komme ich ganz sicher zurück.
+Am Abend sind sie wieder in Catania, auf einem kleinen Platz. Turi isst mit ihnen.
+Luca: Zwei Arancine, bitte.
+Turi: Arancine? Nein, nein, nein! Wir sind hier in Catania. Hier sagt man „Arancino“!
+Anna: Warum?
+Turi: In Palermo sagen sie „Arancina“. In Catania sagen wir „Arancino“. Und wehe, man verwechselt das!
+Anna: Und ich? Wie soll ich sagen?
+Turi: Sie sagen: „Eins, bitte.“ Und zeigen mit dem Finger darauf. So streiten Sie mit niemandem.
+Alle lachen. Dann schaut Anna nach Norden. Im Dunkeln sieht man die Muntagna. Oben am Gipfel ist ein kleines rotes Licht.
+Anna: Luca, schau! Da oben ist ein rotes Licht.
+Luca: Das ist die Lava. Die Muntagna grüßt uns.
+Anna hält den schwarzen Stein in der Hand. Sie vermisst Sizilien jetzt schon ein bisschen.
+Das war „Voci in viaggio“. In der nächsten Folge ist Weihnachten. Anna und Luca fahren nach Neapel, zu Lucas Oma. Und die Oma hat ein Spiel mit neunzig Zahlen … Gute Reise euch allen!`,
+    fact:'Der Ätna auf Sizilien ist mit über 3.300 Metern der höchste aktive Vulkan Europas. Die Leute in Catania nennen ihn liebevoll „’a Muntagna“ (der Berg). Auf Sizilien frühstückt man im Sommer gern eine Granita mit Brioche. Und über die frittierten Reisbällchen streitet die Insel bis heute: In Palermo heißen sie „arancina“ (weiblich), in Catania „arancino“ (männlich).' }
+);
+/* „Voci in viaggio“ Folge 3 (v286, 29.10.2026) – wird nach leggende_viaggio2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Weihnachten in Neapel bei Lucas Oma (aus den Lektionen: Oma aus Neapel, klein und sympathisch, spricht Neapolitanisch; Anna kennt San Gregorio Armeno schon – Pizzabäcker für ihre Mama).
+   Frecciarossa Bologna–Neapel, Verkehr und Roller, Krippengasse: der Handwerker hat im Auftrag der Oma eine Figur von Anna gemacht (Rucksack, Fahrkarte) – Luca: „una pastora tedesca“ (Wortspiel Schäferhund).
+   Heiligabend: Fisch, Aal (capitone), Struffoli; Tombola mit der Smorfia (1 l’Italia, 3 la gatta, 22 il pazzo, 25 il Natale, 33 gli anni di Cristo, 47 il morto, 48 il morto che parla, 90 la paura); Anna gewinnt mit der 90.
+   Mitternacht: Feuerwerk, Glocken. Angekündigt Folge 4: Ferragosto, Marcos Wohnmobil, Stau, ein geheimer Anruf. Oma = Isabella tief, Handwerker Giuseppe. Niveau ab A2. */
+PODCASTS.viaggio.push(
+  { id:'viaggio-p3', show:'Voci in viaggio', ep:3, title:'Natale dalla nonna', de:'Weihnachten bei Oma',
+    place:'Napoli, il ventitré e il ventiquattro dicembre', level:'ab A2', kind:'Weihnachten · Familie · Spiel',
+    voices:{Anna:'Elsa', Luca:'Diego', Nonna:'Isabella', Annuncio:'Isabella', Artigiano:'Giuseppe'},
+    stil:{'':['-6%','+0Hz'], Anna:['-2%','+22Hz'], Luca:['+0%','+4Hz'], Nonna:['-6%','-16Hz'], Annuncio:['+0%','+0Hz'], Artigiano:['-6%','-10Hz']},
+    mormorio:['Buon Natale!','Permesso, permesso!','Quanto costa questo pastore?','Uè, guagliò!','Mamma mia, che folla!','Auguri, signora!','Dove sono i bambini?','Jamme, jamme!','È bellissimo!','Il treno è in ritardo?'],
+    words:[['la vigilia di Natale','der Heiligabend'],['il presepe','die Krippe'],['la statuina','die Krippenfigur'],['l’artigiano','der Handwerker'],['il pastore / la pastora','der Hirte / die Hirtin'],['il pastore tedesco','der Schäferhund'],['il capitone','der Aal (Weihnachtsessen in Neapel)'],['il baccalà','der Stockfisch'],['gli struffoli','die Struffoli (Honigbällchen)'],['la tombola','die Tombola (italienisches Bingo)'],['la cartella','die Tombola-Karte'],['estrarre','ziehen (Zahl)'],['la paura','die Angst'],['ambo, terno, cinquina','zwei, drei, fünf Zahlen in einer Reihe'],['vincere / ho vinto','gewinnen / ich habe gewonnen'],['i fuochi d’artificio','das Feuerwerk'],['mezzanotte','Mitternacht'],['guagliò','Junge! (neapolitanisch)']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È il ventitré':'stazione_an', 'Annuncio: Il Frecciarossa':'gong altoparlante', 'Il treno parte':'porte stazione_aus treno_an', 'Alle tre':'treno_aus pausa traffico_an', 'Anna: Luca, quel':'vespa', 'Nonna: Uè':'clacson', 'Il giorno dopo':'traffico_aus gelateria_an', 'Artigiano: Ah':'gelateria_aus pausa', 'La sera della vigilia':'soffritto', 'Dopo cena':'piatti pausa', 'La nonna mette sul':'monete', 'Nonna: Ventidue':'risate_adulti', 'A un tratto':'pausa', 'Nonna: Novanta':'applausi', 'A mezzanotte':'fuochi campane', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci in viaggio», il podcast per chi ama partire. Oggi è un viaggio speciale. Anna passa il Natale con la famiglia di Luca. E il Natale, per Luca, è a Napoli, dalla nonna.
+È il ventitré dicembre. Alla stazione di Bologna c’è tanta gente con valigie e pacchi regalo.
+Annuncio: Il Frecciarossa per Napoli Centrale è in partenza dal binario due.
+Anna: Luca, hai preso i regali per la nonna?
+Luca: Sì, sì. Il panettone e il vino. E tu?
+Anna: Io ho una sciarpa rossa. Fatta a mano a Monaco.
+Il treno parte. Fuori nevica un po’. Anna legge, Luca dorme. Dopo tre ore e mezza il treno arriva a Napoli. Qui non nevica. C’è il sole.
+Alle tre sono in città. Napoli è rumorosa: motorini, clacson, gente che parla forte. Anna stringe la mano di Luca.
+Anna: Luca, quel motorino ha tre persone sopra!
+Luca: Benvenuta a Napoli.
+Davanti a un portone c’è una signora piccola con un grembiule. È la nonna.
+Nonna: Uè, guagliò! Finalmente! E questa è Anna? Ma quanto sei bella! Vieni, vieni, sei troppo magra. Devi mangiare!
+Anna: Buongiorno, signora. Piacere.
+Nonna: Signora? Io sono la nonna. Per tutti.
+Il giorno dopo, la mattina, la nonna li manda in centro, a San Gregorio Armeno. È la via dei presepi. Anna c’è già stata in primavera. Ma a Natale è tutto diverso: c’è tanta gente, tanta musica, tante luci.
+Anna: L’ultima volta ho comprato un piccolo pizzaiolo per la mia mamma.
+Luca: Oggi la nonna ci ha dato un compito. Dobbiamo prendere una statuina in una bottega. È già pagata.
+Entrano in una bottega piccola e calda. Un artigiano con gli occhiali lavora a un tavolo.
+Artigiano: Ah, voi siete i ragazzi della signora Esposito. Eccola. L’ho fatta io, a mano.
+È una statuina piccola, con i capelli biondi, uno zaino e un biglietto del treno in mano.
+Anna: Ma… sono io!
+Artigiano: Certo. La nonna ha detto: quest’anno nel presepe c’è anche una pastora tedesca.
+Luca ride così forte che tutti si girano.
+Luca: Una pastora tedesca! Anna, sai che cos’è un pastore tedesco? È un cane!
+Anna: Luca! Smetti di ridere!
+La sera della vigilia la cucina della nonna è piena di fumo e di profumi. La nonna frigge il baccalà. Sul tavolo ci sono gli spaghetti con le vongole, il pesce, l’insalata e un piatto con un pesce lungo e scuro.
+Anna: Che cos’è quello? Sembra un serpente!
+Nonna: È il capitone. A Napoli la vigilia senza capitone non è vigilia. Assaggia!
+Anna assaggia un pezzettino. Chiude gli occhi.
+Anna: È… buono. Davvero!
+Dopo cena arrivano gli struffoli: piccole palline dolci con il miele. E poi arriva il momento più importante: la tombola.
+La nonna mette sul tavolo le cartelle, i fagioli secchi e un cestino con novanta numeri. Tutti mettono una moneta nel piatto.
+Nonna: Attenzione! Io estraggo i numeri. Ma a Napoli ogni numero ha un significato. Si chiama la Smorfia. Pronti?
+Luca: Pronti, nonna!
+Nonna: Uno! L’Italia!
+Nonna: Tre! La gatta!
+Nonna: Venticinque! Il Natale!
+Anna: Ce l’ho! Ce l’ho!
+Nonna: Ventidue! Il pazzo! Luca, questo è per te.
+Nonna: Quarantotto! Il morto che parla!
+Anna: Il morto che parla? Aiuto!
+Luca: Ambo! Ho fatto ambo!
+La nonna estrae numero dopo numero. Luca fa terno, poi cinquina. Anna ha solo un numero libero sulla cartella: il novanta.
+A un tratto la nonna guarda Anna. Prende un numero dal cestino. Sorride.
+Nonna: Novanta! La paura!
+Anna: Tombola! Tombola! Ho vinto!
+Nonna: Brava! La pastora tedesca vince la tombola. Ma ricorda: chi vince offre il caffè a tutti, domani mattina!
+A mezzanotte, da tutti i balconi di Napoli, partono i fuochi d’artificio. Le campane suonano. Il cielo è rosso, verde e oro.
+La nonna mette la piccola statuina di Anna nel presepe, vicino alla grotta. Poi abbraccia Anna.
+Nonna: Adesso sei nel presepe. Vuol dire che sei della famiglia.
+Anna: Grazie, nonna. Buon Natale.
+Questo era «Voci in viaggio». Nella prossima puntata è agosto. Anna e Luca partono con il camper di Marco. Destinazione: il mare della Puglia. Ma prima c’è un’autostrada piena di macchine… e una telefonata segreta. Buon viaggio a tutti!`,
+    tr:`Guten Morgen und willkommen bei „Voci in viaggio“, dem Podcast für alle, die gern verreisen. Heute ist eine besondere Reise. Anna verbringt Weihnachten mit Lucas Familie. Und Weihnachten ist für Luca in Neapel, bei der Oma.
+Es ist der dreiundzwanzigste Dezember. Am Bahnhof von Bologna sind viele Leute mit Koffern und Geschenkpaketen.
+Durchsage: Der Frecciarossa nach Napoli Centrale fährt von Gleis zwei ab.
+Anna: Luca, hast du die Geschenke für die Oma?
+Luca: Ja, ja. Den Panettone und den Wein. Und du?
+Anna: Ich habe einen roten Schal. Handgemacht in München.
+Der Zug fährt ab. Draußen schneit es ein bisschen. Anna liest, Luca schläft. Nach dreieinhalb Stunden kommt der Zug in Neapel an. Hier schneit es nicht. Die Sonne scheint.
+Um drei sind sie in der Stadt. Neapel ist laut: Motorroller, Hupen, Leute, die laut reden. Anna drückt Lucas Hand.
+Anna: Luca, auf dem Roller da sitzen drei Leute!
+Luca: Willkommen in Neapel.
+Vor einer Haustür steht eine kleine Frau mit Schürze. Das ist die Oma.
+Oma: He, Junge! Endlich! Und das ist Anna? Wie hübsch du bist! Komm, komm, du bist viel zu dünn. Du musst essen!
+Anna: Guten Tag, Signora. Freut mich.
+Oma: Signora? Ich bin die Oma. Für alle.
+Am nächsten Tag schickt die Oma sie morgens ins Zentrum, nach San Gregorio Armeno. Das ist die Krippengasse. Anna war im Frühling schon einmal hier. Aber an Weihnachten ist alles anders: viele Leute, viel Musik, viele Lichter.
+Anna: Letztes Mal habe ich einen kleinen Pizzabäcker für meine Mama gekauft.
+Luca: Heute hat uns die Oma eine Aufgabe gegeben. Wir sollen in einer Werkstatt eine Krippenfigur abholen. Sie ist schon bezahlt.
+Sie betreten eine kleine, warme Werkstatt. Ein Handwerker mit Brille arbeitet an einem Tisch.
+Handwerker: Ah, ihr seid die jungen Leute von Frau Esposito. Hier ist sie. Ich habe sie selbst gemacht, von Hand.
+Es ist eine kleine Figur mit blonden Haaren, einem Rucksack und einer Zugfahrkarte in der Hand.
+Anna: Aber … das bin ja ich!
+Handwerker: Natürlich. Die Oma hat gesagt: Dieses Jahr gibt es in der Krippe auch eine deutsche Hirtin.
+Luca lacht so laut, dass sich alle umdrehen.
+Luca: Eine „pastora tedesca“! Anna, weißt du, was ein „pastore tedesco“ ist? Ein Schäferhund!
+Anna: Luca! Hör auf zu lachen!
+Am Heiligabend ist Omas Küche voller Rauch und Düfte. Die Oma frittiert den Stockfisch. Auf dem Tisch stehen Spaghetti mit Venusmuscheln, Fisch, Salat und ein Teller mit einem langen, dunklen Fisch.
+Anna: Was ist das? Das sieht aus wie eine Schlange!
+Oma: Das ist der Capitone, der Aal. In Neapel ist Heiligabend ohne Aal kein Heiligabend. Probier!
+Anna probiert ein kleines Stückchen. Sie schließt die Augen.
+Anna: Das ist … gut. Wirklich!
+Nach dem Essen kommen die Struffoli: kleine süße Bällchen mit Honig. Und dann kommt der wichtigste Moment: die Tombola.
+Die Oma legt die Spielkarten, getrocknete Bohnen und ein Körbchen mit neunzig Zahlen auf den Tisch. Alle legen eine Münze auf den Teller.
+Oma: Achtung! Ich ziehe die Zahlen. Aber in Neapel hat jede Zahl eine Bedeutung. Das heißt Smorfia. Fertig?
+Luca: Fertig, Oma!
+Oma: Eins! Italien!
+Oma: Drei! Die Katze!
+Oma: Fünfundzwanzig! Weihnachten!
+Anna: Hab ich! Hab ich!
+Oma: Zweiundzwanzig! Der Verrückte! Luca, die ist für dich.
+Oma: Achtundvierzig! Der Tote, der spricht!
+Anna: Der Tote, der spricht? Hilfe!
+Luca: Ambo! Ich habe zwei in einer Reihe!
+Die Oma zieht Zahl um Zahl. Luca schafft drei in einer Reihe, dann fünf. Anna hat nur noch eine freie Zahl auf ihrer Karte: die Neunzig.
+Auf einmal schaut die Oma Anna an. Sie nimmt eine Zahl aus dem Körbchen. Sie lächelt.
+Oma: Neunzig! Die Angst!
+Anna: Tombola! Tombola! Ich habe gewonnen!
+Oma: Brava! Die deutsche Hirtin gewinnt die Tombola. Aber denk daran: Wer gewinnt, gibt morgen früh allen einen Kaffee aus!
+Um Mitternacht gehen von allen Balkonen Neapels die Feuerwerke los. Die Glocken läuten. Der Himmel ist rot, grün und golden.
+Die Oma stellt die kleine Figur von Anna in die Krippe, neben die Grotte. Dann umarmt sie Anna.
+Oma: Jetzt bist du in der Krippe. Das heißt, du gehörst zur Familie.
+Anna: Danke, Oma. Frohe Weihnachten.
+Das war „Voci in viaggio“. In der nächsten Folge ist August. Anna und Luca fahren mit Marcos Wohnmobil los. Ziel: das Meer in Apulien. Aber vorher gibt es eine Autobahn voller Autos … und einen geheimen Anruf. Gute Reise euch allen!`,
+    fact:'In Neapel spielt man an Weihnachten in der Familie „tombola“, eine Art Bingo mit 90 Zahlen. Wer die Zahlen zieht, ruft dazu ihre Bedeutung aus der „Smorfia“, dem neapolitanischen Traumdeutungsbuch: 90 ist die Angst, 33 das Alter Christi, 48 der Tote, der spricht. Gewinne gibt es schon für zwei (ambo), drei (terno), vier (quaterna) und fünf Zahlen in einer Reihe (cinquina) – und für die volle Karte (tombola). Am Heiligabend isst man in Neapel traditionell Fisch, oft auch Aal (capitone).' }
+);
+/* „Voci in viaggio“ Folge 4 (v286, 29.10.2026) – wird nach leggende_viaggio3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Ferragosto: mit Marcos Wohnmobil (Lektionen: Marco schüchtern, verheiratet mit Sara, großes Wohnmobil) von Bologna nach Polignano a Mare. Stau auf der A14,
+   Verkehrsfunk, Autogrill (Panini mit Ortsnamen: Camogli, Rustichella), Luca telefoniert heimlich („… d’oro … la misura … a ottobre“), Marco verplappert sich fast:
+   „l’an… l’anguria!“. Strand, Zikaden, Wassermelone, Modugno-Statue, Lagerfeuer, Mitternachtsbad, Feuerwerk. Angekündigt Folge 5 (Finale): Venedig, eine kleine Schachtel.
+   Marco = Giuseppe, Sara = Isabella hoch und schneller, Radio = Diego mit Effekt radio. Niveau ab A2. */
+PODCASTS.viaggio.push(
+  { id:'viaggio-p4', show:'Voci in viaggio', ep:4, title:'Ferragosto in camper', de:'Ferragosto im Wohnmobil',
+    place:'Da Bologna a Polignano a Mare, il quattordici e il quindici agosto', level:'ab A2', kind:'Sommer · Stau · Geheimnis',
+    voices:{Anna:'Elsa', Luca:'Diego', Marco:'Giuseppe', Sara:'Isabella', Radio:'Diego'},
+    stil:{'':['-6%','+0Hz'], Anna:['-2%','+22Hz'], Luca:['+0%','+4Hz'], Marco:['-6%','-8Hz'], Sara:['+6%','+18Hz'], Radio:['+10%','-6Hz']},
+    mormorio:['Un caffè, per favore!','Dov’è il bagno?','Che caldo!','Quanti chilometri mancano?','Un panino e una Coca.','Mamma, voglio il gelato!','Buon Ferragosto!','Scusi, è libero?','Andiamo, andiamo!','C’è coda?'],
+    words:[['Ferragosto','der 15. August (Mariä Himmelfahrt, Sommerfeiertag)'],['il camper','das Wohnmobil'],['l’autostrada','die Autobahn'],['la coda','der Stau'],['il traffico','der Verkehr'],['fermo / fermi','steht still / stehen still'],['l’area di servizio','die Raststätte'],['la telefonata','das Telefongespräch'],['segreto','geheim'],['la misura','die Größe (Maß)'],['d’oro','aus Gold'],['l’anguria','die Wassermelone'],['la scogliera','die Felsküste'],['il falò','das Lagerfeuer'],['il bagno di mezzanotte','das Bad um Mitternacht'],['timido','schüchtern'],['le cicale','die Zikaden']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Sono le cinque':'porta_camper avviamento motore500_an', 'Dopo un’ora':'motore500_aus traffico_an', 'Radio:':'radio', 'Un camion suona':'clacson', 'Alle dieci':'traffico_aus freccia bar_an', 'Anna va a pagare':'cassa', 'Torna al tavolo':'pausa', 'Sara arriva':'pausa', 'Ripartono':'bar_aus motore500_an', 'Alle sei di sera':'motore500_aus porta_camper acqua_an gabbiani cicale_an', 'Il giorno dopo':'pausa', 'La sera, sulla spiaggia':'cicale_aus falo_an', 'A mezzanotte':'falo_aus fuochi', 'Anna nuota':'pausa', 'Questo era':'acqua_aus pausa'},
+    text:`Buongiorno e benvenuti a «Voci in viaggio», il podcast per chi ama partire. È estate, fa caldo e in Italia arriva il giorno più importante dell’estate: Ferragosto. Tutti vanno al mare. Proprio tutti.
+Sono le cinque di mattina a Bologna. Marco, il fratello di Luca, apre la porta del suo camper. Sua moglie Sara ha già preparato il caffè.
+Marco: Partiamo presto. Così non troviamo traffico.
+Sara: Marco dice così ogni anno. E ogni anno troviamo traffico.
+Anna e Luca salgono. Il camper è grande, con un piccolo letto, una cucina e un tavolo. Anna è felice come una bambina.
+Dopo un’ora sull’autostrada il camper rallenta. Poi si ferma. Davanti a loro ci sono macchine, macchine, macchine. Fino all’orizzonte.
+Sara: Ecco. Lo sapevo.
+Luca accende la radio.
+Radio: Traffico intenso sull’autostrada A14, in direzione sud. Coda di dodici chilometri. Buon Ferragosto a tutti!
+Anna: Dodici chilometri? E adesso?
+Marco: Adesso aspettiamo. È una tradizione anche questa.
+Un camion suona il clacson. Un bambino saluta dal finestrino della macchina vicina. Anna lo saluta anche lei.
+Alle dieci si fermano a un’area di servizio, all’Autogrill. Dentro c’è tanta gente. Tutti bevono un caffè in piedi, veloce.
+Anna: Guarda, Luca! I panini hanno i nomi delle città! Camogli, Rustichella…
+Luca: Camogli è un paese in Liguria. Ma qui è un panino.
+Anna: Allora io mangio un paese. Un Camogli, per favore!
+Anna va a pagare. Quando torna, Luca è fuori, vicino alla porta. Parla al telefono, piano piano. Non la vede.
+Luca: Sì… d’oro, sì… No, la misura è giusta… Allora a ottobre. Grazie. Mi raccomando: è un segreto.
+Torna al tavolo. Anna lo guarda.
+Anna: Con chi parlavi?
+Luca: Io? Con… con nessuno. Con il lavoro.
+Anna: Il quindici agosto? Con il lavoro?
+Marco diventa rosso. Lui è timido e non sa dire bugie.
+Marco: Era per l’an… per l’an… per l’anguria! Ho ordinato un’anguria. Grande. D’oro. Cioè, gialla.
+Sara arriva con i caffè e guarda il marito.
+Sara: Marco, tu non hai ordinato niente. Bevi il caffè e stai zitto.
+Ripartono. La coda va piano, poi un po’ più veloce. Passano Ancona, Pescara, Foggia. Le colline diventano pianure con ulivi grandi e vecchi.
+Alle sei di sera arrivano a Polignano a Mare, in Puglia. Il paese è bianco, sopra una scogliera. Sotto c’è un mare blu e verde. Si sentono le cicale.
+Anna: È bellissimo. Era una coda di dodici chilometri. Ma ne valeva la pena.
+Il giorno dopo è Ferragosto. Tutti sono in spiaggia. Marco taglia un’anguria enorme. Sara legge, Luca dorme sotto l’ombrellone. Sulla piazza del paese Anna trova una statua di un uomo con le braccia aperte.
+Luca: È Domenico Modugno, un cantante famoso. È nato qui. Ha cantato «Volare».
+Anna apre le braccia come la statua. Luca ride e fa una foto.
+La sera, sulla spiaggia, gli amici di Sara accendono un falò. Mangiano pane, pomodori, formaggio e anguria. Qualcuno suona la chitarra.
+Sara: A mezzanotte c’è una tradizione. Il bagno di mezzanotte! Tutti in acqua!
+A mezzanotte sopra il mare partono i fuochi d’artificio. Tutti corrono in acqua, ridono e gridano.
+Anna nuota vicino a Luca. L’acqua è calda e nera, piena di riflessi colorati.
+Anna: Luca… quella telefonata. Era davvero il lavoro?
+Luca: Anna, guarda i fuochi. Guarda che belli.
+Anna sorride. Non chiede più niente. Ma ha capito che c’è un segreto.
+Questo era «Voci in viaggio». Nella prossima puntata, l’ultima di questa stagione, Anna e Luca tornano dove tutto è cominciato: a Venezia. E in una tasca c’è una piccola scatola… Buon viaggio a tutti!`,
+    tr:`Guten Morgen und willkommen bei „Voci in viaggio“, dem Podcast für alle, die gern verreisen. Es ist Sommer, es ist heiß, und in Italien kommt der wichtigste Tag des Sommers: Ferragosto. Alle fahren ans Meer. Wirklich alle.
+Es ist fünf Uhr morgens in Bologna. Marco, Lucas Bruder, öffnet die Tür seines Wohnmobils. Seine Frau Sara hat schon Kaffee gemacht.
+Marco: Wir fahren früh los. Dann kommen wir nicht in den Verkehr.
+Sara: Das sagt Marco jedes Jahr. Und jedes Jahr kommen wir in den Verkehr.
+Anna und Luca steigen ein. Das Wohnmobil ist groß, mit einem kleinen Bett, einer Küche und einem Tisch. Anna freut sich wie ein Kind.
+Nach einer Stunde auf der Autobahn wird das Wohnmobil langsamer. Dann bleibt es stehen. Vor ihnen sind Autos, Autos, Autos. Bis zum Horizont.
+Sara: Da haben wir’s. Ich hab’s gewusst.
+Luca schaltet das Radio ein.
+Radio: Dichter Verkehr auf der Autobahn A14 in Richtung Süden. Zwölf Kilometer Stau. Schönen Ferragosto euch allen!
+Anna: Zwölf Kilometer? Und jetzt?
+Marco: Jetzt warten wir. Das ist auch eine Tradition.
+Ein Lastwagen hupt. Ein Kind winkt aus dem Fenster des Autos nebenan. Anna winkt zurück.
+Um zehn halten sie an einer Raststätte, am Autogrill. Drinnen sind viele Leute. Alle trinken schnell einen Kaffee im Stehen.
+Anna: Schau, Luca! Die Brötchen haben Namen von Städten! Camogli, Rustichella …
+Luca: Camogli ist ein Ort in Ligurien. Aber hier ist es ein Brötchen.
+Anna: Dann esse ich einen Ort. Einen Camogli, bitte!
+Anna geht bezahlen. Als sie zurückkommt, ist Luca draußen, bei der Tür. Er telefoniert, ganz leise. Er sieht sie nicht.
+Luca: Ja … aus Gold, ja … Nein, die Größe stimmt … Also im Oktober. Danke. Und bitte: Es ist ein Geheimnis.
+Er kommt zurück an den Tisch. Anna schaut ihn an.
+Anna: Mit wem hast du gesprochen?
+Luca: Ich? Mit … mit niemandem. Mit der Arbeit.
+Anna: Am fünfzehnten August? Mit der Arbeit?
+Marco wird rot. Er ist schüchtern und kann nicht lügen.
+Marco: Das war wegen des Ri… wegen des Ri… wegen der Riesenmelone! Ich habe eine Wassermelone bestellt. Eine große. Aus Gold. Also, eine gelbe.
+Sara kommt mit den Kaffees und schaut ihren Mann an.
+Sara: Marco, du hast gar nichts bestellt. Trink deinen Kaffee und sei still.
+Sie fahren weiter. Der Stau geht langsam, dann etwas schneller. Sie kommen an Ancona, Pescara, Foggia vorbei. Die Hügel werden zu Ebenen mit großen, alten Olivenbäumen.
+Um sechs Uhr abends kommen sie in Polignano a Mare in Apulien an. Der Ort ist weiß und liegt auf einer Felsküste. Unten ist ein blaues und grünes Meer. Man hört die Zikaden.
+Anna: Wunderschön. Es waren zwölf Kilometer Stau. Aber es hat sich gelohnt.
+Am nächsten Tag ist Ferragosto. Alle sind am Strand. Marco schneidet eine riesige Wassermelone auf. Sara liest, Luca schläft unter dem Sonnenschirm. Auf dem Platz im Ort findet Anna die Statue eines Mannes mit offenen Armen.
+Luca: Das ist Domenico Modugno, ein berühmter Sänger. Er ist hier geboren. Er hat „Volare“ gesungen.
+Anna breitet die Arme aus wie die Statue. Luca lacht und macht ein Foto.
+Am Abend zünden Saras Freunde am Strand ein Lagerfeuer an. Sie essen Brot, Tomaten, Käse und Wassermelone. Jemand spielt Gitarre.
+Sara: Um Mitternacht gibt es eine Tradition. Das Mitternachtsbad! Alle ins Wasser!
+Um Mitternacht geht über dem Meer das Feuerwerk los. Alle rennen ins Wasser, lachen und schreien.
+Anna schwimmt neben Luca. Das Wasser ist warm und schwarz, voller bunter Spiegelungen.
+Anna: Luca … dieses Telefongespräch. War das wirklich die Arbeit?
+Luca: Anna, schau das Feuerwerk an. Schau, wie schön.
+Anna lächelt. Sie fragt nichts mehr. Aber sie hat verstanden, dass es ein Geheimnis gibt.
+Das war „Voci in viaggio“. In der nächsten Folge, der letzten dieser Staffel, kehren Anna und Luca dorthin zurück, wo alles angefangen hat: nach Venedig. Und in einer Tasche steckt eine kleine Schachtel … Gute Reise euch allen!`,
+    fact:'Ferragosto (15. August) geht auf die „Feriae Augusti“ zurück, die Ruhetage, die Kaiser Augustus im Jahr 18 v. Chr. einführte; heute ist es auch das Fest Mariä Himmelfahrt. Rund um diesen Tag fahren Millionen Italiener in den Urlaub – die Staus auf der Autobahn sind legendär. In vielen Orten am Meer feiert man die Nacht mit Lagerfeuer am Strand, Feuerwerk und einem Bad um Mitternacht. In Polignano a Mare steht eine Statue des Sängers Domenico Modugno mit ausgebreiteten Armen.' }
+);
+/* „Voci in viaggio“ Folge 5 (v286, 29.10.2026) – wird nach leggende_viaggio4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Oktober: wieder mit dem Zug nach Venedig (derselbe Schaffner wie in Folge 1 erkennt die beiden: „Convalidati?“). Luca ist nervös, fasst ständig an die Jackentasche.
+   Acqua alta: Gummistiefel, Stege auf dem Markusplatz. Gondelfahrt (Luca bezahlt, obwohl teuer), die kleine Schachtel fällt ihm aus der Tasche, der Gondoliere fängt sie auf.
+   Sonnenuntergang auf der Rialtobrücke wie in Folge 1: „Il prossimo viaggio lo scegli tu“ → „Vuoi fare tutti i prossimi viaggi con me?“ Antrag, Ring (aus Gold, im Oktober abgeholt). Anna: Sì.
+   Stimmen wie Folge 1 (Controllore Giuseppe, Gondoliere Giuseppe tief, Annuncio Isabella). Niveau ab A2. */
+PODCASTS.viaggio.push(
+  { id:'viaggio-p5', show:'Voci in viaggio', ep:5, title:'Il prossimo viaggio', de:'Die nächste Reise',
+    place:'Venezia, un giorno di ottobre', level:'ab A2', kind:'Liebe · Venedig · Staffelfinale',
+    voices:{Anna:'Elsa', Luca:'Diego', Annuncio:'Isabella', Controllore:'Giuseppe', Gondoliere:'Giuseppe', Turista:'Diego'},
+    stil:{'':['-6%','+0Hz'], Anna:['-2%','+22Hz'], Luca:['+0%','+4Hz'], Annuncio:['+0%','+0Hz'], Controllore:['-4%','-8Hz'], Gondoliere:['-10%','-14Hz'], Turista:['+4%','-10Hz']},
+    mormorio:['Scusi, dov’è il binario?','Il treno è in orario?','Ciao, amore!','Buon viaggio!','Permesso, permesso!','A che ora parte?','Dove sono le valigie?','Corri!','Un biglietto per Venezia.','Arrivederci!'],
+    words:[['nervoso / nervosa','nervös'],['la tasca','die Tasche (an der Kleidung)'],['l’acqua alta','das Hochwasser in Venedig'],['gli stivali di gomma','die Gummistiefel'],['la passerella','der Steg (bei Hochwasser)'],['la gondola','die Gondel'],['il gondoliere','der Gondoliere'],['costoso','teuer'],['la scatola / la scatolina','die Schachtel / das Schächtelchen'],['cadere','fallen'],['prendere al volo','auffangen'],['in ginocchio','auf den Knien'],['l’anello','der Ring'],['sposare','heiraten'],['Mi vuoi sposare?','Willst du mich heiraten?'],['per sempre','für immer'],['la stagione','die Staffel; die Jahreszeit']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Bologna Centrale':'stazione_an', 'Annuncio: Il treno':'gong altoparlante', 'Il treno parte':'porte stazione_aus treno_an', 'Annuncio: Prossima':'gong altoparlante', 'Il treno si ferma':'treno_aus porte', 'Davanti alla stazione':'acqua_an gabbiani', 'Piazza San Marco':'passi', 'Nel pomeriggio':'pausa', 'La gondola parte':'pausa', 'Gondoliere: Oooh-è':'pausa', 'Gondoliere: Ecco':'pausa', 'Al tramonto':'campane', 'Luca si mette':'pausa', 'Anna: Sì. Sì!':'applausi_dopo', 'Questo era':'acqua_aus carillon_ende'},
+    text:`Buongiorno e benvenuti a «Voci in viaggio», il podcast per chi ama partire. Oggi è l’ultima puntata di questa stagione. E oggi torniamo dove tutto è cominciato: sul treno per Venezia.
+Bologna Centrale, otto di mattina, un giorno di ottobre. Anna e Luca sono sul binario quattro. Come la prima volta.
+Annuncio: Il treno regionale veloce per Venezia Santa Lucia è in partenza dal binario quattro.
+Anna: Questa volta abbiamo convalidato il biglietto?
+Luca: Sì! Due volte. Sono sicuro.
+Il treno parte. Luca guarda fuori dal finestrino. Poi tocca la tasca della giacca. Poi guarda fuori. Poi tocca di nuovo la tasca.
+Anna: Luca, che cos’hai? Sei nervoso.
+Luca: Io? No. Ho solo… caldo.
+Anna: Fa dodici gradi.
+Arriva il controllore. È un signore con i baffi grigi. Guarda i biglietti, poi guarda Anna e Luca.
+Controllore: Ma io vi conosco! Voi siete i ragazzi che correvano sul binario, tanto tempo fa!
+Anna: Sì! Siamo noi!
+Controllore: Convalidati?
+Luca: Convalidati!
+Controllore: Bravi. Buon viaggio a Venezia. E… buona fortuna, ragazzo.
+Il controllore fa l’occhiolino a Luca e va via. Anna non capisce.
+Annuncio: Prossima fermata: Venezia Santa Lucia. Capolinea.
+Il treno si ferma. Tutti scendono.
+Davanti alla stazione c’è una sorpresa: l’acqua è sulla strada. È l’acqua alta. I turisti hanno stivali di plastica, gialli, rossi, verdi.
+Luca compra due paia di stivali. Anna sceglie quelli gialli.
+Piazza San Marco è piena d’acqua, come un grande lago. La gente cammina sulle passerelle, uno dietro l’altro. Le colonne si riflettono nell’acqua.
+Anna: È incredibile. La piazza è uno specchio!
+Nel pomeriggio l’acqua torna giù. Luca si ferma davanti a una gondola nera.
+Luca: Saliamo?
+Anna: In gondola? Ma è costosissima!
+Luca: Oggi no. Oggi è un giorno speciale.
+La gondola parte piano. Il gondoliere rema in piedi, dietro di loro. Passano sotto piccoli ponti, vicino a case con i fiori alle finestre. È tutto silenzioso. Si sente solo l’acqua.
+Gondoliere: Oooh-è!
+Anna: Me lo ricordo: vuol dire «attenzione, arrivo!»
+Luca si alza per fare una foto. La gondola si muove. Dalla tasca di Luca cade una piccola scatola blu. Sta per finire nell’acqua…
+Ma il gondoliere è veloce. La prende al volo con una mano.
+Gondoliere: Ecco, signore. Questa non va nel canale. Questa va nella mano giusta.
+Luca diventa rosso come un pomodoro. Mette la scatola in tasca. Anna guarda il gondoliere. Il gondoliere guarda il cielo e canta piano.
+Al tramonto sono sul ponte di Rialto. Come la prima volta. Il Canal Grande è rosa e oro.
+Luca: Anna, ti ricordi che cosa ti ho detto qui, la prima volta?
+Anna: Sì. Hai detto: «Il prossimo viaggio lo scegli tu.»
+Luca: E tu hai scelto la Sicilia. Poi siamo andati a Napoli, dalla nonna. Poi in Puglia, con dodici chilometri di coda.
+Anna ride.
+Luca si mette in ginocchio. Tira fuori la scatola blu e la apre. Dentro c’è un anello d’oro.
+Luca: Adesso non ti chiedo dove vuoi andare. Ti chiedo solo una cosa: vuoi fare tutti i prossimi viaggi con me? Anna… mi vuoi sposare?
+Anna guarda l’anello. Poi guarda Luca. Ha le lacrime agli occhi.
+Anna: Sì. Sì! Mille volte sì!
+Intorno a loro i turisti applaudono. Qualcuno grida «Auguri!» in tante lingue diverse.
+Turista: Congratulations! Herzlichen Glückwunsch! Auguri!
+Anna: Allora era questo, la telefonata segreta a Ferragosto!
+Luca: E Marco ha quasi rovinato tutto con la sua anguria.
+Anna mette l’anello. Le campane suonano, i gabbiani volano sopra il canale.
+Anna: Luca, il prossimo viaggio lo scegliamo insieme.
+Luca: Insieme. Per sempre.
+Questo era «Voci in viaggio». Grazie per aver viaggiato con noi in questa stagione: da Venezia all’Etna, da Napoli alla Puglia, e di nuovo a Venezia. Ricordate: il viaggio più bello è quello che fate con le persone che amate. Buon viaggio a tutti!`,
+    tr:`Guten Morgen und willkommen bei „Voci in viaggio“, dem Podcast für alle, die gern verreisen. Heute ist die letzte Folge dieser Staffel. Und heute kehren wir dorthin zurück, wo alles angefangen hat: in den Zug nach Venedig.
+Bologna Hauptbahnhof, acht Uhr morgens, an einem Tag im Oktober. Anna und Luca stehen auf Gleis vier. Wie beim ersten Mal.
+Durchsage: Der Regionalexpress nach Venezia Santa Lucia fährt von Gleis vier ab.
+Anna: Haben wir diesmal die Fahrkarte entwertet?
+Luca: Ja! Zweimal. Ich bin sicher.
+Der Zug fährt ab. Luca schaut aus dem Fenster. Dann fasst er an seine Jackentasche. Dann schaut er hinaus. Dann fasst er wieder an die Tasche.
+Anna: Luca, was hast du? Du bist nervös.
+Luca: Ich? Nein. Mir ist nur … warm.
+Anna: Es sind zwölf Grad.
+Der Schaffner kommt. Es ist ein Herr mit grauem Schnurrbart. Er schaut die Fahrkarten an, dann Anna und Luca.
+Schaffner: Euch kenne ich doch! Ihr seid die jungen Leute, die vor langer Zeit über den Bahnsteig gerannt sind!
+Anna: Ja! Das sind wir!
+Schaffner: Entwertet?
+Luca: Entwertet!
+Schaffner: Brav. Gute Reise nach Venedig. Und … viel Glück, junger Mann.
+Der Schaffner zwinkert Luca zu und geht weiter. Anna versteht nicht.
+Durchsage: Nächster Halt: Venezia Santa Lucia. Endstation.
+Der Zug hält. Alle steigen aus.
+Vor dem Bahnhof gibt es eine Überraschung: Das Wasser steht auf der Straße. Es ist Acqua alta, Hochwasser. Die Touristen tragen Gummistiefel aus Plastik, gelb, rot, grün.
+Luca kauft zwei Paar Stiefel. Anna nimmt die gelben.
+Der Markusplatz ist voller Wasser, wie ein großer See. Die Leute gehen über die Stege, einer hinter dem anderen. Die Säulen spiegeln sich im Wasser.
+Anna: Unglaublich. Der Platz ist ein Spiegel!
+Am Nachmittag geht das Wasser zurück. Luca bleibt vor einer schwarzen Gondel stehen.
+Luca: Steigen wir ein?
+Anna: In eine Gondel? Die ist doch sündhaft teuer!
+Luca: Heute nicht. Heute ist ein besonderer Tag.
+Die Gondel fährt langsam los. Der Gondoliere rudert im Stehen, hinter ihnen. Sie fahren unter kleinen Brücken hindurch, an Häusern mit Blumen an den Fenstern vorbei. Alles ist still. Man hört nur das Wasser.
+Gondoliere: Oooh-è!
+Anna: Ich weiß noch: Das heißt „Achtung, ich komme!“
+Luca steht auf, um ein Foto zu machen. Die Gondel wackelt. Aus Lucas Tasche fällt eine kleine blaue Schachtel. Gleich landet sie im Wasser …
+Aber der Gondoliere ist schnell. Er fängt sie mit einer Hand auf.
+Gondoliere: Bitte sehr, der Herr. Die gehört nicht in den Kanal. Die gehört in die richtige Hand.
+Luca wird rot wie eine Tomate. Er steckt die Schachtel in die Tasche. Anna schaut den Gondoliere an. Der Gondoliere schaut in den Himmel und singt leise.
+Bei Sonnenuntergang stehen sie auf der Rialtobrücke. Wie beim ersten Mal. Der Canal Grande ist rosa und golden.
+Luca: Anna, weißt du noch, was ich dir hier beim ersten Mal gesagt habe?
+Anna: Ja. Du hast gesagt: „Die nächste Reise suchst du aus.“
+Luca: Und du hast Sizilien ausgesucht. Dann waren wir in Neapel, bei der Oma. Dann in Apulien, mit zwölf Kilometern Stau.
+Anna lacht.
+Luca kniet sich hin. Er holt die blaue Schachtel heraus und öffnet sie. Darin ist ein goldener Ring.
+Luca: Jetzt frage ich dich nicht, wohin du willst. Ich frage dich nur eins: Willst du alle nächsten Reisen mit mir machen? Anna … willst du mich heiraten?
+Anna schaut den Ring an. Dann schaut sie Luca an. Sie hat Tränen in den Augen.
+Anna: Ja. Ja! Tausendmal ja!
+Um sie herum klatschen die Touristen. Jemand ruft „Glückwunsch!“ in vielen verschiedenen Sprachen.
+Tourist: Congratulations! Herzlichen Glückwunsch! Auguri!
+Anna: Das war also der geheime Anruf an Ferragosto!
+Luca: Und Marco hätte mit seiner Wassermelone fast alles verraten.
+Anna steckt den Ring an. Die Glocken läuten, die Möwen fliegen über den Kanal.
+Anna: Luca, die nächste Reise suchen wir zusammen aus.
+Luca: Zusammen. Für immer.
+Das war „Voci in viaggio“. Danke, dass ihr in dieser Staffel mit uns gereist seid: von Venedig zum Ätna, von Neapel nach Apulien und wieder nach Venedig. Denkt daran: Die schönste Reise ist die, die ihr mit den Menschen macht, die ihr liebt. Gute Reise euch allen!`,
+    fact:'„Acqua alta“ nennt man in Venedig das Hochwasser, das vor allem im Herbst und Winter bei Flut und Südwind (Scirocco) kommt. Dann stehen Teile der Stadt, besonders der tief liegende Markusplatz, unter Wasser, und man geht über erhöhte Stege (passerelle). Seit 2020 schützt das Sperrwerk MOSE die Lagune bei sehr hohem Wasser. Eine Gondel hat übrigens eine Besonderheit: Sie ist asymmetrisch gebaut – die linke Seite ist breiter, damit sie mit einem einzigen Ruder geradeaus fährt.' }
+);
 /* Hörgeschichte „¡Buen viaje!“ (Deutsche lernen lateinamerikanisches Spanisch, v262; Wunsch der Nutzerin: Hörgeschichte für Spanisch).
    Podcast „Historias del camino“, Folge 1: Ende Oktober, kurz vor dem Día de Muertos (passt zu Stufe 1, Lektion „Xochimilco“).
    Jonas, Emiliano und Doña Lupita fahren nachts zur Llorona-Aufführung auf den Kanälen von Xochimilco; auf dem Rückweg weint jemand
