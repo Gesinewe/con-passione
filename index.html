@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 289;
+const APP_VERSION = 290;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -72099,7 +72099,7 @@ function loadSounds(id){
     .then(buf => (sounds[id].data = {idx: (idx || {})[id] || {}, buf, url: {}})));
 }
 /* In der Web-App steht in index.json unter „_v“ ein Kennzeichen pro Bündel: Ändert sich eine Aufnahme, wird das Bündel neu geladen statt aus dem Offline-Speicher */
-const soundFile = (idx, id) => (idx && idx._x2 && idx._x2.includes(id) ? idx._ext2 : idx && idx._x && idx._x.includes(id) ? idx._ext : '') + 'sounds/' + id + '.mp3' + (idx && idx._v && idx._v[id] ? '?v=' + idx._v[id] : '');
+const soundFile = (idx, id) => (idx && idx._x3 && idx._x3.includes(id) ? idx._ext3 : idx && idx._x2 && idx._x2.includes(id) ? idx._ext2 : idx && idx._x && idx._x.includes(id) ? idx._ext : '') + 'sounds/' + id + '.mp3' + (idx && idx._v && idx._v[id] ? '?v=' + idx._v[id] : '');
 const soundIndex = fetch('sounds/index.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
 /* Eine Aufnahme aus dem Bündel als data:-Adresse (wird zwischengespeichert) */
 function soundUrl(d, k){
@@ -76941,6 +76941,356 @@ Opa: Genau. Fußball ist eine Familie aus fünfzigtausend Menschen. Sogar mit ei
 Das war „Voci dallo stadio“. Bis zum nächsten Spiel. Und immer: Forza!`,
     fact:'Das Stadion von Neapel heißt seit 2020 „Stadio Diego Armando Maradona“, nach dem argentinischen Spieler, der Napoli 1987 und 1990 zur Meisterschaft führte. Viele Fans hören das Spiel im Stadion zusätzlich im Radio – eine alte italienische Gewohnheit.' }
 ];
+/* „Voci dallo stadio“ Folge 2 (v290, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_calcio.js geladen.
+   Pokalfinale der Mädchenmannschaft Partenope gegen die Leonesse auf einem Schlammplatz im Regen (Figuren aus den Lektionen: Sofia 16 Stürmerin, Bea Torhüterin, Trainerin Laura,
+   Opa Gennaro, Papa Enzo, Mama Rosa mag keinen Fußball, Pietro, Hund Tiki). 0:1, Sofia gleicht aus, Elfmeterschießen, Bea hält, Sofia rutscht beim letzten Elfmeter aus – Tor.
+   Mama Rosa kommt zum ersten Mal und wird die lauteste Zuschauerin. Angekündigt Folge 3: Italien im Halbfinale, ganz Neapel schaut auf der Piazza.
+   Stimmen wie Folge 1, Laura Isabella hoch, Bea Elsa tiefer, Rosa Isabella, Arbitro Giuseppe. Niveau ab A2. */
+PODCAST_INFO.calcio.lead = 'Wie ein kleiner Podcast: Sofia und ihre Familie zwischen Stadion, Schlammplatz und Piazza – Finale im Regen, ein Halbfinale vor dem Großbildschirm, ein verschwundener Esel und Sofias erstes Spiel im Nationaltrikot, mit Fangesängen, Pfiffen und Radiokommentar. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.calcio.push(
+  { id:'calcio-p2', show:'Voci dallo stadio', ep:2, title:'Fango e rigori', de:'Schlamm und Elfmeter',
+    place:'Un campo di periferia a Napoli, una domenica di pioggia', level:'ab A2', kind:'Spannend · Mädchenfußball',
+    voices:{Sofia:'Elsa', Bea:'Elsa', Laura:'Isabella', Nonno:'Giuseppe', Papà:'Diego', Mamma:'Isabella', Pietro:'Diego', Arbitro:'Giuseppe'},
+    stil:{'':['-4%','+0Hz'], Sofia:['+0%','+20Hz'], Bea:['-4%','+4Hz'], Laura:['+4%','+14Hz'], Nonno:['-6%','-14Hz'], Papà:['-2%','-10Hz'], Mamma:['-2%','+2Hz'], Pietro:['+6%','+40Hz'], Arbitro:['+0%','-4Hz']},
+    mormorio:['Forza Partenope!','Dai, ragazze!','Arbitro!','Che pioggia!','Passala!','Vai, Sofia!','Brava!','Che fango!','Tira!','Forza Leonesse!'],
+    words:[['la finale','das Finale'],['la coppa','der Pokal'],['il fango','der Schlamm'],['la pioggia','der Regen'],['l’ombrello','der Regenschirm'],['la squadra','die Mannschaft'],['la portiera','die Torhüterin'],['l’attaccante','die Stürmerin'],['pareggiare','ausgleichen'],['i rigori','das Elfmeterschießen'],['parare','halten (Ball)'],['scivolare','ausrutschen'],['il dischetto','der Elfmeterpunkt'],['la tifosa','die Anhängerin, der Fan'],['urlare','schreien']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È domenica':'pioggia_an', 'In tribuna':'pausa', 'L’arbitro fischia. La':'fischio_arbitro', 'Dopo dieci minuti':'palla gol', 'Mamma: Cosa':'pausa', 'Nel secondo tempo':'pausa', 'A cinque minuti':'palla gol', 'L’arbitro fischia la fine':'fischio_fine', 'Laura chiama':'pausa', 'Le Leonesse tirano':'palla', 'Al terzo rigore':'oooh', 'Bea si tuffa':'gol', 'L’ultimo rigore':'pausa', 'Sofia corre. Il piede':'palla', 'Gol!':'gol', 'Le ragazze corrono':'pausa', 'Questo era':'pioggia_aus pausa'},
+    text:`Buongiorno e benvenuti a «Voci dallo stadio», il podcast per chi ama il calcio. Oggi non andiamo allo stadio Maradona. Oggi andiamo in un piccolo campo di periferia. Non ci sono cinquantamila tifosi. Ci sono cento persone, la pioggia… e tanto fango.
+È domenica. Piove da tre giorni. Oggi c’è la finale della coppa regionale: la Partenope, la squadra di Sofia, contro le Leonesse. Il campo è marrone. Le ragazze hanno il fango fino alle ginocchia.
+In tribuna, sotto un grande ombrello, ci sono il nonno Gennaro, papà Enzo e Pietro con il cane Tiki. E c’è una sorpresa: la mamma Rosa. Lei non viene mai alle partite. Odia il calcio. Ma oggi è la finale.
+Mamma: Spiegatemi una cosa. Perché giocano con questa pioggia? Non possono giocare domani?
+Nonno: Rosa, il calcio non aspetta il sole.
+Laura, la mister, parla con le ragazze prima della partita.
+Laura: Ragazze, il campo è difficile per tutte. Non è un problema. È un vantaggio: chi ha più cuore, vince. Bea, tu sei la nostra muraglia. Sofia, tu tira appena puoi.
+L’arbitro fischia. La partita comincia. Il pallone non rotola: si ferma nelle pozzanghere.
+Dopo dieci minuti una ragazza delle Leonesse tira da lontano. Il pallone scivola sul fango e entra in porta. Bea non può fare niente. Zero a uno.
+Mamma: Cosa? Hanno segnato loro? È giusto questo? Arbitro!
+Papà: Rosa, calma. È un gol regolare.
+Mamma: Regolare? Con questo fango? Vergogna!
+Il nonno guarda papà Enzo. Papà Enzo guarda il nonno. Rosa non ha mai urlato così.
+Nel secondo tempo la Partenope attacca. Sofia corre, cade, si rialza. Ha il fango anche nei capelli.
+A cinque minuti dalla fine, Sofia riceve un passaggio. Salta una difensora. Tira di sinistro. Il pallone vola sopra il fango e entra all’angolo. Uno a uno!
+Tutta la tribuna salta. Pietro abbraccia Tiki. Il nonno perde il cappello.
+Mamma: Gol! Gol! Brava Sofia! Questa è mia figlia! Avete visto? È mia figlia!
+L’arbitro fischia la fine. Uno a uno. Adesso ci sono i rigori.
+Laura chiama le ragazze. Sono stanche, bagnate, sporche. Ma nessuna vuole andare a casa.
+Laura: Cinque rigori per squadra. Sofia, tu tiri per ultima. Bea… tocca a te.
+Le Leonesse tirano. Gol. La Partenope tira. Gol. Ancora: gol, gol.
+Al terzo rigore una ragazza della Partenope scivola sul dischetto. Il pallone va fuori. Silenzio.
+Poi tira la capitana delle Leonesse. Forte, a destra.
+Bea si tuffa nel fango. Para! Para con una mano sola! Bea è tutta marrone, solo i suoi occhi sono bianchi. Ride come una pazza.
+L’ultimo rigore. Se Sofia segna, la Partenope vince la coppa.
+Sofia prende il pallone. Lo mette sul dischetto. Il fango è profondo. Guarda la porta. Guarda la tribuna. Vede la mamma sotto l’ombrello, con le mani sul viso.
+Sofia corre. Il piede sinistro scivola. Sofia cade… ma il destro colpisce il pallone. Il pallone rotola piano, piano, piano… e la portiera si butta dall’altra parte.
+Gol! La Partenope vince la coppa!
+Le ragazze corrono verso Sofia e Bea. Si buttano tutte nel fango, una sopra l’altra. Laura piange. Il nonno canta. Tiki abbaia e corre in campo.
+E la mamma? La mamma esce da sotto l’ombrello. Cammina nel fango con le scarpe buone. Abbraccia Sofia, tutta sporca.
+Mamma: Sofia… io adesso ho capito una cosa.
+Sofia: Che cosa, mamma?
+Mamma: Il calcio è una cosa terribile. Mi è piaciuto tantissimo. La prossima partita quando c’è?
+Questo era «Voci dallo stadio». E ricordate: una vittoria nel fango vale doppio. Nella prossima puntata gioca l’Italia, in semifinale. E tutta Napoli guarda la partita in piazza. Forza azzurri!`,
+    tr:`Guten Tag und willkommen bei „Voci dallo stadio“ (Stimmen aus dem Stadion), dem Podcast für alle, die Fußball lieben. Heute gehen wir nicht ins Maradona-Stadion. Heute gehen wir auf einen kleinen Platz am Stadtrand. Da sind keine fünfzigtausend Fans. Da sind hundert Leute, der Regen … und viel Schlamm.
+Es ist Sonntag. Es regnet seit drei Tagen. Heute ist das Finale des Regionalpokals: Partenope, Sofias Mannschaft, gegen die Leonesse. Der Platz ist braun. Die Mädchen stehen bis zu den Knien im Schlamm.
+Auf der Tribüne, unter einem großen Regenschirm, sitzen Opa Gennaro, Papa Enzo und Pietro mit dem Hund Tiki. Und es gibt eine Überraschung: Mama Rosa. Sie kommt nie zu den Spielen. Sie hasst Fußball. Aber heute ist das Finale.
+Mama: Erklärt mir eins. Warum spielen sie bei diesem Regen? Können sie nicht morgen spielen?
+Opa: Rosa, Fußball wartet nicht auf die Sonne.
+Laura, die Trainerin, spricht vor dem Spiel mit den Mädchen.
+Laura: Mädels, der Platz ist für alle schwierig. Das ist kein Problem. Das ist ein Vorteil: Wer mehr Herz hat, gewinnt. Bea, du bist unsere Mauer. Sofia, du schießt, sobald du kannst.
+Der Schiedsrichter pfeift. Das Spiel beginnt. Der Ball rollt nicht: Er bleibt in den Pfützen stecken.
+Nach zehn Minuten schießt ein Mädchen der Leonesse aus der Ferne. Der Ball rutscht über den Schlamm und geht ins Tor. Bea kann nichts machen. Null zu eins.
+Mama: Was? Die haben ein Tor gemacht? Ist das erlaubt? Schiedsrichter!
+Papa: Rosa, ruhig. Das ist ein reguläres Tor.
+Mama: Regulär? Bei diesem Schlamm? Eine Schande!
+Der Opa schaut Papa Enzo an. Papa Enzo schaut den Opa an. Rosa hat noch nie so geschrien.
+In der zweiten Halbzeit greift Partenope an. Sofia rennt, fällt, steht wieder auf. Sie hat Schlamm sogar in den Haaren.
+Fünf Minuten vor Schluss bekommt Sofia einen Pass. Sie lässt eine Verteidigerin stehen. Sie schießt mit links. Der Ball fliegt über den Schlamm und geht in die Ecke. Eins zu eins!
+Die ganze Tribüne springt auf. Pietro umarmt Tiki. Der Opa verliert seinen Hut.
+Mama: Tor! Tor! Brava, Sofia! Das ist meine Tochter! Habt ihr das gesehen? Das ist meine Tochter!
+Der Schiedsrichter pfeift ab. Eins zu eins. Jetzt gibt es Elfmeterschießen.
+Laura ruft die Mädchen zusammen. Sie sind müde, nass, schmutzig. Aber keine will nach Hause.
+Laura: Fünf Elfmeter pro Mannschaft. Sofia, du schießt als Letzte. Bea … jetzt bist du dran.
+Die Leonesse schießen. Tor. Partenope schießt. Tor. Weiter: Tor, Tor.
+Beim dritten Elfmeter rutscht ein Mädchen von Partenope am Elfmeterpunkt aus. Der Ball geht daneben. Stille.
+Dann schießt die Kapitänin der Leonesse. Fest, nach rechts.
+Bea wirft sich in den Schlamm. Gehalten! Mit einer einzigen Hand gehalten! Bea ist ganz braun, nur ihre Augen sind weiß. Sie lacht wie verrückt.
+Der letzte Elfmeter. Wenn Sofia trifft, gewinnt Partenope den Pokal.
+Sofia nimmt den Ball. Sie legt ihn auf den Elfmeterpunkt. Der Schlamm ist tief. Sie schaut aufs Tor. Sie schaut zur Tribüne. Sie sieht die Mama unter dem Schirm, die Hände vor dem Gesicht.
+Sofia läuft an. Der linke Fuß rutscht weg. Sofia fällt … aber der rechte trifft den Ball. Der Ball rollt langsam, langsam, langsam … und die Torhüterin wirft sich in die andere Ecke.
+Tor! Partenope gewinnt den Pokal!
+Die Mädchen rennen zu Sofia und Bea. Sie werfen sich alle in den Schlamm, eine auf die andere. Laura weint. Der Opa singt. Tiki bellt und rennt aufs Feld.
+Und die Mama? Die Mama kommt unter dem Schirm hervor. Sie geht mit ihren guten Schuhen durch den Schlamm. Sie umarmt Sofia, die ganz schmutzig ist.
+Mama: Sofia … jetzt habe ich etwas verstanden.
+Sofia: Was denn, Mama?
+Mama: Fußball ist etwas Schreckliches. Es hat mir wahnsinnig gefallen. Wann ist das nächste Spiel?
+Das war „Voci dallo stadio“. Und denkt daran: Ein Sieg im Schlamm zählt doppelt. In der nächsten Folge spielt Italien, im Halbfinale. Und ganz Neapel schaut das Spiel auf der Piazza. Forza Azzurri!`,
+    fact:'Beim Elfmeterschießen schießt jede Mannschaft zunächst fünf Elfmeter im Wechsel; steht es danach noch gleich, geht es einzeln weiter, bis eine Mannschaft vorne liegt. Frauen- und Mädchenfußball wächst in Italien schnell: Seit 2022 ist die Serie A der Frauen eine Profiliga. Der „mister“ ist im italienischen Fußball übrigens der Trainer – das Wort kommt aus England, wo die Trainer früher „Mister“ genannt wurden.' }
+);
+/* „Voci dallo stadio“ Folge 3 (v290, 29.10.2026) – wird nach leggende_calcio2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Halbfinale (erfunden) Italien–Deutschland, Großbildschirm auf der Piazza del Plebiscito. Papa Enzo (Juve) und Opa Gennaro (Napoli) vereint in Blau.
+   Neben ihnen eine deutsche Familie aus Hamburg (Vater Jens, Tochter Lina, 12). Opa erzählt vom 4:3 von 1970 (Lektionen). Tiki verschwindet in der Menge, Lina findet ihn.
+   1:1, Verlängerung, Italien gewinnt 2:1; Jens gratuliert, Schals werden getauscht, Hupkonzert und Feuerwerk. Angekündigt Folge 4: Der Esel (’o ciuccio) ist verschwunden.
+   Stimmen: Jens Giuseppe (Italienisch mit Akzent, kurze Sätze), Lina Elsa hoch, Radio Diego mit Effekt radio. Niveau ab A2. */
+PODCASTS.calcio.push(
+  { id:'calcio-p3', show:'Voci dallo stadio', ep:3, title:'Notte azzurra in piazza', de:'Blaue Nacht auf der Piazza',
+    place:'Piazza del Plebiscito, Napoli, una sera di luglio', level:'ab A2', kind:'Spannend · Nationalmannschaft · Freundschaft',
+    voices:{Sofia:'Elsa', Pietro:'Diego', Nonno:'Giuseppe', Papà:'Diego', Jens:'Giuseppe', Lina:'Elsa', Radio:'Diego'},
+    stil:{'':['-4%','+0Hz'], Sofia:['+0%','+20Hz'], Pietro:['+6%','+40Hz'], Nonno:['-6%','-14Hz'], Papà:['-2%','-10Hz'], Jens:['-12%','+4Hz'], Lina:['+2%','+40Hz'], Radio:['+14%','+6Hz']},
+    coro:'Forza azzurri! Forza azzurri!',
+    mormorio:['Forza Italia!','Dai, azzurri!','Arbitro!','Che partita!','Siediti!','Passa la palla!','Andiamo!','Vai, vai!','Fuorigioco!','Che paura!'],
+    words:[['la nazionale','die Nationalmannschaft'],['gli azzurri','die Blauen (Italiens Nationalspieler)'],['la semifinale','das Halbfinale'],['il maxischermo','der Großbildschirm'],['la piazza','der Platz'],['la folla','die Menschenmenge'],['i tempi supplementari','die Verlängerung'],['perdersi / si è perso','sich verlaufen / er hat sich verlaufen'],['il guinzaglio','die Hundeleine'],['scambiare','tauschen'],['la sciarpa','der Schal'],['congratularsi','gratulieren'],['i caroselli','das Autokorso, Hupkonzert'],['il clacson','die Hupe'],['i fuochi d’artificio','das Feuerwerk']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È luglio':'folla_an', 'Vicino a loro':'pausa', 'Radio: Buonasera':'radio', 'La partita comincia':'coro', 'Al ventesimo':'oooh', 'Radio: Gol della':'radio', 'Il nonno non':'pausa', 'Nel secondo tempo':'trombetta', 'Radio: Gol! Gol':'radio gol', 'Pietro si gira':'pausa', 'Dieci minuti dopo':'pausa', 'Si va ai tempi':'pausa', 'Al centodiciottesimo':'pausa', 'Radio: Rete! Rete':'radio gol', 'L’arbitro fischia':'fischio_fine', 'Jens si alza':'pausa', 'Poi la piazza':'folla_aus clacson vespa fuochi', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci dallo stadio», il podcast per chi ama il calcio. Stasera non c’è il Napoli. Stasera c’è la Nazionale. E quando gioca l’Italia, a Napoli non c’è più Napoli o Juventus. Ci sono solo gli azzurri.
+È luglio. Fa caldo anche alle nove di sera. In Piazza del Plebiscito c’è un maxischermo enorme e ventimila persone. Tutti hanno qualcosa di azzurro: una maglia, una bandiera, un cappello. Stasera c’è la semifinale: Italia contro Germania.
+Sofia, Pietro, il nonno Gennaro e papà Enzo sono seduti per terra, su una coperta. Tiki ha il guinzaglio e una piccola sciarpa azzurra. Papà Enzo, per una volta, non ha la maglia della Juve.
+Papà: Stasera siamo tutti fratelli. Anche io e il nonno.
+Nonno: Solo stasera, Enzo. Domani tu torni juventino.
+Vicino a loro c’è una famiglia con le maglie bianche della Germania. Un papà alto con la barba rossa e una ragazzina con le trecce. Sembrano un po’ nervosi in mezzo a tanti italiani.
+Jens: Buonasera. Scusate… possiamo stare qui? Noi siamo di Amburgo. Siamo in vacanza.
+Nonno: Certo! Sedetevi. Qui a Napoli gli ospiti sono sacri. Anche se tifano Germania.
+Lina: Grazie! Io sono Lina. Ho dodici anni. Studio italiano a scuola!
+Pietro: Io sono Pietro. Io non studio il tedesco. Però so dire «Bratwurst».
+Sul maxischermo appare il campo. La folla fa silenzio per l’inno. Poi esplode.
+Radio: Buonasera dallo stadio! Italia–Germania, la semifinale! Una partita che ha fatto la storia!
+La partita comincia. La piazza canta. Il nonno racconta a Jens del millenovecentosettanta.
+Nonno: Italia–Germania quattro a tre! Io avevo trent’anni. Ero a Napoli, in piazza, come stasera. Abbiamo ballato fino alle cinque di mattina!
+Jens: Lo so. Mio padre ha pianto per una settimana.
+Al ventesimo minuto la Germania attacca. Un tiro forte, sulla traversa. Tutta la piazza fa «Ooooh!».
+Radio: Gol della Germania! Uno a zero per i tedeschi!
+Il nonno non parla più. Jens e Lina saltano, poi si fermano. Guardano i napoletani intorno. Si siedono piano, educati.
+Jens: Scusate. Scusate tanto.
+Nel secondo tempo l’Italia spinge. La piazza canta più forte. Le trombette suonano.
+Radio: Gol! Gol! Gol dell’Italia! Uno a uno! Di testa! Che gol!
+Ventimila persone saltano insieme. Papà Enzo abbraccia il nonno. Il nonno abbraccia Jens. Jens non sa che cosa fare e abbraccia anche lui.
+Pietro si gira per abbracciare Tiki. Ma Tiki non c’è più. C’è solo il guinzaglio vuoto.
+Pietro: Tiki! Tiki è sparito!
+Sofia: Nella folla? Con ventimila persone? Oh no!
+Cercano tutti: sotto le coperte, tra le gambe, dietro le bandiere. Niente. Pietro ha le lacrime agli occhi. La partita va avanti, ma per Pietro non esiste più.
+Dieci minuti dopo arriva Lina, di corsa. In braccio ha un cane piccolo con una sciarpa azzurra e… un panino in bocca.
+Lina: L’ho trovato! Era vicino al chiosco dei panini. Ha rubato una salsiccia a un signore!
+Pietro: Tiki! Lina, grazie! Grazie mille! Danke!
+Lina: Prego! Bitte!
+Si va ai tempi supplementari. Uno a uno. Nessuno respira.
+Al centodiciottesimo minuto, un calcio d’angolo per l’Italia. Il pallone vola nell’area. Un difensore salta più alto di tutti.
+Radio: Rete! Rete! L’Italia segna! Due a uno! Due minuti alla fine!
+L’arbitro fischia la fine. L’Italia è in finale!
+Jens si alza. È triste, ma sorride. Si toglie la sciarpa bianca della Germania e la dà al nonno.
+Jens: Complimenti. Avete meritato. E grazie per la serata. A casa nostra nessuno ci crederà.
+Il nonno si toglie la sciarpa azzurra e la mette al collo di Jens.
+Nonno: Per voi. Così la prossima volta che venite a Napoli, siete già dei nostri.
+Poi la piazza esplode. Le macchine e i motorini girano per la città suonando il clacson. Dal mare partono i fuochi d’artificio. Lina e Pietro ballano con Tiki in mezzo.
+Questo era «Voci dallo stadio». E ricordate: nel calcio si vince e si perde. Ma un’amicizia nata in piazza vale più di una finale. Nella prossima puntata c’è un mistero: il ciuccio, l’asinello simbolo del Napoli, è sparito. Forza Napoli!`,
+    tr:`Guten Tag und willkommen bei „Voci dallo stadio“, dem Podcast für alle, die Fußball lieben. Heute Abend spielt nicht Neapel. Heute Abend spielt die Nationalmannschaft. Und wenn Italien spielt, gibt es in Neapel kein Napoli oder Juventus mehr. Es gibt nur die Azzurri.
+Es ist Juli. Es ist sogar um neun Uhr abends heiß. Auf der Piazza del Plebiscito stehen ein riesiger Großbildschirm und zwanzigtausend Menschen. Alle haben etwas Blaues an: ein Trikot, eine Fahne, einen Hut. Heute Abend ist das Halbfinale: Italien gegen Deutschland.
+Sofia, Pietro, Opa Gennaro und Papa Enzo sitzen auf einer Decke auf dem Boden. Tiki trägt die Leine und einen kleinen blauen Schal. Papa Enzo hat ausnahmsweise kein Juve-Trikot an.
+Papa: Heute Abend sind wir alle Brüder. Sogar ich und der Opa.
+Opa: Nur heute Abend, Enzo. Morgen bist du wieder Juventino.
+Neben ihnen sitzt eine Familie in den weißen Trikots Deutschlands. Ein großer Vater mit rotem Bart und ein Mädchen mit Zöpfen. Sie wirken ein bisschen nervös inmitten so vieler Italiener.
+Jens: Guten Abend. Entschuldigung … dürfen wir hier sitzen? Wir sind aus Hamburg. Wir sind im Urlaub.
+Opa: Natürlich! Setzt euch. Hier in Neapel sind Gäste heilig. Auch wenn sie für Deutschland sind.
+Lina: Danke! Ich bin Lina. Ich bin zwölf. Ich lerne in der Schule Italienisch!
+Pietro: Ich bin Pietro. Ich lerne kein Deutsch. Aber ich kann „Bratwurst“ sagen.
+Auf dem Bildschirm erscheint das Spielfeld. Die Menge wird still für die Hymne. Dann bricht sie in Jubel aus.
+Radio: Guten Abend aus dem Stadion! Italien gegen Deutschland, das Halbfinale! Ein Spiel, das Geschichte geschrieben hat!
+Das Spiel beginnt. Die Piazza singt. Der Opa erzählt Jens von 1970.
+Opa: Italien gegen Deutschland vier zu drei! Ich war dreißig. Ich war in Neapel auf der Piazza, wie heute Abend. Wir haben bis fünf Uhr morgens getanzt!
+Jens: Ich weiß. Mein Vater hat eine Woche lang geweint.
+In der zwanzigsten Minute greift Deutschland an. Ein harter Schuss, an die Latte. Die ganze Piazza macht „Ooooh!“.
+Radio: Tor für Deutschland! Eins zu null für die Deutschen!
+Der Opa sagt nichts mehr. Jens und Lina springen auf, dann halten sie inne. Sie schauen die Neapolitaner um sich herum an. Sie setzen sich leise wieder hin, höflich.
+Jens: Entschuldigung. Tut mir sehr leid.
+In der zweiten Halbzeit drängt Italien. Die Piazza singt lauter. Die Tröten tröten.
+Radio: Tor! Tor! Tor für Italien! Eins zu eins! Per Kopf! Was für ein Tor!
+Zwanzigtausend Menschen springen gleichzeitig. Papa Enzo umarmt den Opa. Der Opa umarmt Jens. Jens weiß nicht, was er tun soll, und umarmt ihn auch.
+Pietro dreht sich um, um Tiki zu umarmen. Aber Tiki ist nicht mehr da. Da ist nur die leere Leine.
+Pietro: Tiki! Tiki ist weg!
+Sofia: In der Menge? Bei zwanzigtausend Menschen? O nein!
+Alle suchen: unter den Decken, zwischen den Beinen, hinter den Fahnen. Nichts. Pietro hat Tränen in den Augen. Das Spiel geht weiter, aber für Pietro gibt es kein Spiel mehr.
+Zehn Minuten später kommt Lina angerannt. Auf dem Arm hat sie einen kleinen Hund mit blauem Schal und … einem Brötchen im Maul.
+Lina: Ich habe ihn gefunden! Er war beim Würstchenstand. Er hat einem Herrn eine Wurst geklaut!
+Pietro: Tiki! Lina, danke! Tausend Dank! Danke!
+Lina: Gern geschehen! Bitte!
+Es geht in die Verlängerung. Eins zu eins. Niemand atmet.
+In der hundertachtzehnten Minute: Eckball für Italien. Der Ball fliegt in den Strafraum. Ein Verteidiger springt höher als alle anderen.
+Radio: Tor! Tor! Italien trifft! Zwei zu eins! Zwei Minuten vor Schluss!
+Der Schiedsrichter pfeift ab. Italien steht im Finale!
+Jens steht auf. Er ist traurig, aber er lächelt. Er nimmt seinen weißen Deutschlandschal ab und gibt ihn dem Opa.
+Jens: Glückwunsch. Ihr habt es verdient. Und danke für den Abend. Zu Hause wird uns das niemand glauben.
+Der Opa nimmt seinen blauen Schal ab und legt ihn Jens um den Hals.
+Opa: Für euch. Dann gehört ihr beim nächsten Mal in Neapel schon zu uns.
+Dann explodiert die Piazza. Autos und Roller fahren hupend durch die Stadt. Über dem Meer geht das Feuerwerk los. Lina und Pietro tanzen mit Tiki in der Mitte.
+Das war „Voci dallo stadio“. Und denkt daran: Im Fußball gewinnt und verliert man. Aber eine Freundschaft, die auf der Piazza entsteht, ist mehr wert als ein Finale. In der nächsten Folge gibt es ein Rätsel: Der „Ciuccio“, das Eselchen, das Symbol von Napoli, ist verschwunden. Forza Napoli!`,
+    fact:'Das WM-Halbfinale Italien–Deutschland 4:3 (nach Verlängerung) am 17. Juni 1970 in Mexiko-Stadt heißt in Italien „la partita del secolo“ – das Spiel des Jahrhunderts; im Aztekenstadion erinnert eine Gedenktafel daran. Nach großen Siegen fahren Italiener hupend mit Fahnen durch die Straßen: Diese Autokorsos heißen „caroselli“. Das Halbfinale in dieser Folge ist erfunden.' }
+);
+/* „Voci dallo stadio“ Folge 4 (v290, 29.10.2026) – wird nach leggende_calcio3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Rätsel vor Napoli–Juventus: Der große Pappmaché-Kopf des „ciuccio“ (Eselchen, Symbol von Napoli; Lektion „Il ciuccio di Fichella“), den Opa Gennaros Fanclub seit 1987
+   zu jedem Spiel gegen Juve mitbringt, ist aus dem Keller verschwunden. Pietro und Tiki ermitteln: Heu, blaue Farbe, ein Juve-Kuli. Verdacht auf Papa Enzo (Juve-Fan).
+   Auflösung: Enzo hat den kaputten Kopf heimlich restauriert – als Überraschung zu Opas 40 Jahren im Fanclub. Napoli gewinnt, Enzo sagt leise „Forza Napoli“.
+   Angekündigt Folge 5 (Finale): Sofia wird für die Nationalmannschaft nominiert. Stimmen wie Folge 1; Tonino (Fanclub) Giuseppe hoch. Niveau ab A2. */
+PODCASTS.calcio.push(
+  { id:'calcio-p4', show:'Voci dallo stadio', ep:4, title:'Chi ha rapito il ciuccio?', de:'Wer hat den Esel entführt?',
+    place:'Il club dei tifosi «Forza Partenope», Napoli, la settimana di Napoli–Juventus', level:'ab A2', kind:'Rätsel · Familie · Lustig',
+    voices:{Sofia:'Elsa', Pietro:'Diego', Nonno:'Giuseppe', Papà:'Diego', Mamma:'Isabella', Tonino:'Giuseppe', Radio:'Diego'},
+    stil:{'':['-4%','+0Hz'], Sofia:['+0%','+20Hz'], Pietro:['+6%','+40Hz'], Nonno:['-6%','-14Hz'], Papà:['-2%','-10Hz'], Mamma:['-2%','+2Hz'], Tonino:['+6%','+6Hz'], Radio:['+14%','+6Hz']},
+    coro:'Forza Napoli! Forza Napoli!',
+    mormorio:['Forza Napoli!','Dai, ragazzi!','Arbitro!','Che partita!','Siediti!','Passa la palla!','Andiamo!','Vai, vai!','Fuorigioco!','Che rigore!'],
+    words:[['il ciuccio','der Esel (neapolitanisch)'],['l’asinello','das Eselchen'],['il simbolo','das Symbol'],['la cartapesta','das Pappmaché'],['la cantina','der Keller'],['sparito / sparita','verschwunden'],['rapire','entführen'],['il detective','der Detektiv'],['l’indizio / gli indizi','der Hinweis / die Hinweise'],['il fieno','das Heu'],['la vernice','die Farbe (zum Streichen)'],['sospettare','verdächtigen'],['il colpevole','der Schuldige'],['restaurare','restaurieren'],['la sorpresa','die Überraschung']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È lunedì':'porta passi', 'Tonino: Gennaro':'pausa', 'Il nonno scende':'passi', 'Pietro prende':'pausa', 'Primo indizio':'abbaio', 'Secondo indizio':'pausa', 'Terzo indizio':'cassetto', 'Il giovedì sera':'pausa', 'Pietro: Papà':'pausa', 'La domenica':'stadio_an coro', 'Papà Enzo apre':'pausa', 'Radio: Novantesimo':'radio gol', 'Il nonno abbraccia':'pausa', 'Questo era':'stadio_aus pausa'},
+    text:`Buongiorno e benvenuti a «Voci dallo stadio», il podcast per chi ama il calcio. Oggi c’è un mistero. Un mistero con quattro zampe e due orecchie lunghe. Qualcuno ha rapito il ciuccio.
+Il ciuccio è l’asinello, il simbolo del Napoli. E nel club dei tifosi del nonno Gennaro c’è un ciuccio speciale: una testa enorme di cartapesta, grigia e blu. Dal millenovecentottantasette il club la porta allo stadio a ogni partita contro la Juventus. Porta fortuna. Sempre.
+È lunedì. Domenica c’è Napoli–Juventus. Il nonno e Pietro vanno al club per preparare le bandiere. Tonino, il presidente del club, li aspetta sulla porta. È pallido.
+Tonino: Gennaro… il ciuccio non c’è più. Ieri era in cantina. Oggi è sparito.
+Nonno: Sparito? Il ciuccio? Una settimana prima della Juve? È una catastrofe!
+Il nonno scende in cantina. Al posto della testa c’è solo un po’ di polvere e uno spazio vuoto.
+Pietro prende il quaderno di scuola e una matita.
+Pietro: Nonno, non preoccuparti. Io e Tiki risolviamo il caso. Siamo detective.
+Tiki annusa il pavimento della cantina. Poi abbaia vicino a una scatola.
+Primo indizio: per terra c’è un po’ di fieno. Fieno vero, giallo.
+Secondo indizio: sulla porta della cantina c’è una macchia di vernice blu. Fresca.
+Terzo indizio: Pietro apre un cassetto vicino alla porta. Dentro c’è una penna. Una penna bianca e nera. Con il simbolo della Juventus.
+Pietro: Nonno… guarda questa penna.
+Nonno: Bianca e nera. Qui nessuno ha una penna della Juve. Nessuno… tranne uno.
+Pietro e il nonno si guardano. Tutti e due pensano la stessa cosa. Papà Enzo. L’unico juventino della famiglia.
+Il giovedì sera, a cena, Pietro guarda il papà come un vero detective. Il papà ha una piccola macchia blu sulla mano. E un filo di fieno sulla giacca.
+Pietro: Papà, dove sei stato oggi?
+Papà: Io? Al lavoro. Perché?
+Pietro: E quella macchia blu sulla mano?
+Papà: Ah… questa? È… è inchiostro. Della penna.
+Pietro: Di quale penna? Di quella della Juve, forse?
+La mamma ride. Sofia ride. Il papà diventa rosso, ma non dice niente. Il nonno mangia in silenzio, molto offeso.
+La domenica lo stadio Maradona è pieno. Il club del nonno è in curva, ma senza ciuccio. Il nonno è triste. Tonino è triste. Tutti sono tristi.
+Dieci minuti prima della partita arriva papà Enzo. Con un grande sacco nero sulle spalle.
+Papà Enzo apre il sacco. Dentro c’è il ciuccio. Ma non è il vecchio ciuccio rotto, con le orecchie piegate e il naso rotto. È nuovo: grigio e azzurro, con gli occhi lucidi, le orecchie dritte e una criniera di fieno vero. Sul collo c’è scritto: «Gennaro, quarant’anni di tifo».
+Papà: Il ciuccio era rotto da anni. Cadeva a pezzi. L’ho portato da un amico che fa i carri di Carnevale. Abbiamo lavorato tre sere. Era una sorpresa per i tuoi quarant’anni nel club, papà.
+Nonno: Enzo… tu? Uno juventino? Hai riparato il ciuccio del Napoli?
+Papà: Per la Juve tifo io. Ma per te… tifo sempre.
+Il nonno non riesce a parlare. Abbraccia il genero. Tutta la curva applaude. Il ciuccio nuovo sale sopra le teste dei tifosi.
+La partita è difficile. Zero a zero fino alla fine. Poi, all’ultimo minuto…
+Radio: Novantesimo minuto! Calcio d’angolo! Colpo di testa… gol! Gol del Napoli! Uno a zero!
+Lo stadio esplode. Il ciuccio balla sopra la curva. E vicino al nonno, papà Enzo dice qualcosa. Piano, piano. Ma Pietro lo sente.
+Papà: Forza Napoli.
+Pietro scrive nel quaderno: «Caso risolto. Il colpevole: papà. Il reato: troppo amore.»
+Il nonno abbraccia tutti. Poi abbraccia il ciuccio.
+Questo era «Voci dallo stadio». E ricordate: nel calcio si può tifare per squadre diverse. Ma in famiglia si tifa sempre per la stessa. Nella prossima puntata, l’ultima di questa stagione, arriva una lettera da Coverciano. Sofia è stata convocata in Nazionale! Forza Napoli!`,
+    tr:`Guten Tag und willkommen bei „Voci dallo stadio“, dem Podcast für alle, die Fußball lieben. Heute gibt es ein Rätsel. Ein Rätsel mit vier Beinen und zwei langen Ohren. Jemand hat den Ciuccio entführt.
+Der Ciuccio ist das Eselchen, das Symbol von Napoli. Und im Fanclub von Opa Gennaro gibt es einen besonderen Ciuccio: einen riesigen Kopf aus Pappmaché, grau und blau. Seit 1987 bringt der Club ihn zu jedem Spiel gegen Juventus mit ins Stadion. Er bringt Glück. Immer.
+Es ist Montag. Am Sonntag ist Napoli gegen Juventus. Der Opa und Pietro gehen in den Club, um die Fahnen vorzubereiten. Tonino, der Clubpräsident, wartet an der Tür auf sie. Er ist blass.
+Tonino: Gennaro … der Ciuccio ist weg. Gestern war er im Keller. Heute ist er verschwunden.
+Opa: Verschwunden? Der Ciuccio? Eine Woche vor Juve? Das ist eine Katastrophe!
+Der Opa geht in den Keller hinunter. Wo der Kopf stand, ist nur ein bisschen Staub und ein leerer Platz.
+Pietro nimmt sein Schulheft und einen Bleistift.
+Pietro: Opa, keine Sorge. Tiki und ich lösen den Fall. Wir sind Detektive.
+Tiki schnüffelt am Kellerboden. Dann bellt er neben einer Kiste.
+Erster Hinweis: Auf dem Boden liegt ein bisschen Heu. Echtes, gelbes Heu.
+Zweiter Hinweis: An der Kellertür ist ein Fleck blaue Farbe. Frisch.
+Dritter Hinweis: Pietro öffnet eine Schublade neben der Tür. Darin liegt ein Kuli. Ein weiß-schwarzer Kuli. Mit dem Wappen von Juventus.
+Pietro: Opa … schau dir diesen Kuli an.
+Opa: Weiß und schwarz. Hier hat niemand einen Juve-Kuli. Niemand … außer einem.
+Pietro und der Opa schauen sich an. Beide denken dasselbe. Papa Enzo. Der einzige Juve-Fan der Familie.
+Am Donnerstagabend beim Essen beobachtet Pietro den Papa wie ein echter Detektiv. Der Papa hat einen kleinen blauen Fleck auf der Hand. Und einen Halm Heu auf der Jacke.
+Pietro: Papa, wo warst du heute?
+Papa: Ich? Bei der Arbeit. Warum?
+Pietro: Und der blaue Fleck auf deiner Hand?
+Papa: Ach … der? Das ist … das ist Tinte. Vom Kuli.
+Pietro: Von welchem Kuli? Vielleicht von dem von Juve?
+Die Mama lacht. Sofia lacht. Der Papa wird rot, aber er sagt nichts. Der Opa isst schweigend, sehr beleidigt.
+Am Sonntag ist das Maradona-Stadion voll. Opas Club steht in der Kurve, aber ohne Ciuccio. Der Opa ist traurig. Tonino ist traurig. Alle sind traurig.
+Zehn Minuten vor dem Spiel kommt Papa Enzo. Mit einem großen schwarzen Sack auf den Schultern.
+Papa Enzo öffnet den Sack. Darin ist der Ciuccio. Aber nicht der alte kaputte Ciuccio mit den geknickten Ohren und der kaputten Nase. Er ist neu: grau und hellblau, mit glänzenden Augen, aufrechten Ohren und einer Mähne aus echtem Heu. Am Hals steht: „Gennaro, vierzig Jahre Fan“.
+Papa: Der Ciuccio war seit Jahren kaputt. Er ist auseinandergefallen. Ich habe ihn zu einem Freund gebracht, der Karnevalswagen baut. Wir haben drei Abende gearbeitet. Es sollte eine Überraschung sein, zu deinen vierzig Jahren im Club, Papa.
+Opa: Enzo … du? Ein Juventino? Du hast den Ciuccio von Napoli repariert?
+Papa: Für Juve bin ich Fan. Aber für dich … bin ich immer Fan.
+Der Opa kann nicht sprechen. Er umarmt seinen Schwiegersohn. Die ganze Kurve klatscht. Der neue Ciuccio steigt über die Köpfe der Fans.
+Das Spiel ist schwierig. Null zu null bis zum Ende. Dann, in der letzten Minute …
+Radio: Neunzigste Minute! Eckball! Kopfball … Tor! Tor für Napoli! Eins zu null!
+Das Stadion explodiert. Der Ciuccio tanzt über der Kurve. Und neben dem Opa sagt Papa Enzo etwas. Ganz leise. Aber Pietro hört es.
+Papa: Forza Napoli.
+Pietro schreibt ins Heft: „Fall gelöst. Der Schuldige: Papa. Das Verbrechen: zu viel Liebe.“
+Der Opa umarmt alle. Dann umarmt er den Ciuccio.
+Das war „Voci dallo stadio“. Und denkt daran: Im Fußball kann man für verschiedene Mannschaften sein. Aber in der Familie ist man immer für dieselbe. In der nächsten Folge, der letzten dieser Staffel, kommt ein Brief aus Coverciano. Sofia ist für die Nationalmannschaft nominiert! Forza Napoli!`,
+    fact:'Das Wappentier des SSC Neapel ist ein Esel, „’o ciuccio“. Der Legende nach verglichen enttäuschte Fans in der schwachen Saison 1926/27 ihre Mannschaft mit dem müden Esel eines gewissen Fichella – und machten den Spott zum Symbol. Juventus Turin spielt in Schwarz-Weiß und heißt deshalb auch „la Vecchia Signora“ oder „i bianconeri“. In Coverciano bei Florenz liegt das Trainingszentrum der italienischen Nationalmannschaften.' }
+);
+/* „Voci dallo stadio“ Folge 5 (v290, 29.10.2026) – wird nach leggende_calcio4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Nach den Lektionen „La lista“ und „La lettera da Coverciano“: Sofias erstes Länderspiel, in Florenz (Stadio Franchi). Die Familie fährt mit dem Zug hin, Opa mit rotem Corno.
+   Opa gibt Sofia vorher eine alte 50-Lire-Münze: vom Abend des 5. Juni 1968 in Neapel, als Italien das EM-Halbfinale gegen die Sowjetunion per Münzwurf gewann (Lektion „La monetina di Napoli“).
+   Sofia sitzt auf der Bank, kommt in der 75. Minute, Bea nicht dabei (schaut im Fernsehen). Ecke von Sofia, dann in der Nachspielzeit ihr Tor mit links; Jubel: Eselsohren (ciuccio) für den Opa.
+   Stimmen wie Folge 1, Ct = Isabella, Speaker Isabella. Niveau ab A2. */
+PODCASTS.calcio.push(
+  { id:'calcio-p5', show:'Voci dallo stadio', ep:5, title:'La maglia azzurra', de:'Das blaue Trikot',
+    place:'Firenze, stadio Artemio Franchi, una sera di ottobre', level:'ab A2', kind:'Herz · Nationalmannschaft · Staffelfinale',
+    voices:{Sofia:'Elsa', Pietro:'Diego', Nonno:'Giuseppe', Papà:'Diego', Mamma:'Isabella', Ct:'Isabella', Speaker:'Isabella', Radio:'Diego'},
+    stil:{'':['-4%','+0Hz'], Sofia:['+0%','+20Hz'], Pietro:['+6%','+40Hz'], Nonno:['-6%','-14Hz'], Papà:['-2%','-10Hz'], Mamma:['-2%','+2Hz'], Ct:['-2%','-6Hz'], Speaker:['+0%','+0Hz'], Radio:['+14%','+6Hz']},
+    coro:'Italia! Italia! Italia!',
+    mormorio:['Forza Italia!','Dai, ragazze!','Arbitro!','Che partita!','Siediti!','Passala!','Andiamo!','Vai, vai!','Brave!','Tira!'],
+    words:[['la convocazione','die Nominierung (für die Nationalmannschaft)'],['la ct (commissaria tecnica)','die Nationaltrainerin'],['la panchina','die Ersatzbank'],['entrare in campo','eingewechselt werden, aufs Feld kommen'],['l’inno','die Hymne'],['il corno rosso','das rote Horn (Glücksbringer aus Neapel)'],['la monetina','die kleine Münze'],['il sorteggio','die Auslosung'],['testa o croce','Kopf oder Zahl'],['il calcio d’angolo','der Eckball'],['il recupero','die Nachspielzeit'],['esultare','jubeln'],['orgoglioso / orgogliosa','stolz'],['la maglia','das Trikot'],['il debutto','das Debüt, das erste Spiel']],
+    fx:{'Buonasera e benvenuti':'pausa', 'La mattina':'stazione_an', 'Il treno parte':'stazione_aus treno_an', 'Nel treno':'pausa', 'Alle sette':'treno_aus pausa', 'Il nonno tira fuori':'pausa', 'Alle otto e mezza':'stadio_an', 'Speaker:':'altoparlante', 'Le ragazze cantano':'pausa', 'L’arbitro fischia':'fischio_arbitro', 'Al settantacinquesimo':'pausa', 'Sofia corre in campo':'coro', 'All’ottantesimo':'palla oooh', 'Radio: Siamo al novantesimo':'radio', 'Radio: Sinistro':'radio gol', 'Sofia corre verso':'pausa', 'La partita finisce':'fischio_fine applausi', 'Quella notte':'stadio_aus pausa', 'Questo era':'carillon_ende'},
+    text:`Buonasera e benvenuti a «Voci dallo stadio», il podcast per chi ama il calcio. È l’ultima puntata di questa stagione. E stasera la nostra Sofia non è in tribuna. Stasera Sofia indossa la maglia azzurra. La maglia della Nazionale.
+Tre settimane fa è uscita la lista delle convocate. C’era il suo nome: Sofia Esposito. Il nonno ha pianto per due giorni. Il papà ha comprato una cornice per la lista. Bea ha mandato cinquanta messaggi.
+La mattina della partita, alla stazione di Napoli Centrale, c’è tutta la famiglia: il nonno, papà Enzo, la mamma Rosa e Pietro. Tutti hanno una maglia azzurra. Il nonno ha anche un piccolo corno rosso in tasca. Porta fortuna. Non si sa mai.
+Il treno parte per Firenze. La partita è stasera, allo stadio Franchi.
+Nel treno Pietro legge ad alta voce un messaggio di Sofia.
+Pietro: «Sono in panchina. Forse gioco, forse no. Non importa. Sono felice che ci siete tutti.»
+Mamma: Forse gioca, forse no? Allora io dico alla ct che deve farla giocare.
+Papà: Rosa, non puoi parlare con la ct.
+Mamma: Io parlo con chi voglio.
+Alle sette arrivano allo stadio. Prima della partita il nonno va vicino agli spogliatoi. Un signore della sicurezza lo ferma. Ma Sofia lo vede e corre da lui, per un minuto solo.
+Il nonno tira fuori dalla tasca una monetina vecchia. È una moneta da cinquanta lire, scura, consumata.
+Nonno: Sofia, ascolta. Il cinque giugno millenovecentosessantotto io ero allo stadio di Napoli. Italia contro Unione Sovietica, semifinale dell’Europeo. Zero a zero, anche dopo i supplementari. Allora l’arbitro ha deciso con una monetina. Testa o croce. Ha vinto l’Italia. Io quella sera avevo in tasca questa moneta. Da allora la tengo sempre con me.
+Sofia: Nonno… è la tua moneta fortunata.
+Nonno: Adesso è tua. Ma ricorda: la fortuna aiuta. Il resto lo fai tu.
+Alle otto e mezza lo stadio è pieno. Ci sono bandiere, tamburi, bambine con le trecce azzurre.
+Speaker: Signore e signori, le squadre entrano in campo!
+Le ragazze cantano l’inno. «Fratelli d’Italia, l’Italia s’è desta…» In panchina Sofia canta con la mano sul cuore e la moneta del nonno nell’altra mano.
+L’arbitro fischia. La partita è difficile. L’altra squadra è forte e veloce. Dopo un’ora è ancora zero a zero.
+Al settantacinquesimo minuto la ct si gira verso la panchina.
+Ct: Esposito! Scaldati. Entri tu.
+Sofia mette la moneta nella borsa, sotto la sciarpa del nonno. Si toglie la giacca. Il cuore batte come un tamburo.
+Sofia corre in campo. In tribuna la mamma salta in piedi e grida più forte di tutti.
+Mamma: Quella è mia figlia! Esposito! Numero diciotto!
+All’ottantesimo Sofia tira un calcio d’angolo. Una compagna colpisce di testa. Il pallone esce di pochissimo. Tutto lo stadio fa «Ooooh!».
+Radio: Siamo al novantesimo. Tre minuti di recupero. Zero a zero. Ultima azione per l’Italia…
+La capitana ruba il pallone a centrocampo. Passa a destra. Cross nell’area. Il pallone rimbalza una volta… e arriva sul sinistro di Sofia.
+Radio: Sinistro di Esposito… gol! Gol! Gol di Sofia Esposito! Al suo debutto! Al novantatreesimo! Uno a zero per l’Italia!
+Sofia corre verso la tribuna. Si mette le mani sopra la testa, come due orecchie lunghe. Le orecchie del ciuccio. È per il nonno.
+Il nonno vede le orecchie. Si toglie il cappello. Non riesce a parlare. Piange e ride insieme. Papà Enzo lo abbraccia. Pietro salta sulla sedia.
+La partita finisce. Uno a zero. Tutto lo stadio applaude la numero diciotto.
+Quella notte, in albergo, Sofia scrive un messaggio al nonno. Insieme c’è una foto: la moneta da cinquanta lire, appoggiata sulla maglia azzurra con il numero diciotto.
+Sofia: «Nonno, la moneta ha funzionato. Ma tu avevi ragione: il resto l’ho fatto io. E un po’ anche tu. Sempre.»
+Questo era «Voci dallo stadio». Grazie per aver tifato con noi in questa stagione: dal Maradona al campo di fango, dalla piazza al ciuccio, fino alla maglia azzurra. E ricordate: tutti i grandi campioni hanno cominciato in un campetto, con qualcuno che li guardava dalla tribuna. Forza Napoli, e forza azzurre!`,
+    tr:`Guten Abend und willkommen bei „Voci dallo stadio“, dem Podcast für alle, die Fußball lieben. Das ist die letzte Folge dieser Staffel. Und heute Abend sitzt unsere Sofia nicht auf der Tribüne. Heute Abend trägt Sofia das blaue Trikot. Das Trikot der Nationalmannschaft.
+Vor drei Wochen ist die Liste der Nominierten herausgekommen. Ihr Name stand darauf: Sofia Esposito. Der Opa hat zwei Tage lang geweint. Der Papa hat einen Bilderrahmen für die Liste gekauft. Bea hat fünfzig Nachrichten geschickt.
+Am Morgen des Spiels steht die ganze Familie am Hauptbahnhof von Neapel: der Opa, Papa Enzo, Mama Rosa und Pietro. Alle tragen ein blaues Trikot. Der Opa hat außerdem ein kleines rotes Horn in der Tasche. Es bringt Glück. Man weiß ja nie.
+Der Zug fährt nach Florenz ab. Das Spiel ist heute Abend, im Stadio Franchi.
+Im Zug liest Pietro eine Nachricht von Sofia laut vor.
+Pietro: „Ich sitze auf der Bank. Vielleicht spiele ich, vielleicht nicht. Egal. Ich bin froh, dass ihr alle da seid.“
+Mama: Vielleicht spielt sie, vielleicht nicht? Dann sage ich der Nationaltrainerin, dass sie sie spielen lassen muss.
+Papa: Rosa, du kannst nicht mit der Nationaltrainerin reden.
+Mama: Ich rede, mit wem ich will.
+Um sieben kommen sie am Stadion an. Vor dem Spiel geht der Opa zu den Kabinen. Ein Mann vom Sicherheitsdienst hält ihn auf. Aber Sofia sieht ihn und läuft zu ihm, nur für eine Minute.
+Der Opa holt eine alte kleine Münze aus der Tasche. Es ist eine Fünfzig-Lire-Münze, dunkel und abgegriffen.
+Opa: Sofia, hör zu. Am 5. Juni 1968 war ich im Stadion von Neapel. Italien gegen die Sowjetunion, Halbfinale der Europameisterschaft. Null zu null, auch nach der Verlängerung. Da hat der Schiedsrichter mit einer Münze entschieden. Kopf oder Zahl. Italien hat gewonnen. An diesem Abend hatte ich diese Münze in der Tasche. Seitdem trage ich sie immer bei mir.
+Sofia: Opa … das ist deine Glücksmünze.
+Opa: Jetzt gehört sie dir. Aber denk daran: Das Glück hilft. Den Rest machst du.
+Um halb neun ist das Stadion voll. Da sind Fahnen, Trommeln, kleine Mädchen mit blauen Zöpfen.
+Stadionsprecherin: Meine Damen und Herren, die Mannschaften kommen aufs Feld!
+Die Spielerinnen singen die Hymne. „Brüder Italiens, Italien ist erwacht …“ Auf der Bank singt Sofia mit, die Hand auf dem Herzen und Opas Münze in der anderen Hand.
+Der Schiedsrichter pfeift. Das Spiel ist schwierig. Die andere Mannschaft ist stark und schnell. Nach einer Stunde steht es immer noch null zu null.
+In der fünfundsiebzigsten Minute dreht sich die Nationaltrainerin zur Bank um.
+Trainerin: Esposito! Wärm dich auf. Du kommst rein.
+Sofia legt die Münze in die Tasche, unter Opas Schal. Sie zieht die Jacke aus. Ihr Herz schlägt wie eine Trommel.
+Sofia läuft aufs Feld. Auf der Tribüne springt die Mama auf und schreit lauter als alle.
+Mama: Das ist meine Tochter! Esposito! Nummer achtzehn!
+In der achtzigsten Minute tritt Sofia einen Eckball. Eine Mitspielerin köpft. Der Ball geht ganz knapp vorbei. Das ganze Stadion macht „Ooooh!“.
+Radio: Wir sind in der neunzigsten Minute. Drei Minuten Nachspielzeit. Null zu null. Letzter Angriff für Italien …
+Die Kapitänin erobert den Ball im Mittelfeld. Sie spielt nach rechts. Flanke in den Strafraum. Der Ball springt einmal auf … und landet auf Sofias linkem Fuß.
+Radio: Linker Fuß von Esposito … Tor! Tor! Tor von Sofia Esposito! Bei ihrem Debüt! In der dreiundneunzigsten Minute! Eins zu null für Italien!
+Sofia rennt zur Tribüne. Sie legt die Hände über den Kopf, wie zwei lange Ohren. Die Ohren des Ciuccio. Das ist für den Opa.
+Der Opa sieht die Ohren. Er nimmt den Hut ab. Er kann nicht sprechen. Er weint und lacht gleichzeitig. Papa Enzo umarmt ihn. Pietro springt auf den Sitz.
+Das Spiel ist aus. Eins zu null. Das ganze Stadion applaudiert der Nummer achtzehn.
+In dieser Nacht schreibt Sofia im Hotel eine Nachricht an den Opa. Dazu ein Foto: die Fünfzig-Lire-Münze, auf das blaue Trikot mit der Nummer achtzehn gelegt.
+Sofia: „Opa, die Münze hat funktioniert. Aber du hattest recht: Den Rest habe ich gemacht. Und ein bisschen auch du. Immer.“
+Das war „Voci dallo stadio“. Danke, dass ihr in dieser Staffel mit uns mitgefiebert habt: vom Maradona-Stadion zum Schlammplatz, von der Piazza zum Ciuccio bis zum blauen Trikot. Und denkt daran: Alle großen Champions haben auf einem kleinen Bolzplatz angefangen, mit jemandem, der ihnen von der Tribüne zugeschaut hat. Forza Napoli, und forza Azzurre!`,
+    fact:'Am 5. Juni 1968 stand das EM-Halbfinale Italien–Sowjetunion in Neapel auch nach Verlängerung 0:0. Elfmeterschießen gab es noch nicht – also entschied ein Münzwurf in der Schiedsrichterkabine. Italien gewann und wurde wenige Tage später in Rom Europameister. Das „cornetto“, ein kleines rotes Horn, ist in Neapel der beliebteste Glücksbringer. Die Nationalhymne „Il Canto degli Italiani“ beginnt mit den Worten „Fratelli d’Italia“.' }
+);
 /* Hörgeschichten Cani (Podcast „Voci a quattro zampe“). Figuren aus dem Thema: Giulia, Bruder Tommaso, Hündin Briciola, Opa Nicola (Schäfer in den Abruzzen), sein Hirtenhund Re. */
 PODCAST_INFO.cani = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: mit Opa Nicola, dreihundert Schafen und Briciola auf die Sommerweide in den Abruzzen – mit Schafglocken, Pfiffen, Bellen, Bach, Lagerfeuer und Wölfen, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
 PODCASTS.cani = [
