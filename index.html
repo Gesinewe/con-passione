@@ -582,7 +582,7 @@ body{margin-block:0}
 
 <script>
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 287;
+const APP_VERSION = 288;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -80624,6 +80624,289 @@ Heute ist das Kolosseum still. Es gibt Touristen, Fotografen, Katzen. Aber wenn 
 Das war „Voci dall’antica Roma“. Valete (lebt wohl), Freunde. Bis zur nächsten Geschichte.`,
     fact:'Die Geschichte ist überliefert: Der Dichter Martial beschreibt im „Buch der Schauspiele“ den Kampf von Verus und Priscus bei der Eröffnung des Kolosseums im Jahr 80 n. Chr. Kaiser Titus erklärte beide zu Siegern und schenkte ihnen die Freiheit. Livia und die Gespräche sind für die Erzählung erfunden.' }
 ];
+/* „Voci dall’antica Roma“ Folge 2 (v288, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_roma.js geladen.
+   Wahre Geschichte nach Plutarch (Caesar 1–2) und Sueton (Caesar 4 und 74): um 75 v. Chr. wird der junge Caesar bei der Insel Pharmakussa von Piraten gefangen.
+   Sie verlangen 20 Talente, Caesar lacht und sagt, er sei 50 wert. 38 Tage auf der Insel: er befiehlt Ruhe zum Schlafen, spielt mit ihnen, liest ihnen Gedichte vor,
+   nennt sie Barbaren, droht lachend, sie ans Kreuz zu schlagen. Nach dem Lösegeld holt er in Milet Schiffe, fängt sie und hält sein Wort.
+   Stimmen: Cesare Giuseppe, Capo (Piratenchef) Diego tief, Amico Diego. Niveau ab A2. */
+PODCASTS.roma.push(
+  { id:'roma-p2', show:'Voci dall’antica Roma', ep:2, title:'Cesare e i pirati', de:'Caesar und die Piraten',
+    place:'Mare Egeo, isola di Farmacussa, circa 75 a.C.', level:'ab A2', kind:'Spannend · Wahre Geschichte',
+    voices:{Cesare:'Giuseppe', Capo:'Diego', Amico:'Diego'},
+    stil:{'':['-10%','-3Hz'], Cesare:['-6%','-4Hz'], Capo:['-8%','-22Hz'], Amico:['+2%','+6Hz']},
+    words:[['il pirata / i pirati','der Pirat / die Piraten'],['la nave','das Schiff'],['catturare','gefangen nehmen'],['il prigioniero','der Gefangene'],['il riscatto','das Lösegeld'],['il talento','das Talent (große Geldmenge)'],['valere','wert sein'],['ridere / rise','lachen / er lachte'],['l’isola','die Insel'],['ordinare','befehlen'],['la poesia','das Gedicht'],['il discorso','die Rede'],['il barbaro','der Barbar'],['promettere','versprechen'],['la flotta','die Flotte'],['mantenere la parola','sein Wort halten']],
+    fx:{'Ave, ascoltatori':'tromba', 'È una mattina':'acqua_an gabbiani', 'All’improvviso':'pausa', 'I pirati salgono':'spade', 'Capo: Chi è':'pausa', 'Cesare ride':'pausa', 'Il giovane romano manda':'pausa', 'Passano i giorni':'vento_an', 'Cesare gioca':'falo_an', 'I pirati ridono':'risate_adulti', 'Dopo trentotto giorni':'falo_aus vento_aus pausa', 'I pirati lo lasciano':'pausa', 'Cesare va subito':'pausa', 'Una notte':'spade urlo', 'Cesare guarda':'pausa', 'Questo era':'acqua_aus pausa tromba_dopo'},
+    text:`Ave, ascoltatori, e benvenuti a «Voci dall’antica Roma». Oggi vi raccontiamo una storia vera. Il protagonista è un ragazzo di venticinque anni. Si chiama Gaio Giulio Cesare. Un giorno diventerà l’uomo più potente di Roma. Ma oggi è solo un giovane in viaggio. E sta per incontrare i pirati.
+È una mattina d’inverno, circa settantacinque anni prima di Cristo. Una piccola nave romana attraversa il mare Egeo. Cesare va nell’isola di Rodi, per studiare l’arte di parlare.
+All’improvviso, dietro un’isola, appaiono tre navi veloci con vele nere. Sono i pirati.
+I pirati salgono sulla nave romana con le spade in mano. I marinai hanno paura. Ma Cesare resta seduto. Sta leggendo un libro.
+Capo: Chi è questo ragazzo elegante? Tu sei ricco, vero? Per te vogliamo un riscatto. Venti talenti d’argento!
+Cesare ride. Ride forte.
+Cesare: Venti talenti? Solo venti? Voi non sapete chi avete catturato. Io valgo almeno cinquanta!
+Capo: Cinquanta?
+Cesare: Cinquanta. Chiedete cinquanta. E non un talento di meno.
+Il giovane romano manda i suoi amici nelle città vicine a cercare i soldi. Con lui restano solo un medico e due servi.
+Amico: Gaio, stai attento. Questi uomini sono pericolosi.
+Cesare: Non preoccuparti. Torna presto. E porta tanti soldi.
+I pirati portano Cesare in una piccola isola, Farmacussa. Lì lo tengono prigioniero.
+Passano i giorni. Ma Cesare non si comporta come un prigioniero. Si comporta come un re. Quando vuole dormire, manda un servo dai pirati.
+Cesare: Dite ai pirati di fare silenzio. Io adesso dormo.
+E i pirati, incredibilmente, fanno silenzio.
+Cesare gioca con loro, corre con loro, fa ginnastica sulla spiaggia. Scrive poesie e discorsi. Una sera li legge ad alta voce, vicino al fuoco.
+Cesare: Allora? Vi piace la mia poesia?
+Capo: Non capiamo niente. È noiosa.
+Cesare: Siete dei barbari! Non capite la bellezza. E vi dico una cosa: un giorno vi prenderò tutti. E vi punirò.
+I pirati ridono. Per loro è uno scherzo. Un ragazzo simpatico, un po’ pazzo.
+Dopo trentotto giorni tornano gli amici di Cesare. Hanno una nave piena di argento: cinquanta talenti. I pirati contano i soldi. Sono contentissimi.
+I pirati lo lasciano andare. Il capo lo saluta con una pacca sulla spalla.
+Capo: Arrivederci, ragazzo! Torna quando vuoi!
+Cesare: Oh, tornerò. Molto presto.
+Cesare va subito nella città di Mileto. Non ha nessun incarico, nessun esercito. Ma ha la voce e il coraggio. Trova alcune navi e alcuni soldati. E torna verso l’isola.
+Una notte le navi di Cesare arrivano a Farmacussa. I pirati dormono. Sono ancora lì, con l’argento. Non hanno il tempo di scappare.
+Cesare guarda il capo dei pirati negli occhi.
+Cesare: Ti ricordi? Io ti avevo detto: un giorno vi prenderò. Tu hai riso. Io no.
+Cesare riprende tutto l’argento. E i pirati? Sono condannati a morte, come aveva promesso. Cesare ha mantenuto la parola.
+Questa storia la raccontano due scrittori antichi, Plutarco e Svetonio. Forse è un po’ esagerata. Ma ci dice già tutto di Cesare: coraggioso, orgoglioso, e sicuro di sé. Anche con una spada sotto il naso.
+Questo era «Voci dall’antica Roma». Nella prossima puntata andiamo a Miseno, vicino a Napoli. È il ventiquattro agosto del settantanove dopo Cristo. Un ragazzo di diciassette anni vede una nuvola strana sopra il Vesuvio. Valete, amici.`,
+    tr:`Seid gegrüßt, liebe Zuhörer, und willkommen bei „Voci dall’antica Roma“ (Stimmen aus dem alten Rom). Heute erzählen wir euch eine wahre Geschichte. Die Hauptperson ist ein junger Mann von fünfundzwanzig Jahren. Er heißt Gaius Julius Caesar. Eines Tages wird er der mächtigste Mann Roms. Aber heute ist er nur ein junger Mann auf Reisen. Und gleich trifft er auf Piraten.
+Es ist ein Wintermorgen, etwa fünfundsiebzig Jahre vor Christus. Ein kleines römisches Schiff fährt über die Ägäis. Caesar ist auf dem Weg zur Insel Rhodos, um die Redekunst zu studieren.
+Plötzlich tauchen hinter einer Insel drei schnelle Schiffe mit schwarzen Segeln auf. Das sind die Piraten.
+Die Piraten entern das römische Schiff, die Schwerter in der Hand. Die Seeleute haben Angst. Aber Caesar bleibt sitzen. Er liest gerade ein Buch.
+Anführer: Wer ist dieser elegante Junge? Du bist reich, oder? Für dich wollen wir ein Lösegeld. Zwanzig Talente Silber!
+Caesar lacht. Er lacht laut.
+Caesar: Zwanzig Talente? Nur zwanzig? Ihr wisst nicht, wen ihr gefangen habt. Ich bin mindestens fünfzig wert!
+Anführer: Fünfzig?
+Caesar: Fünfzig. Verlangt fünfzig. Und kein Talent weniger.
+Der junge Römer schickt seine Freunde in die Städte in der Nähe, um das Geld zu holen. Bei ihm bleiben nur ein Arzt und zwei Diener.
+Freund: Gaius, pass auf. Diese Männer sind gefährlich.
+Caesar: Keine Sorge. Komm bald zurück. Und bring viel Geld mit.
+Die Piraten bringen Caesar auf eine kleine Insel, Pharmakussa. Dort halten sie ihn gefangen.
+Die Tage vergehen. Aber Caesar benimmt sich nicht wie ein Gefangener. Er benimmt sich wie ein König. Wenn er schlafen will, schickt er einen Diener zu den Piraten.
+Caesar: Sagt den Piraten, sie sollen still sein. Ich schlafe jetzt.
+Und die Piraten sind, unglaublich, tatsächlich still.
+Caesar spielt mit ihnen, läuft mit ihnen, macht am Strand Gymnastik. Er schreibt Gedichte und Reden. Eines Abends liest er sie am Feuer laut vor.
+Caesar: Na? Gefällt euch mein Gedicht?
+Anführer: Wir verstehen gar nichts. Das ist langweilig.
+Caesar: Ihr seid Barbaren! Ihr versteht keine Schönheit. Und ich sage euch etwas: Eines Tages fange ich euch alle. Und ich werde euch bestrafen.
+Die Piraten lachen. Sie denken, es ist ein Witz. Ein netter Junge, ein bisschen verrückt.
+Nach achtunddreißig Tagen kommen Caesars Freunde zurück. Sie haben ein Schiff voller Silber: fünfzig Talente. Die Piraten zählen das Geld. Sie sind überglücklich.
+Die Piraten lassen ihn gehen. Der Anführer verabschiedet ihn mit einem Klaps auf die Schulter.
+Anführer: Auf Wiedersehen, Junge! Komm wieder, wann du willst!
+Caesar: Oh, ich komme wieder. Sehr bald.
+Caesar fährt sofort in die Stadt Milet. Er hat kein Amt, kein Heer. Aber er hat seine Stimme und seinen Mut. Er findet ein paar Schiffe und ein paar Soldaten. Und er fährt zurück zur Insel.
+Eines Nachts erreichen Caesars Schiffe Pharmakussa. Die Piraten schlafen. Sie sind immer noch da, mit dem Silber. Sie haben keine Zeit zu fliehen.
+Caesar schaut dem Anführer der Piraten in die Augen.
+Caesar: Weißt du noch? Ich habe dir gesagt: Eines Tages fange ich euch. Du hast gelacht. Ich nicht.
+Caesar nimmt das ganze Silber zurück. Und die Piraten? Sie werden zum Tod verurteilt, wie er es versprochen hatte. Caesar hat sein Wort gehalten.
+Diese Geschichte erzählen zwei antike Schriftsteller, Plutarch und Sueton. Vielleicht ist sie ein bisschen übertrieben. Aber sie verrät schon alles über Caesar: mutig, stolz und selbstsicher. Sogar mit einem Schwert unter der Nase.
+Das war „Voci dall’antica Roma“. In der nächsten Folge reisen wir nach Misenum bei Neapel. Es ist der 24. August im Jahr 79 nach Christus. Ein siebzehnjähriger Junge sieht eine seltsame Wolke über dem Vesuv. Lebt wohl, Freunde.`,
+    fact:'Die Geschichte von Caesar und den Piraten erzählen Plutarch und Sueton: Um 75 v. Chr. wurde der junge Caesar in der Ägäis gefangen genommen und rund 38 Tage auf der Insel Pharmakussa festgehalten. Er soll das Lösegeld selbst von 20 auf 50 Talente erhöht haben – eine riesige Summe Silber. Nach seiner Freilassung ließ er die Piraten fangen und hinrichten, wie er es ihnen im Scherz angedroht hatte.' }
+);
+/* „Voci dall’antica Roma“ Folge 3 (v288, 29.10.2026) – wird nach leggende_roma2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Wahre Geschichte nach den Briefen des jüngeren Plinius an Tacitus (6,16 und 6,20): Misenum, 79 n. Chr. Plinius (17) mit Mutter und Onkel Plinius dem Älteren (Flottenkommandant).
+   Mittags die Wolke „wie eine Pinie“; Brief von Rectina, der Onkel fährt mit den Kriegsschiffen zur Rettung, schläft in Stabiae bei Pomponianus, stirbt am Strand.
+   Der Junge bleibt und liest Livius; am nächsten Morgen Erdbeben, Flucht mit der Mutter, Dunkelheit „wie in einem geschlossenen Raum“, Rufe, Asche; er lässt die Mutter nicht zurück.
+   Stimmen: Plinio Diego hoch, Madre Elsa tiefer, Zio Giuseppe tief, Messaggero Diego. Niveau ab A2. */
+PODCASTS.roma.push(
+  { id:'roma-p3', show:'Voci dall’antica Roma', ep:3, title:'La nuvola sopra il Vesuvio', de:'Die Wolke über dem Vesuv',
+    place:'Miseno, golfo di Napoli, anno 79 d.C.', level:'ab A2', kind:'Spannend · Wahre Geschichte',
+    voices:{Plinio:'Diego', Madre:'Elsa', Zio:'Giuseppe', Messaggero:'Diego'},
+    stil:{'':['-10%','-3Hz'], Plinio:['+0%','+20Hz'], Madre:['-6%','+6Hz'], Zio:['-10%','-14Hz'], Messaggero:['+10%','-8Hz']},
+    words:[['il vulcano','der Vulkan'],['la nuvola','die Wolke'],['il pino','die Pinie'],['la flotta','die Flotte'],['l’ammiraglio','der Admiral'],['la lettera','der Brief'],['salvare','retten'],['la cenere','die Asche'],['le pietre','die Steine'],['il terremoto','das Erdbeben'],['tremare','beben, zittern'],['il buio','die Dunkelheit'],['scappare','fliehen'],['respirare','atmen'],['la riva','das Ufer'],['coraggioso','mutig']],
+    fx:{'Ave, ascoltatori':'tromba', 'Siamo a Miseno':'acqua_an gabbiani', 'Verso l’una':'pausa', 'In quel momento':'passi', 'Lo zio legge':'pausa', 'Le navi partono':'pausa', 'Il ragazzo resta':'acqua_aus pausa', 'Di notte':'tuono', 'La mattina dopo':'tuono', 'Madre e figlio':'folla_an', 'Poi arriva':'vento_an', 'Plinio prende':'pausa', 'Poi, piano piano':'folla_aus vento_aus pausa', 'Tre giorni dopo':'pausa', 'Questo era':'pausa tromba_dopo'},
+    text:`Ave, ascoltatori, e benvenuti a «Voci dall’antica Roma». Oggi vi raccontiamo un giorno terribile. Lo conosciamo bene perché un ragazzo l’ha visto con i suoi occhi. Molti anni dopo l’ha scritto in due lettere. Quel ragazzo si chiama Gaio Plinio. Ha diciassette anni.
+Siamo a Miseno, nel golfo di Napoli. Qui c’è il porto della grande flotta romana. L’ammiraglio della flotta è lo zio di Plinio: un uomo grande, curioso, che scrive libri su tutta la natura.
+Verso l’una del pomeriggio, la madre di Plinio entra nella stanza.
+Madre: Gaio! Vieni a vedere! Sopra il monte c’è una nuvola strana. Grandissima.
+Plinio corre fuori. Lontano, sopra il Vesuvio, sale una nuvola enorme. È alta e stretta, poi in cima si apre. Come un pino. A volte è bianca, a volte sporca, grigia, piena di terra.
+Plinio: Zio, guarda! Che cos’è?
+Zio: Non lo so. Ma è straordinario. Devo vederlo da vicino. Prepara una nave. Vieni con me?
+Plinio: No, zio. Resto qui. Devo studiare.
+In quel momento arriva un messaggero, tutto sudato. Ha una lettera di una signora, Rectina. Lei abita sotto il monte, vicino al mare.
+Messaggero: Ammiraglio! La signora Rectina chiede aiuto! Non può scappare! Solo dal mare!
+Lo zio legge la lettera. Il suo viso cambia. Non è più curioso. È serio.
+Zio: Allora non è più un viaggio di studio. Preparate le navi grandi. Andiamo a salvare la gente.
+Le navi partono verso il Vesuvio. Sul mare cade la cenere, calda e fitta. Poi cadono pietre leggere e nere. Ma lo zio non torna indietro.
+Il ragazzo resta a casa con la madre. Prende un libro dello storico Livio e legge. Cerca di essere calmo, come un adulto.
+Di notte la terra trema. Non è la prima volta: in Campania la terra trema spesso. Ma questa notte trema forte. I muri si muovono.
+La mattina dopo il cielo è ancora grigio. La luce è debole, come malata. La terra trema di nuovo. Le case sembrano camminare.
+Madre e figlio scappano dalla città con tanta gente. Tutti hanno paura. Tutti spingono. Il mare si ritira dalla riva: sulla sabbia ci sono pesci e animali del mare.
+Poi arriva una nuvola nera. Scende dal monte e copre il mare. Copre tutto.
+Madre: Gaio, lasciami! Io sono vecchia e lenta. Tu sei giovane. Corri! Salvati!
+Plinio: No, madre. Io non mi salvo senza di te.
+Plinio prende la mano della madre. Camminano insieme, piano, nella cenere. Poi arriva il buio. Non il buio della notte. Un buio come in una stanza chiusa, quando si spegne la lampada.
+Nel buio si sentono le voci. Donne che piangono, bambini che chiamano la mamma, uomini che chiamano la moglie. Molti pensano: è la fine del mondo.
+La cenere cade, pesante. Ogni tanto Plinio e la madre si alzano e la scuotono via. Altrimenti li copre.
+Poi, piano piano, il buio diventa fumo. Torna una luce pallida. Poi il sole, giallo, come in un’eclissi. Tutto è bianco di cenere, come se avesse nevicato.
+Tre giorni dopo arriva una notizia. Lo zio è morto sulla spiaggia di Stabia. Ha salvato molte persone, ma il fumo era troppo forte. Lo hanno trovato calmo, come se dormisse.
+Quasi trent’anni dopo, lo storico Tacito chiede a Plinio: «Come è morto tuo zio?» E Plinio scrive due lettere. Sono le uniche parole di un testimone sull’eruzione del Vesuvio. Grazie a quel ragazzo, oggi sappiamo che cosa è successo a Pompei.
+Questo era «Voci dall’antica Roma». Nella prossima puntata andiamo molto lontano, nel nord della Britannia, vicino al Vallo di Adriano. Una donna romana scrive un invito alla sua migliore amica. Valete, amici.`,
+    tr:`Seid gegrüßt, liebe Zuhörer, und willkommen bei „Voci dall’antica Roma“. Heute erzählen wir euch von einem schrecklichen Tag. Wir kennen ihn gut, weil ein Junge ihn mit eigenen Augen gesehen hat. Viele Jahre später hat er ihn in zwei Briefen aufgeschrieben. Dieser Junge heißt Gaius Plinius. Er ist siebzehn Jahre alt.
+Wir sind in Misenum, am Golf von Neapel. Hier liegt der Hafen der großen römischen Flotte. Admiral der Flotte ist Plinius’ Onkel: ein großer, neugieriger Mann, der Bücher über die ganze Natur schreibt.
+Gegen ein Uhr mittags kommt Plinius’ Mutter ins Zimmer.
+Mutter: Gaius! Komm schauen! Über dem Berg ist eine seltsame Wolke. Riesengroß.
+Plinius läuft hinaus. In der Ferne, über dem Vesuv, steigt eine riesige Wolke auf. Sie ist hoch und schmal, oben breitet sie sich aus. Wie eine Pinie. Manchmal ist sie weiß, manchmal schmutzig, grau, voller Erde.
+Plinius: Onkel, schau! Was ist das?
+Onkel: Ich weiß es nicht. Aber es ist außergewöhnlich. Ich muss es aus der Nähe sehen. Lasst ein Schiff vorbereiten. Kommst du mit?
+Plinius: Nein, Onkel. Ich bleibe hier. Ich muss lernen.
+In diesem Moment kommt ein Bote, ganz verschwitzt. Er hat einen Brief von einer Frau, Rectina. Sie wohnt unter dem Berg, nahe am Meer.
+Bote: Admiral! Frau Rectina bittet um Hilfe! Sie kann nicht fliehen! Nur über das Meer!
+Der Onkel liest den Brief. Sein Gesicht verändert sich. Er ist nicht mehr neugierig. Er ist ernst.
+Onkel: Dann ist es keine Forschungsreise mehr. Macht die großen Schiffe bereit. Wir retten die Leute.
+Die Schiffe fahren zum Vesuv. Auf das Meer fällt Asche, heiß und dicht. Dann fallen leichte, schwarze Steine. Aber der Onkel kehrt nicht um.
+Der Junge bleibt mit der Mutter zu Hause. Er nimmt ein Buch des Geschichtsschreibers Livius und liest. Er versucht, ruhig zu sein, wie ein Erwachsener.
+In der Nacht bebt die Erde. Das ist nicht das erste Mal: In Kampanien bebt die Erde oft. Aber in dieser Nacht bebt sie stark. Die Mauern bewegen sich.
+Am nächsten Morgen ist der Himmel immer noch grau. Das Licht ist schwach, wie krank. Die Erde bebt wieder. Die Häuser scheinen zu wandern.
+Mutter und Sohn fliehen mit vielen Menschen aus der Stadt. Alle haben Angst. Alle drängeln. Das Meer zieht sich vom Ufer zurück: Auf dem Sand liegen Fische und Meerestiere.
+Dann kommt eine schwarze Wolke. Sie kommt vom Berg herunter und bedeckt das Meer. Sie bedeckt alles.
+Mutter: Gaius, lass mich! Ich bin alt und langsam. Du bist jung. Lauf! Rette dich!
+Plinius: Nein, Mutter. Ich rette mich nicht ohne dich.
+Plinius nimmt die Hand der Mutter. Sie gehen zusammen, langsam, durch die Asche. Dann kommt die Dunkelheit. Nicht die Dunkelheit der Nacht. Eine Dunkelheit wie in einem geschlossenen Raum, wenn die Lampe ausgeht.
+In der Dunkelheit hört man Stimmen. Frauen, die weinen, Kinder, die nach ihrer Mama rufen, Männer, die nach ihrer Frau rufen. Viele glauben, es ist das Ende der Welt.
+Die Asche fällt, schwer. Immer wieder stehen Plinius und die Mutter auf und schütteln sie ab. Sonst würde sie sie zudecken.
+Dann wird die Dunkelheit langsam zu Rauch. Ein blasses Licht kommt zurück. Dann die Sonne, gelb, wie bei einer Finsternis. Alles ist weiß von Asche, als hätte es geschneit.
+Drei Tage später kommt eine Nachricht. Der Onkel ist am Strand von Stabiae gestorben. Er hat viele Menschen gerettet, aber der Rauch war zu stark. Man hat ihn ruhig gefunden, als würde er schlafen.
+Fast dreißig Jahre später fragt der Geschichtsschreiber Tacitus Plinius: „Wie ist dein Onkel gestorben?“ Und Plinius schreibt zwei Briefe. Sie sind die einzigen Worte eines Augenzeugen über den Ausbruch des Vesuvs. Dank dieses Jungen wissen wir heute, was in Pompeji passiert ist.
+Das war „Voci dall’antica Roma“. In der nächsten Folge reisen wir sehr weit weg, in den Norden Britanniens, in die Nähe des Hadrianswalls. Eine Römerin schreibt eine Einladung an ihre beste Freundin. Lebt wohl, Freunde.`,
+    fact:'Die zwei Briefe des jüngeren Plinius an den Historiker Tacitus sind der einzige Augenzeugenbericht vom Ausbruch des Vesuvs im Jahr 79 n. Chr. Nach ihm heißen solche Ausbrüche mit hoher Säule bis heute „plinianisch“. In den Handschriften steht der 24. August; eine 2018 in Pompeji gefundene Kohle-Inschrift spricht eher für den Herbst, etwa den 24. Oktober. Plinius der Ältere, Autor der „Naturgeschichte“, starb bei dem Versuch, Menschen über das Meer zu retten.' }
+);
+/* „Voci dall’antica Roma“ Folge 4 (v288, 29.10.2026) – wird nach leggende_roma3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Wahre Geschichte: Schreibtäfelchen von Vindolanda (um 100 n. Chr.). Sulpicia Lepidina, Frau des Kommandanten Flavius Cerialis, im kalten, nassen Kastell.
+   Der Bote bringt Post: Tafel 346 (Socken, zwei Paar Sandalen, zwei Unterhosen für einen Soldaten), Tafel 628 (Masclus: „die Soldaten haben kein Bier“),
+   Tafel 291: Claudia Severa lädt zu ihrem Geburtstag am 11. September ein (III Idus Septembres), Gruß von Mann Aelius Brocchus und dem kleinen Sohn, Schluss in eigener Hand.
+   1973: Robin Birley findet die Täfelchen im feuchten Boden – älteste bekannte lateinische Handschrift einer Frau. Stimmen: Lepidina Isabella hoch, Severa Elsa, Cerialis Giuseppe,
+   Soldato Diego, Archeologo Giuseppe tief. Niveau ab A2. */
+PODCASTS.roma.push(
+  { id:'roma-p4', show:'Voci dall’antica Roma', ep:4, title:'Ti aspetto, sorella', de:'Ich warte auf dich, Schwester',
+    place:'Vindolanda, Britannia, circa 100 d.C. – e lo stesso posto nel 1973', level:'ab A2', kind:'Herz · Wahre Geschichte',
+    voices:{Lepidina:'Isabella', Severa:'Elsa', Cerialis:'Giuseppe', Soldato:'Diego', Archeologo:'Giuseppe'},
+    stil:{'':['-10%','-3Hz'], Lepidina:['-4%','+12Hz'], Severa:['-6%','+16Hz'], Cerialis:['-6%','-8Hz'], Soldato:['+8%','+4Hz'], Archeologo:['-8%','-16Hz']},
+    words:[['il forte','das Kastell, die Festung'],['il comandante','der Kommandant'],['il vallo','der Wall'],['la tavoletta di legno','das Holztäfelchen'],['l’inchiostro','die Tinte'],['la posta','die Post'],['le calze','die Socken'],['i sandali','die Sandalen'],['le mutande','die Unterhose'],['la birra','das Bier'],['il compleanno','der Geburtstag'],['invitare / l’invito','einladen / die Einladung'],['la sorella','die Schwester (hier: liebe Freundin)'],['con la sua mano','mit eigener Hand'],['l’archeologo','der Archäologe'],['scavare','graben'],['il fango','der Schlamm']],
+    fx:{'Ave, ascoltatori':'tromba', 'Siamo a Vindolanda':'pioggia_an vento_an', 'Nella casa del comandante':'falo_an', 'Un giorno arriva':'porta passi', 'La prima tavoletta':'pausa', 'La seconda':'pausa', 'Cerialis ride':'risate_adulti', 'Ma l’ultima':'pausa', 'Lepidina tiene':'pausa', 'Passano quasi':'falo_aus pioggia_aus vento_aus pausa', 'È il millenovecentosettantatré':'vento_an', 'Archeologo: Che cosa':'pausa', 'Oggi le tavolette':'vento_aus pausa', 'Questo era':'pausa tromba_dopo'},
+    text:`Ave, ascoltatori, e benvenuti a «Voci dall’antica Roma». Oggi non parliamo di imperatori o di battaglie. Parliamo di due amiche. E di una festa di compleanno, quasi duemila anni fa.
+Siamo a Vindolanda, nel nord della Britannia. È un forte romano, vicino al confine dell’impero. Qui fa freddo, tira vento e piove quasi ogni giorno. Molti soldati vengono da paesi lontani, dal sole del sud.
+Nella casa del comandante c’è un fuoco acceso. Il comandante si chiama Flavio Ceriale. Sua moglie si chiama Sulpicia Lepidina. Lei ha freddo. E ha un po’ di nostalgia.
+Lepidina: Ancora pioggia. Ancora vento. A volte penso che qui il sole non c’è mai.
+Cerialis: Coraggio, Lepidina. Oggi arriva la posta.
+Un giorno arriva un messaggero, bagnato dalla testa ai piedi. Porta un sacco di tavolette di legno. Sono sottili come una foglia. Sopra c’è scritto con l’inchiostro.
+La prima tavoletta è per un soldato. Lepidina la legge e sorride.
+Lepidina: Ascolta, Ceriale: «Ti ho mandato delle calze, due paia di sandali e due paia di mutande.» Una madre, forse. Anche in capo al mondo, una madre pensa alle mutande.
+La seconda è di un ufficiale, Mascolo. Scrive al comandante. Ha un problema molto grave.
+Soldato: Comandante, che cosa devono fare i soldati domani? E per favore, manda della birra. I soldati non hanno più birra!
+Cerialis ride. Ride così tanto che deve sedersi.
+Cerialis: Niente birra! Ecco la vera emergenza dell’impero romano!
+Ma l’ultima tavoletta è per Lepidina. È della sua migliore amica, Claudia Severa. Severa abita in un altro forte, a due giorni di strada. Lepidina la legge piano, ad alta voce.
+Severa: Claudia Severa saluta la sua Lepidina. L’undici settembre, sorella, è il giorno della mia festa di compleanno. Ti invito con tutto il cuore a venire da noi. Così con la tua presenza il giorno sarà più bello.
+Severa: Saluta il tuo Ceriale. Il mio Elio e il mio piccolo figlio lo salutano.
+Lepidina: Qui la scrittura cambia. Prima scriveva un segretario. Adesso… adesso scrive lei. Con la sua mano.
+Severa: Ti aspetterò, sorella. Stammi bene, sorella, anima mia carissima. Come spero di stare bene io. Ave.
+Lepidina tiene la tavoletta vicino al cuore. Fuori piove ancora. Ma lei non ha più freddo.
+Lepidina: Ceriale, a settembre partiamo. Non mi importa del vento. Andiamo alla festa di Severa.
+Passano quasi millenovecento anni. Il forte cade, il legno marcisce, la terra copre tutto. Ma in un punto la terra è sempre bagnata, senza aria. Lì il legno non marcisce.
+È il millenovecentosettantatré. Un archeologo, Robin Birley, scava nel fango di Vindolanda. Trova dei pezzetti di legno scuro, sottili come una foglia. Su uno vede dei segni neri.
+Archeologo: Che cosa sono? Sono… lettere. Lettere scritte! In latino!
+Oggi le tavolette di Vindolanda sono al British Museum, a Londra. Sono centinaia. Ci sono liste della spesa, ordini per i soldati, lamentele per la strada brutta. E c’è l’invito di Claudia Severa. Le poche parole scritte con la sua mano sono le più antiche parole in latino scritte da una donna, che conosciamo.
+Lepidina è andata alla festa? Non lo sappiamo. Ma sappiamo una cosa: anche duemila anni fa, un’amica poteva scaldare un giorno di pioggia.
+Questo era «Voci dall’antica Roma». Nella prossima puntata, l’ultima di questa stagione, torniamo a Roma. È il quindici marzo del quarantaquattro avanti Cristo. Le Idi di marzo. Valete, amici.`,
+    tr:`Seid gegrüßt, liebe Zuhörer, und willkommen bei „Voci dall’antica Roma“. Heute sprechen wir nicht über Kaiser oder Schlachten. Wir sprechen über zwei Freundinnen. Und über eine Geburtstagsfeier vor fast zweitausend Jahren.
+Wir sind in Vindolanda, im Norden Britanniens. Es ist ein römisches Kastell nahe der Grenze des Reiches. Hier ist es kalt, es ist windig, und es regnet fast jeden Tag. Viele Soldaten kommen aus fernen Ländern, aus der Sonne des Südens.
+Im Haus des Kommandanten brennt ein Feuer. Der Kommandant heißt Flavius Cerialis. Seine Frau heißt Sulpicia Lepidina. Ihr ist kalt. Und sie hat ein bisschen Heimweh.
+Lepidina: Schon wieder Regen. Schon wieder Wind. Manchmal denke ich, hier gibt es nie Sonne.
+Cerialis: Kopf hoch, Lepidina. Heute kommt die Post.
+Eines Tages kommt ein Bote, nass von Kopf bis Fuß. Er bringt einen Sack mit Holztäfelchen. Sie sind dünn wie ein Blatt. Darauf ist mit Tinte geschrieben.
+Das erste Täfelchen ist für einen Soldaten. Lepidina liest es und lächelt.
+Lepidina: Hör mal, Cerialis: „Ich habe dir Socken geschickt, zwei Paar Sandalen und zwei Unterhosen.“ Vielleicht von einer Mutter. Auch am Ende der Welt denkt eine Mutter an die Unterhosen.
+Das zweite ist von einem Offizier, Masclus. Er schreibt an den Kommandanten. Er hat ein sehr ernstes Problem.
+Soldat: Kommandant, was sollen die Soldaten morgen tun? Und bitte schick Bier. Die Soldaten haben kein Bier mehr!
+Cerialis lacht. Er lacht so sehr, dass er sich setzen muss.
+Cerialis: Kein Bier! Das ist der wahre Notfall des Römischen Reiches!
+Aber das letzte Täfelchen ist für Lepidina. Es ist von ihrer besten Freundin, Claudia Severa. Severa wohnt in einem anderen Kastell, zwei Tagesreisen entfernt. Lepidina liest es langsam und laut vor.
+Severa: Claudia Severa grüßt ihre Lepidina. Am elften September, Schwester, ist der Tag meiner Geburtstagsfeier. Ich lade dich von ganzem Herzen ein, zu uns zu kommen. So wird der Tag durch deine Anwesenheit schöner.
+Severa: Grüß deinen Cerialis. Mein Aelius und mein kleiner Sohn lassen ihn grüßen.
+Lepidina: Hier ändert sich die Schrift. Vorher hat ein Schreiber geschrieben. Jetzt … jetzt schreibt sie selbst. Mit eigener Hand.
+Severa: Ich werde dich erwarten, Schwester. Leb wohl, Schwester, meine liebste Seele. So wie ich hoffe, dass es mir gut geht. Sei gegrüßt.
+Lepidina hält das Täfelchen ans Herz. Draußen regnet es immer noch. Aber ihr ist nicht mehr kalt.
+Lepidina: Cerialis, im September fahren wir los. Der Wind ist mir egal. Wir gehen zu Severas Fest.
+Fast neunzehnhundert Jahre vergehen. Das Kastell verfällt, das Holz verrottet, die Erde bedeckt alles. Aber an einer Stelle ist die Erde immer nass, ohne Luft. Dort verrottet das Holz nicht.
+Es ist das Jahr 1973. Ein Archäologe, Robin Birley, gräbt im Schlamm von Vindolanda. Er findet kleine Stücke dunkles Holz, dünn wie ein Blatt. Auf einem sieht er schwarze Zeichen.
+Archäologe: Was ist das? Das sind … Buchstaben. Geschriebene Briefe! Auf Latein!
+Heute liegen die Täfelchen von Vindolanda im British Museum in London. Es sind Hunderte. Es gibt Einkaufslisten, Befehle für die Soldaten, Beschwerden über die schlechte Straße. Und es gibt die Einladung von Claudia Severa. Die wenigen Worte mit ihrer eigenen Hand sind die ältesten lateinischen Worte, die wir kennen, die eine Frau geschrieben hat.
+Ist Lepidina zum Fest gefahren? Wir wissen es nicht. Aber wir wissen eins: Auch vor zweitausend Jahren konnte eine Freundin einen Regentag wärmen.
+Das war „Voci dall’antica Roma“. In der nächsten Folge, der letzten dieser Staffel, kehren wir nach Rom zurück. Es ist der 15. März im Jahr 44 vor Christus. Die Iden des März. Lebt wohl, Freunde.`,
+    fact:'Die Schreibtäfelchen von Vindolanda am Hadrianswall gehören zu den wichtigsten Funden aus dem römischen Britannien. Seit 1973 wurden Hunderte dünne Holzbrettchen mit Tintenschrift aus der Zeit um 100 n. Chr. gefunden – erhalten, weil der nasse, luftdichte Boden sie konserviert hat. Die Geburtstagseinladung von Claudia Severa an Sulpicia Lepidina (Tafel 291) enthält einige Zeilen in Severas eigener Handschrift: die älteste bekannte lateinische Handschrift einer Frau.' }
+);
+/* „Voci dall’antica Roma“ Folge 5 (v288, 29.10.2026) – wird nach leggende_roma4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Wahre Geschichte nach Plutarch (Caesar 63–66) und Sueton (Caesar 81–82): Abendessen bei Lepidus („der unerwartete Tod“), Nacht mit Sturm, Calpurnias Traum,
+   Decimus Brutus überredet Caesar, Artemidoros’ Warnzettel ungelesen, Spurinna: „Die Iden sind gekommen – aber noch nicht vorbei.“ Kurie des Pompeius, Tillius Cimber zieht an der Toga,
+   Casca zuerst, 23 Stiche, Caesar verhüllt sein Gesicht, fällt am Fuß der Pompeius-Statue. „Auch du, Sohn?“ nur als Überlieferung („alcuni raccontano“). Schluss der Staffel: Cesare der Piraten (Folge 2).
+   Stimmen: Cesare Giuseppe, Calpurnia Elsa, Spurinna Diego tief, Decimo Diego, Lepido Giuseppe hoch, Artemidoro Diego. Niveau ab A2. */
+PODCASTS.roma.push(
+  { id:'roma-p5', show:'Voci dall’antica Roma', ep:5, title:'Le Idi di marzo', de:'Die Iden des März',
+    place:'Roma, 14 e 15 marzo, anno 44 a.C.', level:'ab A2', kind:'Spannend · Wahre Geschichte · Staffelfinale',
+    voices:{Cesare:'Giuseppe', Calpurnia:'Elsa', Spurinna:'Diego', Decimo:'Diego', Lepido:'Giuseppe', Artemidoro:'Diego'},
+    stil:{'':['-10%','-3Hz'], Cesare:['-6%','-6Hz'], Calpurnia:['-6%','+10Hz'], Spurinna:['-14%','-24Hz'], Decimo:['+4%','+6Hz'], Lepido:['+2%','+6Hz'], Artemidoro:['+10%','-4Hz']},
+    words:[['le Idi','die Iden (Monatsmitte, hier der 15. März)'],['l’indovino','der Wahrsager'],['il pericolo','die Gefahr'],['il sogno','der Traum'],['sognare','träumen'],['il senato','der Senat'],['il senatore / i senatori','der Senator / die Senatoren'],['la congiura','die Verschwörung'],['il pugnale','der Dolch'],['la ferita','die Wunde'],['la statua','die Statue'],['la toga','die Toga'],['inaspettato','unerwartet'],['avvertire','warnen'],['non ancora','noch nicht'],['il dittatore','der Diktator']],
+    fx:{'Ave, ascoltatori':'tromba', 'È la sera del quattordici':'falo_an', 'Lepido: Cesare':'pausa', 'Quella notte':'falo_aus vento_an tuono', 'Calpurnia si sveglia':'pausa', 'La mattina':'vento_aus pausa', 'Ma poi arriva':'porta', 'Cesare esce':'folla_an', 'Artemidoro:':'pausa', 'Davanti al senato':'pausa', 'Cesare entra':'folla_aus passi', 'Un senatore':'pausa', 'È il segnale':'spade urlo', 'Cesare cerca':'pausa', 'Cade ai piedi':'pausa', 'I congiurati':'pausa', 'Questo era':'pausa tromba_dopo'},
+    text:`Ave, ascoltatori, e benvenuti a «Voci dall’antica Roma». È l’ultima puntata di questa stagione. Vi ricordate il ragazzo che rideva dei pirati? Sono passati più di trent’anni. Oggi Gaio Giulio Cesare è il padrone di Roma. È dittatore per tutta la vita. Molti lo amano. Ma molti senatori hanno paura di lui. Troppa paura.
+È la sera del quattordici marzo. Cesare cena a casa del suo amico Lepido. Mangiano, bevono, parlano. A un certo punto, qualcuno fa una domanda strana.
+Lepido: Cesare, secondo te, qual è la morte migliore?
+Cesare: Quella inaspettata.
+Tutti ridono. Nessuno sa che cosa succederà il giorno dopo.
+Quella notte c’è un forte vento. All’improvviso le finestre e le porte della camera si aprono da sole. Fuori c’è la luna, e il cielo è strano.
+Calpurnia si sveglia piangendo. È la moglie di Cesare.
+Calpurnia: Gaio! Ho fatto un sogno terribile. Ti tenevo tra le braccia, ed eri morto. Ti prego: oggi non andare in senato!
+Cesare: È solo un sogno, Calpurnia.
+Calpurnia: Io non faccio mai sogni così. Mai. Resta a casa. Per me.
+La mattina Cesare non si sente bene. Pensa di restare a casa. Anche gli indovini dicono che i segni sono cattivi. Cesare decide: oggi niente senato.
+Ma poi arriva un amico, Decimo Bruto. Cesare si fida di lui. Ma Decimo fa parte della congiura.
+Decimo: Cesare, i senatori ti aspettano. Vogliono darti un grande onore. Vuoi dire che non vieni per un sogno di tua moglie? Che cosa diranno di te?
+Cesare guarda Calpurnia. Poi guarda Decimo. Prende la toga.
+Cesare: Va bene. Andiamo.
+Cesare esce per la strada. C’è tanta gente. Tutti vogliono parlare con lui, dargli una lettera, chiedere un favore. Un uomo greco, Artemidoro, si avvicina e gli mette in mano un piccolo rotolo.
+Artemidoro: Cesare, leggi questo! Leggilo subito, da solo! È importante. Riguarda te!
+Cesare prova a leggere, ma la gente spinge. Tiene il rotolo in mano. Non lo legge mai. Dentro c’erano i nomi dei congiurati.
+Davanti al senato c’è un vecchio indovino, Spurinna. Qualche mese prima aveva detto a Cesare: «Attento al pericolo. Fino alle Idi di marzo.» Cesare lo vede e sorride.
+Cesare: Spurinna! Le Idi di marzo sono arrivate. E io sto bene.
+Spurinna: Sì, Cesare. Sono arrivate. Ma non sono ancora passate.
+Cesare entra nella sala del senato, vicino al grande teatro di Pompeo. I senatori si alzano. Cesare si siede.
+Un senatore, Tillio Cimbro, si avvicina. Chiede un favore per suo fratello. Cesare dice di no. Allora Cimbro prende la toga di Cesare con le due mani e la tira giù.
+È il segnale. Un altro senatore, Casca, tira fuori un pugnale e colpisce. Poi arrivano gli altri. Sono tanti. Tutti hanno un pugnale sotto la toga.
+Cesare cerca di difendersi. Ma i pugnali sono da tutte le parti. Tra i congiurati vede anche Marco Bruto, un giovane che amava come un figlio. Alcuni raccontano che Cesare gli ha detto in greco: «Anche tu, figlio?» Poi Cesare copre la faccia con la toga.
+Cade ai piedi della statua di Pompeo, il suo vecchio nemico. Ventitré ferite. Il dittatore più potente di Roma è morto.
+I congiurati corrono fuori e gridano: «Roma è libera!» Ma Roma non è felice. Il popolo piange Cesare. E presto comincia una nuova guerra. Alla fine, il figlio adottivo di Cesare, Ottaviano, diventa il primo imperatore: Augusto. La repubblica, quella che i congiurati volevano salvare, non torna più.
+E il piccolo rotolo di Artemidoro? Lo hanno trovato nella mano di Cesare. Ancora chiuso.
+Questo era «Voci dall’antica Roma». Grazie per aver viaggiato con noi in questa stagione: dal Colosseo ai pirati, dal Vesuvio alla Britannia, fino alle Idi di marzo. La storia non è solo nei libri. È nelle voci delle persone. Valete, amici.`,
+    tr:`Seid gegrüßt, liebe Zuhörer, und willkommen bei „Voci dall’antica Roma“. Das ist die letzte Folge dieser Staffel. Erinnert ihr euch an den jungen Mann, der über die Piraten lachte? Mehr als dreißig Jahre sind vergangen. Heute ist Gaius Julius Caesar der Herr über Rom. Er ist Diktator auf Lebenszeit. Viele lieben ihn. Aber viele Senatoren haben Angst vor ihm. Zu viel Angst.
+Es ist der Abend des vierzehnten März. Caesar isst bei seinem Freund Lepidus zu Abend. Sie essen, trinken, reden. Irgendwann stellt jemand eine seltsame Frage.
+Lepidus: Caesar, was ist deiner Meinung nach der beste Tod?
+Caesar: Der unerwartete.
+Alle lachen. Niemand weiß, was am nächsten Tag passieren wird.
+In dieser Nacht weht ein starker Wind. Plötzlich gehen die Fenster und Türen des Schlafzimmers von selbst auf. Draußen scheint der Mond, und der Himmel ist seltsam.
+Calpurnia wacht weinend auf. Sie ist Caesars Frau.
+Calpurnia: Gaius! Ich hatte einen schrecklichen Traum. Ich hielt dich in den Armen, und du warst tot. Ich bitte dich: Geh heute nicht in den Senat!
+Caesar: Es ist nur ein Traum, Calpurnia.
+Calpurnia: Ich habe nie solche Träume. Nie. Bleib zu Hause. Für mich.
+Am Morgen fühlt sich Caesar nicht gut. Er überlegt, zu Hause zu bleiben. Auch die Wahrsager sagen, die Zeichen sind schlecht. Caesar entscheidet: Heute kein Senat.
+Aber dann kommt ein Freund, Decimus Brutus. Caesar vertraut ihm. Aber Decimus gehört zur Verschwörung.
+Decimus: Caesar, die Senatoren warten auf dich. Sie wollen dir eine große Ehre erweisen. Willst du sagen, dass du wegen eines Traums deiner Frau nicht kommst? Was werden die Leute über dich sagen?
+Caesar schaut Calpurnia an. Dann schaut er Decimus an. Er nimmt die Toga.
+Caesar: Gut. Gehen wir.
+Caesar geht auf die Straße. Da sind viele Leute. Alle wollen mit ihm sprechen, ihm einen Brief geben, um einen Gefallen bitten. Ein Grieche, Artemidoros, kommt näher und drückt ihm eine kleine Schriftrolle in die Hand.
+Artemidoros: Caesar, lies das! Lies es sofort, allein! Es ist wichtig. Es geht um dich!
+Caesar versucht zu lesen, aber die Leute drängeln. Er behält die Rolle in der Hand. Er liest sie nie. Darin standen die Namen der Verschwörer.
+Vor dem Senat steht ein alter Wahrsager, Spurinna. Ein paar Monate vorher hatte er zu Caesar gesagt: „Hüte dich vor der Gefahr. Bis zu den Iden des März.“ Caesar sieht ihn und lächelt.
+Caesar: Spurinna! Die Iden des März sind gekommen. Und mir geht es gut.
+Spurinna: Ja, Caesar. Sie sind gekommen. Aber sie sind noch nicht vorbei.
+Caesar betritt den Sitzungssaal des Senats, neben dem großen Theater des Pompeius. Die Senatoren stehen auf. Caesar setzt sich.
+Ein Senator, Tillius Cimber, kommt näher. Er bittet um einen Gefallen für seinen Bruder. Caesar sagt Nein. Da packt Cimber Caesars Toga mit beiden Händen und zieht sie herunter.
+Das ist das Zeichen. Ein anderer Senator, Casca, zieht einen Dolch und sticht zu. Dann kommen die anderen. Es sind viele. Alle haben einen Dolch unter der Toga.
+Caesar versucht, sich zu wehren. Aber die Dolche sind überall. Unter den Verschwörern sieht er auch Marcus Brutus, einen jungen Mann, den er wie einen Sohn liebte. Manche erzählen, Caesar habe auf Griechisch zu ihm gesagt: „Auch du, Sohn?“ Dann verhüllt Caesar sein Gesicht mit der Toga.
+Er fällt am Fuß der Statue des Pompeius, seines alten Feindes. Dreiundzwanzig Wunden. Der mächtigste Diktator Roms ist tot.
+Die Verschwörer laufen hinaus und rufen: „Rom ist frei!“ Aber Rom ist nicht glücklich. Das Volk beweint Caesar. Und bald beginnt ein neuer Krieg. Am Ende wird Caesars Adoptivsohn Octavian der erste Kaiser: Augustus. Die Republik, die die Verschwörer retten wollten, kommt nie mehr zurück.
+Und die kleine Schriftrolle von Artemidoros? Man hat sie in Caesars Hand gefunden. Noch immer ungeöffnet.
+Das war „Voci dall’antica Roma“. Danke, dass ihr in dieser Staffel mit uns gereist seid: vom Kolosseum zu den Piraten, vom Vesuv nach Britannien, bis zu den Iden des März. Geschichte steht nicht nur in Büchern. Sie lebt in den Stimmen der Menschen. Lebt wohl, Freunde.`,
+    fact:'An den Iden des März (15. März) 44 v. Chr. wurde Julius Caesar in der Kurie des Pompeius in Rom von etwa 60 Verschwörern um Marcus Brutus und Cassius ermordet; Sueton zählt 23 Stichwunden. Die Geschichten von Calpurnias Traum, dem Wahrsager Spurinna und dem ungelesenen Warnzettel erzählen Plutarch und Sueton. Das berühmte „Et tu, Brute?“ stammt aus Shakespeares Drama – die antiken Quellen berichten höchstens von einem griechischen „Kai sy, teknon?“ („Auch du, Kind?“).' }
+);
 /* Hörgeschichte „Sagen & Legenden“ (Italiener lernen Deutsch, v214). Figuren aus dem Thema: Chiara Bianchi (Illustratorin aus Bologna),
    Lukas Brandt (Märchenführer in der Grimmwelt Kassel), seine Oma Gerda (Thale im Harz) mit Kater Mephisto.
    Lukas und Chiara nehmen eine Folge ihres Podcasts „Sagenhaft“ auf: Walpurgisnacht in Thale. Erzählerin Katja. Seiten-Texte auf Italienisch. */
