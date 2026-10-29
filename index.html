@@ -591,7 +591,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 297;
+const APP_VERSION = 298;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -78348,6 +78348,88 @@ Emma: Heute Nacht habe ich etwas verstanden. Auch Hunde haben Angst. Und dann �
 Paolo: Willkommen in der Familie, Emma. Jetzt bist du offiziell Briciolas Freundin.
 Das war „Voci a quattro zampe“. Und denkt daran: Bei einem Hund, der Angst hat, und bei einem Menschen, der Angst hat, hilft dasselbe: Ruhe, Geduld und eine offene Hand. In der nächsten Folge hat Frau Pina eine verrückte Idee: Sie will ihre Chihuahua-Hündin Principessa mit Salame verheiraten, dem Dackel von Luca. Wau euch allen!`,
     fact:'Hundetrainer raten Menschen mit Angst vor Hunden: nicht in die Augen starren, sich seitlich hinstellen oder hinsetzen, die Hand tief halten und den Hund kommen lassen – so wirkt man für den Hund nicht bedrohlich. Viele Hunde haben selbst Angst vor Gewitter und Feuerwerk. In Lese-Programmen lesen Kinder Hunden laut vor: Der Hund hört geduldig zu und korrigiert nie.' }
+);
+/* „Voci a quattro zampe“ Folge 3 (v294, 29.10.2026) – wird nach leggende_cani2.js geladen, löst die Ankündigung aus Folge 2 ein.
+   Frau Pina (Nachbarin) veranstaltet im Parco Sempione eine „Hochzeit“ für ihre Chihuahua-Hündin Principessa und Lucas Dackel Salame: Schleier, Fliege, Hundetorte aus Leberwurst,
+   Tommaso (8) als „Pfarrer“ mit Bilderbuch. Salame jagt eine Ente, springt in den Teich, Principessa hinterher (mit Schleier), Briciola rettet beide; die Torte frisst Briciola.
+   Am Ende „Ja“ mit zwei nassen Bellern, alle lachen, Emma fotografiert (keine Angst mehr). Angekündigt Folge 4: Briciola als Suchhündin im Schnee von Scanno.
+   Stimmen: Pina Isabella hoch, Luca Diego hoch. Niveau ab A2. */
+PODCASTS.cani.push(
+  { id:'cani-p3', show:'Voci a quattro zampe', ep:3, title:'Le nozze di Principessa', de:'Principessas Hochzeit',
+    place:'Il Parco Sempione, Milano, un sabato di ottobre', level:'ab A2', kind:'Lustig · Hunde · Nachbarn',
+    voices:{Giulia:'Isabella', Tommaso:'Elsa', Emma:'de-DE-SeraphinaMultilingualNeural', Pina:'Isabella', Luca:'Diego'},
+    stil:{'':['-6%','+0Hz'], Giulia:['+0%','+14Hz'], Tommaso:['+6%','+44Hz'], Emma:['-6%','+0Hz'], Pina:['+6%','+24Hz'], Luca:['+4%','+30Hz']},
+    words:[['le nozze','die Hochzeit'],['la sposa','die Braut'],['lo sposo','der Bräutigam'],['il velo','der Schleier'],['il papillon','die Fliege'],['gli invitati','die Gäste'],['la torta','die Torte'],['il bassotto','der Dackel'],['il chihuahua','der Chihuahua'],['il laghetto','der kleine See, der Teich'],['l’anatra','die Ente'],['inseguire','verfolgen, jagen'],['bagnato / bagnata','nass'],['Sì, lo voglio','Ja, ich will'],['gli sposi','das Brautpaar']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'Tutto comincia':'campanello_porta', 'Il sabato':'uccelli_an', 'Pina ha preparato':'pausa', 'Alle undici':'campane', 'Tommaso apre':'pausa', 'In quel momento':'abbaio', 'Salame salta':'tuffo', 'Principessa guarda':'tuffo', 'Giulia: Briciola! Vai':'abbaio', 'Briciola si tuffa':'tuffo', 'Briciola esce':'pausa', 'Ma quando tornano':'pausa', 'Tutti ridono':'risate_adulti', 'Tommaso: Salame':'pausa', 'Tutti applaudono':'applausi', 'Questo era':'uccelli_aus pausa'},
+    text:`Buongiorno e benvenuti a «Voci a quattro zampe», il podcast per chi ama i cani. Oggi è un giorno di festa. C’è un matrimonio. Ma gli sposi hanno quattro zampe. E uno dei due pesa due chili.
+Tutto comincia un lunedì. Suona il campanello. È la signora Pina, la vicina del secondo piano. In braccio ha Principessa, la sua chihuahua. Principessa ha un maglioncino rosa.
+Pina: Giulia, cara, ho una notizia importantissima. Principessa è innamorata! Di Salame, il bassotto del tuo amico Luca. Quando lo vede al parco, trema tutta. Allora ho deciso: facciamo il matrimonio!
+Giulia: Il matrimonio? Di due cani?
+Pina: Certo! Sabato, al Parco Sempione. Con il velo, la torta, gli invitati. Tutto!
+Il sabato il Parco Sempione è pieno di sole. Gli alberi sono gialli e rossi. Vicino al laghetto, la signora Pina ha preparato tutto: un tappeto rosso, sedie di plastica, fiori e un tavolino con una torta.
+Pina ha preparato anche una torta speciale per cani: carne, carote e un cuore di formaggio. Sopra ci sono due piccoli cani di zucchero.
+Gli invitati sono dieci persone e quindici cani. C’è Giulia con Briciola, Emma con la macchina fotografica, Luca con Salame. Salame ha un papillon nero. Principessa ha un velo bianco, lunghissimo.
+Alle undici le campane del Castello Sforzesco suonano. Tommaso, otto anni, fa il prete. Ha una giacca di papà, troppo grande, e un libro di favole in mano.
+Tommaso apre il libro e parla con la voce seria.
+Tommaso: Cari amici e cari cani. Siamo qui oggi per unire Principessa e Salame. Principessa, vuoi tu prendere Salame come tuo sposo? Nella salute e nella malattia, nei biscotti e nelle crocchette?
+In quel momento Salame vede un’anatra. Un’anatra grande, bianca, che cammina vicino al laghetto. Salame è un bassotto. I bassotti nascono per inseguire. Salame abbaia e corre via.
+Luca: Salame! No! Torna qui! Il matrimonio!
+Salame salta nel laghetto. L’anatra vola via, offesa.
+Principessa guarda il suo sposo nell’acqua. Poi corre. Con il velo. E salta nel laghetto anche lei.
+Pina: Principessa! Il velo! Non sa nuotare! Non sa nuotare!
+Principessa nuota. Male, ma nuota. Il velo bianco galleggia dietro di lei come una piccola barca.
+Giulia: Briciola! Vai! Prendili!
+Briciola si tuffa. Nuota veloce, prende Principessa delicatamente per il maglioncino e la porta a riva. Poi torna indietro, prende Salame per il papillon e porta a riva anche lui.
+Briciola esce dall’acqua. Si scuote. Tutti gli invitati vicino a lei diventano bagnati. Emma fa foto, foto, foto. Ride così tanto che piange.
+Ma quando tornano al tavolino… la torta non c’è più. Al suo posto c’è solo un piatto vuoto. E Briciola, con un pezzo di carota sul naso.
+Giulia: Briciola! Hai mangiato la torta degli sposi?
+Briciola guarda Giulia. Scodinzola. È la colpa più felice del mondo.
+Tutti ridono. Anche la signora Pina, che però si asciuga gli occhi con il fazzoletto.
+Pina: Pazienza. Una sposa bagnata, sposa fortunata. Così dicono, no? Tommaso, continua!
+Tommaso: Salame, vuoi tu prendere Principessa come tua sposa?
+Salame, bagnato, con il papillon storto, abbaia una volta.
+Tommaso: Principessa, vuoi tu prendere Salame?
+Principessa, bagnata, con il velo pieno di foglie, abbaia anche lei. Un abbaio piccolo e acuto.
+Tommaso: Allora vi dichiaro marito e moglie! Potete annusarvi!
+Tutti applaudono. I cani abbaiano. Le persone nel parco si fermano a guardare. Un signore anziano dice: «A Milano ne ho viste tante. Ma questa mai.»
+Emma mostra le foto a Giulia. Nella più bella c’è Briciola che esce dall’acqua con Salame in bocca, e dietro Principessa con il velo.
+Emma: Giulia, un mese fa avevo paura dei cani. Oggi ho fatto cento foto di cani bagnati. E sono la persona più felice del parco.
+Questo era «Voci a quattro zampe». E ricordate: i cani non hanno bisogno di un matrimonio per volersi bene. Ma una festa… non fa mai male. Nella prossima puntata Giulia e Briciola vanno a Scanno, dal nonno. C’è tanta neve. E qualcuno si è perso in montagna. Bau a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci a quattro zampe“, dem Podcast für alle, die Hunde lieben. Heute ist ein Festtag. Es gibt eine Hochzeit. Aber das Brautpaar hat vier Pfoten. Und eins von beiden wiegt zwei Kilo.
+Alles beginnt an einem Montag. Es klingelt. Es ist Frau Pina, die Nachbarin aus dem zweiten Stock. Auf dem Arm hat sie Principessa, ihre Chihuahua-Hündin. Principessa trägt einen rosa Pullover.
+Pina: Giulia, meine Liebe, ich habe eine superwichtige Neuigkeit. Principessa ist verliebt! In Salame, den Dackel deines Freundes Luca. Wenn sie ihn im Park sieht, zittert sie am ganzen Körper. Also habe ich beschlossen: Wir machen eine Hochzeit!
+Giulia: Eine Hochzeit? Von zwei Hunden?
+Pina: Natürlich! Am Samstag, im Parco Sempione. Mit Schleier, Torte, Gästen. Mit allem!
+Am Samstag scheint im Parco Sempione die Sonne. Die Bäume sind gelb und rot. Neben dem kleinen See hat Frau Pina alles vorbereitet: einen roten Teppich, Plastikstühle, Blumen und ein Tischchen mit einer Torte.
+Pina hat sogar eine besondere Torte für Hunde gemacht: Fleisch, Karotten und ein Herz aus Käse. Oben drauf stehen zwei kleine Hunde aus Zucker.
+Die Gäste sind zehn Menschen und fünfzehn Hunde. Da sind Giulia mit Briciola, Emma mit dem Fotoapparat, Luca mit Salame. Salame trägt eine schwarze Fliege. Principessa trägt einen weißen, sehr langen Schleier.
+Um elf läuten die Glocken des Castello Sforzesco. Tommaso, acht Jahre alt, spielt den Pfarrer. Er trägt ein Sakko von Papa, viel zu groß, und hat ein Märchenbuch in der Hand.
+Tommaso öffnet das Buch und spricht mit ernster Stimme.
+Tommaso: Liebe Freunde und liebe Hunde. Wir sind heute hier, um Principessa und Salame zu vereinen. Principessa, willst du Salame zum Mann nehmen? In Gesundheit und Krankheit, bei Keksen und bei Trockenfutter?
+In diesem Moment sieht Salame eine Ente. Eine große, weiße Ente, die am See entlanggeht. Salame ist ein Dackel. Dackel sind zum Jagen geboren. Salame bellt und rennt los.
+Luca: Salame! Nein! Komm zurück! Die Hochzeit!
+Salame springt in den See. Die Ente fliegt beleidigt davon.
+Principessa schaut ihren Bräutigam im Wasser an. Dann rennt sie. Mit dem Schleier. Und springt auch in den See.
+Pina: Principessa! Der Schleier! Sie kann nicht schwimmen! Sie kann nicht schwimmen!
+Principessa schwimmt. Schlecht, aber sie schwimmt. Der weiße Schleier treibt hinter ihr her wie ein kleines Boot.
+Giulia: Briciola! Los! Hol sie!
+Briciola springt ins Wasser. Sie schwimmt schnell, packt Principessa vorsichtig am Pullover und bringt sie ans Ufer. Dann schwimmt sie zurück, packt Salame an der Fliege und bringt auch ihn ans Ufer.
+Briciola kommt aus dem Wasser. Sie schüttelt sich. Alle Gäste neben ihr werden nass. Emma macht Fotos, Fotos, Fotos. Sie lacht so sehr, dass sie weint.
+Aber als sie zum Tischchen zurückkommen … ist die Torte weg. Stattdessen steht da nur ein leerer Teller. Und Briciola, mit einem Stück Karotte auf der Nase.
+Giulia: Briciola! Hast du die Hochzeitstorte gefressen?
+Briciola schaut Giulia an. Sie wedelt. Das ist die glücklichste Schuld der Welt.
+Alle lachen. Auch Frau Pina, die sich aber mit dem Taschentuch die Augen wischt.
+Pina: Macht nichts. Nasse Braut, glückliche Braut. So sagt man doch, oder? Tommaso, mach weiter!
+Tommaso: Salame, willst du Principessa zur Frau nehmen?
+Salame, nass, mit schiefer Fliege, bellt einmal.
+Tommaso: Principessa, willst du Salame nehmen?
+Principessa, nass, mit einem Schleier voller Blätter, bellt auch. Ein kleines, hohes Bellen.
+Tommaso: Dann erkläre ich euch zu Mann und Frau! Ihr dürft euch beschnüffeln!
+Alle klatschen. Die Hunde bellen. Die Leute im Park bleiben stehen und schauen zu. Ein alter Herr sagt: „In Mailand habe ich schon viel gesehen. Aber so etwas noch nie.“
+Emma zeigt Giulia die Fotos. Auf dem schönsten kommt Briciola mit Salame im Maul aus dem Wasser, und dahinter Principessa mit dem Schleier.
+Emma: Giulia, vor einem Monat hatte ich Angst vor Hunden. Heute habe ich hundert Fotos von nassen Hunden gemacht. Und ich bin der glücklichste Mensch im Park.
+Das war „Voci a quattro zampe“. Und denkt daran: Hunde brauchen keine Hochzeit, um sich lieb zu haben. Aber ein Fest … schadet nie. In der nächsten Folge fahren Giulia und Briciola nach Scanno, zum Opa. Es liegt viel Schnee. Und jemand hat sich in den Bergen verirrt. Wau euch allen!`,
+    fact:'Dackel („bassotti“) wurden in Deutschland für die Jagd auf Dachse gezüchtet – daher ihr Jagdtrieb und ihr Mut. Der Chihuahua ist die kleinste Hunderasse der Welt; viele wiegen nur ein bis drei Kilo. „Sposa bagnata, sposa fortunata“ (nasse Braut, glückliche Braut) sagt man in Italien, wenn es am Hochzeitstag regnet. Der Parco Sempione liegt hinter dem Castello Sforzesco in der Mitte Mailands.' }
 );
 /* Hörgeschichten Cavalli (Podcast „In sella!“). Figuren aus dem Thema: Sara (Fulmine), Luca (Tornado), Carla (Reitstall, Stute Stella), Pony Pepe. */
 PODCAST_INFO.cavalli = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Ausritte und Geschichten mit Pferden, mit Geräuschen aus der Natur, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
