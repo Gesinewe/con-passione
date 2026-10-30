@@ -591,7 +591,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 310;
+const APP_VERSION = 311;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -84266,6 +84266,82 @@ Dario: Hallo, Käfer. Heute habe ich keine Angst vor dir. Gestern habe ich ein M
 Das war „Voci del bosco“. Und denkt daran: Nachts schläft der Wald nicht. Er spricht. Man muss nur zuhören.`,
     fact:'Im Nationalpark Foreste Casentinesi leben über tausend Rothirsche. Von Mitte September bis Mitte Oktober ist Brunftzeit, der „bramito“: Die Männchen röhren nachts, um Weibchen anzulocken und Rivalen zu vertreiben. Parkranger führen dann Gruppen zum Zuhören in den Wald – mit rotem Licht, weil es die Tiere weniger stört.' }
 ];
+/* „Voci del bosco“ Folge 2 (v295, 29.10.2026: Themen nacheinander auf 5 Hörfolgen) – wird nach leggende_natura.js geladen.
+   Winter in den Foreste Casentinesi: Tante Irene (Biologin, Naturfotografin, Wohnmobil „Lumaca“) stellt mit Alice (13) und Dario (10) eine Wildkamera (Fotofalle) auf.
+   Spuren im Schnee, Kot, Haare an einem Zweig. Nachts hören sie Wölfe heulen; Dario hat Angst, Irene erklärt: Wölfe meiden Menschen. Nach drei Tagen: Video einer Wolfsfamilie mit vier Jungen.
+   Angekündigt Folge 3: Lampedusa im August – schlüpfen Speranzas Junge? (Lektionen: Speranza hat im Juni am Strand der Kaninchen Eier gelegt). Stimmen wie Folge 1. Niveau ab A2. */
+PODCAST_INFO.natura.lead = 'Wie ein kleiner Podcast: Alice, Tante Irene und Dario mit dem Wohnmobil „Lumaca“ – Wölfe im Schnee, kleine Meeresschildkröten in der Nacht, Murmeltiere im Gran Paradiso und Glühwürmchen auf Omas Hof, mit Wind, Wellen, Eulen und Grillen. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.';
+PODCASTS.natura.push(
+  { id:'natura-p2', show:'Voci del bosco', ep:2, title:'La famiglia del lupo', de:'Die Wolfsfamilie',
+    place:'Foreste Casentinesi, gennaio', level:'ab A2', kind:'Geheimnisvoll · Winter · Wölfe',
+    voices:{Alice:'Isabella', Zia:'Isabella', Dario:'Elsa'},
+    stil:{'':['-8%','+0Hz'], Alice:['+2%','+24Hz'], Zia:['-6%','-8Hz'], Dario:['+6%','+44Hz']},
+    words:[['il lupo / i lupi','der Wolf / die Wölfe'],['il branco','das Rudel'],['il cucciolo','das Junge, der Welpe'],['ululare','heulen'],['l’ululato','das Heulen'],['la fototrappola','die Wildkamera'],['le impronte','die Spuren, Abdrücke'],['gli escrementi','der Kot'],['il pelo','das Fell, das Haar'],['nascondersi','sich verstecken'],['evitare','meiden'],['il cervo','der Hirsch'],['la neve fresca','der Neuschnee'],['il video','das Video'],['il naturalista','der Naturforscher']],
+    fx:{'Buonasera e benvenuti':'pausa', 'È gennaio':'vento_an', 'La zia ferma':'porta_camper', 'Camminano':'foglie', 'Zia: Guardate':'pausa', 'Più avanti':'pausa', 'La zia tira fuori':'cerniera', 'La notte':'vento_aus notte_an', 'All’improvviso':'lupo', 'Un altro ululato':'lupo', 'Dario: E se':'pausa', 'Passano tre giorni':'notte_aus vento_an', 'Nel camper':'vento_aus pausa', 'Sul video':'pausa', 'Dario: Uno':'pausa', 'Dario guarda':'pausa', 'Questo era':'pausa'},
+    text:`Buonasera e benvenuti a «Voci del bosco», il podcast di chi ama la natura. Stasera siamo di nuovo nelle Foreste Casentinesi. Ma non è autunno. È pieno inverno. C’è la neve. E nel bosco vive un animale che tutti conoscono, ma che quasi nessuno vede: il lupo.
+È gennaio. La Lumaca, il camper della zia Irene, sale piano sulla strada bianca. Dentro ci sono Alice, il cuginetto Dario e tre zaini pieni di maglioni.
+La zia ferma il camper vicino a un bosco di faggi. Fuori fa freddo. Tutto è bianco e silenzioso.
+Zia: Ragazzi, oggi facciamo i detective. In questo bosco c’è un branco di lupi. Io voglio fotografarli. Ma i lupi sono furbi. Non si fanno vedere. Dobbiamo trovare i loro segni.
+Camminano nella neve fresca. Le scarpe fanno «cric, cric». Alice ha il suo diario della natura e una matita.
+Zia: Guardate qui. Le impronte. Quattro dita e il cuscinetto. Sembra un cane, ma le impronte sono in fila, una dietro l’altra. Il lupo cammina così, per risparmiare forza.
+Più avanti trovano dei peli grigi su un ramo basso. Poi, sulla neve, degli escrementi pieni di peli di cervo.
+Dario: Che schifo!
+Zia: Che bello, vuoi dire! Qui c’è scritto che cosa ha mangiato il lupo. Un cervo. Il lupo aiuta il bosco: se ci sono troppi cervi, mangiano tutti gli alberi giovani.
+La zia tira fuori dallo zaino una piccola scatola verde, con un occhio di vetro. È una fototrappola: una macchina fotografica che si accende da sola quando passa un animale. La zia la lega a un albero, vicino al sentiero.
+Zia: Adesso la lasciamo qui tre giorni. E aspettiamo.
+La notte dormono nel camper. Fuori c’è la luna piena. La neve brilla. Dario non dorme. Alice nemmeno.
+All’improvviso, nel silenzio, si sente un ululato. Lungo, alto, triste. Poi un secondo. Poi un terzo, più vicino.
+Dario: Alice! Alice! Sono i lupi! Ci mangiano!
+Un altro ululato. Dario si nasconde sotto il sacco a pelo.
+Alice: Zia… è vero? I lupi attaccano?
+Zia: No, tesoro. I lupi hanno paura di noi. Molta più paura di quanta ne abbiamo noi. Quando sentono l’odore delle persone, vanno via. Ululano per parlare tra loro. Per dire: «Io sono qui. Dove sei tu?»
+Dario: E se uno viene qui?
+Zia: Non viene. Ma se viene, lo fotografiamo.
+Passano tre giorni. Neve, vento, ancora neve. Il quarto giorno la zia va a prendere la fototrappola. Tornano tutti nel camper, con le mani fredde.
+Nel camper la zia collega la fototrappola al computer. Ci sono tanti video. Una volpe. Un cervo. Un cinghiale che si gratta contro l’albero. Una lepre. E poi…
+Sul video, di notte, in bianco e nero, passa un lupo grande. Si ferma. Annusa l’albero. Guarda la fototrappola, dritto negli occhi. Poi passa un altro lupo. E poi… quattro piccoli lupi, che giocano, saltano, si mordono le orecchie.
+Dario: Uno, due, tre, quattro cuccioli! Sono… sono carini!
+Alice: Una famiglia intera. Mamma, papà e i figli.
+Zia: Un branco è proprio questo: una famiglia. In questi trenta secondi c’è il lavoro di tre giorni. E per un naturalista, trenta secondi così valgono un anno.
+Dario guarda il video dieci volte. Alla fine dice:
+Dario: Zia, posso dare un nome al lupo più piccolo?
+Zia: Certo.
+Dario: Si chiama Coraggio. Come me.
+Alice scrive nel diario: «Gennaio. Abbiamo visto il lupo senza vederlo. Il lupo ci ha visti senza venire. Forse è giusto così.»
+Questo era «Voci del bosco». E ricordate: nel bosco siamo noi gli ospiti. Nella prossima puntata andiamo a Lampedusa, in agosto. Sulla spiaggia, sotto la sabbia, ci sono le uova di Speranza, la tartaruga. Stanno per nascere? Buona natura a tutti!`,
+    tr:`Guten Abend und willkommen bei „Voci del bosco“ (Stimmen aus dem Wald), dem Podcast für alle, die die Natur lieben. Heute Abend sind wir wieder in den Foreste Casentinesi. Aber es ist nicht Herbst. Es ist tiefster Winter. Es liegt Schnee. Und im Wald lebt ein Tier, das alle kennen, aber das fast niemand sieht: der Wolf.
+Es ist Januar. Die „Lumaca“, Tante Irenes Wohnmobil, fährt langsam die weiße Straße hinauf. Drinnen sitzen Alice, ihr kleiner Cousin Dario und drei Rucksäcke voller Pullover.
+Die Tante hält das Wohnmobil neben einem Buchenwald an. Draußen ist es kalt. Alles ist weiß und still.
+Tante: Kinder, heute spielen wir Detektive. In diesem Wald lebt ein Wolfsrudel. Ich will es fotografieren. Aber Wölfe sind schlau. Sie lassen sich nicht sehen. Wir müssen ihre Zeichen finden.
+Sie gehen durch den Neuschnee. Die Schuhe machen „knirsch, knirsch“. Alice hat ihr Naturtagebuch und einen Bleistift.
+Tante: Schaut mal hier. Die Spuren. Vier Zehen und der Ballen. Es sieht aus wie ein Hund, aber die Spuren liegen in einer Reihe, eine hinter der anderen. So läuft der Wolf, um Kraft zu sparen.
+Weiter vorne finden sie graue Haare an einem tiefen Ast. Dann, im Schnee, Kot voller Hirschhaare.
+Dario: Igitt!
+Tante: Wie toll, meinst du! Hier steht, was der Wolf gefressen hat. Einen Hirsch. Der Wolf hilft dem Wald: Wenn es zu viele Hirsche gibt, fressen sie alle jungen Bäume.
+Die Tante holt eine kleine grüne Kiste mit einem Glasauge aus dem Rucksack. Das ist eine Wildkamera: ein Fotoapparat, der sich von allein einschaltet, wenn ein Tier vorbeikommt. Die Tante bindet sie an einen Baum, neben dem Pfad.
+Tante: Jetzt lassen wir sie drei Tage hier. Und warten.
+In der Nacht schlafen sie im Wohnmobil. Draußen ist Vollmond. Der Schnee glitzert. Dario schläft nicht. Alice auch nicht.
+Plötzlich hört man in der Stille ein Heulen. Lang, hoch, traurig. Dann ein zweites. Dann ein drittes, näher.
+Dario: Alice! Alice! Das sind die Wölfe! Die fressen uns!
+Noch ein Heulen. Dario versteckt sich unter dem Schlafsack.
+Alice: Tante … stimmt das? Greifen Wölfe an?
+Tante: Nein, Schätzchen. Wölfe haben Angst vor uns. Viel mehr Angst als wir vor ihnen. Wenn sie Menschen riechen, gehen sie weg. Sie heulen, um miteinander zu sprechen. Um zu sagen: „Ich bin hier. Wo bist du?“
+Dario: Und wenn einer hierherkommt?
+Tante: Er kommt nicht. Aber wenn er kommt, fotografieren wir ihn.
+Drei Tage vergehen. Schnee, Wind, wieder Schnee. Am vierten Tag holt die Tante die Wildkamera. Alle gehen mit kalten Händen zurück ins Wohnmobil.
+Im Wohnmobil schließt die Tante die Wildkamera an den Computer an. Es gibt viele Videos. Ein Fuchs. Ein Hirsch. Ein Wildschwein, das sich am Baum kratzt. Ein Hase. Und dann …
+Im Video, nachts, schwarz-weiß, kommt ein großer Wolf vorbei. Er bleibt stehen. Er schnüffelt am Baum. Er schaut direkt in die Wildkamera. Dann kommt ein zweiter Wolf. Und dann … vier kleine Wölfe, die spielen, springen, sich in die Ohren beißen.
+Dario: Eins, zwei, drei, vier Junge! Die sind … die sind süß!
+Alice: Eine ganze Familie. Mama, Papa und die Kinder.
+Tante: Genau das ist ein Rudel: eine Familie. In diesen dreißig Sekunden steckt die Arbeit von drei Tagen. Und für eine Naturforscherin sind dreißig solche Sekunden ein ganzes Jahr wert.
+Dario schaut das Video zehnmal an. Am Ende sagt er:
+Dario: Tante, darf ich dem kleinsten Wolf einen Namen geben?
+Tante: Natürlich.
+Dario: Er heißt Mut. So wie ich.
+Alice schreibt ins Tagebuch: „Januar. Wir haben den Wolf gesehen, ohne ihn zu sehen. Der Wolf hat uns gesehen, ohne zu kommen. Vielleicht ist das richtig so.“
+Das war „Voci del bosco“. Und denkt daran: Im Wald sind wir die Gäste. In der nächsten Folge fahren wir im August nach Lampedusa. Am Strand, unter dem Sand, liegen die Eier von Speranza, der Schildkröte. Schlüpfen sie bald? Viel Natur euch allen!`,
+    fact:'In Italien leben heute wieder über 3.000 Wölfe – in den 1970er-Jahren waren es nur noch etwa hundert, vor allem im Apennin. Seit 1971 ist der Wolf geschützt. Wölfe leben in Familienrudeln aus Eltern und Jungen, meiden Menschen und jagen vor allem Rehe, Hirsche und Wildschweine. Forscher beobachten sie mit Wildkameras („fototrappole“), Spuren und Kotproben.' }
+);
 /* Hörgeschichte „God tur!“ (Deutsche lernen Norwegisch, v235; Wunsch der Nutzerin: „mach eine hörgeschichte für norwegisch“).
    Podcast „Fortellinger fra nord“, Folge 1: Lenas erste Nacht auf der Hurtigruten – Sturm am Stadhavet (passt nach Stufe 3, norge-v3-1 ff.).
    Stimmen: Erzählerin Pernille, Lena de-DE-SeraphinaMultilingual (Norwegisch mit deutschem Akzent), Torbjørn Finn (tiefer, langsamer),
