@@ -591,7 +591,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 306;
+const APP_VERSION = 307;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -81179,6 +81179,80 @@ Am Abend, im Dorf, wartet Opa Nicola vor dem Kamin. Er hat zwei große Näpfe vo
 Opa: Ein Stadthund und ein Berghund. Der eine hat die Nase, der andere kennt den Weg. Zusammen sind sie ein Wunder.
 Das war „Voci a quattro zampe“. Und denkt daran: Wenn in den Bergen Nebel kommt, bleibt stehen und wartet. Und wenn ihr euch verirrt … hoffen wir, dass eine Nase wie die von Briciola kommt. In der nächsten Folge, der letzten dieser Staffel, kehrt Giulia in das Tierheim zurück, wo sie Briciola gefunden hat. Und Papa Paolo, der keinen Hund wollte, macht eine Entdeckung. Wau euch allen!`,
     fact:'Suchhunde („cani da ricerca“) der italienischen Bergrettung und des Zivilschutzes werden jahrelang ausgebildet und müssen eine Prüfung bestehen. Ein Hund riecht etwa 10.000- bis 100.000-mal besser als ein Mensch und kann einer Person anhand eines Kleidungsstücks folgen. Hat er jemanden gefunden, zeigt er es mit einem vereinbarten Signal an, oft mit Bellen. Die „stazzi“ sind alte Steinhütten und Pferche der Hirten in den Abruzzen.' }
+);
+/* „Voci a quattro zampe“ Folge 5 (v294, 29.10.2026) – wird nach leggende_cani4.js geladen, löst die Ankündigung aus Folge 4 ein. Staffelfinale.
+   Zwei Jahre, seit Briciola aus dem Tierheim kam: Giulia bringt als Dank Futter ins Tierheim (canile) am Stadtrand von Mailand, die ganze Familie fährt mit.
+   Papa Paolo (Architekt, war anfangs gegen einen Hund) bleibt vor dem Zwinger eines alten, fast blinden Hundes stehen, den niemand will (12 Jahre, grau, „Il vecchio“).
+   Der Hund legt den Kopf auf Paolos Schuh. Paolo, der nie einen Hund wollte, adoptiert ihn und nennt ihn „Ponti“ (nach dem Mailänder Architekten Gio Ponti). Briciola und Ponti, Emma kommt zum Abschied.
+   Stimmen: Paolo Giuseppe, Elisa Isabella, Volontario Diego, Tommaso Elsa hoch, Emma de-DE-SeraphinaMultilingual. Niveau ab A2. */
+PODCASTS.cani.push(
+  { id:'cani-p5', show:'Voci a quattro zampe', ep:5, title:'Un vecchio cane per papà', de:'Ein alter Hund für Papa',
+    place:'Un canile alla periferia di Milano, una domenica di dicembre', level:'ab A2', kind:'Herz · Familie · Staffelfinale',
+    voices:{Giulia:'Isabella', Tommaso:'Elsa', Paolo:'Giuseppe', Elisa:'Isabella', Volontario:'Diego', Emma:'de-DE-SeraphinaMultilingualNeural'},
+    stil:{'':['-6%','+0Hz'], Giulia:['+0%','+14Hz'], Tommaso:['+6%','+44Hz'], Paolo:['-4%','-8Hz'], Elisa:['-4%','-4Hz'], Volontario:['+0%','-6Hz'], Emma:['-6%','+0Hz']},
+    words:[['il canile','das Tierheim (für Hunde)'],['il box','der Zwinger'],['il volontario / la volontaria','der/die Freiwillige'],['adottare','adoptieren'],['l’adozione','die Adoption'],['anziano / anziana','alt (bei Tieren und Menschen)'],['cieco / cieca','blind'],['il muso','die Schnauze'],['il guinzaglio','die Leine'],['l’architetto','der Architekt'],['cambiare idea','die Meinung ändern'],['la seconda possibilità','die zweite Chance'],['la cuccia','das Hundebett'],['grato / grata','dankbar'],['per sempre','für immer']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È domenica':'avviamento motore500_an', 'Al canile':'motore500_aus abbaio', 'Il volontario':'pausa', 'Giulia porta':'pausa', 'Nell’ultimo box':'pausa', 'Paolo si ferma':'pausa', 'Volontario: Quello':'pausa', 'Il vecchio cane':'ansimare', 'Paolo si accovaccia':'pausa', 'Elisa guarda':'pausa', 'Paolo: Io':'pausa', 'Un’ora dopo':'cerniera', 'A casa':'campanello_porta abbaio', 'La sera':'pausa', 'Questo era':'carillon_ende'},
+    text:`Buongiorno e benvenuti a «Voci a quattro zampe», il podcast per chi ama i cani. È l’ultima puntata di questa stagione. E oggi torniamo dove tutto è cominciato. Al canile. Il posto dove, due anni fa, Giulia ha trovato Briciola.
+È domenica mattina. Giulia ha preparato tre sacchi di crocchette, coperte vecchie e giochi. È il suo regalo per il canile, per dire grazie. Tutta la famiglia va con lei: la mamma Elisa, Tommaso, Emma, che parte per Amburgo tra una settimana. E papà Paolo. Papà Paolo, che due anni fa non voleva nessun cane. «Un cane in un appartamento? Peli dappertutto? Mai.»
+Al canile i cani abbaiano tutti insieme. Grandi, piccoli, neri, bianchi. Ognuno nel suo box. Ognuno spera che qualcuno si fermi.
+Il volontario, un ragazzo con la barba, abbraccia Giulia.
+Volontario: Giulia! E questa è Briciola? Non ci credo! Era magrissima, aveva paura di tutto. E adesso… adesso è un cane da ricerca!
+Giulia porta le crocchette in magazzino con Tommaso ed Emma. Papà Paolo resta fuori. Cammina piano, lungo i box. Guarda i cani.
+Nell’ultimo box, in fondo, c’è un cane che non abbaia. È vecchio. Grigio sul muso. Ha gli occhi un po’ bianchi. È sdraiato su una coperta. Non si alza.
+Paolo si ferma. Non sa perché. Si ferma e basta.
+Volontario: Quello è il vecchio. Ha dodici anni. Il suo padrone è morto in primavera. Vede pochissimo. Nessuno lo vuole: tutti vogliono i cuccioli.
+Il vecchio cane alza la testa. Annusa l’aria. Si alza, lentamente. Cammina fino alla rete. E mette il muso proprio sopra la scarpa di Paolo. Così. Senza fare niente. Appoggiato.
+Paolo si accovaccia. Guarda il cane. Il cane non lo vede bene, ma lo sente. Respira piano, con la testa sulla sua scarpa.
+Paolo: Ciao… vecchio. Anche tu sei stanco, eh?
+Elisa guarda il marito da lontano. Non dice niente. Ma sorride. Poi chiama Giulia con un gesto.
+Giulia: Papà? Che cosa fai?
+Paolo: Io? Niente. Guardavo. Lui… lui ha messo il muso sulla mia scarpa.
+Elisa: Paolo. Due anni fa dicevi: «Un cane, mai.»
+Paolo: Lo so. Ma due anni fa non conoscevo Briciola. E non conoscevo… lui.
+Paolo si alza. Si gira verso il volontario. Respira.
+Paolo: Senta. Se io volessi… adottarlo. Che cosa devo fare?
+Giulia si mette le mani sulla bocca. Tommaso salta. Emma ride e piange insieme.
+Emma: Giulia, dein Papa! Tuo padre! Quello che non voleva i cani!
+Un’ora dopo, con tutti i documenti firmati, il vecchio cane sale in macchina. Ha un guinzaglio nuovo, rosso, e la coperta del canile. Si sdraia sulle ginocchia di Paolo e chiude gli occhi.
+Tommaso: Papà, come lo chiamiamo?
+Paolo: Ponti. Come Gio Ponti, il grande architetto di Milano. Ha costruito il grattacielo Pirelli. Un nome importante. Per un cane importante.
+A casa, Briciola annusa Ponti. Ponti annusa Briciola. Briciola gli porta il suo gioco preferito, un calzino vecchio. Ponti lo prende. Poi si sdraia nella cuccia di Briciola. Briciola lo guarda… e si sdraia vicino a lui.
+La sera, Paolo è seduto sul divano. Ponti dorme con la testa sul suo piede. Briciola dorme con la testa su Ponti. Giulia scatta una foto.
+Giulia: Papà… sei felice?
+Paolo: Sai, Giulia, io faccio l’architetto. Tutta la vita ho disegnato case. Ma non avevo capito una cosa. Una casa non è fatta di muri. Una casa è dove qualcuno ti aspetta. Anche se ha dodici anni e non ci vede bene.
+Emma: Questa foto la porto ad Amburgo. E la metto sopra il letto.
+Questo era «Voci a quattro zampe». Grazie per aver camminato con noi in questa stagione: con Emma che aveva paura, con le nozze di Principessa, con la neve di Scanno e con il vecchio Ponti. E ricordate: anche un cane vecchio ha ancora tanto amore da dare. Bau a tutti, e arrivederci!`,
+    tr:`Guten Tag und willkommen bei „Voci a quattro zampe“, dem Podcast für alle, die Hunde lieben. Das ist die letzte Folge dieser Staffel. Und heute kehren wir dorthin zurück, wo alles angefangen hat. Ins Tierheim. An den Ort, wo Giulia vor zwei Jahren Briciola gefunden hat.
+Es ist Sonntagmorgen. Giulia hat drei Säcke Trockenfutter, alte Decken und Spielzeug vorbereitet. Das ist ihr Geschenk für das Tierheim, um Danke zu sagen. Die ganze Familie kommt mit: Mama Elisa, Tommaso, Emma, die in einer Woche nach Hamburg zurückfliegt. Und Papa Paolo. Papa Paolo, der vor zwei Jahren keinen Hund wollte. „Ein Hund in einer Wohnung? Überall Haare? Niemals.“
+Im Tierheim bellen alle Hunde gleichzeitig. Große, kleine, schwarze, weiße. Jeder in seinem Zwinger. Jeder hofft, dass jemand stehen bleibt.
+Der Freiwillige, ein junger Mann mit Bart, umarmt Giulia.
+Freiwilliger: Giulia! Und das ist Briciola? Ich glaub’s nicht! Sie war so dünn, sie hatte vor allem Angst. Und jetzt … jetzt ist sie eine Suchhündin!
+Giulia bringt mit Tommaso und Emma das Futter ins Lager. Papa Paolo bleibt draußen. Er geht langsam an den Zwingern entlang. Er schaut die Hunde an.
+Im letzten Zwinger, ganz hinten, ist ein Hund, der nicht bellt. Er ist alt. Grau an der Schnauze. Seine Augen sind ein bisschen weiß. Er liegt auf einer Decke. Er steht nicht auf.
+Paolo bleibt stehen. Er weiß nicht, warum. Er bleibt einfach stehen.
+Freiwilliger: Das ist der Alte. Er ist zwölf. Sein Besitzer ist im Frühling gestorben. Er sieht sehr schlecht. Niemand will ihn: Alle wollen Welpen.
+Der alte Hund hebt den Kopf. Er schnüffelt in der Luft. Er steht langsam auf. Er geht bis zum Gitter. Und legt die Schnauze genau auf Paolos Schuh. Einfach so. Ohne etwas zu tun. Angelehnt.
+Paolo geht in die Hocke. Er schaut den Hund an. Der Hund sieht ihn nicht gut, aber er spürt ihn. Er atmet ruhig, den Kopf auf seinem Schuh.
+Paolo: Hallo … Alter. Du bist auch müde, was?
+Elisa schaut ihren Mann von Weitem an. Sie sagt nichts. Aber sie lächelt. Dann winkt sie Giulia herbei.
+Giulia: Papa? Was machst du?
+Paolo: Ich? Nichts. Ich habe geschaut. Er … er hat die Schnauze auf meinen Schuh gelegt.
+Elisa: Paolo. Vor zwei Jahren hast du gesagt: „Ein Hund, niemals.“
+Paolo: Ich weiß. Aber vor zwei Jahren kannte ich Briciola nicht. Und ich kannte … ihn nicht.
+Paolo steht auf. Er dreht sich zu dem Freiwilligen um. Er atmet durch.
+Paolo: Hören Sie. Wenn ich ihn … adoptieren wollte. Was muss ich tun?
+Giulia hält sich die Hände vor den Mund. Tommaso springt. Emma lacht und weint gleichzeitig.
+Emma: Giulia, dein Papa! Dein Vater! Der, der keine Hunde wollte!
+Eine Stunde später, mit allen unterschriebenen Papieren, steigt der alte Hund ins Auto. Er hat eine neue rote Leine und die Decke aus dem Tierheim. Er legt sich auf Paolos Knie und schließt die Augen.
+Tommaso: Papa, wie nennen wir ihn?
+Paolo: Ponti. Wie Gio Ponti, der große Architekt aus Mailand. Er hat das Pirelli-Hochhaus gebaut. Ein wichtiger Name. Für einen wichtigen Hund.
+Zu Hause beschnüffelt Briciola Ponti. Ponti beschnüffelt Briciola. Briciola bringt ihm ihr Lieblingsspielzeug, eine alte Socke. Ponti nimmt sie. Dann legt er sich in Briciolas Hundebett. Briciola schaut ihn an … und legt sich neben ihn.
+Am Abend sitzt Paolo auf dem Sofa. Ponti schläft mit dem Kopf auf seinem Fuß. Briciola schläft mit dem Kopf auf Ponti. Giulia macht ein Foto.
+Giulia: Papa … bist du glücklich?
+Paolo: Weißt du, Giulia, ich bin Architekt. Mein ganzes Leben lang habe ich Häuser gezeichnet. Aber eins hatte ich nicht verstanden. Ein Zuhause besteht nicht aus Mauern. Ein Zuhause ist da, wo jemand auf dich wartet. Auch wenn er zwölf ist und schlecht sieht.
+Emma: Dieses Foto nehme ich mit nach Hamburg. Und ich hänge es über mein Bett.
+Das war „Voci a quattro zampe“. Danke, dass ihr in dieser Staffel mit uns unterwegs wart: mit Emma, die Angst hatte, mit Principessas Hochzeit, mit dem Schnee von Scanno und mit dem alten Ponti. Und denkt daran: Auch ein alter Hund hat noch viel Liebe zu geben. Wau euch allen, und auf Wiederhören!`,
+    fact:'In italienischen Tierheimen („canili“) warten viele ältere Hunde lange auf ein Zuhause, weil die meisten Menschen Welpen wollen. Dabei sind Senioren oft ruhig, stubenrein und sehr anhänglich. Hunde, die schlecht sehen, orientieren sich vor allem mit Nase und Gehör. Gio Ponti (1891–1979) war einer der wichtigsten Architekten und Designer Italiens; sein Pirelli-Hochhaus in Mailand wurde 1960 fertig.' }
 );
 /* Hörgeschichten Cavalli (Podcast „In sella!“). Figuren aus dem Thema: Sara (Fulmine), Luca (Tornado), Carla (Reitstall, Stute Stella), Pony Pepe. */
 PODCAST_INFO.cavalli = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Ausritte und Geschichten mit Pferden, mit Geräuschen aus der Natur, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
