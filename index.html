@@ -591,7 +591,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 305;
+const APP_VERSION = 306;
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -81097,6 +81097,88 @@ Emma zeigt Giulia die Fotos. Auf dem schönsten kommt Briciola mit Salame im Mau
 Emma: Giulia, vor einem Monat hatte ich Angst vor Hunden. Heute habe ich hundert Fotos von nassen Hunden gemacht. Und ich bin der glücklichste Mensch im Park.
 Das war „Voci a quattro zampe“. Und denkt daran: Hunde brauchen keine Hochzeit, um sich lieb zu haben. Aber ein Fest … schadet nie. In der nächsten Folge fahren Giulia und Briciola nach Scanno, zum Opa. Es liegt viel Schnee. Und jemand hat sich in den Bergen verirrt. Wau euch allen!`,
     fact:'Dackel („bassotti“) wurden in Deutschland für die Jagd auf Dachse gezüchtet – daher ihr Jagdtrieb und ihr Mut. Der Chihuahua ist die kleinste Hunderasse der Welt; viele wiegen nur ein bis drei Kilo. „Sposa bagnata, sposa fortunata“ (nasse Braut, glückliche Braut) sagt man in Italien, wenn es am Hochzeitstag regnet. Der Parco Sempione liegt hinter dem Castello Sforzesco in der Mitte Mailands.' }
+);
+/* „Voci a quattro zampe“ Folge 4 (v306, 30.10.2026) – wird nach leggende_cani3.js geladen, löst die Ankündigung aus Folge 3 ein.
+   Weihnachtsferien in Scanno bei Opa Nicola (Lektionen: Briciola ist geprüfte Suchhündin, Marco leitet die Suchgruppe, Neve ist die junge Hirtenhündin, Davide der neue Hirte).
+   Ein Mädchen aus Rom, Sara (12), ist beim Schneeschuhwandern am Lago di Scanno im Nebel verloren gegangen. Bergrettung, Funk, Dämmerung. Briciola riecht an Saras Mütze, folgt der Spur;
+   Neve kennt die alten Hirtenhütten (stazzi) und führt die letzte Strecke. Sara sitzt unterkühlt in einer Hütte. Hubschrauber, Wärmedecke, die Eltern. Angekündigt Folge 5 (Finale): Besuch im Tierheim.
+   Stimmen: Nonno Giuseppe tief, Marco Giuseppe, Davide Diego, Sara Elsa hoch, Mamma di Sara Isabella, Radio Diego mit Effekt radio. Niveau ab A2. */
+PODCASTS.cani.push(
+  { id:'cani-p4', show:'Voci a quattro zampe', ep:4, title:'Una traccia nella neve', de:'Eine Spur im Schnee',
+    place:'Scanno e il lago, Abruzzo, il ventotto dicembre', level:'ab A2', kind:'Spannend · Rettung · Berge',
+    voices:{Giulia:'Isabella', Nonno:'Giuseppe', Marco:'Giuseppe', Davide:'Diego', Sara:'Elsa', Mamma:'Isabella', Radio:'Diego'},
+    stil:{'':['-6%','+0Hz'], Giulia:['+0%','+14Hz'], Nonno:['-10%','-16Hz'], Marco:['-2%','-4Hz'], Davide:['-6%','-6Hz'], Sara:['+0%','+44Hz'], Mamma:['+6%','+6Hz'], Radio:['+10%','+0Hz']},
+    words:[['il soccorso alpino','die Bergrettung'],['disperso / dispersa','vermisst'],['le ciaspole','die Schneeschuhe'],['la nebbia','der Nebel'],['il cane da ricerca','der Suchhund'],['annusare','schnüffeln'],['la traccia','die Spur'],['il fiuto','der Geruchssinn'],['la radio','das Funkgerät'],['il buio','die Dunkelheit'],['lo stazzo','die Hirtenhütte'],['congelato / infreddolita','erfroren / durchgefroren'],['la coperta termica','die Rettungsdecke'],['l’elicottero','der Hubschrauber'],['salvare','retten']],
+    fx:{'Buongiorno e benvenuti':'pausa', 'È il ventotto':'vento_an', 'Alle tre del pomeriggio':'telefono_fisso', 'Nonno: Marco':'pausa', 'Davanti alla chiesa':'pausa', 'Mamma: È':'pausa', 'Briciola annusa':'ansimare', 'Camminano':'passi', 'Radio:':'radio', 'Alle cinque':'notte_an', 'Davide: Il nonno':'pausa', 'Neve corre':'abbaio', 'Dopo venti minuti':'pausa', 'Briciola abbaia':'abbaio', 'Dentro lo stazzo':'pausa', 'Sara: Ho':'pausa', 'Marco parla':'radio', 'Dopo mezz’ora':'vento_aus notte_aus hubschrauber_an', 'Quando l’elicottero':'hubschrauber_aus pausa', 'La sera':'pausa', 'Questo era':'pausa'},
+    text:`Buongiorno e benvenuti a «Voci a quattro zampe», il podcast per chi ama i cani. Oggi siamo in montagna, in Abruzzo. C’è tanta neve. E c’è una bambina che non torna a casa.
+È il ventotto dicembre. Giulia e Briciola passano le vacanze di Natale a Scanno, dal nonno Nicola. Le strade sono bianche. Il lago è grigio e freddo. Sulle montagne c’è nebbia.
+Alle tre del pomeriggio suona il telefono del nonno. Il nonno ascolta. Il suo viso diventa serio.
+Nonno: Marco? … Sì, è qui. Con il cane. Arriviamo subito.
+Marco è il capo del gruppo di ricerca. Conosce Briciola, perché con lei ha fatto l’esame per i cani da ricerca. Una bambina di Roma, Sara, dodici anni, è uscita con la famiglia con le ciaspole. Nella nebbia si è persa. Da due ore nessuno la trova.
+Davanti alla chiesa ci sono già i carabinieri, i volontari del soccorso alpino e i genitori di Sara. La mamma piange.
+Mamma: È andata avanti per fare una foto. Un minuto. Poi è arrivata la nebbia e non l’abbiamo più vista.
+Marco: Signora, adesso ci pensiamo noi. Abbiamo bisogno di una cosa di Sara. Una cosa che ha toccato. Un cappello, un guanto.
+La mamma dà a Marco un cappello di lana azzurro. Giulia prende il cappello e lo mette sotto il naso di Briciola.
+Giulia: Briciola, annusa. Questa è Sara. Cerca. Cerca Sara.
+Briciola annusa il cappello a lungo. Poi alza il naso. Annusa l’aria. Gira due volte su se stessa. E parte. Verso il sentiero del lago.
+Camminano nella neve. Davanti Briciola, con la pettorina arancione e la lucina. Dietro Giulia, Marco, due volontari e Davide, il giovane pastore del nonno, con Neve, la cagna bianca da pastore.
+Radio: Squadra due, qui base. Niente sulla strada del paese. Voi avete qualcosa?
+Marco: Base, qui squadra due. Il cane ha una traccia. Andiamo verso nord, sopra il lago.
+Alle cinque comincia il buio. Fa sempre più freddo. Dieci gradi sotto zero. La nebbia è così densa che Giulia vede appena Briciola, a cinque metri.
+Poi Briciola si ferma. Annusa. Va a destra, torna indietro, va a sinistra. La traccia è sparita. Il vento l’ha portata via.
+Davide: Il nonno dice che sopra questa collina ci sono i vecchi stazzi. Le capanne dei pastori. Se io avessi freddo e paura, andrei lì.
+Davide si china e parla piano a Neve. Neve conosce queste montagne. Da cucciola ha dormito in quegli stazzi con il gregge.
+Neve corre avanti nella neve. Abbaia una volta. Briciola la segue. Insieme salgono la collina.
+Dopo venti minuti, nel buio, appare una piccola capanna di pietra, mezza coperta di neve. Briciola corre verso la porta.
+Briciola abbaia. Tre volte, forte. È il segnale. Ha trovato qualcuno.
+Dentro lo stazzo, in un angolo, c’è una bambina seduta per terra, con le ginocchia al petto. Trema. Ha le labbra blu. Briciola le si sdraia accanto e la scalda con il suo corpo.
+Sara: Ho seguito… ho seguito un sentiero. Poi non vedevo più niente. Ho trovato questa casetta. Avevo tanta paura.
+Giulia: Adesso è finita. Ti abbiamo trovata. Lei è Briciola. Ti ha trovata lei.
+Sara abbraccia Briciola. E non la lascia più.
+Marco parla alla radio, con la voce che trema un po’.
+Marco: Base, qui squadra due. Bambina trovata. È viva. Ripeto: trovata, viva. Ha freddo, ma sta bene. Mandate l’elicottero sopra gli stazzi.
+Dopo mezz’ora si sente un rumore nel cielo. L’elicottero. Una luce forte illumina la neve. Mettono Sara in una coperta termica, dorata. Prima di salire, Sara chiede una cosa.
+Sara: Posso dare un bacio a Briciola?
+Briciola le lecca la faccia. Sara ride per la prima volta.
+Quando l’elicottero va via, sulla montagna torna il silenzio. Giulia si siede nella neve. Abbraccia Briciola. Abbraccia Neve. Piange un po’.
+La sera, al paese, il nonno Nicola aspetta davanti al camino. Ha preparato due ciotole grandi. Una per Briciola. Una per Neve.
+Nonno: Un cane di città e un cane di montagna. Uno ha il naso, l’altro conosce la strada. Insieme, sono un miracolo.
+Questo era «Voci a quattro zampe». E ricordate: in montagna, se c’è nebbia, fermatevi e aspettate. E se vi perdete… speriamo che arrivi un naso come quello di Briciola. Nella prossima puntata, l’ultima di questa stagione, Giulia torna al canile dove ha trovato Briciola. E papà Paolo, che non voleva un cane, fa una scoperta. Bau a tutti!`,
+    tr:`Guten Tag und willkommen bei „Voci a quattro zampe“, dem Podcast für alle, die Hunde lieben. Heute sind wir in den Bergen, in den Abruzzen. Es liegt viel Schnee. Und es gibt ein Mädchen, das nicht nach Hause kommt.
+Es ist der achtundzwanzigste Dezember. Giulia und Briciola verbringen die Weihnachtsferien in Scanno, bei Opa Nicola. Die Straßen sind weiß. Der See ist grau und kalt. Auf den Bergen liegt Nebel.
+Um drei Uhr nachmittags klingelt das Telefon des Opas. Der Opa hört zu. Sein Gesicht wird ernst.
+Opa: Marco? … Ja, sie ist hier. Mit dem Hund. Wir kommen sofort.
+Marco ist der Leiter der Suchgruppe. Er kennt Briciola, denn mit ihm hat sie die Prüfung als Suchhündin gemacht. Ein Mädchen aus Rom, Sara, zwölf Jahre alt, ist mit der Familie auf Schneeschuhen losgegangen. Im Nebel hat sie sich verirrt. Seit zwei Stunden findet sie niemand.
+Vor der Kirche sind schon die Carabinieri, die Freiwilligen der Bergrettung und Saras Eltern. Die Mutter weint.
+Mutter: Sie ist vorgegangen, um ein Foto zu machen. Eine Minute. Dann kam der Nebel, und wir haben sie nicht mehr gesehen.
+Marco: Signora, jetzt kümmern wir uns darum. Wir brauchen etwas von Sara. Etwas, das sie berührt hat. Eine Mütze, einen Handschuh.
+Die Mutter gibt Marco eine hellblaue Wollmütze. Giulia nimmt die Mütze und hält sie Briciola unter die Nase.
+Giulia: Briciola, riech. Das ist Sara. Such. Such Sara.
+Briciola schnüffelt lange an der Mütze. Dann hebt sie die Nase. Sie schnüffelt in der Luft. Sie dreht sich zweimal im Kreis. Und läuft los. Zum Weg am See.
+Sie gehen durch den Schnee. Vorne Briciola, mit dem orangen Geschirr und dem Lämpchen. Dahinter Giulia, Marco, zwei Freiwillige und Davide, der junge Hirte des Opas, mit Neve, der weißen Hirtenhündin.
+Funk: Team zwei, hier Basis. Nichts auf der Straße zum Dorf. Habt ihr etwas?
+Marco: Basis, hier Team zwei. Der Hund hat eine Spur. Wir gehen nach Norden, oberhalb des Sees.
+Um fünf beginnt die Dunkelheit. Es wird immer kälter. Zehn Grad unter null. Der Nebel ist so dicht, dass Giulia Briciola kaum sieht, fünf Meter vor ihr.
+Dann bleibt Briciola stehen. Sie schnüffelt. Sie geht nach rechts, zurück, nach links. Die Spur ist weg. Der Wind hat sie fortgetragen.
+Davide: Der Opa sagt, oberhalb dieses Hügels sind die alten Stazzi. Die Hütten der Hirten. Wenn ich frieren würde und Angst hätte, würde ich dorthin gehen.
+Davide bückt sich und spricht leise mit Neve. Neve kennt diese Berge. Als Welpe hat sie mit der Herde in diesen Hütten geschlafen.
+Neve rennt durch den Schnee voraus. Sie bellt einmal. Briciola folgt ihr. Zusammen steigen sie den Hügel hinauf.
+Nach zwanzig Minuten taucht im Dunkeln eine kleine Steinhütte auf, halb vom Schnee bedeckt. Briciola rennt zur Tür.
+Briciola bellt. Dreimal, laut. Das ist das Zeichen. Sie hat jemanden gefunden.
+In der Hütte, in einer Ecke, sitzt ein Mädchen auf dem Boden, die Knie an die Brust gezogen. Sie zittert. Ihre Lippen sind blau. Briciola legt sich neben sie und wärmt sie mit ihrem Körper.
+Sara: Ich bin … ich bin einem Weg gefolgt. Dann habe ich nichts mehr gesehen. Ich habe dieses Häuschen gefunden. Ich hatte solche Angst.
+Giulia: Jetzt ist es vorbei. Wir haben dich gefunden. Das ist Briciola. Sie hat dich gefunden.
+Sara umarmt Briciola. Und lässt sie nicht mehr los.
+Marco spricht ins Funkgerät, mit einer Stimme, die ein bisschen zittert.
+Marco: Basis, hier Team zwei. Mädchen gefunden. Sie lebt. Ich wiederhole: gefunden, lebt. Ihr ist kalt, aber es geht ihr gut. Schickt den Hubschrauber über die Stazzi.
+Nach einer halben Stunde hört man ein Geräusch am Himmel. Der Hubschrauber. Ein starkes Licht erleuchtet den Schnee. Sie wickeln Sara in eine goldene Rettungsdecke. Bevor sie einsteigt, fragt Sara etwas.
+Sara: Darf ich Briciola einen Kuss geben?
+Briciola leckt ihr das Gesicht. Sara lacht zum ersten Mal.
+Als der Hubschrauber wegfliegt, wird es wieder still auf dem Berg. Giulia setzt sich in den Schnee. Sie umarmt Briciola. Sie umarmt Neve. Sie weint ein bisschen.
+Am Abend, im Dorf, wartet Opa Nicola vor dem Kamin. Er hat zwei große Näpfe vorbereitet. Einen für Briciola. Einen für Neve.
+Opa: Ein Stadthund und ein Berghund. Der eine hat die Nase, der andere kennt den Weg. Zusammen sind sie ein Wunder.
+Das war „Voci a quattro zampe“. Und denkt daran: Wenn in den Bergen Nebel kommt, bleibt stehen und wartet. Und wenn ihr euch verirrt … hoffen wir, dass eine Nase wie die von Briciola kommt. In der nächsten Folge, der letzten dieser Staffel, kehrt Giulia in das Tierheim zurück, wo sie Briciola gefunden hat. Und Papa Paolo, der keinen Hund wollte, macht eine Entdeckung. Wau euch allen!`,
+    fact:'Suchhunde („cani da ricerca“) der italienischen Bergrettung und des Zivilschutzes werden jahrelang ausgebildet und müssen eine Prüfung bestehen. Ein Hund riecht etwa 10.000- bis 100.000-mal besser als ein Mensch und kann einer Person anhand eines Kleidungsstücks folgen. Hat er jemanden gefunden, zeigt er es mit einem vereinbarten Signal an, oft mit Bellen. Die „stazzi“ sind alte Steinhütten und Pferche der Hirten in den Abruzzen.' }
 );
 /* Hörgeschichten Cavalli (Podcast „In sella!“). Figuren aus dem Thema: Sara (Fulmine), Luca (Tornado), Carla (Reitstall, Stute Stella), Pony Pepe. */
 PODCAST_INFO.cavalli = {h:'Geschichten zum Zuhören', nav:'Hörgeschichten', lead:'Wie ein kleiner Podcast: Ausritte und Geschichten mit Pferden, mit Geräuschen aus der Natur, einfach anhören. Ohne Aufgaben – Text und Übersetzung kannst du aufklappen.'};
