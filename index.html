@@ -591,7 +591,8 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 313;
+const APP_VERSION = 314;
+const GOOGLE_STIMMEN = ['it'];   // Lernrichtungen, deren Aufnahmen schon mit Google Cloud Text-to-Speech erzeugt sind (ab v314: Hinweis auf der Startseite)
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
    Gewählt mit dem Knopf auf der Startseite, gespeichert in localStorage 'conpassione.lang'. Wer noch nichts gewählt hat,
@@ -42892,6 +42893,7 @@ const DE = {
     [/^Danke! Dein Wunsch „(.+)“ ist angekommen\. Er wird geprüft und erscheint dann in der Wunschliste\.$/, 'Grazie! Il tuo desiderio «$1» è arrivato. Verrà controllato e poi comparirà nella lista dei desideri.'],
     [/^Hörprobleme kopieren \((\d+)\)$/, 'Copia i problemi di ascolto ($1)'],
     [/^Prototyp · Version (\d+) · Dein Fortschritt wird nur in diesem Browser gespeichert$/, 'Prototipo · Versione $1 · I tuoi progressi vengono salvati solo in questo browser'],
+    [/^Die Stimmen sind computergeneriert \(Google Cloud Text-to-Speech\)\.$/, 'Le voci sono generate al computer (Google Cloud Text-to-Speech).'],
     [/^Marken und Namen werden ausschließlich zur Bezeichnung der jeweiligen Unternehmen, Produkte, Personen und Veranstaltungen verwendet\. Es besteht keine wirtschaftliche Verbindung zu deren Inhabern beziehungsweise Veranstaltern\.$/, 'Marchi e nomi sono usati esclusivamente per indicare le rispettive aziende, prodotti, persone ed eventi. Non esiste alcun legame economico con i loro titolari od organizzatori.'],
     [/^(\d+) von (\d+) Lektionen erledigt$/, '$1 di $2 lezioni completate'],
     [/^Töne: (\d+) von (\d+) Paketen offline gespeichert$/, 'Audio: $1 pacchetti su $2 salvati offline'],
@@ -72335,6 +72337,7 @@ const US = {
     [/^Danke! Dein Wunsch „(.+)“ ist angekommen\. Er wird geprüft und erscheint dann in der Wunschliste\.$/, 'Thank you! Your wish “$1” has arrived. It will be checked and then appear on the wish list.'],
     [/^Hörprobleme kopieren \((\d+)\)$/, 'Copy listening problems ($1)'],
     [/^Prototyp · Version (\d+) · Dein Fortschritt wird nur in diesem Browser gespeichert$/, 'Prototype · Version $1 · Your progress is only saved in this browser'],
+    [/^Die Stimmen sind computergeneriert \(Google Cloud Text-to-Speech\)\.$/, 'The voices are computer-generated (Google Cloud Text-to-Speech).'],
     [/^Marken und Namen werden ausschließlich zur Bezeichnung der jeweiligen Unternehmen, Produkte, Personen und Veranstaltungen verwendet\. Es besteht keine wirtschaftliche Verbindung zu deren Inhabern beziehungsweise Veranstaltern\.$/, 'Brands and names are used solely to refer to the respective companies, products, people and events. There is no business connection with their owners or organizers.'],
     [/^(\d+) von (\d+) Lektionen erledigt$/, '$1 of $2 lessons done'],
     [/^Töne: (\d+) von (\d+) Paketen offline gespeichert$/, 'Audio: $1 of $2 packages saved offline'],
@@ -75390,7 +75393,8 @@ function renderHome(){
     ${(S.hoer || []).length ? `<div class="offl"><button class="ghost" data-hoerlog>Hörprobleme kopieren (${S.hoer.length})</button>
       <p class="hint" id="hoermsg">Wörter, die das Mikrofon beim Nachsprechen nicht erkannt hat. Kopieren und bei Claude einfügen, dann wird die Erkennung gezielt besser.</p></div>` : ''}
     <p class="foot">Prototyp · Version ${APP_VERSION} · Dein Fortschritt wird nur in diesem Browser gespeichert</p>
-    <p class="foot">Marken und Namen werden ausschließlich zur Bezeichnung der jeweiligen Unternehmen, Produkte, Personen und Veranstaltungen verwendet. Es besteht keine wirtschaftliche Verbindung zu deren Inhabern beziehungsweise Veranstaltern.</p>`;
+    <p class="foot">Marken und Namen werden ausschließlich zur Bezeichnung der jeweiligen Unternehmen, Produkte, Personen und Veranstaltungen verwendet. Es besteht keine wirtschaftliche Verbindung zu deren Inhabern beziehungsweise Veranstaltern.</p>
+    ${GOOGLE_STIMMEN.includes(LANG) ? '<p class="foot">Die Stimmen sind computergeneriert (Google Cloud Text-to-Speech).</p>' : ''}`;
   window.scrollTo(0,0);
   fillSizes(); loadWishes(); fitTileNames();
 }
