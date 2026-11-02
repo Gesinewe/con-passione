@@ -11,6 +11,21 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <script>
 window.CP_WEB = true;
+/* ab v317: Umzug – Lernstand aus dem Link übernehmen (#umzug=…, erzeugt auf der alten Adresse gesinewe.github.io), bevor die App startet */
+(function(){ try{
+  var m = location.hash.match(/^#umzug=(.+)$/); if (!m) return;
+  var d = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+  var lang = d['conpassione.lang'] || '', t = lang === 'de' ? ['Qui c’è già un percorso salvato. Sostituirlo con quello che hai portato?', 'Fatto! I tuoi progressi sono arrivati.']
+    : lang === 'us' ? ['There is already saved progress here. Replace it with the progress you brought?', 'Done! Your progress has arrived.']
+    : ['Hier gibt es schon einen Lernstand. Durch den mitgebrachten ersetzen?', 'Fertig! Dein Lernstand ist angekommen.'];
+  var alt = []; for (var i = 0; i < localStorage.length; i++){ var k = localStorage.key(i); if (k && k.indexOf('conpassione.') === 0) alt.push(k); }
+  if (!alt.some(function(k){ return k !== 'conpassione.lang'; }) || confirm(t[0])){
+    alt.forEach(function(k){ localStorage.removeItem(k); });
+    for (var k2 in d) if (k2.indexOf('conpassione.') === 0) localStorage.setItem(k2, d[k2]);
+    alert(t[1]);
+  }
+  history.replaceState(null, '', location.pathname + location.search);
+}catch(e){} })();
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); window.CP_INSTALL = e; window.dispatchEvent(new Event('cp-install')); });
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
@@ -591,7 +606,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 315;
+const APP_VERSION = 317;
 const GOOGLE_STIMMEN = ['it'];   // Lernrichtungen, deren Aufnahmen schon mit Google Cloud Text-to-Speech erzeugt sind (ab v314: Hinweis auf der Startseite)
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
@@ -42893,6 +42908,9 @@ const DE = {
     [/^Danke! Dein Wunsch „(.+)“ ist angekommen\. Er wird geprüft und erscheint dann in der Wunschliste\.$/, 'Grazie! Il tuo desiderio «$1» è arrivato. Verrà controllato e poi comparirà nella lista dei desideri.'],
     [/^Hörprobleme kopieren \((\d+)\)$/, 'Copia i problemi di ascolto ($1)'],
     [/^Prototyp · Version (\d+) · Dein Fortschritt wird nur in diesem Browser gespeichert$/, 'Prototipo · Versione $1 · I tuoi progressi vengono salvati solo in questo browser'],
+    [/^Con Passione hat eine neue Adresse: con-passione\.app$/, 'Con Passione ha un nuovo indirizzo: con-passione.app'],
+    [/^Lernstand mitnehmen und umziehen$/, 'Porta con te i progressi e trasloca'],
+    [/^Deine Punkte, Lektionen und Themen kommen mit\. Offline gespeicherte Töne lädst du dort einfach neu\.$/, 'Punti, lezioni e argomenti vengono con te. I suoni salvati offline li scarichi di nuovo lì.'],
     [/^Die Stimmen sind computergeneriert \(Google Cloud Text-to-Speech\)\.$/, 'Le voci sono generate al computer (Google Cloud Text-to-Speech).'],
     [/^Marken und Namen werden ausschließlich zur Bezeichnung der jeweiligen Unternehmen, Produkte, Personen und Veranstaltungen verwendet\. Es besteht keine wirtschaftliche Verbindung zu deren Inhabern beziehungsweise Veranstaltern\.$/, 'Marchi e nomi sono usati esclusivamente per indicare le rispettive aziende, prodotti, persone ed eventi. Non esiste alcun legame economico con i loro titolari od organizzatori.'],
     [/^(\d+) von (\d+) Lektionen erledigt$/, '$1 di $2 lezioni completate'],
@@ -72337,6 +72355,9 @@ const US = {
     [/^Danke! Dein Wunsch „(.+)“ ist angekommen\. Er wird geprüft und erscheint dann in der Wunschliste\.$/, 'Thank you! Your wish “$1” has arrived. It will be checked and then appear on the wish list.'],
     [/^Hörprobleme kopieren \((\d+)\)$/, 'Copy listening problems ($1)'],
     [/^Prototyp · Version (\d+) · Dein Fortschritt wird nur in diesem Browser gespeichert$/, 'Prototype · Version $1 · Your progress is only saved in this browser'],
+    [/^Con Passione hat eine neue Adresse: con-passione\.app$/, 'Con Passione has a new address: con-passione.app'],
+    [/^Lernstand mitnehmen und umziehen$/, 'Take my progress and move'],
+    [/^Deine Punkte, Lektionen und Themen kommen mit\. Offline gespeicherte Töne lädst du dort einfach neu\.$/, 'Your points, lessons and topics come along. Just download offline sounds again there.'],
     [/^Die Stimmen sind computergeneriert \(Google Cloud Text-to-Speech\)\.$/, 'The voices are computer-generated (Google Cloud Text-to-Speech).'],
     [/^Marken und Namen werden ausschließlich zur Bezeichnung der jeweiligen Unternehmen, Produkte, Personen und Veranstaltungen verwendet\. Es besteht keine wirtschaftliche Verbindung zu deren Inhabern beziehungsweise Veranstaltern\.$/, 'Brands and names are used solely to refer to the respective companies, products, people and events. There is no business connection with their owners or organizers.'],
     [/^(\d+) von (\d+) Lektionen erledigt$/, '$1 of $2 lessons done'],
@@ -75230,11 +75251,16 @@ function loadSounds(id){
   if (!id || sounds[id]) return;
   (GRUND_OF[id] || []).forEach(loadSounds);
   sounds[id] = {data:null};
-  sounds[id].promise = soundIndex.then(idx => fetch(soundFile(idx, id)).then(r => r.ok ? r.arrayBuffer() : null).catch(() => null)
+  sounds[id].promise = soundIndex.then(idx => Promise.all(soundFiles(idx, id).map(u => fetch(u).then(r => r.ok ? r.arrayBuffer() : null).catch(() => null)))
+    .then(teile => teile.includes(null) ? null : teile.length === 1 ? teile[0] : joinBuffers(teile))
     .then(buf => (sounds[id].data = {idx: (idx || {})[id] || {}, buf, url: {}})));
 }
 /* In der Web-App steht in index.json unter „_v“ ein Kennzeichen pro Bündel: Ändert sich eine Aufnahme, wird das Bündel neu geladen statt aus dem Offline-Speicher */
 const soundFile = (idx, id) => (idx && idx._x3 && idx._x3.includes(id) ? idx._ext3 : idx && idx._x2 && idx._x2.includes(id) ? idx._ext2 : idx && idx._x && idx._x.includes(id) ? idx._ext : '') + 'sounds/' + id + '.mp3' + (idx && idx._v && idx._v[id] ? '?v=' + idx._v[id] : '');
+/* ab v316: Cloudflare erlaubt höchstens 25 MiB pro Datei – größere Bündel liegen dort in Teilen (<bündel>.t1.mp3, .t2.mp3 …),
+   index.json sagt unter „_p“, wie viele; die Teile werden beim Laden wieder aneinandergehängt */
+const soundFiles = (idx, id) => { const n = idx && idx._p && idx._p[id]; const f = soundFile(idx, id); return n ? Array.from({length: n}, (_, i) => f.replace(/\.mp3(\?|$)/, '.t' + (i + 1) + '.mp3$1')) : [f]; };
+const joinBuffers = bs => { const out = new Uint8Array(bs.reduce((a, b) => a + b.byteLength, 0)); let o = 0; for (const b of bs){ out.set(new Uint8Array(b), o); o += b.byteLength; } return out.buffer; };
 const soundIndex = fetch('sounds/index.json').then(r => r.ok ? r.json() : {}).catch(() => ({}));
 /* Eine Aufnahme aus dem Bündel als data:-Adresse (wird zwischengespeichert) */
 function soundUrl(d, k){
@@ -75344,6 +75370,18 @@ function fitTileNames(){
   });
   fit(); try{ document.fonts.ready.then(fit); }catch(e){}
 }
+/* ab v317: Umzug von GitHub Pages zu con-passione.app – auf der alten Adresse nimmt ein Knopf den Lernstand (alle Schlüssel „conpassione.…“)
+   im Link mit; die neue Adresse übernimmt ihn beim Start (Kopf-Skript aus werkzeuge/web_bauen.py) */
+const ALTE_ADRESSE = typeof location !== 'undefined' && location.hostname === 'gesinewe.github.io';
+const umzugBox = () => ALTE_ADRESSE ? `<div class="offl umzug"><p class="lead"><b>Con Passione hat eine neue Adresse: con-passione.app</b></p>
+    <button class="main" data-umzug>Lernstand mitnehmen und umziehen</button>
+    <p class="hint">Deine Punkte, Lektionen und Themen kommen mit. Offline gespeicherte Töne lädst du dort einfach neu.</p></div>` : '';
+function umziehen(){
+  try{ save(); }catch(e){}
+  const d = {};
+  try{ for (let i = 0; i < localStorage.length; i++){ const k = localStorage.key(i); if (k && k.startsWith('conpassione.')) d[k] = localStorage.getItem(k); } }catch(e){}
+  location.href = 'https://con-passione.app/#umzug=' + encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(d)))));
+}
 function renderHome(){
   if (PICK_FIRST){ PICK_FIRST = false; return renderLangPick(); }
   const lessonsDone = TOPICS.flatMap(t => t.lessons).filter(l => S.done[l.id]).length;
@@ -75357,6 +75395,7 @@ function renderHome(){
         <div class="stat"><b>${lessonsDone}</b><span>Lektionen</span></div>
       </div>
     </header>
+    ${umzugBox()}
     <div class="langsw"><button class="chipbtn" data-go="lang">${LANG_FLAG[LANG]} Sprache wechseln</button></div>
     <p class="lead">${myTopics().length ? 'Wähl ein Thema, das dich begeistert. Du lernst Italienisch mit genau den Wörtern und Geschichten, die dich interessieren.' : 'Willkommen! Such dir unten die Themen aus, die dich interessieren, und lade sie aufs Handy. Du kannst jederzeit weitere hinzufügen.'}</p>
     <div class="topics">
@@ -89391,7 +89430,8 @@ async function cacheBundles(ids, step){
   const idx = await soundIndex, cache = await caches.open('cp-sounds'), old = await cache.keys();
   let n = 0, fail = 0;
   for (const id of ids){
-    const url = new URL(soundFile(idx, id), location.href).href;
+    for (const datei of soundFiles(idx, id)){
+    const url = new URL(datei, location.href).href;
     if (!(await cache.match(url))){
       try{
         const r = await fetch(url, {cache:'no-store'});
@@ -89399,6 +89439,7 @@ async function cacheBundles(ids, step){
         await cache.put(url, r);
         await Promise.all(old.filter(q => q.url !== url && q.url.split('?')[0] === url.split('?')[0]).map(q => cache.delete(q)));
       }catch(e){ fail++; }
+    }
     }
     if (step) step(++n, ids.length);
   }
@@ -89409,7 +89450,7 @@ async function cachedCount(tid){
   const idx = await soundIndex, cache = await caches.open('cp-sounds');
   const ids = Object.keys(idx).filter(k => k.startsWith(tid + '-'));
   let have = 0;
-  for (const id of ids) if (await cache.match(new URL(soundFile(idx, id), location.href).href)) have++;
+  for (const id of ids){ let alle = true; for (const f of soundFiles(idx, id)) if (!(await cache.match(new URL(f, location.href).href))) alle = false; if (alle) have++; }
   return [have, ids.length];
 }
 /* Thema herunterladen: sofort zu „Meine Themen“, dann die Töne laden. Ohne Internet geht es trotzdem: Töne kommen später beim Üben */
@@ -89491,6 +89532,7 @@ app.addEventListener('click', e => {
   if (b.hasAttribute('data-mic')) return toggleMic();
   if (b.hasAttribute('data-rec')) return startRec(b);
   if (b.hasAttribute('data-offline')) return saveOffline(b);
+  if (b.hasAttribute('data-umzug')) return umziehen();
   if (b.hasAttribute('data-hoerlog')) return copyHoerLog(b);
   if (b.hasAttribute('data-wish')) return sendWish();
   if (b.dataset.wvote) return voteWish(+b.dataset.wvote, b);
