@@ -29,10 +29,136 @@ window.CP_WEB = true;
 window.addEventListener('beforeinstallprompt', e => { e.preventDefault(); window.CP_INSTALL = e; window.dispatchEvent(new Event('cp-install')); });
 if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
 </script>
+<style>
+/* Schriften lokal (ab v318, Datenschutz: keine Verbindung zu Google Fonts). Quelle: Google Fonts, SIL Open Font License */
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/figtree-c15953e5.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/figtree-dab710cf.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/figtree-c15953e5.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(fonts/figtree-dab710cf.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/figtree-c15953e5.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(fonts/figtree-dab710cf.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/figtree-c15953e5.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(fonts/figtree-dab710cf.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/figtree-c15953e5.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url(fonts/figtree-dab710cf.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrumentserif-fd6f40d1.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrumentserif-52a6c245.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrumentserif-28cfb3cb.woff2) format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(fonts/instrumentserif-2d243d02.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
 <title>Con Passione</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
 :root{
   --bg:#F1F4F2; --surface:#FFFFFF; --ink:#17201B; --muted:#5B6760; --line:#D6DDD8;
@@ -376,6 +502,9 @@ body.muted .aplay{opacity:.35}
 .lesson.story.done .n{border-style:solid}
 .linkbtn.later{justify-self:center;align-self:center;font-weight:600;color:var(--muted)}
 .offl{margin-top:22px;display:grid;gap:4px}
+.fl{background:none;border:0;padding:0;color:inherit;font:inherit;text-decoration:underline;cursor:pointer}
+.kform{display:grid;gap:6px;margin:12px 0}.kform label{font-weight:600;margin-top:6px}.kform textarea{resize:vertical;font:inherit}.khp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.recht{max-width:68ch}.recht h2{margin:8px 0 12px}.recht h3{margin:20px 0 4px;font-size:1.02rem}.recht p{margin:0 0 8px;line-height:1.55}
 /* Startbildschirm Sprachauswahl (v192) */
 .langpick{display:grid;gap:10px;padding-top:28px}
 .langpick .brand{font-size:44px}
@@ -606,7 +735,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 317;
+const APP_VERSION = 318;
 const GOOGLE_STIMMEN = ['it'];   // Lernrichtungen, deren Aufnahmen schon mit Google Cloud Text-to-Speech erzeugt sind (ab v314: Hinweis auf der Startseite)
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
@@ -75433,7 +75562,8 @@ function renderHome(){
       <p class="hint" id="hoermsg">Wörter, die das Mikrofon beim Nachsprechen nicht erkannt hat. Kopieren und bei Claude einfügen, dann wird die Erkennung gezielt besser.</p></div>` : ''}
     <p class="foot">Prototyp · Version ${APP_VERSION} · Dein Fortschritt wird nur in diesem Browser gespeichert</p>
     <p class="foot">Marken und Namen werden ausschließlich zur Bezeichnung der jeweiligen Unternehmen, Produkte, Personen und Veranstaltungen verwendet. Es besteht keine wirtschaftliche Verbindung zu deren Inhabern beziehungsweise Veranstaltern.</p>
-    ${GOOGLE_STIMMEN.includes(LANG) ? '<p class="foot">Die Stimmen sind computergeneriert (Google Cloud Text-to-Speech).</p>' : ''}`;
+    ${GOOGLE_STIMMEN.includes(LANG) ? '<p class="foot">Die Stimmen sind computergeneriert (Google Cloud Text-to-Speech).</p>' : ''}
+    ${rechtOffen() ? '' : `<p class="foot"><button class="fl" data-go="impressum">${{de:'Impressum', it:'Note legali', en:'Legal notice'}[rechtSprache()]}</button> · <button class="fl" data-go="datenschutz">${{de:'Datenschutz', it:'Privacy', en:'Privacy'}[rechtSprache()]}</button> · <button class="fl" data-go="kontakt">${{de:'Kontakt', it:'Contatto', en:'Contact'}[rechtSprache()]}</button></p>`}`;
   window.scrollTo(0,0);
   fillSizes(); loadWishes(); fitTileNames();
 }
@@ -89346,12 +89476,249 @@ function startRun(o){
   lastRestart = o.restart;
   renderStep();
 }
+/*RECHT-START*/
+/* ab v318: Impressum und Datenschutzerklärung (Entwurf, von der Nutzerin rechtlich prüfen lassen). Platzhalter in RECHT_DATEN ausfüllen –
+   solange ein „[“ darin steht, zeigt die App die Seiten NICHT an (rechtOffen). werkzeuge/web_bauen.py erzeugt daraus auch impressum.html/datenschutz.html */
+const RECHT_DATEN = {
+  name: 'Nicole Kornau',
+  anschrift: 'Lichtblickstraße 33<br>28777 Bremen<br>Deutschland',
+  mail: 'nicolediebunte@web.de',
+  formular: '<a href="https://con-passione.app/#kontakt">con-passione.app/#kontakt</a>',   // zweiter schneller Kontaktweg statt Telefon (EuGH C-298/07)
+  behoerde: 'Die Landesbeauftragte für Datenschutz und Informationsfreiheit der Freien Hansestadt Bremen, Georgstraße 122–124, 27570 Bremerhaven, office@datenschutz.bremen.de, www.datenschutz.bremen.de',   // Bremen; neue Anschrift seit 23.10.2025 (Umzug ins Werftquartier) – vor Veröffentlichung auf datenschutz.bremen.de gegenprüfen
+  supabase: 'Frankfurt am Main (EU)',   // Supabase-Region eu-central-1 (Angabe der Nutzerin 02.11.2026)
+  stand: 'November 2026'
+};
+const rechtOffen = () => Object.values(RECHT_DATEN).some(v => v.includes('['));
+const RECHT = (D => ({
+de: {
+impressum: { titel: 'Impressum', html: `
+<h3>Angaben gemäß § 5 DDG</h3>
+<p>${D.name}<br>Con Passione<br>${D.anschrift}</p>
+<h3>Kontakt</h3>
+<p>E-Mail: ${D.mail}<br>Kontaktformular: ${D.formular}</p>
+<h3>Umsatzsteuer</h3>
+<p>Kleinunternehmerin im Sinne von § 19 UStG – es wird keine Umsatzsteuer ausgewiesen.</p>
+<h3>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
+<p>${D.name}, Anschrift wie oben.</p>
+<h3>Verbraucherstreitbeilegung</h3>
+<p>Ich bin nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+<h3>Nachweise</h3>
+<p>Die Stimmen sind computergeneriert (Text-to-Speech). Schriften: Instrument Serif und Figtree (SIL Open Font License).
+Geräusche in einzelnen Hörfolgen: „drip“ von Gravity Sound (CC BY 4.0), „Water drips in Treak Cliff Cavern, Derbyshire“ von Andy Mabbett (CC BY-SA 3.0),
+„Water drops dripping“ von ZooFari (CC BY-SA 3.0), alle über Wikimedia Commons; die genaue Quelle steht jeweils bei der Folge.</p>` },
+datenschutz: { titel: 'Datenschutzerklärung', html: `
+<p>Stand: ${D.stand}</p>
+<h3>1. Wer ist verantwortlich?</h3>
+<p>${D.name}, ${D.anschrift.replace(/<br>/g, ', ')}, E-Mail: ${D.mail}</p>
+<h3>2. Das Wichtigste in Kürze</h3>
+<p>Con Passione braucht kein Konto und keine Anmeldung. Es gibt keine Werbung, keine Analyse- oder Statistikdienste und kein Tracking.
+Dein Lernstand (Punkte, erledigte Lektionen, Einstellungen) wird nur auf deinem Gerät gespeichert und nicht an mich übertragen.</p>
+<h3>3. Bereitstellung der App (Hosting)</h3>
+<p>Die App wird über Cloudflare ausgeliefert (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). Beim Aufruf verarbeitet Cloudflare
+technisch notwendige Daten, insbesondere deine IP-Adresse, Datum und Uhrzeit, die abgerufene Datei und Angaben zu Browser und Betriebssystem,
+um die App auszuliefern und vor Angriffen zu schützen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer sicheren und
+funktionierenden Bereitstellung). Mit Cloudflare besteht ein Vertrag zur Auftragsverarbeitung. Für Übermittlungen in die USA stützt sich Cloudflare auf den
+EU-US Data Privacy Framework sowie Standardvertragsklauseln.</p>
+<h3>4. Speicherung auf deinem Gerät</h3>
+<p>Die App speichert deinen Lernstand im lokalen Speicher deines Browsers (localStorage). Wenn du Töne offline speicherst, liegen sie im Zwischenspeicher
+des Browsers auf deinem Gerät. Diese Daten verlassen dein Gerät nicht. Der Zugriff darauf ist für die von dir gewünschte Funktion unbedingt erforderlich
+(§ 25 Abs. 2 Nr. 2 TDDDG). Du kannst sie jederzeit löschen, indem du die Websitedaten im Browser löschst oder die App deinstallierst.</p>
+<h3>5. Schriften</h3>
+<p>Die Schriften werden mit der App ausgeliefert. Es besteht keine Verbindung zu Servern von Google Fonts.</p>
+<h3>6. Spracherkennung beim Nachsprechen</h3>
+<p>Wenn du die Mikrofon-Funktion nutzt, verwendet die App die Spracherkennung deines Browsers. Dafür fragt der Browser vorher nach deiner Erlaubnis.
+In Google Chrome und Browsern, die darauf aufbauen, wird die Aufnahme zur Erkennung an Google übertragen (Google Ireland Limited, Gordon House,
+Barrow Street, Dublin 4, Irland); dabei kann eine Übermittlung in die USA stattfinden. Andere Browser nutzen eigene Dienste ihrer Hersteller.
+Die App selbst speichert keine Aufnahmen; der erkannte Text wird nur auf deinem Gerät mit dem Übungssatz verglichen. Wörter, die nicht erkannt wurden,
+merkt sich die App auf deinem Gerät („Hörprobleme“); sie werden nur weitergegeben, wenn du sie selbst kopierst und versendest.
+Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), die du durch die Mikrofon-Freigabe erteilst und in den Browser-Einstellungen jederzeit widerrufen kannst.
+Ohne Mikrofon funktioniert die App ebenfalls.</p>
+<h3>7. Themen-Wunschliste</h3>
+<p>Auf der Startseite kannst du Themen vorschlagen und für Vorschläge stimmen. Dein Vorschlag (nur der eingegebene Text) und deine Stimme werden in einer Datenbank
+bei Supabase gespeichert (Supabase, Inc., USA; Serverstandort: ${D.supabase}). Dabei verarbeitet Supabase technisch auch deine IP-Adresse.
+Vorschläge sind für alle Nutzerinnen und Nutzer sichtbar – bitte gib dort keine persönlichen Daten ein. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO
+(berechtigtes Interesse daran, die App nach den Wünschen der Lernenden weiterzuentwickeln). Vorschläge werden gelöscht, wenn sie umgesetzt oder nicht mehr relevant sind.</p>
+<h3>8. Kontaktformular und E-Mail</h3>
+<p>Wenn du mir über das Kontaktformular schreibst, werden deine Nachricht, deine E-Mail-Adresse und – falls angegeben – dein Name über Cloudflare (siehe Abschnitt 3)
+als E-Mail an mein Postfach bei WEB.DE weitergeleitet (1&1 Mail & Media GmbH, Brauerstraße 48, 76135 Karlsruhe). Das Formular selbst speichert nichts. Das Gleiche gilt,
+wenn du mir direkt eine E-Mail schreibst. Ich nutze die Angaben nur, um deine Anfrage zu beantworten, und lösche sie, wenn sie erledigt ist und keine Aufbewahrungspflicht besteht.
+Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung) bzw. lit. b, wenn deine Anfrage einen Vertrag betrifft.</p>
+<h3>9. Installation über Google Play</h3>
+<p>Wenn du die App über Google Play installierst, verarbeitet Google dabei Daten in eigener Verantwortung; es gilt die Datenschutzerklärung von Google.</p>
+<h3>10. Deine Rechte</h3>
+<p>Du hast das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18),
+Datenübertragbarkeit (Art. 20) und Widerspruch gegen Verarbeitungen auf Grundlage von Art. 6 Abs. 1 lit. f (Art. 21). Eine Einwilligung kannst du jederzeit
+für die Zukunft widerrufen. Schreib dazu einfach an ${D.mail}. Außerdem kannst du dich bei einer Datenschutz-Aufsichtsbehörde beschweren,
+zum Beispiel bei der für mich zuständigen: ${D.behoerde}.</p>
+<h3>11. Keine automatisierten Entscheidungen</h3>
+<p>Es findet keine automatisierte Entscheidungsfindung und kein Profiling statt.</p>` }
+},
+it: {
+impressum: { titel: 'Note legali (Impressum)', html: `
+<p><i>Traduzione di cortesia; fa fede la versione tedesca.</i></p>
+<h3>Informazioni ai sensi del § 5 DDG (legge tedesca sui servizi digitali)</h3>
+<p>${D.name}<br>Con Passione<br>${D.anschrift}</p>
+<h3>Contatti</h3>
+<p>E-mail: ${D.mail}<br>Modulo di contatto: ${D.formular}</p>
+<h3>IVA</h3>
+<p>Piccola imprenditrice ai sensi del § 19 UStG – l’IVA non viene indicata.</p>
+<h3>Responsabile dei contenuti (§ 18 comma 2 MStV)</h3>
+<p>${D.name}, indirizzo come sopra.</p>
+<h3>Risoluzione delle controversie</h3>
+<p>Non sono disposta né obbligata a partecipare a procedure di risoluzione delle controversie davanti a un organismo di conciliazione per i consumatori.</p>
+<h3>Crediti</h3>
+<p>Le voci sono generate al computer (sintesi vocale). Caratteri: Instrument Serif e Figtree (SIL Open Font License).
+Suoni in alcuni episodi audio: “drip” di Gravity Sound (CC BY 4.0), “Water drips in Treak Cliff Cavern, Derbyshire” di Andy Mabbett (CC BY-SA 3.0),
+“Water drops dripping” di ZooFari (CC BY-SA 3.0), tutti da Wikimedia Commons; la fonte esatta è indicata nell’episodio.</p>` },
+datenschutz: { titel: 'Informativa sulla privacy', html: `
+<p><i>Traduzione di cortesia; fa fede la versione tedesca.</i> Aggiornata a: ${D.stand}</p>
+<h3>1. Titolare del trattamento</h3>
+<p>${D.name}, ${D.anschrift.replace(/<br>/g, ', ')}, e-mail: ${D.mail}</p>
+<h3>2. In breve</h3>
+<p>Con Passione non richiede account né registrazione. Non ci sono pubblicità, servizi di analisi o tracciamento.
+I tuoi progressi (punti, lezioni completate, impostazioni) sono salvati solo sul tuo dispositivo e non vengono trasmessi a me.</p>
+<h3>3. Hosting</h3>
+<p>L’app viene distribuita tramite Cloudflare (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). Cloudflare tratta i dati tecnicamente necessari,
+in particolare indirizzo IP, data e ora, file richiesto e dati su browser e sistema operativo, per fornire l’app e proteggerla da attacchi.
+Base giuridica: art. 6 par. 1 lett. f GDPR (legittimo interesse). Con Cloudflare esiste un accordo sul trattamento dei dati. Per i trasferimenti negli USA
+Cloudflare si basa sull’EU-US Data Privacy Framework e sulle clausole contrattuali standard.</p>
+<h3>4. Dati sul tuo dispositivo</h3>
+<p>L’app salva i tuoi progressi nella memoria locale del browser (localStorage); i suoni salvati offline restano nella cache del browser. Questi dati non lasciano
+il tuo dispositivo e sono strettamente necessari per la funzione richiesta (§ 25 comma 2 n. 2 TDDDG). Puoi cancellarli eliminando i dati del sito nel browser o disinstallando l’app.</p>
+<h3>5. Caratteri</h3>
+<p>I caratteri sono forniti insieme all’app. Non c’è alcuna connessione ai server di Google Fonts.</p>
+<h3>6. Riconoscimento vocale</h3>
+<p>Se usi il microfono, l’app usa il riconoscimento vocale del tuo browser, che prima chiede il tuo permesso. In Google Chrome e nei browser basati su di esso
+la registrazione viene inviata a Google per il riconoscimento (Google Ireland Limited, Gordon House, Barrow Street, Dublino 4, Irlanda); può avvenire un trasferimento negli USA.
+Altri browser usano servizi propri. L’app non salva registrazioni; il testo riconosciuto viene confrontato con la frase solo sul tuo dispositivo. Le parole non riconosciute
+restano sul tuo dispositivo e vengono condivise solo se le copi e invii tu. Base giuridica: il tuo consenso (art. 6 par. 1 lett. a GDPR), dato con il permesso del microfono
+e revocabile in ogni momento nelle impostazioni del browser. L’app funziona anche senza microfono.</p>
+<h3>7. Lista dei desideri</h3>
+<p>Nella pagina iniziale puoi proporre argomenti e votarli. La proposta (solo il testo inserito) e il voto vengono salvati in un database presso Supabase
+(Supabase, Inc., USA; server: ${D.supabase}); Supabase tratta tecnicamente anche il tuo indirizzo IP. Le proposte sono visibili a tutti: non inserire dati personali.
+Base giuridica: art. 6 par. 1 lett. f GDPR (legittimo interesse a sviluppare l’app secondo i desideri di chi impara). Le proposte vengono cancellate quando sono realizzate o non più rilevanti.</p>
+<h3>8. Modulo di contatto ed e-mail</h3>
+<p>Se mi scrivi tramite il modulo di contatto, il messaggio, il tuo indirizzo e-mail e – se indicato – il tuo nome vengono inoltrati tramite Cloudflare (vedi punto 3)
+come e-mail alla mia casella presso WEB.DE (1&1 Mail & Media GmbH, Brauerstraße 48, 76135 Karlsruhe, Germania). Il modulo non salva nulla. Lo stesso vale se mi scrivi direttamente un’e-mail.
+Uso i dati solo per rispondere e li cancello quando la richiesta è chiusa e non c’è un obbligo di conservazione. Base giuridica: art. 6 par. 1 lett. f GDPR (legittimo interesse a rispondere) o lett. b, se la richiesta riguarda un contratto.</p>
+<h3>9. Installazione tramite Google Play</h3>
+<p>Se installi l’app tramite Google Play, Google tratta dati sotto la propria responsabilità; vale l’informativa sulla privacy di Google.</p>
+<h3>10. I tuoi diritti</h3>
+<p>Hai diritto di accesso (art. 15 GDPR), rettifica (art. 16), cancellazione (art. 17), limitazione (art. 18), portabilità (art. 20) e opposizione ai trattamenti basati
+sull’art. 6 par. 1 lett. f (art. 21). Puoi revocare un consenso in qualsiasi momento per il futuro. Basta scrivere a ${D.mail}. Puoi inoltre presentare reclamo a un’autorità
+di controllo, ad esempio il Garante per la protezione dei dati personali o l’autorità competente per me: ${D.behoerde}.</p>
+<h3>11. Nessuna decisione automatizzata</h3>
+<p>Non ha luogo alcun processo decisionale automatizzato né profilazione.</p>` }
+},
+en: {
+impressum: { titel: 'Legal notice (Impressum)', html: `
+<p><i>Courtesy translation; the German version is authoritative.</i></p>
+<h3>Information according to § 5 DDG (German Digital Services Act)</h3>
+<p>${D.name}<br>Con Passione<br>${D.anschrift}</p>
+<h3>Contact</h3>
+<p>Email: ${D.mail}<br>Contact form: ${D.formular}</p>
+<h3>VAT</h3>
+<p>Small business according to § 19 UStG – no VAT is charged.</p>
+<h3>Responsible for content (§ 18 (2) MStV)</h3>
+<p>${D.name}, address as above.</p>
+<h3>Consumer dispute resolution</h3>
+<p>I am neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.</p>
+<h3>Credits</h3>
+<p>The voices are computer-generated (text-to-speech). Fonts: Instrument Serif and Figtree (SIL Open Font License).
+Sounds in some audio episodes: “drip” by Gravity Sound (CC BY 4.0), “Water drips in Treak Cliff Cavern, Derbyshire” by Andy Mabbett (CC BY-SA 3.0),
+“Water drops dripping” by ZooFari (CC BY-SA 3.0), all via Wikimedia Commons; the exact source is shown with each episode.</p>` },
+datenschutz: { titel: 'Privacy policy', html: `
+<p><i>Courtesy translation; the German version is authoritative.</i> As of: ${D.stand}</p>
+<h3>1. Controller</h3>
+<p>${D.name}, ${D.anschrift.replace(/<br>/g, ', ')}, email: ${D.mail}</p>
+<h3>2. In short</h3>
+<p>Con Passione needs no account and no sign-up. There is no advertising, no analytics and no tracking.
+Your progress (points, completed lessons, settings) is stored only on your device and is not sent to me.</p>
+<h3>3. Hosting</h3>
+<p>The app is delivered via Cloudflare (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). Cloudflare processes technically necessary data,
+in particular your IP address, date and time, the requested file and information about your browser and operating system, to deliver the app and protect it against attacks.
+Legal basis: Art. 6(1)(f) GDPR (legitimate interest). A data processing agreement is in place with Cloudflare. For transfers to the USA, Cloudflare relies on the
+EU-US Data Privacy Framework and standard contractual clauses.</p>
+<h3>4. Storage on your device</h3>
+<p>The app stores your progress in your browser’s local storage; sounds saved for offline use stay in the browser cache. This data does not leave your device and is
+strictly necessary for the function you request (§ 25(2) no. 2 TDDDG). You can delete it by clearing the site data in your browser or uninstalling the app.</p>
+<h3>5. Fonts</h3>
+<p>The fonts are delivered with the app. There is no connection to Google Fonts servers.</p>
+<h3>6. Speech recognition</h3>
+<p>If you use the microphone, the app uses your browser’s speech recognition, which asks for your permission first. In Google Chrome and browsers based on it,
+the recording is sent to Google for recognition (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland); a transfer to the USA may take place.
+Other browsers use their own services. The app does not store recordings; the recognized text is compared with the practice sentence on your device only. Words that were not
+recognized are kept on your device and are only shared if you copy and send them yourself. Legal basis: your consent (Art. 6(1)(a) GDPR), given through the microphone permission
+and revocable at any time in your browser settings. The app also works without a microphone.</p>
+<h3>7. Topic wish list</h3>
+<p>On the start page you can suggest topics and vote for suggestions. Your suggestion (only the text you enter) and your vote are stored in a database at Supabase
+(Supabase, Inc., USA; server location: ${D.supabase}); Supabase also technically processes your IP address. Suggestions are visible to everyone – please do not enter personal data.
+Legal basis: Art. 6(1)(f) GDPR (legitimate interest in developing the app according to learners’ wishes). Suggestions are deleted once implemented or no longer relevant.</p>
+<h3>8. Contact form and email</h3>
+<p>If you write to me via the contact form, your message, your email address and – if provided – your name are forwarded via Cloudflare (see section 3)
+as an email to my mailbox at WEB.DE (1&1 Mail & Media GmbH, Brauerstraße 48, 76135 Karlsruhe, Germany). The form itself stores nothing. The same applies if you email me directly.
+I use the data only to answer your request and delete it once it is settled and no retention obligation applies. Legal basis: Art. 6(1)(f) GDPR (legitimate interest in answering) or (b) if your request concerns a contract.</p>
+<h3>9. Installation via Google Play</h3>
+<p>If you install the app via Google Play, Google processes data under its own responsibility; Google’s privacy policy applies.</p>
+<h3>10. Your rights</h3>
+<p>You have the right of access (Art. 15 GDPR), rectification (Art. 16), erasure (Art. 17), restriction of processing (Art. 18), data portability (Art. 20) and to object to
+processing based on Art. 6(1)(f) (Art. 21). You can withdraw consent at any time for the future. Just write to ${D.mail}. You can also lodge a complaint with a
+data protection supervisory authority, for example the one responsible for me: ${D.behoerde}.</p>
+<h3>11. No automated decisions</h3>
+<p>There is no automated decision-making and no profiling.</p>` }
+}
+}))(RECHT_DATEN);
+const rechtSprache = () => LANG === 'de' ? 'it' : LANG === 'us' ? 'en' : 'de';
+const KONTAKT_URL = 'https://con-passione.app/api/kontakt';   /* Cloudflare-Worker worker/kontakt.js schickt die Nachricht als E-Mail an die Betreiberin */
+const KONTAKT_TXT = {
+  de: {titel:'Kontakt', lead:'Schreib mir – Fragen, Fehler, Ideen. Ich antworte per E-Mail.', name:'Name (freiwillig)', mail:'Deine E-Mail-Adresse', text:'Deine Nachricht', senden:'Nachricht senden',
+       ok:'Danke! Deine Nachricht ist angekommen.', fehlt:'Bitte gib eine gültige E-Mail-Adresse und eine Nachricht (mindestens 10 Zeichen) ein.', fehler:'Das hat nicht geklappt. Bitte versuch es später noch einmal oder schreib an ', ds:'Hinweise zum Datenschutz'},
+  it: {titel:'Contatto', lead:'Scrivimi – domande, errori, idee. Rispondo via e-mail.', name:'Nome (facoltativo)', mail:'Il tuo indirizzo e-mail', text:'Il tuo messaggio', senden:'Invia messaggio',
+       ok:'Grazie! Il tuo messaggio è arrivato.', fehlt:'Inserisci un indirizzo e-mail valido e un messaggio (almeno 10 caratteri).', fehler:'Non ha funzionato. Riprova più tardi o scrivi a ', ds:'Informativa sulla privacy'},
+  en: {titel:'Contact', lead:'Write to me – questions, mistakes, ideas. I’ll reply by email.', name:'Name (optional)', mail:'Your email address', text:'Your message', senden:'Send message',
+       ok:'Thank you! Your message has arrived.', fehlt:'Please enter a valid email address and a message (at least 10 characters).', fehler:'That didn’t work. Please try again later or write to ', ds:'Privacy policy'}
+};
+function renderKontakt(){
+  const k = KONTAKT_TXT[rechtSprache()];
+  app.innerHTML = `<div style="--t:var(--accent)">${backBtn('home','Start')}<div class="recht"><h2>${k.titel}</h2><p>${k.lead}</p>
+    <form id="kform" class="kform" novalidate>
+      <label for="kname">${k.name}</label><input class="field" id="kname" maxlength="80" autocomplete="name">
+      <label for="kmail">${k.mail}</label><input class="field" id="kmail" type="email" maxlength="120" autocomplete="email" required>
+      <label for="ktext">${k.text}</label><textarea class="field" id="ktext" rows="6" maxlength="3000" required></textarea>
+      <input id="kweb" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="khp">
+      <button class="main" type="submit">${k.senden}</button>
+      <p class="hint" id="kmsg" aria-live="polite"></p>
+    </form>
+    <p class="hint"><button class="fl" data-go="datenschutz">${k.ds}</button></p></div></div>`;
+  const t0 = Date.now();
+  document.getElementById('kform').addEventListener('submit', async e => {
+    e.preventDefault();
+    const msg = document.getElementById('kmsg'), btn = e.target.querySelector('button[type=submit]');
+    const d = {name: document.getElementById('kname').value.trim(), mail: document.getElementById('kmail').value.trim(), text: document.getElementById('ktext').value.trim(),
+               website: document.getElementById('kweb').value, sek: Math.round((Date.now() - t0) / 1000), sprache: LANG};
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(d.mail) || d.text.length < 10){ msg.textContent = k.fehlt; return; }
+    btn.disabled = true;
+    try{
+      const r = await fetch(KONTAKT_URL, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(d)});
+      if (!r.ok) throw 0;
+      e.target.reset(); msg.textContent = k.ok;
+    }catch(err){ msg.textContent = k.fehler + RECHT_DATEN.mail; }
+    btn.disabled = false;
+  });
+  window.scrollTo(0,0);
+}
+function renderRecht(art){
+  const r = RECHT[rechtSprache()][art];
+  app.innerHTML = `<div style="--t:var(--accent)">${backBtn('home','Start')}<div class="recht"><h2>${r.titel}</h2>${r.html}</div></div>`;
+  window.scrollTo(0,0);
+}
+/*RECHT-END*/
 function go(where){
   try{ player.pause(); }catch(e){} stopRec();
   L = null; pop.hidden = true;
   if (where.startsWith('folder:')) return renderFolder(where.slice(7));
   if (where.startsWith('topic:')) return renderTopic(where.slice(6));
-  ({home:renderHome, lang:renderLangPick, mytopics:renderMyTopics, vocab:renderVocab, grammar:renderGrammar, verbs:renderVerbs, tenses:renderTenses}[where] || renderHome)();
+  ({home:renderHome, impressum:() => renderRecht('impressum'), datenschutz:() => renderRecht('datenschutz'), kontakt:renderKontakt, lang:renderLangPick, mytopics:renderMyTopics, vocab:renderVocab, grammar:renderGrammar, verbs:renderVerbs, tenses:renderTenses}[where] || renderHome)();
 }
 
 /* ---------- Installieren (nur Web-App): Knopf, wenn der Browser es anbietet, sonst Anleitung ---------- */
@@ -89691,6 +90058,7 @@ if (LANG === 'sp') installUiTranslator();
 if (LANG === 'us') installUiTranslator();
 if (NEED_LANG_PICK) PICK_FIRST = true;
 renderHome();
+if (['#kontakt', '#impressum', '#datenschutz'].includes(location.hash) && !rechtOffen()){ PICK_FIRST = false; go(location.hash.slice(1)); }   /* ab v318: direkte Links, z. B. aus dem Impressum */
 </script>
 
 </html>
