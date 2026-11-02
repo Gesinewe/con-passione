@@ -735,7 +735,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 320;
+const APP_VERSION = 321;
 const GOOGLE_STIMMEN = ['it'];   // Lernrichtungen, deren Aufnahmen schon mit Google Cloud Text-to-Speech erzeugt sind (ab v314: Hinweis auf der Startseite)
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
@@ -89671,12 +89671,12 @@ data protection supervisory authority, for example the one responsible for me: $
 const rechtSprache = () => LANG === 'de' ? 'it' : LANG === 'us' ? 'en' : 'de';
 const KONTAKT_URL = 'https://con-passione.app/api/kontakt';   /* Cloudflare-Worker worker/kontakt.js schickt die Nachricht als E-Mail an die Betreiberin */
 const KONTAKT_TXT = {
-  de: {titel:'Kontakt', lead:'Schreib mir – Fragen, Fehler, Ideen. Ich antworte per E-Mail.', name:'Name (freiwillig)', mail:'Deine E-Mail-Adresse', text:'Deine Nachricht', senden:'Nachricht senden',
-       ok:'Danke! Deine Nachricht ist angekommen.', fehlt:'Bitte gib eine gültige E-Mail-Adresse und eine Nachricht (mindestens 10 Zeichen) ein.', fehler:'Das hat nicht geklappt. Bitte versuch es später noch einmal oder schreib an ', ds:'Hinweise zum Datenschutz'},
-  it: {titel:'Contatto', lead:'Scrivimi – domande, errori, idee. Rispondo via e-mail.', name:'Nome (facoltativo)', mail:'Il tuo indirizzo e-mail', text:'Il tuo messaggio', senden:'Invia messaggio',
-       ok:'Grazie! Il tuo messaggio è arrivato.', fehlt:'Inserisci un indirizzo e-mail valido e un messaggio (almeno 10 caratteri).', fehler:'Non ha funzionato. Riprova più tardi o scrivi a ', ds:'Informativa sulla privacy'},
-  en: {titel:'Contact', lead:'Write to me – questions, mistakes, ideas. I’ll reply by email.', name:'Name (optional)', mail:'Your email address', text:'Your message', senden:'Send message',
-       ok:'Thank you! Your message has arrived.', fehlt:'Please enter a valid email address and a message (at least 10 characters).', fehler:'That didn’t work. Please try again later or write to ', ds:'Privacy policy'}
+  de: {titel:'Kontakt', lead:'Schreib mir – Fragen, Fehler, Ideen. Ich antworte per E-Mail; falls nichts kommt, schau bitte im Spam-Ordner nach.', name:'Name (freiwillig)', mail:'Deine E-Mail-Adresse', text:'Deine Nachricht', senden:'Nachricht senden',
+       ok:'Danke! Deine Nachricht ist angekommen. Meine Antwort kommt von ' + RECHT_DATEN.mail + ' – schau bitte auch in deinem Spam-Ordner nach.', fehlt:'Bitte gib eine gültige E-Mail-Adresse und eine Nachricht (mindestens 10 Zeichen) ein.', fehler:'Das hat nicht geklappt. Bitte versuch es später noch einmal oder schreib an ', ds:'Hinweise zum Datenschutz'},
+  it: {titel:'Contatto', lead:'Scrivimi – domande, errori, idee. Rispondo via e-mail; se non arriva nulla, controlla la cartella spam.', name:'Nome (facoltativo)', mail:'Il tuo indirizzo e-mail', text:'Il tuo messaggio', senden:'Invia messaggio',
+       ok:'Grazie! Il tuo messaggio è arrivato. La mia risposta arriva da ' + RECHT_DATEN.mail + ' – controlla anche la cartella spam.', fehlt:'Inserisci un indirizzo e-mail valido e un messaggio (almeno 10 caratteri).', fehler:'Non ha funzionato. Riprova più tardi o scrivi a ', ds:'Informativa sulla privacy'},
+  en: {titel:'Contact', lead:'Write to me – questions, mistakes, ideas. I’ll reply by email; if nothing arrives, please check your spam folder.', name:'Name (optional)', mail:'Your email address', text:'Your message', senden:'Send message',
+       ok:'Thank you! Your message has arrived. My reply will come from ' + RECHT_DATEN.mail + ' – please also check your spam folder.', fehlt:'Please enter a valid email address and a message (at least 10 characters).', fehler:'That didn’t work. Please try again later or write to ', ds:'Privacy policy'}
 };
 function renderKontakt(){
   const k = KONTAKT_TXT[rechtSprache()];
