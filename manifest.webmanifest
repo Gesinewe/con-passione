@@ -1,7 +1,11 @@
 {
-  "name": "Con Passione – Italienisch",
+  "name": "Con Passione",
+  "id": "./",
   "short_name": "Con Passione",
-  "description": "Italienisch lernen mit Themen, die dich begeistern.",
+  "description": "Sprachen lernen mit Themen, die dich begeistern: Italienisch, Englisch, Spanisch, Norwegisch und Deutsch.",
+  "categories": [
+    "education"
+  ],
   "lang": "de",
   "start_url": "./",
   "scope": "./",

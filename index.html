@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <meta name="theme-color" content="#F1F4F2" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111513" media="(prefers-color-scheme: dark)">
-<meta name="description" content="Italienisch lernen mit Themen, die dich begeistern.">
+<meta name="description" content="Sprachen lernen mit Themen, die dich begeistern: Italienisch, Englisch, Spanisch, Norwegisch und Deutsch.">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -735,7 +735,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 321;
+const APP_VERSION = 322;
 const GOOGLE_STIMMEN = ['it'];   // Lernrichtungen, deren Aufnahmen schon mit Google Cloud Text-to-Speech erzeugt sind (ab v314: Hinweis auf der Startseite)
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
@@ -90058,7 +90058,7 @@ if (LANG === 'sp') installUiTranslator();
 if (LANG === 'us') installUiTranslator();
 if (NEED_LANG_PICK) PICK_FIRST = true;
 renderHome();
-if (['#kontakt', '#impressum', '#datenschutz'].includes(location.hash) && !rechtOffen()){ PICK_FIRST = false; go(location.hash.slice(1)); }   /* ab v318: direkte Links, z. B. aus dem Impressum */
+if (typeof location !== 'undefined' && ['#kontakt', '#impressum', '#datenschutz'].includes(location.hash) && !rechtOffen()){ PICK_FIRST = false; go(location.hash.slice(1)); }   /* ab v318: direkte Links, z. B. aus dem Impressum */
 </script>
 
 </html>
