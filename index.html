@@ -735,7 +735,7 @@ if (typeof window !== 'undefined' && window.addEventListener && typeof document 
   document.getElementById('notaus').onclick = () => { try{ localStorage.removeItem('conpassione.lang'); localStorage.removeItem('conpassione.us.variant'); }catch(e){} location.reload(); };
 }, 300); });
 /* Versionsnummer (unten auf der Startseite), damit man sieht, welcher Stand auf dem Handy läuft */
-const APP_VERSION = 322;
+const APP_VERSION = 323;
 const GOOGLE_STIMMEN = ['it'];   // Lernrichtungen, deren Aufnahmen schon mit Google Cloud Text-to-Speech erzeugt sind (ab v314: Hinweis auf der Startseite)
 const LEVELS = [...Array(4).fill('Einstieg · A1'), ...Array(4).fill('Grundlagen · A1'), ...Array(4).fill('Aufbau · A2'), ...Array(4).fill('Fortgeschritten · B1')];
 /* Lernrichtung (ab v154): 'it' = Deutschsprachige lernen Italienisch (wie bisher), 'de' = Italiener lernen Deutsch.
